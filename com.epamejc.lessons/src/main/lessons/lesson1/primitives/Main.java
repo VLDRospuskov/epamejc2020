@@ -1,10 +1,5 @@
 package main.lessons.lesson1.primitives;
 
-import main.lessons.lesson1.seq_call.Call;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 public class Main {
 
     public static void main(String[] args) {
