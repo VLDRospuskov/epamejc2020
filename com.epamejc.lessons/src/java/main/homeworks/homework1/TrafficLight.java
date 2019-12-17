@@ -1,3 +1,4 @@
+package main.homeworks.homework1;
 public class TrafficLight {
     private final static String green = "green";
     private final static String yellow ="yellow";
