@@ -39,10 +39,10 @@ public class Main {
             String[] temp = request.replaceAll("[.;, ]",":").split(":");
             double minutes = Double.parseDouble(temp[0]);
             double seconds = Double.parseDouble(temp[1]);
-            if (seconds>60 && minutes>0){
+            if (seconds>60 && minutes>=0){
             time = minutes + (int)(seconds/60) + seconds%60/60;
             return true;
-            } else if (0<seconds && seconds<60 && minutes>0){
+            } else if (0<=seconds && seconds<60 && minutes>=0){
                 time = minutes + seconds/60;
                 return true;
             }
