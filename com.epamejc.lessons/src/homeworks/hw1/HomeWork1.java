@@ -17,20 +17,27 @@ public class HomeWork1 {
             try {
                 n = Integer.parseInt(str);
             } catch (Exception e) {
-                System.out.println("Wrong enter! Please enter number between 0 to 10.");
+                System.out.println("Wrong enter! Please enter number!");
                 continue;
             }
             if (n == -1) {
                 isEnd = true;
                 break;
-            } else if (n >= 0 && n <= 3) {
+            }
+            if (n < -1) {
+                n = -n;
+            }
+            if (n > 10) {
+                while (n > 10) {
+                    n = n % 10;
+                }
+            }
+            if (n >= 0 && n <= 3) {
                 System.out.println("Traffic signal: Green");
             } else if (n >= 4 && n <= 5) {
                 System.out.println("Traffic signal: Yellow");
-            } else if (n >= 6 && n <= 10) {
-                System.out.println("Traffic signal: Red");
             } else {
-                System.out.println("Wrong enter! Please enter number between 0 to 10.");
+                System.out.println("Traffic signal: Red");
             }
         }
         sc.close();
