@@ -36,7 +36,7 @@ public class Main {
     }
     private boolean parse(String request){
         try {
-            String[] temp = request.replaceAll("[-_|.;, ]",":").split(":");
+            String[] temp = request.replaceAll("[_|.;, ]",":").split(":");
             if (temp.length==2){
                 double minutes = Double.parseDouble(temp[0]);
                 double seconds = Double.parseDouble(temp[1]);
