@@ -37,7 +37,6 @@ public class Main {
     private boolean parse(String request){
         try {
             String[] temp = request.replaceAll("[.;, ]",":").split(":");
-            System.out.println(temp[1]);
             double minutes = Double.parseDouble(temp[0]);
             double seconds = Double.parseDouble(temp[1]);
             if (seconds>60 && minutes>0){
