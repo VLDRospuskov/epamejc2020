@@ -36,9 +36,18 @@ public class Main {
     }
     private boolean parse(String request){
         try {
-            String temp = request.replaceAll(",",".");
-            time = Double.parseDouble(temp);
+            String[] temp = request.replaceAll("[.;, ]",":").split(":");
+            System.out.println(temp[1]);
+            double minutes = Double.parseDouble(temp[0]);
+            double seconds = Double.parseDouble(temp[1]);
+            if (seconds>60 && minutes>0){
+            time = minutes + (int)(seconds/60) + seconds%60/60;
             return true;
+            } else if (0<seconds && seconds<60 && minutes>0){
+                time = minutes + seconds/60;
+                return true;
+            }
+            return false;
         }catch (Exception ex){
             return false;
         }
