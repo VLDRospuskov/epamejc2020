@@ -18,7 +18,7 @@ public class HomeWork1 {
             try {
                 n = Integer.parseInt(str);
             } catch (Exception e) {
-                System.out.println("Wrong enter! Please enter number between 1 to 10.");
+                System.out.println("Wrong enter! Please enter number between 0 to 10.");
                 continue;
             }
             if (n == -1) {
@@ -31,7 +31,7 @@ public class HomeWork1 {
             } else if (n >= 6 && n <= 10) {
                 System.out.println("Traffic signal: Red");
             } else {
-                System.out.println("Wrong enter! Please enter number between 1 to 10.");
+                System.out.println("Wrong enter! Please enter number between 0 to 10.");
             }
         }
         sc.close();
