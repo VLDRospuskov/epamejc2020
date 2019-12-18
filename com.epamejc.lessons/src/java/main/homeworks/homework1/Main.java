@@ -36,15 +36,23 @@ public class Main {
     }
     private boolean parse(String request){
         try {
-            String[] temp = request.replaceAll("[.;, ]",":").split(":");
-            double minutes = Double.parseDouble(temp[0]);
-            double seconds = Double.parseDouble(temp[1]);
-            if (seconds>60 && minutes>=0){
-            time = minutes + (int)(seconds/60) + seconds%60/60;
-            return true;
-            } else if (0<=seconds && seconds<60 && minutes>=0){
-                time = minutes + seconds/60;
-                return true;
+            String[] temp = request.replaceAll("[-_|.;, ]",":").split(":");
+            if (temp.length==2){
+                double minutes = Double.parseDouble(temp[0]);
+                double seconds = Double.parseDouble(temp[1]);
+                if ( minutes>=0 && seconds>=0){
+                    time = minutes + (int)(seconds/60) + seconds%60/60;
+                    System.out.println(time);
+                    return true;
+                }
+                return false;
+            }
+            else if (temp.length==1){
+                time = Double.parseDouble(temp[0]);
+                if ( time>=0){
+                    return true;
+                }
+                return false;
             }
             return false;
         }catch (Exception ex){
