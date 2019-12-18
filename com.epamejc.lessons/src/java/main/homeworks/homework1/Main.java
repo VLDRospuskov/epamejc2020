@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    private final static String hint ="Enter time in minutes.If you want to exit ENTER stop!";
+    private final static String hint ="Enter time in format(mm:ss or mm).If you want to exit ENTER stop!";
     private final static String stop = "stop";
     private final static String description = "The trafficlights color is: ";
     private final static String inccrrectInput = "incorrect input";
