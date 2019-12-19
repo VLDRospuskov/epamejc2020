@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class TrafficLights {
     public static void colorCheck(double time) {
         if (time < 0 || time > 10) {
-            System.exit(-1);
+            System.exit(0);
         }
         if (time >= 0 && time < 3) {
             JOptionPane.showMessageDialog(null, "Сейчас горит зеленый");

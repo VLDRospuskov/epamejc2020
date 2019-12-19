@@ -10,7 +10,7 @@ public class Main {
             userData = JOptionPane.showInputDialog("Введите число: ");
             try {
                 time = Double.parseDouble(userData);
-            } catch (Exception e){
+            } catch (Exception e) {
                 continue;
             }
             TrafficLights.colorCheck(time);
