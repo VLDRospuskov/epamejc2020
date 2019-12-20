@@ -11,14 +11,14 @@ class Input {
             if (inputValue != null && inputValue.length() != 0 && !inputValue.equals("exit")) {
                 if (isNumeric(inputValue)) {
                     Double time = Double.parseDouble(inputValue);
-                    if (time >= 0 && time <= 3.0) {
+                    if (time >= 0 && time < 4.0) {
                         System.out.println(Colors.GREEN);
-                    } else if (time >= 4.0 && time <= 5.0) {
+                    } else if (time >= 4.0 && time < 6.0) {
                         System.out.println(Colors.YELLOW);
-                    } else if (time >= 6.0 && time <= 8.0) {
+                    } else if (time >= 6.0 && time <= 10.0) {
                         System.out.println(Colors.RED);
                     } else {
-                        System.out.println("Out of range('0-3', '4-5', '6-8')");
+                        System.out.println("Out of range('0-4', '4-6', '6-10')");
                     }
                 } else {
                     System.out.println("Enter a number or exit");
