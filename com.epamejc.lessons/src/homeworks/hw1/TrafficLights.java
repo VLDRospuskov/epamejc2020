@@ -16,7 +16,7 @@ public class TrafficLights {
         boolean exitCondition = true;
 
         while (exitCondition) {
-            System.out.print("Enter the number: ");
+            System.out.print("Enter the number (type 'exit' to exit): ");
             String inputString = br.readLine();
 
             if (inputString.equalsIgnoreCase("exit")) {
