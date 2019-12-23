@@ -1,8 +1,8 @@
-package main.lesson1;
+package main.lessons.lesson1.seq_call;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new Call();
     }
 }
