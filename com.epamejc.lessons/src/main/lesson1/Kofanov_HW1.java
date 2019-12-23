@@ -7,6 +7,7 @@ import java.io.*;
 
 public class Kofanov_HW1 {
     public static void main(String[] args) throws IOException {
+        Object object;
         System.out.println("Введите количество минут (можно не целое)." + "\n" +
                 "Когда надоест - введите exit");
 
@@ -15,20 +16,27 @@ public class Kofanov_HW1 {
 
         while (true) {
             time = reader.readLine();
-            if (!time.equals("exit"))
+            if (!time.equals("exit")) {
                 trafficLight(time);
-            else
+            } else {
+                reader.close();
                 break;
+            }
         }
     }
 
     static void trafficLight(String time) {
         try {
             double minute = Double.parseDouble(time);
-            if (minute % 10 <= 3) { System.out.println("Зеленый сигнал"); }
-            else if (minute % 10 > 3 & minute % 10 <= 5) { System.out.println("Желтый сигнал"); }
-            else { System.out.println("Красный сигнал"); }
+            if (minute % 10 <= 3) {
+                System.out.println("Зеленый сигнал");
+            } else if (minute % 10 > 3 & minute % 10 <= 5) {
+                System.out.println("Желтый сигнал");
+            } else {
+                System.out.println("Красный сигнал");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Кажется, это не минуты:(");
         }
-        catch (NumberFormatException e) { System.out.println("Кажется, это не минуты:("); }
     }
 }
