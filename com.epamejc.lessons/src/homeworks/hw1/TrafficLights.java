@@ -11,6 +11,23 @@ Output:  0-3 минуты => зеленый, 4-5 минуты => желтый, 6
  */
 public class TrafficLights {
 
+    public static Double getTime(String inputString) {
+        try {
+            return Double.parseDouble(inputString);
+        } catch (NumberFormatException e) {
+            System.out.println("You have to enter the number");
+        }
+        return null;
+    }
+
+    public static String getColor(Double time) {
+        time = time % 10;
+        if ((time >= 0) && (time <= 3)) return "green";
+        if ((time >= 4) && (time <= 5)) return "yellow";
+        if ((time >= 6) && (time <= 10)) return "red";
+        return " ";
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean exitCondition = true;
@@ -35,22 +52,5 @@ public class TrafficLights {
             System.out.println("The color is " + color);
             System.out.println("_____________");
         }
-    }
-
-    public static Double getTime(String inputString) {
-        try {
-            return Double.parseDouble(inputString);
-        } catch (NumberFormatException e) {
-            System.out.println("You have to enter the number");
-        }
-        return null;
-    }
-
-    public static String getColor(Double time) {
-        time = time % 10;
-        if ((time >= 0) && (time <= 3)) return "green";
-        if ((time >= 4) && (time <= 5)) return "yellow";
-        if ((time >= 6) && (time <= 10)) return "red";
-        return " ";
     }
 }
