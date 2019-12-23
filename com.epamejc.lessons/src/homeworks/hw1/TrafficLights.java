@@ -9,7 +9,7 @@ import java.io.IOException;
 Output:  0-3 минуты => зеленый, 4-5 минуты => желтый, 6-10 => красный.
 Работу программы сделать непрерывной, выход можно обработать.
  */
-public class trafficLights {
+public class TrafficLights {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +26,7 @@ public class trafficLights {
 
             Double time = getTime(inputString);
             String color;
-            if(time != null) color = getColor(time);
+            if (time != null) color = getColor(time);
             else {
                 System.out.println("_____________");
                 continue;

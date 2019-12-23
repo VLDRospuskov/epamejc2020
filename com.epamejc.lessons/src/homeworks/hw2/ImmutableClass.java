@@ -1,10 +1,10 @@
 package homeworks.hw2;
 
-public final class immutableClass {
+public final class ImmutableClass {
 
     private final int a;
 
-    public immutableClass(int a) {
+    public ImmutableClass(int a) {
         this.a = a;
     }
 
@@ -13,7 +13,7 @@ public final class immutableClass {
     }
 
     public static void main(String[] args) {
-        immutableClass object = new immutableClass(512);
+        ImmutableClass object = new ImmutableClass(512);
         System.out.println("oh, you are finally awake");
     }
 }
