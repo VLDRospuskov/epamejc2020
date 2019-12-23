@@ -15,11 +15,11 @@ public class TrafficLights {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean exitCondition = true;
 
-        while(exitCondition) {
+        while (exitCondition) {
             System.out.print("Enter the number: ");
             String inputString = br.readLine();
 
-            if(inputString.equalsIgnoreCase("exit")) {
+            if (inputString.equalsIgnoreCase("exit")) {
                 exitCondition = false;
                 continue;
             }
@@ -48,9 +48,9 @@ public class TrafficLights {
 
     public static String getColor(Double time) {
         time = time % 10;
-        if((time >= 0) && (time <= 3)) return "green";
-        if((time >= 4) && (time <= 5)) return "yellow";
-        if((time >= 6) && (time <= 10)) return "red";
+        if ((time >= 0) && (time <= 3)) return "green";
+        if ((time >= 4) && (time <= 5)) return "yellow";
+        if ((time >= 6) && (time <= 10)) return "red";
         return " ";
     }
 }
