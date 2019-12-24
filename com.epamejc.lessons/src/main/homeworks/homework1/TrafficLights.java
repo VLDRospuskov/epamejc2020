@@ -15,6 +15,8 @@ class TrafficLights {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
+            System.out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, and s - seconds from 0 to 59 \nor word \"exit\" to quit the program");
+
             do {
                 isDone = mainLoopStart(reader);
             } while (!isDone);
@@ -28,10 +30,8 @@ class TrafficLights {
 
     private boolean mainLoopStart(BufferedReader reader) throws IOException {
 
-        System.out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, and s - seconds from 0 to 59 \nor word \"exit\" to quit the program");
-
         String inp = reader.readLine();
-        double result = 0;
+        double result;
 
         if (inp.equals("exit")) {
             return true;
@@ -39,11 +39,11 @@ class TrafficLights {
             try {
                 result = Double.parseDouble(inp);
                 result = new BigDecimal(result).setScale(3, RoundingMode.DOWN).doubleValue();
+                inputCheck(result);
             } catch (NumberFormatException e) {
                 System.out.println("Use numbers, or word exit.");
             }
         }
-        inputCheck(result);
         return false;
     }
 
