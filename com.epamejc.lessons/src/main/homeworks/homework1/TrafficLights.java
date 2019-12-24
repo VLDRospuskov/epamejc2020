@@ -9,7 +9,24 @@ import java.math.*;
 
 class TrafficLights {
 
-    boolean run(BufferedReader reader) throws IOException {
+    void run() {
+
+        boolean isDone;
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+
+            do {
+                isDone = mainLoopStart(reader);
+            } while (!isDone);
+
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private boolean mainLoopStart(BufferedReader reader) throws IOException {
 
         System.out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, and s - seconds from 0 to 59 \nor word \"exit\" to quit the program");
 
@@ -29,6 +46,7 @@ class TrafficLights {
         inputCheck(result);
         return false;
     }
+
 
     private void inputCheck(double num) {
 
