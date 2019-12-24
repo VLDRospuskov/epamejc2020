@@ -13,5 +13,6 @@ public class Lesson3 {
         System.out.println(Arrays.toString(b));
 
         int _ = 5;
+        //
     }
 }
