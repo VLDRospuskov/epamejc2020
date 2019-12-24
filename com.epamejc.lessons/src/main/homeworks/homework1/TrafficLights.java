@@ -22,8 +22,7 @@ class TrafficLights {
                 isDone = mainLoopStart(reader);
             } while (!isDone);
 
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
