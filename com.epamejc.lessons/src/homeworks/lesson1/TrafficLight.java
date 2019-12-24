@@ -7,25 +7,32 @@ import java.io.InputStreamReader;
 class TrafficLight {
 
     void run() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         boolean isRunning = true;
 
         while (isRunning) {
-            int n = getIntFromUser();
+            int n = getIntFromUser(reader);
             if (n == -1) {
                 isRunning = false;
             }
             checkTrafficLight(n);
         }
+
+        try {
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Не получилось закрыть поток!");
+        }
     }
 
-    private int getIntFromUser() {
+    private int getIntFromUser(BufferedReader reader) {
         int n;
         System.out.print("Введите количество секунд с начала работы светофора: ");
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             n = Integer.parseInt(reader.readLine());
         } catch (Exception e) {
-            System.out.println("Что-то пошло не так!");
+            System.out.println("Что-то пошло не так с вводимым значением!");
             return -1;
         }
 
