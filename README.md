@@ -1,7 +1,7 @@
 # epamejc2020 Vladimir Ivanov branch (:
 
 ## Links to solutions:
-| Plugin | README |
+| Task | Solution |
 | ------ | ------ |
 | Homework 1 | [Traffic lights][PlDb] |
 | Homework 2 | [Immutable class][PlGh] |
