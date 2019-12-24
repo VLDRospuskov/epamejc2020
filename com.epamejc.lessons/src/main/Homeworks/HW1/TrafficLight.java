@@ -2,11 +2,13 @@ package main.Homeworks.HW1;
 
 import java.util.Scanner;
 
-public class TrafficLight
-{
-    public static void main(String[] args)
-    {
-        String SystemMessage = "Введите количество секунд. Для завершения работы введите пустую строку: ";
+/**
+ * Класс для реализации логики работы светофора
+ */
+public class TrafficLight {
+    private final String SystemMessage = "Enter the number of seconds. To exit, enter an empty string: ";
+
+    public void run() {
         Scanner scan = new Scanner(System.in);
         System.out.print(SystemMessage);
         String inputString = scan.nextLine();
@@ -19,23 +21,30 @@ public class TrafficLight
                 System.out.print(SystemMessage);
                 inputString = scan.nextLine();
             } catch (Exception exc) {
-                System.out.println("Похоже, вы сломали светофор: " + exc.toString());
+                System.out.println("ПTraffic light is broken: " + exc.toString());
                 break;
             }
         }
-        System.out.println("Программа завершается");
+        scan.close(); //Здесь закрываем поток в случае пользовательского выхода или исключения
+        System.out.println("Program ends");
     }
 
-    private static String DefineTrafficLightSignal(int num)
-    {
-        String result;
+    /**
+     * Метод для определения цвета сигнала светофора
+     * @param num время с начала работы светофора, сек
+     * @return цвет сигнала
+     */
+    private static String DefineTrafficLightSignal(int num) {
         num = num % 600; //контур на 10 минут
 
-        if (num >= 0 && num <= 180) result = "Зеленый сигнал";
-        else if (num > 180 && num <= 300) result = "Желтый сигнал";
-        else if (num > 300) result = "Красный сигнал";
-        else result = "Светофор еще не включился";
-
-        return result;
+        if (num >= 0 && num <= 180) {
+            return TrafficLightColors.Green + " color";
+        } else if (num > 180 && num <= 300) {
+            return TrafficLightColors.Yellow + " color";
+        } else if (num > 300) {
+            return TrafficLightColors.Red + " color";
+        } else {
+            return "Traffic light isn't working yet";
+        }
     }
 }
