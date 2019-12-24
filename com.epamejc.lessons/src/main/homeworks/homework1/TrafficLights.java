@@ -15,7 +15,8 @@ class TrafficLights {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
-            System.out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, and s - seconds from 0 to 59 \nor word \"exit\" to quit the program");
+            System.out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, " +
+                    "and s - seconds from 0 to 59 \nor word \"exit\" to quit the program");
 
             do {
                 isDone = mainLoopStart(reader);
