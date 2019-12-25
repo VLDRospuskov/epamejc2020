@@ -20,6 +20,7 @@ class TrafficLight {
 
                 if (n == -1) {
                     isRunning = false;
+                    continue;
                 } else if (n == -2) {
                     continue;
                 }
@@ -36,7 +37,7 @@ class TrafficLight {
             System.out.print("Введите количество минут с начала работы светофора: ");
             String s = reader.readLine();
 
-            if (s.equals(EXIT_WORD)) {
+            if (s.equalsIgnoreCase(EXIT_WORD)) {
                 System.out.println(FINAL_MESSAGE);
                 return -1;
             }
