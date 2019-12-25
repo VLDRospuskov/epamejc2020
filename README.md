@@ -10,6 +10,7 @@
 - [x] Homework 1
 - [x] homework 2
 - [x] homework 1 refactoring
+- [] download IDEA community edition
 
 ![Fun](https://img.icons8.com/doodle/192/000000/futurama-bender.png)
 
