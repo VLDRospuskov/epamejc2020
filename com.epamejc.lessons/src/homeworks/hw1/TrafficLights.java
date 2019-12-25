@@ -12,19 +12,26 @@ Output:  0-3 минуты => зеленый, 4-5 минуты => желтый, 6
 public class TrafficLights {
 
     public static Double getTime(String inputString) {
+        Double d = new Double(null);
         try {
-            return Double.parseDouble(inputString);
+            d = Double.parseDouble(inputString);
         } catch (NumberFormatException e) {
             System.out.println("You have to enter the number");
         }
-        return null;
+        return d;
     }
 
     public static String getColor(Double time) {
         time = time % 10;
-        if ((time >= 0) && (time <= 3)) return "green";
-        if ((time >= 4) && (time <= 5)) return "yellow";
-        if ((time >= 6) && (time <= 10)) return "red";
+        if ((time >= 0) && (time <= 3)) {
+            return "green";
+        }
+        if ((time >= 4) && (time <= 5)) {
+            return "yellow";
+        }
+        if ((time >= 6) && (time <= 10)) {
+            return "red";
+        }
         return " ";
     }
 
@@ -37,6 +44,7 @@ public class TrafficLights {
             String inputString = br.readLine();
 
             if (inputString.equalsIgnoreCase("exit")) {
+                br.close();
                 exitCondition = false;
                 continue;
             }
