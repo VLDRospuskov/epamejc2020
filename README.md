@@ -1,7 +1,7 @@
 # epamejc2020 Vladimir Ivanov branch (:
 
 ## Links to solutions:
-### dsfsdfsdf
+
 | Task | Solution |
 | ------ | ------ |
 | Homework 1 | [Traffic lights][PlDb] |
@@ -12,6 +12,7 @@
 - [x] homework 2
 - [x] homework 1 refactoring
 - [ ] download IDEA community edition
+- [ ] 20 january 1-st lesson
 
 ![Fun](https://img.icons8.com/doodle/192/000000/futurama-bender.png)
 
