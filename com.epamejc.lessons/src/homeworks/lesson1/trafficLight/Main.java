@@ -1,6 +1,4 @@
-package homeworks.lesson1;
-
-import java.io.IOException;
+package homeworks.lesson1.trafficLight;
 
 public class Main {
     public static void main(String[] args) {

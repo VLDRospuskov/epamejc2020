@@ -1,4 +1,4 @@
-package homeworks.lesson1;
+package homeworks.lesson1.trafficLight;
 
 public enum Colors {
 
