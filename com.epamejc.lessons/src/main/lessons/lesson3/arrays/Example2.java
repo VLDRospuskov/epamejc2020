@@ -1,4 +1,4 @@
-package main.lessons.lesson3.string.arrays;
+package main.lessons.lesson3.arrays;
 
 public class Example2 {
 
