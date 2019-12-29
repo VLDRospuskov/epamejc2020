@@ -1,55 +1,54 @@
 package homeworks.homework1;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class TheTrafficLights {
-    IOConsoleProvider ioConsoleProvider;
-
-    private String green = "Green";
-    private String yellow = "Yellow";
-    private String red = "Red";
-
-    public TheTrafficLights(IOConsoleProvider ioConsoleProvider) {
-        this.ioConsoleProvider = ioConsoleProvider;
-    }
 
     public void run() {
-        ioConsoleProvider.writeOutput("Welcome to The Traffic Light \nPlease, enter a number. \nIf you want to quit, enter Q.");
-        String userInput;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Welcome to The Traffic Light \nPlease, enter a number. \nIf you want to quit, enter Q.");
 
         while (true) {
-            userInput = ioConsoleProvider.readInput();
 
-            if (userInput.toLowerCase().equals("q")) break;
+            try {
+                String userInput = reader.readLine();
 
-            checkTheLight(userInput);
+                if (userInput.toLowerCase().equals("q")) {
+                    reader.close();
+                    break;
+                }
+
+                if (tryParse(userInput)) {
+                    int number = Integer.parseInt(userInput);
+                    checkTheLight(number);
+                }
+            } catch (IOException e) {
+                System.out.println("Wrong entry! You should enter a positive number!");
+            }
         }
-
-
-
     }
 
-    private void checkTheLight(String userInput) {
-        int numb;
-        String s = "Light color is ";
+    private void checkTheLight(int number) {
+        if (number > 10) {
+            number = number % 10;
+        }
 
-        if(!tryParse(userInput)) {
-            ioConsoleProvider.writeOutput("You should enter a positive number");
-            return;
+        String s = "";
+
+        if (number >= 0 && number <= 3) {
+            s = Colors.GREEN.toString();
+        } else if (number >= 4 && number <= 5) {
+            s = Colors.YELLOW.toString();
         } else {
-            numb = Integer.parseInt(userInput);
-            numb %= 10;
+            s = Colors.RED.toString();
         }
 
-
-        if (numb >= 0 && numb <= 3) {
-            ioConsoleProvider.writeOutput(s + green);
-        } else if (numb >= 4 && numb <= 5) {
-            ioConsoleProvider.writeOutput(s + yellow);
-        } else if (numb >= 6) {
-            ioConsoleProvider.writeOutput(s + red);
-        }
-        
-
-
+        System.out.println("Signal is " + s);
     }
 
     private boolean tryParse(String s) {
