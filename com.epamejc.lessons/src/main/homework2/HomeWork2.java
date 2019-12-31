@@ -5,9 +5,11 @@ package main.homework2;
 public class HomeWork2 {
 
     public static void main(String[] args) {
-        ImmutableClass immutableClass = ImmutableClass.createInstance("one", 1);
+        ImmutableClass immutableClass = new ImmutableClass("one", 1);
         System.out.println(immutableClass.strField);
         System.out.println(immutableClass.intField);
+
+
     }
 
 
@@ -20,15 +22,13 @@ public class HomeWork2 {
             this.intField = intField;
         }
 
-        public static ImmutableClass createInstance(String strField, int intField) {
-            return new ImmutableClass(strField, intField);
-        }
-
         public String getStrField() {
+//            ImmutableClass immutableClass = new ImmutableClass(strField, this.intField);
             return strField;
         }
 
         public int getIntField() {
+//            ImmutableClass immutableClass = new ImmutableClass(this.strField, intField);
             return intField;
         }
     }
