@@ -1,4 +1,4 @@
-package main.homework2.immutableClass.task1;
+package main.homework2;
 
 /* Creating an immutable class */
 
