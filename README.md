@@ -1,3 +1,3 @@
 # epamejc2020 \m/
-HW1 - Traffic light
-HW2 - Immutable class
+HW1 - TrafficLight
+HW2 - Own immutable class

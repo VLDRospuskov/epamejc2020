@@ -2,7 +2,7 @@ package main.homeworks.hw1ver2;
 
 import java.io.IOException;
 
-import static main.homeworks.hw1.enums.Messages.*;
+import static main.homeworks.hw1ver2.enums.Messages.*;
 import static main.homeworks.hw1ver2.enums.Messages.EXIT_COMMAND;
 
 class TrafficLight {

@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static main.homeworks.hw1.enums.Messages.ENTER_MESSAGE;
-import static main.homeworks.hw1.enums.Messages.EXIT_COMMAND;
+import static main.homeworks.hw1ver2.enums.Messages.ENTER_MESSAGE;
 
 public class Main {
 
