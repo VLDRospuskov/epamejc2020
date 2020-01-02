@@ -1,12 +1,38 @@
-package main.homeworks.hw1;
+package main.homeworks.hw1ver2;
+
+import java.io.IOException;
 
 import static main.homeworks.hw1.enums.Messages.*;
+import static main.homeworks.hw1ver2.enums.Messages.EXIT_COMMAND;
 
-public class TrafficLight {
+class TrafficLight {
+
+    static void checkForExit(String line) throws IOException {
+        if (!line.equalsIgnoreCase(EXIT_COMMAND.toString())) {
+            Main.main(null);
+        }
+    }
+
+    private static Double getNumberFromInput(String line) {
+
+        Double d = null;
+
+        try {
+            if (Double.parseDouble(line) > 0) {
+                return Double.parseDouble(line);
+            }
+            else{
+                System.out.println(ENTER_NUMBER_COMMAND.toString());
+            }
+        } catch (NumberFormatException e) {
+            System.out.println(ENTER_NUMBER_COMMAND.toString());
+        }
+        return d;
+    }
 
     static void getColor(String line) {
 
-        Double minutes = Number.getNumberFromInput(line);
+        Double minutes = getNumberFromInput(line);
 
         if (minutes != null) {
             double div = minutes % 10;

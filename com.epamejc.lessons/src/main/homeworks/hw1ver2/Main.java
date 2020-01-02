@@ -1,10 +1,11 @@
-package main.homeworks.hw1;
+package main.homeworks.hw1ver2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static main.homeworks.hw1.enums.Messages.*;
+import static main.homeworks.hw1.enums.Messages.ENTER_MESSAGE;
+import static main.homeworks.hw1.enums.Messages.EXIT_COMMAND;
 
 public class Main {
 
@@ -12,22 +13,13 @@ public class Main {
 
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
-        boolean cond = true;
+        System.out.println(ENTER_MESSAGE.toString());
 
-        while(cond) {
+        String line = buffer.readLine();
 
-            System.out.println(ENTER_MESSAGE.toString());
+        TrafficLight.getColor(line);
 
-            String line = buffer.readLine();
-
-            if(line.equalsIgnoreCase(EXIT_COMMAND.toString())) {
-                cond = false;
-                continue;
-            }
-
-            TrafficLight.getColor(line);
-
-        }
+        TrafficLight.checkForExit(line);
 
         buffer.close();
     }

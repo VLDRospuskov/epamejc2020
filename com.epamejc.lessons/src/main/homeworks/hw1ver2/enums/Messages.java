@@ -1,4 +1,4 @@
-package main.homeworks.hw1.enums;
+package main.homeworks.hw1ver2.enums;
 
 public enum Messages {
 

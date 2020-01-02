@@ -1,10 +1,10 @@
-package homeworks.hw1;
+package main.homeworks.hw1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static homeworks.hw1.enums.Messages.*;
+import static main.homeworks.hw1.enums.Messages.*;
 
 public class Main {
 
@@ -26,6 +26,7 @@ public class Main {
             }
 
             TrafficLight.getColor(line);
+
         }
 
         buffer.close();
