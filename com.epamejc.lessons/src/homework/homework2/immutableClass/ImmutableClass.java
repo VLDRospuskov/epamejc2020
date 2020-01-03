@@ -1,9 +1,9 @@
-package homework.homework2;
+package homework.homework2.immutableClass;
 
 import lombok.Value;
 import java.util.HashMap;
 
-// @Value lombok annotation
+// @Value // lombok annotation
 final class ImmutableClass {
     private final int id;
     private final String name;

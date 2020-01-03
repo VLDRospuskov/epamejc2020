@@ -1,10 +1,9 @@
-package homework.homework2;
+package homework.homework2.immutableClass;
 
 import java.util.HashMap;
 
 public class Test {
     public static void main(String[] args) {
-
 
         ImmutableClass immute = new ImmutableClass(0, "Oleg");
         System.out.println("Immutabe:");
@@ -18,6 +17,7 @@ public class Test {
         HashMap valueMap = new HashMap();
         valueMap.put(ordy.getName(), ordy.getId());
         ordy.setValueMap(valueMap);
+        ordy.setValueMap(2, "Angel");
         System.out.println("\nOrdinary: ");
         System.out.println("id: " + ordy.getId());
         System.out.println("name: " + ordy.getName());
