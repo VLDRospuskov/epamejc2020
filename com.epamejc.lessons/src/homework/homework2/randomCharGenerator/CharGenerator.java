@@ -50,11 +50,9 @@ class CharGenerator {
     }
 
 
-    private Boolean isPositiveAndNotZero (String str) {
-        String regexDecimal = "^-?\\d*\\.\\d+$";
+    private boolean isPositiveAndNotZero (String str) {
         String regexInteger = "^-?\\d+$";
-        String regexDouble = regexDecimal + "|" + regexInteger;
-        return str.matches(regexDouble) && Integer.parseInt(str) > 0;
+        return str.matches(regexInteger) && Integer.parseInt(str) > 0;
     }
 }
 

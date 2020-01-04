@@ -2,7 +2,7 @@ package homework.homework2.immutableClass;
 
 import java.util.HashMap;
 
-public class Test {
+class Test {
     public static void main(String[] args) {
 
         ImmutableClass immute = new ImmutableClass(0, "Oleg");

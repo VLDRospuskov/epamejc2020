@@ -1,4 +1,4 @@
-package homework.homework2.randomCharGenerator;
+package homework.homework2.strategyCharGenerator;
 
 class Main {
     public static void main(String[] args) {
