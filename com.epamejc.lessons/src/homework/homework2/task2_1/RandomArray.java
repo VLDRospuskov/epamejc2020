@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomArray {
     private final Random rand = new Random();
-    private char[][] array;
+    protected char[][] array;
 
     public RandomArray(int columns, int rows) {
         if (columns < 0 || rows < 0) throw new IllegalArgumentException("Non-negative values required!");

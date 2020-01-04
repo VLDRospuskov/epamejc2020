@@ -26,7 +26,7 @@ public class Main {
         arr.printArray();
     }
 
-    int getPositiveInteger(BufferedReader bufReader) throws IOException, IllegalArgumentException {
+    private int getPositiveInteger(BufferedReader bufReader) throws IOException, IllegalArgumentException {
         if (bufReader == null) {
             throw new IllegalArgumentException("BufferedReader is null!");
         }
