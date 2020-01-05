@@ -5,5 +5,4 @@ class Main {
         TrafficLight trafficLight = new TrafficLight();
         trafficLight.showColors();
     }
-
 }
