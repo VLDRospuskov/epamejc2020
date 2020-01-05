@@ -1,4 +1,4 @@
-package main.lessons.lesson3.string.br;
+package main.lessons.lesson3.br;
 
 import java.io.BufferedReader;
 import java.io.IOException;

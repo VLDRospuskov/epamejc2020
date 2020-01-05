@@ -1,4 +1,4 @@
-package main.lessons.lesson3.string.equals_and_hashcode;
+package main.lessons.lesson4.static_example;
 
 import java.util.Objects;
 
@@ -6,6 +6,8 @@ public class Cat {
 
     private int id;
     private String name;
+    private static int age = 10;
+    private static int count = 0;
 
     public Cat(int id, String name) {
         this.id = id;
@@ -17,7 +19,9 @@ public class Cat {
     }
 
     public void setId(int id) {
-        this.id = id;
+        if (id < 10) {
+            this.id = id;
+        }
     }
 
     public String getName() {
@@ -26,6 +30,22 @@ public class Cat {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static int getAge() {
+        return age;
+    }
+
+    public static void setAge(int age) {
+        Cat.age = age;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Cat.count = count;
     }
 
     @Override
@@ -42,19 +62,6 @@ public class Cat {
         return Objects.hash(id, name);
     }
 
-    //    @Override
-//    public int hashCode() {
-//        System.out.println("call hashCode: " + id);
-//        return 31 * id * name.length();
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        System.out.println("call equals: " + id);
-//        Cat secondCat = (Cat) obj;
-//        return this.id == secondCat.id && this.name.equals(secondCat.name);
-//    }
-
     @Override
     public String toString() {
         return "Cat{" +
@@ -62,4 +69,5 @@ public class Cat {
                 ", name='" + name + '\'' +
                 '}';
     }
+
 }
