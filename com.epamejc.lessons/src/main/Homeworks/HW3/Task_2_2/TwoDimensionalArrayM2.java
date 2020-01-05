@@ -1,11 +1,13 @@
-package main.Homeworks.HW3.Task_2_1;
+package main.Homeworks.HW3.Task_2_2;
+
+import main.Homeworks.HW3.Task_2_1.SystemMessages;
 
 import java.util.Scanner;
 
 /**
  * Класс для реализации логики заполнения двумерного массива
  */
-public class TwoDimensionalArray {
+public class TwoDimensionalArrayM2 {
     private boolean appInputExitTrigger = true;
     private boolean linesInputExitTrigger = true;
     private boolean rowsInputExitTrigger = true;
@@ -18,25 +20,23 @@ public class TwoDimensionalArray {
         while (appInputExitTrigger) { //Пока не введено значение -1
             System.out.println(SystemMessages.appStartMessage.getMessage());
             defineLinesQuantity(scan);
-            if (appInputExitTrigger) { //Здесь уже могли ввести -1 -> надо снова проверить
+            if (appInputExitTrigger) { //Проверяем условие выхода на стадии ввода числа строк
                 defineRowsQuantity(scan);
-                if (appInputExitTrigger) {
-                    char[][] twoDimArray = new char[linesQuantity][rowsQuantity]; //Объявление массива
+                if (appInputExitTrigger) { //Проверяем условие выхода на стадии ввода числа столбцов
+                    char[][] twoDimArray = new char[linesQuantity][rowsQuantity];
                     fillCharArray(twoDimArray); //Заполнение массива случайными символами А-z
-                    printCharArray(twoDimArray); //Вывод массива в консоль
-                    linesInputExitTrigger = true; //Для возможности повторного ввода строк и столбцов
-                    rowsInputExitTrigger = true;
-                } else {
-                    scan.close();
-                    System.out.println(SystemMessages.appFinishMessage.getMessage());
-                    break;
+                    int strategyNumber = defineStrategy(scan);
+                    if (appInputExitTrigger) { //Проверяем условие выхода на стадии ввода номера стратегии
+                        printCharArray(twoDimArray); //Вывод массива в консоль
+                        System.out.println("Modified array: \n" + processArrayWithStrategy(twoDimArray, strategyNumber));
+                        linesInputExitTrigger = true; //Для возможности повторного ввода строк и столбцов
+                        rowsInputExitTrigger = true;
+                    }
                 }
-            } else {
-                scan.close();
-                System.out.println(SystemMessages.appFinishMessage.getMessage());
-                break;
             }
         }
+        scan.close();
+        System.out.println(SystemMessages.appFinishMessage.getMessage());
     }
 
     /**
@@ -90,6 +90,35 @@ public class TwoDimensionalArray {
     }
 
     /**
+     * Метод для проверки корректности ввода и инициализации номера стратегии
+     *
+     * @param _scan
+     * @return
+     */
+    private int defineStrategy(Scanner _scan) {
+        boolean isCorrectStrategyInput = false;
+        int strategyNumber = 0;
+        while (!isCorrectStrategyInput) {
+            System.out.print(SystemMessages.inputStrategyMessage.getMessage());
+            String inputString = _scan.nextLine();
+            try {
+                strategyNumber = Integer.parseInt(inputString);
+                if (strategyNumber == -1) {
+                    appInputExitTrigger = false;
+                    break;
+                } else if (strategyNumber == 1 || strategyNumber == 2) {
+                    isCorrectStrategyInput = true;
+                } else {
+                    System.out.println(SystemMessages.strategyErrorMessage.getMessage());
+                }
+            } catch (Exception ex) {
+                System.out.println(SystemMessages.strategyErrorMessage.getMessage());
+            }
+        }
+        return strategyNumber;
+    }
+
+    /**
      * Метод для случайной генерации символа в пределах A-z
      *
      * @return сгенерированный символ
@@ -119,7 +148,7 @@ public class TwoDimensionalArray {
      * @param _twoDimArray
      */
     private void printCharArray(char[][] _twoDimArray) {
-        System.out.println(SystemMessages.outputMessage.getMessage());
+        System.out.println("Generated array:");
         for (int i = 0; i < linesQuantity; i++) {
             for (int j = 0; j < rowsQuantity; j++) {
                 System.out.print(" " + _twoDimArray[i][j] + " ");
@@ -127,5 +156,48 @@ public class TwoDimensionalArray {
             System.out.println();
         }
     }
+
+    /**
+     * Метод для генерации строки на основании выбранной стратегии и сгенерированного массива
+     *
+     * @param _twoDimArray
+     * @param _strategyNumber
+     * @return
+     */
+    private String processArrayWithStrategy(char[][] _twoDimArray, int _strategyNumber) {
+        String resultString = "";
+        if (_strategyNumber == 1) //Стратегия для четных индексов
+        {
+            for (int i = 0; i < linesQuantity; i++) {
+                if (i % 2 == 0) {
+                    for (int j = 0; j < rowsQuantity; j++) {
+                        if (j % 2 == 0) {
+                            resultString = resultString + _twoDimArray[i][j];
+                        } else {
+                            continue;
+                        }
+                    }
+                } else {
+                    continue;
+                }
+            }
+        } else { //Стратегия для нечетных индексов
+            for (int i = 0; i < linesQuantity; i++) {
+                if (i % 2 != 0) {
+                    for (int j = 0; j < rowsQuantity; j++) {
+                        if (j % 2 != 0) {
+                            resultString = resultString + _twoDimArray[i][j];
+                        } else {
+                            continue;
+                        }
+                    }
+                } else {
+                    continue;
+                }
+            }
+        }
+        return resultString;
+    }
 }
+
 

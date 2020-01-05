@@ -7,7 +7,9 @@ public enum SystemMessages {
     inputLinesMessage("Enter the number of lines: "),
     inputRowsMessage("Enter the number of rows: "),
     outputMessage("Generated array:"),
-    numberErrorMessage("Quantity of rows and columns must be a number between 0 and 85");
+    numberErrorMessage("Quantity of rows and columns must be a number between 0 and 85"),
+    strategyErrorMessage("The strategy number must be 1 or 2"),
+    inputStrategyMessage("Enter number of strategy.\nEnter 1 for even indices or 2 for odd indices: ");
 
     private String message;
 
