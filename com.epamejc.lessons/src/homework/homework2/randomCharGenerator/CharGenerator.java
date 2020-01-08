@@ -23,7 +23,7 @@ class CharGenerator {
                     System.out.print("Enter again or type 'exit': ");
 
                 } else if (userInput.equals("exit")) {
-                    System.out.println("Generator stoped!");
+                    System.out.println("Generator stopped!");
                     break;
                 } else {
                     System.out.println("Incorrect format");

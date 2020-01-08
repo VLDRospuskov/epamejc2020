@@ -15,7 +15,7 @@ class UserController {
                 String userString = reader.readLine();
 
                 if (userString.equalsIgnoreCase("exit")) {
-                    System.out.println("Generator stoped!");
+                    System.out.println("Generator stopped!");
                     break;
                 } else if (isIncorrectFormatOfString(userString)) {
                     System.out.println("String mustn't begin or end with space or tab symbol");

@@ -17,7 +17,7 @@ public class PyramidGenerator {
                 if (isPositiveAndNotZero(numberOfLevels)) {
                     printPyramid(Integer.parseInt(numberOfLevels));
                 } else if (numberOfLevels.equals("exit")) {
-                    System.out.println("Generator stoped!");
+                    System.out.println("Generator stopped!");
                     break;
                 } else {
                     System.out.println("Number of levels should be an integer and over zero");

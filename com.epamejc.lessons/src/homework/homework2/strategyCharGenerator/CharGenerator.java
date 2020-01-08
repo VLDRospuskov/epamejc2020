@@ -14,7 +14,7 @@ class CharGenerator {
                 String userStrategy = reader.readLine();
 
                 if (userStrategy.equals("exit")) {
-                    System.out.println("Generator stoped!");
+                    System.out.println("Generator stopped!");
                     break;
                 }
 
