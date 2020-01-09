@@ -4,13 +4,12 @@ import java.util.Scanner;
 
 public class ReversedString {
     private boolean appInputExitTrigger = true;
-    private String resultString = "";
     private String inputString = "";
 
     public void run(){
         Scanner scan = new Scanner(System.in);
         while (appInputExitTrigger) {
-            enterString(scan); //Ввели строку
+            enterString(scan);
             if(appInputExitTrigger){
                 reverseStrings();
             }
