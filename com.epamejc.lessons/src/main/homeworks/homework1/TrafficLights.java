@@ -1,12 +1,18 @@
-package com.epam.homeworks.homework1;
+package main.homeworks.homework1;
+
 import java.util.Scanner;
 
 public class TrafficLights {
-    static String colorLight;
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+
+    public void run() {
         System.out.print("Traffic lights on. To turn off the traffic light, enter \"off\". " +
                 "Enter the number of minutes to switch the color: ");
+        inputNumber();
+        System.out.print("You turned off the traffic lights.");
+    }
+
+    private void inputNumber() {
+        Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         while (!input.equals("off")) {
             try {
@@ -17,19 +23,21 @@ public class TrafficLights {
 
             input = in.nextLine();
         }
-        System.out.print("You turned off the traffic lights.");
+        in.close();
     }
 
-    private static void changeLight (int min) {
+    private void changeLight(int min) {
+        Colors current = null;
         if (min >= 0 && min <= 3) {
-            colorLight = "Green";
+            current = Colors.Green;
         }
         if (min >= 4 && min <= 5) {
-            colorLight = "Yellow";
+            current = Colors.Yellow;
         }
         if (min >= 6 && min <= 10) {
-            colorLight = "Red";
+            current = Colors.Red;
         }
-        System.out.println(colorLight);
+        System.out.println(current);
     }
+
 }
