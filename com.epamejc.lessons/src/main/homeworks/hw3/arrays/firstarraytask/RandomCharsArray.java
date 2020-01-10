@@ -1,10 +1,6 @@
 package main.homeworks.hw3.arrays.firstarraytask;
 
-import java.awt.*;
-import java.io.IOException;
 import java.util.Random;
-
-import static main.homeworks.hw3.arrays.firstarraytask.enums.Messages.FROM_TO_MESSAGE;
 
 class RandomCharsArray {
 
