@@ -14,13 +14,19 @@ public class TrafficLights {
     private void inputNumber() {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
+        int n;
         while (!input.equals("off")) {
             try {
-                changeLight(Integer.parseInt(input));
+                n = Integer.parseInt(input);
+                if (n < 0 || n > 10) {
+                    throw new ArithmeticException();
+                }
+                changeLight(n);
+            } catch (ArithmeticException e) {
+                System.out.println("Enter a positive number less than 10!");
             } catch (Exception e) {
                 System.out.println("Opps... We don't know this command.");
             }
-
             input = in.nextLine();
         }
         in.close();
