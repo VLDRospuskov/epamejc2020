@@ -1,4 +1,4 @@
-package homework2;
+package main.homeworks.homework2.immutableClass;
 import java.util.Date;
 
 class ImmutableClassPerson {
