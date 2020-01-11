@@ -10,11 +10,9 @@ b h
 h g
 */
 
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
-public class T211TwoDimensional {
+public class T21TwoDimensional {
     public void start() {
         Scanner scanner = new Scanner(System.in);
 
