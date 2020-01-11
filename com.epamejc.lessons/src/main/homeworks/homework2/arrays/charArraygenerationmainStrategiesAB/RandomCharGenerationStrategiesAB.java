@@ -1,4 +1,4 @@
-package main.homeworks.homework2.arrays.CharArrayGenerationmainStrategiesAB;
+package main.homeworks.homework2.arrays.charArraygenerationmainStrategiesAB;
 
 import java.util.Scanner;
 
