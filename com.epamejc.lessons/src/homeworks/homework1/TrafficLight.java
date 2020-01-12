@@ -14,7 +14,6 @@ public class TrafficLight {
         try {
             System.out.println("Write a number:");
             String inputLine = br.readLine();
-            //System.out.println(inputLine);
             try {
                 this.time = Double.parseDouble(inputLine);
             } catch (NumberFormatException e) {
