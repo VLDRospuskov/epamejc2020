@@ -12,7 +12,7 @@ public class Exponentiation {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
             while (true) {
-                System.out.print("Enter a number to elevate or 'exit': ");
+                System.out.print("Enter a base or 'exit': ");
                 String userNumber = reader.readLine();
 
                 if (userNumber.equalsIgnoreCase("exit")) {
@@ -30,16 +30,24 @@ public class Exponentiation {
 
                         if (userSteppe.equalsIgnoreCase("next")) {
                             break;
-                        } else if (isNumeric(userSteppe)) {
-                            double steppe = Double.parseDouble(userSteppe);
-                            double result = elevate(number, steppe);
+                        } else if (determineSteppeType(userSteppe).equals(TypeOfSteppe.INTEGER)) {
+
+                            int steppe = Integer.parseInt(userSteppe);
+                            double result = exponent(number, steppe);
                             System.out.println(result);
+
+                        } else if (determineSteppeType(userSteppe).equals(TypeOfSteppe.DOUBLE)) {
+
+                            double steppe = Double.parseDouble(userSteppe);
+                            double result = Math.pow(number, steppe);
+                            System.out.println(result);
+
                         } else {
                             System.out.println("Steppe must be double or integer");
                         }
                     }
                 } else {
-                    System.out.println("Incorrect input");
+                    System.out.println("Base must be double or integer");
                 }
             }
         } catch (Exception ex)  {
@@ -47,17 +55,16 @@ public class Exponentiation {
         }
     }
 
-
-    private double elevate (double number, double steppe) {
+    private double exponent (double base, int steppe) {
         if (steppe > 0) {
-            product *= number;
+            product *= base;
             steppe--;
-            elevate(number, steppe);
+            exponent(base, steppe);
             return product;
         } else if (steppe < 0) {
-            product *= number;
+            product *= 1/base;
             steppe++;
-            elevate(number, steppe);
+            exponent(base, steppe);
             return product;
         } else {
             return product;
@@ -67,7 +74,18 @@ public class Exponentiation {
     private boolean isNumeric (String str) {
         String regexDecimal = "^-?\\d*\\.\\d+$";
         String regexInteger = "^-?\\d+$";
-        String regexDouble = regexDecimal + "|" + regexInteger;
-        return str.matches(regexDouble);
+        return str.matches(regexDecimal + "|" + regexInteger);
+    }
+
+    private TypeOfSteppe determineSteppeType (String str) {
+        String regexDecimal = "^-?\\d*\\.\\d+$";
+        String regexInteger = "^-?\\d+$";
+        if (str.matches(regexDecimal)) {
+            return TypeOfSteppe.DOUBLE;
+        } else if (str.matches(regexInteger)) {
+            return TypeOfSteppe.INTEGER;
+        } else {
+            return TypeOfSteppe.NAN;
+        }
     }
 }

@@ -2,9 +2,9 @@ package homework.homework2.strategyCharGenerator;
 
 import java.util.Random;
 
-class StrategyA {
+class RandomArray {
 
-    void setRandomChars (int rows, int columns) {
+    char[][] create (int rows, int columns) {
         final String alphabet = "abcdefghijklmnopqrstuvwxyz";
         Random randomInteger = new Random();
         char[][] randomChars = new char[rows][columns];
@@ -17,5 +17,6 @@ class StrategyA {
             System.out.print("\n");
         }
         System.out.print("\n");
+        return randomChars;
     }
 }

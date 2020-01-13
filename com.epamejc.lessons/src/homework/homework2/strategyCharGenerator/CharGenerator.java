@@ -2,6 +2,7 @@ package homework.homework2.strategyCharGenerator;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 class CharGenerator {
 
@@ -10,26 +11,32 @@ class CharGenerator {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
             while (true) {
-                System.out.print("Select strategy A or B: ");
-                String userStrategy = reader.readLine();
-
-                if (userStrategy.equals("exit")) {
-                    System.out.println("Generator stopped!");
-                    break;
-                }
 
                 System.out.print("Enter 'rows columns' or type 'exit': ");
                 String userInput = reader.readLine();
                 String[] rowsAndColumns = userInput.split(" ", 2);
 
-                if (rowsAndColumns.length == 2 && isPositiveAndNotZero(rowsAndColumns[0]) && isPositiveAndNotZero(rowsAndColumns[1])
-                && isStrategy(userStrategy)) {
-                    int rows = Integer.parseInt(rowsAndColumns[0]);
-                    int columns = Integer.parseInt(rowsAndColumns[1]);
-                    selectStrategy(userStrategy, rows, columns);
-                } else if (userInput.equals("exit")) {
+                if (userInput.equals("exit")) {
                     System.out.println("Generator stoped!");
                     break;
+                } else if (rowsAndColumns.length == 2 && isPositiveAndNotZero(rowsAndColumns[0]) && isPositiveAndNotZero(rowsAndColumns[1])) {
+
+                    int rows = Integer.parseInt(rowsAndColumns[0]);
+                    int columns = Integer.parseInt(rowsAndColumns[1]);
+
+                    RandomArray randomArray = new RandomArray();
+                    char[][] charArray = randomArray.create(rows, columns);
+
+                    while (true) {
+                        System.out.print("Select strategy even/odd or type 'next': ");
+                        String userStrategy = reader.readLine();
+
+                        if (userStrategy.equals("next")) {
+                            break;
+                        } else {
+                            selectStrategy(userStrategy, charArray, rows, columns);
+                        }
+                    }
                 } else {
                     System.out.println("Incorrect format\n");
                 }
@@ -39,20 +46,19 @@ class CharGenerator {
         }
     }
 
-    private void selectStrategy (String strategy, int rows, int columns) {
-        StrategyA strategyA = new StrategyA();
-        StrategyB strategyB = new StrategyB();
+    private void selectStrategy (String strategy, char[][] charArray, int rows, int columns) {
 
-        if (strategy.equalsIgnoreCase("A")) {
-            strategyA.setRandomChars(rows, columns);
+        if (strategy.equalsIgnoreCase("even")) {
+            StrategyEven strategyEven = new StrategyEven();
+            ArrayList<Character> result = strategyEven.createArray(charArray, rows, columns);
+            strategyEven.show(result);
+        } else if (strategy.equalsIgnoreCase("odd")) {
+            StrategyOdd strategyOdd = new StrategyOdd();
+            ArrayList<Character> result = strategyOdd.createArray(charArray, rows, columns);
+            strategyOdd.show(result);
         } else {
-            strategyB.setRandomChars(rows, columns);
+            System.out.println("Incorrect input");
         }
-    }
-
-    private boolean isStrategy (String str) {
-        String regexAorB = "[AaBb]";
-        return str.matches(regexAorB);
     }
 
     private boolean isPositiveAndNotZero (String str) {

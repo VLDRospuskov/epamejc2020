@@ -1,33 +1,31 @@
-package homework.homework2.dozensCounter;
+package homework.homework2.dozensCounterLite;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 class Counter {
 
-    int dozens = 10;
-    int count = 1;
+    int index = 0;
+    int count = 0;
 
     void count () {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
 
-                dozens = 10;
-                count = 1;
-
                 System.out.print("Enter number or 'exit': ");
                 String userNumber = reader.readLine();
 
-                if (isNumeric(userNumber) && !isStackOverflowable(userNumber)) {
-                    double number = Double.parseDouble(userNumber);
-                    int count = countDigits(number);
+                if (isNumeric(userNumber)) {
+                    index = 0;
+                    count = 0;
+                    count = countDigits(userNumber);
                     System.out.println(count);
                 } else if (userNumber.equalsIgnoreCase("exit")) {
                     System.out.println("Counter stopped!");
                     break;
                 } else {
-                    System.out.println("Incorrect format or it'll throw StackOverflow");
+                    System.out.println("Incorrect format");
                 }
             }
         } catch (Exception ex) {
@@ -36,29 +34,17 @@ class Counter {
     }
 
 
-    private int countDigits(double userNumber) {
-
-        System.out.println(Math.floor(userNumber));
-        if (Math.floor(userNumber) != userNumber) {
-            userNumber *= 10;
-            countDigits(userNumber);
-            return count;
-        } else if (userNumber % dozens != userNumber) {
-            dozens *= 10;
+    private int countDigits(String userNumber) {
+        if (index < userNumber.length() && Character.isDigit(userNumber.charAt(index))) {
+            index++;
             count++;
             countDigits(userNumber);
-            return count;
-        } else {
-            return dozens;
+        } else if (index < userNumber.length()) {
+            index++;
+            countDigits(userNumber);
         }
+        return count;
     }
-
-
-    private boolean isStackOverflowable (String str) {
-        String regexAmount = ".{10,}";
-        return str.matches(regexAmount);
-    }
-
 
     private boolean isNumeric (String str) {
         String regexDecimal = "^-?\\d*\\.\\d+$";

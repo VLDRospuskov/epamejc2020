@@ -1,4 +1,4 @@
-package homework.homework2.dozensCounter;
+package homework.homework2.dozensCounterHard;
 
 class Main {
     public static void main(String[] args) {
