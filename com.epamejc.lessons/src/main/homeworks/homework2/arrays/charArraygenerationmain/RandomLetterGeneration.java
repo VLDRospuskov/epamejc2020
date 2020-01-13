@@ -6,7 +6,6 @@ public class RandomLetterGeneration {
     private char[][] array;
     private int n;
     private int m;
-    private String output = "";
 
     public void run() {
         inputDimension();
@@ -17,16 +16,17 @@ public class RandomLetterGeneration {
 
     private void inputDimension() {
         System.out.print("Please, enter the dimension of the array: ");
-        Scanner inInt = new Scanner(System.in);
         boolean valueOk = false;
         while (!valueOk) {
             try {
+                Scanner inInt = new Scanner(System.in);
                 n = inInt.nextInt();
                 m = inInt.nextInt();
                 if (n <= 0 || m <= 0) {
                     throw new ArithmeticException();
                 }
                 valueOk = true;
+                inInt.close();
             } catch (ArithmeticException e) {
                 System.out.println("Enter a positive value.");
             } catch (Exception e) {

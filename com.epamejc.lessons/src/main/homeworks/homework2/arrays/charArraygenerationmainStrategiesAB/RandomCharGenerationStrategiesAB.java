@@ -18,10 +18,10 @@ public class RandomCharGenerationStrategiesAB {
 
     private void inputDimension() {
         System.out.print("Please, enter the dimension of the array: ");
-        Scanner inInt = new Scanner(System.in);
         boolean valueOk = false;
         while (!valueOk) {
             try {
+                Scanner inInt = new Scanner(System.in);
                 n = inInt.nextInt();
                 m = inInt.nextInt();
                 if (n <= 0 || m <= 0) {
@@ -48,6 +48,7 @@ public class RandomCharGenerationStrategiesAB {
                     throw new Exception();
                 }
                 valueOk = true;
+                inString.close();
             } catch (Exception e) {
                 System.out.println("You entered invalid value :(");
             }

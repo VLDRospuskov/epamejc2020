@@ -7,17 +7,20 @@ public class Pyramid {
 
     public void run() {
         System.out.print("Please, enter the pyramid height: ");
-        Scanner in = new Scanner(System.in);
+        Scanner in = null;
         try {
+            in = new Scanner(System.in);
             n = in.nextInt();
             if (n <= 0) {
                 throw new ArithmeticException();
             }
             generation();
-        } catch (ArithmeticException e) {
-            System.out.println("You input invalid value!");
         } catch (Exception e) {
             System.out.println("Enter an integer value.");
+        } finally {
+            if (in != null) {
+                in.close();
+            }
         }
     }
 
