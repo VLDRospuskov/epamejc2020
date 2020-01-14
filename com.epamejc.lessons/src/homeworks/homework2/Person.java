@@ -22,4 +22,8 @@ public final class Person {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    public Person changeNumber(String number) {
+        return new Person(this.name, this.age, number);
+    }
 }

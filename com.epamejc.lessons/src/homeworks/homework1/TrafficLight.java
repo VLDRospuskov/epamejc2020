@@ -3,13 +3,16 @@ package homeworks.homework1;
 import java.util.Scanner;
 
 public class TrafficLight {
-    public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter time in seconds. Exit by entering empty line: ");
-        String input = sc.nextLine();
+    private Scanner sc;
 
-        while (!input.isEmpty()) {
+    public TrafficLight(Scanner sc) {
+        this.sc = sc;
+    }
+
+    private void changeLight() {
+        String input;
+        while (!(input = sc.nextLine()).isEmpty()) {
             try {
                 int time = Integer.parseInt(input) % 600;
                 if (time <= 180) {
@@ -22,7 +25,11 @@ public class TrafficLight {
             } catch (Exception e) {
                 System.out.println("Invalid input. Try again: ");
             }
-            input = sc.nextLine();
         }
+    }
+
+    public void run() {
+        System.out.println("Enter time in seconds. Exit by entering empty line: ");
+        changeLight();
     }
 }
