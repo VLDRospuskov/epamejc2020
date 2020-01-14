@@ -6,9 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class Reverse34 {
-    public static void main(String[] args) {
-        MainTemplate.main(Reverse34::reverse);
-    }
+    public static void main(String[] args) { MainTemplate.main(Reverse34::reverse);}
 
     public static String reverseStr(String s){
         char[] chstr = s.toCharArray();
@@ -37,13 +35,9 @@ public class Reverse34 {
 
             return String.join(" ", arrStr);
 
-        } catch (IOException e) {
+        } catch (StringIndexOutOfBoundsException | NumberFormatException | IOException e) {
             System.err.println(e.getMessage());
-            return reverse(reader);
-        } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
-            System.err.println(e);
             return reverse(reader);
         }
     }
-
 }
