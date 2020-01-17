@@ -1,6 +1,5 @@
 package homeworks.hw2.strings_3_4;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class WordReverse {
