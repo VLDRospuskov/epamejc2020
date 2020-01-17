@@ -9,7 +9,7 @@ public class T41Fibonacci {
         System.out.println(fibonacci(nth));
     }
 
-    private int fibonacci(int n) {
+    private long fibonacci(int n) {
         if (n == 0) {
             return 0;
         }
