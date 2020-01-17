@@ -5,7 +5,10 @@ public class Main {
         //T31EvenOdd t31 = new T31EvenOdd();
         //t31.start();
 
-        T32Index t32 = new T32Index();
-        t32.start();
+        //T32Index t32 = new T32Index();
+        //t32.start();
+
+        T33Swap t33 = new T33Swap();
+        t33.start();
     }
 }
