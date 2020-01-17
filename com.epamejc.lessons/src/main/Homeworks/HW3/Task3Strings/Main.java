@@ -8,7 +8,10 @@ public class Main {
         //T32Index t32 = new T32Index();
         //t32.start();
 
-        T33Swap t33 = new T33Swap();
-        t33.start();
+        //T33Swap t33 = new T33Swap();
+        //t33.start();
+
+        T34Reverse t34 = new T34Reverse();
+        t34.start();
     }
 }
