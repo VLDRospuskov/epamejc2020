@@ -5,7 +5,10 @@ public class Main {
         //T41Fibonacci t41 = new T41Fibonacci();
         //t41.start();
 
-        T42Pow t42 = new T42Pow();
-        t42.start();
+        //T42Pow t42 = new T42Pow();
+        //t42.start();
+
+        T43CountDigits t43 = new T43CountDigits();
+        t43.start();
     }
 }
