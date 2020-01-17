@@ -1,6 +1,6 @@
 package homeworks.homework2;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,8 +11,10 @@ public final class RickSanchez {
 
     public RickSanchez(String name, SpatialDimension spatialDimension, List<String> family) {
         this.name = name;
-        this.spatialDimension = spatialDimension;
-        this.family = Collections.unmodifiableList(family);
+        this.spatialDimension = ImmutableSpatialDimension.getInstance(spatialDimension);
+
+        List<String> tmpList = new ArrayList<>(family);
+        this.family = Collections.unmodifiableList(tmpList);
     }
 
     public String getName() {
@@ -27,16 +29,8 @@ public final class RickSanchez {
         return family;
     }
 
-    public RickSanchez setSpatialDimension(SpatialDimension sd) {
-        return new RickSanchez(this.name, sd, this.family);
-    }
-
     public boolean hasMorty() {
-        if (this.family.contains("Morty")) {
-            return true;
-        }
-
-        return false;
+        return this.family.contains("Morty");
     }
 
     @Override

@@ -1,23 +1,31 @@
 package homeworks.homework2;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        SpatialDimension c137 = new SpatialDimension("C-137");
-        List<String> family = new ArrayList();
+        ImmutableSpatialDimension c137 = new ImmutableSpatialDimension("C-137");
+        ArrayList<String> family = new ArrayList();
         family.add("Morty");
         family.add("Summer");
         family.add("Bet");
         family.add("Jerry");
 
         RickSanchez rickC137 = new RickSanchez("Rick Sanchez", c137, family);
-        System.out.println(rickC137.toString());
+        System.out.println(rickC137);
 
-        SpatialDimension c132 = c137.setName("C-132");
-        RickSanchez rickC132 = rickC137.setSpatialDimension(c132);
+        family.remove("Morty");
+        System.out.println(family);
 
-        System.out.println(rickC132.toString());
+        System.out.println(rickC137);
+
+        SpatialDimension c132 = new SpatialDimension("C-132");
+        RickSanchez rickC132 = new RickSanchez("Rick Sanchez", c132, family);
+        System.out.println(rickC132);
+
+        c132.setName("C-123");
+        System.out.println(c132);
+
+        System.out.println(rickC132);
     }
 }

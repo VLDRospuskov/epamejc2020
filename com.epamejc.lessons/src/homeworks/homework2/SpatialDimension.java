@@ -1,18 +1,21 @@
 package homeworks.homework2;
 
-public final class SpatialDimension {
-    private final String name;
+public class SpatialDimension {
+    private String name;
 
-    SpatialDimension(String name) {
+    public SpatialDimension(String name) {
         this.name = name;
+    }
+
+    public SpatialDimension() {
     }
 
     public String getName() {
         return name;
     }
 
-    public SpatialDimension setName(String name) {
-        return new SpatialDimension(name);
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
