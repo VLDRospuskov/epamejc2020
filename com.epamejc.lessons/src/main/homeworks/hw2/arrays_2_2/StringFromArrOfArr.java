@@ -1,4 +1,4 @@
-package homeworks.hw2.arrays_2_2;
+package main.homeworks.hw2.arrays_2_2;
 
 import java.util.*;
 

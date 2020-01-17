@@ -1,4 +1,4 @@
-package homeworks.hw2.recursion_4_3;
+package main.homeworks.hw2.recursion_4_3;
 
 import java.util.Scanner;
 

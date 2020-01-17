@@ -1,4 +1,4 @@
-package homeworks.hw2.arrays_2_1;
+package main.homeworks.hw2.arrays_2_1;
 
 import java.sql.SQLOutput;
 import java.util.*;

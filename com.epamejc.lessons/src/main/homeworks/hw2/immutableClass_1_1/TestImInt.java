@@ -1,4 +1,4 @@
-package homeworks.hw2.immutableClass_1_1;
+package main.homeworks.hw2.immutableClass_1_1;
 
 public class TestImInt {
     public static void main(String[] args) {

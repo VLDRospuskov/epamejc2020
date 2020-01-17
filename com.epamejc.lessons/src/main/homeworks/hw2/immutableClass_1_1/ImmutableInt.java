@@ -1,4 +1,4 @@
-package homeworks.hw2.immutableClass_1_1;
+package main.homeworks.hw2.immutableClass_1_1;
 
 public class ImmutableInt {
     private final int value;
