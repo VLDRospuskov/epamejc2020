@@ -1,4 +1,4 @@
-package main.homework1;
+package main.HM0_TrafficLight;
 
 import java.io.BufferedReader;
 import java.io.IOException;

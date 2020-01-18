@@ -1,4 +1,4 @@
-package main.lesson1;
+package main.HM1_ImmutableClass;
 
 import java.util.Scanner;
 public class trafficlight {
