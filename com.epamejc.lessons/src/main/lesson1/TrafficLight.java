@@ -2,7 +2,7 @@ package main.lesson1;
 
 import java.util.Scanner;
 
-class TrafficLight {
+public class TrafficLight {
 
     private static String calculateColor(int minutes) {
         if (minutes >= 10) minutes %= 10;

@@ -1,6 +1,6 @@
 package main.lesson2;
 
-public class HomeWork2 {
+public class Homework2 {
 
     public static void main(String[] args) {
         int[] ints = {1,2,3,4,5,6};
