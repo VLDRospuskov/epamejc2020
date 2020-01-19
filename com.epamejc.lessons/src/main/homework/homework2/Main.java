@@ -42,7 +42,7 @@ public class Main {
 
         System.out.println(Pow.getPow(4, 3));
 
-        System.out.println(DigitsCounter.calculateDigitsNumber(-111));
+        System.out.println(DigitsCounter.countDigits(-111));
 
     }
 }
