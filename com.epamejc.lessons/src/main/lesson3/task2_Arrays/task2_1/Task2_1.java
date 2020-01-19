@@ -4,6 +4,6 @@ public class Task2_1 {
 
     public static void main(String[] args) {
         CharArrayOperation operation = new CharArrayOperation();
-        operation.createArrayOfArrays();
+        operation.printArray(operation.getRandomArrayOfArrays());
     }
 }

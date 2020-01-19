@@ -7,11 +7,11 @@ import java.io.InputStreamReader;
 
 public class CharArrayOperation {
 
-    private String[] argsInput(String[] splitString) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private String[] argsInput(BufferedReader reader) {
         System.out.println("Insert rows and columns amount");
         System.out.println("For example:");
         System.out.println("5 3");
+        String[] splitString = {};
         try {
             splitString = reader.readLine().split(" ");
         } catch (IOException e) {
@@ -29,7 +29,7 @@ public class CharArrayOperation {
                 System.out.println("Rows number is wrong");
             }
         } else {
-            System.out.println("Wrong input");
+            System.out.println("getRows function:    Wrong input. 2 numbers are needed");
         }
         return rows;
     }
@@ -43,21 +43,21 @@ public class CharArrayOperation {
                 System.out.println("Columns number is wrong");
             }
         } else {
-            System.out.println("Wrong input");
+            System.out.println("getColumns function: Wrong input. 2 numbers are needed");
         }
         return columns;
     }
 
-    private void fillCharsArray(char[][] chars) {
-        for (int i = 0; i < chars.length; i++) {
-            for (int j = 0; j < chars[0].length; j++) {
-                chars[i][j] = (char) (Math.random() * 26 + 'a');
+    private void fillCharsArray(char[][] charArray) {
+        for (int i = 0; i < charArray.length; i++) {
+            for (int j = 0; j < charArray[0].length; j++) {
+                charArray[i][j] = (char) (Math.random() * 26 + 'a');
             }
         }
     }
 
-    private void printArray(char[][] chars) {
-        for (char[] arr : chars) {
+    public void printArray(char[][] charArray) {
+        for (char[] arr : charArray) {
             for (char c : arr) {
                 System.out.print(c + " ");
             }
@@ -65,21 +65,29 @@ public class CharArrayOperation {
         }
     }
 
-    public void createArrayOfArrays() {
-        int rows = 0;
-        int columns = 0;
-        char[][] chars;
-        String[] values = {};
-        values = argsInput(values);
+    private char[][] getDeclaredArrayOfArrays() {
+        int rows;
+        int columns;
+        char[][] charArray;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String[] values = argsInput(reader);
         rows = getRows(values);
         columns = getColumns(values);
         if ((rows > 0) && (columns > 0)) {
-            chars = new char[rows][columns];
-            CharArrayOperation operation = new CharArrayOperation();
-            operation.fillCharsArray(chars);
-            operation.printArray(chars);
+            charArray = new char[rows][columns];
+            return charArray;
         } else {
-            System.out.println("It must be positive numbers");
+            charArray = new char[0][0];
+            System.out.println("If numbers are positive, read messages above");
+            return charArray;
         }
+    }
+
+
+    public char[][] getRandomArrayOfArrays() {
+        char[][] chars = getDeclaredArrayOfArrays();
+        CharArrayOperation operation = new CharArrayOperation();
+        operation.fillCharsArray(chars);
+        return chars;
     }
 }
