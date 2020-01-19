@@ -2,19 +2,9 @@ package main.homework.homework2;
 
 public final class Immutable {
 
-    final private Integer immutableField;
+    public final int immutableField;
 
-    public Immutable(Integer value) {
+    public Immutable(int value) {
         immutableField = value;
-    }
-
-    public Integer getField() {
-        return immutableField;
-    }
-
-    public static void main(String[] args) {
-        Immutable object = new Immutable(0);
-
-        System.out.println("Immutable object was created");
     }
 }
