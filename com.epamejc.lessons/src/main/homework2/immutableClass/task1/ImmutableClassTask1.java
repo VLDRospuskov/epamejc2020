@@ -2,12 +2,17 @@ package main.homework2.immutableClass.task1;
 
 /* Creating an immutable class */
 
-public class HomeWork2 {
+public class ImmutableClassTask1 {
 
     public static void main(String[] args) {
-        ImmutableClass immutableClass = ImmutableClass.createInstance("one", 1);
-        System.out.println(immutableClass.strField);
-        System.out.println(immutableClass.intField);
+        ImmutableClass immutableClassInstance1 = new ImmutableClass("one", 1);
+        ImmutableClass immutableClassInstance2 = new ImmutableClass("two", 2);
+
+        System.out.println(immutableClassInstance1.intField);
+        System.out.println(immutableClassInstance2.strField);
+
+//        immutableClassInstance1.intField = 11;
+//        immutableClassInstance2.strField = "twotwo";
     }
 
 
@@ -15,13 +20,10 @@ public class HomeWork2 {
         final private String strField;
         final private int intField;
 
-        public ImmutableClass(String strField, int intField) {
+
+        ImmutableClass(String strField, int intField) {
             this.strField = strField;
             this.intField = intField;
-        }
-
-        public static ImmutableClass createInstance(String strField, int intField) {
-            return new ImmutableClass(strField, intField);
         }
 
         public String getStrField() {
