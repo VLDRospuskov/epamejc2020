@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class EvenOddString {
     private String input;
     private String parity = "";
-    public void run() throws IOException {
+    public void run() {
         inputString();
         oddOrEven();
     }
@@ -21,7 +21,7 @@ public class EvenOddString {
         };
     }
 
-    private void inputString() throws IOException {
+    private void inputString() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("Enter string: ");
@@ -31,7 +31,6 @@ public class EvenOddString {
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
-        br.close();
     }
 
     private void oddChars() {
