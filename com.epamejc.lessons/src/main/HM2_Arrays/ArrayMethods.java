@@ -56,7 +56,7 @@ public class ArrayMethods {
         System.out.println(result);
     }
 
-    public static void printPyramid() { // TODO 2.3
+    public static void printPyramid() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter int value:");
         int size = sc.nextInt();
