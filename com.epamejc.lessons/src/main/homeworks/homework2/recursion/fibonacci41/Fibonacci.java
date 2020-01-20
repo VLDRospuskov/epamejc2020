@@ -8,6 +8,7 @@ public class Fibonacci {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         System.out.println(fibonacciSearch(n));
+        scanner.close();
     }
 
     private long fibonacciSearch(long n) {

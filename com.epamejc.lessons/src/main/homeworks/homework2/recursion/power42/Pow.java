@@ -10,6 +10,7 @@ public class Pow {
         System.out.print("Enter power: ");
         int power = scanner.nextInt();
         System.out.print(number + " in "+ power + " : " + powerInt(number,power));
+        scanner.close();
     }
 
     private int powerInt(int number, int power) {
