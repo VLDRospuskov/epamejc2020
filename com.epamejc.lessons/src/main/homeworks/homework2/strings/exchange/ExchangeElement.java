@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class ExchangeElement {
     private String input;
@@ -22,7 +23,6 @@ public class ExchangeElement {
         try {
             System.out.print("Enter string: ");
             input = br.readLine();
-            br.close();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
@@ -46,7 +46,15 @@ public class ExchangeElement {
         char ch2;
         ch1= input.charAt(firstIndex);
         ch2= input.charAt(secondIndex);
-        newString = input.substring(0,firstIndex) + ch2 + input.substring(firstIndex, secondIndex) + ch1 + input.substring(secondIndex);
+        String front = "";
+        if (firstIndex != 0 ) {
+            front = input.substring(0,firstIndex);
+        }
+        String back = "";
+        if (secondIndex != input.length()-1 ) {
+            back = input.substring(secondIndex + 1);
+        }
+        newString = front  + ch2 + input.substring(firstIndex + 1, secondIndex) + ch1 + back;
         System.out.println(newString);
     }
 
