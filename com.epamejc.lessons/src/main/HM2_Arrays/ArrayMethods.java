@@ -59,10 +59,21 @@ public class ArrayMethods {
     public static void printPyramid() { // TODO 2.3
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter int value:");
-        int value = sc.nextInt();
+        int size = sc.nextInt();
 
-        char[] Xs = new char[value];
+        char[][] Xs = new char[size][];
+        for (int i = 0; i < size; i++) {
+            Xs[i] = new char[size-i];
+            for (int j = 0; j < size-i; j++) {
+                Xs[i][j] = 'X';
+            }
+        }
 
-
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size-i; j++) {
+                System.out.print(Xs[i][j]);
+            }
+            System.out.println();
+        }
     }
 }
