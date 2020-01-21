@@ -1,7 +1,7 @@
 package main.homework2.arrays.StrategyPack;
 
 public class EvenBuildStrategy implements BuildStrategy {
-    public String build(char[][] chars ){
+    public String build(Character[][] chars ){
         String result ="";
         if (chars.length>0){
             for (int i = 0; i < chars.length; i++){
