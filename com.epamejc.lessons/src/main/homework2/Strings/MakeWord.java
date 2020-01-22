@@ -4,11 +4,11 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class MakeWordExt extends Programm {
+public class MakeWord extends Programm {
     String word;
     String result = "";
     public static void main(String[] args) throws IOException {
-        new MakeWordExt().go();
+        new MakeWord().go();
     }
 
     @Override
@@ -17,7 +17,7 @@ public class MakeWordExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return STARTNUMBER;
     }
 

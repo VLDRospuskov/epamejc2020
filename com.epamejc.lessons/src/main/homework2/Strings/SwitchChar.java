@@ -4,9 +4,9 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class SwitchCharExt extends Programm {
+public class SwitchChar extends Programm {
     public static void main(String[] args) throws IOException {
-        new SwitchCharExt().go();
+        new SwitchChar().go();
     }
     @Override
     public String startString() {
@@ -14,7 +14,7 @@ public class SwitchCharExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return STARTNUMBERS;
     }
 

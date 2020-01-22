@@ -6,9 +6,9 @@ import main.homework2.Prog.Programm;
 import java.io.IOException;
 
 
-public class PiramideExt extends Programm {
+public class Piramide extends Programm {
     public static void main(String[] args) throws IOException {
-        new PiramideExt().go();
+        new Piramide().go();
     }
     @Override
     public String startString() {
@@ -16,7 +16,7 @@ public class PiramideExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return null;
     }
 

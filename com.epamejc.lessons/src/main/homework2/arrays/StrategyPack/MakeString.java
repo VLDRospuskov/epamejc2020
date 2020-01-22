@@ -1,13 +1,12 @@
 package main.homework2.arrays.StrategyPack;
 
 import main.homework2.Prog.Programm;
-import main.homework2.Strings.MakeWordExt;
 
 import java.io.IOException;
 
-public class MakeStringExt extends Programm {
+public class MakeString extends Programm {
     public static void main(String[] args) throws IOException {
-        new MakeStringExt().go();
+        new MakeString().go();
     }
     @Override
     public String startString() {
@@ -15,7 +14,7 @@ public class MakeStringExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return STARTEVODD;
     }
 

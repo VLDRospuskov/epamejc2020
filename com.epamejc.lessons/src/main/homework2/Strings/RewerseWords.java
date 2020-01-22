@@ -4,9 +4,9 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class RewerseWordsExt extends Programm {
+public class RewerseWords extends Programm {
     public static void main(String[] args) throws IOException {
-        new RewerseWordsExt().go();
+        new RewerseWords().go();
     }
     @Override
     public String startString() {
@@ -14,7 +14,7 @@ public class RewerseWordsExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return null;
     }
 

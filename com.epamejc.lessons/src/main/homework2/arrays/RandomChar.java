@@ -4,9 +4,9 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class RandomCharExt extends Programm {
+public class RandomChar extends Programm {
     public static void main(String[] args) throws IOException {
-        new RandomCharExt().go();
+        new RandomChar().go();
     }
     @Override
     public String startString() {
@@ -14,7 +14,7 @@ public class RandomCharExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return null;
     }
 

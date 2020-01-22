@@ -4,9 +4,9 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class ExponentiationExt extends Programm {
+public class Exponentiation extends Programm {
     public static void main(String[] args) throws IOException {
-        new ExponentiationExt().go();
+        new Exponentiation().go();
     }
     @Override
     public String startString() {
@@ -14,7 +14,7 @@ public class ExponentiationExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return STARTPOW;
     }
 
@@ -44,7 +44,7 @@ public class ExponentiationExt extends Programm {
         } else{
             double result = 0;
 
-            result = num + exponent(num,pow-1);
+            result = num * exponent(num,pow-1);
 
             return result;
         }

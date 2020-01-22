@@ -4,9 +4,9 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class EvenOddExt extends Programm {
+public class EvenOdd extends Programm {
     public static void main(String[] args) throws IOException {
-        new EvenOddExt().go();
+        new EvenOdd().go();
     }
     @Override
     public String startString() {
@@ -14,7 +14,7 @@ public class EvenOddExt extends Programm {
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return STARTEVODD;
     }
 

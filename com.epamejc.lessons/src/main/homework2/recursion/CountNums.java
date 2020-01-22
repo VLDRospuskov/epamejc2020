@@ -4,17 +4,18 @@ import main.homework2.Prog.Programm;
 
 import java.io.IOException;
 
-public class FibonacciNumbersExt extends Programm {
+public class CountNums extends Programm {
     public static void main(String[] args) throws IOException {
-        new FibonacciNumbersExt().go();
+        new CountNums().go();
     }
+
     @Override
     public String startString() {
         return STARTNUMBER;
     }
 
     @Override
-    public String seondInputString() {
+    public String secondInputString() {
         return null;
     }
 
@@ -25,19 +26,19 @@ public class FibonacciNumbersExt extends Programm {
 
     @Override
     public String makeResult(String Finput, String Sinput) {
-        Integer input = chekInt(Finput);
-        if (input!=null){
-            return String.valueOf(fibonacci(input));
-        }else {
-            return ALERTDATA;
+        Integer num = chekInt(Finput);
+        String result = ALERTDATA;
+        if (num != null){
+            num = Math.abs(num);
+            result = String.valueOf(countNum(num));
         }
+        return result;
     }
-    private int fibonacci(int n) {
-        if (n == 0) {
-            return 0;
-        } else if (n == 1) {
+    private int countNum (int num){
+        if(num < 10){
             return 1;
+        }else{
+            return 1 + countNum(num/10);
         }
-        return fibonacci(n-1) + fibonacci(n-2);
     }
 }

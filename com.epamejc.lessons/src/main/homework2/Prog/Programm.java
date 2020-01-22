@@ -34,7 +34,7 @@ public abstract class Programm implements Strings{
                 }
             }
             if(input == 2){
-                System.out.println(seondInputString());
+                System.out.println(secondInputString());
                 SecondInput = getUserInput(reader);
                 if(isStoped(SecondInput)){
                     break;
@@ -139,7 +139,7 @@ public abstract class Programm implements Strings{
         }
     }
     public abstract String startString();
-    public abstract String seondInputString();
+    public abstract String secondInputString();
     public abstract int inputtimes();
     public abstract String makeResult(String Finput, String Sinput);
 }
