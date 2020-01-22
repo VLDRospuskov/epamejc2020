@@ -3,12 +3,9 @@ package main.lessons.lesson4.recursion;
 public class Main {
 
     public static void main(String[] args) {
-        //cycle();
-        //System.out.println(recursionString(4, "Level"));
-        //System.out.println(factorial2(5));
-        //System.out.println(factorial3(5));
-        //System.out.println(number2powerRecursion(3, 3));
-        System.out.println(bunnyEarsRecursion(4));
+//        cycle();
+//        System.out.println(recursionString(4, "Bye"));
+        System.out.println(factorial3(5));
     }
 
     private static void cycle() {
@@ -23,7 +20,7 @@ public class Main {
             System.out.println("Here");
             return str;
         }
-        return str + "\n" + recursionString( n - 1, str + n);
+        return str + "\n" + recursionString( n - 1, str);
     }
 
     // 5! = 1 * 2 * 3 * 4 * 5 = 120
@@ -51,21 +48,4 @@ public class Main {
         return n == 1 ? 1 : n * factorial3(n - 1);
     }
 
-    //1 - 1; 2 - 3; 3 - 6; 4 - 10;
-    private static int number2powerRecursion(int base, int pow)
-    {
-        if (pow == 1)
-        {
-            return base;
-        }
-        return base * number2powerRecursion(base, pow - 1);
-    }
-
-    private static int bunnyEarsRecursion(int bunny)
-    {
-        if (bunny == 0) {
-            return 0;
-        }
-        return 2 + bunnyEarsRecursion(bunny-1);
-    }
 }
