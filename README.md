@@ -30,10 +30,10 @@
 
 [HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework1>
 [HwIc]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework2>
-[HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/ImmutableClass>
-[HwCa]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/RandomChar>
-[HwCs]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/RandomCharToString>
-[HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/PyramidBuilder>
+[HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/ImmutableClass>
+[HwCa]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/RandomChar>
+[HwCs]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/RandomCharToString>
+[HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/PyramidBuilder>
 [HwEo]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringBuilderEvenOdd>
 [HwSi]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringBuilderByIndex>
 [HwIs]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringCharSwitcher>
