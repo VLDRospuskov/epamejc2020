@@ -7,4 +7,5 @@ public class Main {
         System.out.println(a.getX());
         System.out.println(A.getY());
     }
+
 }
