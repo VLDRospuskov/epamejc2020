@@ -34,10 +34,10 @@
 [HwCa]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/RandomChar>
 [HwCs]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/RandomCharToString>
 [HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/PyramidBuilder>
-[HwEo]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringBuilderEvenOdd>
-[HwSi]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringBuilderByIndex>
-[HwIs]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringCharSwitcher>
-[HwWf]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/StringWordFlipper>
-[HwFb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/FibonacciBuilder>
-[HwPw]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/PowerOfNum>
-[HwNd]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework3/NumOfDigits>
+[HwEo]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/StringBuilderEvenOdd>
+[HwSi]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/StringBuilderByIndex>
+[HwIs]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/StringCharSwitcher>
+[HwWf]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/StringWordFlipper>
+[HwFb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/FibonacciBuilder>
+[HwPw]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/PowerOfNum>
+[HwNd]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/NumOfDigits>
