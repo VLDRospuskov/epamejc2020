@@ -11,8 +11,7 @@ public class Pyramid {
         while (appInputExitTrigger) {
             definePyramidHeight(scan);
             if (appInputExitTrigger) {
-                System.out.println("Construction completed:");
-                printPyramid();
+                printPyramid(createPyramid());
             }
         }
         scan.close();
@@ -42,32 +41,53 @@ public class Pyramid {
     }
 
     /**
-     * Метод для формирования и вывода пирамиды в консоль
+     * Метод для генерации пирамиды на основе многомерного массива
+     *
+     * @return
      */
-    private void printPyramid() {
-        int lineElemsCounter = 1;
-        System.out.println("");
-        for (int i = 0; i < pyramidHeight; i++) //Цикл по высоте пирамиды
-        {
-            for (int j = 0; j < pyramidHeight - i - 1; j++) //Печатаем пробелы слева
-            {
-                System.out.print(" ");
-            }
+    private char[][] createPyramid() {
+        char[][] pyramidCharArray = new char[pyramidHeight][2 * pyramidHeight - 1];
 
-            for (int k = 0; k < lineElemsCounter; k++) //Печатаем элементы пирамиды
+        try {
+            for (int i = 0; i < pyramidHeight; i++) //Цикл по высоте пирамиды
             {
-                System.out.print("X");
-            }
+                for (int j = 0; j < pyramidHeight - i - 1; j++) //Заполняем пробелами слева
+                {
+                    pyramidCharArray[i][j] = ' ';
+                }
 
-            for (int z = 0; z < pyramidHeight - i - 1; z++) //Печатаем пробелы справа
-            {
-                System.out.print(" ");
-            }
+                for (int k = pyramidHeight - 1 - i; k <= pyramidHeight - 1 + i; k++) { //Заполняем символами X
+                    pyramidCharArray[i][k] = 'X';
+                }
 
-            lineElemsCounter += 2;
-            System.out.println("");
+                for (int z = pyramidHeight + i; z < 2 * pyramidHeight - 1; z++) //Заполняем пробелами справа
+                {
+                    pyramidCharArray[i][z] = ' ';
+                }
+            }
+            return pyramidCharArray;
+
+        } catch (Exception ex) {
+            return pyramidCharArray;
         }
-        System.out.println("");
+    }
+
+    /**
+     * Метод для печати сгенерированной пирамиды в консоль
+     *
+     * @param charArray
+     */
+    private void printPyramid(char[][] charArray) {
+        System.out.println("Generated pyramid is: ");
+        int test = 10;
+        for (int i = 0; i < charArray.length; i++) {
+            for (int j = 0; j < charArray[i].length; j++) {
+                System.out.print(charArray[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
+
 

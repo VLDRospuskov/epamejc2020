@@ -7,7 +7,6 @@ public class LogicBlock extends Logic {
     static {
         System.out.println("Static logicBlock");
     }
-
     {
         System.out.println("LogicBlock");
     }

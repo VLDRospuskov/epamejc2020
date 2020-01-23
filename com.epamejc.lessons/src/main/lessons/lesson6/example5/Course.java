@@ -7,4 +7,5 @@ public interface Course {
     default void print() {
         System.out.println("Course");
     }
+    abstract void doSomething();
 }
