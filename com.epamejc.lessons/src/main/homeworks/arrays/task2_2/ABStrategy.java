@@ -1,4 +1,4 @@
-package main.lesson3.task2_Arrays.task2_2;
+package main.homeworks.arrays.task2_2;
 
 import java.util.Scanner;
 

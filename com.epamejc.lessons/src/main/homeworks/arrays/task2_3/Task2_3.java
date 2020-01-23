@@ -1,4 +1,4 @@
-package main.lesson3.task2_Arrays.task2_3;
+package main.homeworks.arrays.task2_3;
 
 public class Task2_3 {
     public static void main(String[] args) {

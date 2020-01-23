@@ -1,6 +1,6 @@
-package main.lesson3.task2_Arrays.task2_3;
+package main.homeworks.arrays.task2_3;
 
-import main.lesson3.task2_Arrays.task2_1.CharArrayOperation;
+import main.homeworks.arrays.task2_1.CharArrayOperation;
 
 import java.io.BufferedReader;
 import java.io.IOException;

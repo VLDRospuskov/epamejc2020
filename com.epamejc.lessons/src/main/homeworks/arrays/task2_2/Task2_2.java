@@ -1,6 +1,6 @@
-package main.lesson3.task2_Arrays.task2_2;
+package main.homeworks.arrays.task2_2;
 
-import main.lesson3.task2_Arrays.task2_1.CharArrayOperation;
+import main.homeworks.arrays.task2_1.CharArrayOperation;
 
 public class Task2_2 {
 

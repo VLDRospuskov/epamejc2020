@@ -1,4 +1,4 @@
-package main.lesson3.task3_Strings.task3_1;
+package main.homeworks.strings.task3_1;
 
 public class Task3_1 {
 

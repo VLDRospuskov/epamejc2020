@@ -1,4 +1,4 @@
-package main.lesson2;
+package main.homeworks.immutableClass;
 
 final class ImmutableClass {
     final private int[] ar;

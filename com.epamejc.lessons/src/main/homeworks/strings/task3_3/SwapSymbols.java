@@ -1,4 +1,4 @@
-package main.lesson3.task3_Strings.task3_3;
+package main.homeworks.strings.task3_3;
 
 import java.util.Scanner;
 

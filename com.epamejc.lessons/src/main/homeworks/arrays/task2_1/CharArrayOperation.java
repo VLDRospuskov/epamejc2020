@@ -1,4 +1,4 @@
-package main.lesson3.task2_Arrays.task2_1;
+package main.homeworks.arrays.task2_1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
