@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class StringByIndex {
     public static void main(String[] args) {
-
-
         Scanner scan = new Scanner(System.in);
         String str = "";
 
@@ -19,28 +17,31 @@ public class StringByIndex {
         int index = 0;
         String output = "";
         boolean loop = true;
-        String msg = "Please enter index between 0 and " + (str.length() - 1) + " (-1 to exit): ";
+        final String MSG = "Please enter index between 0 and " + (str.length() - 1) + " (-1 to exit): ";
+        Scanner scan2 = new Scanner(System.in);
+        try {
+            while (loop) {
+                try {
+                    System.out.print(MSG);
+                    index = scan2.nextInt();
+                } catch (Exception e) {
+                    System.out.println("Wrong enter! " + e);
+                }
 
-        while (loop) {
-            Scanner scan2 = new Scanner(System.in);
-            System.out.print(msg);
-            try {
-                index = scan2.nextInt();
-            } catch (Exception e) {
-                System.out.println("Error! " + e);
+                if (index == -1) {
+                    break;
+                } else if (index < 0 || index > str.length() - 1) {
+                    System.out.println("Wrong index!");
+                    continue;
+                } else {
+                    output += str.charAt(index);
+                    System.out.println(output);
+                }
             }
+        } catch (Exception e) {
 
-            if (index == -1 ) { //
-                break;
-            }
-
-            if (index < 0 || index > str.length() - 1) {
-                System.out.println("Wrong index!");
-                continue;
-            } else {
-                output += str.charAt(index);
-                System.out.println(output);
-            }
+        } finally {
+            scan2.close();
         }
 
     }
