@@ -6,12 +6,12 @@ public class FibonacciGen {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int count = 0;
-        System.out.print("Please enter count of fibonacci numbers to gen(1 - 44): ");
 
         try {
+            System.out.print("Please enter count of fibonacci numbers to gen(1 - 44): ");
             count = scan.nextInt();
         } catch (Exception e) {
-            System.out.println("Error! " + e);
+            System.out.println("Wrong enter! " + e);
         } finally {
             scan.close();
         }
