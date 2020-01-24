@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class StringTasks {
     public static void main(String[] args) {
-        printStrFromIndexes();
+        swapLetters();
     }
 
     private static String value;
@@ -44,26 +44,44 @@ public class StringTasks {
 
         String result = "";
         System.out.println("Enter index from 1 to " + value.length());
-        String input = sc.nextLine();;
+        String input = sc.nextLine();// = sc.nextLine();;
         int index = 0;
-        while (!input.equals("exit")) { // TODO fix conditions
-            System.out.print("Enter index or exit: ");
-            input = sc.nextLine();
-            if (!input.equals("exit")) {
-                try {
-                    index = Integer.parseInt(input);
-                } catch (NumberFormatException e) {
-                    System.out.println("Not a number or exit!");
-                }
+        //input = sc.nextLine();
+        do {
+            boolean error = false;
+            try {
+                index = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Not a number or exit!");
+                error = true;
+            }
+            if (!error) {
                 if (index < 1 || index > value.length()) {
                     System.out.println("Index out of borders");
                 } else {
                     result += value.charAt(index - 1);
                 }
             }
+            System.out.print("Enter index or exit: ");
+            input = sc.nextLine();
         }
+        while (!input.equals("exit"));
 
         System.out.println("Result is: " + result);
+    }
+
+    public static void swapLetters() { // 3.3
+        readString();
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println(value.substring(0,a) + value.charAt(b) + value.substring(a+1,b) + value.charAt(a) + value.substring(b+1));
+    }
+
+    public static void reverseWords() { // 3.5 // TODO finish HM
+        readString();
+
     }
 }
 
