@@ -59,7 +59,7 @@ public class Engine {
                         changer.clearStorage();
                         break;
                     case 6:
-                        System.out.println("Enter two numbers between 0 and " + (storedString.length()-1));
+                        System.out.println("Enter two numbers between 0 and " + (storedString.length() - 1));
                         int[] i;
                         try {
                             i = parseInt(stringInput(reader), 0);

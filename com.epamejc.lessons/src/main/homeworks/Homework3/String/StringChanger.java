@@ -31,8 +31,7 @@ public class StringChanger {
 
     public String swapChars(String str, int[] se) {
         int start = se[0], end = se[1];
-        if (start > end || end > str.length()-1 || start < 0)
-        {
+        if (start > end || end > str.length() - 1 || start < 0) {
             return "Wrong input. Try again!";
         }
 
@@ -43,10 +42,10 @@ public class StringChanger {
         return swapper.toString();
     }
 
-    public String flipWords (String str) {
+    public String flipWords(String str) {
         StringBuilder flipped = new StringBuilder();
         String[] tempContainer = str.split(" ");
-        for (String i: tempContainer) {
+        for (String i : tempContainer) {
             flipped.append(new StringBuffer(i).reverse().toString()).append(" ");
         }
         return flipped.toString();
