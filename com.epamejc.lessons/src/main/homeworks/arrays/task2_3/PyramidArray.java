@@ -8,6 +8,30 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class PyramidArray {
+
+    public void createPyramidArray() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int levels = 0;
+        char[][] chars = {};
+        try {
+            System.out.println("Input height");
+            levels = Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            System.out.println("Something wrong with input stream");
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Wrong number format. Only one number is allowed");
+            e.printStackTrace();
+        }
+        if (levels > 0) {
+            chars = initializePyramidArray(levels);
+        } else {
+            System.out.println("Number must be positive");
+        }
+        CharArrayOperation operation = new CharArrayOperation();
+        operation.printArray(chars);
+    }
+
     private char[][] declarePyramidArray(int n) {
         char[][] pyramid = new char[n][];
         for (int i = 0; i < pyramid.length; i++) {
@@ -25,26 +49,4 @@ public class PyramidArray {
         return pyramid;
     }
 
-    public void createPyramidArray() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int levels = 0;
-        char[][] chars = {};
-        try {
-            System.out.println("Input height");
-            levels = Integer.parseInt(reader.readLine());
-        } catch (IOException e) {
-            System.out.println("Something wrong with input stream");
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.out.println("Wrong number format. Only one number is allowed");
-            e.printStackTrace();
-        }
-        if (levels > 0){
-            chars = initializePyramidArray(levels);
-        } else {
-            System.out.println("Number must be positive");
-        }
-        CharArrayOperation operation = new CharArrayOperation();
-        operation.printArray(chars);
-    }
 }

@@ -2,9 +2,9 @@ package main.homeworks.strings.task3_2;
 
 import java.util.Scanner;
 
-public class GenString {
+public class StringGenerator {
 
-    public void run() {
+    public void generate() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input source string");
         String sourceString = scanner.nextLine();
@@ -19,6 +19,8 @@ public class GenString {
             } catch (NumberFormatException e) {
                 System.out.println("Use only positive numbers");
                 nextInt = -1;
+            } finally {
+                scanner.close();
             }
             if ((nextInt < sourceString.length()) && (nextInt >= 0)) {
                 stringBuffer.append(sourceString.charAt(nextInt));

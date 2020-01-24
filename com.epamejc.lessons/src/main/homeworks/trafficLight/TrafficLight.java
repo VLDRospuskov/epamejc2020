@@ -4,22 +4,11 @@ import java.util.Scanner;
 
 public class TrafficLight {
 
-    private static String calculateColor(int minutes) {
-        if (minutes >= 10) minutes %= 10;
-        if (minutes >= 6) {
-            return Colors.Red + " color";
-        } else if (minutes >= 3) {
-            return Colors.Yellow + " color";
-        } else if (minutes >= 0)
-            return Colors.Green + " color";
-        return ("Время не вернуть " + minutes);
-    }
-
-    public void run() {
+    public void calculateColor() {
         System.out.println("Введите минуты для рассчета цвета сигнала светофора или пустую строку для выхода из программы");
         Scanner scanner = new Scanner(System.in);
         String inputStream;
-        int minutes;
+        int minutes = 0;
         do {
             inputStream = scanner.nextLine();
             if (!inputStream.isEmpty()) {
@@ -32,8 +21,29 @@ public class TrafficLight {
                     scanner.close();
                     break;
                 }
-                System.out.println(calculateColor(minutes));
+                System.out.println(getColor(minutes));
             }
         } while (!inputStream.isEmpty());
+    }
+
+    private int getMinutes(int minutes) {
+        if (minutes >= 10) {
+            minutes %= 10;
+        } else if (minutes < 0) {
+            System.out.println("Only positive number");
+            return Math.abs(minutes % 10);
+        }
+        return minutes;
+    }
+
+    private String getColor(int minutes) {
+        minutes = getMinutes(minutes);
+        if (minutes >= 6) {
+            return Colors.Red + " color";
+        } else if (minutes >= 3) {
+            return Colors.Yellow + " color";
+        } else {
+            return Colors.Green + " color";
+        }
     }
 }

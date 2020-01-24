@@ -1,6 +1,6 @@
 package main.lessons.lesson1.modifier_access;
 
-import main.lessons.lesson1.modifier_access.model.Human;
+//import main.lessons.lesson1.modifier_access.model.Human;
 
 public class Main {
 
@@ -9,8 +9,8 @@ public class Main {
     }
 
     private void callMethods() {
-        Human human = new Human();
-        human.publicMove();
+//        Human human = new Human();
+//        human.publicMove();
         /**
          * protected - нельзя так как класс Example1 не находится в пакете model, также не является наследником класса Human
          * package - нельзя так как класс Example1 не находится в пакете model

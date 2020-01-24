@@ -4,6 +4,6 @@ public class Task4_3 {
 
     public static void main(String[] args) {
         Digits digits = new Digits();
-        System.out.println(digits.amountOfDigits(125));
+        System.out.println(digits.getAmountOfDigits(125));
     }
 }
