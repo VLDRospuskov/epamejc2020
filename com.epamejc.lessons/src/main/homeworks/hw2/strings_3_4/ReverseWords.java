@@ -2,12 +2,13 @@ package main.homeworks.hw2.strings_3_4;
 
 import java.util.Scanner;
 
-public class WordReverse {
+public class ReverseWords {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         String str = "";
-        System.out.print("Please enter text: ");
+
         try {
+            System.out.print("Please enter text: ");
             str = scan.nextLine();
         } catch (Exception e) {
             System.out.println("Error! " + e);
