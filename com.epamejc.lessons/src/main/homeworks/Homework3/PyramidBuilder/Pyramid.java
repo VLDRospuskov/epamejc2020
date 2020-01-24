@@ -10,7 +10,7 @@ public class Pyramid {
 
     public void print() {
         for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j ++) {
+            for (int j = 0; j < col; j++) {
                 if (pyramid[i][j] == 1) {
                     System.out.print("*");
                 } else {
@@ -27,7 +27,7 @@ public class Pyramid {
 
     public Pyramid(int base) {
         this.row = base;
-        this.col = base*2-1;
+        this.col = base * 2 - 1;
         buildPyramid();
     }
 

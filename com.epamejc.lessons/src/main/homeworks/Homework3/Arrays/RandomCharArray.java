@@ -51,15 +51,15 @@ public class RandomCharArray {
 
     public void print(Strategy strategy) {
         if (strategy == Strategy.A) {
-            for (int i = 0; i < arr.length; i+=2) {
-                for (int j = 0; j < arr[i].length; j+=2) {
+            for (int i = 0; i < arr.length; i += 2) {
+                for (int j = 0; j < arr[i].length; j += 2) {
                     System.out.print(arr[i][j]);
                 }
             }
             System.out.println();
-        } else if(strategy == Strategy.B) {
-            for (int i = 1; i < arr.length; i+=2) {
-                for (int j = 1; j < arr[i].length; j+=2) {
+        } else if (strategy == Strategy.B) {
+            for (int i = 1; i < arr.length; i += 2) {
+                for (int j = 1; j < arr[i].length; j += 2) {
                     System.out.print(arr[i][j]);
                 }
             }
@@ -75,8 +75,7 @@ public class RandomCharArray {
         super();
     }
 
-    public RandomCharArray(int row, int col)
-    {
+    public RandomCharArray(int row, int col) {
         this.row = row;
         this.col = col;
     }

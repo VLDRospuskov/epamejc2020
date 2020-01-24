@@ -7,7 +7,7 @@ public final class Immutable {
     private final double constant;
     private final String constantName;
 
-   public Immutable(double constant, String constantName) {
+    public Immutable(double constant, String constantName) {
         this.constant = constant;
         this.constantName = constantName;
     }
@@ -17,7 +17,7 @@ public final class Immutable {
     }
 
     public String getConstantName() {
-       return constantName;
+        return constantName;
     }
 
     //public double setConstant(double constant) {
@@ -41,6 +41,6 @@ public final class Immutable {
 
     @Override
     public String toString() {
-               return constantName + " = " + constant + "\n";
+        return constantName + " = " + constant + "\n";
     }
 }

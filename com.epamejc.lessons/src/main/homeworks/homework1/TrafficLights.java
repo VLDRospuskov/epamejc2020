@@ -53,7 +53,7 @@ class TrafficLights {
         String wrongInput = "Wrong input, try again!";
         num %= 10;
 
-        if (num - (int)num >= 0.599) {
+        if (num - (int) num >= 0.599) {
             System.out.println(wrongInput);
         } else if (num >= 0 && num < 3) {
             System.out.println(Lights.GREEN);

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class Engine {
 
-   public void run() {
+    public void run() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
             RandomCharArray array = new RandomCharArray();
@@ -45,7 +45,7 @@ public class Engine {
 
     }
 
-   private int menu(BufferedReader reader) {
+    private int menu(BufferedReader reader) {
 
         System.out.println("\n" +
                 "_________________________________________________\n" +

@@ -11,11 +11,11 @@ public final class ImmutableClass {
 
     private final double constValue;
 
-    public ImmutableClass (double constValue) {
+    public ImmutableClass(double constValue) {
         this.constValue = constValue;
     }
 
-    public double getConstValue(){
+    public double getConstValue() {
         return constValue;
     }
 
