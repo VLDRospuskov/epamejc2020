@@ -5,22 +5,19 @@ import java.util.Scanner;
 public class CountNum {
     public static void main(String[] args) {
         int n = 0;
-        boolean error = false;
         Scanner scan = new Scanner(System.in);
 
         try {
             System.out.print("Please enter number: ");
             n = scan.nextInt();
         } catch (Exception e) {
-            error = true;
             System.out.println("Wrong enter! " + e);
+            System.exit(0);
         } finally {
             scan.close();
         }
 
-        if (!error) {
-            System.out.println("Amount of numbers: " + numOfNum(n, 0));
-        }
+        System.out.println("Amount of numbers: " + numOfNum(n, 0));
     }
 
     private static int numOfNum(int n, int count) {
