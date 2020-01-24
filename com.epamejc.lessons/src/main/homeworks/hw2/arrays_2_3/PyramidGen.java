@@ -6,20 +6,24 @@ public class PyramidGen {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int n = 0;
-        int n2 = 0;
+        int nCopy = 0;
         try {
+            System.out.print("Enter number: ");
             n = scan.nextInt();
-            n2 = n;
+            nCopy = n;
         } catch (Exception e) {
             System.out.println("Error! " + e);
+        } finally {
+            scan.close();
         }
+
         char[][] arr = new char[n][n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n2; j++) {
+            for (int j = 0; j < nCopy; j++) {
                 arr[i][j] = 'X';
                 System.out.print(arr[i][j]);
             }
-            n2--;
+            nCopy--;
             System.out.println("");
         }
     }
