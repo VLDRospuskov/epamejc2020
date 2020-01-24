@@ -13,17 +13,17 @@ public class SqrtN {
             n = scan.nextInt();
             System.out.print("Please enter pow: ");
             pow = scan.nextInt();
+            if(pow < 0) {
+                System.out.println("Enter positive pow!");
+                System.exit(0);
+            }
         } catch (Exception e) {
-            System.out.println("Error! " + e);
+            System.out.println("Wrong enter!" + e);
         } finally {
             scan.close();
         }
 
-        if(pow < 0) {
-            System.out.println("Enter positive pow!"); // Check pow for positive
-        }
-
-        if (pow == 1) {                                // Check pow for 0 and 1 value
+        if (pow == 1) {
             System.out.println(n);
         } else if (pow == 0) {
             System.out.println(1);
