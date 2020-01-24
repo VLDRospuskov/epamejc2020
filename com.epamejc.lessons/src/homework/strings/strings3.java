@@ -13,10 +13,9 @@ public class strings3 {
         int index2 = in.nextInt();
 
 
-        StringBuffer ScrambleString = new StringBuffer(stringIn);
+        StringBuilder ScrambleString = new StringBuilder(stringIn);
         char symbol1 = ScrambleString.charAt(index1);
-        char symbol2 = ScrambleString.charAt(index2);
-        char cash = symbol2;
+        char cash = ScrambleString.charAt(index2);
         ScrambleString.setCharAt(index2, symbol1);
         ScrambleString.setCharAt(index1, cash);
         System.out.println(ScrambleString.toString());
