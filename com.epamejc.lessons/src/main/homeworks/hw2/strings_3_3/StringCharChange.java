@@ -9,11 +9,12 @@ public class StringCharChange {
         int ind1 = 0;
         int ind2 = 0;
         int len = 0;
-        System.out.print("Please enter text: ");
+
         try {
+            System.out.print("Please enter text: ");
             str = scan.nextLine();
             len = str.length() - 1;
-            System.out.print("Please enter indexes between 0 and " + len + ": ");
+            System.out.print("Please enter two indexes to change (between 0 and " + len + "): ");
             ind1 = scan.nextInt();
             ind2 = scan.nextInt();
 
