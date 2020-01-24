@@ -9,7 +9,9 @@ public class StringOddEven {
         String type = "";
 
         try {
+            System.out.print("Enter string: ");
             str = scan.next();
+            System.out.print("Enter type(even or odd): ");
             type = scan.next();
         } catch (Exception e) {
             System.out.println("Error! " + e);
@@ -30,6 +32,7 @@ public class StringOddEven {
         } else {
             System.out.println("Wrong enter!");
         }
+
         System.out.println(output);
     }
 }
