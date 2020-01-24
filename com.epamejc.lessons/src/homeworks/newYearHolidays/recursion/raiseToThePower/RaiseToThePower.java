@@ -1,4 +1,4 @@
-package homeworks.newYearHolidays.recursion.powering;
+package homeworks.newYearHolidays.recursion.raiseToThePower;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
