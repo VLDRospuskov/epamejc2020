@@ -2,7 +2,7 @@ package homeworks.lesson1.trafficLight;
 
 public enum Colors {
 
-    GREEN (EscapeCodes.GREEN+ "Зеленый. Проходите!" + EscapeCodes.RESET),
+    GREEN (EscapeCodes.GREEN + "Зеленый. Проходите!" + EscapeCodes.RESET),
     YELLOW (EscapeCodes.YELLOW + "Желтый. Завершайте движение." + EscapeCodes.RESET),
     RED (EscapeCodes.RED + "Красный. Стойте!" + EscapeCodes.RESET);
 
