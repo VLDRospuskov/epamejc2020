@@ -1,11 +1,12 @@
 package homeworks.newYearHolidays.strings.stringByIndexes;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 class StringByIndexes {
     void run() {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.print("Введите строку: ");
             String s = reader.readLine().trim();
             String result = "";
