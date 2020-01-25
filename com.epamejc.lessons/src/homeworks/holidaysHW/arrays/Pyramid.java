@@ -2,7 +2,7 @@ package homeworks.holidaysHW.arrays;
 
 import java.util.Scanner;
 
-public class pyramid {
+public class Pyramid {
 
     public static void buildPyramid(int size) {
         char[] pyrArray = new char[size];

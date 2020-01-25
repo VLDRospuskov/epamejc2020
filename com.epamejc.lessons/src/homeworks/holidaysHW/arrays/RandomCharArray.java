@@ -2,7 +2,7 @@ package homeworks.holidaysHW.arrays;
 
 import java.util.Random;
 
-public class randomCharArray {
+public class RandomCharArray {
 
     public static char[][] randomizeCharArray(int x, int y) {
         char[][] charArray = new char[x][y];

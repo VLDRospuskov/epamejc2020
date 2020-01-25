@@ -2,13 +2,13 @@ package homeworks.holidaysHW.arrays;
 
 import java.util.Scanner;
 
-public class stringFromArray {
+public class StringFromArray {
 
     public static void getStringFromArray(int x, int y) {
 
         char[][] charArray = new char[x][y];
         // using method from previous task
-        charArray = randomCharArray.randomizeCharArray(x, y);
+        charArray = RandomCharArray.randomizeCharArray(x, y);
         String strategyChar;
         System.out.println("Input strategy: ");
         Scanner in = new Scanner(System.in);
