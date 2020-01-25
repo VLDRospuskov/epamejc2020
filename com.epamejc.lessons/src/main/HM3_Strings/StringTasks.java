@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class StringTasks {
     public static void main(String[] args) {
-        swapLetters();
+        reverseWords();
     }
 
     private static String value;
@@ -79,9 +79,42 @@ public class StringTasks {
         System.out.println(value.substring(0,a) + value.charAt(b) + value.substring(a+1,b) + value.charAt(a) + value.substring(b+1));
     }
 
-    public static void reverseWords() { // 3.5 // TODO finish HM
+    public static void reverseWords() {
         readString();
 
+        String result = "";
+
+        int i = 0;
+        boolean mode = true; // проверяем, что ищем в данный момент - буквы или знаки
+        for (int j = 0; j < value.length(); j++) {
+            if (mode) {
+                if (!Character.isLetterOrDigit(value.charAt(j))) {
+                    result = result + reverseWord(value.substring(i, j));
+                    i = j;
+                    mode ^= true;
+                }
+            } else {
+                if (Character.isLetterOrDigit(value.charAt(j))) {
+                    result = result + value.substring(i, j);
+                    i = j;
+                    mode ^= true;
+                }
+            }
+        }
+        if (mode) { // добавляем последнее слово
+            result = result + reverseWord(value.substring(i));
+        } else {
+            result = result + value.substring(i);
+        }
+
+        System.out.println(result);
+    }
+    public static String reverseWord(String str) { // ручной переворот слова
+        String result = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            result = result + str.charAt(i);
+        }
+        return result;
     }
 }
 
@@ -100,4 +133,3 @@ public class StringTasks {
 //        3.4. Написать программу которая переворачивает слова, но при этом оставляет их на прежних местах. Пример
 //        Input: Hello World
 //        output: olleH dlroW
-//        4. Recursion
