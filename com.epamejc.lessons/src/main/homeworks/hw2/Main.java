@@ -1,6 +1,6 @@
-package main.homeworks.hw2.immutableClass_1_1;
+package main.homeworks.hw2;
 
-public class TestImInt {
+public class Main {
     public static void main(String[] args) {
         ImmutableInt ii = new ImmutableInt(17);
         ImmutableInt i2 = new ImmutableInt(256);
