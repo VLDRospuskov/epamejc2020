@@ -1,4 +1,4 @@
-package main.homeworks.hw2.strings_3_2;
+package main.homeworks.hw4.strings_2;
 
 import java.util.Scanner;
 

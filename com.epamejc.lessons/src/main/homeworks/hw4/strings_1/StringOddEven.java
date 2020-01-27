@@ -1,4 +1,4 @@
-package main.homeworks.hw2.strings_3_1;
+package main.homeworks.hw4.strings_1;
 
 import java.util.*;
 
