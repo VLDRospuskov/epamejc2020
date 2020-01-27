@@ -1,9 +1,15 @@
-package main.homeworks.hw2.arrays_2_1;
+package main.homeworks.hw3.arrays_1;
 
 import java.util.*;
 
-public class ArrOfArr {
-    public static void main(String[] args) {
+public class ArrayOfArraysGenerator {
+
+    public void run() {
+        int[] numbers = scanNumbers();
+        buildArray(numbers[0], numbers[1]);
+    }
+
+    public int[] scanNumbers() {
         Scanner sc = new Scanner(System.in);
         int n1 = 0;
         int n2 = 0;
@@ -17,6 +23,11 @@ public class ArrOfArr {
         } finally {
             sc.close();
         }
+        int[] numbers  = new int[] {n1, n2};
+        return numbers;
+    }
+
+    public void buildArray(int n1, int n2) {
         char[][] arr = new char[n1][n2];
         Random r = new Random();
         for (int i = 0; i < n1; i++) {
@@ -27,4 +38,6 @@ public class ArrOfArr {
             System.out.println("");
         }
     }
+
+
 }
