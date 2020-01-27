@@ -5,9 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Helper {
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public String getUserInput(String message) {
+    public static void showGreetingMessage() {
+        System.out.println("Для выхода из программы введите \"exit\"");
+    }
+
+    public static String getUserInput(String message) {
         String input = null;
         System.out.print(message);
 
@@ -27,7 +31,7 @@ public class Helper {
         return input;
     }
 
-    public int parseInt(String s) {
+    public static int parseInt(String s) {
         int input;
         s = s.replaceAll(" ", "");
 
@@ -35,13 +39,13 @@ public class Helper {
             input = Integer.parseInt(s);
         } catch (NumberFormatException e) {
             s = getUserInput("Вы ввели не число! Попробуйте еще раз: ");
-            input = this.parseInt(s);
+            input = parseInt(s);
         }
 
         return input;
     }
 
-    public void closeReader() {
+    public static void closeReader() {
         try {
             System.out.println("Поток успешно закрыт.");
             reader.close();
@@ -53,23 +57,21 @@ public class Helper {
 
 class HelperTestDrive {
     public static void main(String[] args) {
-        Helper helper = new Helper();
-
         boolean isRunning = true;
         while (isRunning) {
-            String s = helper.getUserInput("Введите строку: ");
+            String s = Helper.getUserInput("Введите строку: ");
             if (s.equals("exit")) {
                 isRunning = false;
                 continue;
             }
             System.out.println(s);
 
-            String s2 = helper.getUserInput("Введите число: ");
+            String s2 = Helper.getUserInput("Введите число: ");
             if (s2.equals("exit")) {
                 isRunning = false;
                 continue;
             }
-            int n = helper.parseInt(s2);
+            int n = Helper.parseInt(s2);
             System.out.println(n);
             System.out.println("------------------------------");
         }

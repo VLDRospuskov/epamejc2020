@@ -9,27 +9,27 @@ class RaiseToThePower {
         System.out.println("Для выхода из программы введите \"exit\"");
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String numberS;
-            String rowS;
+            String input1;
+            String input2;
             boolean isRunning = true;
 
             while (isRunning) {
                 System.out.print("Введите число: ");
-                numberS = reader.readLine().trim();
-                if (numberS.equals("exit")) {
+                input1 = reader.readLine().trim();
+                if (input1.equals("exit")) {
                     isRunning = false;
                     continue;
                 }
 
                 System.out.print("Введите степень: ");
-                rowS = reader.readLine().trim();
-                if (rowS.equals("exit")) {
+                input2 = reader.readLine().trim();
+                if (input2.equals("exit")) {
                     isRunning = false;
                     continue;
                 }
 
-                int number = parseIntWithExceptions(numberS);
-                int row = parseIntWithExceptions(rowS);
+                int number = parseIntWithExceptions(input1);
+                int row = parseIntWithExceptions(input2);
 
                 if (number == 0 && row == 0) {
                     System.out.println("Недопустимая операция (0 в степени 0). Попробуйте снова.");

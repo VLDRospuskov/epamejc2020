@@ -1,32 +1,22 @@
 package homeworks.newYearHolidays.arrays.pyramidX;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import homeworks.utility.helper.Helper;
 
 public class PyramidX {
-    public static void main(String[] args) {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            int n = Integer.parseInt(reader.readLine());
-            ArrayList<Character> arrayList = new ArrayList<>();
 
-            for (int i = 0; i < n; i++) {
-                arrayList.add('x');
-            }
+    public void run() {
+        Helper.showGreetingMessage();
+        int input = Helper.parseInt(Helper.getUserInput("Введите число: "));
 
-            for (int i = 0; i < n; i++) {
-                for (Character ch : arrayList) {
-                    System.out.print(ch);
-                }
+        for (int i = input; i > 0; i--) {
+            printX(i);
+            System.out.println("");
+        }
+    }
 
-                if (arrayList.size() > 0) {
-                    arrayList.remove(arrayList.size()-1);
-                    System.out.println("");
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void printX(int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print("x");
         }
     }
 }
