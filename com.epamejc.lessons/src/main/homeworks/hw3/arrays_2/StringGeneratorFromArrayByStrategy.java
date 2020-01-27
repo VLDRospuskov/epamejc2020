@@ -1,25 +1,31 @@
-package main.homeworks.hw2.arrays_2_2;
+package main.homeworks.hw3.arrays_2;
 
 import java.util.*;
 
-public class StringFromArr {
+public class StringGeneratorFromArrayByStrategy {
     public void run() {
+        int[] numbers = scanNumbers();
+        String output = getStrategy(numbers, buildArray(numbers), scanStrategy());
+        System.out.println("Result: " + output);
+    }
+
+    public int[] scanNumbers() {
+        Scanner sc = new Scanner(System.in);
         int n1 = 0;
         int n2 = 0;
-
-        Scanner scan = new Scanner(System.in);
         try {
             System.out.print("Enter the number of lines: ");
-            n1 = scan.nextInt();
+            n1 = sc.nextInt();
             System.out.print("Enter the number of characters: ");
-            n2 = scan.nextInt();
+            n2 = sc.nextInt();
         } catch (Exception e) {
-            System.out.println("Wrong enter! " + e);
-            System.exit(0);
+            System.out.println("Error! " + e);
         }
+        int[] numbers  = new int[] {n1, n2};
+        return numbers;
+    }
 
-        char[][] arr = fillArray(n1,n2);
-
+    public String scanStrategy() {
         Scanner scan2 = new Scanner(System.in);
         String strategy = "";
         try {
@@ -31,16 +37,14 @@ public class StringFromArr {
         } finally {
             scan2.close();
         }
-
-        System.out.println(getStrategy(n1, n2, arr, strategy));
+        return strategy;
     }
 
-    public char[][] fillArray(int n1, int n2) {
-        char[][] arr = new char[n1][n2];
+    public char[][] buildArray(int[] numbers) {
+        char[][] arr = new char[numbers[0]][numbers[1]];
         Random r = new Random();
-
-        for (int i = 0; i < n1; i++) {
-            for (int j = 0; j < n2; j++) {
+        for (int i = 0; i < numbers[0]; i++) {
+            for (int j = 0; j < numbers[1]; j++) {
                 arr[i][j] = (char) (r.nextInt(26) + 'a');
                 System.out.print(arr[i][j] + " ");
             }
@@ -49,17 +53,17 @@ public class StringFromArr {
         return arr;
     }
 
-    public String getStrategy(int n1, int n2, char[][] arr, String strategy) {
+    public String getStrategy(int[] numbers, char[][] arr, String strategy) {
         String output = "";
         if (strategy.equals("A") || strategy.equals("a")) {
-            for (int i = 0; i < n1; i += 2) {
-                for (int j = 0; j < n2; j += 2) {
+            for (int i = 0; i < numbers[0]; i += 2) {
+                for (int j = 0; j < numbers[1]; j += 2) {
                     output += arr[i][j];
                 }
             }
         } else if (strategy.equals("B") || strategy.equals("b")) {
-            for (int i = 0; i < n1; i += 2) {
-                for (int j = 1; j < n2; j += 2) {
+            for (int i = 0; i < numbers[0]; i += 2) {
+                for (int j = 1; j < numbers[1]; j += 2) {
                     output += arr[i][j];
                 }
             }
