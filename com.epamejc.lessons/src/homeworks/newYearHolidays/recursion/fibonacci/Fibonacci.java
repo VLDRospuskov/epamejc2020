@@ -1,51 +1,37 @@
 package homeworks.newYearHolidays.recursion.fibonacci;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import homeworks.utility.helper.Helper;
 
 class Fibonacci {
     void run() {
 
-        System.out.println("Для выхода из программы введите \"exit\"");
+        Helper.showGreetingMessage();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String s;
-
-            do {
-                System.out.print("Введите порядковый номер числа Фибоначчи: ");
-
-                s = reader.readLine().trim();
-                int input = parseIntWithExceptions(s);
-                long start = System.currentTimeMillis();
-                int number = fibonacci(input);
-                long finish = System.currentTimeMillis();
-
-                System.out.println("Значение " + input + " числа Фибоначчи: " + number +
-                        ". Найдено за " + (finish-start) + " миллисекунд");
-            } while (!s.equals("exit"));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private int parseIntWithExceptions (String s) {
-        try {
-            int n = Integer.parseInt(s);
-
-            if (n < 0) {
-                System.out.println("\033[1;91m" + "Введите положительное число!" + "\u001B[0m");
+        boolean isRunning = true;
+        while (isRunning) {
+            String s = Helper.getUserInput("Введите порядковый номер числа Фибоначчи: ");
+            if (s.equals("exit")) {
+                isRunning = false;
+                continue;
             }
 
-            return Math.max(n, 0);
-        } catch (Exception e) {
-            System.out.println("\033[1;91m" + "Введено некорректное значение!" + "\u001B[0m");
-            return 0;
+            int input = Math.max(Helper.parseInt(s), 0);
+            getAndPrintFibonacci(input);
         }
     }
 
-    private int fibonacci (int n) {
+    private void getAndPrintFibonacci(int input) {
+        long startCount = System.currentTimeMillis();
+        int number = getFibonacci(input);
+        long finishCount = System.currentTimeMillis();
+
+        System.out.println("Значение " + input + " числа Фибоначчи: " + number +
+                ". Найдено за " + (finishCount - startCount) + " миллисекунд");
+        System.out.println("------------------------------------------------");
+    }
+
+
+    private int getFibonacci(int n) {
         if (n > 50) {
             n = 50;
         }
@@ -55,7 +41,7 @@ class Fibonacci {
         } else if (n == 1) {
             return 1;
         } else {
-            return fibonacci(n - 1) + fibonacci(n - 2);
+            return getFibonacci(n - 1) + getFibonacci(n - 2);
         }
     }
 }

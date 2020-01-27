@@ -1,8 +1,8 @@
-package homeworks.lesson2.immutableClass;
+package homeworks.newYearHolidays.immutableClass;
 
 public final class WordNotSparrow {
-    final String word;
-    final String person;
+    private final String word;
+    private final String person;
 
     public WordNotSparrow(String word, String person) {
         this.word = word;

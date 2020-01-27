@@ -11,7 +11,7 @@ public class RandomChars {
         int length = Helper.parseInt(Helper.getUserInput("Введите длину массивов: "));
 
         char[][] charArrays = fillWithRandomChars(new char[amount][length]);
-        printCharArrays(charArrays);
+        printTable(charArrays);
 
         String strategy = Helper.getUserInput("Введите стратегию: ");
         printFormattedString(charArrays, strategy);
@@ -32,7 +32,7 @@ public class RandomChars {
         return (char) ('a' + randomNumberFrom26);
     }
 
-    private void printCharArrays(char[][] charArrays) {
+    private void printTable(char[][] charArrays) {
         for (char[] chars : charArrays) {
             System.out.println(Arrays.toString(chars));
         }

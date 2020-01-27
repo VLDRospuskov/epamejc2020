@@ -5,16 +5,19 @@ import homeworks.utility.helper.Helper;
 public class PyramidX {
 
     public void run() {
-        Helper.showGreetingMessage();
         int input = Helper.parseInt(Helper.getUserInput("Введите число: "));
+        printPyramidX(input);
+        Helper.closeReader();
+    }
 
-        for (int i = input; i > 0; i--) {
-            printX(i);
-            System.out.println("");
+    private void printPyramidX(int n) {
+        for (int i = n; i > 0; i--) {
+            printLineX(i);
+            System.out.println(" ");
         }
     }
 
-    private void printX(int n) {
+    private void printLineX(int n) {
         for (int i = 0; i < n; i++) {
             System.out.print("x");
         }

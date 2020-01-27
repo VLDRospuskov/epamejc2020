@@ -3,21 +3,30 @@ package homeworks.newYearHolidays.strings.evenOdd;
 import homeworks.utility.helper.Helper;
 
 class EvenOdd {
-    private Helper helper = new Helper();
 
     void run() {
-        String input = helper.getUserInput("Введите строку: ");
-        input = input.trim();
-        String evenOdd = helper.getUserInput("Введите even или odd: ");
-        evenOdd = evenOdd.trim().toLowerCase();
+        Helper.showGreetingMessage();
 
-        String result = getEvenOddString(input, evenOdd);
+        boolean isRunning = true;
+        while (isRunning) {
+            String input = Helper.getUserInput("Введите строку: ").trim();
+            if (input.equals("exit")) {
+                isRunning = false;
+                continue;
+            }
 
-        System.out.println(result);
-        helper.closeReader();
+            String evenOrOdd = Helper.getUserInput("Введите even или odd: ").trim().toLowerCase();
+            if (evenOrOdd.equals("exit")) {
+                isRunning = false;
+                continue;
+            }
+
+            printEvenOrOddString(input, evenOrOdd);
+            System.out.println("---------------------------------");
+        }
     }
 
-    private String getEvenOddString(String input, String evenOdd) {
+    private void printEvenOrOddString(String input, String evenOrOdd) {
         String even = "";
         String odd = "";
 
@@ -29,12 +38,20 @@ class EvenOdd {
             }
         }
 
-        if (evenOdd.equals("even")) {
-            return even;
-        } else if (evenOdd.equals("odd")) {
-            return odd;
+        System.out.println(getEvenOrOdd(even, odd, evenOrOdd));
+    }
+
+    private String getEvenOrOdd(String even, String odd, String evenOrOdd) {
+        String result;
+
+        if (evenOrOdd.equals("even")) {
+            result = even;
+        } else if (evenOrOdd.equals("odd")) {
+            result = odd;
+        } else {
+            result = "Неизвестная ошибка. Попробуйте еще раз.";
         }
 
-        return "Неизвестная ошибка. Попробуйте еще раз.";
+        return result;
     }
 }

@@ -1,75 +1,54 @@
 package homeworks.newYearHolidays.recursion.raiseToThePower;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import homeworks.utility.helper.Helper;
 
 class RaiseToThePower {
+
     void run() {
 
-        System.out.println("Для выхода из программы введите \"exit\"");
+        Helper.showGreetingMessage();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String input1;
-            String input2;
-            boolean isRunning = true;
-
-            while (isRunning) {
-                System.out.print("Введите число: ");
-                input1 = reader.readLine().trim();
-                if (input1.equals("exit")) {
-                    isRunning = false;
-                    continue;
-                }
-
-                System.out.print("Введите степень: ");
-                input2 = reader.readLine().trim();
-                if (input2.equals("exit")) {
-                    isRunning = false;
-                    continue;
-                }
-
-                int number = parseIntWithExceptions(input1);
-                int row = parseIntWithExceptions(input2);
-
-                if (number == 0 && row == 0) {
-                    System.out.println("Недопустимая операция (0 в степени 0). Попробуйте снова.");
-                    System.out.println("------------------------------------------");
-                    continue;
-                }
-
-                int result = powerOf(number, row);
-
-                System.out.println("Число " + number + " в степени " + row +
-                        " равно " + result);
-                System.out.println("------------------------------------------");
+        boolean isRunning = true;
+        while (isRunning) {
+            String s1 = Helper.getUserInput("Введите число: ");
+            if (s1.equals("exit")) {
+                isRunning = false;
+                continue;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            String s2 = Helper.getUserInput("Введите степень: ");
+            if (s2.equals("exit")) {
+                isRunning = false;
+                continue;
+            }
+
+            int number = Math.max(Helper.parseInt(s1), 0);
+            int row = Math.max(Helper.parseInt(s2), 0);
+
+            getAndPrintPowerOfNumber(number, row);
         }
     }
 
-    private int parseIntWithExceptions (String s) {
-        try {
-            int n = Integer.parseInt(s);
+    private void getAndPrintPowerOfNumber(int number, int row) {
+        if (number == 0 && row == 0) {
+            System.out.println("Недопустимая операция (0 в степени 0). Попробуйте снова.");
+        } else {
+            int result = getPowerOfNumber(number, row);
 
-            if (n < 0) {
-                System.out.println("\033[1;91m" + "Введено отрицательное число!" + "\u001B[0m");
-            }
-
-            return Math.max(n, 0);
-        } catch (Exception e) {
-            System.out.println("\033[1;91m" + "Введено некорректное значение!" + "\u001B[0m");
-            return 0;
+            System.out.println("Число " + number + " в степени " + row +
+                    " равно " + result);
         }
+
+        System.out.println("------------------------------------------");
     }
 
-    private static int powerOf(int n, int p) {
+    private static int getPowerOfNumber(int n, int p) {
         if (p == 0) {
             return 1;
         } else if (p == 1) {
             return n;
         } else {
-            return n * powerOf(n, p - 1);
+            return n * getPowerOfNumber(n, p - 1);
         }
     }
 }
