@@ -4,20 +4,27 @@ import java.util.Scanner;
 
 public class ReverseWords {
 
+
     public void getReversedString() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input source string");
         String inputString = scanner.nextLine();
         scanner.close();
+        System.out.println(run(inputString));
+    }
+
+    private String run(String inputString) {
         Scanner subScanner = new Scanner(inputString).useDelimiter("\\s* \\s*");
-        StringBuffer stringBuffer = new StringBuffer();
-        StringBuffer reverse = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder reverse = new StringBuilder();
+
         while (subScanner.hasNext()) {
             reverse.append(subScanner.next());
-            stringBuffer.append(reverse.reverse()).append(" ");
+            stringBuilder.append(reverse.reverse()).append(" ");
             reverse.delete(0, reverse.length());
         }
         subScanner.close();
-        System.out.println(stringBuffer.toString());
+
+        return stringBuilder.toString();
     }
 }

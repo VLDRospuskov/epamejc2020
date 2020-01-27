@@ -10,10 +10,9 @@ import java.util.Arrays;
 public class PyramidArray {
 
     public void createPyramidArray() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int levels = 0;
         char[][] chars = {};
-        try {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));){
             System.out.println("Input height");
             levels = Integer.parseInt(reader.readLine());
         } catch (IOException e) {

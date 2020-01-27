@@ -4,23 +4,16 @@ import java.util.Scanner;
 
 public class SwapSymbols {
 
-    public void swap() {
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input source string");
         String inputString = scanner.nextLine();
-        System.out.println("Input two swapNums nums");
-        System.out.println("For example");
-        System.out.println("4, 1");
-        String swapString = scanner.nextLine();
-        Scanner subScanner = new Scanner(swapString).useDelimiter("\\s*, \\s*");
-        int[] swapNums = new int[2];
-        int count = 0;
-        while (subScanner.hasNextInt() && count <= 2) {
-            swapNums[count] = subScanner.nextInt();
-            count++;
-        }
+        int[] swapNums = getSwapNums(scanner);
         scanner.close();
-        subScanner.close();
+        swap(swapNums, inputString);
+    }
+
+    private void swap(int[] swapNums, String inputString) {
         char swapChar;
         if ((swapNums[0] < inputString.length()) && (swapNums[0] >= 0) &&
                 (swapNums[1] < inputString.length()) && (swapNums[1] > 0)) {
@@ -33,4 +26,21 @@ public class SwapSymbols {
             System.out.println("Nums are too big for this string");
         }
     }
+
+    private int[] getSwapNums(Scanner scanner) {
+        System.out.println("Input two swapNums nums");
+        System.out.println("For example");
+        System.out.println("4, 1");
+        String swapString = scanner.nextLine();
+        Scanner subScanner = new Scanner(swapString).useDelimiter("\\s*, \\s*");
+        int[] swapNums = new int[2];
+        int count = 0;
+        while (subScanner.hasNextInt() && count <= 2) {
+            swapNums[count] = subScanner.nextInt();
+            count++;
+        }
+        subScanner.close();
+        return swapNums;
+    }
+
 }
