@@ -26,12 +26,12 @@ public class EvenOrNotString {
     /**
      * Метод для проверки корректности и инициализации введенной строки
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void enterString(Scanner _scan) {
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
-            System.out.print("Enter the string. Type \"exit\" to finish program: ");
+            System.out.print("Enter the string with length > 0. Type \"exit\" to finish program: ");
             inputString = _scan.nextLine();
             try {
                 if (inputString.equals("exit")) {
@@ -39,8 +39,11 @@ public class EvenOrNotString {
                     break;
                 } else if (inputString.length() > 0) {
                     isInputCorrect = true;
+                } else {
+                    throw new ArithmeticException();
                 }
             } catch (Exception ex) {
+                System.out.println(FilterTypes.wrongArgument.getValue());
             }
         }
     }
@@ -48,7 +51,7 @@ public class EvenOrNotString {
     /**
      * Метод для проверки корректности и инициализации типа фильтра для строки (четные/нечетные символы)
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void enterFilterType(Scanner _scan) {
         boolean isInputCorrect = false;
@@ -61,8 +64,11 @@ public class EvenOrNotString {
                     break;
                 } else if (filterType.equals(FilterTypes.EVEN.getValue()) || filterType.equals(FilterTypes.ODD.getValue())) {
                     isInputCorrect = true;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
+                System.out.println(FilterTypes.wrongArgument.getValue());
             }
         }
     }
@@ -70,17 +76,17 @@ public class EvenOrNotString {
     /**
      * Метод для формирования конечной строки с учетом фильтра
      *
-     * @return
+     * @return измененная строка без четных/нечетных символов
      */
     private String transformString() {
         StringBuilder charBox = new StringBuilder();
-        if (filterType.equals(FilterTypes.EVEN.getValue())) { //Удаляем четные индексы
+        if (filterType.equals(FilterTypes.EVEN.getValue())) {
             int counter = 1;
             while (counter < inputString.length()) {
                 charBox.append(inputString.charAt(counter));
                 counter += 2;
             }
-        } else { //Удаляем нечетные индексы
+        } else {
             int counter = 0;
             while (counter < inputString.length()) {
                 charBox.append(inputString.charAt(counter));

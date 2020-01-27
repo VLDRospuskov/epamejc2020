@@ -2,7 +2,8 @@ package main.homeworks.HW4_strings.stringReverse;
 
 enum ReversedStringMessages {
     exitAppMessage("Program ends. Goodbye."),
-    enterStringMessage ("Type -1 to exit or enter a few words separated by a space: ");
+    enterStringError("Wrong input. Enter correct string."),
+    enterStringMessage ("Type \"exit\" to exit or enter a few words separated by a space: ");
 
     private String value;
 

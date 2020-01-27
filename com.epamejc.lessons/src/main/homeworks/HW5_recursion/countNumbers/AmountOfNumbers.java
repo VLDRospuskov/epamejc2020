@@ -37,24 +37,25 @@ public class AmountOfNumbers {
     /**
      * Метод для проверки корректности и инициализации исходной строки
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void enterString(Scanner _scan) {
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
-            System.out.print("Type -1 tu exit or enter a string that contains at " +
+            System.out.print("Type \"exit\" to exit or enter a string that contains at " +
                     "least one numeric character: ");
             inputString = _scan.nextLine();
             try {
-                int exitTrigger = Integer.parseInt(inputString);
-                if (exitTrigger == -1) {
+                if (inputString.equals("exit")){
                     appInputExitTrigger = false;
                     break;
+                } else if (inputString.length() > 0){
+                    isInputCorrect = true;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
-            }
-            if (inputString.length() > 0) {
-                isInputCorrect = true;
+                System.out.println("Wrong input. Enter correct string");
             }
         }
     }

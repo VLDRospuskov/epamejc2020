@@ -10,7 +10,7 @@ public class IndexedString {
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        enterString(scan); //Ввели строку
+        enterString(scan);
         while (appInputExitTrigger) {
             enterIndex(scan);
             if (appInputExitTrigger) {
@@ -24,7 +24,7 @@ public class IndexedString {
     /**
      * Метод для проверки корректности и инициализации введенной строки
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void enterString(Scanner _scan) {
         boolean isInputCorrect = false;
@@ -34,8 +34,11 @@ public class IndexedString {
             try {
                 if (inputString.length() > 0) {
                     isInputCorrect = true;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
+                System.out.println(IndexedStringMessages.enterStringError.getValue());
             }
         }
     }
@@ -43,7 +46,7 @@ public class IndexedString {
     /**
      * Метод для проверки корректности и инициализации индекса введенной строки
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void enterIndex(Scanner _scan) {
         boolean isInputCorrect = false;
@@ -58,8 +61,11 @@ public class IndexedString {
                     break;
                 } else if (indexOfString >= 0 && indexOfString <= maxIndex) {
                     isInputCorrect = true;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
+                System.out.println(IndexedStringMessages.enterIndexError.getValue());
             }
         }
     }
@@ -71,9 +77,10 @@ public class IndexedString {
     private void generateString() {
         System.out.println("Entered string is: " + inputString);
         StringBuilder charBox = new StringBuilder();
-        charBox.append(inputString.charAt(indexOfString)); //Добавляем символ
+        charBox.append(inputString.charAt(indexOfString));
         resultString = resultString + charBox.toString();
         System.out.println("Result string is: " + resultString + "\n");
     }
 }
+
 

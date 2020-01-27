@@ -2,9 +2,7 @@ package main.homeworks.HW3_arrays.arrayGeneration;
 
 import java.util.Scanner;
 
-/**
- * Класс для реализации логики заполнения двумерного массива
- */
+
 public class TwoDimensionalArray {
     private boolean appInputExitTrigger = true;
     private boolean linesInputExitTrigger = true;
@@ -20,31 +18,32 @@ public class TwoDimensionalArray {
             if (appInputExitTrigger) {
                 defineRowsQuantity(scan);
                 if (appInputExitTrigger) {
-                    char[][] twoDimArray = new char[linesQuantity][rowsQuantity];
-                    fillCharArray(twoDimArray);
-                    printCharArray(twoDimArray);
-                    linesInputExitTrigger = true;
-                    rowsInputExitTrigger = true;
-                } else {
-                    scan.close();
-                    System.out.println(SystemMessages.appFinishMessage.getMessage());
-                    break;
+                    generateArray();
                 }
-            } else {
-                scan.close();
-                System.out.println(SystemMessages.appFinishMessage.getMessage());
-                break;
             }
         }
+        scan.close();
+        System.out.println(SystemMessages.appFinishMessage.getMessage());
+    }
+
+    /**
+     * Метод для генерации двумерного массива и его вывода в консоль
+     */
+    private void generateArray(){
+        char[][] twoDimArray = new char[linesQuantity][rowsQuantity];
+        fillCharArray(twoDimArray);
+        printCharArray(twoDimArray);
+        linesInputExitTrigger = true;
+        rowsInputExitTrigger = true;
     }
 
     /**
      * Метод для проверки корректности ввода и инициализации количества строк массива
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void defineLinesQuantity(Scanner _scan) {
-        while (linesInputExitTrigger) { //Пока не ввели верное значение
+        while (linesInputExitTrigger) {
             System.out.print(SystemMessages.inputLinesMessage.getMessage());
             String inputString = _scan.nextLine();
             try {
@@ -55,9 +54,9 @@ public class TwoDimensionalArray {
                 } else if (linesQuantity > 0 && linesQuantity <= 85) {
                     linesInputExitTrigger = false;
                 } else {
-                    System.out.println(SystemMessages.numberErrorMessage.getMessage());
+                    throw new ArithmeticException();
                 }
-            } catch (Exception exc) {
+            } catch (Exception arExc) {
                 System.out.println(SystemMessages.numberErrorMessage.getMessage());
             }
         }
@@ -66,7 +65,7 @@ public class TwoDimensionalArray {
     /**
      * Метод для проверки корректности ввода и инициализации количества столбцов массива
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void defineRowsQuantity(Scanner _scan) {
         while (rowsInputExitTrigger) {
@@ -80,7 +79,7 @@ public class TwoDimensionalArray {
                 } else if (rowsQuantity > 0 && rowsQuantity <= 85) {
                     rowsInputExitTrigger = false;
                 } else {
-                    System.out.println(SystemMessages.numberErrorMessage.getMessage());
+                    throw new ArithmeticException();
                 }
             } catch (Exception exc) {
                 System.out.println(SystemMessages.numberErrorMessage.getMessage());
@@ -102,7 +101,7 @@ public class TwoDimensionalArray {
     /**
      * Метод для заполнения массива сгенерированными случайными символами
      *
-     * @param _twoDimArray
+     * @param _twoDimArray объявленный массив
      */
     private void fillCharArray(char[][] _twoDimArray) {
         for (int i = 0; i < linesQuantity; i++) {
@@ -115,7 +114,7 @@ public class TwoDimensionalArray {
     /**
      * Метод для вывода сформированного двумерного массива в консоль
      *
-     * @param _twoDimArray
+     * @param _twoDimArray сгенерированный массив
      */
     private void printCharArray(char[][] _twoDimArray) {
         System.out.println(SystemMessages.outputMessage.getMessage());

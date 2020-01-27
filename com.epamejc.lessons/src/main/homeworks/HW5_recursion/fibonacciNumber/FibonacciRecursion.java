@@ -37,7 +37,7 @@ public class FibonacciRecursion {
     /**
      * Метод для проверки корректности ввода и инициализации числа
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void enterNumber(Scanner _scan) {
         boolean isInputCorrect = false;
@@ -51,10 +51,14 @@ public class FibonacciRecursion {
                     break;
                 } else if (inputNumber > 0 && inputNumber <= 30) {
                     isInputCorrect = true;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
+                System.out.println("Wrong input. Enter correct number");
             }
         }
     }
 }
+
 

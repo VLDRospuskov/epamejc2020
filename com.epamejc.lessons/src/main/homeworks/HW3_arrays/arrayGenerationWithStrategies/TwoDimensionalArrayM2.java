@@ -4,9 +4,7 @@ import main.homeworks.HW3_arrays.arrayGeneration.SystemMessages;
 
 import java.util.Scanner;
 
-/**
- * Класс для реализации логики заполнения двумерного массива
- */
+
 public class TwoDimensionalArrayM2 {
     private boolean appInputExitTrigger = true;
     private boolean linesInputExitTrigger = true;
@@ -15,23 +13,14 @@ public class TwoDimensionalArrayM2 {
     private int rowsQuantity = 0;
 
     public void run() {
-        //Считываем данные из консоли
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) { //Пока не введено значение -1
+        while (appInputExitTrigger) {
             System.out.println(SystemMessages.appStartMessage.getMessage());
             defineLinesQuantity(scan);
-            if (appInputExitTrigger) { //Проверяем условие выхода на стадии ввода числа строк
+            if (appInputExitTrigger) {
                 defineRowsQuantity(scan);
-                if (appInputExitTrigger) { //Проверяем условие выхода на стадии ввода числа столбцов
-                    char[][] twoDimArray = new char[linesQuantity][rowsQuantity];
-                    fillCharArray(twoDimArray); //Заполнение массива случайными символами А-z
-                    int strategyNumber = defineStrategy(scan);
-                    if (appInputExitTrigger) { //Проверяем условие выхода на стадии ввода номера стратегии
-                        printCharArray(twoDimArray); //Вывод массива в консоль
-                        System.out.println("Modified array: \n" + processArrayWithStrategy(twoDimArray, strategyNumber));
-                        linesInputExitTrigger = true; //Для возможности повторного ввода строк и столбцов
-                        rowsInputExitTrigger = true;
-                    }
+                if (appInputExitTrigger) {
+                    processArray(scan);
                 }
             }
         }
@@ -40,12 +29,31 @@ public class TwoDimensionalArrayM2 {
     }
 
     /**
+     * Метод для инициализации стратегии, генерации массива, его обработки и вывода в консоль
+     *
+     * @param _scan объект сканера
+     */
+    private void processArray(Scanner _scan) {
+        char[][] twoDimArray = new char[linesQuantity][rowsQuantity];
+        fillCharArray(twoDimArray);
+        int strategyNumber = defineStrategy(_scan);
+        printCharArray(twoDimArray);
+        if (strategyNumber == 1) {
+            System.out.println("Modified array: \n" + processArrayStrategyA(twoDimArray));
+        } else {
+            System.out.println("Modified array: \n" + processArrayStrategyB(twoDimArray));
+        }
+        linesInputExitTrigger = true;
+        rowsInputExitTrigger = true;
+    }
+
+    /**
      * Метод для проверки корректности ввода и инициализации количества строк массива
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void defineLinesQuantity(Scanner _scan) {
-        while (linesInputExitTrigger) { //Пока не ввели верное значение
+        while (linesInputExitTrigger) {
             System.out.print(SystemMessages.inputLinesMessage.getMessage());
             String inputString = _scan.nextLine();
             try {
@@ -67,7 +75,7 @@ public class TwoDimensionalArrayM2 {
     /**
      * Метод для проверки корректности ввода и инициализации количества столбцов массива
      *
-     * @param _scan
+     * @param _scan объект сканера
      */
     private void defineRowsQuantity(Scanner _scan) {
         while (rowsInputExitTrigger) {
@@ -92,8 +100,8 @@ public class TwoDimensionalArrayM2 {
     /**
      * Метод для проверки корректности ввода и инициализации номера стратегии
      *
-     * @param _scan
-     * @return
+     * @param _scan объект сканера
+     * @return номер стратегии
      */
     private int defineStrategy(Scanner _scan) {
         boolean isCorrectStrategyInput = false;
@@ -103,10 +111,7 @@ public class TwoDimensionalArrayM2 {
             String inputString = _scan.nextLine();
             try {
                 strategyNumber = Integer.parseInt(inputString);
-                if (strategyNumber == -1) {
-                    appInputExitTrigger = false;
-                    break;
-                } else if (strategyNumber == 1 || strategyNumber == 2) {
+                if (strategyNumber == 1 || strategyNumber == 2) {
                     isCorrectStrategyInput = true;
                 } else {
                     System.out.println(SystemMessages.strategyErrorMessage.getMessage());
@@ -132,7 +137,7 @@ public class TwoDimensionalArrayM2 {
     /**
      * Метод для заполнения массива сгенерированными случайными символами
      *
-     * @param _twoDimArray
+     * @param _twoDimArray объявленный массив
      */
     private void fillCharArray(char[][] _twoDimArray) {
         for (int i = 0; i < linesQuantity; i++) {
@@ -145,7 +150,7 @@ public class TwoDimensionalArrayM2 {
     /**
      * Метод для вывода сформированного двумерного массива в консоль
      *
-     * @param _twoDimArray
+     * @param _twoDimArray сгенерированный массив
      */
     private void printCharArray(char[][] _twoDimArray) {
         System.out.println("Generated array:");
@@ -158,42 +163,32 @@ public class TwoDimensionalArrayM2 {
     }
 
     /**
-     * Метод для генерации строки на основании выбранной стратегии и сгенерированного массива
+     * Метод для генерации строки на основании выбранной стратегии A и сгенерированного массива
      *
-     * @param _twoDimArray
-     * @param _strategyNumber
-     * @return
+     * @param _twoDimArray сгенерированный массив
+     * @return сгенерированная строка
      */
-    private String processArrayWithStrategy(char[][] _twoDimArray, int _strategyNumber) {
+    private String processArrayStrategyA(char[][] _twoDimArray) {
         String resultString = "";
-        if (_strategyNumber == 1) //Стратегия для четных индексов
-        {
-            for (int i = 0; i < linesQuantity; i++) {
-                if (i % 2 == 0) {
-                    for (int j = 0; j < rowsQuantity; j++) {
-                        if (j % 2 == 0) {
-                            resultString = resultString + _twoDimArray[i][j];
-                        } else {
-                            continue;
-                        }
-                    }
-                } else {
-                    continue;
-                }
+        for (int i = 0; i < linesQuantity; i += 2) {
+            for (int j = 0; j < rowsQuantity; j += 2) {
+                resultString += String.valueOf(_twoDimArray[i][j]);
             }
-        } else { //Стратегия для нечетных индексов
-            for (int i = 0; i < linesQuantity; i++) {
-                if (i % 2 != 0) {
-                    for (int j = 0; j < rowsQuantity; j++) {
-                        if (j % 2 != 0) {
-                            resultString = resultString + _twoDimArray[i][j];
-                        } else {
-                            continue;
-                        }
-                    }
-                } else {
-                    continue;
-                }
+        }
+        return resultString;
+    }
+
+    /**
+     * Метод для генерации строки на основании выбранной стратегии B и сгенерированного массива
+     *
+     * @param _twoDimArray сгенерированный массив
+     * @return сгенерированная строка
+     */
+    private String processArrayStrategyB(char[][] _twoDimArray) {
+        String resultString = "";
+        for (int i = 1; i < linesQuantity; i += 2) {
+            for (int j = 1; j < rowsQuantity; j += 2) {
+                resultString += String.valueOf(_twoDimArray[i][j]);
             }
         }
         return resultString;

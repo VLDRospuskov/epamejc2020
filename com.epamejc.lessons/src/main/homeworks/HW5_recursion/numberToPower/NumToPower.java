@@ -41,8 +41,11 @@ public class NumToPower {
                     break;
                 } else if (inputNumber > 0 && inputNumber <= 15) {
                     isInputCorrect = true;
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
+                System.out.println("Wrong input. Enter a correct number.");
             }
         }
         return inputNumber;
@@ -61,4 +64,5 @@ public class NumToPower {
         return number * powerNumber(number, power - 1);
     }
 }
+
 
