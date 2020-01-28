@@ -5,7 +5,7 @@ HW2  - [ImmutableInt](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bo
 ***  
 HW3  - [1 ArrayOfArraysGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw3/arrays_1)  
 HW3  - [2 StringGeneratorFromArrayByStrategy](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw3/arrays_2)  
-HW3  - [3 PyramidGen](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/arrays_2_3)  
+HW3  - [3 PyramidGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw3/arrays_3)  
 ***  
 HW4  - [1 StringOddEven](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/strings_3_1)  
 HW4  - [2 StringByIndex](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/strings_3_2)  
