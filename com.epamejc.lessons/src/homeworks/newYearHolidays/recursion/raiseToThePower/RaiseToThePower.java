@@ -5,7 +5,6 @@ import homeworks.utility.helper.Helper;
 class RaiseToThePower {
 
     void run() {
-
         Helper.showGreetingMessage();
 
         boolean isRunning = true;

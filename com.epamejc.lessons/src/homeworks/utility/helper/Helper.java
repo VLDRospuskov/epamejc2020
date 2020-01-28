@@ -32,14 +32,16 @@ public class Helper {
     }
 
     public static int parseInt(String s) {
-        int input;
+        int input = 0;
         s = s.replaceAll(" ", "");
 
         try {
             input = Integer.parseInt(s);
         } catch (NumberFormatException e) {
             s = getUserInput("Вы ввели не число! Попробуйте еще раз: ");
-            input = parseInt(s);
+            if (!s.equals("exit")) {
+                input = parseInt(s);
+            }
         }
 
         return input;

@@ -16,8 +16,7 @@ class AmountOfDigits {
             }
 
             int input = Helper.parseInt(s);
-            int amountOfDigits = getDigits(input);
-            System.out.println("Количество знаков в числе: " + amountOfDigits);
+            System.out.println("Количество знаков в числе: " + getDigits(input));
             System.out.println("---------------------------------------");
         }
     }

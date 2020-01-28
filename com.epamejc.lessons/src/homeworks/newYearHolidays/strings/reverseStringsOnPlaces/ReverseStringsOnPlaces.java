@@ -1,31 +1,38 @@
 package homeworks.newYearHolidays.strings.reverseStringsOnPlaces;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import homeworks.utility.helper.Helper;
 
 class ReverseStringsOnPlaces {
+
     void run() {
-        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.print("Введите строку: ");
-            String input = reader.readLine().trim();
-            String[] strings = input.split(" ");
-            ArrayList<String> arrayList = new ArrayList<>();
+        String input = Helper.getUserInput("Введите строку: ").trim();
 
-            for (String s : strings) {
-                String reversed = "";
-                for (int i = s.length()-1; i >= 0; i--) {
-                    reversed += s.charAt(i);
-                }
-                arrayList.add(reversed);
-            }
+        String[] strings = input.split(" ");
+        String [] reversedStrings = getReversedStrings(strings);
 
-            for (String s : arrayList) {
-                System.out.print(s);
-                System.out.print(" ");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        printStrings(reversedStrings);
+        Helper.closeReader();
+    }
+
+    private String[] getReversedStrings(String[] strings) {
+        String [] reversedStrings = new String[strings.length];
+
+        for (int i = 0; i < strings.length; i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            stringBuilder.append(strings[i]);
+            String s = stringBuilder.reverse().toString();
+
+            reversedStrings[i] = s;
+        }
+
+        return reversedStrings;
+    }
+
+    private void printStrings(String[] reversedStrings) {
+        for (String s : reversedStrings) {
+            System.out.print(s);
+            System.out.print(" ");
         }
     }
 }

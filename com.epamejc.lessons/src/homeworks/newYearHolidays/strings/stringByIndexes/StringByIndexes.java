@@ -1,27 +1,34 @@
 package homeworks.newYearHolidays.strings.stringByIndexes;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import homeworks.utility.helper.Helper;
 
 class StringByIndexes {
-    void run() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.print("Введите строку: ");
-            String s = reader.readLine().trim();
-            String result = "";
 
-            boolean isRunning = true;
-            while (isRunning) {
-                System.out.print("Введите индекс символа (число от 0 до " + (s.length() - 1) + " включительно): ");
-                int i = Integer.parseInt(reader.readLine());
-                if (i >= 0 && i < s.length()) {
-                    result += s.charAt(i);
-                    System.out.println(result);
-                }
+    void run() {
+        String input = Helper.getUserInput("Введите строку: ").trim();
+        String output = "";
+
+        boolean isRunning = true;
+        while (isRunning) {
+            String message = "Введите индекс символа (число от 0 до " + (input.length() - 1) + " включительно): ";
+
+            String iString = Helper.getUserInput(message);
+            if (iString.equals("exit")) {
+                isRunning = false;
+                continue;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            int i = Helper.parseInt(iString);
+            output = getUpdatedString(input, i, output);
+            System.out.println(output);
         }
+    }
+
+    private String getUpdatedString(String input, int i, String output) {
+        if (0 <= i && i < input.length()) {
+            output += input.charAt(i);
+        }
+
+        return output;
     }
 }
