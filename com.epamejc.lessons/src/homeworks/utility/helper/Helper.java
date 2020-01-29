@@ -4,26 +4,41 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Class Helper helps with IO:
+ * 1) Handles IO errors and exceptions
+ * 2) Handles exceptions when parsing
+ * 3) Removes all empty spaces around numbers when parsing
+ * 4) When inputting an empty space, throws custom CancellingException, for breaking a loop
+ * It automatically frees resources when throwing Exception.
+ * If some other way of closing is meant, use closeReaderSilently(); */
+
 public class Helper {
+    public static final String GREETING ="To exit just prompt an empty string";
+    private static final String FINAL_MESSAGE = "Thank you!";
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void showGreetingMessage() {
-        System.out.println("Для выхода из программы введите \"exit\"");
-    }
-
-    public static String getUserInput(String message) {
-        String input = null;
-        System.out.print(message);
+    public static String getString () throws CancellationException {
+        String input = "";
 
         try {
+            System.out.print("Write down a string: ");
             input = reader.readLine();
-            if (input.length() == 0
-                    || input.trim().equalsIgnoreCase("выход")
-                    || input.trim().equalsIgnoreCase("exit")
-                    || input.trim().equalsIgnoreCase("q")) {
-                input = "exit";
-                closeReader();
-            }
+            checkExit(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return input;
+    }
+
+    public static String getString (String message) throws CancellationException {
+        String input = "";
+
+        try {
+            System.out.print(message);
+            input = reader.readLine();
+            checkExit(input);
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         }
@@ -31,17 +46,31 @@ public class Helper {
         return input;
     }
 
-    public static int parseInt(String s) {
+    public static int getInt() throws CancellationException {
         int input = 0;
-        s = s.replaceAll(" ", "");
 
         try {
-            input = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            s = getUserInput("Вы ввели не число! Попробуйте еще раз: ");
-            if (!s.equals("exit")) {
-                input = parseInt(s);
-            }
+            System.out.print("Write down a number: ");
+            String s = reader.readLine();
+            checkExit(s);
+            input = parseInt(s);
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+        }
+
+        return input;
+    }
+
+    public static int getInt(String message) throws CancellationException {
+        int input = 0;
+
+        try {
+            System.out.print(message);
+            String s = reader.readLine();
+            checkExit(s);
+            input = parseInt(s);
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
         }
 
         return input;
@@ -49,33 +78,39 @@ public class Helper {
 
     public static void closeReader() {
         try {
-            System.out.println("Поток успешно закрыт.");
+            System.out.println("The stream is successfully closed.");
+            reader.close();
+            System.out.println(FINAL_MESSAGE);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void closeReaderSilently() {
+        try {
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-}
 
-class HelperTestDrive {
-    public static void main(String[] args) {
-        boolean isRunning = true;
-        while (isRunning) {
-            String s = Helper.getUserInput("Введите строку: ");
-            if (s.equals("exit")) {
-                isRunning = false;
-                continue;
-            }
-            System.out.println(s);
+    private static int parseInt(String s) throws CancellationException {
+        int input;
+        s = s.replaceAll(" ", "");
 
-            String s2 = Helper.getUserInput("Введите число: ");
-            if (s2.equals("exit")) {
-                isRunning = false;
-                continue;
-            }
-            int n = Helper.parseInt(s2);
-            System.out.println(n);
-            System.out.println("------------------------------");
+        try {
+            input = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            input = getInt("It's not an int! Try again: ");
+        }
+
+        return input;
+    }
+
+    private static void checkExit(String input) throws CancellationException {
+        if (input.length() == 0) {
+            closeReader();
+            throw new CancellationException();
         }
     }
 }
