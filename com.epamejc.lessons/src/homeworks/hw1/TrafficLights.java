@@ -4,21 +4,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-/*
-Светофор, выводящий сигнал-цвет. Input: цифра-время от 0 до n время
-Output:  0-3 минуты => зеленый, 4-5 минуты => желтый, 6-10 => красный.
-Работу программы сделать непрерывной, выход можно обработать.
- */
 public class TrafficLights {
 
     public static Double getTime(String inputString) {
-        Double d = new Double(null);
+      //  Double d = new Double(null);
         try {
-            d = Double.parseDouble(inputString);
+           return  Double.parseDouble(inputString);
         } catch (NumberFormatException e) {
             System.out.println("You have to enter the number");
         }
-        return d;
+        return null;
     }
 
     public static String getColor(Double time) {

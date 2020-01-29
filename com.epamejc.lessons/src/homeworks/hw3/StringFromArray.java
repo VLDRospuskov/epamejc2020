@@ -1,4 +1,4 @@
-package homeworks.holidaysHW.arrays;
+package homeworks.hw3;
 
 import java.util.Scanner;
 

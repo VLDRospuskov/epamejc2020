@@ -1,4 +1,4 @@
-package homeworks.holidaysHW.strings;
+package homeworks.hw4;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package homeworks.holidaysHW.recursion;
+package homeworks.hw5;
 
 public class DigitsNumber {
 
