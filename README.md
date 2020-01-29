@@ -9,7 +9,7 @@ HW3  - [3 PyramidGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vit
 ***  
 HW4  - [1 PrintOddOrEvenCharsFromString](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_1)  
 HW4  - [2 GenerateStringFromInputStringByIndex](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_2)  
-HW4  - [3 ChangeCharInLineByIndexes](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_3)  
+HW4  - [3 ChangeCharsInLineByIndexes](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_3)  
 HW4  - [4 ReverseWords](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_4)
 ***  
 HW5  - [1 FibonacciGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw5/recursion_1)  

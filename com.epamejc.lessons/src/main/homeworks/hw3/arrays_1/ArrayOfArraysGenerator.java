@@ -24,6 +24,7 @@ public class ArrayOfArraysGenerator {
             sc.close();
         }
         int[] numbers  = new int[] {n1, n2};
+
         return numbers;
     }
 

@@ -1,6 +1,7 @@
 package main.homeworks.hw2;
 
-public class ImmutableInt {
+public final class ImmutableInt {
+
     private final int value;
 
     public ImmutableInt(int i) {
@@ -10,6 +11,7 @@ public class ImmutableInt {
     public int getValue() {
         return value;
     }
+
 }
 
 

@@ -5,16 +5,14 @@ import java.util.Scanner;
 public class GenerateStringFromInputStringByIndex {
 
     public void run() {
-
         String str = scanInputString();
         buildStringInLoop(str);
-
     }
 
     public void buildStringInLoop(String str) {
-
         String output = "";
         boolean loop = true;
+
         while (loop) {
             int index = scanIndex(str);
             if (index == -1) {
@@ -27,11 +25,9 @@ public class GenerateStringFromInputStringByIndex {
                 System.out.println(output);
             }
         }
-
     }
 
     public String scanInputString() {
-
         Scanner scan = new Scanner(System.in);
         String str = "";
 
@@ -41,12 +37,11 @@ public class GenerateStringFromInputStringByIndex {
         } catch (Exception e) {
             System.out.println("Error! " + e);
         }
-        return str;
 
+        return str;
     }
 
     public int scanIndex(String str) {
-
         final String MSG = "Please enter index between 0 and " + (str.length() - 1) + " (-1 to exit): ";
         int index = 0;
         Scanner scan2 = new Scanner(System.in);
@@ -59,7 +54,6 @@ public class GenerateStringFromInputStringByIndex {
         }
 
         return index;
-
     }
 
 }

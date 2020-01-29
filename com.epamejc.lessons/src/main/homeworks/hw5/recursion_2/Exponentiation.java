@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Exponentiation {
     
     public void run() {
-        
         int[] input = scanNumberAndPow();
 
         if (input[1] == 1) {
@@ -15,12 +14,10 @@ public class Exponentiation {
         } else {
             System.out.println("Result: "+ exponentiation(input[0], input[0], input[1]));
         }
-        
     }
     
     
     public int[] scanNumberAndPow() {
-        
         int[] input = new int[2];
 
         Scanner scan = new Scanner(System.in);
@@ -38,19 +35,18 @@ public class Exponentiation {
         } finally {
             scan.close();
         }
-        return input;
 
+        return input;
     }
     
     
     private static int exponentiation(int n, int tmp, int exp) {
-
         tmp = tmp * n;
         if (exp == 2) {
             return tmp;
         }
         exp--;
-        return exponentiation(n, tmp, exp);
 
+        return exponentiation(n, tmp, exp);
     }
 }

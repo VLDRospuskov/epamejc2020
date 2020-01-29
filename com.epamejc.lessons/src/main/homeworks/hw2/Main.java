@@ -1,6 +1,7 @@
 package main.homeworks.hw2;
 
 public class Main {
+
     public static void main(String[] args) {
         ImmutableInt ii = new ImmutableInt(17);
         ImmutableInt i2 = new ImmutableInt(256);
@@ -12,4 +13,5 @@ public class Main {
         int i = i2.getValue();
         System.out.println("int i = ii.getValue()\nSystem.out.println(i): " + i);
     }
+
 }

@@ -20,6 +20,7 @@ public class PyramidGenerator {
         } finally {
             scan.close();
         }
+
         return n;
     }
 

@@ -3,6 +3,7 @@ package main.homeworks.hw3.arrays_2;
 import java.util.*;
 
 public class StringGeneratorFromArrayByStrategy {
+
     public void run() {
         int[] numbers = scanNumbers();
         String output = getStrategy(numbers, buildArray(numbers), scanStrategy());
@@ -22,6 +23,7 @@ public class StringGeneratorFromArrayByStrategy {
             System.out.println("Error! " + e);
         }
         int[] numbers  = new int[] {n1, n2};
+
         return numbers;
     }
 
@@ -37,6 +39,7 @@ public class StringGeneratorFromArrayByStrategy {
         } finally {
             scan2.close();
         }
+
         return strategy;
     }
 
@@ -50,6 +53,7 @@ public class StringGeneratorFromArrayByStrategy {
             }
             System.out.println("");
         }
+
         return arr;
     }
 
@@ -73,4 +77,5 @@ public class StringGeneratorFromArrayByStrategy {
 
         return output;
     }
+
 }

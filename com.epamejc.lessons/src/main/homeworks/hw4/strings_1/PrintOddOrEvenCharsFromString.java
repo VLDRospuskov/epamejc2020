@@ -9,7 +9,6 @@ public class PrintOddOrEvenCharsFromString {
     }
 
     public String[] scanString() {
-
         Scanner scan = new Scanner(System.in);
         String[] strings = new String[2];
 
@@ -23,11 +22,11 @@ public class PrintOddOrEvenCharsFromString {
         } finally {
             scan.close();
         }
+
         return strings;
     }
 
     public void buildString(String[] strings) {
-
         String output = "";
 
         if (strings[1].equals("even")) {
@@ -41,7 +40,6 @@ public class PrintOddOrEvenCharsFromString {
         } else {
             System.out.println("Wrong enter!");
         }
-
         System.out.println("Result: " + output);
     }
 }

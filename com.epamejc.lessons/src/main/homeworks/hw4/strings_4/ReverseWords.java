@@ -5,14 +5,11 @@ import java.util.Scanner;
 public class ReverseWords {
 
     public void run() {
-
         String str = scanString();
         reverseWordsInString(str);
-
     }
 
     public String scanString() {
-
         Scanner scan = new Scanner(System.in);
         String str = "";
 
@@ -24,12 +21,11 @@ public class ReverseWords {
         } finally {
             scan.close();
         }
-        return str;
 
+        return str;
     }
 
     public void reverseWordsInString(String str) {
-
         String[] words = str.split(" ");
 
         for (int i = 0; i < words.length; i++) {
@@ -43,7 +39,6 @@ public class ReverseWords {
         for (int k = 0; k < words.length; k++) {
             System.out.print(words[k] + " ");
         }
-
     }
 
 }

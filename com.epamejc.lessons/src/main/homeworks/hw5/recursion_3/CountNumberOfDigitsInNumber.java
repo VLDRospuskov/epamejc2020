@@ -5,14 +5,11 @@ import java.util.Scanner;
 public class CountNumberOfDigitsInNumber {
 
     public void run() {
-
         int n = scanNumber();
         System.out.println("Amount of numbers: " + countNumberOfDigits(n, 0));
-
     }
 
     public int scanNumber() {
-
         int n = 0;
         Scanner scan = new Scanner(System.in);
 
@@ -25,20 +22,19 @@ public class CountNumberOfDigitsInNumber {
         } finally {
             scan.close();
         }
-        return n;
 
+        return n;
     }
 
     private static int countNumberOfDigits(int n, int count) {
-
         if(Math.abs(n) < 10) {
             return ++count;
         }
 
         n /= 10;
         count++;
-        return countNumberOfDigits(n, count);
 
+        return countNumberOfDigits(n, count);
     }
 
 }
