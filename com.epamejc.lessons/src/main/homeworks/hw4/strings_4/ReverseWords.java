@@ -3,7 +3,16 @@ package main.homeworks.hw4.strings_4;
 import java.util.Scanner;
 
 public class ReverseWords {
-    public static void main(String[] args) {
+
+    public void run() {
+
+        String str = scanString();
+        reverseWordsInString(str);
+
+    }
+
+    public String scanString() {
+
         Scanner scan = new Scanner(System.in);
         String str = "";
 
@@ -15,6 +24,11 @@ public class ReverseWords {
         } finally {
             scan.close();
         }
+        return str;
+
+    }
+
+    public void reverseWordsInString(String str) {
 
         String[] words = str.split(" ");
 
@@ -29,5 +43,7 @@ public class ReverseWords {
         for (int k = 0; k < words.length; k++) {
             System.out.print(words[k] + " ");
         }
+
     }
+
 }
