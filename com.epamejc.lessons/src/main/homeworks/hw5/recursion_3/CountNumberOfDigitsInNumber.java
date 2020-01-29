@@ -2,8 +2,17 @@ package main.homeworks.hw5.recursion_3;
 
 import java.util.Scanner;
 
-public class CountNum {
-    public static void main(String[] args) {
+public class CountNumberOfDigitsInNumber {
+
+    public void run() {
+
+        int n = scanNumber();
+        System.out.println("Amount of numbers: " + countNumberOfDigits(n, 0));
+
+    }
+
+    public int scanNumber() {
+
         int n = 0;
         Scanner scan = new Scanner(System.in);
 
@@ -16,17 +25,20 @@ public class CountNum {
         } finally {
             scan.close();
         }
+        return n;
 
-        System.out.println("Amount of numbers: " + numOfNum(n, 0));
     }
 
-    private static int numOfNum(int n, int count) {
+    private static int countNumberOfDigits(int n, int count) {
+
         if(Math.abs(n) < 10) {
             return ++count;
         }
 
         n /= 10;
         count++;
-        return numOfNum(n, count);
+        return countNumberOfDigits(n, count);
+
     }
+
 }

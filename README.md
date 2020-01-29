@@ -1,7 +1,7 @@
 # epamejc2020 - Bogdanov Vitaly
 HW1 - [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw1)  
 ***
-HW2  - [ImmutableInt](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/immutableClass_1_1)  
+HW2  - [ImmutableInt](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/)  
 ***  
 HW3  - [1 ArrayOfArraysGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw3/arrays_1)  
 HW3  - [2 StringGeneratorFromArrayByStrategy](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw3/arrays_2)  
@@ -12,8 +12,8 @@ HW4  - [2 GenerateStringFromInputStringByIndex](https://github.com/VLDRospuskov/
 HW4  - [3 ChangeCharInLineByIndexes](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_3)  
 HW4  - [4 ReverseWords](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw4/strings_4)
 ***  
-HW5  - [1 FibonacciGen](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/recursion_4_1)  
-HW5  - [2 SqrtN](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/recursion_4_2)  
-HW5  - [3 CountNum](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw2/recursion_4_3)  
+HW5  - [1 FibonacciGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw5/recursion_1)  
+HW5  - [2 Exponentiation](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw5/recursion_2)  
+HW5  - [3 CountNumberOfDigitsInNumber](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw5/recursion_3)  
 ***
  
