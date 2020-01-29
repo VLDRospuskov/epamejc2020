@@ -12,11 +12,11 @@
 
 
 [Helper]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/utility/helper>
-[Traffic lights]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/lesson1/trafficLight>
-[Immutable class]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/newYearHolidays/immutableClass>
-[Arrays]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/newYearHolidays/arrays>
-[Strings]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/newYearHolidays/strings>
-[Recursion]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/newYearHolidays/recursion>
+[Traffic lights]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/HW_1_trafficLight>
+[Immutable class]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/HW_2_immutableClass>
+[Arrays]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/HW_3_arrays>
+[Strings]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/HW_4_strings>
+[Recursion]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/HW_5_recursion>
 
 
 
