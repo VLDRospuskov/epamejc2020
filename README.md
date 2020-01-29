@@ -6,9 +6,9 @@
 | Utility | [Helper][Helper]  |
 | Homework 1 | [Traffic lights][Traffic lights] |
 | Homework 2 | [Immutable class][Immutable class] |
-| New Year Homework | [Arrays][Arrays] |
-| New Year Homework | [Strings][Strings]  |
-| New Year Homework | [Recursion][Recursion]  |
+| Homework 3 | [Arrays][Arrays] |
+| Homework 4 | [Strings][Strings]  |
+| Homework 5 | [Recursion][Recursion]  |
 
 
 [Helper]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/homeworks/utility/helper>
