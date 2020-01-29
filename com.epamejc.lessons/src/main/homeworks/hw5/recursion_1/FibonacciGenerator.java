@@ -6,6 +6,7 @@ public class FibonacciGenerator {
 
     public void run() {
         int count = scanCountOfNumbers();
+
         if (count < 1 || count > 44) {
             System.out.println("Wrong enter!");
         } else {
@@ -29,11 +30,13 @@ public class FibonacciGenerator {
         return count;
     }
 
-    private static String generateFibonacciNumbers(int n1, int n2, int count) {
+    public String generateFibonacciNumbers(int n1, int n2, int count) {
         int n3 = n1 + n2;
+
         if (count < 2) {
             return n3 + " ";
         }
+
         count--;
 
         return n3 + " " + generateFibonacciNumbers(n2, n3, count);

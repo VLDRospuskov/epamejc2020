@@ -21,6 +21,7 @@ public class Exponentiation {
         int[] input = new int[2];
 
         Scanner scan = new Scanner(System.in);
+
         try {
             System.out.print("Please enter number: ");
             input[0] = scan.nextInt();
@@ -42,9 +43,11 @@ public class Exponentiation {
     
     private static int exponentiation(int n, int tmp, int exp) {
         tmp = tmp * n;
+
         if (exp == 2) {
             return tmp;
         }
+
         exp--;
 
         return exponentiation(n, tmp, exp);

@@ -29,20 +29,24 @@ class TrafficLight {
     public void run() {
         Scanner sc = new Scanner(System.in);
         boolean loop = true;
+
         try {
             while (loop) {
                 int n = 0;
                 System.out.print(MESSAGE);
                 String str = sc.nextLine();
+
                 try {
                     n = checkMinutes(Integer.parseInt(str));
                 } catch (Exception e) {
                     System.out.println(ERR_MESSAGE);
                     continue;
                 }
+
                 if (n == -1) {
                     break;
                 }
+
                 System.out.println("Traffic signal: " + getColor(n));
             }
         } catch (Exception e){

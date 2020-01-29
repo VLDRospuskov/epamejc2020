@@ -31,8 +31,8 @@ public class GenerateStringFromInputStringByIndex {
         Scanner scan = new Scanner(System.in);
         String str = "";
 
-        System.out.print("Please enter text: ");
         try {
+            System.out.print("Please enter text: ");
             str = scan.nextLine();
         } catch (Exception e) {
             System.out.println("Error! " + e);

@@ -6,7 +6,7 @@ public class Main {
         ImmutableInt ii = new ImmutableInt(17);
         ImmutableInt i2 = new ImmutableInt(256);
 
-        System.out.println("System.out.println(ii): " + ii); // link to ii instance
+        System.out.println("System.out.println(ii): " + ii);
         // System.out.println(ii.value); // wrong
         System.out.println("System.out.println(ii.getValue()): " + ii.getValue());
         // int i = ii.value; // wrong

@@ -14,6 +14,7 @@ public class ChangeCharsInLineByIndexes {
     public String scanInputString() {
         Scanner scan = new Scanner(System.in);
         String str = "";
+
         try {
 
             System.out.print("Please enter text: ");
@@ -54,6 +55,7 @@ public class ChangeCharsInLineByIndexes {
     }
 
     public void printLine(int[] i, String str, int len) {
+
         if (i[0] < 0 || i[0] > len || i[1] < 0 || i[1] > len || i[0] == i[1]) {
             System.out.println("Wrong enter!");
         } else {

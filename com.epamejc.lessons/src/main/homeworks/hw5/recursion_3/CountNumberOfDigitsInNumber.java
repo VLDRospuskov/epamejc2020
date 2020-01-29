@@ -6,7 +6,7 @@ public class CountNumberOfDigitsInNumber {
 
     public void run() {
         int n = scanNumber();
-        System.out.println("Amount of numbers: " + countNumberOfDigits(n, 0));
+        System.out.println("Amount of digits: " + countNumberOfDigits(n, 0));
     }
 
     public int scanNumber() {

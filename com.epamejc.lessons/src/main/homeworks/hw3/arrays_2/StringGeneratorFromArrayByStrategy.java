@@ -14,6 +14,7 @@ public class StringGeneratorFromArrayByStrategy {
         Scanner sc = new Scanner(System.in);
         int n1 = 0;
         int n2 = 0;
+
         try {
             System.out.print("Enter the number of lines: ");
             n1 = sc.nextInt();
@@ -22,6 +23,7 @@ public class StringGeneratorFromArrayByStrategy {
         } catch (Exception e) {
             System.out.println("Error! " + e);
         }
+
         int[] numbers  = new int[] {n1, n2};
 
         return numbers;
@@ -30,6 +32,7 @@ public class StringGeneratorFromArrayByStrategy {
     public String scanStrategy() {
         Scanner scan2 = new Scanner(System.in);
         String strategy = "";
+
         try {
             System.out.print("Enter strategy(A or B): ");
             strategy = scan2.nextLine();
@@ -46,6 +49,7 @@ public class StringGeneratorFromArrayByStrategy {
     public char[][] buildArray(int[] numbers) {
         char[][] arr = new char[numbers[0]][numbers[1]];
         Random r = new Random();
+
         for (int i = 0; i < numbers[0]; i++) {
             for (int j = 0; j < numbers[1]; j++) {
                 arr[i][j] = (char) (r.nextInt(26) + 'a');
@@ -59,6 +63,7 @@ public class StringGeneratorFromArrayByStrategy {
 
     public String getStrategy(int[] numbers, char[][] arr, String strategy) {
         String output = "";
+
         if (strategy.equals("A") || strategy.equals("a")) {
             for (int i = 0; i < numbers[0]; i += 2) {
                 for (int j = 0; j < numbers[1]; j += 2) {
