@@ -14,7 +14,7 @@
 
 
 
-[HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/trafficLinghts>
+[HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/trafficLights>
 [HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/immutableClass>
 [HwAr]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/arrays>
 [HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/pyramidBuilder>
