@@ -16,4 +16,5 @@ HW5  - [1 FibonacciGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/V
 HW5  - [2 Exponentiation](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw5/recursion_2)  
 HW5  - [3 CountNumberOfDigitsInNumber](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw5/recursion_3)  
 ***
+HW6  - [PrivateFields (Annotation)](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/hw6)
  
