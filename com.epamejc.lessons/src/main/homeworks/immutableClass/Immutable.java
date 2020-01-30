@@ -1,4 +1,4 @@
-package main.homeworks.Homework3.ImmutableClass;
+package main.homeworks.immutableClass;
 
 import java.util.Objects;
 

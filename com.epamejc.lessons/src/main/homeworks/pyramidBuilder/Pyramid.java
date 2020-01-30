@@ -1,7 +1,6 @@
-package main.homeworks.Homework3.PyramidBuilder;
+package main.homeworks.pyramidBuilder;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Pyramid {
 

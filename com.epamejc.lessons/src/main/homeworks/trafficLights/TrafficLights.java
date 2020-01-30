@@ -1,4 +1,4 @@
-package main.homeworks.homework1;
+package main.homeworks.trafficLights;
 
 import java.io.*;
 import java.math.*;

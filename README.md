@@ -5,31 +5,21 @@
 
 | No | Task | Solution |
 | ------ | ------ | ------ |
-| HW1       | Создать "светофор", который выводит сигнал-цвет. Вы вводите время от 0-3 минуты - зеленый,4-5 минуты - желтый, 6-10 красный. Вводим цифру 0 до n, получаем результат. Работу программы сделать непрерывной, выход можно обработать. | [Traffic lights][HwTl] |
-| HW2       | Создать неизменяемый класс | [Immutable class][HwIc] |
-| HW3.1     | Создать immutable class, создать пару объектов, посмотреть как работает, поэксперементировать с данными. | [Immutable class with examples][HwIe] |
-| HW3.2     | Сгенерировать массив массивов, указав размерность, заполнить его случайными символами. Написать 2 стратегии, которые будут формировать строку на основе данного массива. Стратегия А - работает по принципу * _ * _ * , а стратегия B - работает по принципу _ * _ * _ . | [Arrays][HwAr] |
-| HW3.3     | Написать программу которая будет генерировать пирамидку. | [Pyramid][HwPb] |
-| HW3.4     | Написать программу которая: 1) генерирует новую строку на основании входных данных, строка + четные/нечетные.  2) будет генерировать строку по индексам 3) меняет местами символы в строке - на вход приходит строка и 2 индекса, между которыми нужно сделать обмен 4) переворачивает слова, но при этом оставляет их на прежних местах. | [String][HwSt] |
-| HW3.5     | Рукурсия. Написать программу для: 1) поиска числа Фиббоначи  2) воведения числа в степень  3) подсчета количества цифр в числе | [Recursion][HwRe] |
-
-# Task list:
-- [x] Homework 1
-- [x] homework 2
-- [x] homework 1 refactoring
-- [x] Homework 3
+| HW1       | Create a traffic lights. For input 0-3 output is "Green", 4-5 - "Yellow", 6-10 - "Red". | [Traffic lights][HwTl] |
+| HW2       | Create an immutable class. Make some objects, look how it works.                        | [Immutable class][HwIe] |
+| HW3       | Generate a random char array of length based on user input. Make 2 output strategies: A - every even row and column, B - every odd. | [Arrays][HwAr] |
+| HW4       | Create a pyramid builder program | [Pyramid][HwPb] |
+| HW5       | Create a program, what: 1) generates a new string from the input using even\odd chars 2) generates a new string by index input 3) swaps two chars in entered positions 4) flips words in string | [Strings][HwSt] |
+| HW6       | Recursion. Create a program for: 1) finding a fibonacci sequence 2) finding a power of num 3) counting a num of digits in number | [Recursion][HwRe] |
 
 
 
-
-
-[HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework1>
-[HwIc]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/homework2>
-[HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/ImmutableClass>
-[HwAr]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/Arrays>
-[HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/PyramidBuilder>
-[HwSt]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/String>
-[HwRe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/Homework3/Recursion>
+[HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/trafficLinghts>
+[HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/immutableClass>
+[HwAr]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/arrays>
+[HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/pyramidBuilder>
+[HwSt]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/strings>
+[HwRe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/recursion>
 
 
 

@@ -1,4 +1,4 @@
-package main.homeworks.homework1;
+package main.homeworks.trafficLights;
 
 public enum Lights {
     GREEN,

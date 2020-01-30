@@ -1,6 +1,4 @@
-package main.homeworks.homework1;
-
-import java.io.*;
+package main.homeworks.trafficLights;
 
 public class Main {
     public static void main(String[] args) {

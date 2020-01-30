@@ -1,4 +1,4 @@
-package main.homeworks.Homework3.Recursion;
+package main.homeworks.recursion;
 
 public class RecursionTest {
 

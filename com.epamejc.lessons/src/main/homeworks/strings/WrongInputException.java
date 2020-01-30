@@ -1,4 +1,4 @@
-package main.homeworks.Homework3.String;
+package main.homeworks.strings;
 
 public class WrongInputException extends Exception {
     public WrongInputException(String message) {

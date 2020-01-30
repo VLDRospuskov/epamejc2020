@@ -1,9 +1,8 @@
-package main.homeworks.Homework3.String;
+package main.homeworks.strings;
 
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 
 public class Engine {
