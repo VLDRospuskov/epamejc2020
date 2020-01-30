@@ -1,6 +1,7 @@
 package homeworks.homework2;
 
 public class SpatialDimension {
+
     private String name;
 
     public SpatialDimension(String name) {
@@ -24,4 +25,5 @@ public class SpatialDimension {
                 "name='" + name + '\'' +
                 '}';
     }
+
 }

@@ -1,6 +1,7 @@
 package homeworks.homework5;
 
 public class Recursions {
+
     public int fibonacci(int n) {
         if (n == 0) {
             return 0;
@@ -26,4 +27,5 @@ public class Recursions {
             return 1 + numbersQty(n / 10);
         }
     }
+
 }

@@ -7,6 +7,11 @@ import java.util.Arrays;
 
 public class StringGenerator {
     private String savedInput = "";
+    private StringChanger stringChanger;
+
+    public StringGenerator(StringChanger st) {
+        this.stringChanger = st;
+    }
 
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -15,6 +20,7 @@ public class StringGenerator {
         System.out.println("If you want to quit type Q.");
 
         while (true) {
+
             try {
                 String userInput = reader.readLine();
 
@@ -23,7 +29,7 @@ public class StringGenerator {
                     break;
                 } else if (userInput.toLowerCase().equals("d")) {
                     this.savedInput = "";
-                    StringChanger.clearTemp();
+                    stringChanger.clearTemp();
                     continue;
                 } else if (this.savedInput.equals("")) {
                     this.savedInput = userInput;
@@ -44,22 +50,22 @@ public class StringGenerator {
             }
         }
     }
-
+    
     private void changeString(String userInput) {
         if (userInput.toLowerCase().equals("even")) {
-            System.out.println(StringChanger.evenOrOddChars(this.savedInput, 1));
+            System.out.println(stringChanger.evenOrOddChars(this.savedInput, 1));
         } else if (userInput.toLowerCase().equals("odd")) {
-            System.out.println(StringChanger.evenOrOddChars(this.savedInput, 0));
+            System.out.println(stringChanger.evenOrOddChars(this.savedInput, 0));
         } else if (userInput.toLowerCase().equals("reverse")) {
-            System.out.println(StringChanger.reverse(this.savedInput));
+            System.out.println(stringChanger.reverse(this.savedInput));
         }
     }
 
     private void changeString(int[] numbs) {
         if (numbs.length > 1) {
-            System.out.println(StringChanger.swapChars(this.savedInput, numbs[0], numbs[1]));
+            System.out.println(stringChanger.swapChars(this.savedInput, numbs[0], numbs[1]));
         } else {
-            System.out.println(StringChanger.generateString(this.savedInput, numbs[0]));
+            System.out.println(stringChanger.generateString(this.savedInput, numbs[0]));
         }
     }
 
@@ -71,4 +77,5 @@ public class StringGenerator {
         }
         return false;
     }
+
 }

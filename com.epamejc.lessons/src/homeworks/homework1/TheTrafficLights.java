@@ -1,7 +1,5 @@
 package homeworks.homework1;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -59,4 +57,5 @@ public class TheTrafficLights {
         }
         return false;
     }
+
 }

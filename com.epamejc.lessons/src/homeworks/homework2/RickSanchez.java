@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public final class RickSanchez {
+
     private final String name;
     private final SpatialDimension spatialDimension;
     private final List<String> family;
@@ -41,4 +42,5 @@ public final class RickSanchez {
                 ", family=" + family +
                 '}';
     }
+
 }

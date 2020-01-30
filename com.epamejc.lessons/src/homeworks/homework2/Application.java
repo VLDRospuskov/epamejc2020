@@ -3,7 +3,12 @@ package homeworks.homework2;
 import java.util.ArrayList;
 
 public class Application {
+
     public static void main(String[] args) {
+        run();
+    }
+
+    private static void run() {
         ImmutableSpatialDimension c137 = new ImmutableSpatialDimension("C-137");
         ArrayList<String> family = new ArrayList();
         family.add("Morty");

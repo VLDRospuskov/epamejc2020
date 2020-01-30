@@ -2,7 +2,10 @@ package homeworks.homework4;
 
 public class Application {
     public static void main(String[] args) {
-        StringGenerator generator = new StringGenerator();
+
+        StringChanger stringChanger = new StringChanger();
+        StringGenerator generator = new StringGenerator(stringChanger);
         generator.run();
     }
+
 }

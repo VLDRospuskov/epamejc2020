@@ -1,9 +1,10 @@
 package homeworks.homework4;
 
 public class StringChanger {
-    private static String temp = "";
 
-    public static String evenOrOddChars(String input, int n) {
+    private String temp = "";
+
+    public String evenOrOddChars(String input, int n) {
         String s = "";
         char[] chars = input.toCharArray();
 
@@ -14,19 +15,19 @@ public class StringChanger {
         return s;
     }
 
-    public static String generateString(String input, int n) {
+    public String generateString(String input, int n) {
         char[] chars = input.toCharArray();
 
         if (n < 0 || n >= chars.length) {
             return "Out of range. Please enter a number from 0 to " + (chars.length - 1);
         }
 
-        StringChanger.temp += chars[n];
+        this.temp += chars[n];
 
-        return StringChanger.temp;
+        return this.temp;
     }
 
-    public static String swapChars(String input, int a, int b) {
+    public String swapChars(String input, int a, int b) {
         char[] chars = input.toCharArray();
 
         if ((a < 0 || a >= chars.length) || (b < 0 || b >= chars.length)) {
@@ -40,7 +41,7 @@ public class StringChanger {
         return String.copyValueOf(chars);
     }
 
-    public static String reverse(String input) {
+    public String reverse(String input) {
         String replacement = input.replaceAll("[^A-Za-zА-Яа-я0-9\\s]", "");
         String[] strings = replacement.split(" ");
         StringBuilder sb = new StringBuilder();
@@ -56,7 +57,8 @@ public class StringChanger {
         return sb.toString();
     }
 
-    public static void clearTemp() {
-        StringChanger.temp = "";
+    public void clearTemp() {
+        this.temp = "";
     }
+
 }

@@ -1,6 +1,7 @@
 package homeworks.homework2;
 
 public final class ImmutableSpatialDimension extends SpatialDimension {
+
     private final String name;
 
     public ImmutableSpatialDimension(String name) {
@@ -21,4 +22,5 @@ public final class ImmutableSpatialDimension extends SpatialDimension {
     public static ImmutableSpatialDimension getInstance(SpatialDimension sD) {
         return new ImmutableSpatialDimension(sD.getName());
     }
+
 }
