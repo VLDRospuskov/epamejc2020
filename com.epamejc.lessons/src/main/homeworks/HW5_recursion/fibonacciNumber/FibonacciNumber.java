@@ -2,7 +2,7 @@ package main.homeworks.HW5_recursion.fibonacciNumber;
 
 import java.util.Scanner;
 
-public class FibonacciRecursion {
+public class FibonacciNumber {
     private boolean appInputExitTrigger = true;
     private int inputNumber = 0;
 

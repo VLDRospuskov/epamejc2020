@@ -3,7 +3,7 @@ package main.homeworks.HW5_recursion.countNumbers;
 
 import java.util.Scanner;
 
-public class AmountOfNumbers {
+public class CountNumbers {
     private boolean appInputExitTrigger = true;
     private String inputString = "";
 

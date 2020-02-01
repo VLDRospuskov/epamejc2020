@@ -3,7 +3,6 @@ package main.lessons.lesson8.example3;
 import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {

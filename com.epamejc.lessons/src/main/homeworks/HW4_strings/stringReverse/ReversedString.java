@@ -6,20 +6,26 @@ public class ReversedString {
     private boolean appInputExitTrigger = true;
     private String inputString = "";
 
-    public void run(){
+    public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            enterString(scan);
-            if(appInputExitTrigger){
-                reverseStrings();
+        try {
+            while (appInputExitTrigger) {
+                enterString(scan);
+                if (appInputExitTrigger) {
+                    reverseStrings();
+                }
             }
+        } catch (Exception ex) {
+            System.out.println("Something went wrong");
+        } finally {
+            scan.close();
+            System.out.println(ReversedStringMessages.exitAppMessage.getValue());
         }
-        scan.close();
-        System.out.println(ReversedStringMessages.exitAppMessage.getValue());
     }
 
     /**
      * Метод для ввода строки
+     *
      * @param _scan объект сканера
      */
     private void enterString(Scanner _scan) {

@@ -12,7 +12,8 @@ public class Main {
         System.out.println(md.sameAny(mi));
         System.out.println(md.sameAny(md));
         System.out.println(mi.sameAny(mi));
-        // md.same (mi); //ошибка компиляции
+        //md.same (mi); //ошибка компиляции, потому что требуется Double
+        md.same(md);
 
         System.out.println(md.roundMark());
     }

@@ -1,6 +1,6 @@
-package main.homeworks.HW4_strings.indexExchangeString;
+package main.homeworks.HW4_strings.replaceCharsByIndices;
 
-enum IndexedChangedStringMessages {
+enum ReplaceCharsByIndicesMessages {
     exitAppMessage("Program ends. Goodbye."),
     enterStringMessage ("Enter the string with length > 0 : "),
     enterIndexMessage("Enter 2 indexes (use random non-word separator char) " +
@@ -10,7 +10,7 @@ enum IndexedChangedStringMessages {
 
     private String value;
 
-    IndexedChangedStringMessages(String value) {
+    ReplaceCharsByIndicesMessages(String value) {
         this.value = value;
     }
 

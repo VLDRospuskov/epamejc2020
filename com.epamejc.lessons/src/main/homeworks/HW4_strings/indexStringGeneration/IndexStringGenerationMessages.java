@@ -1,6 +1,6 @@
 package main.homeworks.HW4_strings.indexStringGeneration;
 
-enum IndexedStringMessages {
+enum IndexStringGenerationMessages {
     exitAppMessage("Program ends. Goodbye."),
     enterStringMessage("Enter the string with length > 0: "),
     enterStringError("Wrong input. Enter correct string."),
@@ -9,7 +9,7 @@ enum IndexedStringMessages {
 
     private String value;
 
-    IndexedStringMessages(String value) {
+    IndexStringGenerationMessages(String value) {
         this.value = value;
     }
 

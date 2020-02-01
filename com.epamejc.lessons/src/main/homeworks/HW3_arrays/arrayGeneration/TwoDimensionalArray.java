@@ -12,24 +12,29 @@ public class TwoDimensionalArray {
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            System.out.println(SystemMessages.appStartMessage.getMessage());
-            defineLinesQuantity(scan);
-            if (appInputExitTrigger) {
-                defineRowsQuantity(scan);
+        try {
+            while (appInputExitTrigger) {
+                System.out.println(SystemMessages.appStartMessage.getMessage());
+                defineLinesQuantity(scan);
                 if (appInputExitTrigger) {
-                    generateArray();
+                    defineRowsQuantity(scan);
+                    if (appInputExitTrigger) {
+                        generateArray();
+                    }
                 }
             }
+        } catch (Exception excp) {
+            System.out.println("Something went wrong");
+        } finally {
+            scan.close();
+            System.out.println(SystemMessages.appFinishMessage.getMessage());
         }
-        scan.close();
-        System.out.println(SystemMessages.appFinishMessage.getMessage());
     }
 
     /**
      * Метод для генерации двумерного массива и его вывода в консоль
      */
-    private void generateArray(){
+    private void generateArray() {
         char[][] twoDimArray = new char[linesQuantity][rowsQuantity];
         fillCharArray(twoDimArray);
         printCharArray(twoDimArray);

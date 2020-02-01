@@ -2,7 +2,7 @@ package main.homeworks.HW5_recursion.numberToPower;
 
 import java.util.Scanner;
 
-public class NumToPower {
+public class NumberToPower {
     private boolean appInputExitTrigger = true;
 
     public void run() {

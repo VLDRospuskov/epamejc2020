@@ -2,40 +2,44 @@ package main.homeworks.HW4_strings.evenOrOddString;
 
 import java.util.Scanner;
 
-public class EvenOrNotString {
-    private boolean appInputExitTrigger = true;
-    private String inputString = "";
-    private String filterType = "";
+public class EvenOrOddString {
+    private boolean isExitNeeded = false;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            enterString(scan);
-            if (appInputExitTrigger) {
-                enterFilterType(scan);
-                if (appInputExitTrigger) {
-                    System.out.println("Entered string: " + inputString);
-                    System.out.println("Transformed string: " + transformString() + "\n");
+        try {
+            while (!isExitNeeded) {
+                String inputString = enterString(scan);
+                if (!isExitNeeded) {
+                    String filterType = enterFilterType(scan);
+                    if (!isExitNeeded) {
+                        System.out.println("Entered string: " + inputString);
+                        System.out.println("Transformed string: " + transformString(inputString, filterType) + "\n");
+                    }
                 }
             }
+        } catch (Exception ex) {
+            System.out.println("Something went wrong");
+        } finally {
+            scan.close();
+            System.out.println("Program ends. Goodbye.");
         }
-        scan.close();
-        System.out.println("Program ends. Goodbye.");
     }
 
     /**
-     * Метод для проверки корректности и инициализации введенной строки
-     *
-     * @param _scan объект сканера
+     * Method for validating and initializing an input string
+     * @param scan scanner object
+     * @return input string
      */
-    private void enterString(Scanner _scan) {
+    private String enterString(Scanner scan) {
         boolean isInputCorrect = false;
+        String inputString = "";
         while (!isInputCorrect) {
             System.out.print("Enter the string with length > 0. Type \"exit\" to finish program: ");
-            inputString = _scan.nextLine();
+            inputString = scan.nextLine();
             try {
                 if (inputString.equals("exit")) {
-                    appInputExitTrigger = false;
+                    isExitNeeded = true;
                     break;
                 } else if (inputString.length() > 0) {
                     isInputCorrect = true;
@@ -46,23 +50,26 @@ public class EvenOrNotString {
                 System.out.println(FilterTypes.wrongArgument.getValue());
             }
         }
+        return inputString;
     }
 
     /**
-     * Метод для проверки корректности и инициализации типа фильтра для строки (четные/нечетные символы)
-     *
-     * @param _scan объект сканера
+     * Method for checking the correctness and initializing filters (even / odd characters)
+     * @param scan scanner object
+     * @return filter type
      */
-    private void enterFilterType(Scanner _scan) {
+    private String enterFilterType(Scanner scan) {
         boolean isInputCorrect = false;
+        String filterType = "";
         while (!isInputCorrect) {
             System.out.print("Select characters to be removed from string (even or odd): ");
-            filterType = _scan.nextLine();
+            filterType = scan.nextLine();
             try {
                 if (filterType.equals("exit")) {
-                    appInputExitTrigger = false;
+                    isExitNeeded = true;
                     break;
-                } else if (filterType.equals(FilterTypes.EVEN.getValue()) || filterType.equals(FilterTypes.ODD.getValue())) {
+                } else if (filterType.equals(FilterTypes.EVEN.getValue())
+                        || filterType.equals(FilterTypes.ODD.getValue())) {
                     isInputCorrect = true;
                 } else {
                     throw new IllegalArgumentException();
@@ -71,14 +78,16 @@ public class EvenOrNotString {
                 System.out.println(FilterTypes.wrongArgument.getValue());
             }
         }
+        return filterType;
     }
 
     /**
-     * Метод для формирования конечной строки с учетом фильтра
-     *
-     * @return измененная строка без четных/нечетных символов
+     * Method for transforming the string based on the filter
+     * @param inputString input string
+     * @param filterType filter type (odd or even)
+     * @return
      */
-    private String transformString() {
+    private String transformString(String inputString, String filterType) {
         StringBuilder charBox = new StringBuilder();
         if (filterType.equals(FilterTypes.EVEN.getValue())) {
             int counter = 1;
@@ -96,5 +105,6 @@ public class EvenOrNotString {
         return charBox.toString();
     }
 }
+
 
 

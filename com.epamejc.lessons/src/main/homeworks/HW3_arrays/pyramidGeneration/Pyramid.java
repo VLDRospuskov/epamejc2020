@@ -8,14 +8,19 @@ public class Pyramid {
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            definePyramidHeight(scan);
-            if (appInputExitTrigger) {
-                printPyramid(createPyramid());
+        try {
+            while (appInputExitTrigger) {
+                definePyramidHeight(scan);
+                if (appInputExitTrigger) {
+                    printPyramid(createPyramid());
+                }
             }
+        } catch (Exception ex) {
+            System.out.println("Something went wrong");
+        } finally {
+            scan.close();
+            System.out.println("Program ends. Goodbye.");
         }
-        scan.close();
-        System.out.println("Program ends. Goodbye.");
     }
 
     /**

@@ -2,7 +2,7 @@ package main.homeworks.HW4_strings.indexStringGeneration;
 
 import java.util.Scanner;
 
-public class IndexedString {
+public class IndexStringGeneration {
     private boolean appInputExitTrigger = true;
     private String inputString = "";
     private int indexOfString = 0;
@@ -10,15 +10,20 @@ public class IndexedString {
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        enterString(scan);
-        while (appInputExitTrigger) {
-            enterIndex(scan);
-            if (appInputExitTrigger) {
-                generateString();
+        try {
+            enterString(scan);
+            while (appInputExitTrigger) {
+                enterIndex(scan);
+                if (appInputExitTrigger) {
+                    generateString();
+                }
             }
+        } catch (Exception ex) {
+            System.out.println("Something went wrong");
+        } finally {
+            scan.close();
+            System.out.println(IndexStringGenerationMessages.exitAppMessage.getValue());
         }
-        scan.close();
-        System.out.println(IndexedStringMessages.exitAppMessage.getValue());
     }
 
     /**
@@ -29,7 +34,7 @@ public class IndexedString {
     private void enterString(Scanner _scan) {
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
-            System.out.print(IndexedStringMessages.enterStringMessage.getValue());
+            System.out.print(IndexStringGenerationMessages.enterStringMessage.getValue());
             inputString = _scan.nextLine();
             try {
                 if (inputString.length() > 0) {
@@ -38,7 +43,7 @@ public class IndexedString {
                     throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
-                System.out.println(IndexedStringMessages.enterStringError.getValue());
+                System.out.println(IndexStringGenerationMessages.enterStringError.getValue());
             }
         }
     }
@@ -52,7 +57,7 @@ public class IndexedString {
         boolean isInputCorrect = false;
         int maxIndex = inputString.length() - 1;
         while (!isInputCorrect) {
-            System.out.print(IndexedStringMessages.enterIndexMessage.getValue() + maxIndex + "): ");
+            System.out.print(IndexStringGenerationMessages.enterIndexMessage.getValue() + maxIndex + "): ");
             String _inputString = _scan.nextLine();
             try {
                 indexOfString = Integer.parseInt(_inputString);
@@ -65,7 +70,7 @@ public class IndexedString {
                     throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
-                System.out.println(IndexedStringMessages.enterIndexError.getValue());
+                System.out.println(IndexStringGenerationMessages.enterIndexError.getValue());
             }
         }
     }

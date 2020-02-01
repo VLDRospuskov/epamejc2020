@@ -16,7 +16,6 @@ public class Mark<T extends Number> {
         return Math.round(mark.floatValue());
     }
 
-    /* вместо */ // public boolean sameAny (Mark<T> ob) {
     public boolean sameAny(Mark<?> ob) {
         return roundMark() == ob.roundMark();
     }

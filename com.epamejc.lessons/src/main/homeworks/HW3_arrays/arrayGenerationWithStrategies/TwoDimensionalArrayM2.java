@@ -14,18 +14,23 @@ public class TwoDimensionalArrayM2 {
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            System.out.println(SystemMessages.appStartMessage.getMessage());
-            defineLinesQuantity(scan);
-            if (appInputExitTrigger) {
-                defineRowsQuantity(scan);
+        try {
+            while (appInputExitTrigger) {
+                System.out.println(SystemMessages.appStartMessage.getMessage());
+                defineLinesQuantity(scan);
                 if (appInputExitTrigger) {
-                    processArray(scan);
+                    defineRowsQuantity(scan);
+                    if (appInputExitTrigger) {
+                        processArray(scan);
+                    }
                 }
             }
+        } catch (Exception Ex) {
+            System.out.println("Something went wrong");
+        } finally {
+            scan.close();
+            System.out.println(SystemMessages.appFinishMessage.getMessage());
         }
-        scan.close();
-        System.out.println(SystemMessages.appFinishMessage.getMessage());
     }
 
     /**
