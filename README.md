@@ -1,5 +1,6 @@
 # epamejc2020 by Alex F
 
+```
 Homeworks:
 1. Traffic Light
 Develop a program that prints a traffic light depends on time.
@@ -91,3 +92,4 @@ Output: 64
 Example:
 Input: 567
 Ouptut: 3
+```
