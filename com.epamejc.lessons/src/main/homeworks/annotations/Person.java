@@ -5,14 +5,14 @@ import lombok.Data;
 import lombok.Setter;
 
 @Data
-@MyAnnotation(name = "Stefan", age = 89)
+@MyAnnotation(name = "John Doe", age = "unknown")
 public class Person {
 
     private String name;
-    private int age;
+    private String age;
 
-    public Person () {
-       name = "";
-       age = 0;
+    public Person() {
+        name = "";
+        age = "";
     }
 }

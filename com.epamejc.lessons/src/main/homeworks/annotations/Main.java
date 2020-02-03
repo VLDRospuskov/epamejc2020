@@ -7,14 +7,12 @@ public class Main {
         Person person = new Person();
         System.out.println(person);
 
-
+        //@MyAnnotation(name = "asdf", age = 234) How to get this annotation via reflection? (Local_variable element type)
         String name = person.getClass().getAnnotation(MyAnnotation.class).name();
-        int age = person.getClass().getAnnotation(MyAnnotation.class).age();
+        String age = person.getClass().getAnnotation(MyAnnotation.class).age();
 
-        if (name != null && age != 0) {
-            person.setName(name);
-            person.setAge(age);
-        }
+        person.setName(name);
+        person.setAge(age);
 
         System.out.println(person);
     }
