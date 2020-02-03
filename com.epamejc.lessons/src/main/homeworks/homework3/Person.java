@@ -1,7 +1,13 @@
 package main.homeworks.homework3;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.lang.reflect.Constructor;
 @Data
+@ToString
+@EqualsAndHashCode
 public class Person {
     int age;
     String name;

@@ -1,6 +1,7 @@
 package main.lessons.lesson4.static_example;
 
 import main.lessons.lesson4.static_example.utils.StringUtils;
+
 import static main.lessons.lesson4.static_example.utils.StringUtils.printMsg;
 
 public class Main {
