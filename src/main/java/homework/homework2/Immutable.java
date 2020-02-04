@@ -1,4 +1,4 @@
-package main.homework.homework2;
+package homework.homework2;
 
 public final class Immutable {
 

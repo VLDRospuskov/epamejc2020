@@ -1,4 +1,4 @@
-package main.homework.homework2.matrix;
+package homework.homework2.matrix;
 
 public class CharMatrix {
 

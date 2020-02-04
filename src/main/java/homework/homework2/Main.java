@@ -1,10 +1,10 @@
-package main.homework.homework2;
+package homework.homework2;
 
-import main.homework.homework2.matrix.RandomCharTable;
-import main.homework.homework2.matrix.RandomPyramidalMatrix;
-import main.homework.homework2.recursion.DigitsCounter;
-import main.homework.homework2.recursion.Fibonacci;
-import main.homework.homework2.recursion.Pow;
+import homework.homework2.matrix.RandomCharTable;
+import homework.homework2.matrix.RandomPyramidalMatrix;
+import homework.homework2.recursion.DigitsCounter;
+import homework.homework2.recursion.Fibonacci;
+import homework.homework2.recursion.Pow;
 
 public class Main {
     public static void main(String[] args) {

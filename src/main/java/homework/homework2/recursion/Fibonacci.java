@@ -1,4 +1,4 @@
-package main.homework.homework2.recursion;
+package homework.homework2.recursion;
 
 public class Fibonacci {
     public static int getFibonacci(int index) {
