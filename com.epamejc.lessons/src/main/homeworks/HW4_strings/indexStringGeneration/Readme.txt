@@ -1,8 +1,9 @@
-Задача: Написать программу которая будет генерировать строку по индексам исходя из введенной строки.
-Функционал программы:
-1. Программа предлагает пользователю ввести строку для обработки.
-2. В случае корректного ввода строки пользователю предлагается ввод индекса введенной строки,
-на основании которого будет генерироваться новая строка.
-3. В случае корректного ввода строки и индекса, программа формирует новую строку, далее пользователю предлагается
-ввод нового индекса введенной строки (п.2), символ которой будет добавлен к строке, сгенерированной в п.3.
-4. Для выхода из программы необходимо ввести -1 во время ввода индекса.
+Task: Write a program that will generate a row by indices based on the entered row.
+Program operation:
+1. The program asks the user to enter a string for processing.
+2. If the string was entered correctly, the program asks the user to enter the char index of entered string,
+which will generate a new string from the original.
+3. If the string and index were entered correctly, the program will add new char to the created string.
+4. After this procedure, the program asks the user to enter a new character index,
+which will be added to the generated string.
+4. To exit the program, type -1 during index entry.

@@ -3,19 +3,19 @@ package main.homeworks.HW4_strings.indexStringGeneration;
 import java.util.Scanner;
 
 public class IndexStringGeneration {
-    private boolean appInputExitTrigger = true;
-    private String inputString = "";
-    private int indexOfString = 0;
+    private boolean isExitNeeded = false;
     private String resultString = "";
 
     public void run() {
         Scanner scan = new Scanner(System.in);
         try {
-            enterString(scan);
-            while (appInputExitTrigger) {
-                enterIndex(scan);
-                if (appInputExitTrigger) {
-                    generateString();
+            String inputString = enterString(scan);
+            while (!isExitNeeded) {
+                int indexOfChar = enterIndex(scan, inputString);
+                if (!isExitNeeded) {
+                    System.out.println("Entered string is: " + inputString);
+                    generateString(inputString, indexOfChar);
+                    System.out.println("Result string is: " + resultString + "\n");
                 }
             }
         } catch (Exception ex) {
@@ -27,15 +27,16 @@ public class IndexStringGeneration {
     }
 
     /**
-     * Метод для проверки корректности и инициализации введенной строки
-     *
-     * @param _scan объект сканера
+     * Method for validating and initializing an input string
+     * @param scan scanner object
+     * @return entered string
      */
-    private void enterString(Scanner _scan) {
+    private String enterString(Scanner scan) {
         boolean isInputCorrect = false;
+        String inputString = "";
         while (!isInputCorrect) {
             System.out.print(IndexStringGenerationMessages.enterStringMessage.getValue());
-            inputString = _scan.nextLine();
+            inputString = scan.nextLine();
             try {
                 if (inputString.length() > 0) {
                     isInputCorrect = true;
@@ -46,25 +47,28 @@ public class IndexStringGeneration {
                 System.out.println(IndexStringGenerationMessages.enterStringError.getValue());
             }
         }
+        return inputString;
     }
 
     /**
-     * Метод для проверки корректности и инициализации индекса введенной строки
-     *
-     * @param _scan объект сканера
+     * Method for validating and initializing a char index
+     * @param scan scanner object
+     * @param inputString entered string
+     * @return entered char index
      */
-    private void enterIndex(Scanner _scan) {
+    private int enterIndex(Scanner scan, String inputString) {
         boolean isInputCorrect = false;
+        int indexOfChar = 0;
         int maxIndex = inputString.length() - 1;
         while (!isInputCorrect) {
             System.out.print(IndexStringGenerationMessages.enterIndexMessage.getValue() + maxIndex + "): ");
-            String _inputString = _scan.nextLine();
+            String enteredString = scan.nextLine();
             try {
-                indexOfString = Integer.parseInt(_inputString);
-                if (indexOfString == -1) {
-                    appInputExitTrigger = false;
+                indexOfChar = Integer.parseInt(enteredString);
+                if (indexOfChar == -1) {
+                    isExitNeeded = true;
                     break;
-                } else if (indexOfString >= 0 && indexOfString <= maxIndex) {
+                } else if (indexOfChar >= 0 && indexOfChar <= maxIndex) {
                     isInputCorrect = true;
                 } else {
                     throw new IllegalArgumentException();
@@ -73,18 +77,19 @@ public class IndexStringGeneration {
                 System.out.println(IndexStringGenerationMessages.enterIndexError.getValue());
             }
         }
+        return indexOfChar;
     }
 
     /**
-     * Метод для генерации новой строки на основании введенной строки, указанного индекса
-     * и предыдущей итерации генерации
+     * Method for generating a new string based on the original string,
+     * the index of char, and the previous generation result
+     * @param inputString original string
+     * @param indexOfChar char index
      */
-    private void generateString() {
-        System.out.println("Entered string is: " + inputString);
+    private void generateString(String inputString, int indexOfChar) {
         StringBuilder charBox = new StringBuilder();
-        charBox.append(inputString.charAt(indexOfString));
+        charBox.append(inputString.charAt(indexOfChar));
         resultString = resultString + charBox.toString();
-        System.out.println("Result string is: " + resultString + "\n");
     }
 }
 
