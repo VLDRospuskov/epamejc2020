@@ -1,4 +1,4 @@
-package main.homeworks.hw5.recursion.countnumbers;
+package main.homeworks.hw3.recursion.countnumbers;
 
 class Counter {
 
