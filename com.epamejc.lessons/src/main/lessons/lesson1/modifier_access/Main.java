@@ -12,8 +12,8 @@ public class Main {
         Human human = new Human();
         human.publicMove();
         /**
-         * protected - нельзя так как класс Main не находится в пакете model, также не является наследником класса Human
-         * package - нельзя так как класс Main не находится в пакете model
+         * protected - нельзя так как класс Example1 не находится в пакете model, также не является наследником класса Human
+         * package - нельзя так как класс Example1 не находится в пакете model
          * private - можно использовать только на уровне класса, то есть только в самом Human
          */
 //        human.protectedMove();
