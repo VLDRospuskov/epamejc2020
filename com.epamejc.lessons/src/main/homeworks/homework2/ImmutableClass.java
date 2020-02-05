@@ -1,13 +1,13 @@
 package main.homeworks.homework2;
 import java.util.Date;
 
-class ImmutableClassPerson {
+public final class ImmutableClass {
     private final String name;
     private final int age;
     private final Date dateOfBirth;
     private final double height;
 
-    public ImmutableClassPerson(String name, int age, double height, Date dateOfBirth) {
+    public ImmutableClass(String name, int age, double height, Date dateOfBirth) {
         this.name = name;
         this.age = age;
         this.height = height;
