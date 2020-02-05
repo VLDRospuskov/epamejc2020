@@ -1,4 +1,4 @@
-package lessons.java.lesson11.example1;
+package test.lessons.java.lesson11.example1;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;

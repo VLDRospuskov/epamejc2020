@@ -1,14 +1,15 @@
-package lessons.java.lesson11.example1;
+package test.lessons.java.lesson11.example1;
 
 import org.junit.*;
 
-import static org.junit.Assert.*;
+import main.lessons.java.lesson11.example1.*;
+import static org.junit.Assert.assertEquals;
 
 public class OperationsTest {
 
     @Rule
     public PrepareRule prepareRule = new PrepareRule();
-    private static Operations operations;
+    private static main.lessons.java.lesson11.example1.Operations operations;
 
     @Before
     public void setup2() {
