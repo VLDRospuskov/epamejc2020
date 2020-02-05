@@ -1,10 +1,13 @@
 package main.homeworks.hw1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+
 import static main.homeworks.hw1.enums.Messages.*;
 
 class TrafficLight {
 
-    private static Double getNumberFromInput(String line) {
+    private Double getNumberFromInput(String line) throws NumberFormatException {
 
         Double d = null;
 
@@ -20,7 +23,7 @@ class TrafficLight {
         return d;
     }
 
-    static void getColor(String line) {
+    private void getColor(String line) {
 
         Double minutes = getNumberFromInput(line);
 
@@ -34,6 +37,35 @@ class TrafficLight {
             } else {
                 System.out.println(RED_LIGHT_MESSAGE.toString());
             }
+        }
+    }
+
+    void getLight(BufferedReader buffer) {
+        boolean cond = true;
+
+        while (cond) {
+
+            System.out.println(ENTER_MESSAGE.toString());
+
+            String line = null;
+            try {
+                line = buffer.readLine();
+            } catch (IOException e) {
+                System.out.println(ENTER_MESSAGE);
+            }
+
+            if (line.equalsIgnoreCase(EXIT_COMMAND.toString())) {
+                cond = false;
+                continue;
+            }
+
+            getColor(line);
+        }
+
+        try {
+            buffer.close();
+        } catch (IOException e) {
+            System.out.println(ERROR);
         }
     }
 
