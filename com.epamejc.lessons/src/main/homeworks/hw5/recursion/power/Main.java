@@ -1,4 +1,4 @@
-package main.homeworks.hw5.recursion.power;
+package main.homeworks.hw3.recursion.power;
 
 public class Main {
 
