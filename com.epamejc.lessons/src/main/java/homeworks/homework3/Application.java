@@ -3,12 +3,13 @@ package homeworks.homework3;
 public class Application {
     public static void main(String[] args) {
 
-        char[][] arr = MultipleArrayBuilder.createArray(4, 4);
+        MultipleArrayBuilder builder = new MultipleArrayBuilder();
+        char[][] arr = builder.createArray(4, 4);
 
-        MultipleArrayBuilder.printArray(arr);
-        MultipleArrayBuilder.printEven(arr);
-        MultipleArrayBuilder.printOdd(arr);
-        MultipleArrayBuilder.pyramid(10);
+        builder.printArray(arr);
+        builder.printEven(arr);
+        builder.printOdd(arr);
+        builder.pyramid(10);
     }
 
 }

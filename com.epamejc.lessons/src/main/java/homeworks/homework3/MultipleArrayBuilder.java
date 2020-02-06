@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class MultipleArrayBuilder {
 
-    public static char[][] createArray(int line, int column) {
+    public char[][] createArray(int line, int column) {
         char[][] arr = new char[line][column];
         Random rnd = new Random();
 
@@ -17,7 +17,7 @@ public class MultipleArrayBuilder {
         return arr;
     }
 
-    public static void printArray(char[][] arr) {
+    public void printArray(char[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 System.out.print(arr[i][j] + " ");
@@ -27,7 +27,7 @@ public class MultipleArrayBuilder {
         }
     }
 
-    public static void printEven(char[][] arr) {
+    public void printEven(char[][] arr) {
         System.out.print("even chars: ");
 
         for (int i = 1; i < arr.length; i += 2) {
@@ -39,7 +39,7 @@ public class MultipleArrayBuilder {
         System.out.println();
     }
 
-    public static void printOdd(char[][] arr) {
+    public void printOdd(char[][] arr) {
         System.out.print("odd chars: ");
 
         for (int i = 0; i < arr.length; i += 2) {
@@ -51,7 +51,7 @@ public class MultipleArrayBuilder {
         System.out.println();
     }
 
-    public static void pyramid(int n) {
+    public void pyramid(int n) {
         int[][] twoDimArray = new int[n][];
 
         for (int i = 0; i < n; i++) {
