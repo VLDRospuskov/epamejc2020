@@ -1,4 +1,4 @@
-package main.homeworks.homework2.immutable;
+package homeworks.homework2.immutable;
 
 public class Main {
     public static void main(String[] args) {

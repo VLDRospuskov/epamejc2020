@@ -1,4 +1,4 @@
-package main.homeworks.homework1;
+package homeworks.homework1;
 
 public enum TrSignal {
     RED,YEllOW,GREEN;

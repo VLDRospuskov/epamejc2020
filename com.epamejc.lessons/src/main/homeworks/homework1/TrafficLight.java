@@ -1,43 +1,18 @@
-package main.homeworks.homework1;
+package homeworks.homework1;
 
-import main.homeworks.homework2.prog.Programm;
-
-import java.io.IOException;
-
+import homeworks.control.exeption.IllegalDataException;
+import homeworks.control.services.ServiseImpl;
 
 
-
-public class TrafficLight extends Programm {
-    public static void main(String[] args) throws IOException {
-        new TrafficLight().go();
-    }
-    @Override
-    public String startString() {
-        return STARTTRAFFIC;
-    }
+public class TrafficLight extends ServiseImpl {
 
     @Override
-    public String secondInputString() {
-        return null;
+    public String getResult(String userRequest) {
+        Double time = parse(userRequest);
+        return setColor(time);
     }
 
-    @Override
-    public int inputtimes() {
-        return 1;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-        String result = ALERTDATA;
-        Double time = parse(Finput);
-        if (time != null){
-            result = setColor(time);
-        }
-        return result;
-    }
     public String setColor(Double time){
-        String result = ALERTDATA;
-
         if (time > 10){
             time = time%10;
         }
@@ -47,28 +22,27 @@ public class TrafficLight extends Programm {
             return TrSignal.YEllOW.toString();
         } else if (5<time && time<=10){
             return TrSignal.GREEN.toString();
+        } else {
+            throw new IllegalDataException(String.format("%f must be positive",time));
         }
-
-        return result;
     }
     private Double parse(String request){
         String[] temp = request.replaceAll("[_|.;, ]",":").split(":");
-        Double minutes = null;
-        Double seconds = null;
-        Double time = null;
-        if (temp.length == 2){
-            minutes = chekDouble(temp[0]);
-            seconds = chekDouble(temp[1]);
+        Double time;
+        if (temp.length >= 2){
+            Integer minutes = chekInt(temp[0]);
+            Integer seconds = chekInt(temp[1]);
+            time = minutes + (int)(seconds/60) + (double)seconds%60/60;
+            return time;
         } else if (temp.length == 1){
-            minutes = chekDouble(temp[0]);
+            Integer minutes = chekInt(temp[0]);
+            time = (double)minutes;
+            return time;
+        } else {
+            throw new IllegalDataException(String.format("%s not in format \"mm : ss\" or \"mm\"",request));
         }
-        if (minutes != null && seconds != null){
-            time = minutes + (int)(seconds/60) + seconds%60/60;
-        } else if(minutes!= null){
-            time = minutes;
-        }
-
-       return time;
     }
+
+
 }
 

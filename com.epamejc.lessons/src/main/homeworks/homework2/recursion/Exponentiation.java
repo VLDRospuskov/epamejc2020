@@ -1,54 +1,28 @@
-package main.homeworks.homework2.recursion;
+package homeworks.homework2.recursion;
 
-import main.homeworks.homework2.prog.Programm;
+import homeworks.control.exeption.IllegalDataException;
+import homeworks.control.services.ServiseImpl;
 
-import java.io.IOException;
-
-public class Exponentiation extends Programm {
-    public static void main(String[] args) throws IOException {
-        new Exponentiation().go();
-    }
-    @Override
-    public String startString() {
-        return STARTNUMBER;
-    }
+public class Exponentiation extends ServiseImpl {
 
     @Override
-    public String secondInputString() {
-        return STARTPOW;
-    }
-
-    @Override
-    public int inputtimes() {
-        return 2;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-        Double num = chekDouble(Finput);
-
-        Integer pow = chekInt(Sinput);
-
-        boolean chek = num != null && pow != null;
-
-        if (!chek){
-            return ALERTDATA;
-        } else if(pow <= 0){
-            return ALERTPOW;
-        }else {
+    public String getResult(String userRequest) {
+        String[] temp = userRequest.split("\\s+");
+        if (temp.length == 2){
+            Double num = chekDouble(temp[0]);
+            Integer pow = chekInt(temp[1]);
             return String.valueOf(exponent(num,pow));
+        } else {
+            throw new IllegalDataException(userRequest + "is not \" some number some integer\"");
         }
     }
+
     private double exponent(double num,int pow){
         if(pow == 1){
-
             return num;
-
         } else{
             double result = 0;
-
             result = num * exponent(num,pow-1);
-
             return result;
         }
     }

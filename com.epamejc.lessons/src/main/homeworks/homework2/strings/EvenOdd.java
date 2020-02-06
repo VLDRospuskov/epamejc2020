@@ -1,48 +1,52 @@
-package main.homeworks.homework2.strings;
+package homeworks.homework2.strings;
 
-import main.homeworks.homework2.prog.Programm;
+import homeworks.control.exeption.IllegalDataException;
+import homeworks.control.services.ServiseImpl;
 
-import java.io.IOException;
-
-public class EvenOdd extends Programm {
-    public static void main(String[] args) throws IOException {
-        new EvenOdd().go();
-    }
+public class EvenOdd extends ServiseImpl {
     @Override
-    public String startString() {
-        return STARTSTRING;
-    }
+    public String getResult(String userRequest) throws IllegalDataException {
 
-    @Override
-    public String secondInputString() {
-        return STARTEVODD;
-    }
+        String[] temp = parseRequest(userRequest);
+        boolean EvenOdd = isEvenOdd(temp[temp.length-1]);
+        if (EvenOdd){
 
-    @Override
-    public int inputtimes() {
-        return 2;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-        String result = ALERTDATA;
-        String EvenOdd = chekEvenOdd(Sinput);
-        if (Finput != null && EvenOdd != null){
-            result = makeString(Finput,EvenOdd);
+            String body = parseArray(temp);
+            return makeString(body,temp[temp.length-1]);
+        } else {
+            throw new IllegalDataException(String.format("%s is not even or odd",temp.length-1));
         }
-        return result;
     }
-    public String makeString (String str, String EvenOdd){
-        String result = "";
+    private String[] parseRequest(String userRequest)throws IllegalDataException {
+        String[] temp = userRequest.split("\\s+");
+        int min = 2;
+        if (temp.length >= min) {
+            return temp;
+        } else {
+            throw new IllegalDataException(String.format("%s should looks like \"string even(odd)\"",userRequest));
+        }
+    }
+    private String makeString (String str, String EvenOdd){
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
 
             if (EvenOdd.equals(EVEN) && i % 2 == 0) {
-                result += str.charAt(i);
+                sb.append(str.charAt(i));
 
             } else if (EvenOdd.equals(ODD) && i % 2 != 0) {
-                result += str.charAt(i);
+                sb.append(str.charAt(i));
             }
         }
-        return result;
+        return sb.toString();
+    }
+    private String parseArray(String[] strings){
+        StringBuilder sb = new StringBuilder();
+        if (strings.length >= 2){
+            for (int i = 0; i < strings.length-1; i++){
+                sb.append(strings[i]);
+                sb.append("\\s");
+            }
+        }
+        return sb.toString();
     }
 }

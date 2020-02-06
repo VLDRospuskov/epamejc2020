@@ -1,51 +1,29 @@
-package main.homeworks.homework2.strings;
+package homeworks.homework2.strings;
 
-import main.homeworks.homework2.prog.Programm;
+import homeworks.control.exeption.IllegalDataException;
+import homeworks.control.services.ServiseImpl;
 
-import java.io.IOException;
-
-public class MakeWord extends Programm {
-    String word;
-    String result = "";
-    public static void main(String[] args) throws IOException {
-        new MakeWord().go();
-    }
-
+public class MakeWord extends ServiseImpl {
     @Override
-    public String startString() {
-        return STARTSTRING;
-    }
+    public String getResult(String userRequest) {
 
-    @Override
-    public String secondInputString() {
-        return STARTNUMBER;
-    }
-
-    @Override
-    public int inputtimes() {
-        return 2;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-
-        Integer index = chekInt(Sinput);
-        if (index == null){
-            return result;
-        }
-        if (word == null || !word.equals(Finput)){
-            word = Finput;
-            result = "";
-        }
-        if (0 < Finput.length() && index < Finput.length()){
-            result = result + makeWord(Finput,index);
+        String[] temp = userRequest.split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        if (temp.length >= 2){
+            for (int i = 1; i< temp.length; i++){
+                int index = chekInt(temp[i]);
+                sb.append(makeWord(temp[0],index));
+            }
+            return sb.toString();
         } else {
-            result = ALERTNUM;
+            throw new IllegalDataException(userRequest + " must contain word(s) and one or more integers(indexes)");
         }
-        return result;
     }
-    public String makeWord(String string, int exit){
-        String res = string.substring(exit,exit+1);
-        return res;
+    private String makeWord(String string, int exit){
+        if (exit >= string.length()){
+            throw new IllegalDataException(String.format("%s does not have index %s",string,exit));
+        }
+        return string.substring(exit,exit+1);
     }
+
 }

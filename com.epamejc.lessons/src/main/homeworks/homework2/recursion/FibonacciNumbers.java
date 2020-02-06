@@ -1,37 +1,14 @@
-package main.homeworks.homework2.recursion;
+package homeworks.homework2.recursion;
 
-import main.homeworks.homework2.prog.Programm;
+import homeworks.control.services.ServiseImpl;
 
-import java.io.IOException;
-
-public class FibonacciNumbers extends Programm {
-    public static void main(String[] args) throws IOException {
-        new FibonacciNumbers().go();
-    }
+public class FibonacciNumbers extends ServiseImpl {
     @Override
-    public String startString() {
-        return STARTNUMBER;
+    public String getResult(String userRequest) {
+        Integer input = chekInt(userRequest);
+        return String.valueOf(fibonacci(input));
     }
 
-    @Override
-    public String secondInputString() {
-        return null;
-    }
-
-    @Override
-    public int inputtimes() {
-        return 1;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-        Integer input = chekInt(Finput);
-        if (input!=null){
-            return String.valueOf(fibonacci(input));
-        }else {
-            return ALERTDATA;
-        }
-    }
     private int fibonacci(int n) {
         if (n == 0) {
             return 0;

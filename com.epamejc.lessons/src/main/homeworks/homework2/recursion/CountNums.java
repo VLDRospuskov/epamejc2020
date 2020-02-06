@@ -1,39 +1,15 @@
-package main.homeworks.homework2.recursion;
+package homeworks.homework2.recursion;
 
-import main.homeworks.homework2.prog.Programm;
+import homeworks.control.services.ServiseImpl;
 
-import java.io.IOException;
-
-public class CountNums extends Programm {
-    public static void main(String[] args) throws IOException {
-        new CountNums().go();
-    }
-
+public class CountNums extends ServiseImpl {
     @Override
-    public String startString() {
-        return STARTNUMBER;
+    public String getResult(String userRequest) {
+        Integer num = chekInt(userRequest);
+        num = Math.abs(num);
+        return String.valueOf(countNum(num));
     }
 
-    @Override
-    public String secondInputString() {
-        return null;
-    }
-
-    @Override
-    public int inputtimes() {
-        return 1;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-        Integer num = chekInt(Finput);
-        String result = ALERTDATA;
-        if (num != null){
-            num = Math.abs(num);
-            result = String.valueOf(countNum(num));
-        }
-        return result;
-    }
     private int countNum (int num){
         if(num < 10){
             return 1;

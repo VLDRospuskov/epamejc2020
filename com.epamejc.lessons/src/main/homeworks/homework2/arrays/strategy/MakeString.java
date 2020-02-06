@@ -1,0 +1,44 @@
+package homeworks.homework2.arrays.strategy;
+
+import homeworks.control.exeption.IllegalDataException;
+import homeworks.control.services.ServiseImpl;
+
+public class MakeString extends ServiseImpl {
+
+    @Override
+    public String getResult(String userRequest) {
+        String[] temp = userRequest.split("\\s+");
+        int amount = 3;
+        if (temp.length == amount){
+            Integer[] body = chekArray(temp[0] + " " + temp[1]);
+            boolean EvenOdd = isEvenOdd(temp[2]);
+            Character[][] symbols = getArray(body[0],body[1]);
+            String result ="";
+            if (EVEN.equals(temp[2])){
+                result = build(new EvenBuildStrategy(),symbols);
+            } else if (ODD.equals(temp[2])){
+                result = build(new EvenBuildStrategy(),symbols);
+            }
+            return result;
+        }else {
+            throw new IllegalDataException(userRequest + "is not like \"some int some int even/odd\"");
+        }
+    }
+
+    private Character[][] getArray(int a, int b){
+        Character[][] result = new Character[a][b];
+        if (0 < a && 0 < b){
+            for(int i = 0; i < a; i++){
+                for (int j = 0; j < b; j++){
+                    result[i][j] = makeRandomChar();
+                    System.out.print(result[i][j]);
+                }
+                System.out.println();
+            }
+        }
+        return result;
+    }
+    public String build(BuildStrategy buildStrategy, Character[][] chars) {
+        return buildStrategy.build(chars);
+    }
+}

@@ -1,52 +1,31 @@
-package main.homeworks.homework2.strings;
+package homeworks.homework2.strings;
 
-import main.homeworks.homework2.prog.Programm;
+import homeworks.control.services.ServiseImpl;
 
-import java.io.IOException;
-
-public class RewerseWords extends Programm {
-    public static void main(String[] args) throws IOException {
-        new RewerseWords().go();
-    }
-    @Override
-    public String startString() {
-        return STARTSTRING;
-    }
+public class RewerseWords extends ServiseImpl {
 
     @Override
-    public String secondInputString() {
-        return null;
-    }
-
-    @Override
-    public int inputtimes() {
-        return 1;
-    }
-
-    @Override
-    public String makeResult(String Finput, String Sinput) {
-        String result = ALERTDATA;
-        if (Finput != null && Finput.length() > 0){
-           result = changeStr(Finput);
-        }
-        return result;
+    public String getResult(String userRequest){
+        return changeStr(userRequest);
     }
 
     private String changeStr(String string){
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         String str = string.replaceAll("[^\\p{L}]", " ");
         String[] temp = str.split("\\s+");
         int j = 0;
         for (int i = 0; i < string.length(); i++){
-            if(j < temp.length && temp[j].length() + i <= string.length() && string.substring(i,i+temp[j].length()).equals(temp[j])){
-                result += reverse(temp[j]);
+            if(j < temp.length && temp[j].length() + i <= string.length() &&
+                    string.substring(i,i+temp[j].length()).equals(temp[j])){
+
+                sb.append(reverse(temp[j]));
                 i += temp[j].length()-1;
                 j++;
             } else {
-                result += string.substring(i,i+1);
+                sb.append(string.substring(i,i+1));
             }
         }
-        return result;
+        return sb.toString();
     }
     private String reverse(String word){
         String result = "";
