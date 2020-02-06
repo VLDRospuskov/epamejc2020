@@ -2,9 +2,7 @@ package homeworks.HW1_trafficLight;
 
 import java.util.Scanner;
 
-/**
- * Класс для реализации логики работы светофора
- */
+
 public class TrafficLight {
     private final String SystemMessage = "Enter the number of seconds. To exit, enter an empty string: ";
 
@@ -26,7 +24,7 @@ public class TrafficLight {
                 break;
             }
         }
-        scan.close(); //Здесь закрываем поток в случае пользовательского выхода или исключения
+        scan.close();
         System.out.println("Program ends");
     }
 
