@@ -36,6 +36,8 @@ public class RandomCharGenerationStrategiesAB {
         }
     }
 
+
+
     private void inputStrategy() {
         Scanner inString = new Scanner(System.in);
         String strategy = "";
