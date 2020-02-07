@@ -64,5 +64,11 @@ public class EngineTest {
 
         assertEquals(expectedOutput, getOutput());
     }
+
+    @AfterClass()
+    public void afterAll() {
+        System.setIn(in);
+        System.setOut(new PrintStream(out));
+    }
 }
 
