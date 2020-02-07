@@ -1,4 +1,4 @@
-package main.homeworks.trafficLights;
+package homeworks.java.trafficLights;
 
 import java.io.*;
 import java.math.*;
@@ -9,7 +9,7 @@ import java.math.*;
 
 class TrafficLights {
 
-    void run() {
+    public void run() {
 
         boolean isDone;
 

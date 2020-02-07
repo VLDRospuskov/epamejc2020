@@ -1,9 +1,6 @@
-package main.homeworks.arrays;
+package homeworks.java.arrays;
 
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
+import java.io.*;
 
 public class Engine {
 
@@ -12,7 +9,7 @@ public class Engine {
 
             RandomCharArray array = new RandomCharArray();
             int choice;
-            System.out.println("Welcome to an Array test program!");
+            System.out.println("Welcome to an Array test program!\n");
 
             do {
                 choice = menu(reader);
@@ -33,7 +30,7 @@ public class Engine {
                     case 5:
                         break;
                     default:
-                        System.out.println("Wrong input, try again!");
+                        System.out.print("Wrong input, try again!\n");
                         break;
                 }
             } while (choice != 5);
@@ -47,14 +44,14 @@ public class Engine {
 
     private int menu(BufferedReader reader) {
 
-        System.out.println("\n" +
+        System.out.print("\n" +
                 "_________________________________________________\n" +
                 "|1. Array input                                 |\n" +
                 "|2. Display an array                            |\n" +
                 "|3. Display every odd row and column as string  |\n" +
                 "|4. Display every even row and column as string |\n" +
                 "|5. Exit                                        |\n" +
-                "|_______________________________________________|");
+                "|_______________________________________________|\n");
 
         int input = 0;
         try {

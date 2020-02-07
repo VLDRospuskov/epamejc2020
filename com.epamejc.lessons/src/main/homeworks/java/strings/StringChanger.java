@@ -1,4 +1,4 @@
-package main.homeworks.strings;
+package homeworks.java.strings;
 
 public class StringChanger {
 

@@ -1,4 +1,4 @@
-package main.homeworks.trafficLights;
+package homeworks.java.trafficLights;
 
 public class Main {
     public static void main(String[] args) {

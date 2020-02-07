@@ -1,4 +1,4 @@
-package main.homeworks.arrays;
+package homeworks.java.arrays;
 
 class WrongInputException extends Exception {
     public WrongInputException(String message) {

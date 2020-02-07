@@ -1,4 +1,4 @@
-package main.homeworks.arrays;
+package homeworks.java.arrays;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,18 +12,19 @@ public class RandomCharArray {
     public void generateArr(BufferedReader reader) {
         int indicator;
 
-        System.out.println("Введите размерность массива массиов: ");
-        System.out.println("Пример: 14 2");
+        System.out.println("Введите размерность массива массиов:\n");
+        System.out.println("Пример: 14 2\n");
         if (row == 0 && col == 0) {
             do {
                 indicator = readInput(reader);
             } while (indicator != 0 && indicator != 2);
 
             if (indicator == 2) {
-                System.out.println("Error occurred, sorry. Contact developer");
+                System.out.print("Error occurred, sorry. Contact developer\n");
             }
         }
         fillArray();
+        System.out.print("Array created!\n");
     }
 
     @Override
@@ -40,7 +41,7 @@ public class RandomCharArray {
     }
 
     public void print() {
-        System.out.println("Массив " + row + " на " + col + ": ");
+        System.out.print("Массив " + row + " на " + col + ": \n");
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 System.out.print(arr[i][j] + " ");
@@ -86,11 +87,13 @@ public class RandomCharArray {
             line = reader.readLine();
             parseInput(line);
         } catch (WrongInputException ex) {
-            System.out.println("Неверный ввод, повторите еще раз.");
+            System.out.print("Неверный ввод, повторите еще раз.\n");
             return 1;
         } catch (IOException e) {
             e.printStackTrace();
             return 2;
+        } catch (Exception exc) {
+            exc.printStackTrace();
         }
         return 0;
     }

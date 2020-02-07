@@ -1,4 +1,4 @@
-package main.homeworks.recursion;
+package homeworks.java.recursion;
 
 public class Main {
     public static void main(String[] args) {

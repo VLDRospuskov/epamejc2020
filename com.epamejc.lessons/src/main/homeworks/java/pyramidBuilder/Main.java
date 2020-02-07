@@ -1,4 +1,4 @@
-package main.homeworks.pyramidBuilder;
+package homeworks.java.pyramidBuilder;
 
 public class Main {
 
