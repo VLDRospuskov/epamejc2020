@@ -1,4 +1,4 @@
-package main.homeworks.homework5.fibonacci41;
+package main.homeworks.homework5.fibonaccinumbers;
 
 import java.util.Scanner;
 

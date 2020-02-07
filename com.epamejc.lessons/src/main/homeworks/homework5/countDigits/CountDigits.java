@@ -1,4 +1,4 @@
-package main.homeworks.homework5.countDigits43;
+package main.homeworks.homework5.countDigits;
 
 import java.util.Scanner;
 

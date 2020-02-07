@@ -1,4 +1,4 @@
-package main.homeworks.homework5.power42;
+package main.homeworks.homework5.power;
 
 import java.util.Scanner;
 
