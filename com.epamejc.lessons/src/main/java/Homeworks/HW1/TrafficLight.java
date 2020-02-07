@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 public class TrafficLight {
 
     public void start() {
-        System.out.println("welcome");
         readInput();
     }
 
@@ -17,7 +16,7 @@ public class TrafficLight {
             while ((line = br.readLine()) != null) {
                 int minutes = prepareInput(line);
                 if (minutes >= 0) {
-                    printLight(minutes);
+                    System.out.println(printLight(minutes));
                 } else {
                     System.out.println("Please provide correct input");
                 }
@@ -35,16 +34,16 @@ public class TrafficLight {
         }
     }
 
-    private void printLight(int minutes) {
+    public String printLight(int minutes) {
         while (minutes >= 10) {
             minutes = minutes - 10;
         }
         if (minutes < 4) {
-            System.out.println("Light is GREEN");
+            return "Light is GREEN";
         } else if (minutes < 6) {
-            System.out.println("Light is YELLOW");
+            return "Light is YELLOW";
         } else {
-            System.out.println("Light is RED");
+            return "Light is RED";
         }
     }
 
