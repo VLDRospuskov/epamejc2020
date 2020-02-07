@@ -8,14 +8,14 @@ import static org.junit.Assert.*;
 
 public class EngineTest {
 
-    private final InputStream in = System.in;
-    private final OutputStream out = System.out;
+    private static final InputStream in = System.in;
+    private static final OutputStream out = System.out;
 
     private ByteArrayInputStream testIn;
     private ByteArrayOutputStream testOut;
 
     @Before
-    public void SetOutput() {
+    public void setOutput() {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
     }
@@ -66,7 +66,7 @@ public class EngineTest {
     }
 
     @AfterClass()
-    public void afterAll() {
+    public static void afterAll() {
         System.setIn(in);
         System.setOut(new PrintStream(out));
     }
