@@ -1,9 +1,9 @@
 package homeworks.homework2.strings;
 
 import homeworks.control.exeption.IllegalDataException;
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class MakeWord extends ServiseImpl {
+public class MakeWord extends ServiceImpl {
     @Override
     public String getResult(String userRequest) {
 

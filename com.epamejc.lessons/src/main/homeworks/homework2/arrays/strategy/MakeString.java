@@ -1,9 +1,9 @@
 package homeworks.homework2.arrays.strategy;
 
 import homeworks.control.exeption.IllegalDataException;
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class MakeString extends ServiseImpl {
+public class MakeString extends ServiceImpl {
 
     @Override
     public String getResult(String userRequest) {

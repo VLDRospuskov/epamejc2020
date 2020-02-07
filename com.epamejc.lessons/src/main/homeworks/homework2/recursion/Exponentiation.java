@@ -1,9 +1,9 @@
 package homeworks.homework2.recursion;
 
 import homeworks.control.exeption.IllegalDataException;
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class Exponentiation extends ServiseImpl {
+public class Exponentiation extends ServiceImpl {
 
     @Override
     public String getResult(String userRequest) {

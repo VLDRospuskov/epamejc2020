@@ -1,9 +1,9 @@
 package homeworks.homework2.strings;
 
 import homeworks.control.exeption.IllegalDataException;
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class SwitchChar extends ServiseImpl {
+public class SwitchChar extends ServiceImpl {
     /**
      *
      * @param userRequest must be like "something int indOne intTwo"

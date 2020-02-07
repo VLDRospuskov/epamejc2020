@@ -5,7 +5,7 @@ import homeworks.control.exeption.IllegalDataException;
 
 import java.util.Random;
 
-public abstract class ServiseImpl implements Service {
+public abstract class ServiceImpl implements Service {
 
     public Integer chekInt(String string){
         Integer result;

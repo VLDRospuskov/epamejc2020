@@ -1,8 +1,8 @@
 package homeworks.homework2.recursion;
 
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class FibonacciNumbers extends ServiseImpl {
+public class FibonacciNumbers extends ServiceImpl {
     @Override
     public String getResult(String userRequest) {
         Integer input = chekInt(userRequest);

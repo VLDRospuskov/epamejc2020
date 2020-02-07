@@ -1,18 +1,18 @@
 package homeworks.homework1;
 
 import homeworks.control.exeption.IllegalDataException;
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
 
-public class TrafficLight extends ServiseImpl {
+public class TrafficLight extends ServiceImpl {
 
     @Override
     public String getResult(String userRequest) {
         Double time = parse(userRequest);
-        return setColor(time);
+        return getColor(time);
     }
 
-    public String setColor(Double time){
+    private String getColor(Double time){
         if (time > 10){
             time = time%10;
         }
@@ -32,7 +32,7 @@ public class TrafficLight extends ServiseImpl {
         if (temp.length >= 2){
             Integer minutes = chekInt(temp[0]);
             Integer seconds = chekInt(temp[1]);
-            time = minutes + (int)(seconds/60) + (double)seconds%60/60;
+            time = minutes + seconds/60 + (double)seconds%60/60;
             return time;
         } else if (temp.length == 1){
             Integer minutes = chekInt(temp[0]);

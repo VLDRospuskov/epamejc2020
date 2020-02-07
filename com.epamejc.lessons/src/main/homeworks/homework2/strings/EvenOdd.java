@@ -1,9 +1,9 @@
 package homeworks.homework2.strings;
 
 import homeworks.control.exeption.IllegalDataException;
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class EvenOdd extends ServiseImpl {
+public class EvenOdd extends ServiceImpl {
     @Override
     public String getResult(String userRequest) throws IllegalDataException {
 

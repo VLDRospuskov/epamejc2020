@@ -1,8 +1,8 @@
 package homeworks.homework2.strings;
 
-import homeworks.control.services.ServiseImpl;
+import homeworks.control.services.ServiceImpl;
 
-public class RewerseWords extends ServiseImpl {
+public class RewerseWords extends ServiceImpl {
 
     @Override
     public String getResult(String userRequest){
