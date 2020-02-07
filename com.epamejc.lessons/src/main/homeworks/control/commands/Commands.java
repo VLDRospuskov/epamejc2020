@@ -31,10 +31,10 @@ public enum Commands {
             String description = " push two integers and get your matrix";
             return super.getDescription() + description;
         }
-    }, EXPO {
+    }, POW {
         @Override
         public String getDescription() {
-            String description = " push one double or int and one int number and i  will raise to a degree";
+            String description = " push one int(num) and one int(pow) and i  will raise to a degree";
             return super.getDescription() + description;
         }
     }, FIBONACCI{
@@ -76,9 +76,9 @@ public enum Commands {
     }
     public String getDescription(){
         StringBuilder sb = new StringBuilder();
-        sb.append("\n");
         sb.append("/");
         sb.append(name().toLowerCase());
+        sb.append(" Description:");
         return sb.toString();
     }
 }

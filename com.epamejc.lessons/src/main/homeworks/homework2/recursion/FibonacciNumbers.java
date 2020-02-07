@@ -1,12 +1,18 @@
 package homeworks.homework2.recursion;
 
+import homeworks.control.exeption.IllegalDataException;
 import homeworks.control.services.ServiceImpl;
 
 public class FibonacciNumbers extends ServiceImpl {
     @Override
-    public String getResult(String userRequest) {
+    public String getResult(String userRequest) throws IllegalDataException{
         Integer input = chekInt(userRequest);
-        return String.valueOf(fibonacci(input));
+        if (input > 0 ){
+            return String.valueOf(fibonacci(input));
+        } else {
+            throw new IllegalDataException(userRequest + " input can't be negative");
+        }
+
     }
 
     private int fibonacci(int n) {

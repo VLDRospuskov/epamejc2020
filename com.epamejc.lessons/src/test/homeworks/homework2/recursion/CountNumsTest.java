@@ -38,38 +38,44 @@ public class CountNumsTest {
         countNums.getResult("");
         countNums.getResult("12.12");
         countNums.getResult("");
+        countNums.getResult("12 12");
 
     }
 
     @Test
     public void testMessage(){
-        String expectedMes1 = "Incorrect Input test is not Integer.";
+
+        String expPart2 = " is not Integer.";
         String test = "test";
         try {
             countNums.getResult(test);
         } catch (IllegalDataException ex){
-            assertEquals(expectedMes1,ex.getMessage());
+            assertEquals(test+expPart2,ex.getMessage());
         }
-        String expectedMes2 = "Incorrect Input  is not Integer.";
+
         String test2 = "";
         try {
             countNums.getResult(test2);
         } catch (IllegalDataException ex){
-            assertEquals(expectedMes2,ex.getMessage());
+            assertEquals(test2+expPart2,ex.getMessage());
         }
-        String expectedMes3 = "Incorrect Input 212test is not Integer.";
         String test3 = "212test";
         try {
             countNums.getResult(test3);
         } catch (IllegalDataException ex){
-            assertEquals(expectedMes3,ex.getMessage());
+            assertEquals(test3+expPart2,ex.getMessage());
         }
-        String expectedMes4 = "Incorrect Input 212.12 is not Integer.";
         String test4 = "212.12";
         try {
             countNums.getResult(test4);
         } catch (IllegalDataException ex){
-            assertEquals(expectedMes4,ex.getMessage());
+            assertEquals(test4+expPart2,ex.getMessage());
+        }
+        String test5 = "212 12";
+        try {
+            countNums.getResult(test5);
+        } catch (IllegalDataException ex){
+            assertEquals(test5+expPart2,ex.getMessage());
         }
     }
 

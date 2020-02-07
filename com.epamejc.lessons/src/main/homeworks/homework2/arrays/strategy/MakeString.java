@@ -17,7 +17,7 @@ public class MakeString extends ServiceImpl {
             if (EVEN.equals(temp[2])){
                 result = build(new EvenBuildStrategy(),symbols);
             } else if (ODD.equals(temp[2])){
-                result = build(new EvenBuildStrategy(),symbols);
+                result = build(new OddBuildStrategy(),symbols);
             }
             return result;
         }else {

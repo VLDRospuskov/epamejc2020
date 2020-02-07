@@ -1,6 +1,7 @@
 package homeworks.control;
 
 import homeworks.control.commands.Commands;
+
 import homeworks.control.exeption.IllegalDataException;
 import homeworks.control.services.Service;
 import homeworks.homework1.TrafficLight;
@@ -21,10 +22,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProgController implements Action{
-    public static void main(String[] args) {
-        new ProgController().action();
-    }
+public class ProgController implements Aplication {
+
     Map<Commands, Service> services;
     public ProgController(){
         services = getServiceMap();
@@ -33,6 +32,9 @@ public class ProgController implements Action{
     public void action() {
         String Stop = "/stop";
         String list = "/list";
+        System.out.println("Приветствую");
+        System.out.println("Список моих команд:");
+        System.out.println(getCommandList());
         boolean isStoped = false;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             while (!isStoped){
@@ -100,7 +102,7 @@ public class ProgController implements Action{
         services.put(Commands.PYRAMID, new Pyramid());
         services.put(Commands.RANDOMCHAR, new RandomChar());
         services.put(Commands.COUNTNUMS, new CountNums());
-        services.put(Commands.EXPO, new Exponentiation());
+        services.put(Commands.POW, new Exponentiation());
         services.put(Commands.FIBONACCI,new FibonacciNumbers());
         services.put(Commands.EVENODD,new EvenOdd());
         services.put(Commands.MAKEWORD,new MakeWord());

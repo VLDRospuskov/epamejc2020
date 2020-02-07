@@ -39,7 +39,7 @@ public class OperationsTest {
         int expected = 8;
         int expectedSecond = 10;
         assertEquals(expected, actual);
-        assertEquals(expectedSecond, actualSecond);
+
     }
 
     @Test

@@ -1,5 +1,5 @@
 package homeworks.control;
 
-public interface Action {
+public interface Aplication {
     void action();
 }
