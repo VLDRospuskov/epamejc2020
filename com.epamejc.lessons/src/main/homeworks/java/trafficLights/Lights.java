@@ -3,5 +3,11 @@ package homeworks.java.trafficLights;
 public enum Lights {
     GREEN,
     RED,
-    YELLOW
+    YELLOW,
+    WRONG_INPUT,
+    EXIT,
+    EXCEPTION;
+
+
+
 }

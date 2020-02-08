@@ -3,8 +3,8 @@ package homeworks.java.trafficLights;
 public class Main {
     public static void main(String[] args) {
 
-        TrafficLights program = new TrafficLights();
-        program.run();
+        Engine engine = new Engine();
+        engine.run(System.in, System.out);
 
     }
 }
