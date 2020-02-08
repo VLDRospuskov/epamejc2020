@@ -12,10 +12,8 @@ public class EvenOrOddString {
                 String inputString = enterString(scan);
                 if (!isExitNeeded) {
                     String filterType = enterFilterType(scan);
-                    if (!isExitNeeded) {
-                        System.out.println("Entered string: " + inputString);
-                        System.out.println("Transformed string: " + transformString(inputString, filterType) + "\n");
-                    }
+                    System.out.println("Entered string: " + inputString);
+                    System.out.println("Transformed string: " + transformString(inputString, filterType) + "\n");
                 }
             }
         } catch (Exception ex) {
@@ -28,6 +26,7 @@ public class EvenOrOddString {
 
     /**
      * Method for validating and initializing an input string
+     *
      * @param scan scanner object
      * @return input string
      */
@@ -35,7 +34,7 @@ public class EvenOrOddString {
         boolean isInputCorrect = false;
         String inputString = "";
         while (!isInputCorrect) {
-            System.out.print("Enter the string with length > 0. Type \"exit\" to finish program: ");
+            System.out.print(FilterTypes.enterStringMessage.getValue());
             inputString = scan.nextLine();
             try {
                 if (inputString.equals("exit")) {
@@ -55,6 +54,7 @@ public class EvenOrOddString {
 
     /**
      * Method for checking the correctness and initializing filters (even / odd characters)
+     *
      * @param scan scanner object
      * @return filter type
      */
@@ -62,13 +62,10 @@ public class EvenOrOddString {
         boolean isInputCorrect = false;
         String filterType = "";
         while (!isInputCorrect) {
-            System.out.print("Select characters to be removed from string (even or odd): ");
+            System.out.print(FilterTypes.enterFilterTypeMessage.getValue());
             filterType = scan.nextLine();
             try {
-                if (filterType.equals("exit")) {
-                    isExitNeeded = true;
-                    break;
-                } else if (filterType.equals(FilterTypes.EVEN.getValue())
+                if (filterType.equals(FilterTypes.EVEN.getValue())
                         || filterType.equals(FilterTypes.ODD.getValue())) {
                     isInputCorrect = true;
                 } else {
@@ -83,11 +80,12 @@ public class EvenOrOddString {
 
     /**
      * Method for transforming the string based on the filter
+     *
      * @param inputString input string
-     * @param filterType filter type (odd or even)
+     * @param filterType  filter type (odd or even)
      * @return
      */
-    private String transformString(String inputString, String filterType) {
+    public String transformString(String inputString, String filterType) {
         StringBuilder charBox = new StringBuilder();
         if (filterType.equals(FilterTypes.EVEN.getValue())) {
             int counter = 1;

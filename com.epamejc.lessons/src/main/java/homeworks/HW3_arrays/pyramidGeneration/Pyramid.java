@@ -1,60 +1,16 @@
 package homeworks.HW3_arrays.pyramidGeneration;
 
-import java.util.Scanner;
-
 public class Pyramid {
-    private boolean appInputExitTrigger = true;
-    private int pyramidHeight;
 
-    public void run() {
-        Scanner scan = new Scanner(System.in);
-        try {
-            while (appInputExitTrigger) {
-                definePyramidHeight(scan);
-                if (appInputExitTrigger) {
-                    printPyramid(createPyramid());
-                }
-            }
-        } catch (Exception ex) {
-            System.out.println("Something went wrong");
-        } finally {
-            scan.close();
-            System.out.println("Program ends. Goodbye.");
-        }
+    public Pyramid() {
     }
 
     /**
-     * Метод для проверки корректности и инициализации высоты пирамиды
+     * Method for generating a pyramid
      *
-     * @param _scan объект сканера
+     * @return generated pyramid
      */
-    private void definePyramidHeight(Scanner _scan) {
-        boolean isInputCorrect = false;
-        while (!isInputCorrect) {
-            System.out.print("Enter the height of the pyramid (Integer number from 1 to 55) or enter -1 to exit: ");
-            String inputString = _scan.nextLine();
-            try {
-                pyramidHeight = Integer.parseInt(inputString);
-                if (pyramidHeight == -1) {
-                    appInputExitTrigger = false;
-                    break;
-                } else if (pyramidHeight > 0 && pyramidHeight <= 55) {
-                    isInputCorrect = true;
-                } else {
-                    throw new ArithmeticException();
-                }
-            } catch (Exception ex) {
-                System.out.println("Wrong input. Enter correct number.");
-            }
-        }
-    }
-
-    /**
-     * Метод для инициализации пирамиды на основе многомерного массива
-     *
-     * @return сгенерированный массив
-     */
-    private char[][] createPyramid() {
+    public char[][] createPyramid(int pyramidHeight) {
         char[][] pyramidCharArray = new char[pyramidHeight][2 * pyramidHeight - 1];
         try {
             for (int i = 0; i < pyramidCharArray.length; i++) {
@@ -62,7 +18,7 @@ public class Pyramid {
                     pyramidCharArray[i][j] = ' ';
                 }
             }
-            generatePyramid(pyramidCharArray);
+            fillPyramid(pyramidCharArray);
         } catch (Exception exc) {
             System.out.println("An error occurred while creating the pyramid");
         }
@@ -70,24 +26,11 @@ public class Pyramid {
     }
 
     /**
-     * Метод для заполнения созданного массива символьными элементами
+     * Method for printing the generated pyramid to the console
      *
-     * @param _pyramidArray объявленный массив
+     * @param charArray pyramid array
      */
-    private void generatePyramid(char[][] _pyramidArray) {
-        for (int i = 0; i < pyramidHeight; i++) {
-            for (int k = pyramidHeight - 1 - i; k <= pyramidHeight - 1 + i; k++) { //Заполняем символами X
-                _pyramidArray[i][k] = 'X';
-            }
-        }
-    }
-
-    /**
-     * Метод для печати сгенерированной пирамиды в консоль
-     *
-     * @param charArray сгенерированный массив
-     */
-    private void printPyramid(char[][] charArray) {
+    public void printPyramid(char[][] charArray) {
         System.out.println("Generated pyramid is: ");
         try {
             for (int i = 0; i < charArray.length; i++) {
@@ -100,6 +43,19 @@ public class Pyramid {
             System.out.println("An error occurred while printing the pyramid");
         } finally {
             System.out.println();
+        }
+    }
+
+    /**
+     * Method for filling the array with chars
+     *
+     * @param pyramidArray pyramid array
+     */
+    private void fillPyramid(char[][] pyramidArray) {
+        for (int i = 0; i < pyramidArray.length; i++) {
+            for (int k = pyramidArray.length - 1 - i; k <= pyramidArray.length - 1 + i; k++) {
+                pyramidArray[i][k] = 'X';
+            }
         }
     }
 }

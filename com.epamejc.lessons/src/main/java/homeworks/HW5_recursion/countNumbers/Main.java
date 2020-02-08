@@ -5,5 +5,4 @@ public class Main {
         CountNumbers amountOfNumApp = new CountNumbers();
         amountOfNumApp.run();
     }
-
 }

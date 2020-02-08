@@ -3,16 +3,17 @@ package homeworks.HW4_strings.stringReverse;
 import java.util.Scanner;
 
 public class ReversedString {
-    private boolean appInputExitTrigger = true;
-    private String inputString = "";
+
+    private boolean isExitNeeded = false;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
         try {
-            while (appInputExitTrigger) {
-                enterString(scan);
-                if (appInputExitTrigger) {
-                    reverseStrings();
+            while (!isExitNeeded) {
+                String inputString = enterString(scan);
+                if (!isExitNeeded) {
+                    System.out.println("Entered string is: " + inputString);
+                    System.out.println("Reversed string is: " + reverseStrings(inputString) + "\n");
                 }
             }
         } catch (Exception ex) {
@@ -24,18 +25,20 @@ public class ReversedString {
     }
 
     /**
-     * Метод для ввода строки
+     * Method for entering a string
      *
-     * @param _scan объект сканера
+     * @param scan scanner object
+     * @return entered string
      */
-    private void enterString(Scanner _scan) {
+    public String enterString(Scanner scan) {
         boolean isInputCorrect = false;
+        String inputString = "";
         while (!isInputCorrect) {
             System.out.print(ReversedStringMessages.enterStringMessage.getValue());
-            inputString = _scan.nextLine();
+            inputString = scan.nextLine();
             try {
                 if (inputString.equals("exit")) {
-                    appInputExitTrigger = false;
+                    isExitNeeded = true;
                     break;
                 } else if (inputString.length() > 0) {
                     isInputCorrect = true;
@@ -46,20 +49,26 @@ public class ReversedString {
                 System.out.println(ReversedStringMessages.enterStringError.getValue());
             }
         }
+        return inputString;
     }
 
     /**
-     * Метод для разворота строк
+     * Method for reversing words inside input string
+     *
+     * @param inputString original input string
+     * @return reversed words inside original string
      */
-    private void reverseStrings() {
-        System.out.println("Original string is: \n" + inputString);
-        System.out.println("Reversed string is:");
-
+    public String reverseStrings(String inputString) {
+        String resultString = "";
         String[] splittedStrings = inputString.split("\\s+");
-        for (String s : splittedStrings) {
-            StringBuilder strBuilder = new StringBuilder(s);
-            System.out.print(strBuilder.reverse().toString() + " ");
+        for (int i = 0; i < splittedStrings.length; i++) {
+            StringBuilder strBuilder = new StringBuilder(splittedStrings[i]);
+            if (i == splittedStrings.length - 1) {
+                resultString = resultString + strBuilder.reverse().toString();
+            } else {
+                resultString = resultString + strBuilder.reverse().toString() + " ";
+            }
         }
-        System.out.println();
+        return resultString;
     }
 }

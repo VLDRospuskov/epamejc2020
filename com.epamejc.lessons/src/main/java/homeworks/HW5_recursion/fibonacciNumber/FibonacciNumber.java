@@ -3,14 +3,14 @@ package homeworks.HW5_recursion.fibonacciNumber;
 import java.util.Scanner;
 
 public class FibonacciNumber {
-    private boolean appInputExitTrigger = true;
-    private int inputNumber = 0;
+
+    private boolean isExitNeeded = false;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            enterNumber(scan);
-            if (appInputExitTrigger) {
+        while (!isExitNeeded) {
+            int inputNumber = enterNumber(scan);
+            if (!isExitNeeded) {
                 System.out.println("Fibonacci number is: " + fibonacciCalc(inputNumber));
             }
         }
@@ -19,10 +19,10 @@ public class FibonacciNumber {
     }
 
     /**
-     * Метол для рекурсивного вычисления числа Фибоначчи
+     * Method for recursive Fibonacci calculation
      *
-     * @param n исходное число
-     * @return число Фибоначчи
+     * @param n input number
+     * @return Fibonacci number
      */
     private static int fibonacciCalc(int n) {
         if (n == 0) {
@@ -35,19 +35,22 @@ public class FibonacciNumber {
     }
 
     /**
-     * Метод для проверки корректности ввода и инициализации числа
+     * Method for entering a new number
      *
-     * @param _scan объект сканера
+     * @param scan scanner object
+     * @return entered number
      */
-    private void enterNumber(Scanner _scan) {
+    private int enterNumber(Scanner scan) {
         boolean isInputCorrect = false;
+        int inputNumber = 0;
         while (!isInputCorrect) {
-            System.out.print("Enter integer number to calculate fibonacci number (in range 1 - 30: ");
-            String inputString = _scan.nextLine();
+            System.out.print("Type -1 to exit or enter integer number " +
+                    "to calculate fibonacci number (in range 1 - 30): ");
+            String inputString = scan.nextLine();
             try {
                 inputNumber = Integer.parseInt(inputString);
                 if (inputNumber == -1) {
-                    appInputExitTrigger = false;
+                    isExitNeeded = true;
                     break;
                 } else if (inputNumber > 0 && inputNumber <= 30) {
                     isInputCorrect = true;
@@ -58,6 +61,7 @@ public class FibonacciNumber {
                 System.out.println("Wrong input. Enter correct number");
             }
         }
+        return inputNumber;
     }
 }
 

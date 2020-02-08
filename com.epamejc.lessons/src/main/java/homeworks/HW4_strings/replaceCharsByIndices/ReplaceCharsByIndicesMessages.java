@@ -3,7 +3,8 @@ package homeworks.HW4_strings.replaceCharsByIndices;
 enum ReplaceCharsByIndicesMessages {
     exitAppMessage("Program ends. Goodbye."),
     enterStringMessage ("Enter the string with length > 0 : "),
-    enterIndexMessage("Enter 2 indexes (use random non-word separator char) " +
+    enterIndexMessage("Enter \"-1\" to exit or \n " +
+            "Enter 2 indexes (use random non-word separator char) " +
             "of the recorded string, whose characters you want to change (0 - "),
     wrongStringArgument("Wrong input. Enter correct string."),
     wrongNumberArgument("Wrong input. Enter correct index numbers.");

@@ -26,7 +26,7 @@ public class TwoDimArrayApplicationTest {
             = emptyStandardInputStream();
 
     /**
-     * User input testing to define lines quantity with correct input
+     * Testing user input to define lines quantity with correct input
      */
     @Test
     public void testDefineLinesQuantity() {
@@ -38,7 +38,7 @@ public class TwoDimArrayApplicationTest {
     }
 
     /**
-     * User input testing to define lines quantity with incorrect input
+     * Testing user input to define lines quantity with incorrect input
      */
     @Test(expected = Exception.class)
     public void testDefineLinesQuantityIncorrect() {
@@ -48,7 +48,7 @@ public class TwoDimArrayApplicationTest {
     }
 
     /**
-     * User input testing to define rows quantity with correct input
+     * Testing user input to define rows quantity with correct input
      */
     @Test
     public void testDefineRowsQuantity() {
@@ -60,13 +60,13 @@ public class TwoDimArrayApplicationTest {
     }
 
     /**
-     * User input testing to define rows quantity with incorrect input
+     * Testing user input to define rows quantity with incorrect input
      */
     @Test(expected = Exception.class)
     public void testDefineRowsQuantityIncorrect() {
         systemInMock.provideLines("-10");
         Scanner scanner = new Scanner(System.in);
-        arrayApp.defineLinesQuantity(scanner);
+        arrayApp.defineRowsQuantity(scanner);
     }
 
     @AfterClass

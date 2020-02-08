@@ -4,14 +4,14 @@ package homeworks.HW5_recursion.countNumbers;
 import java.util.Scanner;
 
 public class CountNumbers {
-    private boolean appInputExitTrigger = true;
-    private String inputString = "";
+
+    private boolean isExitNeeded = false;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        while (appInputExitTrigger) {
-            enterString(scan);
-            if (appInputExitTrigger) {
+        while (!isExitNeeded) {
+            String inputString = enterString(scan);
+            if (!isExitNeeded) {
                 System.out.println("Input string is: " + inputString);
                 System.out.println("The number of digits per line: " + countNumbers(inputString));
             }
@@ -21,10 +21,10 @@ public class CountNumbers {
     }
 
     /**
-     * Метод для рекурсивного вычисления количества чисел в строке
+     * Method for recursively calculating the quantity of numbers in a string
      *
-     * @param str исходная строка
-     * @return количество чисел
+     * @param str input string
+     * @return numbers quantity
      */
     private static int countNumbers(String str) {
         if (str.length() == 0)
@@ -35,21 +35,23 @@ public class CountNumbers {
     }
 
     /**
-     * Метод для проверки корректности и инициализации исходной строки
+     * Method for entering a new line
      *
-     * @param _scan объект сканера
+     * @param scan scanner object
+     * @return entered string
      */
-    private void enterString(Scanner _scan) {
+    private String enterString(Scanner scan) {
         boolean isInputCorrect = false;
+        String inputString = "";
         while (!isInputCorrect) {
             System.out.print("Type \"exit\" to exit or enter a string that contains at " +
                     "least one numeric character: ");
-            inputString = _scan.nextLine();
+            inputString = scan.nextLine();
             try {
-                if (inputString.equals("exit")){
-                    appInputExitTrigger = false;
+                if (inputString.equals("exit")) {
+                    isExitNeeded = true;
                     break;
-                } else if (inputString.length() > 0){
+                } else if (inputString.length() > 0) {
                     isInputCorrect = true;
                 } else {
                     throw new IllegalArgumentException();
@@ -58,6 +60,7 @@ public class CountNumbers {
                 System.out.println("Wrong input. Enter correct string");
             }
         }
+        return inputString;
     }
 }
 
