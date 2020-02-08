@@ -1,0 +1,44 @@
+package main.java.homework1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class TrafficLight {
+
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    protected void start() {
+        System.out.println("Enter the amount of minutes (it could be integer or float)." + "\n" +
+                "To end the program - enter \"exit\".");
+        try {
+            while (true) {
+                String time = reader.readLine();
+                if (!time.equals("exit")) {
+                    chooseColor(time);
+                } else {
+                    reader.close();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("IOException");
+        }
+    }
+
+    private void chooseColor(String time) {
+        try {
+            double minute = Double.parseDouble(time);
+            if (minute % 10 <= 3) {
+                System.out.println("Green signal");
+            } else if (minute % 10 > 3 & minute % 10 <= 5) {
+                System.out.println("Yellow signal");
+            } else {
+                System.out.println("Red signal");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Incorrect input.Try again.");
+        }
+    }
+}
+
