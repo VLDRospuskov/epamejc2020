@@ -71,7 +71,7 @@ public class StringGeneratorFromArrayByStrategy {
                 }
             }
         } else if (strategy.equals("B") || strategy.equals("b")) {
-            for (int i = 0; i < numbers[0]; i += 2) {
+            for (int i = 1; i < numbers[0]; i += 2) {
                 for (int j = 1; j < numbers[1]; j += 2) {
                     output += arr[i][j];
                 }

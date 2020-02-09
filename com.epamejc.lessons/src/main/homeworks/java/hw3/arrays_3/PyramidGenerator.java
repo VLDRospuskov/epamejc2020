@@ -25,7 +25,7 @@ public class PyramidGenerator {
         return n;
     }
 
-    public void printPyramid(int n) {
+    public char[][] printPyramid(int n) {
         int nCopy = n;
         char[][] arr = new char[n][n];
 
@@ -37,6 +37,8 @@ public class PyramidGenerator {
             nCopy--;
             System.out.println("");
         }
+
+        return arr;
     }
 
 }
