@@ -35,7 +35,7 @@ public class OperationsTest {
     public void testGetSum() {
         System.out.println("TEST 1");
         int actual = operations.getSum(3, 5);
-        int actualSecond = operations.getSum(3, 5);
+        int actualSecond = operations.getSum(5, 5);
         int expected = 8;
         int expectedSecond = 10;
         assertEquals(expected, actual);
