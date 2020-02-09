@@ -20,9 +20,7 @@
             </plugin>
         </plugins>
     </build>
-    <modules>
-        <module>com.epamejc.lessons</module>
-    </modules>
+
 
     <dependencies>
         <dependency>
