@@ -6,10 +6,11 @@ public class Application {
         MultipleArrayBuilder builder = new MultipleArrayBuilder();
         char[][] arr = builder.createArray(4, 4);
 
-        builder.printArray(arr);
-        builder.printEven(arr);
-        builder.printOdd(arr);
-        builder.pyramid(10);
+        System.out.println(builder.printArray(arr));
+        System.out.print("even chars: " + builder.printEven(arr));
+        System.out.print("odd chars: " + builder.printOdd(arr));
+        System.out.println("Behold a pyramid!");
+        System.out.println(builder.pyramid(10));
     }
 
 }
