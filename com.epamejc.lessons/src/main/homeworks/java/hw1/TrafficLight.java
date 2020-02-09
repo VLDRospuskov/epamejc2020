@@ -3,8 +3,52 @@ package homeworks.java.hw1;
 import java.util.Scanner;
 
 class TrafficLight {
+
     final private String MESSAGE = "Enter number(enter \"-1\" to exit): ";
     final private String ERR_MESSAGE = "Wrong enter! Please enter positive number!";
+    boolean isError = false;
+    Scanner sc;
+
+    public void run() {
+        boolean loop = true;
+
+        try {
+            while (loop) {
+                sc = new Scanner(System.in);
+                int n = scan(sc);
+
+                if (isError) {
+                    isError = false;
+                    continue;
+                } else if (n == -1) {
+                    break;
+                }
+
+                System.out.println("Traffic signal: " + getColor(n));
+            }
+
+        } catch (Exception e){
+            System.out.println(ERR_MESSAGE);
+        } finally {
+            sc.close();
+        }
+
+    }
+
+    public int scan(Scanner sc) {
+        int n = 0;
+        String str = "";
+
+        try {
+            System.out.print(MESSAGE);
+            str = sc.nextLine();
+            n = checkMinutes(Integer.parseInt(str));
+        } catch (Exception e) {
+            System.out.println(ERR_MESSAGE);
+            isError = true;
+        }
+        return n;
+    }
 
     public int checkMinutes(int n) {
         if (n > 10) {
@@ -26,43 +70,4 @@ class TrafficLight {
         return ERR_MESSAGE;
     }
 
-    public void run() {
-        Scanner sc = new Scanner(System.in);
-        boolean loop = true;
-
-        try {
-            while (loop) {
-                int n = 0;
-                System.out.print(MESSAGE);
-                String str = sc.nextLine();
-
-                try {
-                    n = checkMinutes(Integer.parseInt(str));
-                } catch (Exception e) {
-                    System.out.println(ERR_MESSAGE);
-                    continue;
-                }
-
-                if (n == -1) {
-                    break;
-                }
-
-                System.out.println("Traffic signal: " + getColor(n));
-            }
-        } catch (Exception e){
-
-        } finally {
-            sc.close();
-        }
-
-    }
-
-    /**
-     * TRY {
-     * WHILE
-     *     TRY {
-     *
-     *     } Catch
-     * } finally
-     */
 }
