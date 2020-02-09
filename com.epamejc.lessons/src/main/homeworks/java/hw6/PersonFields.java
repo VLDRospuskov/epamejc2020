@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PersonFields {
 
-    String name();
-    int age();
+    String name() default "Name";
+    int age() default 0;
 
 
 }
