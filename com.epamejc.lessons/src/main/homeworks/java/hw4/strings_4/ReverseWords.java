@@ -6,7 +6,10 @@ public class ReverseWords {
 
     public void run() {
         String str = scanString();
-        reverseWordsInString(str);
+        String[] words = reverseWordsInString(str);
+        for (int k = 0; k < words.length; k++) {
+            System.out.print(words[k] + " ");
+        }
     }
 
     public String scanString() {
@@ -25,7 +28,7 @@ public class ReverseWords {
         return str;
     }
 
-    public void reverseWordsInString(String str) {
+    public String[] reverseWordsInString(String str) {
         String[] words = str.split(" ");
 
         for (int i = 0; i < words.length; i++) {
@@ -36,9 +39,7 @@ public class ReverseWords {
             words[i] = revStr;
         }
 
-        for (int k = 0; k < words.length; k++) {
-            System.out.print(words[k] + " ");
-        }
+        return words;
     }
 
 }
