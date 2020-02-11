@@ -20,11 +20,11 @@ public class EvenOrOddStringTest {
     public void testTransformStringOdd() {
         String filterType = FilterTypes.ODD.getValue();
         String inputString1 = "10101";
-        int expectedStringLength1 = 3;
+        int expectedStringLength1 = 2;
         String inputString2 = "101010";
         int expectedStringLength2 = 3;
-        int actualStringSize1 = evenOrNotString.transformString(inputString1, filterType).length();
-        int actualStringSize2 = evenOrNotString.transformString(inputString2, filterType).length();
+        int actualStringSize1 = evenOrNotString.processString(inputString1, filterType).length();
+        int actualStringSize2 = evenOrNotString.processString(inputString2, filterType).length();
         Assert.assertEquals(expectedStringLength1, actualStringSize1);
         Assert.assertEquals(expectedStringLength2, actualStringSize2);
     }
@@ -36,11 +36,11 @@ public class EvenOrOddStringTest {
     public void testTransformStringEven() {
         String filterType = FilterTypes.EVEN.getValue();
         String inputString1 = "10101";
-        int expectedStringLength1 = 2;
+        int expectedStringLength1 = 3;
         String inputString2 = "101010";
         int expectedStringLength2 = 3;
-        int actualStringSize1 = evenOrNotString.transformString(inputString1, filterType).length();
-        int actualStringSize2 = evenOrNotString.transformString(inputString2, filterType).length();
+        int actualStringSize1 = evenOrNotString.processString(inputString1, filterType).length();
+        int actualStringSize2 = evenOrNotString.processString(inputString2, filterType).length();
         Assert.assertEquals(expectedStringLength1, actualStringSize1);
         Assert.assertEquals(expectedStringLength2, actualStringSize2);
     }

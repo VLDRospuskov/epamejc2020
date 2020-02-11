@@ -3,6 +3,7 @@ package homeworks.HW4_strings.evenOrOddString;
 public enum FilterTypes {
     EVEN("even"),
     ODD("odd"),
+    exitAppMessage("Program ends. Goodbye."),
     wrongArgument("Wrong input. Enter correct string."),
     enterStringMessage("Enter the string with length > 0. Type \"exit\" to finish program: "),
     enterFilterTypeMessage("Select characters to be removed from string (enter even or odd): ");

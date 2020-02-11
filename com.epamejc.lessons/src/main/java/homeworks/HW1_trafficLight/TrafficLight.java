@@ -4,46 +4,73 @@ import java.util.Scanner;
 
 
 public class TrafficLight {
-    private final String SystemMessage = "Enter the number of seconds. To exit, enter an empty string: ";
 
+    private boolean isExitNeeded = false;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        System.out.print(SystemMessage);
-        String inputString = scan.nextLine();
-
-        while (!inputString.isEmpty()) {
-            try {
-                int secQuantity = Integer.parseInt(inputString);
-                String response = DefineTrafficLightSignal(secQuantity);
-                System.out.println(response);
-                System.out.print(SystemMessage);
-                inputString = scan.nextLine();
-            } catch (Exception exc) {
-                System.out.println("ПTraffic light is broken: " + exc.toString());
-                break;
+        try {
+            while (!isExitNeeded) {
+                int secQuantity = defineNumberOfSeconds(scan);
+                if (!isExitNeeded) {
+                    System.out.println(defineTrafficLightSignal(secQuantity));
+                }
             }
+        } catch (Exception exc) {
+            System.out.println("Traffic light is broken: " + exc.toString());
+        } finally {
+            scan.close();
+            System.out.println(TrafficLightColors.appFinishMessage.getMessage());
         }
-        scan.close();
-        System.out.println("Program ends");
+
     }
 
     /**
-     * Метод для определения цвета сигнала светофора
-     * @param num время с начала работы светофора, сек
-     * @return цвет сигнала
+     * Method for initializing the number seconds
+     *
+     * @param scan scanner object
+     * @return number of seconds
      */
-    public static String DefineTrafficLightSignal(int num) {
+    public int defineNumberOfSeconds(Scanner scan) {
+        boolean linesInputExitTrigger = false;
+        int secondsNumber = 0;
+        while (!linesInputExitTrigger) {
+            System.out.print(TrafficLightColors.enterStringMessage.getMessage());
+            String inputString = scan.nextLine();
+            try {
+                secondsNumber = Integer.parseInt(inputString);
+                if (secondsNumber == -1) {
+                    isExitNeeded = true;
+                    break;
+                } else if (secondsNumber > 0) {
+                    linesInputExitTrigger = true;
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            } catch (Exception arExc) {
+                System.out.println(TrafficLightColors.incorrectInputMessage.getMessage());
+            }
+        }
+        return secondsNumber;
+    }
+
+    /**
+     * Method for determining the color of a traffic signal
+     *
+     * @param num number of seconds
+     * @return traffic light
+     */
+    public String defineTrafficLightSignal(int num) {
         num = num % 600; //контур на 10 минут
 
         if (num >= 0 && num <= 180) {
-            return TrafficLightColors.Green + " color";
+            return TrafficLightColors.GREEN.getMessage();
         } else if (num > 180 && num <= 300) {
-            return TrafficLightColors.Yellow + " color";
+            return TrafficLightColors.YELLOW.getMessage();
         } else if (num > 300) {
-            return TrafficLightColors.Red + " color";
+            return TrafficLightColors.RED.getMessage();
         } else {
-            return "Traffic light isn't working yet";
+            return TrafficLightColors.incorrectInputMessage.getMessage();
         }
     }
 }
