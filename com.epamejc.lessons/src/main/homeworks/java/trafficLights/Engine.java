@@ -1,7 +1,6 @@
 package homeworks.java.trafficLights;
 
 import java.io.*;
-import java.math.*;
 
 //Создать "светофор", который выводит сигнал-цвет. Вы вводите время от 0-3 минуты - зеленый,
 //4-5 минуты - желтый, 6-10 красный. Вводим цифру 0 до n, получаем результат. Работу программы
@@ -9,46 +8,57 @@ import java.math.*;
 
 class Engine {
 
-    public void run(InputStream in, PrintStream out) {
+    public void run() {
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
 
-            Lights state;
-            InputProcessor input = new InputProcessor();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
-            out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, " +
+            System.out.println("Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n, " +
                     "and s - seconds from 0 to 59 \nor word \"exit\" to quit the program");
 
+            int exit;
+            Lights lightsState;
+            UserInputReader userInputReader = new UserInputReader();
+            LightsLogic lightsLogic = new LightsLogic();
+
             do {
-                state = input.readInput(reader);
+                String userInputString = userInputReader.readInput(reader);
+                lightsState = lightsLogic.parseInputString((userInputString));
+                exit = switchOutput(lightsState);
 
-                switch (state) {
-                    case GREEN:
-                        out.println("The traffic lights is Green");
-                        break;
-                    case YELLOW:
-                        out.println("The traffic lights is Yellow");
-                        break;
-                    case RED:
-                        out.println("The traffic lights is Red");
-                        break;
-                    case WRONG_INPUT:
-                        out.println("Wrong input! Try again.");
-                        break;
-                    case EXCEPTION:
-                        out.println("Program closed with an error 1");
-                        break;
-                    case EXIT:
-                        out.println("Bye");
-                        break;
-                }
+            } while (exit != 1);
 
-            } while (state != Lights.EXIT && state != Lights.EXCEPTION);
         } catch (IOException e) {
+            System.err.println("Something gone wrong with InputStream");
             e.printStackTrace();
         }
     }
+
+    private int switchOutput(Lights state) {
+        int indicator = 0;
+
+        switch (state) {
+            case GREEN:
+                System.out.println("The traffic lights is Green");
+                break;
+            case YELLOW:
+                System.out.println("The traffic lights is Yellow");
+                break;
+            case RED:
+                System.out.println("The traffic lights is Red");
+                break;
+            case WRONG_INPUT:
+                System.out.println("Wrong input! Try again.");
+                break;
+            case EXIT:
+                System.out.println("Bye");
+                indicator = 1;
+                break;
+        }
+        return indicator;
+    }
 }
+
 
 
 

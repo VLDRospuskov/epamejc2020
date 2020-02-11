@@ -5,9 +5,5 @@ public enum Lights {
     RED,
     YELLOW,
     WRONG_INPUT,
-    EXIT,
-    EXCEPTION;
-
-
-
+    EXIT
 }
