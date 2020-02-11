@@ -1,13 +1,20 @@
 package homeworks.java.pyramidBuilder;
 
-import java.util.Arrays;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Getter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
 public class Pyramid {
 
     private int[][] pyramid;
     private int row, col;
 
-    public void print() {
+    public void printPyramid() {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (pyramid[i][j] == 1) {
@@ -20,31 +27,14 @@ public class Pyramid {
         }
     }
 
-    public int[][] getPyramid() {
-        return pyramid;
-    }
+    public void buildPyramid(int base) {
+        if (base < 1) {
+            throw new CannotBuildPyramidException("Base can not be less than 1");
+        }
 
-    public Pyramid(int base) {
         this.row = base;
         this.col = base * 2 - 1;
-        buildPyramid();
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pyramid that = (Pyramid) o;
-        return Arrays.equals(pyramid, that.pyramid);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Arrays.hashCode(pyramid);
-        return result;
-    }
-
-    private void buildPyramid() {
         pyramid = new int[row][col];
 
         for (int i = 0; i < row; i++) {

@@ -1,16 +1,16 @@
 package homeworks.java.recursion;
 
-public class RecursionTest {
+public class RecursionFunctions {
 
     //finds a (num) element of Fibonacci sequence
-    public int fibonacci(int num) {
+    public static int fibonacci(int num) {
         if (num == 0) return 0;
         if (num == 1) return 1;
 
         return fibonacci(num - 1) + fibonacci(num - 2);
     }
 
-    double pow(double num, int pow) {
+    public static double pow(double num, int pow) {
         if (pow == 0)
             return 1;
         else if (pow > 0)
@@ -19,8 +19,7 @@ public class RecursionTest {
             return 1 / num * pow(num, pow + 1);
     }
 
-
-    public int numOfDigits(int num) {
+    public static int numOfDigits(int num) {
 
         if (num <= 9) {
             return 1;
