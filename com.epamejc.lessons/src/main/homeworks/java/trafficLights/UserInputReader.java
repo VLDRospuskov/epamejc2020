@@ -16,5 +16,5 @@ public class UserInputReader {
         }
         return inputString;
     }
-  }
+}
 

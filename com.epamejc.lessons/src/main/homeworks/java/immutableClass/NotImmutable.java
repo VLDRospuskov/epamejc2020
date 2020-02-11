@@ -9,7 +9,8 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @Getter
-public final class Immutable {
-    private final double constant;
-    private final String constantName;
+public class NotImmutable {
+    protected double constant;
+    protected String constantName;
 }
+

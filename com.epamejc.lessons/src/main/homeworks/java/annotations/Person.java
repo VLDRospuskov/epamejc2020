@@ -15,9 +15,9 @@ public class Person {
 
     @MyAnnotation(name = "John Doe", age = "unknown")
     public Person() {
-       Constructor[] constructors = Person.class.getDeclaredConstructors();
-       MyAnnotation annotation = (MyAnnotation) constructors[1].getAnnotation(MyAnnotation.class);
-       this.name = annotation.name();
-       this.age = annotation.age();
+        Constructor[] constructors = Person.class.getDeclaredConstructors();
+        MyAnnotation annotation = (MyAnnotation) constructors[1].getAnnotation(MyAnnotation.class);
+        this.name = annotation.name();
+        this.age = annotation.age();
     }
 }

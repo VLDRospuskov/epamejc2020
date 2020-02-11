@@ -33,7 +33,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.mutabilitydetector</groupId>
+            <artifactId>MutabilityDetector</artifactId>
+            <version>0.10.3</version>
+        </dependency>
     </dependencies>
 
 </project>
