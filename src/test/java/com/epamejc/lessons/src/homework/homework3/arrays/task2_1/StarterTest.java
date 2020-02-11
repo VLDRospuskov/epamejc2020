@@ -11,9 +11,10 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emp
 public class StarterTest {
     @Rule
     public final SystemErrRule systemErrRule = new SystemErrRule().enableLog();
-    private final String ERROR_MSG = "Non-negative integer required. Try again!\n";
     @Rule
-    public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
+    public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
+    private final String ERROR_MSG = "Non-negative integer required. Try again!\n";
+
 
     @Test
     public void startErrorStringValueRows() {

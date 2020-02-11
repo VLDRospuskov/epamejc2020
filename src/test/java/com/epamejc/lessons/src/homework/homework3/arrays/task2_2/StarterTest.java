@@ -11,10 +11,11 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emp
 public class StarterTest {
     @Rule
     public final SystemErrRule systemErrRule = new SystemErrRule().enableLog();
-    private final String ERROR_NUMBERS_MSG = "Non-negative integer required. Try again!\n";
-    private final String ERROR_STRATEGY_MSG = "Available strategy \"A\" or \"B\" . Try again!\n";
     @Rule
     public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
+    private final String ERROR_NUMBERS_MSG = "Non-negative integer required. Try again!\n";
+    private final String ERROR_STRATEGY_MSG = "Available strategy \"A\" or \"B\" . Try again!\n";
+
 
     @Test
     public void startErrorStringValueRows() {

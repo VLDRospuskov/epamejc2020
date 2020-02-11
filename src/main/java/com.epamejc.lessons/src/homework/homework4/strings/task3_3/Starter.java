@@ -67,7 +67,7 @@ public class Starter {
         while (true) {
             String line = bufReader.readLine();
             if (line.isEmpty()) {
-                System.out.println("String must be not empty! Try again.");
+                System.err.println("String must be not empty! Try again.");
             } else {
                 return line;
             }

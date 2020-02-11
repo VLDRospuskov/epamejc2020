@@ -6,8 +6,6 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import java.io.ByteArrayOutputStream;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
@@ -15,19 +13,13 @@ public class StarterTest {
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
     @Rule
+    public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
+    @Rule
     public final SystemErrRule systemErrRule = new SystemErrRule().enableLog();
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream err = new ByteArrayOutputStream();
-    private final String NUM_LEVELS_MSG = "Print number of levels:\n";
-    private final String ORDER_MSG = "Print order  \"ascending\" or \"descending\" :\n";
-    private final String SIDE_MSG = "Print side \"left\" or \"right\" :\n";
-    private final String FILL_CHAR_MSG = "Print filling char  :\n";
     private final String ERROR_LEVELS_MSG = "Non-negative integer required. Try again!\n";
     private final String ERROR_SIDE_MSG = "Available side \"left\" or \"right\" . Try again!\n";
     private final String ERROR_ORDER_MSG = "Available order \"ascending\" or \"descending\" . Try again!\n";
     private final String ERROR_CHAR_MSG = "1 symbol expected . Try again!\n";
-    @Rule
-    public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
     @Test
     public void startNegativeNumLevels() {
@@ -40,7 +32,7 @@ public class StarterTest {
         new Starter().start();
         String actualOut = systemErrRule.getLog();
         String expectedOut = ERROR_LEVELS_MSG;
-        assertEquals(actualOut, expectedOut);
+        assertEquals(expectedOut, actualOut);
     }
 
     @Test
@@ -54,7 +46,7 @@ public class StarterTest {
         new Starter().start();
         String actualOut = systemErrRule.getLog();
         String expectedOut = ERROR_SIDE_MSG;
-        assertEquals(actualOut, expectedOut);
+        assertEquals(expectedOut, actualOut);
     }
 
     @Test
@@ -82,6 +74,6 @@ public class StarterTest {
         new Starter().start();
         String actualOut = systemErrRule.getLog();
         String expectedOut = ERROR_CHAR_MSG;
-        assertEquals(actualOut, expectedOut);
+        assertEquals(expectedOut, actualOut);
     }
 }

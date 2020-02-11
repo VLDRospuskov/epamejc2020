@@ -16,7 +16,7 @@ public class RandomArrayTest {
     public void constructorTestErrorColumnsArgument() {
         int errorColumns = -2;
         int rows = 4;
-        new RandomArray(errorColumns, rows);
+        new RandomArray(rows, errorColumns);
     }
 
     @Test(expected = IllegalArgumentException.class)

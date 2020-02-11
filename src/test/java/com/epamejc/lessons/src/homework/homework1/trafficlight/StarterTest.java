@@ -17,6 +17,8 @@ public class StarterTest {
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
     @Rule
     public final SystemErrRule systemErrRule = new SystemErrRule().enableLog();
+    @Rule
+    public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final ByteArrayOutputStream err = new ByteArrayOutputStream();
     private final String FIRST_MSG = "Print integer value between 0 and 10 to change color of traffic light or 'exit' to close the program\n";
@@ -25,8 +27,6 @@ public class StarterTest {
     private final String ERROR_INT_VALUE_MSG = "Wrong Input!An integer value between 0 and 10 is required!\n";
     private final String ERROR_STRING_VALUE_MSG = "Wrong Input!For input string: ";
     private final String EXIT = "exit\n";
-    @Rule
-    public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
     @Test
     public void startExit() {
@@ -34,7 +34,7 @@ public class StarterTest {
         new Starter().start();
         String actualOut = systemOutRule.getLog();
         String expectedOut = FIRST_MSG + EXIT_MSG;
-        assertEquals(actualOut, expectedOut);
+        assertEquals(expectedOut, actualOut);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class StarterTest {
         new Starter().start();
         String actualOut = systemOutRule.getLog();
         String expectedOut = FIRST_MSG + COLOR_CHANGE_MSG + "RED\n" + COLOR_CHANGE_MSG + "YELLOW\n" + EXIT_MSG;
-        assertEquals(actualOut, expectedOut);
+        assertEquals(expectedOut, actualOut);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class StarterTest {
         assertEquals(actualOut, expectedOut);
         String actualErrorOut = systemErrRule.getLog();
         String expectedErrorOut = ERROR_INT_VALUE_MSG;
-        assertEquals(actualErrorOut, expectedErrorOut);
+        assertEquals(expectedErrorOut, actualErrorOut);
     }
 
     @Test
@@ -72,6 +72,6 @@ public class StarterTest {
         assertEquals(actualOut, expectedOut);
         String actualErrorOut = systemErrRule.getLog();
         String expectedErrorOut = ERROR_STRING_VALUE_MSG + "\"" + errorString + "\"" + "\n";
-        assertEquals(actualErrorOut, expectedErrorOut);
+        assertEquals(expectedErrorOut, actualErrorOut);
     }
 }
