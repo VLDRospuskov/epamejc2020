@@ -6,14 +6,14 @@ import org.junit.Test;
 public class PyramidTest {
     private Pyramid pyramid = new Pyramid();
 
-    @Test (expected = CannotBuildPyramidException.class)
+    @Test(expected = CannotBuildPyramidException.class)
     public void buildPyramidBase0() {
         int base = 0;
 
         pyramid.buildPyramid(base);
     }
 
-    @Test (expected = CannotBuildPyramidException.class)
+    @Test(expected = CannotBuildPyramidException.class)
     public void buildPyramidBaseNegative() {
         int base = -15;
 

@@ -3,7 +3,6 @@ package homeworks.java.annotations;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 
 @Data
