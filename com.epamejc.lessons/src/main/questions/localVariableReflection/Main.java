@@ -1,6 +1,4 @@
-package questions;
-
-import java.lang.annotation.*;
+package questions.localVariableReflection;
 
 public class Main {
 

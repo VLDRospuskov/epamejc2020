@@ -1,8 +1,8 @@
-package questions;
+package questions.question1;
 
 public class Question1 {
 
-    public String method (int i, Object o) {
+    public String method(int i, Object o) {
         return methodPrivate("something", i, o);
     }
 

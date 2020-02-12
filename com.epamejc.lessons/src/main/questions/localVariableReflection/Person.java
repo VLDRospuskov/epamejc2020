@@ -1,4 +1,4 @@
-package questions;
+package questions.localVariableReflection;
 
 import lombok.Data;
 
