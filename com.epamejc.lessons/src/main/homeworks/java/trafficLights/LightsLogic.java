@@ -5,26 +5,25 @@ import java.math.RoundingMode;
 
 public class LightsLogic {
 
-    private Lights state;
+    private final String REGEX = "^\\d*\\.*\\d{0,2}$";
 
     public Lights parseInputString(String input) {
-
-        if (input.equalsIgnoreCase("exit")) {
+        String exit = "exit";
+        if (input.equalsIgnoreCase(exit)) {
             return Lights.EXIT;
-        } else if (input.length() == 0 || !input.matches("^\\d*\\.*\\d{0,2}$")) {
-            return Lights.WRONG_INPUT;
-        }
+        } else if (input.length() == 0 || !input.matches(REGEX)) {
+                return Lights.WRONG_INPUT;
+            }
 
         double number = Double.parseDouble(input);
         number = new BigDecimal(number).setScale(3, RoundingMode.DOWN).doubleValue();
-        inputCheck(number);
 
-        return state;
+        return inputCheck(number);
     }
 
-    private void inputCheck(double num) {
+    private Lights inputCheck(double num) {
         num %= 10;
-
+        Lights state;
         if (num - (int) num >= 0.599) {
             state = Lights.WRONG_INPUT;
         } else if (num >= 0 && num < 3) {
@@ -36,5 +35,6 @@ public class LightsLogic {
         } else {
             state = Lights.WRONG_INPUT;
         }
+        return state;
     }
 }

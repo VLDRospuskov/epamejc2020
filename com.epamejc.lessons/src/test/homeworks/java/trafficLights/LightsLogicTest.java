@@ -10,17 +10,18 @@ public class LightsLogicTest {
     private LightsLogic lightsLogic = new LightsLogic();
 
     @Test
-    public void inputCheckTestGreen() {
+    public void testInputCheckGreen() {
         input = new String[]{"0", "2", "2.59"};
 
-        expected = new Lights[]{Lights.GREEN, Lights.GREEN, Lights.GREEN};
+//        expected = new Lights[]{Lights.GREEN, Lights.GREEN, Lights.GREEN};
         Lights[] actual = new Lights[expected.length];
 
         for (int i = 0; i < input.length; i++) {
-            actual[i] = lightsLogic.parseInputString(input[i]);
+//            actual[i] = lightsLogic.parseInputString(input[i]);
+        Assert.assertEquals(Lights.GREEN, actual[i]);
         }
 
-        Assert.assertArrayEquals(expected, actual);
+//        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test

@@ -1,7 +1,9 @@
 package homeworks.java.immutableClass;
 
 public class Main {
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws IllegalArgumentException {
         Immutable pi = new Immutable(3.14, "pi");
 
         double piValue = pi.getConstant();
@@ -10,7 +12,7 @@ public class Main {
         //pi.constant = 3.66; also illegal
         System.out.println(pi);
 
-        class NotImmutable1 extends homeworks.java.immutableClass.NotImmutable {
+        class NotImmutable1 extends NotImmutable {
             NotImmutable1(double constant, String constantName) {
                 super(constant, constantName);
             }
