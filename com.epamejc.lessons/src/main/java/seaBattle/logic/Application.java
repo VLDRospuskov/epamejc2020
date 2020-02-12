@@ -1,6 +1,7 @@
 package seaBattle.logic;
 
 import seaBattle.data.Cell;
+import seaBattle.data.CellStatus;
 import seaBattle.data.Ship;
 
 import java.util.ArrayList;
@@ -24,14 +25,18 @@ public class Application {
     private List<Ship> playerShips = new ArrayList<>();
     private List<Ship> botShips = new ArrayList<>();
 
+    public Application(){
+        //прочитать конфиг?
+    }
+
     public void run() {
         System.out.println("Welcome to seabattle game ver 0.1\n");
         generateField(playerField);
         generateField(botField);
         generateShips(playerShips);
         generateShips(botShips);
-        System.out.println("Player field\n");
-        printField(playerField);
+        FieldPrinter fieldPrinter = new FieldPrinter(fieldSize);
+        fieldPrinter.printField(playerField,botField);
         setShips(playerShips);
     }
 
@@ -39,46 +44,14 @@ public class Application {
 
         int cellIndex = 0;
         for (int i = 1; i <= fieldSize; i++) {
-            for (int j = 0; j < fieldSize; j++) {
-                char yCoord = (char)(65 + j);
-                cellsList.add(new Cell(cellIndex, i, yCoord, "hidden"));
+            for (int j = 1; j <= fieldSize; j++) { ;
+                cellsList.add(new Cell(cellIndex, i, j, CellStatus.HIDDEN.getStatus()));
                 cellIndex++;
             }
         }
     }
 
-    private void printField(List<Cell> field){
-        for (int i = 0; i < fieldSize; i++){
-            if (i == 0){
-                System.out.print("  ");
-            }
-            System.out.print("  " + (char)(65 + i));
-        }
-        System.out.println();
 
-        int cellIndex = 0;
-        for (int i = 1; i <= fieldSize; i++){
-            if (i == 10){
-                System.out.print(i + " ");
-            } else {
-                System.out.print(i + "  ");
-            }
-
-            for (int j = 1; j <= fieldSize; j++){
-                Cell c = field.get(cellIndex);
-                if (c.getCellStatus() == "hidden"){
-                    System.out.print(" . ");
-                } else if (c.getCellStatus() == "hit") {
-                    System.out.print("X");
-                } else {
-                    System.out.print("O");
-                }
-            }
-            System.out.print("   " + i + "  ");
-            System.out.print(" .  .  .  . ");
-            System.out.println();
-        }
-    }
 
     public void generateShips(List<Ship> ships){
         for (int i = 0; i < lincorNumber; i++){

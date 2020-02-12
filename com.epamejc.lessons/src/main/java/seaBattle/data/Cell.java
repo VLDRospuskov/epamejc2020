@@ -4,11 +4,11 @@ public class Cell {
 
     private int cellIndex;
     private int xCoord;
-    private char yCoord;
+    private int yCoord;
     private String cellStatus;
     private boolean isOccupied;
 
-    public Cell(int cellIndex, int xCoord, char yCoord, String cellStatus) {
+    public Cell(int cellIndex, int xCoord, int yCoord, String cellStatus) {
         this.cellIndex = cellIndex;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
@@ -16,7 +16,7 @@ public class Cell {
         this.isOccupied = false;
     }
 
-    public char getyCoord() {
+    public int getyCoord() {
         return yCoord;
     }
 
