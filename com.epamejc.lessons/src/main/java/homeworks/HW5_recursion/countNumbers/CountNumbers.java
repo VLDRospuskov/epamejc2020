@@ -26,7 +26,7 @@ public class CountNumbers {
      * @param str input string
      * @return numbers quantity
      */
-    private static int countNumbers(String str) {
+    public static int countNumbers(String str) {
         if (str.length() == 0)
             return 0;
         if (Character.isDigit(str.charAt(0)))

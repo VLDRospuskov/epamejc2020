@@ -61,7 +61,7 @@ public class TrafficLight {
      * @return traffic light
      */
     public String defineTrafficLightSignal(int num) {
-        num = num % 600; //контур на 10 минут
+        num = num % 600; 
 
         if (num >= 0 && num <= 180) {
             return TrafficLightColors.GREEN.getMessage();

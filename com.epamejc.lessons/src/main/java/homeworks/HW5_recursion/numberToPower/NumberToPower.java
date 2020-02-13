@@ -63,7 +63,7 @@ public class NumberToPower {
      * @param power  power
      * @return calculated number
      */
-    private static long powerNumber(long number, long power) {
+    public static long powerNumber(long number, long power) {
         if (power == 1)
             return number;
         return number * powerNumber(number, power - 1);

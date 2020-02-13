@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 
 public @interface StudentAnnotation {
 
-    String name() default "SomeStudent";
-    int age() default 20;
+    String name();
+    int age();
 }

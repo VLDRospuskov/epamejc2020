@@ -1,6 +1,9 @@
 package homeworks.HW6_annotations;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.lang.reflect.Constructor;
 
@@ -25,5 +28,10 @@ public class Student {
         } catch (Exception ex) {
             System.out.println("Something went wrong");
         }
+    }
+
+    public Student(int age, String name) {
+        this.age = age;
+        this.name = name;
     }
 }

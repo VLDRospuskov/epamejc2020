@@ -4,7 +4,7 @@ public final class ImmutablePlane {
     private final String manufacturer;
     private final String model;
     private final int productionYear;
-    private int planeId;
+    private final int planeId;
 
     public ImmutablePlane(String manufacturer, String model, int productionYear, int planeId) {
         this.manufacturer = manufacturer;

@@ -6,7 +6,6 @@ import seaBattle.data.Ship;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @version 0.1
@@ -15,10 +14,7 @@ import java.util.Random;
 public class Application {
 
     private int fieldSize = 10;
-    private int lincorNumber = 1;
-    private int cruiserNumber = 2;
-    private int destroyerNumber = 3;
-    private int tBoatNumber = 4;
+
 
     private List<Cell> playerField = new ArrayList<>();
     private List<Cell> botField = new ArrayList<>();
@@ -31,13 +27,17 @@ public class Application {
 
     public void run() {
         System.out.println("Welcome to seabattle game ver 0.1\n");
+        // 1. сгенерили поля
         generateField(playerField);
         generateField(botField);
-        generateShips(playerShips);
-        generateShips(botShips);
+        // 2. сгенерили список кораблей
+        ShipOperator shipOperator = new ShipOperator(1, 2 , 3, 4);
+        shipOperator.generateShips();
+        shipOperator.placeShipsAutomatically(playerField, botField);
+
         FieldPrinter fieldPrinter = new FieldPrinter(fieldSize);
         fieldPrinter.printField(playerField,botField);
-        setShips(playerShips);
+        //setShips(playerShips);
     }
 
     private void generateField (List<Cell> cellsList) {
@@ -51,37 +51,4 @@ public class Application {
         }
     }
 
-
-
-    public void generateShips(List<Ship> ships){
-        for (int i = 0; i < lincorNumber; i++){
-            ships.add(new Ship("lincor",4));
-        }
-        for (int j = 0; j < cruiserNumber; j++){
-            ships.add(new Ship("cruiser", 3));
-        }
-        for (int k = 0; k < destroyerNumber; k++){
-            ships.add(new Ship("destroyer",2));
-        }
-        for (int l = 0; l < tBoatNumber; l++){
-            ships.add(new Ship("tBoat",1));
-        }
-    }
-
-    //Пока для простоты тестим только расстановку одной лодки
-    public void setShips(List<Ship> ships){
-        //разместили корабль - далее вокруг него всем ячейкам выставляем флаг занята
-
-        generateRandomInt(fieldSize);
-    }
-
-    private void placeShip(Ship ship){
-        //размещаем корабль на координатах
-    }
-
-    public int generateRandomInt(int fieldSize){
-        Random rand = new Random();
-        int randomNum = rand.nextInt((fieldSize - 1) + 1) + 1;
-        return randomNum;
-    }
 }

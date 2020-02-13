@@ -24,7 +24,7 @@ public class FibonacciNumber {
      * @param n input number
      * @return Fibonacci number
      */
-    private static int fibonacciCalc(int n) {
+    public static int fibonacciCalc(int n) {
         if (n == 0) {
             return 0;
         } else if (n == 1) {

@@ -11,4 +11,8 @@ public class Ship {
         this.shipDecks = shipDecks;
         this.isDestroyed = false;
     }
+
+    public int getShipDecks() {
+        return shipDecks;
+    }
 }
