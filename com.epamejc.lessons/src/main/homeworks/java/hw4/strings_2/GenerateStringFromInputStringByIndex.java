@@ -16,7 +16,7 @@ public class GenerateStringFromInputStringByIndex {
         while (loop) {
             int index = scanIndex(str);
             if (index == -1) {
-                break;
+                loop = false;
             } else if (index < 0 || index > str.length() - 1) {
                 System.out.println("Wrong index!");
                 continue;

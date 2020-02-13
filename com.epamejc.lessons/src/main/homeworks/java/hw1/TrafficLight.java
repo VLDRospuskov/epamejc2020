@@ -5,49 +5,39 @@ import java.util.Scanner;
 class TrafficLight {
 
     final private String MESSAGE = "Enter number(enter \"-1\" to exit): ";
-    final private String ERR_MESSAGE = "Wrong enter! Please enter positive number!";
-    boolean isError = false;
-    Scanner sc;
+    final private String ERR_MESSAGE = "Wrong enter! Please enter positive number between 0 and " + Integer.MAX_VALUE + "!";
 
     public void run() {
         boolean loop = true;
 
-        try {
-            while (loop) {
-                sc = new Scanner(System.in);
-                int n = scan(sc);
-
-                if (isError) {
-                    isError = false;
-                    continue;
-                } else if (n == -1) {
-                    break;
-                }
-
-                System.out.println("Traffic signal: " + getColor(n));
+        while (loop) {
+            int minutes = checkMinutes(scanMinutes());
+            if (minutes == -1) {
+                break;
             }
-
-        } catch (Exception e){
-            System.out.println(ERR_MESSAGE);
-        } finally {
-            sc.close();
+            System.out.println("Traffic signal: " + getColor(minutes));
         }
 
     }
 
-    public int scan(Scanner sc) {
-        int n = 0;
-        String str = "";
+    public int scanMinutes() {
+        Scanner sc;
+        int minutes = 0;
+        boolean isError = true;
 
-        try {
-            System.out.print(MESSAGE);
-            str = sc.nextLine();
-            n = checkMinutes(Integer.parseInt(str));
-        } catch (Exception e) {
-            System.out.println(ERR_MESSAGE);
-            isError = true;
+        while (isError) {
+            sc = new Scanner(System.in);
+            try {
+                isError = false;
+                System.out.print(MESSAGE);
+                minutes = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println(ERR_MESSAGE);
+                isError = true;
+            }
         }
-        return n;
+
+        return minutes;
     }
 
     public int checkMinutes(int n) {
@@ -56,6 +46,7 @@ class TrafficLight {
                 n = n % 10;
             }
         }
+
         return n;
     }
 
@@ -67,6 +58,7 @@ class TrafficLight {
         } else if (n >= 6 && n <= 10) {
             return "Red";
         }
+
         return ERR_MESSAGE;
     }
 

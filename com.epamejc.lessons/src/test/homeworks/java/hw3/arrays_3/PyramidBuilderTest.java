@@ -3,19 +3,19 @@ package homeworks.java.hw3.arrays_3;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class PyramidGeneratorTest {
+public class PyramidBuilderTest {
 
-    private static PyramidGenerator generator;
+    private PyramidBuilder builder;
 
     @Before
     public void setup() {
-        generator = new PyramidGenerator();
+        builder = new PyramidBuilder();
     }
 
     @Test
     public void printPyramidTest() {
         int number = 3;
-        char[][] arr = generator.printPyramid(number);
+        char[][] arr = builder.buildPyramid(number);
         String expected0 = "XXX";
         String expected1 = "XX" + '\u0000';
         String expected2 = "X" + '\u0000' + '\u0000';
