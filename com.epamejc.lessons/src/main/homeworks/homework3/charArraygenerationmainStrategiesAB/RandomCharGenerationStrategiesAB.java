@@ -3,6 +3,7 @@ package main.homeworks.homework3.charArraygenerationmainStrategiesAB;
 import java.util.Scanner;
 
 public class RandomCharGenerationStrategiesAB {
+
     private char[][] array;
     private int n;
     private int m;
@@ -10,7 +11,6 @@ public class RandomCharGenerationStrategiesAB {
 
     public void run() {
         inputDimension();
-        createArray();
         fillArray();
         outputArray();
         inputStrategy();
@@ -36,8 +36,6 @@ public class RandomCharGenerationStrategiesAB {
         }
     }
 
-
-
     private void inputStrategy() {
         Scanner inString = new Scanner(System.in);
         String strategy = "";
@@ -54,20 +52,13 @@ public class RandomCharGenerationStrategiesAB {
             } catch (Exception e) {
                 System.out.println("You entered invalid value :(");
             }
+            inString.close();
         }
-        if (strategy.equals("A") || strategy.equals("a")) {
-            stringGenerationStrategyA();
-        }
-        if (strategy.equals("B") || strategy.equals("b")) {
-            stringGenerationStrategyB();
-        }
-    }
-
-    private void createArray() {
-        array = new char[n][m];
+        whichStrategy(strategy);
     }
 
     private void fillArray() {
+        array = new char[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 array[i][j] = (char) (Math.random() * 26 + 97);
@@ -75,12 +66,21 @@ public class RandomCharGenerationStrategiesAB {
         }
     }
 
-    public void outputArray() {
+    private void outputArray() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 System.out.print(array[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+
+    private void whichStrategy(String strategy) {
+        if (strategy.equals("A") || strategy.equals("a")) {
+            stringGenerationStrategyA();
+        }
+        if (strategy.equals("B") || strategy.equals("b")) {
+            stringGenerationStrategyB();
         }
     }
 
@@ -101,4 +101,5 @@ public class RandomCharGenerationStrategiesAB {
         }
         System.out.print(output);
     }
+
 }

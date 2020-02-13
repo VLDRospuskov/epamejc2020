@@ -3,24 +3,33 @@ package main.homeworks.homework3.pyramid;
 import java.util.Scanner;
 
 public class Pyramid {
+
     private int n;
 
     public void run() {
         System.out.print("Please, enter the pyramid height: ");
-        Scanner in = null;
-        try {
-            in = new Scanner(System.in);
-            n = in.nextInt();
-            if (n <= 0) {
-                throw new ArithmeticException();
-            }
-            generation();
-        } catch (Exception e) {
+        do {
+            n = inputInt();
+        } while (!isPositive());
+        generation();
+    }
+
+    private int inputInt() {
+        Scanner scanner = new Scanner(System.in);
+        while (!scanner.hasNextInt()) {
             System.out.println("Enter an integer value.");
-        } finally {
-            if (in != null) {
-                in.close();
-            }
+            scanner.next();
+        }
+        int value = scanner.nextInt();
+        return value;
+    }
+
+    private boolean isPositive() {
+        if (n > 0) {
+            return true;
+        } else {
+            System.out.println("Enter a positive number.");
+            return false;
         }
     }
 
@@ -34,5 +43,6 @@ public class Pyramid {
             System.out.println();
         }
     }
+
 }
 

@@ -1,16 +1,14 @@
 package main.homeworks.homework4.exchange;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class ExchangeElement {
+
     private String input;
     private int firstIndex;
     private int secondIndex;
-
 
     public void run() {
         inputString();
@@ -36,7 +34,8 @@ public class ExchangeElement {
             secondIndex = sc.nextInt();
             sc.close();
         } catch (Exception e) {
-            System.out.println("Error: " + e);
+            System.out.println("Enter numbers.");
+            inputIndexes();
         }
     }
 

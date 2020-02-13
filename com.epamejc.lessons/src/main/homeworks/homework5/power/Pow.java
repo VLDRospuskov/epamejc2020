@@ -3,14 +3,26 @@ package main.homeworks.homework5.power;
 import java.util.Scanner;
 
 public class Pow {
+
+    int number;
+    int power;
+
     public void run() {
         System.out.print("Enter number: ");
-        Scanner scanner = new Scanner(System.in);
-        int number = scanner.nextInt();
+        number = input();
         System.out.print("Enter power: ");
-        int power = scanner.nextInt();
+        power = input();
         System.out.print(number + " in "+ power + " : " + powerInt(number,power));
-        scanner.close();
+    }
+
+    private int input() {
+        Scanner scanner = new Scanner(System.in);
+        while (!scanner.hasNextInt()) {
+            System.out.println("Enter integer.");
+            scanner.next();
+        }
+        int value = scanner.nextInt();
+        return value;
     }
 
     private int powerInt(int number, int power) {
@@ -20,4 +32,5 @@ public class Pow {
             return number;
         return number*powerInt(number,power-1);
     }
+
 }

@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class StringIndexGeneration {
+
     private String input;
 
     public void run() {
@@ -38,4 +39,5 @@ public class StringIndexGeneration {
         };
         scanner.close();
     }
+
 }

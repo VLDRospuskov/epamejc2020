@@ -1,7 +1,9 @@
 package main.homeworks.homework2;
+
 import java.util.Date;
 
 public final class ImmutableClass {
+
     private final String name;
     private final int age;
     private final Date dateOfBirth;
@@ -23,10 +25,11 @@ public final class ImmutableClass {
     }
 
     public Date getDateOfBirth() {
-        return (Date)dateOfBirth.clone();
+        return (Date) dateOfBirth.clone();
     }
 
     public double getHeight() {
         return height;
     }
+
 }

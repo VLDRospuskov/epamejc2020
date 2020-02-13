@@ -1,12 +1,13 @@
 package main.homeworks.homework4.evenOddString;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class EvenOddString {
+
     private String input;
     private String parity = "";
+
     public void run() {
         inputString();
         oddOrEven();
@@ -52,4 +53,5 @@ public class EvenOddString {
         }
         System.out.print(output);
     }
+
 }

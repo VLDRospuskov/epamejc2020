@@ -3,13 +3,13 @@ package main.homeworks.homework3.charArraygenerationmain;
 import java.util.Scanner;
 
 public class RandomLetterGeneration {
+
     private char[][] array;
     private int n;
     private int m;
 
     public void run() {
         inputDimension();
-        createArray();
         fillArray();
         outputArray();
     }
@@ -35,11 +35,8 @@ public class RandomLetterGeneration {
         }
     }
 
-    private void createArray() {
-        array = new char[n][m];
-    }
-
     private void fillArray() {
+        array = new char[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 array[i][j] = (char) (Math.random() * 26 + 97);
@@ -47,7 +44,7 @@ public class RandomLetterGeneration {
         }
     }
 
-    public void outputArray() {
+    private void outputArray() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 System.out.print(array[i][j] + " ");
@@ -55,4 +52,5 @@ public class RandomLetterGeneration {
             System.out.println();
         }
     }
+
 }

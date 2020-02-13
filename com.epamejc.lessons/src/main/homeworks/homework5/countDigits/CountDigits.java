@@ -3,12 +3,23 @@ package main.homeworks.homework5.countDigits;
 import java.util.Scanner;
 
 public class CountDigits {
+
     private int number;
+
     public void run() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter number: ");
-        number = scanner.nextInt();
+        input();
         System.out.println(count(number));
+    }
+
+    private void input() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            number = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Enter integer.");
+            input();
+        }
         scanner.close();
     }
 
@@ -18,4 +29,5 @@ public class CountDigits {
         }
         return 1 + count(n/10) ;
     }
+
 }
