@@ -19,13 +19,21 @@ public class T21TwoDimensional {
         int a = scanner.nextInt();
         int b = scanner.nextInt();
 
+        scanner.close();
+
+        System.out.println(print2dArray(a, b));
+    }
+
+    public String print2dArray(int a, int b) {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < b; j++) {
                 System.out.print((char) getRandomInt() + " ");
+                sb.append((char) getRandomInt() + " ");
             }
-            System.out.println(" ");
+            sb.append(System.getProperty("line.separator"));
         }
-
+        return sb.toString();
     }
 
     private int getRandomInt() {

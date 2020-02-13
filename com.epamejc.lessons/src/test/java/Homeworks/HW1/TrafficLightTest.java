@@ -19,14 +19,14 @@ public class TrafficLightTest {
     private ByteArrayInputStream testIn;
     private ByteArrayOutputStream testOut;
 
-    TrafficLight tl;
+    Homeworks.HW1.TrafficLight tl;
 
     @Before
     public void setupOutput() {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
 
-        tl = new TrafficLight();
+        tl = new Homeworks.HW1.TrafficLight();
     }
 
     private void provideInput(String data) {
