@@ -13,7 +13,7 @@ public class T21TwoDimensionalTest {
         int a = 2;
         int b = 2;
         T21TwoDimensional t21 = new T21TwoDimensional();
-        String result = t21.print2dArray(2, 2);
+        String result = t21.twoDArray(2, 2);
         int expected = a * b;
         Scanner scanner = new Scanner(result);
         int actual = 0;

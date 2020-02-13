@@ -36,24 +36,26 @@ public class T22TwoDimensionalWithString {
             return;
         }
 
-        String out = "";
+        System.out.println(strategy(a, b, sA, sB));
+    }
 
+    public String strategy(int a, int b, boolean sA, boolean sB) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder strat = new StringBuilder();
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < b; j++) {
                 char c = (char) getRandomInt();
                 if (sA && (i%2==0) && (j%2==0)) {
-                    out = out + c;
+                    strat.append(c);
                 }
                 if (sB && (i%2!=0) && (j%2!=0)) {
-                    out = out + c;
+                    strat.append(c);
                 }
-                System.out.print(c + " ");
+                sb.append(c + " ");
             }
-            System.out.println(" ");
+            sb.append(System.getProperty("line.separator"));
         }
-        System.out.println(" ");
-        System.out.println(out);
-
+        return sb.toString() + strat.toString();
     }
 
     private int getRandomInt() {

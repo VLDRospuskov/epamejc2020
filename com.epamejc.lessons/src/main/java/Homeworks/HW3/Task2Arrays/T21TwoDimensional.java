@@ -21,14 +21,13 @@ public class T21TwoDimensional {
 
         scanner.close();
 
-        System.out.println(print2dArray(a, b));
+        System.out.println(twoDArray(a, b));
     }
 
-    public String print2dArray(int a, int b) {
+    public String twoDArray(int a, int b) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < b; j++) {
-                System.out.print((char) getRandomInt() + " ");
                 sb.append((char) getRandomInt() + " ");
             }
             sb.append(System.getProperty("line.separator"));
