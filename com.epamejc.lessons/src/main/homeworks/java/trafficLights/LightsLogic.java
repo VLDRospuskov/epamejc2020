@@ -14,6 +14,8 @@ import java.math.RoundingMode;
  * - the fractional part may be present or absent <br>
  * - if the fractional part represented, it must be 1 or 2 digits long
  * </p>
+ *
+ * @author Vladimir Ivanov
  */
 public class LightsLogic {
 

@@ -4,6 +4,8 @@ import java.io.*;
 
 /**
  * Reads console user input and returns it as {@code String}
+ *
+ * @author Vladimir Ivanov
  */
 public class UserInputReader {
 

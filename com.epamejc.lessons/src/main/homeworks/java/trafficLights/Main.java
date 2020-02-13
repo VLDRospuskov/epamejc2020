@@ -8,6 +8,8 @@ package homeworks.java.trafficLights;
  * <br>
  * For input {@code [0, 3)} output is "Green",
  * {@code [3, 5)} - "Yellow", {@code [5-10)} - "Red".
+ *
+ * @author Vladimir Ivanov
  */
 public class Main {
 

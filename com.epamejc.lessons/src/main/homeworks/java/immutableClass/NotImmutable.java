@@ -10,7 +10,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 public class NotImmutable {
+
     protected double constant;
     protected String constantName;
+
 }
 

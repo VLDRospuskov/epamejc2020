@@ -1,7 +1,13 @@
 package homeworks.java.recursion;
 
-import static homeworks.java.recursion.RecursionFunctions.*;
+import static homeworks.java.recursion.RecursiveFunctions.*;
 
+/**
+ * Program created to test recursion in 3 typical cases: printing fibonacci sequence of some length,
+ * calculating power of number and counting number of digits in integer.
+ *
+ * @author Vladimir Ivanov
+ */
 public class Main {
     public static void main(String[] args) {
 

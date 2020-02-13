@@ -4,6 +4,8 @@ import java.io.*;
 
 /**
  * The {@code Engine class} represents the main loop of the program.
+ *
+ * @author Vladimir Ivanov
  */
 public class Engine {
 
