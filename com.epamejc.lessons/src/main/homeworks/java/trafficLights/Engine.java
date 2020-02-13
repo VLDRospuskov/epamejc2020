@@ -2,14 +2,24 @@ package homeworks.java.trafficLights;
 
 import java.io.*;
 
-class Engine {
+/**
+ * The {@code Engine class} represents the main loop of the program.
+ */
+public class Engine {
 
-    private final String string = "\"Type time in following format: \\\"m.s or m\\\", \\nthere m - minutes from 0 to n, \" +\n" +
+    /**
+     * The value, storing a general greeting message which explains how to use the program
+     */
+    private final String greetingsMessage = "\"Type time in following format: \\\"m.s or m\\\", \\nthere m - minutes from 0 to n, \" +\n" +
             "                    \"and s - seconds from 0 to 59 \\nor word \\\"exit\\\" to quit the program\"";
 
+    /**
+     * Runs the program.
+     */
     public void run() {
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println(string);
+            System.out.println(greetingsMessage);
             int exit;
             do {
                 String input = new UserInputReader().readInput(reader);
@@ -20,9 +30,19 @@ class Engine {
             System.err.println("Something gone wrong with InputStream");
             e.printStackTrace();
         }
+
     }
 
+    /**
+     * Prints the state of traffic lights on the screen and returns integer indicator {@code 1}
+     * if state equals {@link homeworks.java.trafficLights.Lights#EXIT}, or {@code 0} otherwise
+     *
+     * @param state The actual state of the traffic light {@code Lights} to be printed on the screen
+     *              including the "wrong input" message.
+     * @return integer value {@code 0} or {@code 1}.
+     */
     private int switchOutput(Lights state) {
+
         int indicator = 0;
 
         switch (state) {
@@ -43,8 +63,11 @@ class Engine {
                 indicator = 1;
                 break;
         }
+
         return indicator;
+
     }
+
 }
 
 
