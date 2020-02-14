@@ -29,14 +29,26 @@ public class StringIndexGeneration {
         System.out.print("Enter index('-1' - the end): ");
         Scanner scanner = new Scanner(System.in);
         int index;
-        while (true){
-            index = scanner.nextInt();
-            if (index == -1) {
-                break;
+        while (true) {
+            try {
+                if (scanner.hasNextInt()) {
+                    index = scanner.nextInt();
+                } else {
+                    scanner.next();
+                    throw new Exception();
+                }
+                if (index == -1) {
+                    break;
+                }
+                if (index >= input.length() || index < 0) {
+                    throw new ArithmeticException();
+                }
+                newString += input.charAt(index);
+                System.out.println(newString);
+            } catch (Exception e) {
+                System.out.println("Enter index from 0 to " + (input.length()-1));
             }
-            newString += input.charAt(index);
-            System.out.println(newString);
-        };
+        }
         scanner.close();
     }
 

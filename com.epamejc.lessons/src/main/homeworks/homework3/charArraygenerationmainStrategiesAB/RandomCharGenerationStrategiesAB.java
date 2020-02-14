@@ -37,23 +37,23 @@ public class RandomCharGenerationStrategiesAB {
     }
 
     private void inputStrategy() {
-        Scanner inString = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         String strategy = "";
         boolean valueOk = false;
         System.out.print("Please, enter the strategy A or B: ");
         while (!valueOk) {
             try {
-                strategy = inString.next();
+                strategy = sc.next();
                 if (!strategy.equals("A") && !strategy.equals("B") && !strategy.equals("a") && !strategy.equals("b")) {
                     throw new Exception();
                 }
                 valueOk = true;
-                inString.close();
+                sc.close();
             } catch (Exception e) {
                 System.out.println("You entered invalid value :(");
             }
-            inString.close();
         }
+        sc.close();
         whichStrategy(strategy);
     }
 

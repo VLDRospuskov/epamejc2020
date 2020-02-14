@@ -7,30 +7,24 @@ public class Pyramid {
     private int n;
 
     public void run() {
+        Scanner in = new Scanner(System.in);
+        String input;
+        boolean valueOk = false;
         System.out.print("Please, enter the pyramid height: ");
-        do {
-            n = inputInt();
-        } while (!isPositive());
-        generation();
-    }
-
-    private int inputInt() {
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.hasNextInt()) {
-            System.out.println("Enter an integer value.");
-            scanner.next();
+        while (!valueOk) {
+            try {
+                input = in.nextLine();
+                n = Integer.parseInt(input);
+                if (n < 0 || n > 100) {
+                    throw new ArithmeticException();
+                }
+                valueOk = true;
+                generation();
+            } catch (Exception e) {
+                System.out.println("Enter a positive number less than 100!");
+            }
         }
-        int value = scanner.nextInt();
-        return value;
-    }
-
-    private boolean isPositive() {
-        if (n > 0) {
-            return true;
-        } else {
-            System.out.println("Enter a positive number.");
-            return false;
-        }
+        in.close();
     }
 
     private void generation() {

@@ -40,7 +40,6 @@ public class ExchangeElement {
     }
 
     private void exchange() {
-        String newString = "";
         char ch1;
         char ch2;
         ch1= input.charAt(firstIndex);
@@ -53,7 +52,7 @@ public class ExchangeElement {
         if (secondIndex != input.length()-1 ) {
             back = input.substring(secondIndex + 1);
         }
-        newString = front  + ch2 + input.substring(firstIndex + 1, secondIndex) + ch1 + back;
+        String newString = front  + ch2 + input.substring(firstIndex + 1, secondIndex) + ch1 + back;
         System.out.println(newString);
     }
 

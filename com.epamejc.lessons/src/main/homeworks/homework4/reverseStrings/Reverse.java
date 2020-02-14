@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Reverse {
-    private String input;
 
+    private String input;
 
     public void run() {
         inputString();
@@ -47,4 +47,5 @@ public class Reverse {
         }
         return result;
     }
+
 }

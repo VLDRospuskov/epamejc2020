@@ -1,6 +1,7 @@
 package main.homeworks.homework4.evenOddString;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class EvenOddString {
@@ -10,16 +11,6 @@ public class EvenOddString {
 
     public void run() {
         inputString();
-        oddOrEven();
-    }
-
-    private void oddOrEven() {
-        if (parity.equals("even") || parity.equals("Even")) {
-            evenChars();
-        };
-        if (parity.equals("odd") || parity.equals("Odd")) {
-            oddChars();
-        };
     }
 
     private void inputString() {
@@ -28,10 +19,35 @@ public class EvenOddString {
             System.out.print("Enter string: ");
             input = br.readLine();
             System.out.println("Even or odd? ");
-            parity = br.readLine();
+            do {
+                parity = br.readLine();
+            } while (!oddOrEven());
         } catch (Exception e) {
             System.out.println("Exception: " + e);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    private boolean oddOrEven() {
+        if (parity.equals("even") || parity.equals("Even")) {
+            evenChars();
+            return true;
+        }
+        if (parity.equals("odd") || parity.equals("Odd")) {
+            oddChars();
+            return true;
+        }
+        try {
+            throw new IOException();
+        } catch (IOException e) {
+            System.out.println("Enter even or odd.");
+        }
+        return false;
     }
 
     private void oddChars() {
