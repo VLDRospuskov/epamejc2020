@@ -2,8 +2,6 @@ package homeworks.java.trafficLights;
 
 import homeworks.java.utils.UserInputReader;
 
-import static homeworks.java.utils.UserInputReader.*;
-
 /**
  * The {@code Engine class} represents the main loop of the program.
  *
@@ -12,7 +10,7 @@ import static homeworks.java.utils.UserInputReader.*;
 public class Engine {
 
     /**
-     * The value, storing a general greeting message which explains how to use the program
+     * The value storing a general greeting message which explains how to use the program
      */
     private final String greetingsMessage = "\"Type time in following format: \\\"m.s or m\\\", \\nthere m - minutes from 0 to n, \" +\n" +
             "                    \"and s - seconds from 0 to 59 \\nor word \\\"exit\\\" to quit the program\"";
@@ -23,28 +21,28 @@ public class Engine {
     public void run() {
 
         System.out.println(greetingsMessage);
-        int exit;
+        boolean isDone;
         do {
             String input = UserInputReader.readInput();
             Lights lightsState = new LightsLogic().parseInputString(input);
-            exit = switchOutput(lightsState);
-        } while (exit != -1);
+            isDone = switchOutput(lightsState);
+        } while (!isDone);
 
         UserInputReader.close();
 
     }
 
     /**
-     * Prints the state of traffic lights on the screen and returns integer indicator {@code 1}
-     * if state equals {@link homeworks.java.trafficLights.Lights#EXIT}, or {@code 0} otherwise
+     * Prints the state of traffic lights on the screen and returns boolean indicator {@code true}
+     * if state equals {@link homeworks.java.trafficLights.Lights#EXIT}, or {@code false} otherwise
      *
      * @param state The actual state of the traffic light {@code Lights} to be printed on the screen
      *              including the "wrong input" message.
-     * @return integer value {@code 0} or {@code 1}.
+     * @return boolean indicator {@code true} if program needs to be closed or {@code false} otherwise
      */
-    private int switchOutput(Lights state) {
+    private boolean switchOutput(Lights state) {
 
-        int indicator = 0;
+        boolean isDone = false;
 
         switch (state) {
             case GREEN:
@@ -61,11 +59,11 @@ public class Engine {
                 break;
             case EXIT:
                 System.out.println("Bye");
-                indicator = -1;
+                isDone = true;
                 break;
         }
 
-        return indicator;
+        return isDone;
 
     }
 

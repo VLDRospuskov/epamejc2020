@@ -1,57 +1,85 @@
 package homeworks.java.arrays;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.Arrays;
+import lombok.*;
 
+/**
+ * The {@code RandomCharArray class} represents a random generated two dimensional {@code char} array.
+ *
+ * @author Vladimir Ivanov
+ */
+@NoArgsConstructor
+@EqualsAndHashCode
 public class RandomCharArray {
 
+    /**
+     * stores REGEX to parse dimensions input
+     */
+    private String REGEX = "^\\d+ \\d+$";
+    /**
+     * stores dimensions of the array
+     */
     private int row, col;
-    private char[][] arr;
+    /**
+     * stores the array
+     */
+    private char[][] arr = new char[][]{};
 
-    public void generateArr() {
-        int indicator;
+    public char[][] getArr() {
 
-        System.out.println("Введите размерность массива массиов:\n");
-        System.out.println("Пример: 14 2\n");
-        if (row == 0 && col == 0) {
-            do {
-                indicator = readInput();
-            } while (indicator != 0 && indicator != 2);
+        return arr;
 
-            if (indicator == 2) {
-                System.out.print("Error occurred, sorry. Contact developer\n");
-            }
+    }
+
+    /**
+     * Generates an array in case of correct input
+     *
+     * @param input {@code String} input
+     * @return {@code true} if array was successfully created and {@code false} otherwise
+     */
+    public boolean generateArr(String input) {
+
+        boolean arrayCreated = false;
+
+        if (setDimentions(input)) {
+            fillArray();
+            arrayCreated = true;
         }
-        fillArray();
-        System.out.print("Array created!\n");
+        return arrayCreated;
+
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RandomCharArray that = (RandomCharArray) o;
-        return Arrays.equals(arr, that.arr);
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(arr);
-    }
-
+    /**
+     * Prints an array to console
+     */
     public void print() {
-        System.out.print("Массив " + row + " на " + col + ": \n");
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                System.out.print(arr[i][j] + " ");
+
+        if (arr.length != 0) {
+            System.out.print("Array " + row + " x " + col + ": \n");
+            for (char[] chars : arr) {
+                for (char character : chars) {
+                    System.out.print(character + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
+        } else {
+            System.out.println("Array is empty!");
         }
+
     }
 
+    /**
+     * Prints a new {@code String} based on {@link homeworks.java.arrays.Strategy}
+     * If the strategy is {@link homeworks.java.arrays.Strategy#A} outputs {@code String}
+     * build of {@code chars} of every even row and col of the array and
+     * if the strategy is {@link homeworks.java.arrays.Strategy#B} outputs {@code String}
+     * build of {@code chars} of every odd row and col of the array.
+     *
+     * @param strategy Output strategy.
+     */
     public void print(Strategy strategy) {
-        if (strategy == Strategy.A) {
+        if (arr.length == 0) {
+            System.out.println("Array is empty!");
+        } else if (strategy == Strategy.A) {
             for (int i = 0; i < arr.length; i += 2) {
                 for (int j = 0; j < arr[i].length; j += 2) {
                     System.out.print(arr[i][j]);
@@ -66,61 +94,40 @@ public class RandomCharArray {
             }
             System.out.println();
         }
+
     }
 
-    public char[][] getArr() {
-        return arr;
-    }
+    /**
+     * Sets the row and col values.
+     *
+     * @param input {@code String} user input
+     * @return {@code true} if values set successfully and {@code false} otherwise
+     */
+    private boolean setDimentions(String input) {
 
-    public RandomCharArray() {
-        super();
-    }
-
-    public RandomCharArray(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
-
-    private int readInput() {
-        String line;
-        try {
-            line = reader.readLine();
-            parseInput(line);
-        } catch (WrongInputException ex) {
-            System.out.print("Неверный ввод, повторите еще раз.\n");
-            return 1;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return 2;
-        } catch (Exception exc) {
-            exc.printStackTrace();
+        boolean dimensionsSet = false;
+        if (input.length() != 0 && input.matches(REGEX)) {
+            String[] dimensions = input.split(" ");
+            row = Integer.valueOf(dimensions[0]);
+            col = Integer.valueOf(dimensions[1]);
+            dimensionsSet = true;
         }
-        return 0;
+        return dimensionsSet;
+
     }
 
-    private void parseInput(String str) throws WrongInputException {
-        String[] temp = ((str.replaceAll("\\D+", " ").trim()).split(" "));
-        int[] result = new int[temp.length];
-
-        if (temp.length != 2) {
-            throw new WrongInputException("Wrong input");
-        }
-        for (int i = 0; i < temp.length; i++) {
-            result[i] = Integer.valueOf(temp[i]);
-        }
-
-        row = result[0];
-        col = result[1];
-    }
-
+    /**
+     * Fills the array with random chars.
+     */
     private void fillArray() {
+
         arr = new char[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 arr[i][j] = (char) (Math.random() * 26 + 97);
             }
         }
-    }
 
+    }
 
 }
