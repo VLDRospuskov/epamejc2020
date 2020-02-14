@@ -2,15 +2,15 @@
 
 ```
 Homeworks:
-1. Traffic Light
+HW1. Traffic Light
 Develop a program that prints a traffic light depends on time.
 0-3 minutes: green
 4-5 minutes: yellow
 6-10 minutes: red
 
-2. Create immutable class
+HW2. Create immutable class
 
-3. Holiday works:
+HW3. Holiday works:
 1. Working with immutable class. Create a few objects and experiment with them.
 
 2. Arrays:
@@ -92,4 +92,13 @@ Output: 64
 Example:
 Input: 567
 Ouptut: 3
+
+HW4. Annotations
+Create custom annotation with name and age (name="name" age="30"). Use this annotation with constructor.
+Goal: When creating object with empty constructor get data from annotation and use in initialization.
+Use Lombok.
+
+HW5: Cover your code with tests.
+
+HW6: Create Battleships (or Sea Battle) game. Play PVP or PVE.
 ```
