@@ -1,4 +1,4 @@
-package Lessons.lesson2;
+package Homeworks.HW2;
 
 public class ImmutableBuilderTest {
     public static void main(String[] args) {
