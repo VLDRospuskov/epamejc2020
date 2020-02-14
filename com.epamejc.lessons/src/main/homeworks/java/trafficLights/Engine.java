@@ -1,6 +1,8 @@
 package homeworks.java.trafficLights;
 
-import java.io.*;
+import homeworks.java.utils.UserInputReader;
+
+import static homeworks.java.utils.UserInputReader.*;
 
 /**
  * The {@code Engine class} represents the main loop of the program.
@@ -20,18 +22,15 @@ public class Engine {
      */
     public void run() {
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println(greetingsMessage);
-            int exit;
-            do {
-                String input = new UserInputReader().readInput(reader);
-                Lights lightsState = new LightsLogic().parseInputString(input);
-                exit = switchOutput(lightsState);
-            } while (exit != 1);
-        } catch (IOException e) {
-            System.err.println("Something gone wrong with InputStream");
-            e.printStackTrace();
-        }
+        System.out.println(greetingsMessage);
+        int exit;
+        do {
+            String input = UserInputReader.readInput();
+            Lights lightsState = new LightsLogic().parseInputString(input);
+            exit = switchOutput(lightsState);
+        } while (exit != -1);
+
+        UserInputReader.close();
 
     }
 
@@ -62,7 +61,7 @@ public class Engine {
                 break;
             case EXIT:
                 System.out.println("Bye");
-                indicator = 1;
+                indicator = -1;
                 break;
         }
 

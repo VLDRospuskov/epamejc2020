@@ -9,14 +9,14 @@ public class RandomCharArray {
     private int row, col;
     private char[][] arr;
 
-    public void generateArr(BufferedReader reader) {
+    public void generateArr() {
         int indicator;
 
         System.out.println("Введите размерность массива массиов:\n");
         System.out.println("Пример: 14 2\n");
         if (row == 0 && col == 0) {
             do {
-                indicator = readInput(reader);
+                indicator = readInput();
             } while (indicator != 0 && indicator != 2);
 
             if (indicator == 2) {
@@ -81,7 +81,7 @@ public class RandomCharArray {
         this.col = col;
     }
 
-    private int readInput(BufferedReader reader) {
+    private int readInput() {
         String line;
         try {
             line = reader.readLine();

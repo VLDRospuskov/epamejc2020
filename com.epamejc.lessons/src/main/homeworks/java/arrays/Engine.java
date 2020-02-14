@@ -1,52 +1,46 @@
 package homeworks.java.arrays;
 
-import java.io.*;
+import homeworks.java.utils.UserInputReader;
 
 public class Engine {
 
     public void run() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
-            RandomCharArray array = new RandomCharArray();
-            int choice;
-            System.out.println("Welcome to an Array test program!\n");
+        RandomCharArray array = new RandomCharArray();
+        int choice;
+        System.out.println("Welcome to an Array test program!\n");
 
-            do {
-                choice = menu(reader);
+        do {
+            choice = menu();
 
-                switch (choice) {
-                    case 1:
-                        array.generateArr(reader);
-                        break;
-                    case 2:
-                        array.print();
-                        break;
-                    case 3:
-                        array.print(Strategy.A);
-                        break;
-                    case 4:
-                        array.print(Strategy.B);
-                        break;
-                    case 5:
-                        break;
-                    default:
-                        System.out.print("Wrong input, try again!\n");
-                        break;
-                }
-            } while (choice != 5);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            switch (choice) {
+                case 1:
+                    array.generateArr();
+                    break;
+                case 2:
+                    array.print();
+                    break;
+                case 3:
+                    array.print(Strategy.A);
+                    break;
+                case 4:
+                    array.print(Strategy.B);
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.print("Wrong input, try again!\n");
+                    break;
+            }
+        } while (choice != 5);
 
     }
 
-    private int menu(BufferedReader reader) {
+    private int menu() {
 
         System.out.print("\n" +
                 "_________________________________________________\n" +
-                "|1. Array input                                 |\n" +
+                "|1. Generate an array                           |\n" +
                 "|2. Display an array                            |\n" +
                 "|3. Display every odd row and column as string  |\n" +
                 "|4. Display every even row and column as string |\n" +
