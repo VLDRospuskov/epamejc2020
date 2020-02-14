@@ -11,15 +11,15 @@
 | HW4       | Create a pyramid builder program | [Pyramid][HwPb] |
 | HW5       | Create a program, what: 1) generates a new string from the input using even\odd chars 2) generates a new string by index input 3) swaps two chars in entered positions 4) flips words in string | [Strings][HwSt] |
 | HW6       | Recursion. Create a program for: 1) finding a fibonacci sequence 2) finding a power of num 3) counting a num of digits in number | [Recursion][HwRe] |
+| HW7       | Annotations. Create your own annotation with String name and String age. Attach it to the clas then using reflection set fields of Person object with data from the annotation. Use Lombok. | [Annotation][HwAn] |
 
 
-
-[HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/trafficLights>
-[HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/immutableClass>
-[HwAr]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/arrays>
-[HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/pyramidBuilder>
-[HwSt]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/strings>
-[HwRe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/recursion>
-
+[HwTl]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/trafficLights>
+[HwIe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/immutableClass>
+[HwAr]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/arrays>
+[HwPb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/pyramidBuilder>
+[HwSt]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/strings>
+[HwRe]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/recursion>
+[HwAn]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/annotations>
 
 
