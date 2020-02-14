@@ -51,10 +51,10 @@ public class UserMenu {
                 array.print();
                 break;
             case 3:
-                array.print(Strategy.A);
+                System.out.println(array.makeStringWithStrategy(Strategy.A));
                 break;
             case 4:
-                array.print(Strategy.B);
+                System.out.println(array.makeStringWithStrategy(Strategy.B));
                 break;
             case 5:
                 closeProgram = true;

@@ -7,6 +7,7 @@ import lombok.*;
  *
  * @author Vladimir Ivanov
  */
+
 @NoArgsConstructor
 @EqualsAndHashCode
 public class RandomCharArray {
@@ -23,6 +24,12 @@ public class RandomCharArray {
      * stores the array
      */
     private char[][] arr = new char[][]{};
+
+    public RandomCharArray(char[][] arr) {
+        this.arr = arr;
+        this.row = arr.length;
+        this.col = arr[0].length;
+    }
 
     public char[][] getArr() {
 
@@ -70,30 +77,31 @@ public class RandomCharArray {
     /**
      * Prints a new {@code String} based on {@link homeworks.java.arrays.Strategy}
      * If the strategy is {@link homeworks.java.arrays.Strategy#A} outputs {@code String}
-     * build of {@code chars} of every even row and col of the array and
+     * build of {@code chars} of every odd row and col of the array and
      * if the strategy is {@link homeworks.java.arrays.Strategy#B} outputs {@code String}
-     * build of {@code chars} of every odd row and col of the array.
+     * build of {@code chars} of every even row and col of the array.
      *
      * @param strategy Output strategy.
      */
-    public void print(Strategy strategy) {
+    public String makeStringWithStrategy(Strategy strategy) {
+
+        StringBuilder stringBuilder = new StringBuilder();
         if (arr.length == 0) {
-            System.out.println("Array is empty!");
+            return "Array is empty!";
         } else if (strategy == Strategy.A) {
             for (int i = 0; i < arr.length; i += 2) {
                 for (int j = 0; j < arr[i].length; j += 2) {
-                    System.out.print(arr[i][j]);
+                    stringBuilder.append(arr[i][j]);
                 }
             }
-            System.out.println();
         } else if (strategy == Strategy.B) {
             for (int i = 1; i < arr.length; i += 2) {
                 for (int j = 1; j < arr[i].length; j += 2) {
-                    System.out.print(arr[i][j]);
+                    stringBuilder.append(arr[i][j]);
                 }
             }
-            System.out.println();
         }
+        return stringBuilder.toString();
 
     }
 

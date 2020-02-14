@@ -45,4 +45,38 @@ public class RandomCharArrayTest {
 
     }
 
+    @Test
+    public void testGenerateArrMakeStringWithStrategyA() {
+
+        char[][] array
+                = {{'a', 'b', 'c'},
+                {'d', 'e', 'f'},
+                {'g', 'h', 'i'},
+                {'j', 'k', 'l'}};
+        randomCharArray = new RandomCharArray(array);
+        String expected = "acgi";
+
+        String actual = randomCharArray.makeStringWithStrategy(Strategy.A);
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testGenerateArrMakeStringWithStrategyB() {
+
+        char[][] array
+                = {{'a', 'b', 'c'},
+                {'d', 'e', 'f'},
+                {'g', 'h', 'i'},
+                {'j', 'k', 'l'}};
+        randomCharArray = new RandomCharArray(array);
+        String expected = "ek";
+
+        String actual = randomCharArray.makeStringWithStrategy(Strategy.B);
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
 }
