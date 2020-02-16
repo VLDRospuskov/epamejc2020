@@ -2,6 +2,13 @@ package homework.homework2.matrix;
 
 public class CharMatrix {
 
+    public CharMatrix() {
+    }
+
+    public CharMatrix(char[][] charMatrix){
+        matrix = charMatrix;
+    }
+
     protected char[][] matrix;
 
     public void print() {
@@ -11,6 +18,10 @@ public class CharMatrix {
             }
             System.out.println();
         }
+    }
+
+    public char[][] getMatrix(){
+        return matrix;
     }
 
     public String toStringStrategyA() {

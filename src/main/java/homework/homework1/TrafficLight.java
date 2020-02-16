@@ -4,7 +4,23 @@ import java.util.Scanner;
 
 public class TrafficLight {
 
-    public static void main(String[] args) {
+    public String getColorForTime(Double time) {
+        if (time >= 0 && time <= 3) {
+            return "Green";
+        }
+        if (time > 3 && time <= 5) {
+            return "Yellow";
+        }
+        if (time > 5 && time <= 10) {
+            return "Red";
+        }
+
+        return "Incorrect time";
+    }
+
+    public TrafficLight(){}
+
+    public void run() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -32,16 +48,4 @@ public class TrafficLight {
 
         scanner.close();
     }
-
-    private static String getColorForTime(Double time) {
-        if (time >= 0 && time <= 3)
-            return "Green";
-        if (time > 3 && time <= 5)
-            return "Yellow";
-        if (time > 5 && time <= 10)
-            return "Red";
-
-        return "Incorrect time";
-    }
-
 }

@@ -11,10 +11,9 @@ public class Main {
 
         Immutable immutable = new Immutable(22);
         System.out.println("Immutable object was created");
-        System.out.println("value = " + immutable.immutableField);
-        // immutable.immutableField = 66; // immutable!
-        immutable = new Immutable(66); // replaced with entire new instance
-        System.out.println("value = " + immutable.immutableField);
+        System.out.println("value = " + immutable.getValue());
+        immutable = new Immutable(66); // is replaced with new instance
+        System.out.println("value = " + immutable.getValue());
 
         RandomPyramidalMatrix pyramidalArray = new RandomPyramidalMatrix(10);
         pyramidalArray.print();

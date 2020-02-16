@@ -2,9 +2,19 @@ package homework.homework2;
 
 public final class Immutable {
 
-    public final int immutableField;
+    private final int immutableField;
 
     public Immutable(int value) {
         immutableField = value;
     }
+
+    public int getValue(){
+        return immutableField;
+    }
+
+    //Can not assign a value to final variable!
+//    public void setValue(int value){
+//        immutableField = value;
+//    }
+
 }

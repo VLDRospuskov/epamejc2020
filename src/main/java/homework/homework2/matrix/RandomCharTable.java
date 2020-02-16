@@ -9,9 +9,8 @@ public class RandomCharTable extends CharMatrix {
 
         for (int i = 0; i < rowsCount; i++){
             for (int j = 0; j < columnsCount; j++){
-                matrix[i][j] = randomCharacterGenerator.get();
+                matrix[i][j] = randomCharacterGenerator.getChar();
             }
         }
-
     }
 }
