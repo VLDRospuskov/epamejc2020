@@ -55,10 +55,10 @@ public class FieldInitiator {
             "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10",
             "Y1", "Y2", "Y3", "Y4", "Y5", "Y6", "Y7", "Y8", "Y9", "Y10",
             "J1", "J2", "J3", "J4", "J5", "J6", "J7", "J8", "J9", "J10"};
-    private List<String> cells = new ArrayList<>();
 
     private boolean isNoOverlapping(String[] shipCells) {
 
+        List<String> cells = new ArrayList<>();
         List<String> userCells = new ArrayList<>();
         Collections.addAll(userCells, shipCells);
         Collections.addAll(cells, allCells);
@@ -128,27 +128,56 @@ public class FieldInitiator {
 
     private boolean isStraightLineCells (String[] shipCells) {
 
-        Collections.addAll(cells, allCells);
-        int head = cells.indexOf(shipCells[0].toUpperCase());
 
-        for (int i=0; i<shipCells.length; i++) {
+        if (shipCells.length > 1) {
+            List<String> cells = new ArrayList<>();
+            Collections.addAll(cells, allCells);
+//        int head = cells.indexOf(shipCells[0].toUpperCase());
+            int[] cellPositions = new int[shipCells.length];
 
-            if (head == -1
-                    || (head < 99 && !shipCells[i].equalsIgnoreCase(cells.get(head + 1)))
-                    || (head < 90 && !shipCells[i].equalsIgnoreCase(cells.get(head + 10)))
-                    || (head > 0 && !shipCells[i].equalsIgnoreCase(cells.get(head - 1)))
-                    || (head > 9 && !shipCells[i].equalsIgnoreCase(cells.get(head - 10)))) {
+            for (int i = 0; i < shipCells.length; i++) {
+                cellPositions[i] = cells.indexOf(shipCells[i].toUpperCase());
+            }
 
-                cells.clear();
+            int dCount = 0;
+            int oCount = 0;
+            for (int i=0; i<cellPositions.length; i++) {
+
+                if (i != 0 && Math.abs(cellPositions[i] - cellPositions[i - 1]) == 1) {
+                    oCount++;
+                } else if (i != 0 && Math.abs(cellPositions[i] - cellPositions[i - 1]) == 10) {
+                    dCount++;
+                }
+            }
+            if (oCount != cellPositions.length-1 && dCount != cellPositions.length-1) {
                 return false;
             }
         }
-        cells.clear();
-        return true;
+        return shipCells.length < 5;
+    }
+
+
+
+
+//            if (head == -1) {
+////                    || (head < 99 && !shipCells[i].equalsIgnoreCase(cells.get(head + 1)))
+////                    || (head < 90 && !shipCells[i].equalsIgnoreCase(cells.get(head + 10)))
+////                    || (head > 0 && !shipCells[i].equalsIgnoreCase(cells.get(head - 1)))
+////                    || (head > 9 && !shipCells[i].equalsIgnoreCase(cells.get(head - 10)))) {
+//
+//                cells.clear();
+//                return false;
+//            } else if (head == 99) {
+//
+//            }
+//            head = i;
+//        }
+//        cells.clear();
+//        return true;
     }
 
 //    private boolean isCell (String userCell) {
 //        String cellRegex = "^[AaBbCcDdEeFfGgHhYyJj]" + "([123456789]|10) $";
 //        return userCell.matches(cellRegex);
 //    }
-}
+//}
