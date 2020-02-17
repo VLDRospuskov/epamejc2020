@@ -1,18 +1,15 @@
 package seaBattle.logic;
 
 import seaBattle.data.Cell;
-import seaBattle.data.CellStatus;
+import seaBattle.data.Configuration;
+import seaBattle.data.enums.CellStatus;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FieldPrinter {
 
-    private int fieldSize;
-
-    public FieldPrinter(int fieldSize) {
-        this.fieldSize = fieldSize;
-    }
+    private int fieldSize = Configuration.getFieldSize();
 
     //Метод для печати игрового поля
     public void printField(List<Cell> playerField, List<Cell> botField) {
@@ -58,13 +55,22 @@ public class FieldPrinter {
                 printingField.stream().filter(cell -> cell.getyCoord() == yCoord).collect(Collectors.toList());
 
         for (Cell c : filteredList) {
-            if (c.getCellStatus() == CellStatus.HIDDEN.getStatus()) {
+            if (c.getCellShip() != null) {
+                System.out.print(" ▢ ");
+            } else if (c.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
                 System.out.print(" . ");
-            } else if (c.getCellStatus() == CellStatus.HIT.getStatus()) {
-                System.out.print("X");
             } else {
                 System.out.print("O");
             }
         }
+//        for (Cell c : filteredList) {
+//            if (c.getCellStatus() == CellStatus.HIDDEN.getStatus()) {
+//                System.out.print(" . ");
+//            } else if (c.getCellStatus() == CellStatus.HIT.getStatus()) {
+//                System.out.print("X");
+//            } else {
+//                System.out.print("O");
+//            }
+//        }
     }
 }

@@ -1,4 +1,4 @@
-package seaBattle.data;
+package seaBattle.data.enums;
 
 public enum ShipType {
     LINCOR("lincor"),
