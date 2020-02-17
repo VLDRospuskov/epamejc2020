@@ -1,8 +1,8 @@
-package main.homeworks.java.hw3.arrays;
+package homeworks.java.hw3.arrays;
 
 import java.util.Random;
 
-import static main.homeworks.java.hw3.enums.Messages.WARNING_FOR_PARSING_TO_INT;
+import static homeworks.java.hw3.enums.Messages.WARNING_FOR_PARSING_TO_INT;
 
 class FirstArray {
 

@@ -1,4 +1,4 @@
-package main.homeworks.java.hw4.strings;
+package homeworks.java.hw4.strings;
 
 import java.util.ArrayList;
 

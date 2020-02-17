@@ -1,9 +1,9 @@
-package main.homeworks.java.hw2;
+package homeworks.java.hw2;
 
 import java.util.Iterator;
 
-import static main.homeworks.java.hw2.StudentCreatorClass.getIdTable;
-import static main.homeworks.java.hw2.StudentCreatorClass.setIdTable;
+import static homeworks.java.hw2.StudentCreatorClass.getIdTable;
+import static homeworks.java.hw2.StudentCreatorClass.setIdTable;
 
 /**
  * Here is an immutable class represents student. Student has a field which is an instance of a mutable class -

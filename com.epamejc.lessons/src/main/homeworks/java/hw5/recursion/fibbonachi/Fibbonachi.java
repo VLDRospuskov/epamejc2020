@@ -1,4 +1,4 @@
-package main.homeworks.java.recursion.fibbonachi;
+package homeworks.java.hw5.recursion.fibbonachi;
 
 class Fibbonachi {
 

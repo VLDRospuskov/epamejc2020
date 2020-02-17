@@ -1,8 +1,8 @@
-package main.homeworks.java.recursion.countnumbers;
+package homeworks.java.hw5.recursion.countnumbers;
 
-class Counter {
+public class Counter {
 
-    static int counterOfNumbers(long n) {
+    public static int counterOfNumbers(long n) {
 
         if (n < 0) {
             throw new ArithmeticException("Invalid input");

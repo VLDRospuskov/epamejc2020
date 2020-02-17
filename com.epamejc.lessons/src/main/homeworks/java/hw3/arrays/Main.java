@@ -1,4 +1,4 @@
-package main.homeworks.java.hw3.arrays;
+package homeworks.java.hw3.arrays;
 
 public class Main {
 

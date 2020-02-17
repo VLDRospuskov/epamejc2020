@@ -1,6 +1,6 @@
-package main.homeworks.java.recursion.fibbonachi;
+package homeworks.java.hw5.recursion.fibbonachi;
 
-import static main.homeworks.java.recursion.fibbonachi.Fibbonachi.fibbonachi;
+import static homeworks.java.hw5.recursion.fibbonachi.Fibbonachi.fibbonachi;
 
 public class Main {
 

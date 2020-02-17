@@ -1,10 +1,10 @@
-package main.homeworks.java.hw3.arrays;
+package homeworks.java.hw3.arrays;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static main.homeworks.java.hw3.enums.Messages.*;
+import static homeworks.java.hw3.enums.Messages.*;
 
 class Logic {
 

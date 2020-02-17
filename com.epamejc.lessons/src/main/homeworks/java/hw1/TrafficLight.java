@@ -1,9 +1,9 @@
-package main.homeworks.java.hw1;
+package homeworks.java.hw1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import static main.homeworks.java.hw1.enums.Messages.*;
+import static homeworks.java.hw1.enums.Messages.*;
 
 class TrafficLight {
 

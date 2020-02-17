@@ -1,4 +1,4 @@
-package main.homeworks.java.hw3.enums;
+package homeworks.java.hw3.enums;
 
 public enum Messages {
 

@@ -1,4 +1,4 @@
-package main.homeworks.java.hw1;
+package homeworks.java.hw1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

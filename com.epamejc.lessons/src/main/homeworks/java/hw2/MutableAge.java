@@ -1,4 +1,4 @@
-package main.homeworks.java.hw2;
+package homeworks.java.hw2;
 
 public class MutableAge {
 

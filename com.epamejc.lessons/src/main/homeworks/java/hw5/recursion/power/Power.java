@@ -1,4 +1,4 @@
-package main.homeworks.java.recursion.power;
+package homeworks.java.hw5.recursion.power;
 
 class Power {
 

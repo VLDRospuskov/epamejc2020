@@ -1,11 +1,11 @@
-package main.homeworks.java.hw4.strings;
+package homeworks.java.hw4.strings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static main.homeworks.java.hw4.enums.Messages.*;
+import static homeworks.java.hw4.enums.Messages.*;
 
 public class Logic {
 
