@@ -1,6 +1,13 @@
 package homework.homework7;
 
+import homework.homework7.controllers.BotController;
+import homework.homework7.controllers.Controller;
+import homework.homework7.controllers.PlayerController;
 import lombok.SneakyThrows;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class NavalBattle {
 
@@ -8,32 +15,28 @@ public class NavalBattle {
     public void start() {
 
         try {
-            while (true) {
 
-                System.out.print("Select your opponent!\n" +
-                        "Write 'bot' or 'player': ");
+            System.out.print("Choose your opponent 'bot or player': ");
+            String userPlayer = ConsoleReader.reader.readLine();
+            Controller opponentController = selectPlayer("userPlayer");
 
-                String userChoice = ConsoleReader.reader.readLine();
 
-                if (userChoice.equalsIgnoreCase("exit")) {
-                    break;
-                }
-
-                selectPlayer(userChoice);
-            }
+        } catch (IOException | NoSuchOpponentException ex) {
+            System.out.println("Oops we got an exception" + ex.getMessage());
         } finally {
             ConsoleReader.reader.close();
         }
     }
 
-    private void selectPlayer(String userChoice) {
+    private Controller selectPlayer(String userChoice) {
 
         if (userChoice.equalsIgnoreCase("bot")) {
-
+            return new BotController();
         } else if (userChoice.equalsIgnoreCase("player")) {
-
+            return new PlayerController();
         } else {
-            System.out.printf("Unrecognized symbol '%s' Try again!\n", userChoice);
+            System.out.printf("Unrecognized symbol '%s'!\n", userChoice);
+            throw new NoSuchOpponentException();
         }
     }
 

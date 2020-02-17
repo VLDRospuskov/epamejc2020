@@ -6,8 +6,7 @@ import lombok.SneakyThrows;
 public class PlayerController implements Controller {
 
     @SneakyThrows
-    @Override
-    public void makeMove() {
+    public void makeMove(String playerMove) {
 
     }
 }
