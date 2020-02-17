@@ -4,11 +4,6 @@ import lombok.*;
 
 import java.util.Arrays;
 
-/**
- * The {@code RandomCharArray class} represents a random generated two dimensional {@code char} array.
- *
- * @author Vladimir Ivanov
- */
 @NoArgsConstructor
 @EqualsAndHashCode
 public class RandomCharArray {
@@ -77,17 +72,10 @@ public class RandomCharArray {
         StringBuilder stringBuilder = new StringBuilder();
         if (arr.length == 0) {
             return "";
-        } else if (strategy == Strategy.A) {
-            for (int i = 0; i < arr.length; i += 2) {
-                for (int j = 0; j < arr[i].length; j += 2) {
-                    stringBuilder.append(arr[i][j]);
-                }
-            }
-        } else if (strategy == Strategy.B) {
-            for (int i = 1; i < arr.length; i += 2) {
-                for (int j = 1; j < arr[i].length; j += 2) {
-                    stringBuilder.append(arr[i][j]);
-                }
+        }
+        for (int i = strategy.ordinal(); i < row; i += 2) {
+            for (int j = strategy.ordinal(); j < col; j += 2) {
+                stringBuilder.append((arr[i][j]));
             }
         }
         return stringBuilder.toString();
@@ -116,6 +104,7 @@ public class RandomCharArray {
     private void fillArray() {
 
         arr = new char[row][col];
+
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 arr[i][j] = (char) (Math.random() * 26 + 97);

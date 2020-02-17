@@ -8,56 +8,78 @@ import lombok.Setter;
 public class StringChanger {
 
     private String storedString = "";
+    private String stringCache = "";
 
-    public String evenOdd(int eo) {
-        String temp = storedString.replaceAll(" ", "");
-        StringBuilder result = new StringBuilder();
+    /**
+     * Generates a new {@code String} using even or odd characters of a source.
+     *
+     * @param parity switches the {@code String} building mode between the output of even and odd characters
+     * @return builded {@code String}
+     */
+    public String evenOdd(Parity parity) {
 
-        if (eo == 3) {
-            for (int i = 1; i < temp.length(); i += 2) {
-                result.append(temp.charAt(i));
-            }
-        } else if (eo == 4) {
-            for (int i = 0; i < temp.length(); i += 2) {
-                result.append(temp.charAt(i));
-            }
+        StringBuilder newString = new StringBuilder();
+        for (int i = parity.ordinal(); i < storedString.length(); i += 2)
+        {
+            newString.append(storedString.charAt(i));
         }
-        return result.toString();
+        return newString.toString();
+
     }
 
-    public String byIndex(String str, int index) {
-        try {
-            temporaryStorage += str.charAt(index);
-            return temporaryStorage;
-        } catch (StringIndexOutOfBoundsException e) {
-            return "Index out of bounds. Please enter index in range: 0 - " + (str.length() - 1) + "\n";
+    /**
+     * Adds new char to cashed {@code String} by index.
+     *
+     * @param index The index of char in source {@code String} to be added
+     *              to output
+     * @return {@code boolean} indicator {@code true} if done and {@code false} otherwise
+     */
+    public boolean byIndex(int index) {
+
+        boolean charAdded = false;
+        if (index <= storedString.length() - 1 && index >= 0) {
+            stringCache += storedString.charAt(index);
+            charAdded = true;
         }
+        return charAdded;
+
     }
 
-    public String swapChars(String str, int[] se) {
-        int start = se[0], end = se[1];
-        if (start > end || end > str.length() - 1 || start < 0) {
+    /**
+     * Swaps two chars in the source {@code String} and returns
+     * the result as a new {@code String}
+     *
+     * @param start index of the first character
+     * @param end index of the second character
+     * @return changed String
+     */
+    public String swapChars(int start, int end) {
+
+        if (start > end || end > storedString.length() - 1 || start < 0) {
             return "Wrong input. Try again!";
         }
-
-        StringBuilder swapper = new StringBuilder(str);
-        swapper.setCharAt(start, str.charAt(end));
-        swapper.setCharAt(end, str.charAt(start));
-
+        StringBuilder swapper = new StringBuilder(storedString);
+        swapper.setCharAt(start, storedString.charAt(end));
+        swapper.setCharAt(end, storedString.charAt(start));
         return swapper.toString();
+
     }
 
-    public String flipWords(String str) {
+    /**
+     * Flips words in source {@code String} without changing their
+     * position in the sentence.
+     *
+     * @return new {@code String} with all words flipped.
+     */
+    public String flipWords() {
+
         StringBuilder flipped = new StringBuilder();
-        String[] tempContainer = str.split(" ");
-        for (String i : tempContainer) {
-            flipped.append(new StringBuffer(i).reverse().toString()).append(" ");
+        String[] tempContainer = storedString.split(" ");
+        for (String word : tempContainer) {
+            flipped.append(new StringBuffer(word).reverse().toString()).append(" ");
         }
-        return flipped.toString();
-    }
+        return flipped.toString().trim();
 
-    public void clearStorage() {
-        temporaryStorage = "";
     }
 
 }

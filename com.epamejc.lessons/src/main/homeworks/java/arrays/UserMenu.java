@@ -11,7 +11,8 @@ import homeworks.java.utils.UserInputReader;
  */
 public class UserMenu {
 
-    private String REGEX = "^\\d*$";
+    /** Any positive integer number */
+    private String REGEX = "^\\d+$";
     private String menu = "\n" +
             "_________________________________________________\n" +
             "|1. Generate an array                           |\n" +
@@ -73,14 +74,14 @@ public class UserMenu {
      * Parses a {@code String} input to an {@code int} value.
      *
      * @return parsed {@code String} as an {@code int},
-     * or {@code 0} if there was a mistake in the input
+     * or {@code -1} if there was a mistake in the input
      */
     private int parseInput() {
 
         String userInput = UserInputReader.readInput();
-        int menuItem = 0;
+        int menuItem = -1;
 
-        if (userInput.length() != 0 && userInput.matches(REGEX)) {
+        if (userInput.matches(REGEX)) {
             menuItem = Integer.valueOf(userInput);
         }
         return menuItem;

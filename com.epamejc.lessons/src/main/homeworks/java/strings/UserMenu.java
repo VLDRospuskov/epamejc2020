@@ -1,7 +1,5 @@
 package homeworks.java.strings;
 
-import homeworks.java.arrays.RandomCharArray;
-import homeworks.java.arrays.Strategy;
 import homeworks.java.utils.UserInputReader;
 
 /**
@@ -13,8 +11,8 @@ import homeworks.java.utils.UserInputReader;
  */
 public class UserMenu {
 
-    private String REGEX = "^\\d*$";
-
+    /** Any positive integer number */
+    private String REGEX = "^\\d+$";
     private String menu = "\n" +
             "_______________________________________________________\n" +
             "|1. New String input                                  |\n" +
@@ -52,11 +50,37 @@ public class UserMenu {
             case 2:
                 System.out.println("Stored String is: " + stringChanger.getStoredString());
                 break;
-            case 3: //Missing break statement isn't a mistake. The actions are the same for both cases.
+            case 3:
+                System.out.println(stringChanger.evenOdd(Parity.EVEN));
+                break;
             case 4:
-                System.out.println(stringChanger.evenOdd(choice));
+                System.out.println(stringChanger.evenOdd(Parity.ODD));
                 break;
             case 5:
+                System.out.println("Enter a number from 0 to " +
+                        (stringChanger.getStoredString().length() - 1) +
+                        " or 'return' to return");
+                int input;
+                do {
+                    input = parseInput();
+                    boolean done = stringChanger.byIndex(input);
+                    if(input != -2) {
+                        System.out.println(done? stringChanger.getStringCache():"Wrong input!");
+                    }
+                } while (input != -2);
+                stringChanger.setStringCache("");
+                break;
+            case 6:
+                System.out.println("Enter start index:");
+                int start = parseInput();
+                System.out.println("Enter end index:");
+                int end = parseInput();
+                System.out.println(stringChanger.swapChars(start, end));
+                break;
+            case 7:
+                System.out.println(stringChanger.flipWords());
+                break;
+            case 8:
                 closeProgram = true;
                 UserInputReader.close();
                 break;
@@ -64,58 +88,6 @@ public class UserMenu {
                 System.out.print("Wrong input, try again!\n");
                 break;
         }
-
-        switch (choice) {
-
-
-            case 3:
-            case 4:
-                System.out.println(changer.evenOdd(storedString, choice));
-                break;
-            case 5:
-                System.out.println("Enter a number from 0 to " + (storedString.length() - 1) +
-                        " or 'exit' to return");
-                do {
-                    try {
-                        String input = stringInput(reader);
-                        if (input.equals("exit")) {
-                            break;
-                        }
-
-                        int[] i = parseInt(input, 1);
-
-                        String output = changer.byIndex(storedString, i[0]);
-                        System.out.println(output);
-
-                    } catch (WrongInputException e) {
-                        System.out.println(e.getMessage());
-                    }
-                } while (true);
-                changer.clearStorage();
-                break;
-            case 6:
-                System.out.println("Enter two numbers between 0 and " + (storedString.length() - 1));
-                int[] i;
-                try {
-                    i = parseInt(stringInput(reader), 0);
-                    storedString = changer.swapChars(storedString, i);
-                    System.out.println(storedString);
-                } catch (WrongInputException e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case 7:
-                storedString = changer.flipWords(storedString);
-                System.out.println(storedString);
-                break;
-            case 8:
-                break;
-
-            default:
-                System.out.println("Wrong input, try again!");
-                break;
-        }
-
         return closeProgram;
 
     }
@@ -124,17 +96,21 @@ public class UserMenu {
      * Parses a {@code String} input to an {@code int} value.
      *
      * @return parsed {@code String} as an {@code int},
-     * or {@code 0} if there was a mistake in the input
+     * <t>-1<\t> if there was a mistake in the input or
+     * <t>-2</t> if source {@code String} equals <t>"return"</t>
      */
     private int parseInput() {
 
         String userInput = UserInputReader.readInput();
-        int menuItem = 0;
-
-        if (userInput.length() != 0 && userInput.matches(REGEX)) {
-            menuItem = Integer.valueOf(userInput);
+        if (userInput.equalsIgnoreCase("return")) {
+            return -2;
         }
-        return menuItem;
+        int integerValue = -1;
+
+        if (userInput.matches(REGEX)) {
+            integerValue = Integer.valueOf(userInput);
+        }
+        return integerValue;
 
     }
 }
