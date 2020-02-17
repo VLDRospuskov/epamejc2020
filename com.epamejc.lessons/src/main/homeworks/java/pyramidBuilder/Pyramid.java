@@ -6,40 +6,34 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * The {@code Pyramid class} represents a pyramid. The pyramid stores as two dimension array of integers.
+ * The {@code Pyramid class} represents a pyramid, stored as a two dimension array of integers.
  *
  * @author Vladimir Ivanov
  */
 @Getter
-@ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 public class Pyramid {
 
-    /**
-     * Field to store a pyramid
-     */
     private int[][] pyramid;
-    /**
-     * Fields to store the dimensions of an array
-     */
     private int row, col;
 
-    /**
-     * Prints a pyramid. Replaces {@code 1} with {@code *} and {@code 0} with spaces.
-     */
-    public void printPyramid() {
+    @Override
+    public String toString() {
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if (pyramid[i][j] == 1) {
-                    System.out.print("*");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int[] row : pyramid) {
+            for (int col : row) {
+                if (col == 1) {
+                    stringBuilder.append('*');
                 } else {
-                    System.out.print(" ");
+                    stringBuilder.append(' ');
                 }
             }
-            System.out.println();
+            stringBuilder.append("\n");
         }
+        return stringBuilder.toString();
 
     }
 
@@ -61,7 +55,7 @@ public class Pyramid {
     public void buildPyramid(int base) {
 
         if (base < 1) {
-            throw new CannotBuildPyramidException("Base can not be less than 1");
+            throw new CannotBuildPyramidException("Base can't be less than 1");
         }
 
         this.row = base;

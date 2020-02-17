@@ -20,7 +20,18 @@ import java.math.RoundingMode;
 public class LightsLogic {
 
     /**
-     * {@code String} parsing regex.
+     * {@code String} parsing regex. Input must match following pattern:
+     * i.f, where i is any positive number(may present or absent),
+     * .f is point and 2-digit positive number (may preset or absent)<br>
+     * For example:
+     * <blockquote><pre>
+     *
+     * 12.02    - <b>correct<\b>
+     * .22      - <b>correct<\b>
+     * 2        - <b>correct<\b>
+     * 12.222   - <b>incorrect<\b>
+     *
+     *      </pre></blockquote>
      */
     private final String REGEX = "^\\d*\\.*\\d{0,2}$";
 
@@ -74,7 +85,6 @@ public class LightsLogic {
         } else {
             state = Lights.WRONG_INPUT;
         }
-
         return state;
 
     }

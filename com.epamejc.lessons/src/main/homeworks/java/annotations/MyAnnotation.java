@@ -5,12 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Stores default values for {@link homeworks.java.annotations.Person} object.
- *
- * @author Vladimir Ivanov
- */
-@Target({ElementType.TYPE})
+@Target({ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation {
 

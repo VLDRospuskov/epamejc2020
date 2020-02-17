@@ -11,13 +11,7 @@ import homeworks.java.utils.UserInputReader;
  */
 public class UserMenu {
 
-    /**
-     * regex to parse user input
-     */
     private String REGEX = "^\\d*$";
-    /**
-     * stores the main menu as a {@code String}
-     */
     private String menu = "\n" +
             "_________________________________________________\n" +
             "|1. Generate an array                           |\n" +
@@ -28,6 +22,13 @@ public class UserMenu {
             "|_______________________________________________|\n" +
             "Choose an option: " +
             "\n\n";
+
+    @Override
+    public String toString() {
+
+        return menu;
+
+    }
 
     /**
      * Calls specific methods based on user choice.
@@ -48,7 +49,7 @@ public class UserMenu {
                 }
                 break;
             case 2:
-                array.print();
+                System.out.println(array.toString());
                 break;
             case 3:
                 System.out.println(array.makeStringWithStrategy(Strategy.A));
@@ -65,15 +66,6 @@ public class UserMenu {
                 break;
         }
         return closeProgram;
-
-    }
-
-    /**
-     * Prints user menu to the console
-     */
-    public void printMenu() {
-
-        System.out.println(menu);
 
     }
 

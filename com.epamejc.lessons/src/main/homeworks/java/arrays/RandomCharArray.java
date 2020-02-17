@@ -2,27 +2,23 @@ package homeworks.java.arrays;
 
 import lombok.*;
 
+import java.util.Arrays;
+
 /**
  * The {@code RandomCharArray class} represents a random generated two dimensional {@code char} array.
  *
  * @author Vladimir Ivanov
  */
-
 @NoArgsConstructor
 @EqualsAndHashCode
 public class RandomCharArray {
 
     /**
-     * stores REGEX to parse dimensions input
+     * Input must match following pattern: d_d, where d is an integer more than 0, _ is space. <br>
+     * Example: 14 2
      */
-    private String REGEX = "^\\d+ \\d+$";
-    /**
-     * stores dimensions of the array
-     */
+    private String REGEX = "^[1-9]+ [1-9]+$";
     private int row, col;
-    /**
-     * stores the array
-     */
     private char[][] arr = new char[][]{};
 
     public RandomCharArray(char[][] arr) {
@@ -37,6 +33,18 @@ public class RandomCharArray {
 
     }
 
+    @Override
+    public String toString() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char[] array : arr) {
+            stringBuilder.append(Arrays.toString(array));
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+
+    }
+
     /**
      * Generates an array in case of correct input
      *
@@ -47,7 +55,7 @@ public class RandomCharArray {
 
         boolean arrayCreated = false;
 
-        if (setDimentions(input)) {
+        if (setDimensions(input)) {
             fillArray();
             arrayCreated = true;
         }
@@ -56,26 +64,7 @@ public class RandomCharArray {
     }
 
     /**
-     * Prints an array to console
-     */
-    public void print() {
-
-        if (arr.length != 0) {
-            System.out.print("Array " + row + " x " + col + ": \n");
-            for (char[] chars : arr) {
-                for (char character : chars) {
-                    System.out.print(character + " ");
-                }
-                System.out.println();
-            }
-        } else {
-            System.out.println("Array is empty!");
-        }
-
-    }
-
-    /**
-     * Prints a new {@code String} based on {@link homeworks.java.arrays.Strategy}
+     * Builds a new {@code String} based on {@link homeworks.java.arrays.Strategy}
      * If the strategy is {@link homeworks.java.arrays.Strategy#A} outputs {@code String}
      * build of {@code chars} of every odd row and col of the array and
      * if the strategy is {@link homeworks.java.arrays.Strategy#B} outputs {@code String}
@@ -87,7 +76,7 @@ public class RandomCharArray {
 
         StringBuilder stringBuilder = new StringBuilder();
         if (arr.length == 0) {
-            return "Array is empty!";
+            return "";
         } else if (strategy == Strategy.A) {
             for (int i = 0; i < arr.length; i += 2) {
                 for (int j = 0; j < arr[i].length; j += 2) {
@@ -111,7 +100,7 @@ public class RandomCharArray {
      * @param input {@code String} user input
      * @return {@code true} if values set successfully and {@code false} otherwise
      */
-    private boolean setDimentions(String input) {
+    private boolean setDimensions(String input) {
 
         boolean dimensionsSet = false;
         if (input.length() != 0 && input.matches(REGEX)) {
@@ -124,9 +113,6 @@ public class RandomCharArray {
 
     }
 
-    /**
-     * Fills the array with random chars.
-     */
     private void fillArray() {
 
         arr = new char[row][col];

@@ -2,22 +2,11 @@ package homeworks.java.trafficLights;
 
 import homeworks.java.utils.UserInputReader;
 
-/**
- * The {@code Engine class} represents the main loop of the program.
- *
- * @author Vladimir Ivanov
- */
 public class Engine {
 
-    /**
-     * The value storing a general greeting message which explains how to use the program
-     */
     private final String greetingsMessage = "\"Type time in following format: \\\"m.s or m\\\", \\nthere m - minutes from 0 to n, \" +\n" +
             "                    \"and s - seconds from 0 to 59 \\nor word \\\"exit\\\" to quit the program\"";
 
-    /**
-     * Runs the program.
-     */
     public void run() {
 
         System.out.println(greetingsMessage);
@@ -62,13 +51,8 @@ public class Engine {
                 isDone = true;
                 break;
         }
-
         return isDone;
 
     }
 
 }
-
-
-
-

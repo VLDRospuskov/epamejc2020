@@ -1,7 +1,5 @@
 package homeworks.java.annotations;
 
-import homeworks.java.annotations.utils.PersonReflectiveDefaults;
-
 /**
  * Simple program for annotations and reflection test. <br>
  * The goal is to get data, stored in annotation, using reflection
@@ -15,8 +13,6 @@ public class Main {
     public static void main(String[] args) {
 
         Person person = new Person();
-        System.out.println(person);
-        PersonReflectiveDefaults.setDefault(person);
         System.out.println(person);
 
     }

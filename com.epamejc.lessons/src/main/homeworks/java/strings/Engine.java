@@ -10,6 +10,23 @@ public class Engine {
     private String storedString = "";
 
     public void run() {
+
+        UserMenu userMenu = new UserMenu();
+        RandomCharArray array = new RandomCharArray();
+        System.out.println("Welcome to an Array test program!\n");
+
+        boolean isDone;
+        do {
+            System.out.println(userMenu);
+            isDone = userMenu.switchMenu(array);
+        } while (!isDone);
+        System.out.println("Bye-bye!");
+
+    }
+
+
+
+    public void rusn() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
             int choice;
@@ -123,7 +140,7 @@ public class Engine {
 
         System.out.println("\n" +
                 "_______________________________________________________\n" +
-                "|1. New String input                                      |\n" +
+                "|1. New String input                                  |\n" +
                 "|2. Display stored String                             |\n" +
                 "|3. Display new String using even chars of stored one |\n" +
                 "|4. Display new String using odd chars of stored one  |\n" +

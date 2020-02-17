@@ -1,11 +1,16 @@
 package homeworks.java.strings;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class StringChanger {
 
-    private String temporaryStorage = "";
+    private String storedString = "";
 
-    public String evenOdd(String str, int eo) {
-        String temp = str.replaceAll(" ", "");
+    public String evenOdd(int eo) {
+        String temp = storedString.replaceAll(" ", "");
         StringBuilder result = new StringBuilder();
 
         if (eo == 3) {

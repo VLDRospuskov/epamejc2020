@@ -11,7 +11,7 @@ public class Main {
 
         Pyramid pyramid = new Pyramid();
         pyramid.buildPyramid(15);
-        pyramid.printPyramid();
+        System.out.println(pyramid);
 
     }
 

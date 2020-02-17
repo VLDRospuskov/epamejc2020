@@ -12,9 +12,6 @@ public class UserInputReader {
 
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    /**
-     * @return user input as {@code String}
-     */
     public static String readInput() {
 
         String inputString;
@@ -30,9 +27,6 @@ public class UserInputReader {
 
     }
 
-    /**
-     * Closes Input stream.
-     */
     public static void close() {
 
         try {
