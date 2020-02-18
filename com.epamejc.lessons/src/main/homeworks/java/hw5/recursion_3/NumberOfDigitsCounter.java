@@ -2,39 +2,36 @@ package homeworks.java.hw5.recursion_3;
 
 import java.util.Scanner;
 
-public class CountNumberOfDigitsInNumber {
+public class NumberOfDigitsCounter {
 
     public void run() {
-        int n = scanNumber();
-        System.out.println("Amount of digits: " + countNumberOfDigits(n, 0));
+        int number = scanNumber();
+        System.out.println("Amount of digits: " + countNumberOfDigits(number, 0));
     }
 
     public int scanNumber() {
-        int n = 0;
+        int number = 0;
         Scanner scan = new Scanner(System.in);
 
         try {
             System.out.print("Please enter number: ");
-            n = scan.nextInt();
+            number = scan.nextInt();
         } catch (Exception e) {
             System.out.println("Wrong enter! " + e);
             System.exit(0);
-        } finally {
-            scan.close();
         }
-
-        return n;
+        return number;
     }
 
-    private static int countNumberOfDigits(int n, int count) {
-        if(Math.abs(n) < 10) {
+    public int countNumberOfDigits(int number, int count) {
+        if(Math.abs(number) < 10) {
             return ++count;
         }
 
-        n /= 10;
+        number /= 10;
         count++;
 
-        return countNumberOfDigits(n, count);
+        return countNumberOfDigits(number, count);
     }
 
 }

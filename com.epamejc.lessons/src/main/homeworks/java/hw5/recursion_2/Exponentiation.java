@@ -33,15 +33,13 @@ public class Exponentiation {
             }
         } catch (Exception e) {
             System.out.println("Wrong enter!" + e);
-        } finally {
-            scan.close();
         }
 
         return input;
     }
     
     
-    private static int exponentiation(int n, int tmp, int exp) {
+    public int exponentiation(int n, int tmp, int exp) {
         tmp = tmp * n;
 
         if (exp == 2) {

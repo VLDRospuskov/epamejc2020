@@ -23,8 +23,6 @@ public class FibonacciGenerator {
             count = scan.nextInt();
         } catch (Exception e) {
             System.out.println("Wrong enter! " + e);
-        } finally {
-            scan.close();
         }
 
         return count;
