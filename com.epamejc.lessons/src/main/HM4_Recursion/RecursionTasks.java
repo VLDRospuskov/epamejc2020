@@ -6,7 +6,7 @@ public class RecursionTasks {
     public static void main(String[] args) {
         readInt();
 
-//        fibonacci(value);
+//        fibonacci(value); /nvm...
 //
 //        System.out.print("Enter power: ");
 //        Scanner sc = new Scanner(System.in);
