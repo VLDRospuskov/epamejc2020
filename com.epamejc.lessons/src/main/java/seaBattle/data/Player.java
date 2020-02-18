@@ -11,12 +11,15 @@ public class Player {
     public Player() {
         battleField.generateField();
         battleShips.generateShips();
-        //battleField.placeShipsAutomatically(battleShips.getShips());
         shipPlacer = new ShipPlacer(battleField);
         shipPlacer.placeShipsAutomatically(battleShips.getShips());
     }
 
     public List<Cell> getField() {
         return battleField.getField();
+    }
+
+    public int getShipsCount() {
+        return battleShips.getShips().size();
     }
 }
