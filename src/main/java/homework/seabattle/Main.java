@@ -1,7 +1,6 @@
-package homework.homework7;
+package homework.seabattle;
 
-import homework.homework7.battlefield.Field;
-import homework.homework7.battlefield.FieldInitiator;
+import homework.seabattle.battlefield.FieldInitiator;
 import lombok.SneakyThrows;
 
 public class Main {

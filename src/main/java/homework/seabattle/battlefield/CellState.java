@@ -1,4 +1,4 @@
-package homework.homework7.battlefield;
+package homework.seabattle.battlefield;
 
 public enum CellState {
     SHIP, WATER, HURT

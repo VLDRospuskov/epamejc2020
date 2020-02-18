@@ -1,4 +1,4 @@
-package homework.homework7;
+package homework.seabattle;
 
 public enum ShotState {
     HIT, MISS

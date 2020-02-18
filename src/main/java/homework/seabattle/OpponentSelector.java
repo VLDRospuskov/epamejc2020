@@ -1,17 +1,14 @@
-package homework.homework7;
+package homework.seabattle;
 
-import homework.homework7.controllers.BotController;
-import homework.homework7.controllers.Controller;
-import homework.homework7.controllers.PlayerController;
+import homework.seabattle.controllers.BotController;
+import homework.seabattle.controllers.Controller;
+import homework.seabattle.controllers.PlayerController;
 import lombok.SneakyThrows;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class NavalBattle {
+public class OpponentSelector {
 
-    @SneakyThrows
     public void start() {
 
         try {
@@ -23,8 +20,6 @@ public class NavalBattle {
 
         } catch (IOException | NoSuchOpponentException ex) {
             System.out.println("Oops we got an exception" + ex.getMessage());
-        } finally {
-            ConsoleReader.reader.close();
         }
     }
 

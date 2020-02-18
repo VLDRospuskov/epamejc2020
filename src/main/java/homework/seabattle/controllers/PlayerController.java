@@ -1,6 +1,5 @@
-package homework.homework7.controllers;
+package homework.seabattle.controllers;
 
-import homework.homework7.ConsoleReader;
 import lombok.SneakyThrows;
 
 public class PlayerController implements Controller {

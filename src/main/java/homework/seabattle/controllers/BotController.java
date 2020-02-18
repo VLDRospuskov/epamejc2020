@@ -1,4 +1,4 @@
-package homework.homework7.controllers;
+package homework.seabattle.controllers;
 
 public class BotController implements Controller {
 

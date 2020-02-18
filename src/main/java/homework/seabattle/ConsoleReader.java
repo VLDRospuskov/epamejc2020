@@ -1,4 +1,4 @@
-package homework.homework7;
+package homework.seabattle;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

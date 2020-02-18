@@ -1,11 +1,13 @@
-package homework.homework7.battlefield;
+package homework.seabattle.battlefield;
+
+import java.util.List;
 
 public class Field {
 
-    public void printField () {
+    public void printField (List<Integer> shipPositions) {
 
         Cell cell = new Cell();
-        String[] cells = cell.initCells();
+        String[] cells = cell.initCells(shipPositions);
 
         System.out.println("      " + "A   B   C   D   E   F   G   H   Y   J"
                 + "          " + "A   B   C   D   E   F   G   H   Y   J");
