@@ -1,6 +1,7 @@
 package seaBattle.logic;
 
-import seaBattle.data.Configuration;
+import seaBattle.data.Cell;
+import seaBattle.data.Player;
 import seaBattle.data.enums.ConsoleColors;
 import seaBattle.data.enums.SystemMessages;
 
@@ -15,7 +16,7 @@ public class InputOperator {
     private final String REGEX = "^(\\w{1,})\\s{1,}(\\d{1,})";
     private String[] parsedIndices;
 
-    public int[] enterIndexes(Scanner scanner) {
+    public int[] enterIndexes(Scanner scanner, Player botPlayer, PlayerShootingUtil playerShootingUtil) {
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
             System.out.print(SystemMessages.enterIndex.getMessage());
@@ -26,7 +27,7 @@ public class InputOperator {
                     break;
                 } else {
                     parsedIndices = parseIndexesWithRegex(enteredString);
-                    isInputCorrect = checkIndices(parsedIndices);
+                    isInputCorrect = checkIndices(parsedIndices, botPlayer, playerShootingUtil);
                 }
             } catch (Exception ex) {
                 System.out.println(ConsoleColors.RED.color() + "Wrong input"
@@ -47,31 +48,43 @@ public class InputOperator {
                     indexArray[1] = matcher.group(2);
                     return indexArray;
                 } catch (Exception ex) {
-                    System.out.println(ConsoleColors.RED.color() + "Can't parse indices"
+                    System.out.println(ConsoleColors.RED.color() + "Unable to split entered line into coordinates"
                             + ConsoleColors.RESET.color());
                     throw new IllegalArgumentException();
                 }
             }
         }
+        System.out.println(ConsoleColors.RED.color() + "Unable to split entered line into coordinates"
+                + ConsoleColors.RESET.color());
         throw new IllegalArgumentException();
     }
 
-    private boolean checkIndices(String[] parsedIndices) {
+    private boolean checkIndices(String[] parsedIndices, Player botPlayer, PlayerShootingUtil playerShootingUtil) {
         try {
             if (parsedIndices[0].length() > 1) {
+                System.out.println(ConsoleColors.RED.color() + "First index is longer, than one char"
+                        + ConsoleColors.RESET.color());
                 return false;
             }
-            if (convertLetterToInt(parsedIndices[0]) < 1
-                    || convertLetterToInt(parsedIndices[0]) > Configuration.getFieldSize()) {
+            int[] potentialCoordinates = convertIndices(parsedIndices);
+            Cell potentialFireCell = botPlayer.fieldOperations()
+                    .getCellByCoords(potentialCoordinates[0], potentialCoordinates[1]);
+
+            if (potentialFireCell == null) {
+                System.out.println(ConsoleColors.RED.color() + "There is no cell with such coordinates"
+                        + ConsoleColors.RESET.color());
                 return false;
             }
-            int yCoord = parseInt(parsedIndices[1]);
-            if (yCoord < 1 || yCoord > Configuration.getFieldSize()){
+            if (playerShootingUtil.isCellShot(potentialFireCell)){
+                System.out.println(ConsoleColors.RED.color() + "You can’t shoot here"
+                        + ConsoleColors.RESET.color());
                 return false;
             }
             return true;
+
         } catch (Exception ex) {
-            System.out.println("Can't convert indices");
+            System.out.println(ConsoleColors.RED.color() + "Can't convert and check coordinates"
+                    + ConsoleColors.RESET.color());
             return false;
         }
     }
@@ -86,4 +99,5 @@ public class InputOperator {
         convertedIndices[1] = parseInt(parsedIndices[1]);
         return convertedIndices;
     }
+
 }

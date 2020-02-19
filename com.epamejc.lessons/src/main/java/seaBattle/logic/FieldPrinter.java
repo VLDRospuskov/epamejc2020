@@ -18,10 +18,12 @@ public class FieldPrinter {
         for (int i = 1; i <= fieldSize; i++) {
             printFieldLine(playerField, botField, i);
         }
+        System.out.println();
     }
 
     //Метод печатает шапку игрового поля
     private void printFieldHead() {
+        System.out.println();
         System.out.println("\t\t\tPlayers field \t\t\t\t\t\tComputer field\n");
         for (int i = 0; i < fieldSize; i++) {
             if (i == 0) {
@@ -55,12 +57,16 @@ public class FieldPrinter {
                 printingField.stream().filter(cell -> cell.getyCoord() == yCoord).collect(Collectors.toList());
 
         for (Cell c : filteredList) {
-            if (c.getCellShip() != null) {
-                System.out.print(" ▢ ");
+            if (c.getCellShip() != null && c.getCellStatus().equals(CellStatus.HIT.getStatus())) {
+                System.out.print(" X ");
+            } else if (c.getCellShip() != null) {
+                System.out.print(" □ ");
             } else if (c.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
                 System.out.print(" . ");
-            } else {
-                System.out.print("O");
+            } else if (c.getCellStatus().equals(CellStatus.HIT.getStatus())){
+                System.out.print(" X ");
+            } else if (c.getCellStatus().equals(CellStatus.MISSED.getStatus())) {
+                System.out.print(" O ");
             }
         }
 //        for (Cell c : filteredList) {

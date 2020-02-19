@@ -1,5 +1,7 @@
 package seaBattle.data;
 
+import java.util.Objects;
+
 public class Cell {
 
     private int cellIndex;
@@ -27,8 +29,16 @@ public class Cell {
         return cellStatus;
     }
 
+    public void setCellStatus(String cellStatus) {
+        this.cellStatus = cellStatus;
+    }
+
     public boolean isShipInCell() {
         return cellShip != null;
+    }
+
+    public void removeShip() {
+        this.cellShip = null;
     }
 
     public void setCellShip(Ship cellShip) {
@@ -37,6 +47,21 @@ public class Cell {
 
     public Ship getCellShip() {
         return cellShip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cell cell = (Cell) o;
+        return cellIndex == cell.cellIndex &&
+                xCoord == cell.xCoord &&
+                yCoord == cell.yCoord;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cellIndex, xCoord, yCoord);
     }
 }
 

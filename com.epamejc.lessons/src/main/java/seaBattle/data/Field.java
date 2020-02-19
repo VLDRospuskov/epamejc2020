@@ -32,6 +32,21 @@ public class Field {
                 .orElse(null);
     }
 
+    public Cell getCellByDirection(String direction, int xCoord, int yCoord, int step) {
+        Cell cell;
+        if (direction.equals("up")) {
+            cell = getCellByCoords(xCoord, yCoord - step + 1);
+        } else if (direction.equals("right")) {
+            cell = getCellByCoords(xCoord + step - 1, yCoord);
+        } else if (direction.equals("down")) {
+            cell = getCellByCoords(xCoord, yCoord + step - 1);
+        } else {
+            cell = getCellByCoords(xCoord - step + 1, yCoord);
+        }
+
+        return cell;
+    }
+
     public List<Cell> getShipCells(Ship ship) {
         if (ship.getDirection().equals("up")) {
             return getTopDirectionCells(ship);
@@ -42,6 +57,33 @@ public class Field {
         } else {
             return getLeftDirectionCells(ship);
         }
+    }
+
+    public List<Cell> getShipAndRadiusCells(Ship ship) {
+        if (ship.getDirection().equals("up")) {
+            return getTopDirectionRadius(ship.getShipCoordX(), ship.getShipCoordY(), ship.getShipDecks());
+        } else if (ship.getDirection().equals("right")) {
+            return getRightDirectionRadius(ship.getShipCoordX(), ship.getShipCoordY(), ship.getShipDecks());
+        } else if (ship.getDirection().equals("down")) {
+            return getBottomDirectionRadius(ship.getShipCoordX(), ship.getShipCoordY(), ship.getShipDecks());
+        } else {
+            return getLeftDirectionRadius(ship.getShipCoordX(), ship.getShipCoordY(), ship.getShipDecks());
+        }
+    }
+
+    public boolean checkFieldBorder(String direction, int xCoord, int yCoord, int step) {
+        Cell checkCell;
+        if (direction.equals("up")) {
+            checkCell = getCellByCoords(xCoord, yCoord - step + 1);
+        } else if (direction.equals("right")) {
+            checkCell = getCellByCoords(xCoord + step - 1, yCoord);
+        } else if (direction.equals("down")) {
+            checkCell = getCellByCoords(xCoord, yCoord + step - 1);
+        } else {
+            checkCell = getCellByCoords(xCoord - step + 1, yCoord);
+        }
+
+        return checkCell != null;
     }
 
 

@@ -19,6 +19,18 @@ public class Player {
         return battleField.getField();
     }
 
+    public List<Ship> getShips() {
+        return battleShips.getShips();
+    }
+
+    public BattleShips shipsOperations() {
+        return battleShips;
+    }
+
+    public Field fieldOperations() {
+        return battleField;
+    }
+
     public int getShipsCount() {
         return battleShips.getShips().size();
     }

@@ -26,8 +26,8 @@ public class BattleShips {
         ships.sort(Comparator.comparingInt(Ship::getShipDecks).reversed());
     }
 
-    public void placeShip(Ship ship) {
-
+    public void removeShip(Ship ship) {
+        ships.remove(ship);
     }
 
     public List<Ship> getShips() {

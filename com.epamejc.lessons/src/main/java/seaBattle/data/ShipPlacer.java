@@ -34,7 +34,8 @@ public class ShipPlacer {
             Cell selectedCell = field.getCellByCoords(randomCoordX, randomCoordY);
             if (selectedCell != null && selectedCell.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
                 //Проверяем, помещается ли корабль в поле с таким направлением
-                boolean isInsideBorders = checkBorder(randomDirection, randomCoordX, randomCoordY, ship.getShipDecks());
+                boolean isInsideBorders = field.checkFieldBorder(randomDirection, randomCoordX,
+                        randomCoordY, ship.getShipDecks());
                 if (isInsideBorders) {
                     //Проверяем радиус вокруг корабля. Забираем все ячейки, если хоть где-то есть корабль - то false
                     boolean isRadiusFree = checkRadius(randomDirection, randomCoordX, randomCoordY, ship.getShipDecks());
@@ -47,20 +48,20 @@ public class ShipPlacer {
         }
     }
 
-    private boolean checkBorder(String direction, int xCoord, int yCoord, int shipDecks) {
-        Cell checkCell;
-        if (direction.equals("up")) {
-            checkCell = field.getCellByCoords(xCoord, yCoord - shipDecks + 1);
-        } else if (direction.equals("right")) {
-            checkCell = field.getCellByCoords(xCoord + shipDecks - 1, yCoord);
-        } else if (direction.equals("down")) {
-            checkCell = field.getCellByCoords(xCoord, yCoord + shipDecks - 1);
-        } else {
-            checkCell = field.getCellByCoords(xCoord - shipDecks + 1, yCoord);
-        }
-
-        return checkCell != null;
-    }
+//    private boolean checkBorder(String direction, int xCoord, int yCoord, int shipDecks) {
+//        Cell checkCell;
+//        if (direction.equals("up")) {
+//            checkCell = field.getCellByCoords(xCoord, yCoord - shipDecks + 1);
+//        } else if (direction.equals("right")) {
+//            checkCell = field.getCellByCoords(xCoord + shipDecks - 1, yCoord);
+//        } else if (direction.equals("down")) {
+//            checkCell = field.getCellByCoords(xCoord, yCoord + shipDecks - 1);
+//        } else {
+//            checkCell = field.getCellByCoords(xCoord - shipDecks + 1, yCoord);
+//        }
+//
+//        return checkCell != null;
+//    }
 
     private boolean checkRadius(String direction, int xCoord, int yCoord, int shipDecks) {
         if (direction.equals("up")) {
