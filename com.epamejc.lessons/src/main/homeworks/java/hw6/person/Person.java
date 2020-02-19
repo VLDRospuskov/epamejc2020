@@ -13,11 +13,15 @@ public class Person {
 
     @CustomAnnotation(name = "sdgf", age = 12)
     Person() {
-        Constructor[] declaredConstructors = Person.class.getDeclaredConstructors();
+        replaceValues();
+    }
+
+    Constructor[] declaredConstructors = Person.class.getDeclaredConstructors();
+
+    private void replaceValues(){
         CustomAnnotation annotation = (CustomAnnotation) declaredConstructors[0].getAnnotation(CustomAnnotation.class);
         this.name = annotation.name();
         this.age = annotation.age();
-        System.out.println(annotation.name() + " " + annotation.age());
     }
 
 }

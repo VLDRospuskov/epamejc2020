@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 
 public @interface CustomAnnotation {
 
-    String name();
+    String name() default "";
 
-    int age();
+    int age() default 0;
 
 }
