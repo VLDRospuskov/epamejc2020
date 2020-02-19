@@ -11,12 +11,11 @@ public class Person {
     private int age;
 
     @PersonFields(name = "Valera", age = 43)
-    public Person() {
-        Constructor[] constructors = Person.class.getConstructors();
-        Annotation annotation = constructors[0].getAnnotation(PersonFields.class);
-        PersonFields ps = (PersonFields) annotation;
-        this.name = ps.name();
-        this.age = ps.age();
+    public Person() throws NoSuchMethodException {
+        Constructor<Person> constructor = Person.class.getDeclaredConstructor();
+        PersonFields annotation = constructor.getAnnotation(PersonFields.class);
+        this.name = annotation.name();
+        this.age = annotation.age();
     }
 
 }
