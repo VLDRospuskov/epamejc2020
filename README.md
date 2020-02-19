@@ -76,14 +76,14 @@ input number: 4
 input pow: 3  
 output: 64  
   
-HW5  - [3 CountNumberOfDigitsInNumber](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw5/recursion_3)  
+HW5  - [3 NumberOfDigitsCounter](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw5/recursion_3)  
 Посчитать количество чисел:  
 input: 567  
 output: 3  
   
 ***
 HW6  - [PersonFields (Annotation)](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw6)  
-Создайте файл, заполните его текстом(много текста), потом считайте его и запишите в другой файл. Сделайте 2ой метод такой же  только с buffered. Замерьте время выполнения без buffered и c buffered.  
+Создать свою кастомную аннотацию где будет "имя - string" и "возраст - int", то есть в аннотации передаем (name = "sdgf", age = "12"). Повесить аннотацию на конструктор. Цель сделать так чтобы когда у нас будет создаваться объект по типу Person person = new Person() - конструктор пустой, через рефлексию мы должны достать данные из аннотации и подсунуть при инициализации объекта name и age из аннотации. Используйте ломбок.  
 ***
 HW7  - [File copy](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw7)  
 Создайте файл, заполните его текстом(много текста), потом считайте его и запишите в другой файл. Сделайте 2ой метод такой же  только с buffered. Замерьте время выполнения без buffered и c buffered.
