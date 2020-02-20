@@ -1,5 +1,6 @@
 package Homeworks.HW3.Task3Strings;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class T31EvenOdd {
@@ -31,6 +32,8 @@ public class T31EvenOdd {
                 System.out.println("Please input \"even\" or \"odd\" value");
                 return;
         }
+
+        //List<String> list = List.of
 
         System.out.println(output);
     }

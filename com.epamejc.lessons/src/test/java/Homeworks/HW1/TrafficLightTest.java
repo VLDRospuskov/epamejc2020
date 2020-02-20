@@ -1,4 +1,4 @@
-package Homeworks.HW1;
+package java.Homeworks.HW1;
 
 import org.junit.After;
 import org.junit.Before;
@@ -54,33 +54,33 @@ public class TrafficLightTest {
 
     @Test
     public void green() {
-        assertEquals("Light is GREEN", tl.printLight(0));
-        assertEquals("Light is GREEN", tl.printLight(1));
-        assertEquals("Light is GREEN", tl.printLight(2));
-        assertEquals("Light is GREEN", tl.printLight(3));
-        assertEquals("Light is GREEN", tl.printLight(10));
-        assertEquals("Light is GREEN", tl.printLight(11));
-        assertEquals("Light is GREEN", tl.printLight(12));
-        assertEquals("Light is GREEN", tl.printLight(13));
+        assertEquals("Light is GREEN", tl.getLight(0));
+        assertEquals("Light is GREEN", tl.getLight(1));
+        assertEquals("Light is GREEN", tl.getLight(2));
+        assertEquals("Light is GREEN", tl.getLight(3));
+        assertEquals("Light is GREEN", tl.getLight(10));
+        assertEquals("Light is GREEN", tl.getLight(11));
+        assertEquals("Light is GREEN", tl.getLight(12));
+        assertEquals("Light is GREEN", tl.getLight(13));
     }
 
     @Test
     public void yellow() {
-        assertEquals("Light is YELLOW", tl.printLight(4));
-        assertEquals("Light is YELLOW", tl.printLight(5));
-        assertEquals("Light is YELLOW", tl.printLight(14));
-        assertEquals("Light is YELLOW", tl.printLight(15));
+        assertEquals("Light is YELLOW", tl.getLight(4));
+        assertEquals("Light is YELLOW", tl.getLight(5));
+        assertEquals("Light is YELLOW", tl.getLight(14));
+        assertEquals("Light is YELLOW", tl.getLight(15));
     }
 
     @Test
     public void red() {
-        assertEquals("Light is RED", tl.printLight(6));
-        assertEquals("Light is RED", tl.printLight(7));
-        assertEquals("Light is RED", tl.printLight(8));
-        assertEquals("Light is RED", tl.printLight(9));
-        assertEquals("Light is RED", tl.printLight(16));
-        assertEquals("Light is RED", tl.printLight(17));
-        assertEquals("Light is RED", tl.printLight(18));
-        assertEquals("Light is RED", tl.printLight(19));
+        assertEquals("Light is RED", tl.getLight(6));
+        assertEquals("Light is RED", tl.getLight(7));
+        assertEquals("Light is RED", tl.getLight(8));
+        assertEquals("Light is RED", tl.getLight(9));
+        assertEquals("Light is RED", tl.getLight(16));
+        assertEquals("Light is RED", tl.getLight(17));
+        assertEquals("Light is RED", tl.getLight(18));
+        assertEquals("Light is RED", tl.getLight(19));
     }
 }

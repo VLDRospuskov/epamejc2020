@@ -16,7 +16,7 @@ public class TrafficLight {
             while ((line = br.readLine()) != null) {
                 int minutes = prepareInput(line);
                 if (minutes >= 0) {
-                    System.out.println(printLight(minutes));
+                    System.out.println(getLight(minutes));
                 } else {
                     System.out.println("Please provide correct input");
                 }
@@ -34,7 +34,7 @@ public class TrafficLight {
         }
     }
 
-    public String printLight(int minutes) {
+    public String getLight(int minutes) {
         while (minutes >= 10) {
             minutes = minutes - 10;
         }
