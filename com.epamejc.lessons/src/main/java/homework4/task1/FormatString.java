@@ -1,22 +1,26 @@
-package main.java.homework4.task1;
+package homework4.task1;
 
-import java.io.BufferedReader;
+import HomeworksReaderAndPrinter.Printer;
+import HomeworksReaderAndPrinter.Reader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class FormatString {
+class FormatString {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    protected void start() {
+    void start(Reader reader, Printer printer) {
         System.out.println("Enter some string and \"even\" or \"odd\". " + "\n" +
                 "To end the program - enter \"exit\".");
         try {
             while (true) {
                 System.out.println("Please enter the string:");
-                String startString = reader.readLine();
-                if (!startString.equals("exit")) {
-                    evenOrOdd(startString);
+                String inputString = reader.read();
+                if (!inputString.equalsIgnoreCase("exit")) {
+                    try {
+                        String resultString = evenOrOdd(inputString, reader);
+                        printer.print(resultString);
+                    } catch (Exception e) {
+                        System.out.println("Incorrect input.Try again.");
+                    }
                 } else {
                     reader.close();
                     break;
@@ -27,43 +31,37 @@ public class FormatString {
         }
     }
 
-    private void evenOrOdd(String startString) {
+    String evenOrOdd(String inputString, Reader reader) {
+        String evenOdd = "";
         try {
             while (true) {
-                System.out.println("Please enter \"even\", \"odd\":");
-                String evenOdd = reader.readLine();
+                System.out.println("Please enter \"even\" or \"odd\":");
+                evenOdd = reader.read();
 
-                if (evenOdd.equals("even")) {
-                    formatEvenString(startString);
-                    break;
-                } else if (evenOdd.equals("odd")) {
-                    formatOddString(startString);
-                    break;
-                } else if (evenOdd.equals("exit")) {
-                    System.exit(0);
-                    reader.close();
-                } else {
-                    System.out.println("Incorrect input.Try again.");
+                switch (evenOdd) {
+                    case "even":
+                        return extractLettersFromString(inputString, 1);
+                    case "odd":
+                        return extractLettersFromString(inputString, 0);
+                    case "exit":
+                        System.exit(0);
+                        reader.close();
+                    default:
+                        System.out.println("Incorrect input.Try again.");
+                        break;
                 }
             }
         } catch (IOException e) {
             System.out.println("IOException");
         }
+        return evenOdd;
     }
 
-    private void formatEvenString(String startString) {
-        String result = "";
-        for (int i = 1; i < startString.length(); i = i + 2) {
-            result += startString.charAt(i);
+    String extractLettersFromString(String inputString, int extractionOrder) {
+        StringBuilder resultString = new StringBuilder();
+        for (int i = extractionOrder; i < inputString.length(); i = i + 2) {
+            resultString.append(inputString.charAt(i));
         }
-        System.out.println(result);
-    }
-
-    private void formatOddString(String startString) {
-        String result = "";
-        for (int i = 0; i < startString.length(); i = i + 2) {
-            result += startString.charAt(i);
-        }
-        System.out.println(result);
+        return resultString.toString();
     }
 }

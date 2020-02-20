@@ -1,38 +1,38 @@
-package main.java.homework5.task3;
+package homework5.task3;
 
-import java.io.BufferedReader;
+import HomeworksReaderAndPrinter.Printer;
+import HomeworksReaderAndPrinter.Reader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class DigitsAmount {
+class DigitsAmount {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    protected void start() throws IOException {
+    void start(Reader reader, Printer printer) {
         System.out.println("Enter the number." + "\n" +
                 "To end the program - enter \"exit\".");
-        while (true) {
-            String inputStr = reader.readLine();
-
-            if (!inputStr.equals("exit")) {
-                inputCheck(inputStr);
-            } else {
-                reader.close();
-                break;
-            }
-        }
-    }
-
-    private void inputCheck(String inputStr) {
         try {
-            int inputInt = Integer.parseInt(inputStr);
-            System.out.println(amountOfDigits(inputInt));
-        } catch (NumberFormatException e) {
-            System.out.println("Incorrect input.Try again.");
+            while (true) {
+                String inputStr = reader.read();
+                if (!inputStr.equals("exit")) {
+                    try {
+                        int inputNumber = Integer.parseInt(inputStr);
+                        int result = amountOfDigits(inputNumber);
+                        printer.print(String.valueOf(result));
+                    } catch (Exception e) {
+                        System.out.println("Incorrect input.Try again.");
+                    }
+                } else {
+                    reader.close();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("IOException");
         }
+
     }
 
-    private int amountOfDigits(int inputInt) {
+    int amountOfDigits(int inputInt) {
         if (inputInt < 10) {
             return 1;
         }

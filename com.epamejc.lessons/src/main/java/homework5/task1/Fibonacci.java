@@ -1,21 +1,27 @@
-package main.java.homework5.task1;
+package homework5.task1;
 
-import java.io.BufferedReader;
+import HomeworksReaderAndPrinter.Printer;
+import HomeworksReaderAndPrinter.Reader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class Fibonacci {
+class Fibonacci {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    protected void start() {
-        System.out.println("Enter the element number of the Fibonacci row" + "\n" +
+    protected void start(Reader reader, Printer printer) {
+        System.out.println("Enter the element number of the Fibonacci row. " +
+                "Please enter number less than or equal 45." + "\n" +
                 "To end the program - enter \"exit\".");
         try {
             while (true) {
-                String fibString = reader.readLine();
-                if (!fibString.equals("exit")) {
-                    inputCheck(fibString);
+                String fibString = reader.read();
+                if (!fibString.equalsIgnoreCase("exit")) {
+                    try {
+                        int fib = inputCheck(fibString);
+                        int result = findFib(fib);
+                        printer.print(String.valueOf(result));
+                    } catch (Exception e) {
+                        System.out.println("Incorrect input.Try again.");
+                    }
                 } else {
                     reader.close();
                     break;
@@ -26,23 +32,15 @@ public class Fibonacci {
         }
     }
 
-    private void inputCheck(String fibString) {
-        while (true) {
-            try {
-                int fib = Integer.parseInt(fibString);
-                if (fib <= 45) {
-                    System.out.println(findFib(fib));
-                } else {
-                    System.out.println("Entered too big number. Please enter number less than or equal 45.");
-                }
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Incorrect input.Try again.");
-            }
+    int inputCheck(String fibString) throws Exception {
+        int fib = Integer.parseInt(fibString);
+        if (fib > 45) {
+            throw new Exception();
         }
+        return fib;
     }
 
-    private int findFib(int fib) {
+    int findFib(int fib) {
         if (fib == 0) {
             return 0;
         }

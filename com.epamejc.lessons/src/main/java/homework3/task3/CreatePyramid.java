@@ -1,22 +1,27 @@
-package main.java.homework3.task3;
+package homework3.task3;
 
-import java.io.BufferedReader;
+import HomeworksReaderAndPrinter.Printer;
+import HomeworksReaderAndPrinter.Reader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class CreatePyramid {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    protected void start() {
+    protected void start(Reader reader, Printer printer) {
         System.out.println("Enter the integer - it will be height of your pyramid." + "\n" +
                 "To end the program - enter \"exit\".");
         try {
             while (true) {
-                String height = reader.readLine();
+                String height = reader.read();
                 if (!height.equals("exit")) {
-                    createArray(height);
+                    try {
+                        String[][] xPyramid = createPyramid(height);
+                        printer.print(arrayAsString(xPyramid));
+                        System.out.println("Enter the integer:");
+                    } catch (Exception e) {
+                        printer.print("Incorrect input.Try again.");
+                    }
                 } else {
                     reader.close();
                     break;
@@ -27,25 +32,27 @@ public class CreatePyramid {
         }
     }
 
-    private void createArray(String height) {
-        try {
-            int intHeight = Integer.parseInt(height);
-            String[][] xArray = new String[intHeight][intHeight];
-            for (String[] s : xArray) {
+     String[][] createPyramid(String height) {
+         int intHeight = Integer.parseInt(height);
+         String[][] xPyramid = new String[intHeight][];
+         for (int i = 0; i < intHeight ; i++) {
+             xPyramid[i] = new String[intHeight - i];
+         }
+         for (String[] s : xPyramid) {
                 Arrays.fill(s, "X");
             }
-            createPyramid(xArray);
-        } catch (NumberFormatException e) {
-            System.out.println("Incorrect input.Try again.");
-        }
+        return xPyramid;
     }
 
-    private void createPyramid(String[][] xArray) {
-        for (int i = xArray.length - 1; i >= 0; i--) {
-            for (int j = i; j >= 0; j--) {
-                System.out.print(xArray[i][j]);
+    private String arrayAsString(String[][] xPyramid) {
+        StringBuilder builder = new StringBuilder();
+        for (String[] strings : xPyramid) {
+            for (String symbol : strings) {
+                builder.append(symbol);
+                builder.append(" ");
             }
-            System.out.println();
+            builder.append("\n");
         }
+        return builder.toString();
     }
 }

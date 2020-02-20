@@ -1,23 +1,28 @@
-package main.java.homework4.task3;
+package homework4.task3;
 
-import java.io.BufferedReader;
+import HomeworksReaderAndPrinter.Printer;
+import HomeworksReaderAndPrinter.Reader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ChangeString {
+class ChangeString {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private String inputString;
-
-    protected void start() {
+    protected void start(Reader reader, Printer printer) {
         System.out.println("Enter some string and then enter indices of letters which you want to replace " +
                 "(separated by a \", \")" + "\n" + "To end the program - enter \"exit\".");
         try {
             while (true) {
                 System.out.println("Enter the string:");
-                inputString = reader.readLine();
+                String inputString = reader.read();
                 if (!inputString.equals("exit")) {
-                    inputCheck();
+                    try {
+                        List<Integer> indices = inputIndicesCheck(reader);
+                        printer.print(changeString(inputString, indices.get(0), indices.get(1)));
+                    } catch (Exception e) {
+                        System.out.println("Incorrect input.Try again.");
+                    }
                 } else {
                     reader.close();
                     break;
@@ -28,36 +33,33 @@ public class ChangeString {
         }
     }
 
-    private void inputCheck() throws IOException {
-        while (true) {
+    List<Integer> inputIndicesCheck(Reader reader) {
+        List<Integer> indices = new ArrayList<>(2);
+        try {
             System.out.print("Enter indices: ");
-            String inputIndices = reader.readLine();
-            try {
-                if (inputIndices.equals("exit")) {
-                    System.exit(0);
-                    reader.close();
-                } else {
-                    String[] indices = inputIndices.split(", ");
-                    int index1 = Integer.parseInt(indices[0]);
-                    int index2 = Integer.parseInt(indices[1]);
-                    changeString(index1, index2);
-                    break;
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("The index is bigger than the length of the string. Try again.");
-            } catch (NumberFormatException e) {
-                System.out.println("Apparently, you did not enter an integer. Try again.");
+            String inputIndices = reader.read();
+
+            if (inputIndices.equalsIgnoreCase("exit")) {
+                System.exit(0);
+                reader.close();
+            } else {
+                String[] indicesStr = inputIndices.split(", ");
+                indices.add(Integer.valueOf(indicesStr[0]));
+                indices.add(Integer.valueOf(indicesStr[1]));
             }
+        } catch (IOException e) {
+            System.out.println("IOException");
         }
+        return indices;
     }
 
-    private void changeString(int index1, int index2) {
+    String changeString(String inputString, int index1, int index2) {
         StringBuilder result = new StringBuilder(inputString);
         result.delete(index1, index1 + 1);
         result.insert(index1, inputString.charAt(index2));
         result.delete(index2, index2 + 1);
         result.insert(index2, inputString.charAt(index1));
-        System.out.println(result);
+        return result.toString();
     }
 }
 

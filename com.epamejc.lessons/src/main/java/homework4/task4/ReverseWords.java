@@ -1,21 +1,21 @@
-package main.java.homework4.task4;
+package homework4.task4;
 
-import java.io.BufferedReader;
+import HomeworksReaderAndPrinter.Printer;
+import HomeworksReaderAndPrinter.Reader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-public class ReverseWords {
+class ReverseWords {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    protected void start() {
+    void start(Reader reader, Printer printer) {
         System.out.println("Enter some string." + "\n" + "To end the program - enter \"exit\".");
         try {
             while (true) {
                 System.out.println("Enter the string:");
-                String inputString = reader.readLine();
-                if (!inputString.equals("exit")) {
-                    reverseWord(inputString);
+                String inputString = reader.read();
+                if (!inputString.equalsIgnoreCase("exit")) {
+                    String reverseInput = reverseWord(inputString);
+                    printer.print(reverseInput);
                 } else {
                     reader.close();
                     break;
@@ -26,11 +26,17 @@ public class ReverseWords {
         }
     }
 
-    private void reverseWord(String inputString) {
+    String reverseWord(String inputString) {
         String[] words = inputString.split(" ");
+        StringBuilder stringBuilder = new StringBuilder();
+
         for (String word : words) {
-            System.out.print(new StringBuilder(word).reverse().toString() + " ");
+            word = new StringBuilder(word).reverse().toString();
+            stringBuilder.append(word).append(" ");
         }
-        System.out.println();
+
+        String resultReverseString = stringBuilder.toString();
+        resultReverseString = resultReverseString.substring(0, resultReverseString.length() - 1);
+        return resultReverseString;
     }
 }

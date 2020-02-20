@@ -1,21 +1,29 @@
-package main.java.homework3.task1;
+package homework3.task1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import HomeworksReaderAndPrinter.*;
+import HomeworksReaderAndPrinter.Reader;
+
+import java.io.*;
+import java.util.*;
 
 class CreateArray {
 
-    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    protected void start() {
+    void start(Reader reader, Printer printer) {
         System.out.println("Enter the sizes of the array (separated by a \"space button\")." + "\n" +
                 "To end the program - enter \"exit\".");
         try {
             while (true) {
-                String arraySize = reader.readLine();
-                if (!arraySize.equals("exit")) {
-                    inputCheck(arraySize);
+                String arraySize = reader.read();
+                if (!arraySize.equalsIgnoreCase("exit")) {
+                    try {
+
+                        List<Integer> integers = inputCheck(arraySize);
+                        char[][] result = createArray(integers.get(0), integers.get(1));
+                        printer.print(arrayAsString(result));
+                        System.out.println("Enter the sizes of the array:");
+                    } catch (Exception e) {
+                        System.out.println("Incorrect input.Try again.");
+                    }
                 } else {
                     reader.close();
                     break;
@@ -26,30 +34,32 @@ class CreateArray {
         }
     }
 
-    private void inputCheck(String arraySize) {
-        if (arraySize.contains(" ")) {
+    List<Integer> inputCheck(String arraySize) throws RuntimeException {
             String[] arraySizes = arraySize.split(" ");
-            try {
-                int firstSize = Integer.parseInt(arraySizes[0]);
-                int secondSize = Integer.parseInt(arraySizes[1]);
-                createAndPrintArray(firstSize, secondSize);
-            } catch (NumberFormatException e) {
-                System.out.println("Incorrect input.Try again.");
-            }
-        } else {
-            System.out.println("Incorrect input. Try again.");
-        }
+            int firstSize = Integer.parseInt(arraySizes[0]);
+            int secondSize = Integer.parseInt(arraySizes[1]);
+            return Arrays.asList(firstSize, secondSize);
     }
 
-    private void createAndPrintArray(int firstSize, int secondSize) {
+      char[][] createArray(int firstSize, int secondSize) {
         char[][] result = new char[firstSize][secondSize];
-
         for (int i = 0; i < firstSize; i++) {
             for (int j = 0; j < secondSize; j++) {
                 result[i][j] = (char) (97 + (int) (Math.random() * 25));
-                System.out.print(result[i][j] + " ");
             }
-            System.out.println();
         }
+        return result;
+    }
+
+    private String arrayAsString(char[][] input) {
+        StringBuilder builder = new StringBuilder();
+        for (char[] chars : input) {
+            for (char aChar : chars) {
+                builder.append(aChar);
+                builder.append(" ");
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 }

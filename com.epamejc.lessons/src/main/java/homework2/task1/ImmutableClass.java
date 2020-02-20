@@ -1,8 +1,7 @@
-package main.java.homework2.task1;
+package homework2.task1;
 
 
-
-public class ImmutableClass {
+class ImmutableClass {
 
     final private String strField;
     final private int intField;
@@ -19,5 +18,4 @@ public class ImmutableClass {
     public int getIntField() {
         return intField;
     }
-
 }
