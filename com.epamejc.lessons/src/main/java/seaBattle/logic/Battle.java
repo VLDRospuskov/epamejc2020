@@ -33,25 +33,21 @@ public class Battle {
     public void startBattle() {
         try (Scanner scanner = new Scanner(System.in)){
             while (!isGameFinished) {
-                // ввели индекс
                 int[] shotCoordinates = inputOperator.enterIndexes(scanner, botPlayer, playerShootingUtil);
-                // делаем выстрел
                 playerShootingUtil.shot(shotCoordinates);
-//                for (Cell c : botPlayer.getField()) {
-//                    if (c.getCellStatus() == CellStatus.HIT.getStatus()) {
-//                        System.out.println("here");
-//                    }
-//                    if (c.getCellStatus() == CellStatus.MISSED.getStatus()) {
-//                        System.out.println("here");
-//                    }
-//                }
-
                 fieldPrinter.printField(humanPlayer.getField(),botPlayer.getField());
                 botShootingUtil.shot(generateRandomCoordinates(Configuration.getFieldSize()));
                 fieldPrinter.printField(humanPlayer.getField(),botPlayer.getField());
             }
         }
     }
+
+//    private boolean checkWinConditions() {
+//        if (humanPlayer.getShipsCount() == 0) {
+//            System.out.println("");
+//            return true;
+//        }
+//    }
 
 
 

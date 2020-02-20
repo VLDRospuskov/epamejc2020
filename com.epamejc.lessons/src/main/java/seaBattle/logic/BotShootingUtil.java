@@ -32,9 +32,9 @@ public class BotShootingUtil extends PlayerShootingUtil {
         if (isPointFixed) { //уже попали и есть направление
             Cell fireCell = getEnemyPlayer().fieldOperations().getCellByDirection(shotDirection, shotCoordX, shotCoordY, offset + 1);
             if (fireCell == null) { //мб эта проверка не нужна
-                //вышли за границу -> надо идти в обратном направлении
+                System.out.println("Line 35 botshot");
             } else if (getEnemyBannedCells().contains(fireCell)) {
-                //упираемся в забаненную ячейку -> надо идти в обратном направлении
+                System.out.println("line 37 botshot");
             } else {
                 Ship enemyShip = fireCell.getCellShip();
                 if (enemyShip != null) {
