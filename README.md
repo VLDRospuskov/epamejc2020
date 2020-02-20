@@ -100,5 +100,10 @@ Use Lombok.
 
 HW5: Cover your code with tests.
 
-HW6: Create Battleships (or Sea Battle) game. Play PVP or PVE.
+HW6: Create Battleships (or Sea Battle) game. Play PVP or PVE. Package name: Seabattle.
+
+HW7: Working with files
+Create text file, fill it with text (a lot of text), then read it and write data to another file.
+Create another method but with buffered.
+Compare time between buffered and non-buffered.
 ```
