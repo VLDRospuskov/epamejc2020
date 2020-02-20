@@ -23,29 +23,21 @@ public class PlayerShootingUtil {
         return enemyBannedCells;
     }
 
-    public void setEnemyBannedCells(Set<Cell> enemyBannedCells) {
-        this.enemyBannedCells = enemyBannedCells;
-    }
-
     public Player getEnemyPlayer() {
         return enemyPlayer;
-    }
-
-    public void setEnemyPlayer(Player enemyPlayer) {
-        this.enemyPlayer = enemyPlayer;
     }
 
     public boolean isCellShot(Cell potentialFireCell) {
         return enemyBannedCells.contains(potentialFireCell);
     }
 
-    public void shot(int[] shotCoordinates) {
+    public boolean shot(int[] shotCoordinates) {
         Cell fireCell = enemyPlayer.fieldOperations().getCellByCoords(shotCoordinates[0], shotCoordinates[1]);
         Ship enemyShip = fireCell.getCellShip();
         if (enemyShip != null) {
             enemyShip.hitShip();
             if (enemyShip.isDestroyed()) {
-                System.out.println(SystemMessages.playerKill.getMessage());
+                System.out.println(SystemMessages.playerKill.getMessage() + " " + enemyShip.getShipType());
                 processDestroyedShip(enemyShip);
             } else {
                 System.out.println(SystemMessages.playerHit.getMessage());
@@ -53,11 +45,13 @@ public class PlayerShootingUtil {
                 fireCell.setCellStatus(CellStatus.HIT.getStatus());
                 enemyBannedCells.add(fireCell);
             }
+            return true;
         } else {
             System.out.println(SystemMessages.playerMiss.getMessage());
             // добавляем ячейку в бан и ставим статус
             fireCell.setCellStatus(CellStatus.MISSED.getStatus());
             enemyBannedCells.add(fireCell);
+            return false;
         }
     }
 
@@ -66,7 +60,7 @@ public class PlayerShootingUtil {
         List<Cell> destroyedShipCells = enemyPlayer.fieldOperations().getShipAndRadiusCells(destroyedShip);
         for (Cell cell : destroyedShipCells) {
             cell.setCellStatus(CellStatus.HIT.getStatus());
-            if (!enemyBannedCells.contains(cell)){
+            if (!enemyBannedCells.contains(cell)) {
                 enemyBannedCells.add(cell);
             }
         }

@@ -1,7 +1,8 @@
 package seaBattle.logic;
 
-import seaBattle.data.Configuration;
 import seaBattle.data.Player;
+
+import java.util.Scanner;
 
 /**
  * @version 0.1
@@ -10,16 +11,22 @@ import seaBattle.data.Player;
 public class Application {
 
     public void run() {
-        Configuration.readConfig();
-        System.out.println("Welcome to seabattle game ver 0.1\n");
-
         Player humanPlayer = new Player();
         Player botPlayer = new Player();
 
-        FieldPrinter fieldPrinter = new FieldPrinter();
-        fieldPrinter.printField(humanPlayer.getField(),botPlayer.getField());
+        humanPlayer.shipPlacer().placeShipsAutomatically(humanPlayer.shipsOperations().getShips());
+        botPlayer.shipPlacer().placeShipsAutomatically(botPlayer.shipsOperations().getShips());
 
-        Battle seaBattle = new Battle(humanPlayer, botPlayer);
-        seaBattle.startBattle();
+        Scanner scanner = new Scanner(System.in);
+        try {
+            Battle seaBattle = new Battle(humanPlayer, botPlayer, scanner);
+            seaBattle.startBattle();
+        } catch (InterruptedException intEx) {
+            System.out.println("There is a problem with thread");
+        } catch(Exception ex) {
+            System.err.println("Something went wrong " + ex.getMessage());
+        } finally {
+            scanner.close();
+        }
     }
 }

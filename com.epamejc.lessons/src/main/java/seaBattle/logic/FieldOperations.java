@@ -1,12 +1,15 @@
-package seaBattle.data;
+package seaBattle.logic;
 
+import seaBattle.data.Cell;
+import seaBattle.data.Configuration;
+import seaBattle.data.Ship;
 import seaBattle.data.enums.CellStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Field {
+public class FieldOperations {
 
     private List<Cell> field = new ArrayList<>();
 

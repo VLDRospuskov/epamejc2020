@@ -1,16 +1,18 @@
-package seaBattle.data;
+package seaBattle.logic;
 
+import seaBattle.data.Cell;
+import seaBattle.data.Ship;
 import seaBattle.data.enums.CellStatus;
 import seaBattle.utils.RandomNumberGenerator;
 
 import java.util.List;
 
-public class ShipPlacer {
+public class AutomaticShipPlacer {
 
-    private Field field;
+    private FieldOperations fieldOperations;
 
-    public ShipPlacer(Field fieldObject) {
-        this.field = fieldObject;
+    public AutomaticShipPlacer(FieldOperations fieldOperationsObject) {
+        this.fieldOperations = fieldOperationsObject;
     }
 
     public void placeShipsAutomatically(List<Ship> ships) {
@@ -31,10 +33,10 @@ public class ShipPlacer {
 //            String randomDirection = "right";
 
             //Проверяем, есть ли такая ячейка, есть на ней корабль
-            Cell selectedCell = field.getCellByCoords(randomCoordX, randomCoordY);
+            Cell selectedCell = fieldOperations.getCellByCoords(randomCoordX, randomCoordY);
             if (selectedCell != null && selectedCell.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
                 //Проверяем, помещается ли корабль в поле с таким направлением
-                boolean isInsideBorders = field.checkFieldBorder(randomDirection, randomCoordX,
+                boolean isInsideBorders = fieldOperations.checkFieldBorder(randomDirection, randomCoordX,
                         randomCoordY, ship.getShipDecks());
                 if (isInsideBorders) {
                     //Проверяем радиус вокруг корабля. Забираем все ячейки, если хоть где-то есть корабль - то false
@@ -64,18 +66,23 @@ public class ShipPlacer {
 //    }
 
     private boolean checkRadius(String direction, int xCoord, int yCoord, int shipDecks) {
-        if (direction.equals("up")) {
-            List<Cell> radiusCellsList = field.getTopDirectionRadius(xCoord, yCoord, shipDecks);
-            return isRadiusCorrect(radiusCellsList);
-        } else if (direction.equals("right")) {
-            List<Cell> radiusCellsList = field.getRightDirectionRadius(xCoord, yCoord, shipDecks);
-            return isRadiusCorrect(radiusCellsList);
-        } else if (direction.equals("down")) {
-            List<Cell> radiusCellsList = field.getBottomDirectionRadius(xCoord, yCoord, shipDecks);
-            return isRadiusCorrect(radiusCellsList);
-        } else {
-            List<Cell> radiusCellsList = field.getLeftDirectionRadius(xCoord, yCoord, shipDecks);
-            return isRadiusCorrect(radiusCellsList);
+        switch (direction) {
+            case "up": {
+                List<Cell> radiusCellsList = fieldOperations.getTopDirectionRadius(xCoord, yCoord, shipDecks);
+                return isRadiusCorrect(radiusCellsList);
+            }
+            case "right": {
+                List<Cell> radiusCellsList = fieldOperations.getRightDirectionRadius(xCoord, yCoord, shipDecks);
+                return isRadiusCorrect(radiusCellsList);
+            }
+            case "down": {
+                List<Cell> radiusCellsList = fieldOperations.getBottomDirectionRadius(xCoord, yCoord, shipDecks);
+                return isRadiusCorrect(radiusCellsList);
+            }
+            default: {
+                List<Cell> radiusCellsList = fieldOperations.getLeftDirectionRadius(xCoord, yCoord, shipDecks);
+                return isRadiusCorrect(radiusCellsList);
+            }
         }
     }
 
@@ -92,7 +99,7 @@ public class ShipPlacer {
         ship.setDirection(randomDirection);
         ship.setShipCoordX(randomCoordX);
         ship.setShipCoordY(randomCoordY);
-        List<Cell> shipCells = field.getShipCells(ship);
+        List<Cell> shipCells = fieldOperations.getShipCells(ship);
         for (Cell cell : shipCells) {
             cell.setCellShip(ship);
         }

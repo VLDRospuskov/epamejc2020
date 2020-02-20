@@ -1,12 +1,14 @@
-package seaBattle.data;
+package seaBattle.logic;
 
+import seaBattle.data.Configuration;
+import seaBattle.data.Ship;
 import seaBattle.data.enums.ShipType;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class BattleShips {
+public class ShipOperations {
 
     private List<Ship> ships = new ArrayList<>();
 
@@ -32,5 +34,21 @@ public class BattleShips {
 
     public List<Ship> getShips() {
         return ships;
+    }
+
+    public void printShipsNumber() {
+        long lincorCount = ships.stream().filter(ship -> ship.getShipType()
+                .equals(ShipType.LINCOR.getType())).count();
+        long cruiserCount = ships.stream().filter(ship -> ship.getShipType()
+                .equals(ShipType.CRUISER.getType())).count();
+        long destroyerCount = ships.stream().filter(ship -> ship.getShipType()
+                .equals(ShipType.DESTROYER.getType())).count();
+        long boatCount = ships.stream().filter(ship -> ship.getShipType()
+                .equals(ShipType.BOAT.getType())).count();
+        System.out.println("Enemy lincor number: " + lincorCount);
+        System.out.println("Enemy cruisers number: " + cruiserCount);
+        System.out.println("Enemy destroyers number: " + destroyerCount);
+        System.out.println("Enemy boats number: " + boatCount);
+        System.out.println();
     }
 }

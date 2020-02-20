@@ -3,6 +3,7 @@ package seaBattle.logic;
 import seaBattle.data.Cell;
 import seaBattle.data.Configuration;
 import seaBattle.data.enums.CellStatus;
+import seaBattle.data.enums.ConsoleColors;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,25 +30,28 @@ public class FieldPrinter {
             if (i == 0) {
                 System.out.print("   ");
             }
-            System.out.print("  " + (char) (65 + i));
+            System.out.print("  " + ConsoleColors.GREEN_BOLD.color() +
+                    (char) (65 + i) + ConsoleColors.RESET.color());
         }
         System.out.print("\t");
         for (int i = 0; i < fieldSize; i++) {
             if (i == 0) {
                 System.out.print("   ");
             }
-            System.out.print("  " + (char) (65 + i));
+            System.out.print("  " + ConsoleColors.GREEN_BOLD.color() +
+                    (char) (65 + i) + ConsoleColors.RESET.color());
         }
         System.out.println();
     }
 
     //Метод печатает строку ячеек под указанным индексом строки
     private void printFieldLine(List<Cell> playerField, List<Cell> botField, int yCoord) {
-        System.out.print(yCoord + "\t");
+        System.out.print(ConsoleColors.GREEN_BOLD.color() + yCoord + ConsoleColors.RESET.color() + "\t");
         printFieldComponents(playerField, yCoord);
         System.out.print("\t");
-        System.out.print(yCoord + "\t");
-        printFieldComponents(botField, yCoord);
+        System.out.print(ConsoleColors.GREEN_BOLD.color() + yCoord + ConsoleColors.RESET.color() + "\t");
+        //printFieldComponents(botField, yCoord);
+        printBotFieldComponents(botField, yCoord);
         System.out.println();
     }
 
@@ -58,15 +62,15 @@ public class FieldPrinter {
 
         for (Cell c : filteredList) {
             if (c.getCellShip() != null && c.getCellStatus().equals(CellStatus.HIT.getStatus())) {
-                System.out.print(" X ");
+                System.out.print(ConsoleColors.RED.color() + " X " + ConsoleColors.RESET.color());
             } else if (c.getCellShip() != null) {
                 System.out.print(" □ ");
             } else if (c.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
                 System.out.print(" . ");
             } else if (c.getCellStatus().equals(CellStatus.HIT.getStatus())){
-                System.out.print(" X ");
+                System.out.print(ConsoleColors.RED.color() + " X " + ConsoleColors.RESET.color());
             } else if (c.getCellStatus().equals(CellStatus.MISSED.getStatus())) {
-                System.out.print(" O ");
+                System.out.print(ConsoleColors.BLUE.color() + " O " + ConsoleColors.RESET.color());
             }
         }
 //        for (Cell c : filteredList) {
@@ -78,5 +82,20 @@ public class FieldPrinter {
 //                System.out.print("O");
 //            }
 //        }
+    }
+
+    private void printBotFieldComponents(List<Cell> printingField, int yCoord) {
+        List<Cell> filteredList =
+                printingField.stream().filter(cell -> cell.getyCoord() == yCoord).collect(Collectors.toList());
+
+        for (Cell c : filteredList) {
+            if (c.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
+                System.out.print(" . ");
+            } else if (c.getCellStatus().equals(CellStatus.HIT.getStatus())) {
+                System.out.print(ConsoleColors.RED.color() + " X " + ConsoleColors.RESET.color());
+            } else if (c.getCellStatus().equals(CellStatus.MISSED.getStatus())) {
+                System.out.print(ConsoleColors.BLUE.color() + " O " + ConsoleColors.RESET.color());
+            }
+        }
     }
 }

@@ -1,37 +1,43 @@
 package seaBattle.data;
 
+import seaBattle.logic.AutomaticShipPlacer;
+import seaBattle.logic.FieldOperations;
+import seaBattle.logic.ShipOperations;
+
 import java.util.List;
 
 public class Player {
 
-    private Field battleField = new Field();
-    private BattleShips battleShips = new BattleShips();
-    private ShipPlacer shipPlacer;
+    private FieldOperations battleFieldOperations = new FieldOperations();
+    private ShipOperations shipOperations = new ShipOperations();
+    private AutomaticShipPlacer automaticShipPlacer;
 
     public Player() {
-        battleField.generateField();
-        battleShips.generateShips();
-        shipPlacer = new ShipPlacer(battleField);
-        shipPlacer.placeShipsAutomatically(battleShips.getShips());
+        battleFieldOperations.generateField();
+        shipOperations.generateShips();
+        automaticShipPlacer = new AutomaticShipPlacer(battleFieldOperations);
+        //automaticShipPlacer.placeShipsAutomatically(shipOperations.getShips());
     }
 
     public List<Cell> getField() {
-        return battleField.getField();
+        return battleFieldOperations.getField();
     }
 
     public List<Ship> getShips() {
-        return battleShips.getShips();
+        return shipOperations.getShips();
     }
 
-    public BattleShips shipsOperations() {
-        return battleShips;
+    public ShipOperations shipsOperations() {
+        return shipOperations;
     }
 
-    public Field fieldOperations() {
-        return battleField;
+    public FieldOperations fieldOperations() {
+        return battleFieldOperations;
     }
+
+    public AutomaticShipPlacer shipPlacer() { return automaticShipPlacer; }
 
     public int getShipsCount() {
-        return battleShips.getShips().size();
+        return shipOperations.getShips().size();
     }
 }

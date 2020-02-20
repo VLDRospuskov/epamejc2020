@@ -47,6 +47,10 @@ public class Ship {
         return shipDecks;
     }
 
+    public String getShipType() {
+        return shipType;
+    }
+
     public boolean isDestroyed() {
         return this.isDestroyed;
     }

@@ -14,13 +14,14 @@ import static java.lang.Integer.parseInt;
 public class InputOperator {
 
     private final String REGEX = "^(\\w{1,})\\s{1,}(\\d{1,})";
-    private String[] parsedIndices;
+    private String[] parsedIndices = new String[] {"1", "1"};
 
     public int[] enterIndexes(Scanner scanner, Player botPlayer, PlayerShootingUtil playerShootingUtil) {
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
             System.out.print(SystemMessages.enterIndex.getMessage());
             String enteredString = scanner.nextLine();
+            System.out.println();
             try {
                 if (enteredString.equals("exit")) {
                     Battle.setExitCondition();

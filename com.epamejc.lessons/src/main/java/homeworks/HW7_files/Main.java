@@ -1,4 +1,4 @@
-package homeworks.HW_7_files;
+package homeworks.HW7_files;
 
 public class Main {
 

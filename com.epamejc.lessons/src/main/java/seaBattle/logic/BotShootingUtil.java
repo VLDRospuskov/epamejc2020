@@ -28,43 +28,39 @@ public class BotShootingUtil extends PlayerShootingUtil {
     }
 
     @Override
-    public void shot(int[] shotCoordinates) {
+    public boolean shot(int[] shotCoordinates) {
         if (isPointFixed) { //уже попали и есть направление
             Cell fireCell = getEnemyPlayer().fieldOperations().getCellByDirection(shotDirection, shotCoordX, shotCoordY, offset + 1);
-            if (fireCell == null) { //мб эта проверка не нужна
-                System.out.println("Line 35 botshot");
-            } else if (getEnemyBannedCells().contains(fireCell)) {
-                System.out.println("line 37 botshot");
-            } else {
-                Ship enemyShip = fireCell.getCellShip();
-                if (enemyShip != null) {
-                    enemyShip.hitShip();
-                    if (enemyShip.isDestroyed()) { //убили корабль
-                        System.out.println(SystemMessages.botKill.getMessage());
-                        processDestroyedShip(enemyShip);
-                        clearShotCoordinates(); //очистили зафиксированную координату
-                    } else { //повредили корабль
-                        System.out.println(SystemMessages.botHit.getMessage());
-                        fireCell.setCellStatus(CellStatus.HIT.getStatus());
-                        getEnemyBannedCells().add(fireCell);
-                        offset++; //будем стрелять в этом направлении
-
-                    }
-                } else {
-                    // промах - меняем направление
-                    System.out.println(SystemMessages.botMiss.getMessage());
-                    fireCell.setCellStatus(CellStatus.MISSED.getStatus());
+            Ship enemyShip = fireCell.getCellShip();
+            if (enemyShip != null) {
+                enemyShip.hitShip();
+                if (enemyShip.isDestroyed()) { //убили корабль
+                    System.out.println(SystemMessages.botKill.getMessage());
+                    processDestroyedShip(enemyShip);
+                    clearShotCoordinates(); //очистили зафиксированную координату
+                } else { //повредили корабль
+                    System.out.println(SystemMessages.botHit.getMessage());
+                    fireCell.setCellStatus(CellStatus.HIT.getStatus());
                     getEnemyBannedCells().add(fireCell);
-                    this.shotDirection = generateFireDirection(new int[] {shotCoordX, shotCoordY});
-                    this.offset = 1;
+                    offset++; //будем стрелять в этом направлении
                 }
+                return true;
+            } else {
+                // промах - меняем направление
+                System.out.println(SystemMessages.botMiss.getMessage());
+                fireCell.setCellStatus(CellStatus.MISSED.getStatus());
+                getEnemyBannedCells().add(fireCell);
+                this.shotDirection = generateFireDirection(new int[]{shotCoordX, shotCoordY});
+                this.offset = 1;
+                return false;
             }
+
         } else {
-            randomShooting(shotCoordinates); // стреляем первый раз
+            return randomShooting(shotCoordinates); // стреляем первый раз
         }
     }
 
-    private void randomShooting(int[] shotCoordinates) {
+    private boolean randomShooting(int[] shotCoordinates) {
         int[] validShotCoordinates = checkOrGenerateCoordinates(shotCoordinates); //Здесь актуальные координаты
         Cell fireCell = getEnemyPlayer().fieldOperations()
                 .getCellByCoords(validShotCoordinates[0], validShotCoordinates[1]);
@@ -80,15 +76,13 @@ public class BotShootingUtil extends PlayerShootingUtil {
                 getEnemyBannedCells().add(fireCell);
                 setShotCoordinates(validShotCoordinates);
             }
+            return true;
         } else {
             System.out.println(SystemMessages.botMiss.getMessage());
             fireCell.setCellStatus(CellStatus.MISSED.getStatus());
             getEnemyBannedCells().add(fireCell);
+            return false;
         }
-    }
-
-    private void estimatedShooting() {
-
     }
 
     private void setShotCoordinates(int[] validShotCoordinates) {
@@ -133,9 +127,10 @@ public class BotShootingUtil extends PlayerShootingUtil {
             direction = RandomNumberGenerator.generateRandomDirection();
             if (!firingDirections.contains(direction)) {
                 if (getEnemyPlayer().fieldOperations().checkFieldBorder(direction, coordinates[0],
-                        coordinates[1], STEP)); {
-                            if (checkNextCell(direction, coordinates[0], coordinates[1], STEP)) {
-                                break;
+                        coordinates[1], STEP)) ;
+                {
+                    if (checkNextCell(direction, coordinates[0], coordinates[1], STEP)) {
+                        break;
                     }
                 }
             }
@@ -152,5 +147,4 @@ public class BotShootingUtil extends PlayerShootingUtil {
             return !getEnemyBannedCells().contains(checkCell);
         }
     }
-
 }
