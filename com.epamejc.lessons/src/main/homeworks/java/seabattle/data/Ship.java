@@ -9,7 +9,7 @@ public class Ship {
     private Ships type;
     private int hitPoints;
     private List<Cell> position;
+    private Cell alignment;
     private boolean isAlive;
-
 
 }

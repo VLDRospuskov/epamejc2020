@@ -9,7 +9,7 @@ public class Cell {
     private final int coordX;
     private final int coordY;
 
-    private boolean isOccupied;
+    private boolean occupied;
     private boolean shootable;
 
     public int getCoordX() {
@@ -21,7 +21,7 @@ public class Cell {
     }
 
     public boolean isOccupied() {
-        return isOccupied;
+        return occupied;
     }
 
     public boolean isShootable() {
@@ -29,7 +29,7 @@ public class Cell {
     }
 
     public void setOccupied(boolean occupied) {
-        isOccupied = occupied;
+        this.occupied = occupied;
     }
 
     public void setShootable(boolean shootable) {
@@ -39,7 +39,7 @@ public class Cell {
     @Override
     public String toString() {
 
-        return (isOccupied? shootable? ConsoleColors.GREEN.color() + "□" + ConsoleColors.RESET.color()
+        return (occupied? shootable? ConsoleColors.GREEN.color() + "□" + ConsoleColors.RESET.color()
                 : ConsoleColors.RED.color() + "X" + ConsoleColors.RESET.color()
                 : shootable? "∙"
                 : ConsoleColors.RED.color() + "•" + ConsoleColors.RESET.color());
@@ -64,7 +64,7 @@ public class Cell {
 
         this.coordX = coordX;
         this.coordY = coordY;
-        isOccupied = false;
+        occupied = false;
         shootable = true;
 
     }

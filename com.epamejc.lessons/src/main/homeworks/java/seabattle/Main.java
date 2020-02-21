@@ -5,7 +5,9 @@ import homeworks.java.seabattle.resources.Settings;
 import lombok.SneakyThrows;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -24,8 +26,8 @@ public class Main {
 //            System.out.println(entry.getKey() + " -- " + entry.getValue());
 //        }
 
-        FileWriter fileWriter = new FileWriter("com//epamejc//lessons//srs//main//homeworks//" +
-                "java//seabattle//resources//prefs.config");
+//        FileWriter fileWriter = new FileWriter("com.epamejc.lessons/rosources/prefs.config");
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream("com.epamejc.lessons/src/main/homeworks/java/seabattle/resources/prefs.config"));
         fileWriter.write("asdfasdf");
         fileWriter.close();
 
