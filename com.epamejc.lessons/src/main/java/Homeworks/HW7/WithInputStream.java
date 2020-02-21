@@ -1,6 +1,9 @@
 package Homeworks.HW7;
 
+import oracle.jvm.hotspot.jfr.Producer;
+
 import java.io.*;
+import java.util.stream.Stream;
 
 public class WithInputStream {
     public void run() {

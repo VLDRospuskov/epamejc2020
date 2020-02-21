@@ -5,14 +5,18 @@ import java.io.*;
 public class WithBuffered {
 
     public void run() {
-        File file = new File(getClass().getClassLoader().getResource("lorem.txt").getFile());
         try {
-            FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader("lorem.txt");
+            FileWriter fileWriter = new FileWriter("outBuffered.txt");
+
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                bufferedWriter.write(line);
             }
+            bufferedWriter.close();
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
