@@ -10,13 +10,13 @@ class TrafficLight {
         try {
             while (true) {
                 int input = Helper.getInt("Seconds from the start of the TrafficLight: ");
-                int n = checkIfPositive(input);
+                int n = zeroIfNegative(input);
                 printTrafficLightColor(n);
             }
         } catch (CancellationException ignored) {}
     }
 
-    private int checkIfPositive(int input) {
+    public int zeroIfNegative(int input) {
         if (input < 0) {
             input = 0;
             System.out.println("You need to write a positive int!");

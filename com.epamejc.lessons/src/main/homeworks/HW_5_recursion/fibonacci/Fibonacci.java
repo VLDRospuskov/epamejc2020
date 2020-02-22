@@ -34,7 +34,7 @@ class Fibonacci {
     }
 
 
-    private int getFibonacci(int n) {
+    public int getFibonacci(int n) {
         if (n == 0) {
             return 0;
         } else if (n == 1) {

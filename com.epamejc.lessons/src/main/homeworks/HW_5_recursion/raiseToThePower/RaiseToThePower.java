@@ -32,7 +32,7 @@ class RaiseToThePower {
         System.out.println("------------------------------------------");
     }
 
-    private static int getPowerOfNumber(int n, int p) {
+    public static int getPowerOfNumber(int n, int p) {
         if (p == 0) {
             return 1;
         } else if (p == 1) {

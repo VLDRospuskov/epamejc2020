@@ -17,7 +17,7 @@ class AmountOfDigits {
         } catch (CancellationException ignored) {}
     }
 
-    private int getDigits(int n) {
+    public int getDigits(int n) {
         if (n / 10 == 0) {
             return 1;
         } else {
