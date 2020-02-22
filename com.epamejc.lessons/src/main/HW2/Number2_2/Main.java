@@ -9,19 +9,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         String strA = "A";
         String strB = "B";
 
-        BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
-        String strategy = null;
-        try {
-            System.out.println("Write strategy A or B: ");
-            strategy = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        String strategy = reader("Write strategy A or B: ");
 
         if(strategy.equals(strA)) {
             new Array(new Scanner(System.in)).runA();
@@ -30,5 +24,17 @@ public class main {
         } else {
             System.out.println("Wrong strategy! Please try again.");
         }
+    }
+
+    public static String reader(String s){
+        BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
+        String srt = null;
+        try {
+            System.out.println(s);
+            srt = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return srt;
     }
 }

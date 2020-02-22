@@ -2,7 +2,7 @@ package main.HW2.Number2_3;
 
 /*Написать программу которая будет генерировать пирамидку. */
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         Pyramid first = new Pyramid();

@@ -7,28 +7,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
 
         String strOdd = "2";
 
-        BufferedReader readerOfString = new BufferedReader( new InputStreamReader(System.in));
-        String str = null;
-        try {
-            System.out.println("Write your sentence: ");
-            str = readerOfString.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String str = reader("Write your sentence: ");
 
-        BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
-        String method = null;
-        try {
-            System.out.println("Write strategy even or odd (choose 1 or 2): ");
-            method = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String method = reader("Write strategy even or odd (choose 1 or 2): ");
 
         char[] strToChar = str.toCharArray();
         //Odd
@@ -46,5 +32,16 @@ public class main {
                 }
             }
         }
+    }
+    public static String reader(String s){
+        BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
+        String srt = null;
+        try {
+            System.out.println(s);
+            srt = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return srt;
     }
 }

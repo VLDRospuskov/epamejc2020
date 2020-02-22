@@ -6,18 +6,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
 
-        BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
-        String str = null;
-        try {
-            System.out.println("Write your number: ");
-            str = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int count = Integer.parseInt(str);
+        int count = Integer.parseInt(reader("Write your number: "));
 
         System.out.print("Result: ");
         System.out.print(countOfNumbers(count));
@@ -28,5 +20,17 @@ public class main {
             return 1 + countOfNumbers(count / 10);
         else
             return 1;
+    }
+
+    public static String reader(String s){
+        BufferedReader reader = new BufferedReader( new InputStreamReader(System.in));
+        String srt = null;
+        try {
+            System.out.println(s);
+            srt = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return srt;
     }
 }
