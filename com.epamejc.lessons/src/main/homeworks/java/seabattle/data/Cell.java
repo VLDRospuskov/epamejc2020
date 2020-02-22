@@ -1,9 +1,13 @@
 package homeworks.java.seabattle.data;
 
 import homeworks.java.seabattle.enums.ConsoleColors;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Cell {
 
     private final int coordX;
@@ -11,37 +15,14 @@ public class Cell {
 
     private boolean occupied;
     private boolean shootable;
-
-    public int getCoordX() {
-        return coordX;
-    }
-
-    public int getCoordY() {
-        return coordY;
-    }
-
-    public boolean isOccupied() {
-        return occupied;
-    }
-
-    public boolean isShootable() {
-        return shootable;
-    }
-
-    public void setOccupied(boolean occupied) {
-        this.occupied = occupied;
-    }
-
-    public void setShootable(boolean shootable) {
-        this.shootable = shootable;
-    }
+    private Ship ship = null;
 
     @Override
     public String toString() {
 
-        return (occupied? shootable? ConsoleColors.GREEN.color() + "□" + ConsoleColors.RESET.color()
+        return (occupied ? shootable ? ConsoleColors.GREEN.color() + "□" + ConsoleColors.RESET.color()
                 : ConsoleColors.RED.color() + "X" + ConsoleColors.RESET.color()
-                : shootable? "∙"
+                : shootable ? "∙"
                 : ConsoleColors.RED.color() + "•" + ConsoleColors.RESET.color());
 
     }
@@ -60,7 +41,7 @@ public class Cell {
         return Objects.hash(coordX, coordY);
     }
 
-    public Cell (int coordX, int coordY) {
+    public Cell(int coordX, int coordY) {
 
         this.coordX = coordX;
         this.coordY = coordY;

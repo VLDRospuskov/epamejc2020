@@ -1,4 +1,4 @@
-package homeworks.java.seabattle.resources;
+package homeworks.java.seabattle.data;
 
 import lombok.SneakyThrows;
 
@@ -9,7 +9,7 @@ public class Settings {
 
       private Properties properties = new Properties();
     private String propertiesFilePath =
-            "com.epamejc.lessons/src/main/homeworks/java/seabattle/resources/application.config";
+            "com.epamejc.lessons/src/resources/seabattle.config";
 
     @SneakyThrows
     public Settings() {
