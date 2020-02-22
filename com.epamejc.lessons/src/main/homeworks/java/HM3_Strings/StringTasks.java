@@ -1,21 +1,56 @@
-package main.HM3_Strings;
+/**
+ *         3. Strings
+ *         3.1. Написать программу которая генерирует новую строку на основании входных данных, строка + четные/нечетные, пример:
+ *         Input: String        Input: even        output: tig
+ *         3.2. Написать программу которая будет генерировать строку по индексам. Пример:
+ *         Input: Hello World,
+ *         input: 0  output: H,
+ *         input: 4  output: Ho,
+ *         input: 6 output: HoW
+ *         3.3. Поменять местами символы в строке, на вход приходит строка и 2 индекса между, которыми нужно сделать обмен. Пример:
+ *         Input: Hello World
+ *         Input: 0, 4
+ *         output oelloH World
+ *         3.4. Написать программу которая переворачивает слова, но при этом оставляет их на прежних местах. Пример
+ *         Input: Hello World
+ *         output: olleH dlroW
+ */
 
+
+package homeworks.java.HM3_Strings;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class StringTasks {
     public static void main(String[] args) {
-        reverseWords();
+        StringTasks stringTasks = new StringTasks();
+        //stringTasks.printOddEvenLetters();
+        //stringTasks.printStrFromIndexes();
+        //stringTasks.swapLetters();
+        stringTasks.reverseWords();
     }
 
     private static String value;
-    private static void readString() {
-        Scanner sc = new Scanner(System.in);
+
+    private void readString() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Enter string: ");
-        value = sc.nextLine();
+        try {
+            value = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public static void printOddEvenLetters() { // 3.1
+    /**
+     * 3.1
+     */
+    public void printOddEvenLetters() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter mode (even or odd): ");
         String mode = sc.nextLine();
@@ -38,7 +73,10 @@ public class StringTasks {
         System.out.println(result);
     }
 
-    public static void printStrFromIndexes() { // 3.2
+    /**
+     * 3.2
+     */
+    public void printStrFromIndexes() {
         readString();
         Scanner sc = new Scanner(System.in);
 
@@ -70,7 +108,10 @@ public class StringTasks {
         System.out.println("Result is: " + result);
     }
 
-    public static void swapLetters() { // 3.3
+    /**
+     * 3.3
+     */
+    public void swapLetters() {
         readString();
         Scanner sc = new Scanner(System.in);
         int a = sc.nextInt();
@@ -79,13 +120,17 @@ public class StringTasks {
         System.out.println(value.substring(0,a) + value.charAt(b) + value.substring(a+1,b) + value.charAt(a) + value.substring(b+1));
     }
 
-    public static void reverseWords() {
+    /**
+     * 3.4
+     */
+    public void reverseWords() {
         readString();
 
         String result = "";
 
         int i = 0;
-        boolean mode = true; // проверяем, что ищем в данный момент - буквы или знаки
+        boolean mode = true; // check, what we are looking for right now: letters or signs
+
         for (int j = 0; j < value.length(); j++) {
             if (mode) {
                 if (!Character.isLetterOrDigit(value.charAt(j))) {
@@ -101,7 +146,8 @@ public class StringTasks {
                 }
             }
         }
-        if (mode) { // добавляем последнее слово
+
+        if (mode) { // add last word
             result = result + reverseWord(value.substring(i));
         } else {
             result = result + value.substring(i);
@@ -109,27 +155,15 @@ public class StringTasks {
 
         System.out.println(result);
     }
-    public static String reverseWord(String str) { // ручной переворот слова
+
+    public static String reverseWord(String str) {
         String result = "";
         for (int i = str.length() - 1; i >= 0; i--) {
             result = result + str.charAt(i);
+            // TODO: почему выделяется конкатенация в цикле?
         }
         return result;
     }
+
 }
 
-//        3. Strings
-//        3.1. Написать программу которая генерирует новую строку на основании входных данных, строка + четные/нечетные, пример:
-//        Input: String        Input: even        output: tig
-//        3.2. Написать программу которая будет генерировать строку по индексам. Пример:
-//        Input: Hello World,
-//        input: 0  output: H,
-//        input: 4  output: Ho,
-//        input: 6 output: HoW
-//        3.3. Поменять местами символы в строке, на вход приходит строка и 2 индекса между, которыми нужно сделать обмен. Пример:
-//        Input: Hello World
-//        Input: 0, 4
-//        output oelloH World
-//        3.4. Написать программу которая переворачивает слова, но при этом оставляет их на прежних местах. Пример
-//        Input: Hello World
-//        output: olleH dlroW

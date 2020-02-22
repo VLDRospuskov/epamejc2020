@@ -1,4 +1,4 @@
-package main.HM2_Arrays;
+package homeworks.java.HM2_Arrays;
 
 import java.util.Scanner;
 
@@ -7,7 +7,10 @@ public class ArrayMethods {
     static int columns;
     static char[][] values;
 
-    private static void createArray() { // 2.1. Создать массив массивов, задается размерность на основании которое генерируются случайные символы типа char
+    /**
+     * 2.1. Создать массив массивов, задается размерность на основании которое генерируются случайные символы типа char
+     */
+    private static void createArray() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter size:");
         rows = sc.nextInt();

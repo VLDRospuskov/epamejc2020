@@ -1,6 +1,5 @@
-package main.HM1_ImmutableClass;
+package homeworks.java.HM1_ImmutableClass;
 
-import java.util.Scanner;
 import java.util.Stack;
 
 public final class ImmutableGirl {
