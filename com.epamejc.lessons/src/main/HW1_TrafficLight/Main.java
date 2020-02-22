@@ -1,4 +1,4 @@
-package main.lesson1;
+package main.HW1_TrafficLight;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
