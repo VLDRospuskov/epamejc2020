@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 public class MultipleArrayBuilderTest {
 
     private static MultipleArrayBuilder builder;
+    private char[][] arr = new char[][] { {'a', 'b'}, {'c', 'd'} };
 
     @BeforeClass
     public static void setup() {
@@ -32,5 +33,36 @@ public class MultipleArrayBuilderTest {
             }
         }
 
+    }
+
+    @Test
+    public void testPrintArray() {
+        String actual = builder.printArray(arr);
+        String expected = "a b \nc d \n";
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrintEven() {
+        String actual = builder.printEven(arr);
+        String expected = "d";
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrintOdd() {
+        String actual = builder.printOdd(arr);
+        String expected = "a";
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPyramid() {
+        String actual = builder.pyramid(4);
+        String expected = "0000\n" +
+                          "000\n" +
+                          "00\n" +
+                          "0\n";
+        Assert.assertEquals(expected, actual);
     }
 }

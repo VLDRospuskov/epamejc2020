@@ -17,55 +17,60 @@ public class MultipleArrayBuilder {
         return arr;
     }
 
-    public void printArray(char[][] arr) {
+    public String printArray(char[][] arr) {
+        String str = "";
+
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                System.out.print(arr[i][j] + " ");
+                str += arr[i][j] + " ";
             }
 
-            System.out.println();
+            str += "\n";
         }
+
+        return str;
     }
 
-    public void printEven(char[][] arr) {
-        System.out.print("even chars: ");
+    public String printEven(char[][] arr) {
+        String str = "";
 
         for (int i = 1; i < arr.length; i += 2) {
             for (int j = 1; j < arr[i].length; j += 2) {
-                System.out.print(arr[i][j]);
+                str += arr[i][j];
             }
         }
 
-        System.out.println();
+        return str;
     }
 
-    public void printOdd(char[][] arr) {
-        System.out.print("odd chars: ");
+    public String printOdd(char[][] arr) {
+        String str = "";
 
         for (int i = 0; i < arr.length; i += 2) {
             for (int j = 0; j < arr[i].length; j += 2) {
-                System.out.print(arr[i][j]);
+                str += arr[i][j];
             }
         }
 
-        System.out.println();
+        return str;
     }
 
-    public void pyramid(int n) {
+    public String pyramid(int n) {
         int[][] twoDimArray = new int[n][];
+        String str = "";
 
         for (int i = 0; i < n; i++) {
             twoDimArray[i] = new int[n - i];
         }
 
-        System.out.println("Behold a pyramid!");
-
         for (int i = 0; i < twoDimArray.length; i++) {
             for (int j = 0; j < twoDimArray[i].length; j++) {
-                System.out.print(twoDimArray[i][j]);
+                str += twoDimArray[i][j];
             }
-            System.out.println();
+            str += "\n";
         }
+
+        return str;
     }
 
 }

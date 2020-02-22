@@ -23,7 +23,7 @@ public class TheTrafficLights {
 
                 if (tryParse(userInput)) {
                     int number = Integer.parseInt(userInput);
-                    checkTheLight(number);
+                    System.out.println(checkTheLight(number));
                 }
             } catch (IOException e) {
                 System.out.println("Wrong entry! You should enter a positive number!");
@@ -31,7 +31,7 @@ public class TheTrafficLights {
         }
     }
 
-    private void checkTheLight(int number) {
+    private String checkTheLight(int number) {
         if (number > 10) {
             number = number % 10;
         }
@@ -46,7 +46,7 @@ public class TheTrafficLights {
             s = Colors.RED.toString();
         }
 
-        System.out.println("Signal is " + s);
+        return "Signal is " + s;
     }
 
     private boolean tryParse(String s) {
