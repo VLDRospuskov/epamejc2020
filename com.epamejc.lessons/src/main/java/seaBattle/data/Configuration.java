@@ -1,4 +1,5 @@
 package seaBattle.data;
+
 public class Configuration {
 
     private final static int FIELDSIZE = 10;
@@ -14,6 +15,8 @@ public class Configuration {
 
     public static void readConfig() {
         //потом здесь прочитать конфиг и проинициализировать поля
+//        Properties prop = new Properties();
+//        prop.load(Reader read);
     }
 
     public static int getFieldSize() {

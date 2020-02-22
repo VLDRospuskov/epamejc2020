@@ -10,19 +10,31 @@ import java.util.Scanner;
  */
 public class Application {
 
-    public void run() {
-        Player humanPlayer = new Player();
-        Player botPlayer = new Player();
+    private static boolean shouldApplicationFinish = false;
 
-        humanPlayer.shipPlacer().placeShipsAutomatically(humanPlayer.shipsOperations().getShips());
-        botPlayer.shipPlacer().placeShipsAutomatically(botPlayer.shipsOperations().getShips());
+    public static void setApplicationExitCondition() {
+        shouldApplicationFinish = true;
+    }
+
+    public void run() {
 
         Scanner scanner = new Scanner(System.in);
         try {
-            Battle seaBattle = new Battle(humanPlayer, botPlayer, scanner);
-            seaBattle.startBattle();
+            Player humanPlayer = new Player();
+            Player botPlayer = new Player();
+            if (new InputOperator().isManualPlacementRequired(scanner)) {
+                humanPlayer.manualShipPlacer().placeShips(humanPlayer.shipsOperations().getShips(), scanner);
+            } else {
+                humanPlayer.automaticShipPlacer().placeShips(humanPlayer.shipsOperations().getShips());
+            }
+            botPlayer.automaticShipPlacer().placeShips(botPlayer.shipsOperations().getShips());
+
+            if (!shouldApplicationFinish) {
+                Battle seaBattle = new Battle(humanPlayer, botPlayer, scanner);
+                seaBattle.startBattle();
+            }
         } catch (InterruptedException intEx) {
-            System.out.println("There is a problem with thread");
+            System.err.println("There is a problem with thread");
         } catch(Exception ex) {
             System.err.println("Something went wrong " + ex.getMessage());
         } finally {

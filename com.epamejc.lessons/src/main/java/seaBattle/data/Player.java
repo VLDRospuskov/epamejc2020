@@ -2,6 +2,7 @@ package seaBattle.data;
 
 import seaBattle.logic.AutomaticShipPlacer;
 import seaBattle.logic.FieldOperations;
+import seaBattle.logic.ManualShipPlacer;
 import seaBattle.logic.ShipOperations;
 
 import java.util.List;
@@ -11,20 +12,17 @@ public class Player {
     private FieldOperations battleFieldOperations = new FieldOperations();
     private ShipOperations shipOperations = new ShipOperations();
     private AutomaticShipPlacer automaticShipPlacer;
+    private ManualShipPlacer manualShipPlacer;
 
     public Player() {
         battleFieldOperations.generateField();
         shipOperations.generateShips();
         automaticShipPlacer = new AutomaticShipPlacer(battleFieldOperations);
-        //automaticShipPlacer.placeShipsAutomatically(shipOperations.getShips());
+        manualShipPlacer = new ManualShipPlacer(battleFieldOperations);
     }
 
     public List<Cell> getField() {
         return battleFieldOperations.getField();
-    }
-
-    public List<Ship> getShips() {
-        return shipOperations.getShips();
     }
 
     public ShipOperations shipsOperations() {
@@ -35,7 +33,9 @@ public class Player {
         return battleFieldOperations;
     }
 
-    public AutomaticShipPlacer shipPlacer() { return automaticShipPlacer; }
+    public AutomaticShipPlacer automaticShipPlacer() { return automaticShipPlacer; }
+
+    public ManualShipPlacer manualShipPlacer() { return manualShipPlacer;}
 
     public int getShipsCount() {
         return shipOperations.getShips().size();

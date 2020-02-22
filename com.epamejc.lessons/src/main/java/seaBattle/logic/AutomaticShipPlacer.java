@@ -15,23 +15,19 @@ public class AutomaticShipPlacer {
         this.fieldOperations = fieldOperationsObject;
     }
 
-    public void placeShipsAutomatically(List<Ship> ships) {
+    public void placeShips(List<Ship> ships) {
         for (Ship ship : ships) {
             placeShip(ship);
         }
     }
 
-    private void placeShip(Ship ship) {
+    public void placeShip(Ship ship) {
         boolean isShipPlaced = false;
         while (!isShipPlaced) {
 
             int randomCoordX = RandomNumberGenerator.generateRandomInRange(10);
             int randomCoordY = RandomNumberGenerator.generateRandomInRange(10);
             String randomDirection = RandomNumberGenerator.generateRandomDirection();
-//            int randomCoordX = 1;
-//            int randomCoordY = 1;
-//            String randomDirection = "right";
-
             //Проверяем, есть ли такая ячейка, есть на ней корабль
             Cell selectedCell = fieldOperations.getCellByCoords(randomCoordX, randomCoordY);
             if (selectedCell != null && selectedCell.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
@@ -49,21 +45,6 @@ public class AutomaticShipPlacer {
             }
         }
     }
-
-//    private boolean checkBorder(String direction, int xCoord, int yCoord, int shipDecks) {
-//        Cell checkCell;
-//        if (direction.equals("up")) {
-//            checkCell = field.getCellByCoords(xCoord, yCoord - shipDecks + 1);
-//        } else if (direction.equals("right")) {
-//            checkCell = field.getCellByCoords(xCoord + shipDecks - 1, yCoord);
-//        } else if (direction.equals("down")) {
-//            checkCell = field.getCellByCoords(xCoord, yCoord + shipDecks - 1);
-//        } else {
-//            checkCell = field.getCellByCoords(xCoord - shipDecks + 1, yCoord);
-//        }
-//
-//        return checkCell != null;
-//    }
 
     private boolean checkRadius(String direction, int xCoord, int yCoord, int shipDecks) {
         switch (direction) {

@@ -9,6 +9,7 @@ public class Cell {
     private int yCoord;
     private String cellStatus;
     private Ship cellShip;
+    private boolean isInitializationCell = false;
 
     public Cell(int cellIndex, int xCoord, int yCoord, String cellStatus) {
         this.cellIndex = cellIndex;
@@ -47,6 +48,18 @@ public class Cell {
 
     public Ship getCellShip() {
         return cellShip;
+    }
+
+    public void setInitializationCell() {
+        this.isInitializationCell = true;
+    }
+
+    public void cleatInitializationStatus() {
+        this.isInitializationCell = false;
+    }
+
+    public boolean isInitializationCell() {
+        return isInitializationCell;
     }
 
     @Override

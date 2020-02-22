@@ -34,7 +34,7 @@ public class Battle {
     }
 
     public void startBattle() throws InterruptedException {
-        fieldPrinter.printField(humanPlayer.getField(),botPlayer.getField());
+        fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
 
         while (!isGameFinished) {
             boolean isPlayerMove = true;
@@ -47,7 +47,7 @@ public class Battle {
                     break;
                 }
                 isPlayerMove = playerShootingUtil.shot(shotCoordinates);
-                fieldPrinter.printField(humanPlayer.getField(),botPlayer.getField());
+                fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
 //                botPlayer.shipsOperations().printShipsNumber();
                 if (checkFinishGameConditions()) {
                     isGameFinished = true;
@@ -57,7 +57,7 @@ public class Battle {
             while (isBotMove && !isGameFinished) {
                 Thread.sleep(2500);
                 isBotMove = botShootingUtil.shot(generateRandomCoordinates(Configuration.getFieldSize()));
-                fieldPrinter.printField(humanPlayer.getField(),botPlayer.getField());
+                fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
                 if (checkFinishGameConditions()) {
                     isGameFinished = true;
                     break;
