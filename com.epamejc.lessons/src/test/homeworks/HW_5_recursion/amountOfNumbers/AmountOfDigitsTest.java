@@ -6,8 +6,16 @@ public class AmountOfDigitsTest {
 
     @Test
     public void testGetDigits() {
-        int actual = new AmountOfDigits().getDigits(54);
-        int expected = 2;
-        Assert.assertEquals(actual, expected);
+        int expected = 1;
+        int actual = new AmountOfDigits().getDigits(9);
+        Assert.assertEquals(expected, actual);
+
+        expected = 2;
+        actual = new AmountOfDigits().getDigits(98);
+        Assert.assertEquals(expected, actual);
+
+        expected = 5;
+        actual = new AmountOfDigits().getDigits(98765);
+        Assert.assertEquals(expected, actual);
     }
 }

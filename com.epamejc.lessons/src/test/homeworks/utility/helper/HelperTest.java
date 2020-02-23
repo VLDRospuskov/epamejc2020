@@ -6,25 +6,20 @@ import org.junit.*;
 import java.io.*;
 
 public class HelperTest {
-    public static BufferedReader reader;
+    private static final InputStream backup = System.in;
 
-    @BeforeClass
-    public static void setup() {
-        reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Stream opened");
+    @AfterClass
+    public static void close() {
+        System.setIn(backup);
     }
 
     @Test
     @SneakyThrows
-    public void testGetInt() {
-        InputStream sysInBackup = System.in;
-
+    public void testGetString() {
         String expected = "Hello World";
         System.setIn(new ByteArrayInputStream(expected.getBytes()));
         String actual = Helper.getString();
-        Assert.assertEquals(actual, expected);
-
-        System.setIn(sysInBackup);
+        Assert.assertEquals(expected, actual);
     }
 
 }

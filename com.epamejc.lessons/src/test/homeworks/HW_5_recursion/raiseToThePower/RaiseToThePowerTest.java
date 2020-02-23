@@ -8,12 +8,12 @@ public class RaiseToThePowerTest {
 
     @Test
     public void testGetPowerOfNumber() {
-        int actual = RaiseToThePower.getPowerOfNumber(3, 2);
         int expected = 9;
+        int actual = RaiseToThePower.getPowerOfNumber(3, 2);
         assertEquals(expected, actual);
 
+        expected = 32;
         actual = RaiseToThePower.getPowerOfNumber(2, 5);
-        expected = 10;
         assertEquals(expected, actual);
     }
 }

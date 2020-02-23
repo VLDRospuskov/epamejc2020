@@ -5,33 +5,21 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class TrafficLightTest {
-    public static TrafficLight trafficLight;
-
-    @BeforeClass
-        public static void setup() {
-        trafficLight = new TrafficLight();
-        System.out.println("SETUP BEFORE CLASS");
-    }
-
-    @AfterClass
-    public static void after2() {
-        System.out.println("AFTER CLASS");
-    }
-
+    private final TrafficLight trafficLight = new TrafficLight();
 
     @Test
-    public void testCheckIfPositive() {
-        int actual = trafficLight.zeroIfNegative(5);
-        int expected = 5;
-        assertEquals(actual, expected);
+    public void testGetTrafficLightColor() {
+        Colors expected = Colors.YELLOW;
+        Colors actual = trafficLight.getTrafficLightColor(5);
+        assertEquals(expected, actual);
 
-        actual = trafficLight.zeroIfNegative(0);
-        expected = 0;
-        assertEquals(actual, expected);
+        expected = Colors.GREEN;
+        actual = trafficLight.getTrafficLightColor(-100);
+        assertEquals(expected, actual);
 
-        actual = trafficLight.zeroIfNegative(-2);
-        expected = 0;
-        assertEquals(actual, expected);
+        expected = Colors.RED;
+        actual = trafficLight.getTrafficLightColor(1118);
+        assertEquals(expected, actual);
     }
 
 }
