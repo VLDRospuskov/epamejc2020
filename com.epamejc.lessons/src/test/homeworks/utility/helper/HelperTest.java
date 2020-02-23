@@ -1,7 +1,9 @@
 package homeworks.utility.helper;
 
 import lombok.SneakyThrows;
-import org.junit.*;
+import org.junit.Test;
+import org.junit.AfterClass;
+import org.junit.Assert;
 
 import java.io.*;
 

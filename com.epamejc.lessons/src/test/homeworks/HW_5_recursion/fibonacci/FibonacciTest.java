@@ -1,6 +1,7 @@
 package homeworks.HW_5_recursion.fibonacci;
 
-import org.junit.*;
+import org.junit.Test;
+import org.junit.Assert;
 
 public class FibonacciTest {
 

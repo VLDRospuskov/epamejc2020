@@ -1,6 +1,8 @@
 package homeworks.HW_5_recursion.amountOfNumbers;
 
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Test;
+
 
 public class AmountOfDigitsTest {
 

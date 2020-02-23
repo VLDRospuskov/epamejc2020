@@ -1,6 +1,6 @@
 package homeworks.HW_1_trafficLight;
 
-import org.junit.*;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
