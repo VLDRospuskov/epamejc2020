@@ -16,6 +16,6 @@ public class BotPlayer extends Player {
 
     @Override
     public boolean shot(Player opponent) {
-
+     return true;
     }
 }
