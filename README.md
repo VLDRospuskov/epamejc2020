@@ -21,7 +21,7 @@
 |        | [Fibonacci numbers][Hw5.1] | 1. Searching for a Fibonacci numbers. |
 |        | [The power of a number][Hw5.2] | 2. Create the program to calculate the power of a number. |
 |        | [Number of digits][Hw5.3] | 3. Create the program to count number of digits. |
-| ![N6]  | [Annotations][Hw5.3] | Create your own annotation, where "name" will be "String" and "age" will be "int". Use this annotation with constructor. When we create empty constructor, we must take data from the annotation through reflexion, and use it when we will be initialized an object. Use Lombok. |
+| ![N6]  | [Annotations][Hw6] | Create your own annotation, where "name" will be "String" and "age" will be "int". Use this annotation with constructor. When we create empty constructor, we must take data from the annotation through reflexion, and use it when we will be initialized an object. Use Lombok. |
 
 [Hw1]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework1
 
