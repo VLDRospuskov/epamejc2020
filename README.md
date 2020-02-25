@@ -1,6 +1,5 @@
 # epamejc2020 _Arina Slizh_
 
-![Woman](https://img.icons8.com/bubbles/100/000000/blond-long-hair-business-lady.png)
 ![Java](https://img.icons8.com/color/96/000000/java-coffee-cup-logo.png)
 
 ## Homeworks: 
@@ -22,6 +21,7 @@
 |        | [Fibonacci numbers][Hw5.1] | 1. Searching for a Fibonacci numbers. |
 |        | [The power of a number][Hw5.2] | 2. Create the program to calculate the power of a number. |
 |        | [Number of digits][Hw5.3] | 3. Create the program to count number of digits. |
+| ![N6]  | [Annotations][Hw5.3] | Create your own annotation, where "name" will be "String" and "age" will be "int". Use this annotation with constructor. When we create empty constructor, we must take data from the annotation through reflexion, and use it when we will be initialized an object. Use Lombok. |
 
 [Hw1]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework1
 
@@ -43,6 +43,8 @@
 [Hw5.2]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework5/power
 [Hw5.3]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework5/countDigits
 
+[Hw6]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework6
+
 [TLimg]:https://img.icons8.com/flat_round/40/000000/traffic-light--v1.png
 [ICimg]:https://img.icons8.com/officel/40/000000/no-edit.png
 
@@ -51,4 +53,5 @@
 [N3]:https://img.icons8.com/color/40/000000/3-circle-c--v1.png
 [N4]:https://img.icons8.com/color/40/000000/4-circle-c--v1.png
 [N5]:https://img.icons8.com/color/40/000000/5-circle-c--v1.png
+[N6]:https://img.icons8.com/color/40/000000/6-circle-c--v1.png
 
