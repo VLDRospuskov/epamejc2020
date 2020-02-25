@@ -1,16 +1,18 @@
 package homeworks.java.seabattle.data;
 
+import homeworks.java.seabattle.enums.GameStats;
 import homeworks.java.seabattle.enums.Ships;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Getter
 public class Field {
 
-    private final int deckSize = 10;
+    public static final int deckSize = 10;
     private List<Cell> field;
     private List<Ship> ships;
 
@@ -25,32 +27,52 @@ public class Field {
 
         ships = new ArrayList<>();
         for (int i = 0; i < Ships.CRUISER.getCount(); i++) {
-            ships.add(new Ship(Ships.CRUISER, Ships.CRUISER.getLength()));
+            ships.add(new Ship(Ships.CRUISER));
         }
         for (int i = 0; i < Ships.DESTROYER.getCount(); i++) {
-            ships.add(new Ship(Ships.DESTROYER, Ships.DESTROYER.getLength()));
+            ships.add(new Ship(Ships.DESTROYER));
         }
         for (int i = 0; i < Ships.CORVETTE.getCount(); i++) {
-            ships.add(new Ship(Ships.CORVETTE, Ships.CORVETTE.getLength()));
+            ships.add(new Ship(Ships.CORVETTE));
         }
         for (int i = 0; i < Ships.FIGHTER.getCount(); i++) {
-            ships.add(new Ship(Ships.FIGHTER, Ships.FIGHTER.getLength()));
+            ships.add(new Ship(Ships.FIGHTER));
         }
 
     }
 
-    @Override
-    public String toString() {
+    public String printLine(int line) {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < deckSize; i++) {
-            for (int j = 0; j < deckSize; j++) {
-                stringBuilder.append(field.get((i * deckSize + j)));
-                stringBuilder.append("\t");
-            }
-            stringBuilder.append("\n");
+            stringBuilder.append(field.get((line * deckSize + i)).printCell());
+            stringBuilder.append("\t");
         }
-        stringBuilder.append("\n");
+        return stringBuilder.toString();
+
+    }
+
+    public String printHead() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("   ");
+        for (int i = 1; i <= deckSize; i++) {
+            stringBuilder.append(i);
+            stringBuilder.append("\t");
+        }
+        return stringBuilder.toString();
+
+    }
+
+    public String printPlayerName(String name) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < deckSize; i++) {
+            if (i == deckSize/2) {
+                stringBuilder.append(name);
+            }
+            stringBuilder.append("\t");
+        }
         return stringBuilder.toString();
 
     }
@@ -59,7 +81,6 @@ public class Field {
 
         Cell startPoint = null,
                 alignment = null;
-
         for (Ship ship : ships) {
             boolean shipPlaced = false;
             while (!shipPlaced) {
@@ -71,52 +92,100 @@ public class Field {
 
                 shipPlaced = arrangeShip(ship, startPoint, alignment);
             }
-            System.out.println(this.toString());
+            ship.setStartPoint(startPoint);
+            ship.setAlignment(alignment);
         }
+
+    }
+
+    public GameStats hit(Cell hit) {
+
+        GameStats status = GameStats.MISS;
+        if (isCellOccupied(hit)) {
+            Cell cell = field.get((hit.getCoordX()-1) * deckSize + hit.getCoordY());
+            Ship ship = cell.getShip();
+            boolean killed = ship.hit();
+            cell.setShootable(false);
+            if (killed) {
+                status = GameStats.DESTROYED;
+                this.markArea(ship);
+                ships.remove(ship);
+            } else {
+                status = GameStats.HIT;
+            }
+        }
+        if (ships.size() == 0) {
+            status = GameStats.GAME_OVER;
+        }
+
+        return status;
+
+    }
+
+    private void markArea(Ship ship) {
+
+        List<Cell> area = getArea(ship.getType().getLength(), ship.getStartPoint(), ship.getAlignment());
+
+        for (Cell cell : area) {
+            field
+                    .stream()
+                    .filter(found -> found.equals(cell))
+                    .findFirst()
+                    .ifPresent(actual -> actual.setShootable(false));
+        }
+
+    }
+
+    private List<Cell> getArea(int length, Cell startPoint, Cell alignment) {
+
+        List<Cell> area = new ArrayList<>();
+        int coordX = startPoint.getCoordX();
+        int coordY = startPoint.getCoordY();
+        int vertical = alignment.getCoordY();
+        int horizontal = alignment.getCoordX();
+
+        for (int i = coordX * horizontal + coordY * vertical - 1;
+             i < coordX * horizontal + coordY * vertical + length + 1; i++) {
+            area.add(new Cell(i * horizontal + coordX * vertical,
+                    i * vertical + coordY * horizontal));
+            area.add(new Cell(i * horizontal + coordX * vertical - vertical,
+                    i * vertical + coordY * horizontal - horizontal));
+            area.add(new Cell(i * horizontal + coordX * vertical + vertical,
+                    i * vertical + coordY * horizontal + horizontal));
+        }
+        return area;
+
     }
 
     private boolean arrangeShip(Ship ship, Cell startPoint, Cell alignment) {
 
-        boolean isPossible = false;
+        boolean done = false;
 
-        isPossible = checkShipArrangementPossibility(ship.getType().getLength(), startPoint, alignment);
-
-        if (isPossible) {
+        if (checkShipArrangementPossibility(getArea(ship.getType().getLength(), startPoint, alignment))) {
             int coordX, coordY;
             for (int i = 0; i < ship.getType().getLength(); i++) {
                 coordX = startPoint.getCoordX() + alignment.getCoordX() * i - 1;
                 coordY = startPoint.getCoordY() + alignment.getCoordY() * i - 1;
                 field.get(coordX * deckSize + coordY).setOccupied(true);
                 field.get(coordX * deckSize + coordY).setShip(ship);
+
             }
+            done = true;
         }
-        return isPossible;
+        return done;
 
     }
 
-    private boolean checkShipArrangementPossibility(int length, Cell startPoint, Cell alignment) {
+    private boolean checkShipArrangementPossibility(List<Cell> area) {
 
-        boolean isPossible = true;
-        int coordX = startPoint.getCoordX();
-        int coordY = startPoint.getCoordY();
-        int vertical = alignment.getCoordY();
-        int horizontal = alignment.getCoordX();
-
-        if ((coordX + length) * horizontal > deckSize || (coordY + length) * vertical > deckSize) {
+        if ((area.get(area.size() - 4)).getCoordX() > deckSize
+                || (area.get(area.size() - 4)).getCoordY() > deckSize) {
             return false;
         }
 
-        for (int i = coordX * horizontal + coordY * vertical - 1;
-             i < coordX * horizontal + coordY * vertical + length + 1; i++) {
-
-            Cell centre = new Cell(i * horizontal + coordX * vertical,
-                    i * vertical + coordY * horizontal);
-            Cell bottom = new Cell(i * horizontal + coordX * vertical - vertical,
-                    i * vertical + coordY * horizontal - horizontal);
-            Cell top = new Cell(i * horizontal + coordX * vertical + vertical,
-                    i * vertical + coordY * horizontal + horizontal);
-
-            if (isCellOccupied(centre) || isCellOccupied(bottom) || isCellOccupied(top)) {
+        boolean isPossible = true;
+        for (Cell cell : area) {
+            if (isCellOccupied(cell)) {
                 isPossible = false;
                 break;
             }
@@ -137,7 +206,6 @@ public class Field {
         if (temporary != null) {
             occupied = temporary.isOccupied();
         }
-
         return occupied;
 
     }

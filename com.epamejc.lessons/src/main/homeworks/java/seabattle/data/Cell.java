@@ -17,8 +17,7 @@ public class Cell {
     private boolean shootable;
     private Ship ship = null;
 
-    @Override
-    public String toString() {
+    public String printCell() {
 
         return (occupied ? shootable ? ConsoleColors.GREEN.color() + "□" + ConsoleColors.RESET.color()
                 : ConsoleColors.RED.color() + "X" + ConsoleColors.RESET.color()

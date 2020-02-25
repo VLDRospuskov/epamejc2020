@@ -6,16 +6,34 @@ public class Ship {
 
     private Ships type;
     private int hitPoints;
+    private Cell startPoint;
+    private Cell alignment;
 
-    public Ship(Ships type, int hitPoints) {
+    public Ship(Ships type) {
 
         this.type = type;
-        this.hitPoints = hitPoints;
+        hitPoints = type.getLength();
 
+    }
+
+    public void setStartPoint(Cell startPoint) {
+        this.startPoint = startPoint;
+    }
+
+    public void setAlignment(Cell alignment) {
+        this.alignment = alignment;
     }
 
     public Ships getType() {
         return type;
+    }
+
+    public Cell getStartPoint() {
+        return startPoint;
+    }
+
+    public Cell getAlignment() {
+        return alignment;
     }
 
     public boolean hit() {
@@ -28,4 +46,5 @@ public class Ship {
         return killed;
 
     }
+
 }
