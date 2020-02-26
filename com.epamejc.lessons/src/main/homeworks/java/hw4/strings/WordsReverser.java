@@ -9,7 +9,7 @@ public class WordsReverser {
             StringBuilder str = new StringBuilder(word);
             reversedStr = reversedStr + str.reverse().append(" ");
         }
-        System.out.println(reversedStr);
-        return reversedStr;
+        System.out.println(reversedStr.trim());
+        return reversedStr.trim();
     }
 }

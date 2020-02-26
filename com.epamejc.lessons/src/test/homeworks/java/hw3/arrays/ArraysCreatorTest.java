@@ -10,20 +10,16 @@ import java.io.PrintStream;
 import java.io.StringReader;
 
 public class ArraysCreatorTest {
-//    private final ByteArrayOutputStream OUTPUT = new ByteArrayOutputStream();
-    private final PrintStream ORIGINAL_OUT = System.out;
     private ArraysCreator arraysCreator;
 
     @Before
     public void setUp(){
         arraysCreator = new ArraysCreator();
-//        System.setOut(new PrintStream(OUTPUT));
     }
 
     @After
     public void restoreStream(){
         arraysCreator = null;
-        System.setOut(ORIGINAL_OUT);
     }
 
     @Test

@@ -9,7 +9,7 @@ import static homeworks.java.hw4.enums.Messages.*;
 
 public class StringsCreator {
 
-    private String returnEvenOrOddChars(BufferedReader buffer) {
+    public String returnEvenOrOddChars(BufferedReader buffer) {
         System.out.println(EVEN_OR_ODD_ENTER_MESSAGE);
 
         try {
@@ -25,7 +25,7 @@ public class StringsCreator {
         return null;
     }
 
-    private String makeLineByIndexes(BufferedReader buffer) {
+    public String makeLineByIndexes(BufferedReader buffer) {
         System.out.println(LINE_FROM_INDEXES_ENTER_MESSAGE);
 
         try {
@@ -51,7 +51,7 @@ public class StringsCreator {
         return null;
     }
 
-    private String replaceChars(BufferedReader buffer) {
+    public String replaceChars(BufferedReader buffer) {
         System.out.println(REPLACE_CHARS_ENTER_MESSAGE);
 
         try {
@@ -70,7 +70,7 @@ public class StringsCreator {
         return null;
     }
 
-    private String reverseWords(BufferedReader buffer) {
+    public String reverseWords(BufferedReader buffer) {
         System.out.println(REVERSE_WORDS_ENTER_MESSAGE);
 
         try {
@@ -112,4 +112,5 @@ public class StringsCreator {
         }
 
     }
+
 }
