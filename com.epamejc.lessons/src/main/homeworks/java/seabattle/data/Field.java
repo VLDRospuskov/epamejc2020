@@ -6,7 +6,6 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Getter
@@ -41,17 +40,6 @@ public class Field {
 
     }
 
-    public String printLine(int line) {
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < deckSize; i++) {
-            stringBuilder.append(field.get((line * deckSize + i)).printCell());
-            stringBuilder.append("\t");
-        }
-        return stringBuilder.toString();
-
-    }
-
     public String printHead() {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -68,9 +56,20 @@ public class Field {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < deckSize; i++) {
-            if (i == deckSize/2) {
+            if (i == deckSize / 2) {
                 stringBuilder.append(name);
             }
+            stringBuilder.append("\t");
+        }
+        return stringBuilder.toString();
+
+    }
+
+    public String printLine(int line, boolean visible) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < deckSize; i++) {
+            stringBuilder.append(field.get((line * deckSize + i)).printCell(visible));
             stringBuilder.append("\t");
         }
         return stringBuilder.toString();
@@ -101,11 +100,11 @@ public class Field {
     public GameStats hit(Cell hit) {
 
         GameStats status = GameStats.MISS;
+        Cell cell = field.get((hit.getCoordX() - 1) * deckSize + hit.getCoordY() - 1);
+        cell.setShootable(false);
         if (isCellOccupied(hit)) {
-            Cell cell = field.get((hit.getCoordX()-1) * deckSize + hit.getCoordY());
             Ship ship = cell.getShip();
             boolean killed = ship.hit();
-            cell.setShootable(false);
             if (killed) {
                 status = GameStats.DESTROYED;
                 this.markArea(ship);
@@ -117,7 +116,6 @@ public class Field {
         if (ships.size() == 0) {
             status = GameStats.GAME_OVER;
         }
-
         return status;
 
     }

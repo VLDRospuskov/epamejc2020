@@ -1,7 +1,6 @@
 package homeworks.java.seabattle.engine;
 
-import homeworks.java.seabattle.data.Player;
-import homeworks.java.seabattle.enums.Actor;
+import homeworks.java.seabattle.data.*;
 import homeworks.java.seabattle.enums.GameStats;
 import homeworks.java.utils.UserInputReader;
 
@@ -12,18 +11,18 @@ public class Seabattle {
 
     public void run() {
 
-        firstPlayer = new Player(Actor.HUMAN);
-//        firstPlayer.setName(getName());
+        firstPlayer = new HumanPlayer("Vovan");
         firstPlayer.arrangeShips();
-        secondPlayer = new Player(Actor.HUMAN);
-//        secondPlayer.setName(getName());
+        secondPlayer = new BotPlayer();
         secondPlayer.arrangeShips();
-        UserInterface userInterface = new UserInterface();
         GameStats gameStats;
 
+        Player currentPlayer = firstPlayer;
+
         do {
-            userInterface.printGame(firstPlayer, secondPlayer);
-            gameStats = secondPlayer.shoot(userInterface.userInput());
+            printGame();
+            Cell shot = firstPlayer.shoot();
+            gameStats = secondPlayer.getField().hit(shot);
         } while (gameStats != GameStats.GAME_OVER);
 
     }
@@ -34,5 +33,19 @@ public class Seabattle {
 
     }
 
+    private void printGame() {
+
+        System.out.println(firstPlayer.getField().printPlayerName(firstPlayer.getName()) +
+                "\t" + secondPlayer.getField().printPlayerName(secondPlayer.getName()));
+        System.out.println(firstPlayer.getField().printHead() + "\t" +
+                secondPlayer.getField().printHead());
+        for (int i = 0; i < Field.deckSize; i++) {
+            System.out.println((char) (65 + i) + "  " +
+                    firstPlayer.getField().printLine(i, firstPlayer.isVisible()) + "\t" +
+                    (char) (65 + i) + "  " +
+                    secondPlayer.getField().printLine(i, secondPlayer.isVisible()));
+        }
+
+    }
 
 }

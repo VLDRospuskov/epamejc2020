@@ -1,35 +1,27 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.enums.Actor;
-import homeworks.java.seabattle.enums.GameStats;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class Player {
+import static homeworks.java.seabattle.data.Field.deckSize;
 
-    private Actor actor;
+@Getter
+@Setter
+public abstract class Player {
+
     private String name;
     private Field field;
+    private boolean visible;
 
-    public Player (Actor actor) {
+    public Player() {
 
-        this.actor = actor;
+        this.name = "Default";
         this.field = new Field();
-        this.name = actor.getName();
+        this.visible = false;
 
     }
 
-    public void setName(String name) {
 
-        this.name = name;
-
-    }
-
-    public String getName() {
-
-        return name;
-
-    }
 
     public void arrangeShips() {
 
@@ -37,10 +29,6 @@ public class Player {
 
     }
 
-    public GameStats shoot(Cell cell) {
-
-        return field.hit(cell);
-
-    }
+    public abstract Cell shoot();
 
 }

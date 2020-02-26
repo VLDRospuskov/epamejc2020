@@ -6,6 +6,5 @@ public enum GameStats {
     MISS,
     DESTROYED,
     GAME_OVER,
-    VISIBLE
 
 }

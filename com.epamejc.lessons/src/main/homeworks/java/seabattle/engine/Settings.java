@@ -1,4 +1,4 @@
-package homeworks.java.seabattle.data;
+package homeworks.java.seabattle.engine;
 
 import lombok.SneakyThrows;
 
