@@ -6,26 +6,23 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
 
-import static org.junit.Assert.*;
-
-public class LogicTest {
+public class ArraysCreatorTest {
 //    private final ByteArrayOutputStream OUTPUT = new ByteArrayOutputStream();
     private final PrintStream ORIGINAL_OUT = System.out;
-    private Logic logic;
+    private ArraysCreator arraysCreator;
 
     @Before
     public void setUp(){
-        logic = new Logic();
+        arraysCreator = new ArraysCreator();
 //        System.setOut(new PrintStream(OUTPUT));
     }
 
     @After
     public void restoreStream(){
-        logic = null;
+        arraysCreator = null;
         System.setOut(ORIGINAL_OUT);
     }
 
@@ -33,7 +30,7 @@ public class LogicTest {
     public void makeRandomCharsArray_HasLength3AndNotEmptyTest() {
         BufferedReader buffer = new BufferedReader(new StringReader("3\n2\n"));
         final int expectedLength = 3;
-        char[][] actual = logic.makeRandomCharsArray(buffer);
+        char[][] actual = arraysCreator.makeRandomCharsArray(buffer);
         Assert.assertEquals(expectedLength, actual.length);
         Assert.assertNotNull(actual);
     }
@@ -41,14 +38,14 @@ public class LogicTest {
     @Test
     public void outputInAStrategy_IsNotEmptyTest() {
         BufferedReader buffer = new BufferedReader(new StringReader("5\nA"));
-        String actualOutput = logic.outputInDifferentStrategies(buffer);
+        String actualOutput = arraysCreator.outputInDifferentStrategies(buffer);
         Assert.assertNotNull(actualOutput);
     }
 
     @Test
     public void outputInBStrategy_IsNotEmptyTest() {
         BufferedReader buffer = new BufferedReader(new StringReader("7\nB"));
-        String actualOutput = logic.outputInDifferentStrategies(buffer);
+        String actualOutput = arraysCreator.outputInDifferentStrategies(buffer);
         Assert.assertNotNull(actualOutput);
     }
 
@@ -58,7 +55,7 @@ public class LogicTest {
         final int expectedLength = 10;
         final String expectedStr = "X";
 
-        String[][] actualPyramid = logic.makePyramid(buffer);
+        String[][] actualPyramid = arraysCreator.makePyramid(buffer);
 
         Assert.assertEquals(expectedLength, actualPyramid.length);
         Assert.assertEquals(expectedStr, actualPyramid[0][0]);

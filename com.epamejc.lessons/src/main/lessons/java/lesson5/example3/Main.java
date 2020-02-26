@@ -3,7 +3,7 @@ package lessons.java.lesson5.example3;
 public class Main {
 
     public static void main(String[] args) {
-//        Logic logic = new Logic();
+//        StringsCreator logic = new StringsCreator();
 //        LogicBlock logicBlock = new LogicBlock();
         Logic logicBlock2 = new LogicBlock();
     }
@@ -12,7 +12,7 @@ public class Main {
 
 //    Static logic
 //    Static logicBlock
-//    Logic
-//    Constructor Logic
+//    StringsCreator
+//    Constructor StringsCreator
 //    LogicBlock
 //    Constructor logicBlock

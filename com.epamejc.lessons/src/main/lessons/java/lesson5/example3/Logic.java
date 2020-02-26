@@ -7,15 +7,15 @@ public class Logic {
     }
 
     {
-        System.out.println("Logic");
+        System.out.println("StringsCreator");
     }
 
     public Logic() {
-        System.out.println("Constructor Logic");
+        System.out.println("Constructor StringsCreator");
     }
 
     public Logic(int x) {
-        System.out.println(x + " Constructor Logic");
+        System.out.println(x + " Constructor StringsCreator");
     }
 
 }

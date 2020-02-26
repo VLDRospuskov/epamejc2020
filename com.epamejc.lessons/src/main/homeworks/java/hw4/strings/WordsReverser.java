@@ -2,13 +2,14 @@ package homeworks.java.hw4.strings;
 
 public class WordsReverser {
 
-     void reverseWordsAnPutOnInitialPlaces(String text) {
+     String reverseWordsAnPutOnInitialPlaces(String text) {
         String[] words = text.split(" ");
+        String reversedStr = "";
         for (String word : words) {
             StringBuilder str = new StringBuilder(word);
-            str.reverse();
-            System.out.print(str);
-            System.out.print(" ");
+            reversedStr = reversedStr + str.reverse().append(" ");
         }
+        System.out.println(reversedStr);
+        return reversedStr;
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class LineByIndexesMaker {
 
-    void makeTheLineByIndexes(String word, ArrayList<Integer> indexes) {
+    String makeTheLineByIndexes(String word, ArrayList<Integer> indexes) {
 
         StringBuilder line = new StringBuilder();
 
@@ -17,9 +17,10 @@ public class LineByIndexesMaker {
                 System.out.println("Attention: at least one of the indexes is bigger than word's length");
             }
         }
-
         System.out.println("Line from existing in the string indexes:");
-
         System.out.println(line);
+
+        return String.valueOf(line);
     }
+
 }

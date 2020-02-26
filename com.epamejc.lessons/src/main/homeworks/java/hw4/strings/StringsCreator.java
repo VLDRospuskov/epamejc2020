@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 import static homeworks.java.hw4.enums.Messages.*;
 
-public class Logic {
+public class StringsCreator {
 
-    private void returnEvenOrOddChars(BufferedReader buffer) {
+    private String returnEvenOrOddChars(BufferedReader buffer) {
         System.out.println(EVEN_OR_ODD_ENTER_MESSAGE);
 
         try {
@@ -17,15 +17,15 @@ public class Logic {
             String strategy = buffer.readLine();
 
             EvenOddReturner returner = new EvenOddReturner();
-            returner.evenOddReturn(line, strategy);
+            return returner.evenOddReturn(line, strategy);
 
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
-
+        return null;
     }
 
-    private void makeLineByIndexes(BufferedReader buffer) {
+    private String makeLineByIndexes(BufferedReader buffer) {
         System.out.println(LINE_FROM_INDEXES_ENTER_MESSAGE);
 
         try {
@@ -43,14 +43,15 @@ public class Logic {
             }
 
             LineByIndexesMaker maker = new LineByIndexesMaker();
-            maker.makeTheLineByIndexes(line, indexes);
+            return maker.makeTheLineByIndexes(line, indexes);
 
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
+        return null;
     }
 
-    private void replaceChars(BufferedReader buffer) {
+    private String replaceChars(BufferedReader buffer) {
         System.out.println(REPLACE_CHARS_ENTER_MESSAGE);
 
         try {
@@ -62,24 +63,25 @@ public class Logic {
             int ind2 = Integer.parseInt(num2);
 
             CharsReplacer replacer = new CharsReplacer();
-            replacer.replaceTwoChars(line, ind1, ind2);
+            return replacer.replaceTwoChars(line, ind1, ind2);
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
-
+        return null;
     }
 
-    private void reverseWords(BufferedReader buffer) {
+    private String reverseWords(BufferedReader buffer) {
         System.out.println(REVERSE_WORDS_ENTER_MESSAGE);
 
         try {
             String line = buffer.readLine();
 
             WordsReverser reverser = new WordsReverser();
-            reverser.reverseWordsAnPutOnInitialPlaces(line);
+            return reverser.reverseWordsAnPutOnInitialPlaces(line);
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
+        return null;
     }
 
     public void run() {
