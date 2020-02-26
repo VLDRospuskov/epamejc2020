@@ -6,7 +6,7 @@ import static homeworks.java.hw3.enums.Messages.WARNING_FOR_PARSING_TO_INT;
 
 class FirstArray {
 
-    void getCharsArray(String inLines, String inColumns) {
+    char[][] getCharsArray(String inLines, String inColumns) {
         try {
             int lines = Integer.parseInt(inLines);
             int columns = Integer.parseInt(inColumns);
@@ -21,9 +21,11 @@ class FirstArray {
                 }
                 System.out.println();
             }
+            return charArray;
         } catch (Exception e) {
             System.out.println(WARNING_FOR_PARSING_TO_INT);
         }
+        return null;
     }
 
 }

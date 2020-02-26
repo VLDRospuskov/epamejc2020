@@ -21,45 +21,53 @@ class SecondArray {
         return charArray;
     }
 
-    void strategyAOutput(String in) {
+    String strategyAOutput(String in) {
         try {
             int n = Integer.parseInt(in);
 
             char[][] charArray = getCharsArray(n);
+            String strategyAOutput = new String();
 
             System.out.println("Strategy A output");
             for (int i = 0; i < charArray.length; ) {
                 for (int j = 0; j < charArray[0].length; ) {
-                    System.out.print(charArray[i][j]);
+                    strategyAOutput = strategyAOutput + charArray[i][j];
                     j = j + 2;
                 }
                 i = i + 2;
             }
+            System.out.println(strategyAOutput);
             System.out.println("\n");
+            return strategyAOutput;
         } catch (Exception e) {
             System.out.println(WARNING_FOR_PARSING_TO_INT);
         }
+        return null;
     }
 
-    void strategyBOutput(String in) {
+    String strategyBOutput(String in) {
         try {
             int n = Integer.parseInt(in);
 
             char[][] arrayB = getCharsArray(n);
+            String strategyBOutput = new String();
 
             System.out.println("Strategy B output");
 
             for (int i = 1; i < arrayB.length; ) {
                 for (int j = 1; j < arrayB.length; ) {
-                    System.out.print(arrayB[i][j]);
+                    strategyBOutput = strategyBOutput + arrayB[i][j];
                     j = j + 2;
                 }
                 i = i + 2;
             }
+            System.out.println(strategyBOutput);
             System.out.println("\n");
+            return strategyBOutput;
         } catch (Exception e) {
             System.out.println(WARNING_FOR_PARSING_TO_INT);
         }
+        return null;
     }
 
 }

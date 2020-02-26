@@ -13,7 +13,7 @@ class ThirdArray {
         return pyramid;
     }
 
-    void fullPyramid(String lines, String var) {
+    String[][] fullPyramid(String lines, String var) {
         try {
             int numOfLines = Integer.parseInt(lines);
             String[][] array = makePyramid(numOfLines);
@@ -25,9 +25,11 @@ class ThirdArray {
                 }
                 System.out.println();
             }
+            return array;
         } catch (Exception e) {
             System.out.println(WARNING_FOR_PARSING_TO_INT);
         }
+        return null;
     }
 
 }

@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 
 import static homeworks.java.hw3.enums.Messages.*;
 
-class Logic {
+public class Logic {
 
-    void makeRandomCharsArray(BufferedReader buffer) {
+    public char[][] makeRandomCharsArray(BufferedReader buffer) {
         System.out.println(FIRST_TASK_ENTER_MESSAGE);
 
         try {
@@ -16,15 +16,15 @@ class Logic {
             String line2 = buffer.readLine();
 
             FirstArray firstArray = new FirstArray();
-            firstArray.getCharsArray(line1, line2);
+            return firstArray.getCharsArray(line1, line2);
 
         } catch (Exception e) {
             System.out.println(FIRST_TASK_EXECUTING_EXCEPTION);
         }
-
+        return null;
     }
 
-    void outputInDifferentStrategies(BufferedReader buffer) {
+    public String outputInDifferentStrategies(BufferedReader buffer) {
         System.out.println(SECOND_TASK_ENTER_MESSAGE);
 
         try {
@@ -34,9 +34,9 @@ class Logic {
             SecondArray secondArray = new SecondArray();
 
             if (strategy.equalsIgnoreCase("A")) {
-                secondArray.strategyAOutput(size);
+                return secondArray.strategyAOutput(size);
             } else if (strategy.equalsIgnoreCase("B")) {
-                secondArray.strategyBOutput(size);
+                return secondArray.strategyBOutput(size);
             } else {
                 System.out.println(OUTPUT_STRATEGY_CHOOSE_WARNING);
             }
@@ -44,10 +44,10 @@ class Logic {
         } catch (Exception e) {
             System.out.println(SECOND_TASK_EXECUTING_EXCEPTION);
         }
-
+        return null;
     }
 
-    void makePyramid(BufferedReader buffer) {
+    public String[][] makePyramid(BufferedReader buffer) {
         System.out.println(THIRD_TASK_ENTER_MESSAGE);
 
         try {
@@ -55,14 +55,15 @@ class Logic {
             String ch = buffer.readLine();
 
             ThirdArray thirdArray = new ThirdArray();
-            thirdArray.fullPyramid(lines, ch);
+            return thirdArray.fullPyramid(lines, ch);
 
         } catch (Exception e) {
             System.out.println(THIRD_TASK_EXECUTING_EXCEPTION);
         }
+        return null;
     }
 
-    void run() {
+    public void run() {
         System.out.println(ARRAYS_ENTER_MESSAGE);
 
         try (BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in))) {

@@ -11,7 +11,7 @@ public enum Messages {
     WARNING_FOR_PARSING_TO_INT("Exception while parsing string from buffer to integer. You have to input only" +
             "a positive numbers"),
     FIRST_TASK_ENTER_MESSAGE("Input number of lines, press enter, input number of columns and press enter again"),
-    SECOND_TASK_ENTER_MESSAGE("Input a size of the array, press enter,\nthen choose an input strategy +" +
+    SECOND_TASK_ENTER_MESSAGE("Input a size of the array, press enter,\nthen choose an input strategy " +
             "and press enter again" + "\nOutputting strategies: \n" +
             "A - is a *_*_* principle\nB - is a _*_*_ principle\n"),
     THIRD_TASK_ENTER_MESSAGE("Input number of pyramids lines. Press enter.\n" +
