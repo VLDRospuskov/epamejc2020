@@ -2,7 +2,7 @@ package homeworks.java.hw4.strings;
 
 public class WordsReverser {
 
-     String reverseWordsAnPutOnInitialPlaces(String text) {
+     String reverseWordsAndPutOnInitialPlaces(String text) {
         String[] words = text.split(" ");
         String reversedStr = "";
         for (String word : words) {

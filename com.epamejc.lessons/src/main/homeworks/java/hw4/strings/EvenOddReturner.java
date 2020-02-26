@@ -2,7 +2,7 @@ package homeworks.java.hw4.strings;
 
 public class EvenOddReturner {
 
-    String evenOddReturn(String word, String evenOrOdd) {
+    public String makeStringFromEvenOrOddChars(String word, String evenOrOdd) {
         if (evenOrOdd.equalsIgnoreCase("even")) {
             String evenStr = "";
             for (int i = 1; i < word.length(); ) {
@@ -22,7 +22,7 @@ public class EvenOddReturner {
             System.out.println();
             return oddStr;
         }
-        return null;
+        return new String();
     }
 
 }

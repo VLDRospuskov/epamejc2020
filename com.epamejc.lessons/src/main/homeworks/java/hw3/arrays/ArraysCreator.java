@@ -8,7 +8,7 @@ import static homeworks.java.hw3.enums.Messages.*;
 
 public class ArraysCreator {
 
-    public char[][] makeRandomCharsArray(BufferedReader buffer) {
+    public void readInputAndGenerateRandomCharsArray(BufferedReader buffer) {
         System.out.println(FIRST_TASK_ENTER_MESSAGE);
 
         try {
@@ -16,15 +16,14 @@ public class ArraysCreator {
             String line2 = buffer.readLine();
 
             FirstArray firstArray = new FirstArray();
-            return firstArray.getCharsArray(line1, line2);
+            firstArray.makeRandomCharsArray(line1, line2);
 
         } catch (Exception e) {
             System.out.println(FIRST_TASK_EXECUTING_EXCEPTION);
         }
-        return null;
     }
 
-    public String outputInDifferentStrategies(BufferedReader buffer) {
+    public void readInputAndGenerateOutputInDifferentStrategies(BufferedReader buffer) {
         System.out.println(SECOND_TASK_ENTER_MESSAGE);
 
         try {
@@ -34,9 +33,9 @@ public class ArraysCreator {
             SecondArray secondArray = new SecondArray();
 
             if (strategy.equalsIgnoreCase("A")) {
-                return secondArray.strategyAOutput(size);
+                secondArray.strategyAOutput(size);
             } else if (strategy.equalsIgnoreCase("B")) {
-                return secondArray.strategyBOutput(size);
+                secondArray.strategyBOutput(size);
             } else {
                 System.out.println(OUTPUT_STRATEGY_CHOOSE_WARNING);
             }
@@ -44,10 +43,9 @@ public class ArraysCreator {
         } catch (Exception e) {
             System.out.println(SECOND_TASK_EXECUTING_EXCEPTION);
         }
-        return null;
     }
 
-    public String[][] makePyramid(BufferedReader buffer) {
+    public void readInputAndGeneratePyramid(BufferedReader buffer) {
         System.out.println(THIRD_TASK_ENTER_MESSAGE);
 
         try {
@@ -55,12 +53,11 @@ public class ArraysCreator {
             String ch = buffer.readLine();
 
             ThirdArray thirdArray = new ThirdArray();
-            return thirdArray.fullPyramid(lines, ch);
+            thirdArray.fillPyramid(lines, ch);
 
         } catch (Exception e) {
             System.out.println(THIRD_TASK_EXECUTING_EXCEPTION);
         }
-        return null;
     }
 
     public void run() {
@@ -71,11 +68,11 @@ public class ArraysCreator {
             int taskNumber = Integer.parseInt(task);
 
             if (taskNumber == 1) {
-                makeRandomCharsArray(buffer);
+                readInputAndGenerateRandomCharsArray(buffer);
             } else if (taskNumber == 2) {
-                outputInDifferentStrategies(buffer);
+                readInputAndGenerateOutputInDifferentStrategies(buffer);
             } else if (taskNumber == 3) {
-                makePyramid(buffer);
+                readInputAndGeneratePyramid(buffer);
             } else {
                 System.out.println(WARNING_FOR_TASK_NUMBER_INPUT);
             }

@@ -8,7 +8,7 @@ public enum Messages {
             "       like *_*_* or like _*_*_\n" +
             "   3 - pyramid maker."),
     WARNING_FOR_TASK_NUMBER_INPUT("You have to put 1, 2 or 3 for choosing the task number"),
-    WARNING_FOR_PARSING_TO_INT("Exception while parsing string from buffer to integer. You have to input only" +
+    WARNING_FOR_PARSING_TO_INT("Exception while parsing string from buffer to integer. You have to input only " +
             "a positive numbers"),
     FIRST_TASK_ENTER_MESSAGE("Input number of lines, press enter, input number of columns and press enter again"),
     SECOND_TASK_ENTER_MESSAGE("Input a size of the array, press enter,\nthen choose an input strategy " +

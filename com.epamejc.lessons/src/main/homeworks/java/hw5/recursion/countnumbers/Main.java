@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            System.out.println(counterOfNumbers(564865487945L));
+            System.out.println(counterOfNumbers(164651351615L));
         } catch (ArithmeticException e) {
             System.out.println(e.getMessage());
         }

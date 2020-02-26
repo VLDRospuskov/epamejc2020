@@ -22,11 +22,11 @@ class SecondArray {
     }
 
     String strategyAOutput(String in) {
+        String strategyAOutput = new String();
         try {
             int n = Integer.parseInt(in);
 
             char[][] charArray = getCharsArray(n);
-            String strategyAOutput = new String();
 
             System.out.println("Strategy A output");
             for (int i = 0; i < charArray.length; ) {
@@ -38,19 +38,18 @@ class SecondArray {
             }
             System.out.println(strategyAOutput);
             System.out.println("\n");
-            return strategyAOutput;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println(WARNING_FOR_PARSING_TO_INT);
         }
-        return null;
+        return strategyAOutput;
     }
 
     String strategyBOutput(String in) {
+        String strategyBOutput = new String();
         try {
             int n = Integer.parseInt(in);
 
             char[][] arrayB = getCharsArray(n);
-            String strategyBOutput = new String();
 
             System.out.println("Strategy B output");
 
@@ -63,11 +62,10 @@ class SecondArray {
             }
             System.out.println(strategyBOutput);
             System.out.println("\n");
-            return strategyBOutput;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println(WARNING_FOR_PARSING_TO_INT);
         }
-        return null;
+        return strategyBOutput;
     }
 
 }

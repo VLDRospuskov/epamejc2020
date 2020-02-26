@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class LineByIndexesMaker {
 
-    String makeTheLineByIndexes(String word, ArrayList<Integer> indexes) {
+    public String makeTheLineByIndexes(String word, ArrayList<Integer> indexes) {
 
         StringBuilder line = new StringBuilder();
 

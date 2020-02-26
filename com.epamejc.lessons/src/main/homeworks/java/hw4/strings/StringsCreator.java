@@ -9,7 +9,7 @@ import static homeworks.java.hw4.enums.Messages.*;
 
 public class StringsCreator {
 
-    public String returnEvenOrOddChars(BufferedReader buffer) {
+    public void readInputAndGenerateStringFromEvenOrOddChars(BufferedReader buffer) {
         System.out.println(EVEN_OR_ODD_ENTER_MESSAGE);
 
         try {
@@ -17,15 +17,14 @@ public class StringsCreator {
             String strategy = buffer.readLine();
 
             EvenOddReturner returner = new EvenOddReturner();
-            return returner.evenOddReturn(line, strategy);
+            returner.makeStringFromEvenOrOddChars(line, strategy);
 
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
-        return null;
     }
 
-    public String makeLineByIndexes(BufferedReader buffer) {
+    public void readInputAndGenerateStringByIndexes(BufferedReader buffer) {
         System.out.println(LINE_FROM_INDEXES_ENTER_MESSAGE);
 
         try {
@@ -43,15 +42,14 @@ public class StringsCreator {
             }
 
             LineByIndexesMaker maker = new LineByIndexesMaker();
-            return maker.makeTheLineByIndexes(line, indexes);
+            maker.makeTheLineByIndexes(line, indexes);
 
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
-        return null;
     }
 
-    public String replaceChars(BufferedReader buffer) {
+    public void readInputAndGenerateStringWithReplacedChars(BufferedReader buffer) {
         System.out.println(REPLACE_CHARS_ENTER_MESSAGE);
 
         try {
@@ -63,25 +61,23 @@ public class StringsCreator {
             int ind2 = Integer.parseInt(num2);
 
             CharsReplacer replacer = new CharsReplacer();
-            return replacer.replaceTwoChars(line, ind1, ind2);
+            replacer.replaceTwoChars(line, ind1, ind2);
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
-        return null;
     }
 
-    public String reverseWords(BufferedReader buffer) {
+    public void readInputAndGenerateStringWithReversedWords(BufferedReader buffer) {
         System.out.println(REVERSE_WORDS_ENTER_MESSAGE);
 
         try {
             String line = buffer.readLine();
 
             WordsReverser reverser = new WordsReverser();
-            return reverser.reverseWordsAnPutOnInitialPlaces(line);
+            reverser.reverseWordsAndPutOnInitialPlaces(line);
         } catch (IOException e) {
             System.out.println(INPUT_WARNING);
         }
-        return null;
     }
 
     public void run() {
@@ -93,16 +89,16 @@ public class StringsCreator {
 
             switch (taskNum) {
                 case 1:
-                    returnEvenOrOddChars(buffer);
+                    readInputAndGenerateStringFromEvenOrOddChars(buffer);
                     break;
                 case 2:
-                    makeLineByIndexes(buffer);
+                    readInputAndGenerateStringByIndexes(buffer);
                     break;
                 case 3:
-                    replaceChars(buffer);
+                    readInputAndGenerateStringWithReplacedChars(buffer);
                     break;
                 case 4:
-                    reverseWords(buffer);
+                    readInputAndGenerateStringWithReversedWords(buffer);
                     break;
                 default:
                     System.out.println(WARNING_FOR_TASK_NUMBER_INPUT);
