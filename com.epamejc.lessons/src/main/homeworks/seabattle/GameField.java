@@ -25,22 +25,31 @@ public class GameField {
 
     public void show() {
         char[] chars = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        int charCounter = 0;
-        System.out.println("  1 2 3 4 5 6 7 8 9 10");
+        System.out.println("  1 2 3 4 5 6 7 8 9 10       1 2 3 4 5 6 7 8 9 10");
 
-        for (char[] line: field) {
-            System.out.print(chars[charCounter]);
-            charCounter++;
+        for (int i = 0; i < 10; i++) {
+            System.out.print(chars[i]);
             System.out.print("|");
+            char[] line = field[i];
 
-            for (int i = 0; i < line.length; i++) {
-                if (line[i] == SHIP_CHAR) {
-                    System.out.print(" |");
+            for (char c : line) {
+                if (c == SHIP_CHAR) {
+                    System.out.print("S|");
                 } else {
-                    System.out.print(line[i] + "|");
+                    System.out.print(c + "|");
                 }
             }
 
+            System.out.print("     " + chars[i]);
+            System.out.print("|");
+
+            for (char c : line) {
+                if (c == SHIP_CHAR) {
+                    System.out.print("S|");
+                } else {
+                    System.out.print(c + "|");
+                }
+            }
             System.out.println("");
         }
 
@@ -57,11 +66,11 @@ public class GameField {
 
     private void hit(Point p) {
         score++;
-        Ship ship = getShipByLocation(p);
-        updateShipAndField(p, ship);
+        updateShipAndField(p);
     }
 
-    private void updateShipAndField(Point p, Ship ship) {
+    private void updateShipAndField(Point p) {
+        Ship ship = getShipByLocation(p);
         ship.location.remove(p);
         ship.destroyedCells.add(p);
 
@@ -98,7 +107,10 @@ public class GameField {
     }
 
     private void miss(Point p) {
-        field[p.y][p.x] = MISS_CHAR;
+        char cell = field[p.y][p.x];
+        if (cell != DESTROYED_SHIP_CHAR && cell != HIT_SHIP_CHAR) {
+            field[p.y][p.x] = MISS_CHAR;
+        }
     }
 
     private void fill(char[][] field) {
@@ -108,25 +120,24 @@ public class GameField {
     }
 
     private void create_A_Ship_XXXX(char[][] field) {
-        new Ship().create_XXXX(field);
+        new Ship(4);
     }
 
     private void create2Ships_XXX(char[][] field) {
         for (int i = 0; i < 2; i++) {
-            new Ship().create_XXX(field);
+            new Ship(3);
         }
     }
 
     private void create3Ships_XX(char[][] field) {
         for (int i = 0; i < 3; i++) {
-            new Ship().create_XX(field);
+            new Ship(2);
         }
     }
 
     private void create4Ships_X(char[][] field) {
         for (int i = 0; i < 4; i++) {
-            new Ship().create_X(field);
-
+            new Ship(1);
         }
     }
 
