@@ -1,22 +1,19 @@
 package Homeworks.HW7;
 
-import java.io.File;
-import java.sql.Time;
-
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        File directory = new File("./src/main/resources");
-        System.out.println(directory.getAbsolutePath());
-        File file = new File("./src/main/resources/lorem.txt");
-        System.out.println(file.exists());
-        /*
+
+    public static void main(String[] args) {
         long start = System.currentTimeMillis();
 
-        //WithBuffered buffered = new WithBuffered();
-        //buffered.run();
-        WithInputStream inputStream = new WithInputStream();
-        inputStream.run();
+        WithFileReaderWriter withFileReaderWriter = new WithFileReaderWriter();
+        withFileReaderWriter.run(); // 3s
 
-        System.out.println(System.currentTimeMillis() - start);*/
+        long time = System.currentTimeMillis();
+        System.out.println((time - start) + " ms");
+
+        WithBuffered withBuffered = new WithBuffered();
+        withBuffered.run(); // 0s
+
+        System.out.println((System.currentTimeMillis() - time) + " ms");
     }
 }
