@@ -22,17 +22,17 @@ public class RewerseWords extends ServiceImpl {
                 i += temp[j].length()-1;
                 j++;
             } else {
-                sb.append(string.substring(i,i+1));
+                sb.append(string.charAt(i));
             }
         }
         return sb.toString();
     }
     private String reverse(String word){
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         for(int i = word.length()-1; i >= 0;i--){
-            result += word.charAt(i);
+            sb.append(word.charAt(i));
         }
-        return result;
+        return sb.toString();
     }
 
 }

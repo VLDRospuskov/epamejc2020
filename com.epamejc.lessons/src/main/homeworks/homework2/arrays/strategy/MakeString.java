@@ -9,9 +9,8 @@ public class MakeString extends ServiceImpl {
     public String getResult(String userRequest) {
         String[] temp = userRequest.split("\\s+");
         int amount = 3;
-        if (temp.length == amount){
+        if (temp.length == amount && isEvenOdd(temp[2])){
             Integer[] body = chekArray(temp[0] + " " + temp[1]);
-            boolean EvenOdd = isEvenOdd(temp[2]);
             Character[][] symbols = getArray(body[0],body[1]);
             String result ="";
             if (EVEN.equals(temp[2])){
@@ -38,7 +37,7 @@ public class MakeString extends ServiceImpl {
         }
         return result;
     }
-    public String build(BuildStrategy buildStrategy, Character[][] chars) {
+    private String build(BuildStrategy buildStrategy, Character[][] chars) {
         return buildStrategy.build(chars);
     }
 }

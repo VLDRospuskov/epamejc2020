@@ -35,18 +35,14 @@ public class ExponentiationTest {
     }
 
     @Test(expected = IllegalDataException.class)
-    public void testException(){
-        String one ="12.2 12.2";
-        String two ="12";
-        String three ="12.2 2";
-        String four ="qwd 2";
-        String five ="2 eheh";
-
-        expo.getResult(one);
-        expo.getResult(two);
-        expo.getResult(three);
-        expo.getResult(four);
-        expo.getResult(five);
+    public void testNumException(){
+        String str ="qwd 2";
+        expo.getResult(str);
+    }
+    @Test(expected = IllegalDataException.class)
+    public void testPowException(){
+        String str ="2 qwd";
+        expo.getResult(str);
     }
     @Test
     public void testExceptionMessage(){
@@ -59,7 +55,7 @@ public class ExponentiationTest {
         String[] illegalInput = {"wqeqw","0","12","!202"};
 
         String isNotInt = " is not Integer.";
-        String incoorectInput = " dont contains two ints";
+        String incorrectInput = " dont contains two ints";
 
         String[] actualPowEx = new String[nums.length];
         String[] actualNumEx = new String[nums.length];
@@ -73,7 +69,7 @@ public class ExponentiationTest {
         for (int i = 0; i < nums.length; i++){
             expectedPowEx[i] = illegalPows[i] + isNotInt;
             expectedNumEx[i] = illegalNums[i] + isNotInt;
-            expectedAllEx[i] = illegalInput[i] + incoorectInput;
+            expectedAllEx[i] = illegalInput[i] + incorrectInput;
             try {
                 expo.getResult(nums[i] + " " + illegalPows[i]);
                 fail();

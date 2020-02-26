@@ -16,11 +16,16 @@ public class SwitchChar extends ServiceImpl {
     @Override
     public String getResult(String userRequest)  {
         String[] splitRequest = getSplitRequest(userRequest);
-        Integer[] indexes = chekArray(splitRequest[1] +" "+ splitRequest[2]);
-        String body = splitRequest[0];
+        Integer[] indexes = chekArray(splitRequest[splitRequest.length-2] + " "
+                + splitRequest[splitRequest.length-1]);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < splitRequest.length - 2; i++){
+            sb.append(splitRequest[i]);
+            sb.append(" ");
+        }
         int indOne = indexes[0];
         int indTwo = indexes[1];
-        return getString(body,indOne,indTwo);
+        return getString(sb.toString(),indOne,indTwo);
 
     }
 

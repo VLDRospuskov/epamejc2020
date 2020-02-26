@@ -7,7 +7,7 @@ public class FibonacciNumbers extends ServiceImpl {
     @Override
     public String getResult(String userRequest) throws IllegalDataException{
         Integer input = chekInt(userRequest);
-        if (input > 0 ){
+        if (input >= 0 ){
             return String.valueOf(fibonacci(input));
         } else {
             throw new IllegalDataException(userRequest + " input can't be negative");

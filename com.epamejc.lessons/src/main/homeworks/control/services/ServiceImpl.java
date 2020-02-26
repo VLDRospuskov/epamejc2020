@@ -18,16 +18,6 @@ public abstract class ServiceImpl implements Service {
 
     }
 
-    public Double chekDouble(String string){
-        Double result;
-        try{
-            result = Double.parseDouble(string);
-            return result;
-        } catch (Exception ex){
-            throw new IllegalDataException(string + " is not Double.");
-        }
-
-    }
 
     public Integer[] chekArray(String string){
         Integer[] array = new Integer[2];
@@ -54,7 +44,7 @@ public abstract class ServiceImpl implements Service {
         if (EVEN.equals(string) || ODD.equals(string)){
             return true;
         }  else {
-            throw new IllegalDataException(string + "not equals even or odd");
+           return false;
         }
     }
 }

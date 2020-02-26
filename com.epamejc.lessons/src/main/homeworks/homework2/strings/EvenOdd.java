@@ -11,7 +11,7 @@ public class EvenOdd extends ServiceImpl {
         boolean EvenOdd = isEvenOdd(temp[temp.length-1]);
         if (EvenOdd){
 
-            String body = parseArray(temp);
+            String body = parseArray(temp).trim();
             return makeString(body,temp[temp.length-1]);
         } else {
             throw new IllegalDataException(String.format("%s is not even or odd",temp.length-1));
@@ -44,9 +44,15 @@ public class EvenOdd extends ServiceImpl {
         if (strings.length >= 2){
             for (int i = 0; i < strings.length-1; i++){
                 sb.append(strings[i]);
-                sb.append("\\s");
+                sb.append(" ");
             }
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        EvenOdd e = new EvenOdd();
+        System.out.println(e.getResult("World of Warcraft even"));
+        System.out.println(e.getResult("World of Warcraft odd"));
     }
 }

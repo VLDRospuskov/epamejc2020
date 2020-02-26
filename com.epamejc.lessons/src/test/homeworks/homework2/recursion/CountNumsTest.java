@@ -36,10 +36,6 @@ public class CountNumsTest {
     @Test(expected = IllegalDataException.class)
     public void testEmpty(){
         countNums.getResult("");
-        countNums.getResult("12.12");
-        countNums.getResult("");
-        countNums.getResult("12 12");
-
     }
 
     @Test

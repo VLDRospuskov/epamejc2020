@@ -13,7 +13,7 @@ public class Pyramid extends ServiceImpl {
         return makePiramide(pirLength);
     }
 
-    public String makePiramide(int pirLength) {
+    private String makePiramide(int pirLength) {
         char[][] strings = getCharArr(pirLength);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < pirLength; i++) {

@@ -2,11 +2,12 @@ package homeworks.homework3;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.lang.reflect.Constructor;
 
-@Data
+@Getter
 public class Person {
     int age;
     String name;

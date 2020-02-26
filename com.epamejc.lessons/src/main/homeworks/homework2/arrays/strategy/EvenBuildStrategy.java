@@ -2,16 +2,16 @@ package homeworks.homework2.arrays.strategy;
 
 public class EvenBuildStrategy implements BuildStrategy {
     public String build(Character[][] chars) {
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         if (chars.length > 0) {
             for (int i = 0; i < chars.length; i++) {
                 for (int j = 0; j < chars[i].length; j++) {
                     if (j % 2 == 0) {
-                        result += chars[i][j];
+                        sb.append(chars[i][j]);
                     }
                 }
             }
         }
-        return result;
+        return sb.toString();
     }
 }

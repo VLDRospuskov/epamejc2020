@@ -17,4 +17,6 @@ public class CountNums extends ServiceImpl {
             return 1 + countNum(num/10);
         }
     }
+
+
 }

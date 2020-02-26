@@ -50,31 +50,6 @@ public class TrafficLightTest {
     @Test(expected = IllegalDataException.class)
     public void testGetSumOfStringsWithIncorrectValues() {
         String fault1 = "wqeqwe";
-        String fault2 = "13:qweq";
-        String fault3 = "qwe:00";
-
-        String fault4 = "-1:00";
-        String fault5 = "00:-10";
-        String fault6 = "-2:00";
-        String fault7 = "-2 12 12 12";
-        String fault8 = "2 2 2 2";
-        String fault9 = ":2:";
-        String fault10 = "2:";
-        String fault11 = "::";
-
-
         traffic.getResult(fault1);
-        traffic.getResult(fault2);
-        traffic.getResult(fault3);
-
-        traffic.getResult(fault4);
-        traffic.getResult(fault5);
-        traffic.getResult(fault6);
-        traffic.getResult(fault7);
-        traffic.getResult(fault8);
-        traffic.getResult(fault9);
-        traffic.getResult(fault10);
-        traffic.getResult(fault11);
-
     }
 }

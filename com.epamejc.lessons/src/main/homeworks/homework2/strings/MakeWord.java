@@ -11,8 +11,12 @@ public class MakeWord extends ServiceImpl {
         StringBuilder sb = new StringBuilder();
         if (temp.length >= 2){
             for (int i = 1; i< temp.length; i++){
-                int index = chekInt(temp[i]);
-                sb.append(makeWord(temp[0],index));
+                try {
+                    int index = chekInt(temp[i]);
+                    sb.append(makeWord(temp[0],index));
+                } catch (IllegalDataException e){
+                    e.getMessage();
+                }
             }
             return sb.toString();
         } else {
