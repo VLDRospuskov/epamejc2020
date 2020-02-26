@@ -2,7 +2,7 @@ package homework.arrays.array1;
 
 public class Main {
     public static void main(String[] args) {
-        fillArray array = new fillArray();
+        FillArray array = new FillArray();
         array.run();
 
     }

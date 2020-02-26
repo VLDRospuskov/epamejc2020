@@ -2,7 +2,7 @@ package homework.arrays.array1;
 
 import java.util.Scanner;
 
-public class fillArray {
+public class FillArray {
 
     private double rand_num;
     private char[][] charArray;
