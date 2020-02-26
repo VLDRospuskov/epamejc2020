@@ -1,13 +1,15 @@
-package homework.homework8;
+package homework.homework7;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class Buffered {
+public class NonBuffered {
 
-    public long measureTime () {
+    public long measureTime() {
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/fileForReading1.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/fileForWriting1.txt"))) {
+        try (FileReader reader = new FileReader("src/main/resources/fileForReading1.txt");
+             FileWriter writer = new FileWriter("src/main/resources/fileForWriting2.txt")) {
 
             int c;
 
