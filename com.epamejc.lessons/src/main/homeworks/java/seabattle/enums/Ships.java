@@ -2,18 +2,20 @@ package homeworks.java.seabattle.enums;
 
 public enum Ships {
 
-    CRUISER(1, 4),
-    DESTROYER(2, 3),
-    CORVETTE(3, 2),
-    FIGHTER(4, 1);
+    CRUISER(1, 4, "Cruiser"),
+    DESTROYER(2, 3, "Destroyer"),
+    CORVETTE(3, 2, "Corvette"),
+    FIGHTER(4, 1, "Fighter");
 
     private int count;
     private int length;
+    private String name;
 
-    Ships(int count, int length) {
+    Ships(int count, int length, String name) {
 
         this.count = count;
         this.length = length;
+        this.name = name;
 
     }
 
@@ -26,6 +28,12 @@ public enum Ships {
     public int getLength() {
 
         return length;
+
+    }
+
+    public String getName() {
+
+        return name;
 
     }
 

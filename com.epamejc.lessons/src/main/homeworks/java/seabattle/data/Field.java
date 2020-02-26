@@ -40,30 +40,7 @@ public class Field {
 
     }
 
-    public String printHead() {
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("   ");
-        for (int i = 1; i <= deckSize; i++) {
-            stringBuilder.append(i);
-            stringBuilder.append("\t");
-        }
-        return stringBuilder.toString();
-
-    }
-
-    public String printPlayerName(String name) {
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < deckSize; i++) {
-            if (i == deckSize / 2) {
-                stringBuilder.append(name);
-            }
-            stringBuilder.append("\t");
-        }
-        return stringBuilder.toString();
-
-    }
 
     public String printLine(int line, boolean visible) {
 
@@ -207,5 +184,7 @@ public class Field {
         return occupied;
 
     }
+
+
 
 }
