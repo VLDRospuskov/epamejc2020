@@ -1,18 +1,14 @@
-package homeworks.java.HM0_TrafficLight;
+package homeworks.HM0_TrafficLight;
 
 import java.io.*;
 import java.util.Arrays;
 
 public class TrafficLight {
-    public static void main(String[] args) {
-//        TrafficLight trafficLight = new TrafficLight();
-////        trafficLight.launch();
-    }
 
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Integer time = 11;
 
-    public void setReader(InputStream inputStream) throws IOException{
+    public void setReader(InputStream inputStream){
         reader = new BufferedReader(new InputStreamReader(inputStream));
     }
 

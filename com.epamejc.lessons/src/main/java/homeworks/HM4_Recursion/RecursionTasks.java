@@ -8,32 +8,22 @@
  4.3.  Посчитать количество знаков в числе
  */
 
-package homeworks.java.HM4_Recursion;
+package homeworks.HM4_Recursion;
+
+import lombok.Setter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
+@Setter
 public class RecursionTasks {
-    public static void main(String[] args) {
-        readInt();
 
-//        fibonacci(value);
-//
-//        System.out.print("Enter power: ");
-//        Scanner sc = new Scanner(System.in);
-//        int pow = sc.nextInt();
-//        System.out.println(power(value, pow));
+    private int value;
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); // TODO везде появились ридеры. Это норма?
 
-        System.out.println(numberOfDigits(value));
-    }
-
-    private static int value;
-    private static void readInt() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private void readInt() {
         System.out.print("Enter int: ");
-        Scanner sc = new Scanner(System.in);
 
         try {
             String stringValue = reader.readLine();
@@ -49,7 +39,7 @@ public class RecursionTasks {
     /**
      * 4.1
      */
-    public static int fibonacci(int n) {
+    public int fibonacci(int n) {
         if (n <= 2) return 1;
         return fibonacci(n-1) + fibonacci(n-2);
     }
@@ -57,7 +47,7 @@ public class RecursionTasks {
     /**
      * 4.2
      */
-    public static int power(int a, int b){
+    public int power(int a, int b){
         if (b == 1) return a;
         return a * power(a,b-1);
     }
@@ -65,7 +55,7 @@ public class RecursionTasks {
     /**
      * 4.3
      */
-    public static int numberOfDigits(int n) {
+    public int numberOfDigits(int n) {
         if (n/10 < 1) return 1;
         return numberOfDigits(n/10) + 1;
     }

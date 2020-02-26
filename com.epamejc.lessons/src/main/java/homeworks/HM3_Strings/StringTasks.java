@@ -17,26 +17,23 @@
  */
 
 
-package homeworks.java.HM3_Strings;
+package homeworks.HM3_Strings;
+
+import lombok.Setter;
+import lombok.SneakyThrows;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
+@Setter
 public class StringTasks {
-    public static void main(String[] args) {
-        StringTasks stringTasks = new StringTasks();
-        //stringTasks.printOddEvenLetters();
-        //stringTasks.printStrFromIndexes();
-        //stringTasks.swapLetters();
-        stringTasks.reverseWords();
-    }
 
-    private static String value;
+    private String value;
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
 
     private void readString() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Enter string: ");
         try {
@@ -49,11 +46,16 @@ public class StringTasks {
 
     /**
      * 3.1
+     * readString() called
+     * need to enter mode (even or odd)
      */
-    public void printOddEvenLetters() {
-        Scanner sc = new Scanner(System.in);
+    @SneakyThrows
+    public String printOddEvenLetters() {
+
+        readString();
+
         System.out.print("Enter mode (even or odd): ");
-        String mode = sc.nextLine();
+        String mode = reader.readLine();
 
         String result = "";
         int modeInt;
@@ -71,20 +73,25 @@ public class StringTasks {
         }
 
         System.out.println(result);
+
+        return result;
     }
 
     /**
      * 3.2
+     * readString() called
+     * need to enter indexes (int) in loop
+     * then print "exit" to get the result
      */
-    public void printStrFromIndexes() {
+    @SneakyThrows
+    public String printStrFromIndexes() {
+
         readString();
-        Scanner sc = new Scanner(System.in);
 
         String result = "";
         System.out.println("Enter index from 1 to " + value.length());
-        String input = sc.nextLine();// = sc.nextLine();;
+        String input = reader.readLine();
         int index = 0;
-        //input = sc.nextLine();
         do {
             boolean error = false;
             try {
@@ -101,29 +108,47 @@ public class StringTasks {
                 }
             }
             System.out.print("Enter index or exit: ");
-            input = sc.nextLine();
+            input = reader.readLine();
         }
         while (!input.equals("exit"));
 
         System.out.println("Result is: " + result);
+        return result;
+        // TODO в названии - принт. Но метод и принтит и возвращает. Это норма?
     }
 
     /**
      * 3.3
+     * readString() called
+     * need to enter 2 indexes (int)
+     * Indexes start with 0
      */
-    public void swapLetters() {
-        readString();
-        Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
+    @SneakyThrows
+    public String swapLetters() {
 
-        System.out.println(value.substring(0,a) + value.charAt(b) + value.substring(a+1,b) + value.charAt(a) + value.substring(b+1));
+        readString();
+
+        System.out.println("Enter first index");
+        int a = Integer.parseInt(reader.readLine());
+        System.out.println("Enter second index");
+        int b = Integer.parseInt(reader.readLine());
+
+        String result = value.substring(0,a) + value.charAt(b) +
+                value.substring(a+1,b) +
+                value.charAt(a) + value.substring(b+1);
+
+        System.out.println(result);
+
+        return result;
+
     }
 
     /**
      * 3.4
+     * readString() called
      */
-    public void reverseWords() {
+    public String reverseWords() {
+
         readString();
 
         String result = "";
@@ -154,15 +179,19 @@ public class StringTasks {
         }
 
         System.out.println(result);
+        return result;
+
     }
 
-    public static String reverseWord(String str) {
+    private String reverseWord(String str) {
+
         String result = "";
         for (int i = str.length() - 1; i >= 0; i--) {
             result = result + str.charAt(i);
             // TODO: почему выделяется конкатенация в цикле?
         }
         return result;
+
     }
 
 }

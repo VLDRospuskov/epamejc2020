@@ -1,22 +1,8 @@
-package homeworks.java.HM1_ImmutableClass;
+package homeworks.HM1_ImmutableClass;
 
 import java.util.Stack;
 
 public final class ImmutableGirl {
-    public static void main(String[] args) {
-        ImmutableGirl someGirl = new ImmutableGirl(18, "Sasha");
-
-        System.out.println(someGirl.toString());
-
-        int newage = someGirl.getAge();
-        String newname = someGirl.getName();
-        Stack<String> undressTry = someGirl.getClothes();
-        newage = 16;
-        newname = "Anatoliy";
-        undressTry.pop();
-
-        System.out.println(someGirl.toString());
-    }
 
     private int age;
     private String name;
@@ -50,4 +36,5 @@ public final class ImmutableGirl {
                 ", clothes=" + clothes.peek() +
                 '}';
     }
+
 }

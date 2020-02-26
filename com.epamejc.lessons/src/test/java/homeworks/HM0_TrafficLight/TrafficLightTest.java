@@ -1,8 +1,15 @@
-package homeworks.java.HM0_TrafficLight;
+package homeworks.HM0_TrafficLight;
 
 import org.junit.Test;
 
 import java.io.*;
+
+/**
+ * //TODO
+ * можно ли делать тесты без ассерта?
+ * Если с ним, то необходимо делать очень много тестов?
+ * делать ассерт со строками?
+ */
 
 public class TrafficLightTest {
 
@@ -25,11 +32,7 @@ public class TrafficLightTest {
     @Test
     public void launchGreen() {
         System.out.println("Test launchGreen");
-        try {
-            trafficLight.setReader(getInputStreamFromString(inputValues[0]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        trafficLight.setReader(getInputStreamFromString(inputValues[0]));
 
         trafficLight.launch();
     }
@@ -38,11 +41,7 @@ public class TrafficLightTest {
     public void launchYellow() {
         System.out.println("Test launchYellow");
 
-        try {
-            trafficLight.setReader(getInputStreamFromString(inputValues[1]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        trafficLight.setReader(getInputStreamFromString(inputValues[1]));
 
         trafficLight.launch();
     }
@@ -51,11 +50,7 @@ public class TrafficLightTest {
     public void launchRed() {
         System.out.println("Test launchRed");
 
-        try {
-            trafficLight.setReader(getInputStreamFromString(inputValues[2]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        trafficLight.setReader(getInputStreamFromString(inputValues[2]));
 
         trafficLight.launch();
     }
@@ -64,11 +59,7 @@ public class TrafficLightTest {
     public void launchOutOfBorders() {
         System.out.println("Test launchOutOfBorders");
 
-        try {
-            trafficLight.setReader(getInputStreamFromString(inputValues[3]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        trafficLight.setReader(getInputStreamFromString(inputValues[3]));
 
         trafficLight.launch();
     }
@@ -77,11 +68,7 @@ public class TrafficLightTest {
     public void launchWrongNumbers() {
         System.out.println("Test launchWrongNumbers");
 
-        try {
-            trafficLight.setReader(getInputStreamFromString(inputValues[4]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        trafficLight.setReader(getInputStreamFromString(inputValues[4]));
 
         trafficLight.launch();
     }
@@ -90,11 +77,7 @@ public class TrafficLightTest {
     public void launchWrongStrings() {
         System.out.println("Test launchWrongStrings");
 
-        try {
-            trafficLight.setReader(getInputStreamFromString(inputValues[5]));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        trafficLight.setReader(getInputStreamFromString(inputValues[5]));
 
         trafficLight.launch();
     }
