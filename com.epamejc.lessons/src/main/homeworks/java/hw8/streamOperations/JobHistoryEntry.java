@@ -1,4 +1,4 @@
-package homework.homework8;
+package homeworks.java.hw8.streamOperations;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

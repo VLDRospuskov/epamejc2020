@@ -1,9 +1,9 @@
-package homework.homework8;
+package homeworks.java.hw8.streamOperations;
 
 import java.util.List;
 import java.util.Set;
 
-import static homework.homework8.GenerateData.getEmployees;
+import static homeworks.java.hw8.streamOperations.GenerateData.getEmployees;
 
 @SuppressWarnings({"unused"})
 public class StreamOperations {
