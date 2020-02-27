@@ -15,8 +15,11 @@ public class Game {
         OpponentSelector selector = new OpponentSelector();
         Controller player2 = selector.select();
 
-        FieldInitiator initiator = new FieldInitiator();
-        initiator.init();
+        FieldInitiator initiator1 = new FieldInitiator();
+        Positions.opponentShipPositions = initiator1.init();
+
+        FieldInitiator initiator2 = new FieldInitiator();
+        Positions.playerShipPositions = initiator2.init();
 
         while (true) {
 

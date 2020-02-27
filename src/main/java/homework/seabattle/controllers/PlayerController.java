@@ -1,8 +1,8 @@
 package homework.seabattle.controllers;
 
 import homework.seabattle.ConsoleReader;
-import homework.seabattle.battlefield.Field;
-import homework.seabattle.battlefield.FieldInitiator;
+import homework.seabattle.Positions;
+import homework.seabattle.battlefield.FieldPrinter;
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
@@ -10,32 +10,34 @@ import java.util.List;
 
 public class PlayerController implements Controller {
 
-    public List<Integer> hitPool = new ArrayList<>();
-    public List<Integer> missPool = new ArrayList<>();
+    private List<Integer> hitPositions = new ArrayList<>();
+    private List<Integer> missPositions = new ArrayList<>();
+
+    private FieldPrinter fieldPrinter = new FieldPrinter();
 
     @SneakyThrows
     public void makeMove() {
 
-        FieldInitiator initiator = new FieldInitiator();
-        System.out.println("Decide what cell to shoot: ");
-        String shot = ConsoleReader.reader.readLine();
-        int shotPosition = initiator.cells.indexOf(shot);
+        Positions.swapAndSet(hitPositions, missPositions);
 
-        if (shotPosition != -1) {
+        while (true) {
 
-            if (initiator.shipPositions.contains(shotPosition)) {
+            fieldPrinter.print();
+            System.out.println("Decide where to shoot: ");
+            String shot = ConsoleReader.reader.readLine();
+            int shotPosition = Positions.allCells.indexOf(shot.toUpperCase());
 
-                hitPool.add(shotPosition);
-                Field field = new Field();
-                field.printField();
-                makeMove();
+            if (shotPosition != -1) {
 
+                if (Positions.opponentShipPositions.contains(shotPosition)) {
+                    hitPositions.add(shotPosition);
+                } else {
+                    missPositions.add(shotPosition);
+                    break;
+                }
             } else {
-                missPool.add(shotPosition);
+                System.out.println("Invalid input");
             }
-        } else {
-            System.out.println("Invalid input");
-            makeMove();
         }
     }
 }
