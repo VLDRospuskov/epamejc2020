@@ -1,4 +1,4 @@
-package homework.homework8;
+package homeworks.java.hw8.streams;
 
 @SuppressWarnings({"unused"})
 public class Main {
