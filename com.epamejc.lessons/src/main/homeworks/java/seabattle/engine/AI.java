@@ -37,6 +37,12 @@ public class AI {
 
     }
 
+    public Cell finishOff() {
+
+        return new Cell(0,0);
+
+    }
+
     //add finish off the ship method if hit
     private List<Cell> generateShootingArea(int offset) {
 

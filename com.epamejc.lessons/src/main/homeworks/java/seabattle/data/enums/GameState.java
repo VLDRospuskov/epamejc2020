@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.data.enums;
 
-public enum GameStats {
+public enum GameState {
 
     HIT,
     MISS,

@@ -1,6 +1,7 @@
 package homeworks.java.seabattle.engine;
 
 import homeworks.java.seabattle.data.Cell;
+import homeworks.java.seabattle.data.HumanPlayer;
 import homeworks.java.seabattle.data.Player;
 import homeworks.java.seabattle.data.enums.Ships;
 import homeworks.java.utils.UserInputReader;
@@ -14,6 +15,7 @@ public class GameIO {
     private static final String REGEX = "^[a-zA-Z]\\d+$";
     private static final String SPLIT_REGEX = "(?<=[a-zA-Z])(?=\\d)";
     private static final String WRONG_INPUT = "Wrong input, please try again!";
+    private static int count = 1;
 
     public static void printGame(List<Player> players) {
         System.out.println(printName(players.get(0).getName()) + "\t" + printName(players.get(1).getName()) + "\n");
@@ -46,6 +48,25 @@ public class GameIO {
             }
         }
         return cell;
+
+    }
+
+    public static String getInput () {
+
+        return UserInputReader.readInput();
+
+    }
+
+    public static void print(String message) {
+
+        System.out.println(message);
+
+    }
+
+    public static String nameInput() {
+
+        System.out.println("Enter Your name, or press \"Enter\" to generate it randomly: ");
+        return UserInputReader.readInput();
 
     }
 

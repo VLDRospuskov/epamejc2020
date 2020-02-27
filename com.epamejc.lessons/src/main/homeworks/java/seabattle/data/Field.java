@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.data.enums.GameStats;
+import homeworks.java.seabattle.data.enums.GameState;
 import homeworks.java.seabattle.data.enums.Ships;
 import lombok.Getter;
 
@@ -63,24 +63,24 @@ public class Field {
 
     }
 
-    public GameStats hit(Cell hit) {
+    public GameState hit(Cell hit) {
 
-        GameStats status = GameStats.MISS;
+        GameState status = GameState.MISS;
         Cell cell = deck.get((hit.getCoordX() - 1) * deckSize + hit.getCoordY() - 1);
         cell.setShootable(false);
         if (isCellOccupied(hit)) {
             Ship ship = cell.getShip();
             boolean killed = ship.hit();
             if (killed) {
-                status = GameStats.DESTROYED;
+                status = GameState.DESTROYED;
                 this.markArea(ship);
                 ships.remove(ship);
             } else {
-                status = GameStats.HIT;
+                status = GameState.HIT;
             }
         }
         if (ships.size() == 0) {
-            status = GameStats.GAME_OVER;
+            status = GameState.GAME_OVER;
         }
         return status;
 

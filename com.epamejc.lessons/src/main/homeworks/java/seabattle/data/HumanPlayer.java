@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.data.enums.GameStats;
+import homeworks.java.seabattle.data.enums.GameState;
 import homeworks.java.seabattle.engine.GameIO;
 import homeworks.java.seabattle.utils.RandomNameGenerator;
 
@@ -15,7 +15,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public GameStats shoot(Player enemy) {
+    public GameState shoot(Player enemy) {
 
         moves++;
         return enemy.getField().hit(GameIO.inputCoordinates());

@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.data.enums.GameStats;
+import homeworks.java.seabattle.data.enums.GameState;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public abstract class Player {
 
-    int moves;
+    protected int moves;
     private String name;
     private Field field;
     private boolean visible;
@@ -27,6 +27,6 @@ public abstract class Player {
 
     }
 
-    public abstract GameStats shoot(Player player);
+    public abstract GameState shoot(Player player);
 
 }

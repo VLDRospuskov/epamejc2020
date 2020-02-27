@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.data.enums.GameStats;
+import homeworks.java.seabattle.data.enums.GameState;
 import homeworks.java.seabattle.engine.AI;
 import homeworks.java.seabattle.utils.RandomNameGenerator;
 import lombok.SneakyThrows;
@@ -8,6 +8,8 @@ import lombok.SneakyThrows;
 import java.util.concurrent.TimeUnit;
 
 public class BotPlayer extends Player {
+
+    private GameState lastState;
 
     private AI ai;
 
@@ -21,14 +23,18 @@ public class BotPlayer extends Player {
 
     @Override
     @SneakyThrows
-    public GameStats shoot(Player enemy) {
+    public GameState shoot(Player enemy) {
 
         TimeUnit.MILLISECONDS.sleep(500);
         moves++;
-        GameStats gameStats = enemy.getField().hit(ai.shoot());
+        if (lastState.equals(GameState.HIT)) {
+            enemy.getField().hit(ai.finishOff());
+        } else {
+            lastState = enemy.getField().hit(ai.shoot());
+        }
         ai.exclude(enemy.getField().getDeck());
         //add finish off the ship method if hit
-        return gameStats;
+        return lastState;
 
     }
 
