@@ -2,8 +2,10 @@ package homeworks.java.seabattle.engine;
 
 import homeworks.java.seabattle.data.Cell;
 import homeworks.java.seabattle.data.Player;
-import homeworks.java.seabattle.enums.Ships;
+import homeworks.java.seabattle.data.enums.Ships;
 import homeworks.java.utils.UserInputReader;
+
+import java.util.List;
 
 import static homeworks.java.seabattle.data.Field.deckSize;
 
@@ -13,16 +15,16 @@ public class GameIO {
     private static final String SPLIT_REGEX = "(?<=[a-zA-Z])(?=\\d)";
     private static final String WRONG_INPUT = "Wrong input, please try again!";
 
-    public static void printGame(Player firstPlayer, Player secondPlayer) {
-        System.out.println(printName(firstPlayer.getName()) + "\t" + printName(secondPlayer.getName()) + "\n");
-        System.out.println(shipsRemains(firstPlayer, secondPlayer));
+    public static void printGame(List<Player> players) {
+        System.out.println(printName(players.get(0).getName()) + "\t" + printName(players.get(1).getName()) + "\n");
+        System.out.println(shipsRemains(players));
         System.out.println(printHead() + "\t" + printHead());
 
         for (int i = 0; i < deckSize; i++) {
             System.out.println((char) (65 + i) + "\t" +
-                    firstPlayer.getField().printLine(i, firstPlayer.isVisible()) + "\t" +
+                    players.get(0).getField().printLine(i, players.get(0).isVisible()) + "\t" +
                     (char) (65 + i) + "\t" +
-                    secondPlayer.getField().printLine(i, secondPlayer.isVisible()));
+                    players.get(1).getField().printLine(i, players.get(1).isVisible()));
         }
 
     }
@@ -38,13 +40,13 @@ public class GameIO {
                 String[] split = input.split(SPLIT_REGEX);
                 cell = new Cell(Character.toLowerCase(split[0].charAt(0)) - 96, Integer.valueOf(split[1]));
                 isOK = checkCell(cell);
-
             }
             if (!isOK) {
                 System.out.println(WRONG_INPUT);
             }
         }
         return cell;
+
     }
 
     private static boolean checkCell(Cell cell) {
@@ -56,10 +58,8 @@ public class GameIO {
     private static String printName(String name) {
 
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < deckSize; i++) {
-            if (i == deckSize / 2) {
-                stringBuilder.append(name);
-            }
+        stringBuilder.append(name);
+        for (int i = 0; i <= deckSize - name.length() / 4; i++) {
             stringBuilder.append("\t");
         }
         return stringBuilder.toString();
@@ -82,19 +82,20 @@ public class GameIO {
         long count = player.getField().getShips().stream()
                 .filter(ship -> ship.getType().equals(type))
                 .count();
-        return stringBuilder.append(type.getName()).append("s remains").append(":\t").append(count).toString();
+        return stringBuilder.append(type.getName()).append("s remains: ").append(count).toString();
 
     }
 
-    private static String shipsRemains(Player firstPlayer, Player secondPlayer) {
+    private static String shipsRemains(List<Player> players) {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (Ships ship : Ships.values()) {
-            stringBuilder.append(shipTypeRamains(ship, firstPlayer));
-            for (int i = 0; i < deckSize - 3; i++) {
+            String message = shipTypeRamains(ship, players.get(0));
+            stringBuilder.append(message);
+            for (int i = 0; i <= deckSize - message.length() / 4 + 1; i++) {
                 stringBuilder.append("\t");
             }
-            stringBuilder.append(shipTypeRamains(ship, secondPlayer)).append("\n");
+            stringBuilder.append(shipTypeRamains(ship, players.get(1))).append("\n");
         }
         return stringBuilder.toString();
 

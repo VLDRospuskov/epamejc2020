@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.enums.ConsoleColors;
+import homeworks.java.seabattle.data.enums.ConsoleColors;
 import lombok.Getter;
 import lombok.Setter;
 

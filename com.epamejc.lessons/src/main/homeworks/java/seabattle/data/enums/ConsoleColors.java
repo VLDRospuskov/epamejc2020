@@ -1,4 +1,4 @@
-package homeworks.java.seabattle.enums;
+package homeworks.java.seabattle.data.enums;
 
 public enum ConsoleColors {
 

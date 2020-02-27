@@ -1,8 +1,8 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.enums.Ships;
+import homeworks.java.seabattle.data.enums.Ships;
 
-public class Ship {
+public class Ship{
 
     private Ships type;
     private int hitPoints;

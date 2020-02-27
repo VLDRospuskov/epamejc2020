@@ -1,7 +1,7 @@
 package homeworks.java.seabattle.data;
 
-import homeworks.java.seabattle.enums.GameStats;
-import homeworks.java.seabattle.enums.Ships;
+import homeworks.java.seabattle.data.enums.GameStats;
+import homeworks.java.seabattle.data.enums.Ships;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -12,41 +12,30 @@ import java.util.Random;
 public class Field {
 
     public static final int deckSize = 10;
-    private List<Cell> field;
+    private List<Cell> deck;
     private List<Ship> ships;
 
     public Field() {
 
-        field = new ArrayList<>();
+        deck = new ArrayList<>();
         for (int i = 1; i <= deckSize; i++) {
             for (int j = 1; j <= deckSize; j++) {
-                field.add(new Cell(i, j));
+                deck.add(new Cell(i, j));
             }
         }
 
         ships = new ArrayList<>();
-        for (int i = 0; i < Ships.CRUISER.getCount(); i++) {
-            ships.add(new Ship(Ships.CRUISER));
-        }
-        for (int i = 0; i < Ships.DESTROYER.getCount(); i++) {
-            ships.add(new Ship(Ships.DESTROYER));
-        }
-        for (int i = 0; i < Ships.CORVETTE.getCount(); i++) {
-            ships.add(new Ship(Ships.CORVETTE));
-        }
-        for (int i = 0; i < Ships.FIGHTER.getCount(); i++) {
-            ships.add(new Ship(Ships.FIGHTER));
+        for (Ships shipType : Ships.values()) {
+            fillShipsList(shipType);
         }
 
     }
-
-
 
     public String printLine(int line, boolean visible) {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < deckSize; i++) {
-            stringBuilder.append(field.get((line * deckSize + i)).printCell(visible));
+            stringBuilder.append(deck.get((line * deckSize + i)).printCell(visible));
             stringBuilder.append("\t");
         }
         return stringBuilder.toString();
@@ -77,7 +66,7 @@ public class Field {
     public GameStats hit(Cell hit) {
 
         GameStats status = GameStats.MISS;
-        Cell cell = field.get((hit.getCoordX() - 1) * deckSize + hit.getCoordY() - 1);
+        Cell cell = deck.get((hit.getCoordX() - 1) * deckSize + hit.getCoordY() - 1);
         cell.setShootable(false);
         if (isCellOccupied(hit)) {
             Ship ship = cell.getShip();
@@ -97,17 +86,46 @@ public class Field {
 
     }
 
+    private void fillShipsList(Ships shipType) {
+
+        for (int i = 0; i < shipType.getCount(); i++) {
+            ships.add(new Ship(shipType));
+        }
+
+    }
+
     private void markArea(Ship ship) {
 
         List<Cell> area = getArea(ship.getType().getLength(), ship.getStartPoint(), ship.getAlignment());
+        area.
+                forEach(areaCell ->
+                        deck.stream()
+                        .filter(fieldCell -> fieldCell.equals(areaCell))
+                        .findFirst()
+                        .ifPresent(cell -> cell.setShootable(false)));
 
-        for (Cell cell : area) {
-            field
-                    .stream()
-                    .filter(found -> found.equals(cell))
-                    .findFirst()
-                    .ifPresent(actual -> actual.setShootable(false));
+    }
+
+    private boolean arrangeShip(Ship ship, Cell startPoint, Cell alignment) {
+
+        if (startPoint.getCoordX()*alignment.getCoordX()*ship.getType().getLength() > deckSize
+                || startPoint.getCoordY()*alignment.getCoordY()*ship.getType().getLength() > deckSize) {
+            return false;
         }
+
+        boolean done = false;
+        List<Cell> area = getArea(ship.getType().getLength(), startPoint, alignment);
+        if (checkShipArrangementPossibility(area)) {
+            int coordX, coordY;
+            for (int i = 0; i < ship.getType().getLength(); i++) {
+                coordX = startPoint.getCoordX() + alignment.getCoordX() * i - 1;
+                coordY = startPoint.getCoordY() + alignment.getCoordY() * i - 1;
+                deck.get(coordX * deckSize + coordY).setOccupied(true);
+                deck.get(coordX * deckSize + coordY).setShip(ship);
+            }
+            done = true;
+        }
+        return done;
 
     }
 
@@ -132,59 +150,21 @@ public class Field {
 
     }
 
-    private boolean arrangeShip(Ship ship, Cell startPoint, Cell alignment) {
-
-        boolean done = false;
-
-        if (checkShipArrangementPossibility(getArea(ship.getType().getLength(), startPoint, alignment))) {
-            int coordX, coordY;
-            for (int i = 0; i < ship.getType().getLength(); i++) {
-                coordX = startPoint.getCoordX() + alignment.getCoordX() * i - 1;
-                coordY = startPoint.getCoordY() + alignment.getCoordY() * i - 1;
-                field.get(coordX * deckSize + coordY).setOccupied(true);
-                field.get(coordX * deckSize + coordY).setShip(ship);
-
-            }
-            done = true;
-        }
-        return done;
-
-    }
-
     private boolean checkShipArrangementPossibility(List<Cell> area) {
 
-        if ((area.get(area.size() - 4)).getCoordX() > deckSize
-                || (area.get(area.size() - 4)).getCoordY() > deckSize) {
-            return false;
-        }
-
-        boolean isPossible = true;
-        for (Cell cell : area) {
-            if (isCellOccupied(cell)) {
-                isPossible = false;
-                break;
-            }
-        }
-        return isPossible;
+        return area.stream()
+                .noneMatch(this::isCellOccupied);
 
     }
 
     private boolean isCellOccupied(Cell cell) {
 
-        boolean occupied = false;
-
-        Cell temporary = field.stream()
+        return deck.stream()
                 .filter(actual -> actual.equals(cell))
                 .findFirst()
-                .orElse(null);
-
-        if (temporary != null) {
-            occupied = temporary.isOccupied();
-        }
-        return occupied;
+                .map(Cell::isOccupied)
+                .orElse(false);
 
     }
-
-
 
 }
