@@ -1,11 +1,6 @@
-package main.lesson1;
+package homework.TrafficLight;
 
 import javax.swing.JOptionPane;
-/*
-Создать "светофор", который выводит сигнал-цвет. Вы вводите время от 0-3 минуты - зеленый,
-4-5 минуты - желтый, 6-10 красный. Вводим цифру 0 до n, получаем результат. Работу программы
-сделать непрерывной, выход можно обработать
- */
 
 public class TrafficLights {
     public static void colorCheck(double time) {

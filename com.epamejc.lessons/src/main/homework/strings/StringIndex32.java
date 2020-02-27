@@ -10,30 +10,29 @@ public class StringIndex32 {
         StringInd(reader);
     }
 
-    public static void StringInd(BufferedReader reader) {
-
-        StringBuffer resStr = new StringBuffer("");
+    private static void StringInd(BufferedReader reader) {
         try {
             System.out.print("введите строку: ");
             String str = reader.readLine();
 
-            StringBuffer strBuff = new StringBuffer(str);
             System.out.print("сколько индексов строки вы хотите получить (введите целое число): ");
             String sCountIndex = reader.readLine();
-            int nCountIndex = Integer.parseInt(sCountIndex);
-            int len = str.length() - 1;
-            for (int i = 0; i < nCountIndex; i++) {
-                System.out.print("введите индекс в пределах " + len + ": ");
+            int nNumOfIndices = Integer.parseInt(sCountIndex);
+
+            StringBuilder resStr = new StringBuilder();
+
+            for (int i = 0; i < nNumOfIndices; i++) {
+                System.out.printf("введите индекс в пределах от 0 до %d:\n", str.length() - 1);
                 String sIndex = reader.readLine();
                 int nIndex = Integer.parseInt(sIndex);
-                resStr.append(strBuff.substring(nIndex, nIndex + 1));
+
+                resStr.append(str.charAt(nIndex));
                 System.out.println(resStr);
             }
         } catch (IOException e) {
-            System.out.println("Oops");
+            System.out.println("Unforeseen IOException");
         } catch (StringIndexOutOfBoundsException ee) {
-            System.err.println("WRONG!!!11");
-            System.out.println("try again");
+            System.err.println("Entered index is out of bounds. Try again");
             StringInd(reader);
         }
     }

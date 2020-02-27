@@ -10,12 +10,14 @@ public class EvenOddString31 {
         MainTemplate.main(EvenOddString31::stringX);
     }
 
-    public static String stringX(BufferedReader reader) {
+    private static String stringX(BufferedReader reader) {
         try {
             System.out.println("Введите строку:");
             String inputStr = reader.readLine();
+
             System.out.println("Введите even или odd:");
             String inputPar = reader.readLine().toLowerCase();
+
             StringBuilder inputString = new StringBuilder(inputStr);
 
             switch (inputPar) {

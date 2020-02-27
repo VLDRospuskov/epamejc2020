@@ -1,6 +1,15 @@
-package main.lesson2;
+package homework.ImmutableClass;
+
 public final class ImmutableClass implements Cloneable {
 
+    @Override
+    public ImmutableClass clone () throws CloneNotSupportedException {
+        return (ImmutableClass)super.clone();
+    }
+
+    ImmutableClass(ImmutableClass other) {
+        value = other.value;
+    }
 
     ImmutableClass(int a) {
         this.value = a;
@@ -29,34 +38,15 @@ public final class ImmutableClass implements Cloneable {
         return new ImmutableClass(this.value + other.value);
     }
 
-    ImmutableClass XOR (ImmutableClass a){
+    ImmutableClass XOR(ImmutableClass a) {
         return new ImmutableClass(this.value ^ a.getValue());
     }
+
     @Override
-    public boolean equals(Object a){
+    public boolean equals(Object a) {
         return a instanceof ImmutableClass && ((ImmutableClass) a).value == this.value;
     }
 
-    public static void main(String[] args) {
 
-        ImmutableClass immutableObject = new ImmutableClass(5);
-        ImmutableClass b = immutableObject.toPlusOne();
-        System.out.println(immutableObject);
-        System.out.println(b);
-
-        ImmutableClass c = immutableObject.plus(b);
-        System.out.println(c);
-
-        int a = b.getValue();
-        System.out.println(a^2);
-        System.out.println(b.XOR(new ImmutableClass(2)));
-
-        try {
-            System.out.println(b.clone().equals(b.copy()));
-        } catch (CloneNotSupportedException e) {
-            System.out.println(e);
-        }
-
-    }
 }
 

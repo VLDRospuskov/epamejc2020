@@ -13,20 +13,23 @@ public class Pyramid23 {
         }
     }
 
-    public static void Pyramid(BufferedReader reader) {
+    private static void Pyramid(BufferedReader reader) {
         try {
             System.out.println("введите число: ");
-            String scolumns = reader.readLine();
-            int ncolumns = Integer.parseInt(scolumns);
-            int nrows = ncolumns;
-            char[][]twoDimPyramid = new char[nrows][ncolumns];
-            for (int i = 0; i < nrows; i++) {
-                for (int j = 0; j < ncolumns-i; j++) {
+            String sColumns = reader.readLine();
+            int nColumns = Integer.parseInt(sColumns);
+            int nRows = nColumns;
+
+            char[][]twoDimPyramid = new char[nRows][nColumns];
+
+            for (int i = 0; i < nRows; i++) {
+                for (int j = 0; j < nColumns-i; j++) {
                     twoDimPyramid[i][j] = 'x';
                     //System.out.print('X');
                 }
                 //System.out.println();
             }
+
             CharOutOfArray21.print2dArray(twoDimPyramid);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -35,7 +38,5 @@ public class Pyramid23 {
             System.err.println("Please input valid int number");
             Pyramid(reader);
         }
-
-
     }
 }

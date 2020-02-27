@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class CharOutOfArray21 {
 
-    static char[] sAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
+    private static char[] sAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
 
     public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -17,9 +17,9 @@ public class CharOutOfArray21 {
         }
     }
 
-    public static void print2dArray(char[][] a) {
-        for (char[] arr: a) {
-            for (char c: arr) {
+    static void print2dArray(char[][] a) {
+        for (char[] arr : a) {
+            for (char c : arr) {
                 System.out.printf("%c ", c);
             }
             System.out.println();
@@ -32,28 +32,31 @@ public class CharOutOfArray21 {
 //        }
     }
 
-    public static char[][] charOutOfArray(BufferedReader reader) {
+    static char[][] charOutOfArrayCore(int nRows, int nColumns) {
+        char[][] twoDimArray = new char[nRows][nColumns];
 
+        Random sRandom = new Random();
+        for (int i = 0; i < nRows; i++) {
+            twoDimArray[i] = new char[nColumns];
+            for (int j = 0; j < nColumns; j++) {
+                twoDimArray[i][j] = sAlphabet[sRandom.nextInt(sAlphabet.length)];
+            }
+        }
+
+        return twoDimArray;
+    }
+
+    static char[][] charOutOfArray(BufferedReader reader) {
         try {
             System.out.println("введите количество строк: ");
-            String srows = reader.readLine();
-            int nrows = Integer.parseInt(srows);
+            String sRows = reader.readLine();
+            int nRows = Integer.parseInt(sRows);
+
             System.out.println("введите количество столбцов: ");
-            String scolumns = reader.readLine();
-            int ncolumns = Integer.parseInt(scolumns);
-            char[][] twoDimArray = new char[nrows][ncolumns];
+            String sColumns = reader.readLine();
+            int nColumns = Integer.parseInt(sColumns);
 
-            Random sRandom = new Random();
-
-            for (int i = 0; i < nrows; i++) {
-                twoDimArray[i] = new char[ncolumns];
-                for (int j = 0; j < ncolumns; j++) {
-                    twoDimArray[i][j] = sAlphabet[sRandom.nextInt(sAlphabet.length)];
-                }
-            }
-
-            return twoDimArray;
-
+            return charOutOfArrayCore(nRows, nColumns);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
