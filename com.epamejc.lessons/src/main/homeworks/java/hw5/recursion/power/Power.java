@@ -1,26 +1,18 @@
 package homeworks.java.hw5.recursion.power;
 
-class Power {
+public class Power {
 
-    static long power(int x, int n) {
-        if (x == 0 && n == 0) {
+    public static long raiseBaseXToPositiveIntegerPowerN(int x, int n) {
+        if (x < 0 || n < 0) {
             throw new ArithmeticException("Invalid input");
-        }
-        if (x == 0) {
-            return 0;
-        }
-        if (n == 0) {
-            return 1;
         }
 
         long result = 1;
-        if (x == 1) {
+        if (x == 1 || n == 0) {
             return result;
         }
-        result = x * power(x, n - 1);
+        result = x * raiseBaseXToPositiveIntegerPowerN(x, n - 1);
         return result;
-
-
     }
 
 }

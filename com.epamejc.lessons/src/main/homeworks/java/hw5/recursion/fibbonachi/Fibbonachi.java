@@ -1,8 +1,8 @@
 package homeworks.java.hw5.recursion.fibbonachi;
 
-class Fibbonachi {
+public class Fibbonachi {
 
-    static long fibbonachi(long n) {
+    public static long findInFibbonachiRow(long n) {
 
         if (n < 0) {
             throw new ArithmeticException("Invalid input");
@@ -16,6 +16,6 @@ class Fibbonachi {
             return 1;
         }
 
-        return fibbonachi(n - 2) + fibbonachi(n - 1);
+        return findInFibbonachiRow(n - 2) + findInFibbonachiRow(n - 1);
     }
 }

@@ -3,11 +3,8 @@ package homeworks.java.hw5.recursion.power;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            System.out.println(Power.power(2, 8));
-        } catch (ArithmeticException e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println(Power.raiseBaseXToPositiveIntegerPowerN(2, 8));
+        System.out.println(Power.raiseBaseXToPositiveIntegerPowerN(0, 0));
     }
 
 }
