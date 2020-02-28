@@ -22,16 +22,16 @@ public class Player {
             showFields();
             p = getUserShoot();
         } else {
-            p = generateRandomShoot();
+            p = getComputerSmartShoot();
         }
 
-        boolean hit = enemyField.shoot(p);
-        if (hit) {
+        boolean isHit = enemyField.shoot(p);
+        if (isHit) {
             this.score++;
         }
     }
 
-    private Point generateRandomShoot() {
+    private Point getComputerSmartShoot() {
         int x = (int) (Math.random() * 10);
         int y = (int) (Math.random() * 10);
         return new Point(x, y);

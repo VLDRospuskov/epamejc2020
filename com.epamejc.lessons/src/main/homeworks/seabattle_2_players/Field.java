@@ -1,5 +1,7 @@
 package homeworks.seabattle_2_players;
 
+import lombok.SneakyThrows;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ public class Field {
     private char[][] cells;
     private ArrayList<Ship> ships;
 
+    //SHOOTING////////////
     public boolean shoot(Point p) {
         if (cells[p.y][p.x] == SHIP) {
             hit(p);
@@ -24,37 +27,26 @@ public class Field {
     }
 
     private void hit(Point p) {
-        updateShipAndField(p);
-    }
+        Ship ship = getShipByHitCell(p);
+        ship.hit(p);
 
-    private void updateShipAndField(Point p) {
-        Ship ship = getShipByLocation(p);
-        ship.cells.remove(p);
-        ship.hitCells.add(p);
-
-        if (ship.cells.isEmpty()) {
-            ships.remove(ship);
-            updateSink(ship);
+        if (ship.isDead()) {
+            sink(ship);
         } else {
-            cells[p.y][p.x] = HIT;
+            markHitOnField(p);
         }
     }
 
-    private void updateSink(Ship ship) {
-        for (Point p : ship.hitCells) {
-            cells[p.y][p.x] = DESTROYED;
-            ArrayList<Point> nearCells = nearCells(p);
-            for (Point point : nearCells) {
-                if (cells[point.y][point.x] == ' ') {
-                    cells[point.y][point.x] = MISS;
-                }
-            }
+    private void miss(Point p) {
+        char cell = cells[p.y][p.x];
+        if (cell != DESTROYED && cell != HIT) {
+            cells[p.y][p.x] = MISS;
         }
     }
 
-    private Ship getShipByLocation(Point givenP) {
+    private Ship getShipByHitCell(Point givenP) {
         for (Ship ship : ships) {
-            for (Point foundP: ship.cells) {
+            for (Point foundP: ship.getCells()) {
                 if (givenP.equals(foundP)) {
                     return ship;
                 }
@@ -64,11 +56,36 @@ public class Field {
         throw new RuntimeException("The ship is not found by location!");
     }
 
-    private void miss(Point p) {
-        char cell = cells[p.y][p.x];
-        if (cell != DESTROYED && cell != HIT) {
-            cells[p.y][p.x] = MISS;
+    private void sink(Ship ship) {
+        ships.remove(ship);
+        markDeadShip(ship);
+        markNearCellsWithDots(ship);
+    }
+
+    private void markHitOnField(Point p) {
+        cells[p.y][p.x] = HIT;
+    }
+
+    private void markDeadShip(Ship ship) {
+        for (Point p : ship.getHitCells()) {
+            cells[p.y][p.x] = DESTROYED;
         }
+    }
+
+    private void markNearCellsWithDots(Ship ship) {
+        for (Point shipCell : ship.getHitCells()) {
+            ArrayList<Point> nearCells = existingCellsNear(shipCell);
+            for (Point p : nearCells) {
+                if (cells[p.y][p.x] == ' ') {
+                    cells[p.y][p.x] = MISS;
+                }
+            }
+        }
+    }
+
+    private void putShipsManually() {
+        
+
     }
 
     //CONSTRUCTOR//////////
@@ -118,6 +135,7 @@ public class Field {
         }
     }
 
+    @SneakyThrows
     private void putShipsAutomatically() {
         generateShips(1, 4);
         generateShips(2, 3);
@@ -132,36 +150,32 @@ public class Field {
     }
 
     private void generateAShip(int size) {
-        boolean direction = generateDirection();
-
-        ArrayList<Point> possibleCells = new ArrayList<>();
-
-        Point p1 = generateRandomPos();
-        if (isPossible(p1)) {
-            possibleCells.add(p1);
-        }
-        Point tmp = p1;
-
-        for (int i = 1; i < size; i++) {
-            Point p = generateNextPos(tmp, direction);
-            if (isPossible(p)) {
-                possibleCells.add(p);
-                tmp = p;
-            }
-        }
-
-        if (possibleCells.size() == size) {
-            for (Point p : possibleCells) {
-                cells[p.y][p.x] = SHIP;
-            }
-            ships.add(new Ship("Random", possibleCells));
+        ArrayList<Point> shipCells = generateCellsForShip(size);
+        if (isPossible(shipCells)) {
+            ships.add(new Ship(shipCells));
+            putOnField(shipCells);
         } else {
             generateAShip(size);
         }
     }
 
-    private void putShipsManually() {
+    private ArrayList<Point> generateCellsForShip(int size) {
+        Point p = generateRandomPos();
+        boolean direction = generateDirection();
+        ArrayList<Point> shipCells = new ArrayList<>();
 
+        for (int i = 0; i < size; i++) {
+            p = generateNextPoint(p, direction);
+            shipCells.add(p);
+        }
+
+        return shipCells;
+    }
+
+    private void putOnField(ArrayList<Point> shipCells) {
+        for (Point p : shipCells) {
+            cells[p.y][p.x] = SHIP;
+        }
     }
 
     private Point generateRandomPos() {
@@ -178,10 +192,18 @@ public class Field {
         return isInField(p) && !isNearAShip(p);
     }
 
-    private boolean isNearAShip(Point p) {
-        ArrayList<Point> nearCells = nearCells(p);
+    private boolean isPossible(ArrayList<Point> shipCells) {
+        for (Point p : shipCells) {
+            if (!isPossible(p)) {
+                return false;
+            }
+        }
 
-        for (Point point : nearCells) {
+        return true;
+    }
+
+    private boolean isNearAShip(Point p) {
+        for (Point point : existingCellsNear(p)) {
             if (cells[point.y][point.x] == 'S') {
                 return true;
             }
@@ -190,19 +212,22 @@ public class Field {
         return false;
     }
 
-    private ArrayList<Point> nearCells(Point p) {
+    private ArrayList<Point> existingCellsNear(Point p) {
+        ArrayList<Point> list = getCellsAround(p);
+        list.removeIf(point -> !isInField(point));
+        return list;
+    }
+
+    private ArrayList<Point> getCellsAround(Point p) {
         ArrayList<Point> list = new ArrayList<>();
-        list.add(new Point(p.x - 1, p.y + 1));
-        list.add(new Point(p.x, p.y + 1));
-        list.add(new Point(p.x + 1, p.y + 1));
-        list.add(new Point(p.x - 1, p.y));
-        list.add(new Point(p.x + 1, p.y));
-        list.add(new Point(p.x - 1, p.y - 1));
-        list.add(new Point(p.x, p.y - 1));
-        list.add(new Point(p.x + 1, p.y - 1));
 
-        list.removeIf(point -> (point.x < 0 || point.x > 9) || (point.y < 0 || point.y > 9));
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                list.add(new Point(p.x + i, p.y + j));
+            }
+        }
 
+        list.remove(p);
         return list;
     }
 
@@ -210,16 +235,8 @@ public class Field {
         return ((0 <= p.x && p.x <= 9) && (0 <= p.y && p.y <= 9));
     }
 
-    private Point generateNextPos(Point p1, boolean direction) {
-        Point p2;
-
-        if (direction) {
-            p2 = new Point(p1.x + 1, p1.y);
-        } else {
-            p2 = new Point(p1.x, p1.y + 1);
-        }
-
-        return p2;
+    private Point generateNextPoint(Point p, boolean direction) {
+        return direction ? new Point(p.x + 1, p.y) : new Point(p.x, p.y + 1);
     }
 
 }
