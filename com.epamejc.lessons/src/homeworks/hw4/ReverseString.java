@@ -1,4 +1,4 @@
-package homeworks.hw4;
+package src.homeworks.hw4;
 
 import java.util.Scanner;
 
@@ -17,12 +17,4 @@ public class ReverseString {
 
         System.out.print(resultString);
     }
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Input string: ");
-        String inString = in.nextLine();
-        stringRevert(inString);
-    }
-
 }

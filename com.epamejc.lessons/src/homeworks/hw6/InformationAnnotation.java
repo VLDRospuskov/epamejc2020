@@ -1,4 +1,4 @@
-package homeworks.hw6;
+package src.homeworks.hw6;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,3 +11,4 @@ public @interface InformationAnnotation {
     String name() default "Some name";
     int age() default 327;
 }
+

@@ -1,4 +1,4 @@
-package homeworks.hw5;
+package src.homeworks.hw5;
 
 public class Fibonacci {
 

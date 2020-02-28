@@ -1,4 +1,4 @@
-package homeworks.hw1;
+package src.homeworks.hw1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class TrafficLights {
 
-    public static Double getTime(String inputString) {
+    private static Double getTime(String inputString) {
       //  Double d = new Double(null);
         try {
            return  Double.parseDouble(inputString);
@@ -16,7 +16,7 @@ public class TrafficLights {
         return null;
     }
 
-    public static String getColor(Double time) {
+    private static String getColor(Double time) {
         time = time % 10;
         if ((time >= 0) && (time <= 3)) {
             return "green";
@@ -30,10 +30,9 @@ public class TrafficLights {
         return " ";
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void getAndPrintResults() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         boolean exitCondition = true;
-
         while (exitCondition) {
             System.out.print("Enter the number (type 'exit' to exit): ");
             String inputString = br.readLine();
@@ -56,4 +55,5 @@ public class TrafficLights {
             System.out.println("_____________");
         }
     }
+
 }

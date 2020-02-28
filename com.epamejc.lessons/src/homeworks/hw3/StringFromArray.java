@@ -1,13 +1,15 @@
-package homeworks.hw3;
+package src.homeworks.hw3;
 
 import java.util.Scanner;
 
 public class StringFromArray {
 
-    public static void getStringFromArray(int x, int y) {
+    public static void getStringFromArray() {
+        Integer[] sizeArray = RandomCharArray.getSizeFromInput();
+        Integer x = sizeArray[0];
+        Integer y = sizeArray[1];
 
         char[][] charArray = new char[x][y];
-        // using method from previous task
         charArray = RandomCharArray.randomizeCharArray(x, y);
         String strategyChar;
         System.out.println("Input strategy: ");
@@ -42,7 +44,5 @@ public class StringFromArray {
 
     }
 
-    public static void main(String[] args) {
-        getStringFromArray(5, 6);
-    }
+
 }

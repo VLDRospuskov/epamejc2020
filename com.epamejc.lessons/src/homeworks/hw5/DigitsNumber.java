@@ -1,4 +1,4 @@
-package homeworks.hw5;
+package src.homeworks.hw5;
 
 public class DigitsNumber {
 
@@ -7,9 +7,5 @@ public class DigitsNumber {
             return 0;
         }
         return 1 + numDig(number / 10);
-    }
-
-    public static void main(String[] args) {
-        System.out.print(numDig(11111));
     }
 }

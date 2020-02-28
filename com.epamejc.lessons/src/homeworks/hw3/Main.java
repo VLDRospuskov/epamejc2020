@@ -1,8 +1,10 @@
-package homeworks.hw3;
+package src.homeworks.hw3;
 
 public class Main {
 
     public static void main(String[] args) {
-        Pyramid.buildPyramid();
+        // Pyramid.buildPyramid();
+        // RandomCharArray.getAndPrintArray();
+        StringFromArray.getStringFromArray();
     }
 }

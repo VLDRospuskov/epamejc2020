@@ -1,4 +1,4 @@
-package homeworks.hw4;
+package src.homeworks.hw4;
 
 import java.util.Scanner;
 
@@ -14,21 +14,33 @@ public class SwitchSymbols {
         System.out.print(resultString);
     }
 
-    public static void main(String[] args) {
+    public static Integer[] getIndices() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Input string: ");
-        String inString = in.nextLine();
         System.out.println("First index: ");
         Integer firstIndex = in.nextInt();
         System.out.println("Second index: ");
         Integer secondIndex = in.nextInt();
 
+        Integer[] answer = new Integer[2];
+
+        answer[0] = firstIndex;
+        answer[1] = secondIndex;
+
+        return answer;
+    }
+
+    public static void printResults(String inString, Integer[] indices) {
+
+        Integer firstIndex = indices[0];
+        Integer secondIndex = indices[1];
+
+
         while (firstIndex > inString.length() || secondIndex > inString.length()) {
-            System.out.println("One of the indices is bigger than string's length, please indices again: ");
-            System.out.println("First index: ");
-            firstIndex = in.nextInt();
+            System.out.println("One of the indices is bigger than string's length, please, enter indices again: ");
+            indices = getIndices();
+            firstIndex = indices[0];
             System.out.println("Second index: ");
-            secondIndex = in.nextInt();
+            secondIndex = indices[1];
         }
 
         if (firstIndex > secondIndex) {

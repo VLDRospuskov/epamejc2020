@@ -1,4 +1,4 @@
-package homeworks.hw5;
+package src.homeworks.hw5;
 
 public class Power {
 
@@ -7,9 +7,5 @@ public class Power {
             return number * powNum(number, pow - 1);
         }
         return 1;
-    }
-
-    public static void main(String[] args) {
-        System.out.print(powNum(5,5));
     }
 }

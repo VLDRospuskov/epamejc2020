@@ -1,4 +1,4 @@
-package homeworks.hw4;
+package src.homeworks.hw4;
 
 import java.util.Scanner;
 
@@ -13,12 +13,12 @@ public class EvenOdd {
         while (!strategyString.equalsIgnoreCase("even") && !strategyString.equalsIgnoreCase("odd")) {
             strategyString = in.nextLine();
             switch (strategyString.toLowerCase()) {
-                case ("even"):
+                case ("odd"):
                     for (int i = 0; i < inputString.length(); i += 2) {
                         result += inputString.charAt(i);
                     }
                     break;
-                case ("odd"):
+                case ("even"):
                     for (int i = 1; i < inputString.length(); i += 2) {
                         result += inputString.charAt(i);
                     }
@@ -30,15 +30,6 @@ public class EvenOdd {
         }
 
         System.out.println(result);
-
-    }
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Input string: ");
-        String inString = in.nextLine();
-
-        getEvenOddSymbols(inString);
 
     }
 
