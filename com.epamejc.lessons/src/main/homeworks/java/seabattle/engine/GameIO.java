@@ -1,7 +1,6 @@
 package homeworks.java.seabattle.engine;
 
 import homeworks.java.seabattle.data.Cell;
-import homeworks.java.seabattle.data.HumanPlayer;
 import homeworks.java.seabattle.data.Player;
 import homeworks.java.seabattle.data.enums.Ships;
 import homeworks.java.utils.UserInputReader;
@@ -13,11 +12,11 @@ import static homeworks.java.seabattle.data.Field.deckSize;
 public class GameIO {
 
     private static final String REGEX = "^[a-zA-Z]\\d+$";
-    private static final String SPLIT_REGEX = "(?<=[a-zA-Z])(?=\\d)";
     private static final String WRONG_INPUT = "Wrong input, please try again!";
     private static int count = 1;
 
     public static void printGame(List<Player> players) {
+        System.out.println("\n\n\n");
         System.out.println(printName(players.get(0).getName()) + "\t" + printName(players.get(1).getName()) + "\n");
         System.out.println(shipsRemains(players));
         System.out.println(printHead() + "\t" + printHead());
@@ -31,27 +30,25 @@ public class GameIO {
 
     }
 
-    public static Cell inputCoordinates() {
+    public static String getParsedInput() {
 
+        System.out.print("Enter coords to shoot: ");
         boolean isOK = false;
-        String input;
-        Cell cell = null;
+        String input = "";
         while (!isOK) {
-            input = UserInputReader.readInput();
+            input = UserInputReader.readInput().toLowerCase();
             if (input.length() != 0 && input.matches(REGEX)) {
-                String[] split = input.split(SPLIT_REGEX);
-                cell = new Cell(Character.toLowerCase(split[0].charAt(0)) - 96, Integer.valueOf(split[1]));
-                isOK = checkCell(cell);
-            }
-            if (!isOK) {
+                isOK = true;
+            } else {
                 System.out.println(WRONG_INPUT);
             }
         }
-        return cell;
+        System.out.println();
+        return input;
 
     }
 
-    public static String getInput () {
+    public static String getInput() {
 
         return UserInputReader.readInput();
 

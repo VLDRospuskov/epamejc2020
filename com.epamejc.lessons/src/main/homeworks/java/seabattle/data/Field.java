@@ -66,7 +66,10 @@ public class Field {
     public GameState hit(Cell hit) {
 
         GameState status = GameState.MISS;
-        Cell cell = deck.get((hit.getCoordX() - 1) * deckSize + hit.getCoordY() - 1);
+        Cell cell = deck.stream()
+                .filter(found -> found.equals(hit))
+                .findFirst()
+                .orElse(new Cell(0,0));
         cell.setShootable(false);
         if (isCellOccupied(hit)) {
             Ship ship = cell.getShip();
