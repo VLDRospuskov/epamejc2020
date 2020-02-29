@@ -4,9 +4,9 @@ import java.io.File;
 
 public class FileOperator {
 
-    private String sourceFilePath = "com.epamejc.lessons/files/book.txt";
-    private String unbufferedWriterFilePath = "com.epamejc.lessons/files/unbufferedWrittenFile.txt";
-    private String bufferedWriterFilePath = "com.epamejc.lessons/files/bufferedWrittenFile.txt";
+    private String sourceFilePath = "com.epamejc.lessons/src/resources/book.txt";
+    private String unbufferedWriterFilePath = "com.epamejc.lessons/src/resources/unbufferedWrittenFile.txt";
+    private String bufferedWriterFilePath = "com.epamejc.lessons/src/resources/bufferedWrittenFile.txt";
 
     public void run() {
 
