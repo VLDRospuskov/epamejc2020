@@ -1,4 +1,4 @@
-package lessons.java.lesson19.example6;
+package lessons.lesson19.example6;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

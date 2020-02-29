@@ -1,4 +1,4 @@
-package lessons.java.lesson19.example5;
+package lessons.lesson19.example5;
 
 import lombok.SneakyThrows;
 

@@ -1,4 +1,4 @@
-package lessons.java.lesson19.example1;
+package lessons.lesson19.example1;
 
 import java.util.concurrent.TimeUnit;
 

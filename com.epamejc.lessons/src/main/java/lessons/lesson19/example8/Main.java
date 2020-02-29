@@ -1,4 +1,4 @@
-package lessons.java.lesson19.example8;
+package lessons.lesson19.example8;
 
 public class Main {
 

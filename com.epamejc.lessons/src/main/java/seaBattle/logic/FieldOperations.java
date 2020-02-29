@@ -185,8 +185,7 @@ public class FieldOperations {
 
     public int getPotentialDirectionsNumber(Ship ship, Cell cell) {
         int count = 0;
-        if (!doesHaveShip(getTopDirectionRadius(cell.getxCoord(), cell.getyCoord(), ship.getShipDecks()))) { //убедились, что в радиусе направления нет кораблей
-            //теперь надо проверить границу
+        if (!doesHaveShip(getTopDirectionRadius(cell.getxCoord(), cell.getyCoord(), ship.getShipDecks()))) {
             if (getTopDirectionCells(ship).size() == ship.getShipDecks()) {
                 count++;
             }
