@@ -42,7 +42,7 @@ public class AI {
                 alignment = new Random().nextInt(2) == 0 ?
                         new Cell(0, 1)
                         : new Cell(1, 0);
-                generateFinishOffArea(alignment);
+                generateFinishOffArea(foundShip);
                 finishOffMode = true;
             }
         }
@@ -70,25 +70,23 @@ public class AI {
 
     private Cell finishOff() {
 
-        if (lastState.equals(GameState.HIT) && lastShot != null) {
-            lastShot = new Cell(foundShip.getCoordX() + lastShot.getCoordX() - foundShip.getCoordX(),
-                    foundShip.getCoordY() + lastShot.getCoordY() - foundShip.getCoordY());
-            excludedList.add(lastShot);
-        } else {
-            if (finishOffArea.isEmpty()) {
-                alignment = new Cell(1 - alignment.getCoordX(), 1 - alignment.getCoordY());
-                generateFinishOffArea(alignment);
-            }
-            lastShot = finishOffArea.remove(new Random().nextInt((finishOffArea.size())));
+        if ((lastState.equals(GameState.HIT) && lastShot != null)) {
+            generateFinishOffArea(lastShot);
         }
+        if (finishOffArea.isEmpty()) {
+            alignment = new Cell(1 - alignment.getCoordX(), 1 - alignment.getCoordY());
+            generateFinishOffArea(foundShip);
+        }
+        lastShot = finishOffArea.remove(new Random().nextInt(finishOffArea.size()));
+        excludedList.add(lastShot);
         return lastShot;
 
     }
 
-    private void generateFinishOffArea(Cell alignment) {
+    private void generateFinishOffArea(Cell cell) {
 
-        int coordX = foundShip.getCoordX();
-        int coordY = foundShip.getCoordY();
+        int coordX = cell.getCoordX();
+        int coordY = cell.getCoordY();
         int horizontal = alignment.getCoordX();
         int vertical = alignment.getCoordY();
         for (int i = coordX * horizontal + coordY * vertical - 1;
