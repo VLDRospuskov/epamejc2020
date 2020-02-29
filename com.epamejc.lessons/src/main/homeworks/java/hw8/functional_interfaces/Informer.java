@@ -14,7 +14,7 @@ public class Informer {
         System.out.println(output);
     }
 
-    public String getStringFromFields(MyProducer<Integer> takeSalary, MyProducer<String> takeName, MyBiFunction<Integer, String, String> func) {
+    private String getStringFromFields(MyProducer<Integer> takeSalary, MyProducer<String> takeName, MyBiFunction<Integer, String, String> func) {
         int salary = takeSalary.produce();
         String name = takeName.produce();
         String output = func.apply(salary, name);
