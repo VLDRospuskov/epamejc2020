@@ -7,9 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-    SeaBattle seabattle = new SeaBattle();
-    seabattle.run();
-    UserInputReader.close();
+        SeaBattle seabattle = new SeaBattle();
+        seabattle.run();
+        UserInputReader.close();
 
     }
 

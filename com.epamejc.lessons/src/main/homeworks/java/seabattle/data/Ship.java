@@ -1,8 +1,9 @@
 package homeworks.java.seabattle.data;
 
+import homeworks.java.seabattle.data.enums.GameState;
 import homeworks.java.seabattle.data.enums.Ships;
 
-public class Ship{
+public class Ship {
 
     private Ships type;
     private int hitPoints;
@@ -36,14 +37,14 @@ public class Ship{
         return alignment;
     }
 
-    public boolean hit() {
+    public GameState hit() {
 
-        boolean killed = false;
+        GameState gameState = GameState.HIT;
         hitPoints--;
         if (hitPoints == 0) {
-            killed = true;
+            gameState = GameState.DESTROYED;
         }
-        return killed;
+        return gameState;
 
     }
 

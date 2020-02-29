@@ -65,27 +65,25 @@ public class Field {
 
     public GameState hit(Cell hit) {
 
-        GameState status = GameState.MISS;
-        Cell cell = deck.stream()
+        return deck.stream()
                 .filter(found -> found.equals(hit))
+                .filter(Cell::isShootable)
+                .peek(found -> found.setShootable(false))
+                .filter(Cell::isOccupied)
+                .map(Cell::getShip)
+                .map(ship -> {
+                    GameState state = ship.hit();
+                    if (state.equals(GameState.DESTROYED)) {
+                        markArea(ship);
+                        ships.remove(ship);
+                        if (ships.size() == 0) {
+                            return GameState.GAME_OVER;
+                        }
+                    }
+                    return state;
+                })
                 .findFirst()
-                .orElse(new Cell(0,0));
-        cell.setShootable(false);
-        if (isCellOccupied(hit)) {
-            Ship ship = cell.getShip();
-            boolean killed = ship.hit();
-            if (killed) {
-                status = GameState.DESTROYED;
-                this.markArea(ship);
-                ships.remove(ship);
-            } else {
-                status = GameState.HIT;
-            }
-        }
-        if (ships.size() == 0) {
-            status = GameState.GAME_OVER;
-        }
-        return status;
+                .orElse(GameState.MISS);
 
     }
 
@@ -103,16 +101,16 @@ public class Field {
         area.
                 forEach(areaCell ->
                         deck.stream()
-                        .filter(fieldCell -> fieldCell.equals(areaCell))
-                        .findFirst()
-                        .ifPresent(cell -> cell.setShootable(false)));
+                                .filter(fieldCell -> fieldCell.equals(areaCell))
+                                .findFirst()
+                                .ifPresent(cell -> cell.setShootable(false)));
 
     }
 
     private boolean arrangeShip(Ship ship, Cell startPoint, Cell alignment) {
 
-        if (startPoint.getCoordX()*alignment.getCoordX()*ship.getType().getLength() > deckSize
-                || startPoint.getCoordY()*alignment.getCoordY()*ship.getType().getLength() > deckSize) {
+        if (startPoint.getCoordX() * alignment.getCoordX() * ship.getType().getLength() > deckSize
+                || startPoint.getCoordY() * alignment.getCoordY() * ship.getType().getLength() > deckSize) {
             return false;
         }
 

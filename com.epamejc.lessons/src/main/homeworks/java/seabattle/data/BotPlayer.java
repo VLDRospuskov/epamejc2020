@@ -22,7 +22,7 @@ public class BotPlayer extends Player {
     @SneakyThrows
     public GameState shoot(Player enemy) {
 
-        TimeUnit.MILLISECONDS.sleep(600);
+        TimeUnit.MILLISECONDS.sleep(400);
         moves++;
         return ai.shoot(enemy);
 

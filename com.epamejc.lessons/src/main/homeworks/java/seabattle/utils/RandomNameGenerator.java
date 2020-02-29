@@ -20,7 +20,7 @@ public class RandomNameGenerator {
 
     }
 
-    private static List<String> read (String fileName) {
+    private static List<String> read(String fileName) {
 
         List<String> result = new ArrayList<>();
         try (Stream<String> lines = Files.lines(Paths.get(fileName))) {

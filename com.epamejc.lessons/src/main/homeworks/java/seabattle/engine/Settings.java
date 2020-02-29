@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class Settings {
 
-      private Properties properties = new Properties();
+    private Properties properties = new Properties();
     private String propertiesFilePath =
             "com.epamejc.lessons/src/resources/seabattle.config";
 
