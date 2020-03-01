@@ -3,7 +3,7 @@ package lessons.lesson19.example3;
 public class Main {
 
     public static void main(String[] args) {
-        final ATM atm = new ATM(500);
+        final ATM atm = new ATM(1000, 1);
         final User vladimir = new User("Vladimir");
         final User boris = new User("Boris");
         final User dmitrii = new User("Dmitrii");

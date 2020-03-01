@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import static homeworks.HW8_functionalAndStream.streamOperations.GenerateData.getEmployees;
 
-@SuppressWarnings({"unused"})
 public class StreamOperations {
 
     void findPersonsEverWorkedInEpam() {
@@ -19,44 +18,32 @@ public class StreamOperations {
                 .map(Employee::getPerson).collect(Collectors.toList());
 
         System.out.println("These people ever worked in EPAM: " + personsEverWorkedInEpam + "\n");
-
-//        personsEverWorkedInEpam - should contain employees.get(0),  employees.get(1),
-//                employees.get(4), employees.get(5)
     }
 
     void findPersonsBeganCareerInEpam() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toList()
         List<Person> startedFromEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory()
                         .stream().findFirst().get().getCompany().equals("EPAM"))
                 .map(Employee::getPerson).collect(Collectors.toList());
 
         System.out.println("These people started a career in EPAM: " + startedFromEpam + "\n");
-
-//        startedFromEpam - should contain
-//                employees.get(0).getPerson(),
-//                employees.get(1).getPerson(),
-//                employees.get(4).getPerson()
     }
 
     void findAllCompanies() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toSet()
         Set<String> companies = employees.stream()
                 .flatMap(employee -> employee.getJobHistory().stream().map(JobHistoryEntry::getCompany))
                 .collect(Collectors.toSet());
 
         System.out.println("This is all companies list: " + companies + "\n");
-//        companies - should contain "EPAM", "google", "yandex", "mail.ru", "T-Systems"
     }
 
     void findMinimalAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация
         Integer minimalAge = employees.stream()
                 .min((employee1, employee2) -> {
                     Integer age1 = employee1.getPerson().getAge();
@@ -67,11 +54,8 @@ public class StreamOperations {
                 .get();
 
         System.out.println("Minimal age is: " + minimalAge + "\n");
-
-        // minmalAge = 21
     }
 
-    // Посчитать средний возраст работников
     void calcAverageAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
@@ -82,7 +66,6 @@ public class StreamOperations {
 
     }
 
-    // Найти Person с самым длинным fullName
     void findPersonWithLongestFullName() {
         List<Employee> employees = getEmployees();
 
@@ -99,27 +82,17 @@ public class StreamOperations {
         System.out.println("The employee with longest name is: " + expected + "\n");
     }
 
-    // Найти работника с самой большой продолжительность на одной же позиции
     void findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 
         Employee expected = employees.stream()
-                .max((employee1, employee2) -> {
-                    Integer time1 = 0;
-                    for (int i = 0; i < employee1.getJobHistory().size(); i++) {
-                        if (employee1.getJobHistory().get(i).getDuration() > time1) {
-                            time1 = employee1.getJobHistory().get(i).getDuration();
-                        }
-                    }
-                    int time2 = 0;
-                    for (int i = 0; i < employee2.getJobHistory().size(); i++) {
-                        if (employee2.getJobHistory().get(i).getDuration() > time2) {
-                            time2 = employee2.getJobHistory().get(i).getDuration();
-                        }
-                    }
-                    return time1.compareTo(time2);
-                })
-                .get();
+                .reduce((employee1, employee2) ->
+                        employee1.getJobHistory().stream().map(JobHistoryEntry::getDuration)
+                                .max(Integer::compareTo).orElse(0) > employee2.getJobHistory().stream()
+                                        .map(JobHistoryEntry::getDuration)
+                                        .max(Integer::compareTo).orElse(0)
+                                ? employee1 : employee2)
+                .orElse(null);
 
         System.out.println("The employee with the biggest experience in one position" + expected);
     }
