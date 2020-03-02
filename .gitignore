@@ -28,3 +28,4 @@ target
 *.iml
 /.idea
 /com.epamejc.lessons/src/main/java/experiments/
+experiments\
