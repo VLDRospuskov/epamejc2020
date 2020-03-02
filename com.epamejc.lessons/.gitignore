@@ -27,5 +27,5 @@ out
 target
 *.iml
 /.idea
-/com.epamejc.lessons/src/main/java/experiments/
-experiments\
+../src/main/java/experiments/
+
