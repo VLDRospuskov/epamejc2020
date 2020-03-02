@@ -21,6 +21,10 @@ public class AutomaticShipPlacer {
         }
     }
 
+    /**
+     * Method for placing one ship {@link Ship}
+     * @param ship ship to be placed
+     */
     public void placeShip(Ship ship) {
         boolean isShipPlaced = false;
         while (!isShipPlaced) {
@@ -28,17 +32,14 @@ public class AutomaticShipPlacer {
             int randomCoordX = RandomNumberGenerator.generateRandomInRange(10);
             int randomCoordY = RandomNumberGenerator.generateRandomInRange(10);
             String randomDirection = RandomNumberGenerator.generateRandomDirection();
-            //Проверяем, есть ли такая ячейка, есть на ней корабль
             Cell selectedCell = fieldOperations.getCellByCoords(randomCoordX, randomCoordY);
             if (selectedCell != null && selectedCell.getCellStatus().equals(CellStatus.HIDDEN.getStatus())) {
-                //Проверяем, помещается ли корабль в поле с таким направлением
                 boolean isInsideBorders = fieldOperations.checkFieldBorder(randomDirection, randomCoordX,
                         randomCoordY, ship.getShipDecks());
                 if (isInsideBorders) {
-                    //Проверяем радиус вокруг корабля. Забираем все ячейки, если хоть где-то есть корабль - то false
                     boolean isRadiusFree = checkRadius(randomDirection, randomCoordX, randomCoordY, ship.getShipDecks());
                     if (isRadiusFree) {
-                        isShipPlaced = true; //Можно размещать корабль
+                        isShipPlaced = true;
                         initializeShip(ship, randomDirection, randomCoordX, randomCoordY);
                     }
                 }
@@ -46,7 +47,15 @@ public class AutomaticShipPlacer {
         }
     }
 
-    private boolean checkRadius(String direction, int xCoord, int yCoord, int shipDecks) {
+    /**
+     * Method checks the radius around the selected cell at a distance {@param shipDecks}
+     * @param direction direction of potential {@link Ship} placement
+     * @param xCoord horizontal coordinate
+     * @param yCoord vertical coordinate
+     * @param shipDecks distance of potential {@link Ship} placement
+     * @return true or false, if we can/can't place ship on selected attributes
+     */
+    public boolean checkRadius(String direction, int xCoord, int yCoord, int shipDecks) {
         switch (direction) {
             case "up": {
                 List<Cell> radiusCellsList = fieldOperations.getTopDirectionRadius(xCoord, yCoord, shipDecks);
@@ -67,6 +76,11 @@ public class AutomaticShipPlacer {
         }
     }
 
+    /**
+     * Method checks if there are ship cells in the list of cells
+     * @param cellsInRadius list of selected cells {@link Cell}
+     * @return true or false, if there aren't/are another ships cells
+     */
     private boolean isRadiusCorrect(List<Cell> cellsInRadius) {
         for (Cell cell : cellsInRadius) {
             if (cell.isShipInCell()) {
@@ -76,6 +90,13 @@ public class AutomaticShipPlacer {
         return true;
     }
 
+    /**
+     * Method for initializing {@link Ship} attributes
+     * @param ship ship object to be initialized
+     * @param randomDirection generated direction of ship placement
+     * @param randomCoordX horizontal coordinate
+     * @param randomCoordY vertical coordinate
+     */
     private void initializeShip(Ship ship, String randomDirection, int randomCoordX, int randomCoordY) {
         ship.setDirection(randomDirection);
         ship.setShipCoordX(randomCoordX);

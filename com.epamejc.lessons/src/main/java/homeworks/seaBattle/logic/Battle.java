@@ -29,10 +29,17 @@ public class Battle {
         this.scanner = scanner;
     }
 
+    /**
+     * Method for setting exit condition {@link Battle#isGameFinished}
+     */
     public static void setExitCondition() {
         isGameFinished = true;
     }
 
+    /**
+     * Method for processing battle between human player and computer player
+     * @throws InterruptedException exception, if there're troubles with thread
+     */
     public void startBattle() throws InterruptedException {
         fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
 
@@ -48,7 +55,6 @@ public class Battle {
                 }
                 isPlayerMove = playerShootingUtil.shot(shotCoordinates);
                 fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
-//                botPlayer.shipsOperations().printShipsNumber();
                 if (checkFinishGameConditions()) {
                     isGameFinished = true;
                     break;
@@ -67,10 +73,17 @@ public class Battle {
         determineTheWinner();
     }
 
+    /**
+     * Method checks the game finish conditions
+     * @return true/false if the game have to continue/finish
+     */
     private boolean checkFinishGameConditions() {
         return humanPlayer.getShipsCount() == 0 || botPlayer.getShipsCount() == 0;
     }
 
+    /**
+     * Method determines the winner of the game
+     */
     private void determineTheWinner() {
         if (humanPlayer.getShipsCount() == 0) {
             System.out.println(SystemMessages.botWin.getMessage());

@@ -16,12 +16,6 @@ import static org.junit.Assert.assertThat;
 
 public class FieldOperationsTest {
 
-//    private static FieldOperations testFieldOperations;
-//    @BeforeClass
-//    public static void initClass() {
-//        testFieldOperations = new FieldOperations();
-//    }
-
     /**
      * Testing method {@link FieldOperations#getCellByCoords(int, int)}
      */
@@ -134,6 +128,25 @@ public class FieldOperationsTest {
         expectedCellsList.add(testFieldOperations.getCellByCoords(2,2));
         List<Cell> actualCellsList = testFieldOperations.getTopDirectionRadius(1, 1, 1);
         assertThat(actualCellsList, is(expectedCellsList));
+    }
+
+    /**
+     * Testing {@link FieldOperations#getPotentialDirectionsNumber(Ship, Cell)}
+     */
+    @Test
+    public void testGetPotentialDirectionsNumber() {
+        FieldOperations testFieldOperations = new FieldOperations();
+        testFieldOperations.generateField();
+        Ship singleDeckShip = generateShip(2, 2, Directions.UP.getDirection(), 1);
+        testFieldOperations.getCellByCoords(2, 2).setCellShip(singleDeckShip);
+        Ship testPlacementShip = generateShip(4, 2, Directions.DOWN.getDirection(), 2);
+        Ship testPlacementShip2 = generateShip(4, 2, Directions.LEFT.getDirection(), 2);
+        Cell testPlacementCell = testFieldOperations.getCellByCoords(4, 2);
+        int expectedPlacementNum = 3;
+        int actualPlacementNum1 = testFieldOperations.getPotentialDirectionsNumber(testPlacementShip, testPlacementCell);
+        int actualPlacementNum2 = testFieldOperations.getPotentialDirectionsNumber(testPlacementShip2, testPlacementCell);
+        Assert.assertEquals(expectedPlacementNum, actualPlacementNum1);
+        Assert.assertEquals(expectedPlacementNum, actualPlacementNum2);
     }
 
     /**

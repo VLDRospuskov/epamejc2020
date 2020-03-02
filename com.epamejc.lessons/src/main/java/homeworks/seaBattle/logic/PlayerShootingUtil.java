@@ -27,10 +27,20 @@ public class PlayerShootingUtil {
         return enemyPlayer;
     }
 
+    /**
+     * Method checks the banned cells of the enemy field {@link PlayerShootingUtil#enemyBannedCells}
+     * @param potentialFireCell {@link Cell} cell where're going to shoot
+     * @return true/false if the list of enemy banned cells contains/doesn't contain shooting cell
+     */
     public boolean isCellShot(Cell potentialFireCell) {
         return enemyBannedCells.contains(potentialFireCell);
     }
 
+    /**
+     * Method describes the algorithm of shooting at a computer field
+     * @param shotCoordinates cell coordinates of the enemy field
+     * @return true/false if player hits or misses enemy ship
+     */
     public boolean shot(int[] shotCoordinates) {
         Cell fireCell = enemyPlayer.fieldOperations().getCellByCoords(shotCoordinates[0], shotCoordinates[1]);
         Ship enemyShip = fireCell.getCellShip();
@@ -41,22 +51,23 @@ public class PlayerShootingUtil {
                 processDestroyedShip(enemyShip);
             } else {
                 System.out.println(SystemMessages.playerHit.getMessage());
-                // добавляем ячейку в бан и ставим статус
                 fireCell.setCellStatus(CellStatus.HIT.getStatus());
                 enemyBannedCells.add(fireCell);
             }
             return true;
         } else {
             System.out.println(SystemMessages.playerMiss.getMessage());
-            // добавляем ячейку в бан и ставим статус
             fireCell.setCellStatus(CellStatus.MISSED.getStatus());
             enemyBannedCells.add(fireCell);
             return false;
         }
     }
 
+    /**
+     * Method for destroying an enemy ship and updating cells status
+     * @param destroyedShip destroyed computer's ship {@link Ship}
+     */
     public void processDestroyedShip(Ship destroyedShip) {
-        // забираем все ячейки в радиусе корабля и ставим им статус, добавляем в бан
         List<Cell> destroyedShipCells = enemyPlayer.fieldOperations().getShipAndRadiusCells(destroyedShip);
         for (Cell cell : destroyedShipCells) {
             cell.setCellStatus(CellStatus.HIT.getStatus());
@@ -64,12 +75,14 @@ public class PlayerShootingUtil {
                 enemyBannedCells.add(cell);
             }
         }
-        // удаляем корабль у ячеек
         removeShipFromCells(destroyedShip);
-        // удаляем корабль из листа кораблей бота
         enemyPlayer.shipsOperations().removeShip(destroyedShip);
     }
 
+    /**
+     * Method for removing a ship object from the field
+     * @param destroyedShip destroyed computer's ship {@link Ship}
+     */
     private void removeShipFromCells(Ship destroyedShip) {
         for (Cell cell : enemyPlayer.fieldOperations().getShipCells(destroyedShip)) {
             if (cell.getCellShip().equals(destroyedShip)) {

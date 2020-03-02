@@ -152,6 +152,13 @@ public class FieldOperations {
         return radiusCellsList;
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside a radius in a right-direction
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @param shipDecks distance of radius in a top-direction
+     * @return {@link List} of cells inside and around ship
+     */
     public List<Cell> getRightDirectionRadius(int xCoord, int yCoord, int shipDecks) {
         List<Cell> radiusCellsList = new ArrayList<>();
         for (int y = yCoord - 1; y <= yCoord + 1; y++) {
@@ -167,6 +174,13 @@ public class FieldOperations {
         return radiusCellsList;
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside a radius in a bottom-direction
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @param shipDecks distance of radius in a top-direction
+     * @return {@link List} of cells inside and around ship
+     */
     public List<Cell> getBottomDirectionRadius(int xCoord, int yCoord, int shipDecks) {
         List<Cell> radiusCellsList = new ArrayList<>();
         for (int y = yCoord - 1; y <= yCoord + shipDecks; y++) {
@@ -182,6 +196,13 @@ public class FieldOperations {
         return radiusCellsList;
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside a radius in a left-direction
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @param shipDecks distance of radius in a top-direction
+     * @return {@link List} of cells inside and around ship
+     */
     public List<Cell> getLeftDirectionRadius(int xCoord, int yCoord, int shipDecks) {
         List<Cell> radiusCellsList = new ArrayList<>();
         for (int y = yCoord - 1; y <= yCoord + 1; y++) {
@@ -197,6 +218,11 @@ public class FieldOperations {
         return radiusCellsList;
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside ship {@paramref ship} in top-direction
+     * @param ship ship with location attributes
+     * @return {@link List} of cells inside ship
+     */
     private List<Cell> getTopDirectionCells(Ship ship) {
         return field.stream()
                 .filter(cell -> cell.getxCoord() == ship.getShipCoordX() &&
@@ -205,6 +231,11 @@ public class FieldOperations {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside ship {@paramref ship} in right-direction
+     * @param ship ship with location attributes
+     * @return {@link List} of cells inside ship
+     */
     private List<Cell> getRightDirectionCells(Ship ship) {
         return field.stream()
                 .filter(cell -> cell.getyCoord() == ship.getShipCoordY() &&
@@ -213,6 +244,11 @@ public class FieldOperations {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside ship in bottom-direction
+     * @param ship ship with location attributes
+     * @return {@link List} of cells inside ship
+     */
     private List<Cell> getBottomDirectionCells(Ship ship) {
         return field.stream()
                 .filter(cell -> cell.getxCoord() == ship.getShipCoordX() &&
@@ -221,6 +257,11 @@ public class FieldOperations {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside ship in left-direction
+     * @param ship ship with location attributes
+     * @return {@link List} of cells inside ship
+     */
     private List<Cell> getLeftDirectionCells(Ship ship) {
         return field.stream()
                 .filter(cell -> cell.getyCoord() == ship.getShipCoordY() &&
@@ -229,6 +270,13 @@ public class FieldOperations {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Method returns the number of potential options for placement ship
+     * around selected cell {@paramref cell}
+     * @param ship {@link Ship} object
+     * @param cell {@link Cell} cell with coordinates
+     * @return number of options
+     */
     public int getPotentialDirectionsNumber(Ship ship, Cell cell) {
         int count = 0;
         if (!doesHaveShip(getTopDirectionRadius(cell.getxCoord(), cell.getyCoord(), ship.getShipDecks()))) {
@@ -237,7 +285,6 @@ public class FieldOperations {
             }
         }
         if (!doesHaveShip(getRightDirectionRadius(cell.getxCoord(), cell.getyCoord(), ship.getShipDecks()))) {
-            int test = getRightDirectionCells(ship).size();
             if (getRightDirectionCells(ship).size() == ship.getShipDecks()) {
                 count++;
             }
@@ -255,8 +302,12 @@ public class FieldOperations {
         return count;
     }
 
+    /**
+     * Method checks is the ship in the selected list of cells
+     * @param cellList {@link List} of {@link Cell} cells
+     * @return true if cellList has ships
+     */
     private boolean doesHaveShip(List<Cell> cellList) {
-        long cruiserCount = cellList.stream().filter(ship -> ship.getCellShip() != null).count();
         for(Cell cell : cellList) {
             if (cell.getCellShip() != null) {
                 return true;
