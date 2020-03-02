@@ -1,9 +1,9 @@
-package seaBattle.data;
+package homeworks.seaBattle.data;
 
-import seaBattle.logic.AutomaticShipPlacer;
-import seaBattle.logic.FieldOperations;
-import seaBattle.logic.ManualShipPlacer;
-import seaBattle.logic.ShipOperations;
+import homeworks.seaBattle.logic.AutomaticShipPlacer;
+import homeworks.seaBattle.logic.FieldOperations;
+import homeworks.seaBattle.logic.ManualShipPlacer;
+import homeworks.seaBattle.logic.ShipOperations;
 
 import java.util.List;
 

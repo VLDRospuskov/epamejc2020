@@ -1,10 +1,10 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Cell;
-import seaBattle.data.Player;
-import seaBattle.data.enums.ConsoleColors;
-import seaBattle.data.enums.Directions;
-import seaBattle.data.enums.SystemMessages;
+import homeworks.seaBattle.data.Cell;
+import homeworks.seaBattle.data.Player;
+import homeworks.seaBattle.data.enums.ConsoleColors;
+import homeworks.seaBattle.data.enums.Directions;
+import homeworks.seaBattle.data.enums.SystemMessages;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -44,7 +44,7 @@ public class InputOperator {
         String direction = "";
         while (!isInputCorrect) {
             System.out.print(SystemMessages.enterPlacementDirection.getMessage() + shipType + " : ");
-            String enteredString = scanner.nextLine();
+            String enteredString = scanner.nextLine().trim();
             System.out.println();
             if (enteredString.equals(Directions.UP.getDirection()) ||
                     enteredString.equals(Directions.RIGHT.getDirection()) ||
@@ -63,7 +63,7 @@ public class InputOperator {
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
             System.out.print(SystemMessages.choosePlacementType.getMessage());
-            String enteredString = scanner.nextLine();
+            String enteredString = scanner.nextLine().trim();
             if (enteredString.toUpperCase().equals("Y")) {
                 return true;
             } else if (enteredString.toUpperCase().equals("N")) {

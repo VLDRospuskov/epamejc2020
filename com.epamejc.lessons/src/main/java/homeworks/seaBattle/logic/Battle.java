@@ -1,12 +1,12 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Configuration;
-import seaBattle.data.Player;
-import seaBattle.data.enums.SystemMessages;
+import homeworks.seaBattle.data.Configuration;
+import homeworks.seaBattle.data.Player;
+import homeworks.seaBattle.data.enums.SystemMessages;
 
 import java.util.Scanner;
 
-import static seaBattle.utils.RandomNumberGenerator.generateRandomCoordinates;
+import static homeworks.seaBattle.utils.RandomNumberGenerator.generateRandomCoordinates;
 
 public class Battle {
 

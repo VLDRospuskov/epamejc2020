@@ -1,9 +1,9 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Cell;
-import seaBattle.data.Configuration;
-import seaBattle.data.enums.CellStatus;
-import seaBattle.data.enums.ConsoleColors;
+import homeworks.seaBattle.data.Cell;
+import homeworks.seaBattle.data.Configuration;
+import homeworks.seaBattle.data.enums.CellStatus;
+import homeworks.seaBattle.data.enums.ConsoleColors;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,12 +1,12 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Cell;
-import seaBattle.data.Configuration;
-import seaBattle.data.Player;
-import seaBattle.data.Ship;
-import seaBattle.data.enums.CellStatus;
-import seaBattle.data.enums.SystemMessages;
-import seaBattle.utils.RandomNumberGenerator;
+import homeworks.seaBattle.data.Cell;
+import homeworks.seaBattle.data.Configuration;
+import homeworks.seaBattle.data.Player;
+import homeworks.seaBattle.data.Ship;
+import homeworks.seaBattle.data.enums.CellStatus;
+import homeworks.seaBattle.data.enums.SystemMessages;
+import homeworks.seaBattle.utils.RandomNumberGenerator;
 
 import java.util.HashSet;
 import java.util.Set;

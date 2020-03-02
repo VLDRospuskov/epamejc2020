@@ -1,4 +1,4 @@
-package seaBattle.data;
+package homeworks.seaBattle.data;
 
 import java.util.Objects;
 

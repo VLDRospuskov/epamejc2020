@@ -1,8 +1,8 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Configuration;
-import seaBattle.data.Ship;
-import seaBattle.data.enums.ShipType;
+import homeworks.seaBattle.data.Configuration;
+import homeworks.seaBattle.data.Ship;
+import homeworks.seaBattle.data.enums.ShipType;
 
 import java.util.ArrayList;
 import java.util.Comparator;

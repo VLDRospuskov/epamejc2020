@@ -1,9 +1,9 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Cell;
-import seaBattle.data.Ship;
-import seaBattle.data.enums.Directions;
-import seaBattle.data.enums.SystemMessages;
+import homeworks.seaBattle.data.Cell;
+import homeworks.seaBattle.data.Ship;
+import homeworks.seaBattle.data.enums.Directions;
+import homeworks.seaBattle.data.enums.SystemMessages;
 
 import java.util.List;
 import java.util.Scanner;

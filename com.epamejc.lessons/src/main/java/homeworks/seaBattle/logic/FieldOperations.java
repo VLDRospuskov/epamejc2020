@@ -1,10 +1,10 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Cell;
-import seaBattle.data.Configuration;
-import seaBattle.data.Ship;
-import seaBattle.data.enums.CellStatus;
-import seaBattle.data.enums.Directions;
+import homeworks.seaBattle.data.Cell;
+import homeworks.seaBattle.data.Configuration;
+import homeworks.seaBattle.data.Ship;
+import homeworks.seaBattle.data.enums.CellStatus;
+import homeworks.seaBattle.data.enums.Directions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,9 @@ public class FieldOperations {
 
     private List<Cell> field = new ArrayList<>();
 
+    /**
+     * Method generates new field with {@link Configuration#getFieldSize()} size
+     */
     public void generateField() {
         int cellIndex = 0;
         for (int i = 1; i <= Configuration.getFieldSize(); i++) {
@@ -24,10 +27,20 @@ public class FieldOperations {
         }
     }
 
+    /**
+     * Method returns field object
+     * @return field
+     */
     public List<Cell> getField() {
         return field;
     }
 
+    /**
+     * Method returns {@link Cell} object with specified coordinates {@paramref xCoord} and {@paramref yCoord}
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @return {@link Cell} object
+     */
     public Cell getCellByCoords(int xCoord, int yCoord) {
         return field.stream()
                 .filter(cell -> cell.getxCoord() == xCoord
@@ -36,6 +49,15 @@ public class FieldOperations {
                 .orElse(null);
     }
 
+    /**
+     * Method returns {@link Cell} object with coordinates {@paramref xCoord} and {@paramref yCoord} in specified
+     * direction {@paramref direction} at a distance of a step {@paramref step}
+     * @param direction direction of step
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @param step distance
+     * @return {@link Cell} object
+     */
     public Cell getCellByDirection(String direction, int xCoord, int yCoord, int step) {
         Cell cell;
         if (direction.equals(Directions.UP.getDirection())) {
@@ -51,6 +73,11 @@ public class FieldOperations {
         return cell;
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} objects inside {@link Ship}
+     * @param ship {@link Ship} object
+     * @return {@link List} of cells inside ship
+     */
     public List<Cell> getShipCells(Ship ship) {
         if (ship.getDirection().equals(Directions.UP.getDirection())) {
             return getTopDirectionCells(ship);
@@ -63,6 +90,11 @@ public class FieldOperations {
         }
     }
 
+    /**
+     * Method returns {@link List} of {@link Cell} cells inside and around the ship {@link Ship}
+     * @param ship {@link Ship} object
+     * @return {@link List} of cells inside and around ship
+     */
     public List<Cell> getShipAndRadiusCells(Ship ship) {
         if (ship.getDirection().equals(Directions.UP.getDirection())) {
             return getTopDirectionRadius(ship.getShipCoordX(), ship.getShipCoordY(), ship.getShipDecks());
@@ -75,6 +107,14 @@ public class FieldOperations {
         }
     }
 
+    /**
+     * Method checks the field border in a given direction {@paramref direction} and distance {@paramref step}
+     * @param direction direction of border check
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @param step distance of border check
+     * @return boolean is inside field border
+     */
     public boolean checkFieldBorder(String direction, int xCoord, int yCoord, int step) {
         Cell checkCell;
         if (direction.equals(Directions.UP.getDirection())) {
@@ -90,7 +130,13 @@ public class FieldOperations {
         return checkCell != null;
     }
 
-
+    /**
+     * Method returns {@link List} of {@link Cell} cells located inside a radius in a top-direction
+     * @param xCoord horizontal coordinate value
+     * @param yCoord vertical coordinate value
+     * @param shipDecks distance of radius in a top-direction
+     * @return {@link List} of cells inside and around ship
+     */
     public List<Cell> getTopDirectionRadius(int xCoord, int yCoord, int shipDecks) {
         List<Cell> radiusCellsList = new ArrayList<>();
         for (int y = yCoord - shipDecks; y <= yCoord + 1; y++) {

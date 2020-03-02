@@ -1,4 +1,4 @@
-package seaBattle.data.enums;
+package homeworks.seaBattle.data.enums;
 
 public enum SystemMessages {
     startGame("Welcome to seabattle game"),

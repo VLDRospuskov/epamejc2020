@@ -1,9 +1,9 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Cell;
-import seaBattle.data.Ship;
-import seaBattle.data.enums.CellStatus;
-import seaBattle.utils.RandomNumberGenerator;
+import homeworks.seaBattle.data.Cell;
+import homeworks.seaBattle.data.Ship;
+import homeworks.seaBattle.data.enums.CellStatus;
+import homeworks.seaBattle.utils.RandomNumberGenerator;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package seaBattle;
+package homeworks.seaBattle;
 
-import seaBattle.logic.Application;
+import homeworks.seaBattle.logic.Application;
 
 public class Main {
     public static void main(String[] args) {

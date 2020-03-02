@@ -1,4 +1,4 @@
-package seaBattle.data;
+package homeworks.seaBattle.data;
 
 public class Configuration {
 
@@ -12,12 +12,6 @@ public class Configuration {
     private final static int CRUISERDECKS = 3;
     private final static int DESTROYERDECKS = 2;
     private final static int BOATDECKS = 1;
-
-    public static void readConfig() {
-        //потом здесь прочитать конфиг и проинициализировать поля
-//        Properties prop = new Properties();
-//        prop.load(Reader read);
-    }
 
     public static int getFieldSize() {
         return FIELDSIZE;

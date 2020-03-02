@@ -1,11 +1,11 @@
-package seaBattle.logic;
+package homeworks.seaBattle.logic;
 
-import seaBattle.data.Player;
+import homeworks.seaBattle.data.Player;
 
 import java.util.Scanner;
 
 /**
- * @version 0.1
+ * @version 1.1
  * @author Andrew Nuzha
  */
 public class Application {

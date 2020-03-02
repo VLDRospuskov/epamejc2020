@@ -1,4 +1,4 @@
-package seaBattle.utils;
+package homeworks.seaBattle.utils;
 
 import java.util.Random;
 
