@@ -21,13 +21,13 @@ public class BotPlayer extends Player {
     public boolean shot(Player opponent) {
         boolean result;
 
-        Coordinates coords = getRandomCoords();
+        Coordinates coords = getCoords();
 
         result = super.makeShot(opponent, coords.getX(), coords.getY());
         return result;
     }
 
-    private Coordinates getRandomCoords() {
+    private Coordinates getCoords() {
         Coordinates coord;
         boolean isNotUnique = true;
         int[] coords = new int[0];
