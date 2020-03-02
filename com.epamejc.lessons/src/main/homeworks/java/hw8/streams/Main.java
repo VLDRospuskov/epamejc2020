@@ -9,8 +9,10 @@ public class Main {
 //        streamOperations.calcAverageAgeOfEmployees();
 //        streamOperations.findMinimalAgeOfEmployees();
 //        streamOperations.findPersonWithLongestFullName();
-        streamOperations.findPersonsEverWorkedInEpam();
+//        streamOperations.findPersonsEverWorkedInEpam();
 //        streamOperations.findPersonsBeganCareerInEpam();
+        streamOperations.findEmployeeWithMaximumDurationAtOnePosition();
+
 
     }
 

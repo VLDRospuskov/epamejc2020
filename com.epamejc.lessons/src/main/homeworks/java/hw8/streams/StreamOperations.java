@@ -14,16 +14,9 @@ public class StreamOperations {
 
         // TODO реализация, использовать Collectors.toList()
         List<Person> personsEverWorkedInEpam = employees.stream()
-                .filter(e -> {
-                    List<JobHistoryEntry> list = e.getJobHistory();
-                    for(JobHistoryEntry l : list) {
-                        if (l.getCompany().equals("EPAM")) {
-                            return true;
-                        }
-                    }
-                    return false;
-                })
-                .map(e -> e.getPerson())
+                .filter(employee -> employee.getJobHistory().stream()
+                        .anyMatch(jobHistory -> jobHistory.getCompany().equals("EPAM")))
+                .map(employee -> employee.getPerson())
                 .collect(Collectors.toList());
         System.out.println(personsEverWorkedInEpam);
 
@@ -36,14 +29,11 @@ public class StreamOperations {
 
         // TODO реализация, использовать Collectors.toList()
         List<Person> startedFromEpam = employees.stream()
-                .filter(e -> {
-                    List<JobHistoryEntry> list = e.getJobHistory();
-                        if (list.get(0).getCompany().equals("EPAM")) {
-                            return true;
-                        }
-                    return false;
-                })
-                .map(e -> e.getPerson())
+                .filter(employee -> employee.getJobHistory().stream()
+                        .findFirst()
+                        .get()
+                        .getCompany().equals("EPAM"))
+                .map(employee -> employee.getPerson())
                 .collect(Collectors.toList());
         System.out.println(startedFromEpam);
 //        startedFromEpam - should contain
@@ -57,8 +47,8 @@ public class StreamOperations {
 
         // TODO реализация, использовать Collectors.toSet()
         Set<String> companies = employees.stream()
-                .map(e -> e.getJobHistory())
-                .flatMap(persons -> persons.stream())
+                .map(employee -> employee.getJobHistory())
+                .flatMap(jobHistoryEntries -> jobHistoryEntries.stream())
                 .map(company -> company.getCompany())
                 .collect(Collectors.toSet());
         System.out.println(companies);
@@ -72,11 +62,11 @@ public class StreamOperations {
         // TODO реализация
 
         Integer minimalAge = employees.stream()
-                .min((p1, p2) -> {
-                    Integer i1 = p1.getPerson().getAge();
-                    Integer i2 = p2.getPerson().getAge();
+                .min((employee1, employee2) -> {
+                    Integer i1 = employee1.getPerson().getAge();
+                    Integer i2 = employee2.getPerson().getAge();
                         return i1.compareTo(i2); } )
-                .map(e -> e.getPerson().getAge())
+                .map(employee -> employee.getPerson().getAge())
                 .get();
         System.out.println(minimalAge);
         // minmalAge = 21
@@ -87,7 +77,7 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         Double expected = employees.stream()
-                .collect(Collectors.averagingDouble(e -> e.getPerson().getAge()));
+                .collect(Collectors.averagingDouble(employee -> employee.getPerson().getAge()));
         System.out.println(expected);
 
     }
@@ -97,10 +87,10 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         Person expected = employees.stream()
-                .map(e -> e.getPerson())
-                .max((p1, p2) -> {
-                    Integer i1 = p1.getFirstName().length() + p1.getLastName().length();
-                    Integer i2 = p2.getFirstName().length() + p2.getLastName().length();
+                .map(employee -> employee.getPerson())
+                .max((person1, person2) -> {
+                    Integer i1 = person1.getFirstName().length() + person1.getLastName().length();
+                    Integer i2 = person2.getFirstName().length() + person2.getLastName().length();
                     return i1.compareTo(i2); } )
                 .get();
         System.out.println(expected);
@@ -110,7 +100,17 @@ public class StreamOperations {
     void findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 
-        Employee expected = null;
+        Employee expected = employees.stream()
+                .reduce((employee1, employee2) -> employee1.getJobHistory().stream()
+                        .map(JobHistoryEntry::getDuration)
+                        .max(Integer::compareTo).orElse(0) > employee2.getJobHistory().stream()
+                                .map(JobHistoryEntry::getDuration)
+                                .max(Integer::compareTo).orElse(0)
+                                ? employee1 : employee2)
+                .orElse(null);
+
+        System.out.println(expected);
+
 
     }
 
