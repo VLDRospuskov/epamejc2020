@@ -1,4 +1,4 @@
-package sea_battle.controllers;
+package sea_battle.main;
 
 import sea_battle.utils.Points;
 import sea_battle.utils.Reader;

@@ -1,6 +1,7 @@
-package sea_battle.utils;
+package sea_battle.main;
 
-import sea_battle.controllers.*;
+import sea_battle.utils.RandomGenerator;
+import sea_battle.utils.ShipTypes;
 
 import java.util.ArrayList;
 
@@ -19,59 +20,52 @@ public class ShipSetter {
         ArrayList<Ship> ships = new ArrayList<>();
 
         for (int i = 0; i < shipsQty; i++) {
-            ArrayList<Coordinates> coords = generateDecks(field, decksQty.getValue());
+            ArrayList<Coordinates> coords = createDecks(field, decksQty.getValue());
             ships.add(new Ship(decksQty, coords));
         }
 
         return ships;
     }
 
-    private ArrayList<Coordinates> generateDecks(Field field, int decksQty) {
+    private ArrayList<Coordinates> createDecks(Field field, int decksQty) {
         ArrayList<Coordinates> decks = new ArrayList<>();
 
         while (true) {
             int[] coords = RandomGenerator.generateCoordinates();
             boolean direction = RandomGenerator.generateDirection();
 
-            int x = coords[1];
-            int y = coords[0];
-
-            int[][] checkedDecks = generateDecks(decksQty, direction, x, y);
+            int[][] checkedDecks = createDecks(decksQty, direction, coords[1], coords[0]);
 
             if (checkDecks(field.getField(), checkedDecks)) {
                 for (int[] checkedDeck : checkedDecks) {
                     int X = checkedDeck[1];
                     int Y = checkedDeck[0];
 
-                    decks.add(new Coordinates(X, Y, false));
+                    decks.add(new Coordinates(X, Y));
                     field.getField()[Y][X] = 1;
                 }
-
                 break;
             }
         }
-
         return decks;
     }
 
-    private int[][] generateDecks(int decksQty, boolean direction, int x, int y) {
+    private int[][] createDecks(int decksQty, boolean direction, int x, int y) {
         int[][] decks = new int[decksQty][];
 
-        if (direction) {
-            if (x + decksQty >= 9) {
-                x = x - decksQty;
-            }
+        while (x + decksQty > 9 || y + decksQty > 9) {
+            int[] coord = RandomGenerator.generateCoordinates();
+            x = coord[1];
+            y = coord[0];
+        }
 
+        if (direction) {
             for (int i = 0; i < decksQty; i++) {
                 x = x + 1;
                 decks[i] = new int[] {y, x};
             }
 
         } else {
-            if (y + decksQty >= 9) {
-                y = y - decksQty;
-            }
-
             for (int i = 0; i < decksQty; i++) {
                 y = y + 1;
                 decks[i] = new int[] {y, x};

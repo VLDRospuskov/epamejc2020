@@ -1,21 +1,28 @@
-package sea_battle.controllers;
+package sea_battle.main;
 
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public abstract class Player {
 
     private String title;
     private Field field;
     private Field opponentField;
+    private Ship opponentHitShip;
     private ArrayList<Ship> ships;
+    private Coordinates prevHit;
+    private Set<Coordinates> madeShots;
     private boolean isWin;
 
     public Player(String title) {
         this.title = title;
         this.field = new Field();
         this.opponentField = new Field();
-        ships = new ArrayList<>();
+        this.ships = new ArrayList<>();
+        this.prevHit = null;
+        this.madeShots = new TreeSet<>();
         this.isWin = false;
     }
 
@@ -31,8 +38,20 @@ public abstract class Player {
         return opponentField;
     }
 
+    public Ship getOpponentHitShip() {
+        return opponentHitShip;
+    }
+
     public ArrayList<Ship> getShips() {
         return ships;
+    }
+
+    public Coordinates getPrevHit() {
+        return prevHit;
+    }
+
+    public Set<Coordinates> getMadeShots() {
+        return madeShots;
     }
 
     public boolean isWin() {
@@ -45,15 +64,18 @@ public abstract class Player {
         int[][] field = opponent.getField().getField();
         int[][] opponentField = this.opponentField.getField();
         ArrayList<Ship> opponentShips = opponent.getShips();
+        madeShots.add(new Coordinates(x, y));
 
         if (field[y][x] == 1) {
             field[y][x] = -1;
             opponentField[y][x] = -1;
-            Ship ship = findShip(opponentShips, x, y);
+            opponentHitShip = findShip(opponentShips, x, y);
+            prevHit = new Coordinates(x, y);
 
-            if (!(ship.isAfloat())) {
-                markTerritory(opponentField, ship.getCoords());
-                opponentShips.remove(ship);
+            if (!(opponentHitShip.isAfloat())) {
+                markTerritory(opponentField, opponentHitShip.getCoords());
+                opponentShips.remove(opponentHitShip);
+                System.out.println("Ship was destroyed!");
             }
 
             if (opponentShips.size() <= 0) {
@@ -64,17 +86,15 @@ public abstract class Player {
         } else {
             field[y][x] = 2;
             opponentField[y][x] = 2;
-            System.out.println(this.title + " miss!");
+            prevHit = null;
+            System.out.println(this.title + " missed!");
             return false;
         }
     }
 
     private void markTerritory(int[][] opponentField, ArrayList<Coordinates> coords) {
         for (Coordinates coord : coords) {
-            int x = coord.getX();
-            int y = coord.getY();
-
-            markCell(opponentField, x, y);
+            markCell(opponentField, coord.getX(), coord.getY());
         }
 
         for (Coordinates coord : coords) {
@@ -94,6 +114,7 @@ public abstract class Player {
                 }
 
                 field[i][j] = 2;
+                madeShots.add(new Coordinates(j, i));
             }
         }
     }
@@ -103,11 +124,7 @@ public abstract class Player {
         for (Ship ship : ships) {
             ArrayList<Coordinates> coords = ship.getCoords();
             for (Coordinates coord : coords) {
-                int coordX = coord.getX();
-                int coordY = coord.getY();
-
-                if (coordX == x && coordY == y) {
-                    coord.setHit(true);
+                if (coord.getX() == x && coord.getY() == y) {
                     ship.setDecksNotHited();
                     foundShip = ship;
                     break;

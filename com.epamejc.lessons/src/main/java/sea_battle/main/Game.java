@@ -1,23 +1,15 @@
 package sea_battle.main;
 
-import sea_battle.controllers.BotPlayer;
-import sea_battle.controllers.HumanPlayer;
-import sea_battle.controllers.Player;
-import sea_battle.utils.FieldOperations;
-import sea_battle.utils.Points;
 import sea_battle.utils.Reader;
-import sea_battle.utils.ShipSetter;
 
 public class Game {
 
-    private FieldOperations operations;
     private ShipSetter setter;
     private Player turnOrder;
     private Player opponent;
     private Reader reader;
 
-    public Game(FieldOperations operations,ShipSetter setter, Reader reader) {
-        this.operations = operations;
+    public Game(ShipSetter setter, Reader reader) {
         this.setter = setter;
         this.reader = reader;
     }
@@ -63,7 +55,7 @@ public class Game {
 
         while (true) {
             System.out.println(opponent.getTitle() + " field");
-            operations.printField(turnOrder.getOpponentField());
+            turnOrder.getOpponentField().printField();
 
             System.out.print(turnOrder.getTitle() + " turn: ");
 

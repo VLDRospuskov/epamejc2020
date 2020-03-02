@@ -1,4 +1,4 @@
-package sea_battle.controllers;
+package sea_battle.main;
 
 import sea_battle.utils.ShipTypes;
 
@@ -8,12 +8,12 @@ public class Ship {
 
     private ShipTypes shipType;
     private ArrayList<Coordinates> coords;
-    private int decksNotHited;
+    private int decksAlive;
 
     public Ship(ShipTypes shipType, ArrayList<Coordinates> coords) {
         this.shipType = shipType;
         this.coords = coords;
-        this.decksNotHited = this.coords.size();
+        this.decksAlive = this.coords.size();
     }
 
     public ShipTypes getShipType() {
@@ -25,10 +25,10 @@ public class Ship {
     }
 
     public void setDecksNotHited() {
-        this.decksNotHited--;
+        this.decksAlive--;
     }
 
     public boolean isAfloat() {
-        return this.decksNotHited > 0;
+        return this.decksAlive > 0;
     }
 }
