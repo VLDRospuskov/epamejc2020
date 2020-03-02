@@ -9,8 +9,8 @@ public class ShipSetter {
 
     public void setShips(Player player) {
         ArrayList<Ship> ships = player.getShips();
-        ships.addAll(createShips(player.getField(), ShipTypes.FOUR_DECK, 1));
-        ships.addAll(createShips(player.getField(), ShipTypes.THREE_DECK, 2));
+        ships.addAll(createShips(player.getField(), ShipTypes.QUADRUPLE_DECK, 1));
+        ships.addAll(createShips(player.getField(), ShipTypes.TRIPLE_DECK, 2));
         ships.addAll(createShips(player.getField(), ShipTypes.DOUBLE_DECK, 3));
         ships.addAll(createShips(player.getField(), ShipTypes.SINGLE_DECK, 4));
 

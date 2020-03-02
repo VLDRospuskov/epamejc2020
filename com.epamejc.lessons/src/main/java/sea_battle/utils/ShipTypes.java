@@ -1,7 +1,7 @@
 package sea_battle.utils;
 
 public enum ShipTypes {
-    SINGLE_DECK(1), DOUBLE_DECK(2), THREE_DECK(3), FOUR_DECK(4);
+    SINGLE_DECK(1), DOUBLE_DECK(2), TRIPLE_DECK(3), QUADRUPLE_DECK(4);
 
     private int value;
 

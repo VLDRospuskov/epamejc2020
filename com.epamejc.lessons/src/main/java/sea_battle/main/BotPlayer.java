@@ -139,30 +139,41 @@ public class BotPlayer extends Player {
                 break;
         }
 
+        if (isNotUniqueCoord(getMadeShots(), coord.getX(), coord.getY())) {
+            selectedDirection = changeDirection();
+            return checkDirection();
+        }
+
         lastHit = coord;
         return coord;
     }
 
     private Coordinates getCoords() {
-        boolean isUnique = false;
         int[] coords;
         Set<Coordinates> madeShots = getMadeShots();
 
-        do {
+        while (true) {
             coords = RandomGenerator.generateCoordinates();
-            isUnique = false;
 
             if (madeShots.size() > 0) {
-                for (Coordinates shot : madeShots) {
-                    if (coords[1] == shot.getX() && coords[0] == shot.getY()) {
-                        isUnique = true;
-                        break;
-                    }
+                if (isNotUniqueCoord(madeShots, coords[1], coords[0])) {
+                    continue;
                 }
             }
-        } while (isUnique);
+            break;
+        }
 
         return new Coordinates(coords[1], coords[0]);
+    }
+
+    private boolean isNotUniqueCoord(Set<Coordinates> madeShots, int x, int y) {
+        for (Coordinates shot : madeShots) {
+            if (x == shot.getX() && y == shot.getY()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

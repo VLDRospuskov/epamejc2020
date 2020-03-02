@@ -1,5 +1,7 @@
 package sea_battle.main;
 
+import sea_battle.utils.Colors;
+
 public class Field {
 
     private final int SIZE = 10;
@@ -23,13 +25,13 @@ public class Field {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field.length; j++) {
                 if (field[i][j] == 0) {
-                    s += " \u25CF ";
+                    s += Colors.GREEN.getColor() + " \u25CF " + Colors.MAIN.getColor();
                 } else if(field[i][j] == 1) {
-                    s += " \u25A0 ";
+                    s += Colors.BLUE.getColor() + " \u25A0 " + Colors.MAIN.getColor();
                 } else if (field[i][j] == 2) {
-                    s += " \u25CB ";
+                    s += Colors.YELLOW.getColor() + " \u25CB " + Colors.MAIN.getColor();
                 } else if (field[i][j] == -1) {
-                    s += " X ";
+                    s += Colors.RED.getColor() +  " X " + Colors.MAIN.getColor();
                 }
             }
             s += " " + (i + 1) + "\n";

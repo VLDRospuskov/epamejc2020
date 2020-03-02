@@ -1,6 +1,8 @@
 package sea_battle.main;
 
 
+import sea_battle.utils.ShipTypes;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
@@ -56,6 +58,29 @@ public abstract class Player {
 
     public boolean isWin() {
         return isWin;
+    }
+
+    public void shipsLeft() {
+        int singleDeckQty = 0;
+        int doubleDeckQty = 0;
+        int tripleDeckQty = 0;
+        int quadrupleDeckQty = 0;
+
+        for (Ship ship : ships) {
+            switch (ship.getShipType().toString()) {
+                case "SINGLE_DECK" : singleDeckQty++;
+                break;
+                case "DOUBLE_DECK" : doubleDeckQty++;
+                break;
+                case "TRIPLE_DECK" : tripleDeckQty++;
+                break;
+                case "QUADRUPLE_DECK" : quadrupleDeckQty++;
+                break;
+            }
+        }
+
+        System.out.print("Ships left: \nSingle deck: " + singleDeckQty + " Double deck: " + doubleDeckQty);
+        System.out.println(" Triple deck: " + tripleDeckQty + " Quadruple deck: " + quadrupleDeckQty);
     }
 
     public abstract boolean shot(Player opponent);

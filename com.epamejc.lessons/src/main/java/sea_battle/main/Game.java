@@ -56,6 +56,7 @@ public class Game {
         while (true) {
             System.out.println(opponent.getTitle() + " field");
             turnOrder.getOpponentField().printField();
+            opponent.shipsLeft();
 
             System.out.print(turnOrder.getTitle() + " turn: ");
 
