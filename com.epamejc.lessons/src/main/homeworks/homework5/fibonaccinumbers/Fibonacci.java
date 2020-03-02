@@ -12,7 +12,7 @@ public class Fibonacci {
         System.out.println(fibonacciSearch(number));
     }
 
-    private void input() {
+    public void input() {
         Scanner scanner = new Scanner(System.in);
         try {
             number = scanner.nextInt();
@@ -23,7 +23,7 @@ public class Fibonacci {
         scanner.close();
     }
 
-    private long fibonacciSearch(long n) {
+    public long fibonacciSearch(long n) {
         if (n <= 2) {
             int i = 1;
             return i;

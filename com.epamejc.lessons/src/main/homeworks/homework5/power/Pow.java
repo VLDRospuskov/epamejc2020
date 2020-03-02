@@ -15,7 +15,7 @@ public class Pow {
         System.out.print(number + " in "+ power + " : " + powerInt(number,power));
     }
 
-    private int input() {
+    public int input() {
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextInt()) {
             System.out.println("Enter integer.");
@@ -25,7 +25,7 @@ public class Pow {
         return value;
     }
 
-    private int powerInt(int number, int power) {
+    public int powerInt(int number, int power) {
         if (power == 0)
             return 1;
         if (power == 1)

@@ -11,7 +11,7 @@ public class TrafficLights {
         System.out.print("You turned off the traffic lights.");
     }
 
-    private void inputNumber() {
+    public void inputNumber() {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         int n;
@@ -21,7 +21,7 @@ public class TrafficLights {
                 if (n < 0 || n > 10) {
                     throw new ArithmeticException();
                 }
-                changeLight(n);
+                System.out.println(changeLight(n));
             } catch (ArithmeticException e) {
                 System.out.println("Enter a positive number less than 10!");
             } catch (Exception e) {
@@ -32,7 +32,7 @@ public class TrafficLights {
         in.close();
     }
 
-    private void changeLight(int min) {
+    public String changeLight(int min) {
         Colors current = null;
         if (min >= 0 && min <= 3) {
             current = Colors.Green;
@@ -43,7 +43,7 @@ public class TrafficLights {
         if (min >= 6 && min <= 10) {
             current = Colors.Red;
         }
-        System.out.println(current);
+        return current.toString();
     }
 
 }
