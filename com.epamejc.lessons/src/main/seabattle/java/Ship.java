@@ -1,5 +1,7 @@
 package seabattle.java;
 
+import java.util.Arrays;
+
 public class Ship {
 
     private Integer shipType;
@@ -11,6 +13,7 @@ public class Ship {
     private boolean isPressTop;
     private boolean isPressRight;
     private boolean isPressBottom;
+    private boolean isPossibleToSetShip;
 
 
     public Ship(Integer shipType, Integer[] startYX, Integer[] endYX, Field field) {
@@ -18,25 +21,64 @@ public class Ship {
         this.startYX = startYX;
         this.endYX = endYX;
         this.isSunk = false;
-        this.isHorizontal = false;
-        this.isPressLeft = false;
-        this.isPressTop = false;
-        this.isPressRight = false;
-        this.isPressBottom = false;
-//        field.get(startCoordinate[0]).get(startCoordinate[1]).setStatus(1);
-//        field.get(1).get(1).setStatus(1);
-        setShip(field);
-        setFlags();
-        setBarier(field);
+        isHorizontal = checkHorizontality();
+        isPossibleToSetShip = checkPosition(field);
+        isPressLeft = false;
+        isPressTop = false;
+        isPressRight = false;
+        isPressBottom = false;
+
+        if (isPossibleToSetShip) {
+            setShip(field);
+            setFlags();
+            setBarier(field);
+        } else {
+            System.out.println("Bad coordinates: " + Arrays.toString(startYX) + " " + Arrays.toString(endYX));
+        }
+
+    }
+
+    private boolean checkPosition(Field field) {
+        if (isHorizontal) {
+            int count = 0;
+            for (int i = startYX[1]; i <= endYX[1]; i++) {
+                int status = field.getField().get(startYX[0]).get(i).getStatus();
+                if (status == 0) {
+                    count++;
+                }
+            }
+            if (count == shipType) {
+                return true;
+            }
+        } else {
+            int count = 0;
+            for (int i = startYX[0]; i <= endYX[0]; i++) {
+                int status = field.getField().get(i).get(startYX[1]).getStatus();
+                if (status == 0 || status == -1) {
+                    count++;
+                }
+            }
+            if (count == shipType) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkHorizontality() {
+        if (startYX[0].equals(endYX[0])) {
+            return true;
+        }
+        return false;
     }
 
     private void setShip(Field field) {
-        if (startYX[0].equals(endYX[0])) {
+        if (isHorizontal) {
             for (int i = startYX[1]; i <= endYX[1]; i++) {
                 field.getField().get(startYX[0]).get(i).setStatus(1);
                 isHorizontal = true;
             }
-        } else if (startYX[1].equals(endYX[1])) {
+        } else {
             for (int i = startYX[0]; i <= endYX[0]; i++) {
                 field.getField().get(i).get(startYX[1]).setStatus(1);
             }
@@ -59,43 +101,100 @@ public class Ship {
         if (endYX[1] > 8) {
             isPressRight = true;
         }
-        System.out.println("Left: " + isPressLeft + ", Top: " + isPressTop + ", Right: " + isPressRight + ", Bottom: " + isPressBottom);
+//        System.out.println("Left: " + isPressLeft + ", Top: " + isPressTop + ", Right: " + isPressRight + ", Bottom: " + isPressBottom);
         System.out.println("Horizontal: " + isHorizontal);
 
     }
 
-    private void setBarier(Field field) {
-//        if(isHorizontal) {
-        if (isPressLeft && isPressTop) {
-            for (int i = startYX[1]; i <= endYX[1]; i++) {
-                field.getField().get(startYX[0] + 1).get(i).setStatus(-1);
+    private int setBarier(Field field) {
+        if (isPressLeft) {
+            if (isPressTop) {
+                for (int i = startYX[1]; i <= endYX[1]; i++) {
+                    field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
+                }
+                for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
+                    field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+                }
+                return 0;
             }
-            field.getField().get(startYX[0]).get(endYX[1] + 1).setStatus(-1);
-            field.getField().get(startYX[0] + 1).get(endYX[1] + 1).setStatus(-1);
-        }
-
-        if (isPressRight && isPressTop) {
-            for (int i = startYX[0]; i <= endYX[0]; i++) {
-                field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+            if (isPressBottom) {
+                for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
+                    field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+                }
+                for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
+                    field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+                }
+                return 0;
             }
-
-            for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
+            for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
+                field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
                 field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
             }
-
-//            field.getField().get(startXY[0]).get(startXY[1] - 1).setStatus(-1);
-//            field.getField().get(startXY[0] + 1).get(startXY[1] - 1).setStatus(-1);
+            for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
+                field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+            }
+            return 0;
         }
 
-        if (isPressRight && isPressBottom) {
-            for (int i = startYX[1]; i <= endYX[1]; i++) {
+        if (isPressRight) {
+            if (isPressTop) {
+                for (int i = startYX[0]; i <= endYX[0]; i++) {
+                    field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+                }
+                for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
+                    field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
+                }
+                return 0;
+            }
+            if (isPressBottom) {
+                for (int i = startYX[1]; i <= endYX[1]; i++) {
+                    field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+                }
+                for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
+                    field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+                }
+                return 0;
+            }
+            for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
+                field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+            }
+            for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
+                field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+                field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
+            }
+            return 0;
+        }
+        if (isPressTop) {
+            for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
+                field.getField().get(startYX[0] + 1).get(i).setStatus(-1);
+            }
+            for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
+                field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+                field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+            }
+            return 0;
+        }
+        if (isPressBottom) {
+            for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
                 field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
             }
             for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
                 field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+                field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
             }
+            return 0;
         }
+//        if (!isPressBottom && !isPressTop && !isPressLeft && !isPressRight) {
+        for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
+            field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+            field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
+        }
+        for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
+            field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+            field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+        }
+        return 0;
 //        }
-
+//        return 0;
     }
 }
