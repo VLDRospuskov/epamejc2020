@@ -19,6 +19,10 @@ public class HumanPlayer extends Player {
         int x = coords[1];
         int y = coords[0];
 
+        if (x < 0 || x > 9 && y < 0 || y > 9) {
+            shot(opponent);
+        }
+
         return super.makeShot(opponent, x, y);
     }
 

@@ -76,6 +76,10 @@ public abstract class Player {
 
             markCell(opponentField, x, y);
         }
+
+        for (Coordinates coord : coords) {
+            opponentField[coord.getY()][coord.getX()] = -1;
+        }
     }
 
     private void markCell(int[][] field, int x, int y) {
@@ -89,7 +93,7 @@ public abstract class Player {
                     continue;
                 }
 
-                field[i][j] = -1;
+                field[i][j] = 2;
             }
         }
     }
