@@ -1,8 +1,8 @@
 package homework1Test;
 
-import homework.homework1.ColorPrinter;
-import homework.homework1.TrafficColors;
-import homework.homework3.allInAll.Colors;
+import homeworks.homework1.ColorPrinter;
+import homeworks.homework1.TrafficColors;
+import homeworks.homework3.allInAll.Colors;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.io.ByteArrayOutputStream;

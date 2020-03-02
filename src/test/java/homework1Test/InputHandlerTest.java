@@ -1,8 +1,8 @@
 package homework1Test;
 
-import homework.homework1.InputHandler;
-import homework.homework1.TrafficColors;
-import homework.homework3.allInAll.Colors;
+import homeworks.homework1.InputHandler;
+import homeworks.homework1.TrafficColors;
+import homeworks.homework3.allInAll.Colors;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

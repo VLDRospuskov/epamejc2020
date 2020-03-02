@@ -1,6 +1,6 @@
 package homework1Test;
 
-import homework.homework1.TrafficLight;
+import homeworks.homework1.TrafficLight;
 import org.junit.*;
 
 import java.io.*;
