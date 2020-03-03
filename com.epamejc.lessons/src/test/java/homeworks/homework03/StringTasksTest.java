@@ -1,4 +1,4 @@
-package homeworks.HM3_Strings;
+package homeworks.homework03;
 
 import org.junit.Assert;
 import org.junit.Test;

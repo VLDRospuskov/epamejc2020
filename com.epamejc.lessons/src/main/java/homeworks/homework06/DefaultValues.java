@@ -1,4 +1,4 @@
-package homeworks.HM6_Annotation;
+package homeworks.homework06;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

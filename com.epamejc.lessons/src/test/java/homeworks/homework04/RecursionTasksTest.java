@@ -1,4 +1,4 @@
-package homeworks.HM4_Recursion;
+package homeworks.homework04;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package homeworks.HM6_Annotation;
+package homeworks.homework06;
 
 import lombok.Getter;
 import lombok.Setter;

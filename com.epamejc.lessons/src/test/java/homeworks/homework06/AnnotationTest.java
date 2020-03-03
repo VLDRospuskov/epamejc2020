@@ -1,4 +1,4 @@
-package homeworks.HM6_Annotation;
+package homeworks.homework06;
 
 import org.junit.Assert;
 import org.junit.Test;

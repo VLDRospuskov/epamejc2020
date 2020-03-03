@@ -1,4 +1,4 @@
-package homeworks.HM2_Arrays;
+package homeworks.homework02;
 
 import org.junit.Test;
 

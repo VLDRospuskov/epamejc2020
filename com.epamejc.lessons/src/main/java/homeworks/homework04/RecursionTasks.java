@@ -8,7 +8,7 @@
  4.3.  Посчитать количество знаков в числе
  */
 
-package homeworks.HM4_Recursion;
+package homeworks.homework04;
 
 import lombok.Setter;
 

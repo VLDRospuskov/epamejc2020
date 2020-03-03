@@ -1,4 +1,4 @@
-package homeworks.HM7_ReaderComparison;
+package homeworks.homework07;
 
 import lombok.SneakyThrows;
 
