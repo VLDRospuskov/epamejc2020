@@ -13,6 +13,8 @@ import static seabattle.java.Utils.*;
 public class Field {
 
     protected List<ArrayList<Cell>> field;
+    protected ArrayList<Ship> ships;
+
 
     public Field() {
         field = new ArrayList<>();
@@ -22,8 +24,8 @@ public class Field {
                 row.add(new Cell());
             }
             field.add(row);
-//            field.
         }
+        ships = new ArrayList<>();
     }
 
     public void printField() {
@@ -37,10 +39,4 @@ public class Field {
         clearScreen();
     }
 
-//    public void setShip() {
-//        field.get(1).get(1).setStatus(1);
-//        field.get(1).get(2).setStatus(1);
-//        field.get(1).get(3).setStatus(1);
-//        field.get(1).get(4).setStatus(1);
-//    }
 }

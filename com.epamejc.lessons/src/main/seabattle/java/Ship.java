@@ -1,7 +1,10 @@
 package seabattle.java;
 
+import lombok.Data;
+
 import java.util.Arrays;
 
+@Data
 public class Ship {
 
     private Integer shipType;
@@ -14,6 +17,7 @@ public class Ship {
     private boolean isPressRight;
     private boolean isPressBottom;
     private boolean isPossibleToSetShip;
+    private boolean isInitOk;
 
 
     public Ship(Integer shipType, Integer[] startYX, Integer[] endYX, Field field) {
@@ -23,6 +27,7 @@ public class Ship {
         this.isSunk = false;
         isHorizontal = checkHorizontality();
         isPossibleToSetShip = checkPosition(field);
+        isInitOk = false;
         isPressLeft = false;
         isPressTop = false;
         isPressRight = false;
@@ -32,6 +37,7 @@ public class Ship {
             setShip(field);
             setFlags();
             setBarier(field);
+            isInitOk = true;
         } else {
             System.out.println("Bad coordinates: " + Arrays.toString(startYX) + " " + Arrays.toString(endYX));
         }
@@ -102,7 +108,7 @@ public class Ship {
             isPressRight = true;
         }
 //        System.out.println("Left: " + isPressLeft + ", Top: " + isPressTop + ", Right: " + isPressRight + ", Bottom: " + isPressBottom);
-        System.out.println("Horizontal: " + isHorizontal);
+//        System.out.println("Horizontal: " + isHorizontal);
 
     }
 
