@@ -20,6 +20,9 @@ public class ThreadATMOperations extends Thread {
             TimeUnit.SECONDS.sleep(1);
 
             bank.controlATM(atm, 1000, 50);
+            if (bank.bankrupt) {
+                break;
+            }
 
             if(user.chooseRandomOperation()) {
                 userDeposit();
@@ -43,11 +46,11 @@ public class ThreadATMOperations extends Thread {
 
         double amount = user.getRandomAmount();
 
-        if (user.getBalance() > amount) {
+        if (user.getBalance() > 5) {
             atm.deposit(amount);
             user.setBalance(user.getBalance() - amount);
         } else {
-            user.setBankrupt(true);
+            user.bankrupt = true;
             System.out.println("User: " + user.getName() + " bankrupt!");
         }
     }

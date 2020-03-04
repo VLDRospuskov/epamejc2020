@@ -18,8 +18,9 @@ public class Cell {
         int m = 0;
         for (int i=0; i<cells.length; i++) {
             if (hitPositions.size() != 0 && h < hitPositions.size() && i == hitPositions.get(h)) {
-                cells[i] = "◻";
+                cells[i] = "¤";//◻ ✦ ☒ ¤ ʘ ⊗ ❂
                 h++;
+                s++;
             } else if (shipPositions.size() != 0 && s < shipPositions.size() && i == shipPositions.get(s)) { //&& shipVisibility) {
                 cells[i] = "■";
                 s++;

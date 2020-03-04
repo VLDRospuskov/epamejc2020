@@ -15,10 +15,10 @@ public class ThreadController {
         ATM atm4 = new ATM("ATM4",500);
 
 
-        User user1 = new User("Boris", 250, false);
-        User user2 = new User("Vladimir1", 250, false);
-        User user3 = new User("Dmitriy", 250, false);
-        User user4 = new User("Vladimir2", 250, false);
+        User user1 = new User("Boris1", 250, false);
+        User user2 = new User("Vladimir2", 250, false);
+        User user3 = new User("Dmitriy3", 250, false);
+        User user4 = new User("Vladimir4", 250, false);
 
         ThreadATMOperations threadATMOperations1 = new ThreadATMOperations(bank, user1, atm1);
         ThreadATMOperations threadATMOperations2 = new ThreadATMOperations(bank, user2, atm2);

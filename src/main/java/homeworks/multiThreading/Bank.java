@@ -46,7 +46,7 @@ public class Bank {
         synchronized (ThreadController.lock) {
             atm.setBalance(max / 2);
             balance += atmBalance - max / 2;
-            System.out.println("ATM gave " + atm.getName() + " money to bank!\n");
+            System.out.println("ATM " + atm.getName() + " gave money to bank!\n");
         }
     }
 }

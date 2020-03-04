@@ -32,9 +32,9 @@ public class FieldPrinter {
             }
             System.out.printf(" " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s ."
                     + "   " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s .\n",
-                    playerCells[i*10+0], playerCells[i*10+1], playerCells[i*10+2], playerCells[i*10+3], playerCells[i*10+4],
+                    playerCells[i*10], playerCells[i*10+1], playerCells[i*10+2], playerCells[i*10+3], playerCells[i*10+4],
                     playerCells[i*10+5], playerCells[i*10+6], playerCells[i*10+7], playerCells[i*10+8], playerCells[i*10+9],
-                    opponentCells[i*10+0], opponentCells[i*10+1], opponentCells[i*10+2], opponentCells[i*10+3], opponentCells[i*10+4],
+                    opponentCells[i*10], opponentCells[i*10+1], opponentCells[i*10+2], opponentCells[i*10+3], opponentCells[i*10+4],
                     opponentCells[i*10+5], opponentCells[i*10+6], opponentCells[i*10+7], opponentCells[i*10+8], opponentCells[i*10+9]);
         }
     }

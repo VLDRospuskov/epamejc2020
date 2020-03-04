@@ -14,7 +14,7 @@ public class ATM {
 
         synchronized (ThreadController.lock) {
             balance += amount;
-            System.out.println("Atm: " + getName() + " balance " + getBalance());
+            System.out.println("Deposit to " + getName() + " " + amount + " balance " + getBalance());
         }
     }
 
@@ -23,9 +23,10 @@ public class ATM {
         synchronized (ThreadController.lock) {
             if (amount < balance) {
                 balance -= amount;
-                System.out.println("Atm: " + getName() + " balance " + getBalance());
+                System.out.println("Withdraw from " + getName() + " " + amount + " balance " + getBalance());
             } else {
-                System.out.println("Sorry, operation is not available!");
+                System.out.println("Sorry, withdraw " + amount + " from " +
+                        balance + " at " + getName() + " is not available!");
             }
             balance -= amount;
         }
