@@ -8,10 +8,10 @@ import lombok.Data;
 public class Bank {
 
     public String name;
-    private double balance;
+    private volatile double balance;
     public volatile boolean bankrupt;
 
-    public void controlATM (ATM atm, double max, double min) {
+    public void controlATM(ATM atm, double max, double min) {
 
         System.out.println("Bank balance: " + balance);
         double atmBalance = atm.getBalance();
@@ -27,28 +27,27 @@ public class Bank {
         }
     }
 
-    private void withdrawATM(ATM atm, double atmBalance, double max) {
-        synchronized (ThreadController.lock) {
-            if (balance > max / 2) {
+    private synchronized void withdrawATM(ATM atm, double atmBalance, double max) {
+        if (balance > max / 2) {
 
-                double amount = max / 2 - atmBalance;
-                atm.setBalance(max / 2);
-                balance -= amount;
-                System.out.println(atm.getName() + " got " + amount + " from bank!\n");
+            double amount = max / 2 - atmBalance;
+            atm.setBalance(max / 2);
+            balance -= amount;
+            System.out.println(atm.getName() + " got " + amount + " from bank!\n");
 
-            } else {
-                System.out.println("Oops we are bankrupt!");
-                bankrupt = true;
-            }
+        } else {
+            System.out.println("Oops we are bankrupt!");
+            bankrupt = true;
         }
+
     }
 
-    private void depositATM (ATM atm, double atmBalance, double max) {
-        synchronized (ThreadController.lock) {
-            double amount = atmBalance - max / 2;
-            atm.setBalance(max / 2);
-            balance += amount;
-            System.out.println(atm.getName() + " gave " + amount + " to bank!\n");
-        }
+    private synchronized void depositATM(ATM atm, double atmBalance, double max) {
+
+        double amount = atmBalance - max / 2;
+        atm.setBalance(max / 2);
+        balance += amount;
+        System.out.println(atm.getName() + " gave " + amount + " to bank!\n");
+
     }
 }

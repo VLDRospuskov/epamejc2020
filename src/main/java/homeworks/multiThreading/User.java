@@ -24,10 +24,8 @@ public class User {
 
     public void setBalance(double amount, boolean success) {
         if (success) {
-            synchronized (ThreadController.lock) {
-                System.out.println("User: " + name + " balance " + balance);
-                balance = amount;
-            }
+            System.out.println("User: " + name + " balance " + balance);
+            balance = amount;
         } else {
             System.out.println(name + " couldn't get " + amount);
         }

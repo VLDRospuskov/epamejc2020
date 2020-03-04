@@ -13,9 +13,9 @@ public class ThreadATMOperations extends Thread {
     public ATM atm;
 
     @SneakyThrows
-    public void run () {
+    public void run() {
 
-        while (!bank.bankrupt && !user.bankrupt) {
+        while (!user.bankrupt) {
 
             TimeUnit.SECONDS.sleep(1);
 
@@ -24,14 +24,13 @@ public class ThreadATMOperations extends Thread {
                 break;
             }
 
-            if(user.chooseRandomOperation()) {
+            if (user.chooseRandomOperation()) {
                 userDeposit();
             } else {
                 userWithdraw();
             }
             System.out.println();
         }
-
     }
 
     private void userWithdraw() {
