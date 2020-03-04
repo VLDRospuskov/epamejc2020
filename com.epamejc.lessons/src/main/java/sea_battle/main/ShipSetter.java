@@ -1,7 +1,7 @@
 package sea_battle.main;
 
 import sea_battle.utils.RandomGenerator;
-import sea_battle.utils.ShipTypes;
+import sea_battle.enums.ShipTypes;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,6 @@ public class ShipSetter {
         ships.addAll(createShips(player.getField(), ShipTypes.TRIPLE_DECK, 2));
         ships.addAll(createShips(player.getField(), ShipTypes.DOUBLE_DECK, 3));
         ships.addAll(createShips(player.getField(), ShipTypes.SINGLE_DECK, 4));
-
     }
 
     private ArrayList<Ship> createShips(Field field, ShipTypes decksQty, int shipsQty) {
@@ -72,7 +71,6 @@ public class ShipSetter {
             }
 
         }
-
         return decks;
     }
 

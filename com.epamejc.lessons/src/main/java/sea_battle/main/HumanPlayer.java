@@ -1,6 +1,6 @@
 package sea_battle.main;
 
-import sea_battle.utils.Points;
+import sea_battle.enums.Points;
 import sea_battle.utils.Reader;
 
 public class HumanPlayer extends Player {

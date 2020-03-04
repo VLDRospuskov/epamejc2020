@@ -18,13 +18,13 @@ public class Game {
         System.out.println("<<<<<<<<<<<<<<<<SEA BATTLE>>>>>>>>>>>>>>>>");
         System.out.println("Let`s start!");
 
-        checkPlayersQty();
+        setPlayersQty();
         setter.setShips(turnOrder);
         setter.setShips(opponent);
         game();
     }
 
-    private void checkPlayersQty() {
+    private void setPlayersQty() {
         System.out.println("One player or two players?(type: 1 or 2)");
 
         String userInput = reader.read();
@@ -32,14 +32,14 @@ public class Game {
 
         if (tryParse(userInput)) {
             playersQty = Integer.parseInt(userInput);
-            setPlayers(playersQty);
+            createPlayers(playersQty);
         } else{
             System.out.println("Wrong entry! Try again!");
-            checkPlayersQty();
+            setPlayersQty();
         }
     }
 
-    private void setPlayers(int playersQty) {
+    private void createPlayers(int playersQty) {
         turnOrder = new HumanPlayer(reader,"Player One");
 
         if (playersQty == 1) {
@@ -47,7 +47,7 @@ public class Game {
         } else if(playersQty == 2) {
             opponent = new HumanPlayer(reader,"Player Two");
         } else {
-            checkPlayersQty();
+            setPlayersQty();
         }
     }
 

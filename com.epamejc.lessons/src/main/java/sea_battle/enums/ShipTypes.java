@@ -1,4 +1,4 @@
-package sea_battle.utils;
+package sea_battle.enums;
 
 public enum ShipTypes {
     SINGLE_DECK(1), DOUBLE_DECK(2), TRIPLE_DECK(3), QUADRUPLE_DECK(4);

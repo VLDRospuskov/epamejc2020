@@ -1,6 +1,6 @@
 package sea_battle.main;
 
-import sea_battle.utils.Colors;
+import sea_battle.enums.Colors;
 
 public class Field {
 

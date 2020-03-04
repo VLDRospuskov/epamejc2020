@@ -1,8 +1,6 @@
 package sea_battle.main;
 
 
-import sea_battle.utils.ShipTypes;
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
