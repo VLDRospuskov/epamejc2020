@@ -28,4 +28,4 @@ target
 *.iml
 /.idea
 src/main/java/experiments
-src/main/java/sea_battle/
+sea_battle/
