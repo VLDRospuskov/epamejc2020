@@ -1,39 +1,75 @@
 package homework.homework1;
-import lombok.SneakyThrows;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static homework.homework1.TrafficLight.*;
 
 public class TrafficLightTest {
 
-    @Test
-    public void getColorForTime() {
-        TrafficLight trafficLight = new TrafficLight();
-        Assert.assertEquals("Green", trafficLight.getColorForTime(0.0));
-        Assert.assertEquals("Yellow", trafficLight.getColorForTime(5.0));
-        Assert.assertEquals("Red", trafficLight.getColorForTime(10.0));
+    private TrafficLight trafficLight;
+
+    private InputStream sysInBackup;
+    private PrintStream sysOutBackup;
+
+    private ByteArrayOutputStream baOutputStream;
+
+    @Before
+    public void setUp() {
+        trafficLight = new TrafficLight();
+
+        sysInBackup = System.in;
+        sysOutBackup = System.out;
+
+        ByteArrayInputStream baInputStream = new ByteArrayInputStream("0.0\n4\n9\nq".getBytes());
+        System.setIn(baInputStream);
+
+        baOutputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(baOutputStream));
     }
 
-    @SneakyThrows
+    public void setDown() {
+        System.setIn(sysInBackup);
+        System.setOut(sysOutBackup);
+    }
+
+    @Test
+    public void getColorForTime() {
+        assertEquals(GREEN, trafficLight.getColorForTime(0.0));
+        assertEquals(GREEN, trafficLight.getColorForTime(1.5));
+        assertEquals(GREEN, trafficLight.getColorForTime(3.0));
+        assertEquals(YELLOW, trafficLight.getColorForTime(3.01));
+        assertEquals(YELLOW, trafficLight.getColorForTime(5.0));
+        assertEquals(RED, trafficLight.getColorForTime(5.1));
+        assertEquals(RED, trafficLight.getColorForTime(10.0));
+        assertEquals(ERR_TIME_VALUE, trafficLight.getColorForTime(10.01));
+        assertEquals(ERR_TIME_VALUE, trafficLight.getColorForTime(-1.0));
+    }
+
     @Test
     public void run() {
-//        InputStream sysInBackup = System.in; // backup System.in to restore it later
-//        ByteArrayInputStream in = new ByteArrayInputStream("0\n4\n9\nq".getBytes());
-//        System.setIn(in);
-//
-//        TrafficLight trafficLight = new TrafficLight();
-//        trafficLight.run();
-//
-//        byte byteArray[] = new byte[0];
-//        PrintStream stream =  System.out;
-//        System.out.write(byteArray);
-//        String result = new String(byteArray);
-//        System.out.println("!!!" + result);
-//// optionally, reset System.in to its original
-//        System.setIn(sysInBackup);
+        trafficLight.run();
 
+        final List<String> colors = findColors(baOutputStream.toString());
+
+        assertEquals(GREEN, colors.get(0));
+        assertEquals(YELLOW, colors.get(1));
+        assertEquals(RED, colors.get(2));
+    }
+
+    private List<String> findColors(String text) {
+        String[] linesArray = text.split("\r\n");
+        List<String> linesList = new ArrayList<>(Arrays.asList(linesArray));
+        List<String> exceptList = new ArrayList<>(
+                Arrays.asList(INFO, INVITATION, ERR_TIME_FORMAT, ERR_TIME_VALUE, QUIT, "")
+        );
+
+        linesList.removeAll(exceptList);
+        return linesList;
     }
 }

@@ -12,20 +12,21 @@ public class CharMatrixTest {
     @Before
     public void setup() {
         char[][] matrix = new char[][]{
-                {'q', 'w'},
-                {'e', 'r'},
-                {'t', 'y'}
+                {'q', 'w', 'a', 's'},
+                {'e', 'r', 'd', 'f'},
+                {'t', 'y', 'g', 'h'},
+                { 'z', 'x', 'c', 'v'}
         };
         charMatrix = new CharMatrix(matrix);
     }
 
     @Test
     public void toStringStrategyA() {
-        assertEquals("qt", charMatrix.toStringStrategyA());
+        assertEquals("qatg", charMatrix.toStringStrategyA());
     }
 
     @Test
     public void toStringStrategyB() {
-        assertEquals("r", charMatrix.toStringStrategyB());
+        assertEquals("rfxv", charMatrix.toStringStrategyB());
     }
 }
