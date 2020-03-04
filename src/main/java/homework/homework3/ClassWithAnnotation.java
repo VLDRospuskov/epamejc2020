@@ -10,17 +10,7 @@ public class ClassWithAnnotation {
     private String name;
     private int age;
 
-    @CustomAnnotation
+    @CustomAnnotation(name = "Yana", age = 24)
     public ClassWithAnnotation(){
-        CustomAnnotation annotation = getClass().getDeclaredConstructors()[0].getAnnotation(CustomAnnotation.class);
-
-            System.out.println(annotation);
-            if (annotation != null) {
-                name = annotation.name();
-                age = annotation.age();
-            }
-            else {
-                throw new RuntimeException("Constructor must have a CustomAnnotation annotation");
-            }
     }
 }

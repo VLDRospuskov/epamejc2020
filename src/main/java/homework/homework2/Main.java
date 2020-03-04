@@ -12,7 +12,7 @@ public class Main {
         Immutable immutable = new Immutable(22);
         System.out.println("Immutable object was created");
         System.out.println("value = " + immutable.getValue());
-        immutable = new Immutable(66); // is replaced with new instance
+        immutable = new Immutable(66);
         System.out.println("value = " + immutable.getValue());
 
         RandomPyramidalMatrix pyramidalArray = new RandomPyramidalMatrix(10);
@@ -28,7 +28,7 @@ public class Main {
         String everyOtherCharsString = StringGenerator.createOfEveryOtherChars("String", true);
         System.out.println(everyOtherCharsString);
 
-        String chosenCharsString = StringGenerator.createOfChars("Hello world", 0, 4, 6);
+        String chosenCharsString = StringGenerator.createOfIndexes("Hello world", 0, 4, 6);
         System.out.println(chosenCharsString);
 
         String swappedSymbolsString = StringGenerator.swapSymbols("Hello World", 0, 4);

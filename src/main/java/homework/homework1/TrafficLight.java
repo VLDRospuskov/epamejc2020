@@ -4,33 +4,43 @@ import java.util.Scanner;
 
 public class TrafficLight {
 
+    final static String INFO = "If you want to quit press 'q'.";
+    final static String INVITATION = "Enter time in double format: ";
+    final static String ERR_TIME_FORMAT = "Error. Incorrect format.";
+    final static String ERR_TIME_VALUE = "Error. Incorrect time value.";
+    final static String QUIT = "q";
+
+    final static String RED = "Red";
+    final static String GREEN = "Green";
+    final static String YELLOW = "Yellow";
+
     public String getColorForTime(Double time) {
         if (time >= 0 && time <= 3) {
-            return "Green";
+            return GREEN;
         }
+
         if (time > 3 && time <= 5) {
-            return "Yellow";
+            return YELLOW;
         }
+
         if (time > 5 && time <= 10) {
-            return "Red";
+            return RED;
         }
 
-        return "Incorrect time";
+        return ERR_TIME_VALUE;
     }
-
-    public TrafficLight(){}
 
     public void run() {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("If you want to quit press 'q'.");
+        System.out.println(INFO);
 
         while (true) {
-            System.out.println("Enter time: ");
+            System.out.println(INVITATION);
             String input = scanner.nextLine();
 
-            if (input.equals("q")) {
+            if (input.equals(QUIT)) {
                 break;
             }
 
@@ -38,7 +48,7 @@ public class TrafficLight {
             try {
                 time = Double.valueOf(input);
             } catch (NumberFormatException e) {
-                System.out.println("Error. Enter double value.");
+                System.out.println(ERR_TIME_FORMAT);
                 continue;
             }
 

@@ -7,7 +7,7 @@ public class StringGenerator {
         return getEveryOtherChars(string, startIndex);
     }
 
-    public static String createOfChars(String string, int... indexes) {
+    public static String createOfIndexes(String string, int... indexes) {
 
         StringBuilder builder = new StringBuilder();
 

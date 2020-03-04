@@ -3,11 +3,11 @@ package homework.homework2.recursion;
 public class Pow {
     public static double getPow(double number, int pow) {
 
-        if (pow == 0 || number == 1) {
+        if ( pow == 0 || (Double.compare(number, 1)==0) ) {
             return 1.0;
         }
 
-        if (number == 0) {
+        if ( Double.compare(number, 0)==0 ) {
             return 0.0;
         }
 

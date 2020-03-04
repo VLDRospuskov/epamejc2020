@@ -9,6 +9,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target(CONSTRUCTOR)
 @Retention(RUNTIME)
 public @interface CustomAnnotation {
-    String name() default "Yana";
-    int age() default 24;
+    String name() default "Anya";
+    int age() default 6;
 }
