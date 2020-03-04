@@ -6,7 +6,7 @@ import lombok.SneakyThrows;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         final Cat cat = new Cat();
         final CatThread catThread = new CatThread(cat);
         final CatThreadNotifySetName catThreadNotify = new CatThreadNotifySetName(cat);
@@ -38,6 +38,7 @@ class CatThreadNotifySetName extends Thread {
     @SneakyThrows
     public void run() {
         cat.setName("BARSIK");
+        Thread.sleep(2000);
         synchronized (cat) {
             System.out.println("NOTIFY THREAD NAME");
             cat.notifyAll();
