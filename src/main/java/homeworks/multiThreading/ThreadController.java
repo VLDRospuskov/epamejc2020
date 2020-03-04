@@ -1,9 +1,13 @@
 package homeworks.multiThreading;
 
+import lombok.SneakyThrows;
+
+
 public class ThreadController {
 
     public final static Object lock = new Object();
 
+    @SneakyThrows
     public void start() {
 
         Bank bank = new Bank("Tinkovv", 2500, false);
@@ -29,5 +33,17 @@ public class ThreadController {
         threadATMOperations2.start();
         threadATMOperations3.start();
         threadATMOperations4.start();
+
+        threadATMOperations1.join();
+        threadATMOperations2.join();
+        threadATMOperations3.join();
+        threadATMOperations4.join();
+
+        double sum = bank.getBalance() + atm1.getBalance() + atm2.getBalance() + atm3.getBalance()
+                + atm4.getBalance() + user1.getBalance() + user2.getBalance() + user3.getBalance()
+                + user4.getBalance();
+
+        System.out.println("Expected sum: 5500\n" +
+                "Actual sum:   " + sum);
     }
 }

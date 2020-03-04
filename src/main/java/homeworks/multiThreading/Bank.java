@@ -31,9 +31,10 @@ public class Bank {
         synchronized (ThreadController.lock) {
             if (balance > max / 2) {
 
+                double amount = max / 2 - atmBalance;
                 atm.setBalance(max / 2);
-                balance -= max / 2 - atmBalance;
-                System.out.println("ATM " + atm.getName() + " got money from bank!\n");
+                balance -= amount;
+                System.out.println(atm.getName() + " got " + amount + " from bank!\n");
 
             } else {
                 System.out.println("Oops we are bankrupt!");
@@ -44,9 +45,10 @@ public class Bank {
 
     private void depositATM (ATM atm, double atmBalance, double max) {
         synchronized (ThreadController.lock) {
+            double amount = atmBalance - max / 2;
             atm.setBalance(max / 2);
-            balance += atmBalance - max / 2;
-            System.out.println("ATM " + atm.getName() + " gave money to bank!\n");
+            balance += amount;
+            System.out.println(atm.getName() + " gave " + amount + " to bank!\n");
         }
     }
 }

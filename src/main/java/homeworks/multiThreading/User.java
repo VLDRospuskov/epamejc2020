@@ -14,7 +14,7 @@ public class User {
     public volatile boolean bankrupt;
 
 
-    public boolean chooseRandomOperation () {
+    public boolean chooseRandomOperation() {
         return new Random().nextInt() > 0;
     }
 
@@ -22,10 +22,14 @@ public class User {
         return new Random().nextDouble() * balance;
     }
 
-    public void setBalance (double amount) {
-        synchronized (ThreadController.lock) {
-            balance = amount;
-            System.out.println("User: " + name + " balance " + balance);
+    public void setBalance(double amount, boolean success) {
+        if (success) {
+            synchronized (ThreadController.lock) {
+                System.out.println("User: " + name + " balance " + balance);
+                balance = amount;
+            }
+        } else {
+            System.out.println(name + " couldn't get " + amount);
         }
     }
 }

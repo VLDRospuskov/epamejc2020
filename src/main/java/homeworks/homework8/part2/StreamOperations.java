@@ -10,7 +10,7 @@ import static homeworks.homework8.part2.GenerateData.getEmployees;
 
 public class StreamOperations {
 
-    void showAllStatistics () {
+    void showAllStatistics() {
         findPersonsEverWorkedInEpam();
         findPersonsBeganCareerInEpam();
         findAllCompanies();
@@ -75,8 +75,7 @@ public class StreamOperations {
                 .map(employee -> employee.getPerson().getAge())
                 .min(Integer::compare)
                 .orElseGet(() -> {
-                    System.out.println("No employee found");
-                    return null;
+                    throw new EmployeeNotFoundException();
                 });
 
         System.out.printf("_______________________________\n" +
@@ -105,8 +104,7 @@ public class StreamOperations {
                 .map(Employee::getPerson)
                 .max((Comparator.comparingInt(person -> person.getFirstName().length() + person.getLastName().length())))
                 .orElseGet(() -> {
-                    System.out.println("No employee found");
-                    return null;
+                    throw new EmployeeNotFoundException();
                 });
 
         System.out.println("_______________________________\n" +
@@ -120,36 +118,32 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         Employee expected = employees.stream()
-                .reduce((employee1, employee2) -> {
-                    int years1 = employee1.getJobHistory().stream()
-                            .map(JobHistoryEntry::getDuration)
-                            .max(Integer::compare)
-                            .orElseGet(() -> {
-                                System.out.println("Employee history is empty");
-                                return 0;
-                            });
-                    int years2 = employee2.getJobHistory().stream()
-                            .map(JobHistoryEntry::getDuration)
-                            .max(Integer::compare)
-                            .orElseGet(() -> {
-                                System.out.println("Employee history is empty");
-                                return 0;
-                            });
-                    return years1 > years2 ? employee1 : employee2;
-                })
+                .reduce(StreamOperations::compareDurations)
                 .orElseGet(() -> {
-                    System.out.println("No employee found");
-                    return null;
+                    throw new EmployeeNotFoundException();
                 });
 
-        assert expected != null;
+
         System.out.println("_______________________________\n" +
                 "Employee with max duration on one position: " +
                 expected.getPerson().getFirstName() + " " +
                 expected.getPerson().getLastName() + " " +
                 expected.getJobHistory().stream()
-                    .map(JobHistoryEntry::getDuration)
-                    .collect(Collectors.toList()));
+                        .map(JobHistoryEntry::getDuration)
+                        .collect(Collectors.toList()));
         System.out.println("_______________________________\n");
+    }
+
+    private static Employee compareDurations(Employee employee1, Employee employee2) {
+        return getEmployeeDuration(employee1) > getEmployeeDuration(employee2) ? employee1 : employee2;
+    }
+
+    private static Integer getEmployeeDuration(Employee employee) {
+        return employee.getJobHistory().stream()
+                .map(JobHistoryEntry::getDuration)
+                .max(Integer::compare)
+                .orElseGet(() -> {
+                    throw new NoJobHistoryException();
+                });
     }
 }

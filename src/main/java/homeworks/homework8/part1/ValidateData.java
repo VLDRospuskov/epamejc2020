@@ -7,7 +7,7 @@ public class ValidateData {
 
 
 
-    public List<Integer> showValidatedData (List<Integer> data , Validator<? super Integer> validator) {
+    public List<Integer> showValidatedData (List<Integer> data , Validator<? extends Integer> validator) {
 
         return data.stream()
                 .map(number -> number < 500 ? validator.validate(number) : number)

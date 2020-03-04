@@ -38,8 +38,8 @@ public class ThreadATMOperations extends Thread {
 
         double amount = user.getRandomAmount();
 
-        atm.withdraw(amount);
-        user.setBalance(user.getBalance() + amount);
+        boolean success = atm.withdraw(amount);
+        user.setBalance(user.getBalance() + amount, success);
     }
 
     private void userDeposit() {
