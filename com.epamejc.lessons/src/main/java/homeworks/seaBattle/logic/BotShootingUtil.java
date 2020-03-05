@@ -30,6 +30,7 @@ public class BotShootingUtil extends PlayerShootingUtil {
     /**
      * Method describes the algorithm of shooting at a human player field
      * after the first successful shot in the series
+     *
      * @param shotCoordinates cell coordinates of the enemy field
      * @return true/false if computer hits or misses enemy ship
      */
@@ -67,6 +68,7 @@ public class BotShootingUtil extends PlayerShootingUtil {
     /**
      * Method describes the algorithm of shooting at a human player field
      * after an unsuccessful hit or during the first shot
+     *
      * @param shotCoordinates cell coordinates of the enemy field
      * @return true/false if computer hits or misses enemy ship
      */
@@ -97,8 +99,9 @@ public class BotShootingUtil extends PlayerShootingUtil {
 
     /**
      * Method for tests! Look at {@link BotShootingUtil#setShotCoordinates(int[])}
+     *
      * @param validShotCoordinates direction for next shot (could be wrong)
-     * @param shotDirection coordinates of a successful shot
+     * @param shotDirection        coordinates of a successful shot
      */
     public void setShotCoordinatesTest(int[] validShotCoordinates, String shotDirection) {
         this.isPointFixed = true;
@@ -110,6 +113,7 @@ public class BotShootingUtil extends PlayerShootingUtil {
 
     /**
      * Method for saving attributes of a successful shot
+     *
      * @param validShotCoordinates coordinates of a successful shot
      */
     private void setShotCoordinates(int[] validShotCoordinates) {
@@ -129,6 +133,7 @@ public class BotShootingUtil extends PlayerShootingUtil {
 
     /**
      * Method checks given coordinates and generates new ones if the given coordinates are wrong
+     *
      * @param shotCoordinates given coordinates of the new shot
      * @return array of new (if generated) or given coordinates
      */
@@ -143,6 +148,7 @@ public class BotShootingUtil extends PlayerShootingUtil {
 
     /**
      * Method generates new coordinates of the new shot
+     *
      * @return array of generated coordinates
      */
     private int[] generateCoordinates() {
@@ -162,6 +168,7 @@ public class BotShootingUtil extends PlayerShootingUtil {
     /**
      * Method determines the direction for shooting after a successful hit
      * (with checking {@link BotShootingUtil#firingDirections} of previous direction options)
+     *
      * @param coordinates coordinates of successful hit
      * @return direction for shooting
      */
@@ -185,10 +192,11 @@ public class BotShootingUtil extends PlayerShootingUtil {
 
     /**
      * Method checks the field border for the next cell
+     *
      * @param direction shooting direction
-     * @param xCoord horizontal coordinate
-     * @param yCoord vertical coordinate
-     * @param step distance from original shooting coordinate
+     * @param xCoord    horizontal coordinate
+     * @param yCoord    vertical coordinate
+     * @param step      distance from original shooting coordinate
      * @return true/false if there is/is not field border
      */
     private boolean checkNextCell(String direction, int xCoord, int yCoord, int step) {

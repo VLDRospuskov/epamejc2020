@@ -97,7 +97,6 @@ public class InputOperatorTest {
         Assert.assertEquals(expectedResult2, actualResult2);
     }
 
-
     @AfterClass
     public static void returnIn() {
         setIn(originalIn);

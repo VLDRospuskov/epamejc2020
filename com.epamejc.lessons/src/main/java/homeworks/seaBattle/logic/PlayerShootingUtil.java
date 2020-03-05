@@ -29,6 +29,7 @@ public class PlayerShootingUtil {
 
     /**
      * Method checks the banned cells of the enemy field {@link PlayerShootingUtil#enemyBannedCells}
+     *
      * @param potentialFireCell {@link Cell} cell where're going to shoot
      * @return true/false if the list of enemy banned cells contains/doesn't contain shooting cell
      */
@@ -38,6 +39,7 @@ public class PlayerShootingUtil {
 
     /**
      * Method describes the algorithm of shooting at a computer field
+     *
      * @param shotCoordinates cell coordinates of the enemy field
      * @return true/false if player hits or misses enemy ship
      */
@@ -65,6 +67,7 @@ public class PlayerShootingUtil {
 
     /**
      * Method for destroying an enemy ship and updating cells status
+     *
      * @param destroyedShip destroyed computer's ship {@link Ship}
      */
     public void processDestroyedShip(Ship destroyedShip) {
@@ -81,6 +84,7 @@ public class PlayerShootingUtil {
 
     /**
      * Method for removing a ship object from the field
+     *
      * @param destroyedShip destroyed computer's ship {@link Ship}
      */
     private void removeShipFromCells(Ship destroyedShip) {

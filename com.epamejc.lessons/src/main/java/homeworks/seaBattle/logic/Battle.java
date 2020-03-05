@@ -38,10 +38,11 @@ public class Battle {
 
     /**
      * Method for processing battle between human player and computer player
+     *
      * @throws InterruptedException exception, if there're troubles with thread
      */
     public void startBattle() throws InterruptedException {
-        fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
+        fieldPrinter.printDoubleField(humanPlayer.getField(), botPlayer.getField());
 
         while (!isGameFinished) {
             boolean isPlayerMove = true;
@@ -54,7 +55,7 @@ public class Battle {
                     break;
                 }
                 isPlayerMove = playerShootingUtil.shot(shotCoordinates);
-                fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
+                fieldPrinter.printDoubleField(humanPlayer.getField(), botPlayer.getField());
                 if (checkFinishGameConditions()) {
                     isGameFinished = true;
                     break;
@@ -63,7 +64,7 @@ public class Battle {
             while (isBotMove && !isGameFinished) {
                 Thread.sleep(2500);
                 isBotMove = botShootingUtil.shot(generateRandomCoordinates(Configuration.getFieldSize()));
-                fieldPrinter.printDoubleField(humanPlayer.getField(),botPlayer.getField());
+                fieldPrinter.printDoubleField(humanPlayer.getField(), botPlayer.getField());
                 if (checkFinishGameConditions()) {
                     isGameFinished = true;
                     break;
@@ -75,6 +76,7 @@ public class Battle {
 
     /**
      * Method checks the game finish conditions
+     *
      * @return true/false if the game have to continue/finish
      */
     private boolean checkFinishGameConditions() {

@@ -11,7 +11,6 @@ public class StreamOperations {
     void findPersonsEverWorkedInEpam() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toList()
         List<Person> personsEverWorkedInEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory().stream()
                         .anyMatch(job -> job.getCompany().equals("EPAM")))
@@ -89,8 +88,8 @@ public class StreamOperations {
                 .reduce((employee1, employee2) ->
                         employee1.getJobHistory().stream().map(JobHistoryEntry::getDuration)
                                 .max(Integer::compareTo).orElse(0) > employee2.getJobHistory().stream()
-                                        .map(JobHistoryEntry::getDuration)
-                                        .max(Integer::compareTo).orElse(0)
+                                .map(JobHistoryEntry::getDuration)
+                                .max(Integer::compareTo).orElse(0)
                                 ? employee1 : employee2)
                 .orElse(null);
 

@@ -27,7 +27,8 @@ public class ManualShipPlacer {
 
     /**
      * Method for ship placement
-     * @param ships {@link Ship} to be placed
+     *
+     * @param ships   {@link Ship} to be placed
      * @param scanner {@link Scanner} object
      */
     public void placeShips(List<Ship> ships, Scanner scanner) {
@@ -49,7 +50,8 @@ public class ManualShipPlacer {
 
     /**
      * Method for checking entered direction for ship placement
-     * @param ship ship to be placed
+     *
+     * @param ship      ship to be placed
      * @param direction direction for placement
      * @return true/false, if ship can be placed in this direction
      */
@@ -73,7 +75,8 @@ public class ManualShipPlacer {
 
     /**
      * Method for checking entered coordinates for ship placement
-     * @param ship {@link Ship} to be placed
+     *
+     * @param ship    {@link Ship} to be placed
      * @param indexes vertical and horizontal coordinates of the cell for placement
      * @return true/false, if ship can be placed at these coordinates
      */
@@ -92,10 +95,11 @@ public class ManualShipPlacer {
 
     /**
      * Method for placement single-deck ship
-     * @param ship {@link Ship} to be placed
+     *
+     * @param ship    {@link Ship} to be placed
      * @param scanner {@link Scanner} object
      */
-    private void placeSingleShip(Ship ship, Scanner scanner) {
+    public void placeSingleShip(Ship ship, Scanner scanner) {
         System.out.println("Placing " + ship.getShipType() + " ship");
         boolean isCellFixed = false;
         while (!isCellFixed && !isInputExitCondition) {
@@ -121,10 +125,11 @@ public class ManualShipPlacer {
 
     /**
      * Method for ship placement
-     * @param ship {@link Ship} to be placed
+     *
+     * @param ship    {@link Ship} to be placed
      * @param scanner {@link Scanner} object
      */
-    private void placeShip(Ship ship, Scanner scanner) {
+    public void placeShip(Ship ship, Scanner scanner) {
         System.out.println("Placing " + ship.getShipType() + " ship");
         boolean isCellFixed = false;
         while (!isCellFixed && !isInputExitCondition) {
@@ -134,14 +139,15 @@ public class ManualShipPlacer {
                 if (checkEnteredCoordinates(ship, indexes)) break;
             }
         }
-        if(!isInputExitCondition) {
+        if (!isInputExitCondition) {
             processPlacementDirection(ship, scanner);
         }
     }
 
     /**
      * Method for initializing the direction of the ship
-     * @param ship ship to be placed
+     *
+     * @param ship    ship to be placed
      * @param scanner scanner object
      */
     private void processPlacementDirection(Ship ship, Scanner scanner) {
@@ -158,6 +164,7 @@ public class ManualShipPlacer {
 
     /**
      * Method changes starting placement cell status and fixes coordinates of the ship
+     *
      * @param ship ship to be placed
      * @param cell starting placement cell
      */
@@ -169,6 +176,7 @@ public class ManualShipPlacer {
 
     /**
      * Method removes starting placement cell status and removes coordinates of the ship
+     *
      * @param ship ship to be placed
      * @param cell starting placement cell
      */
@@ -180,6 +188,7 @@ public class ManualShipPlacer {
 
     /**
      * Method for initializing {@link Ship} attributes
+     *
      * @param ship ship to be placed
      */
     private void initializeShip(Ship ship) {
@@ -192,7 +201,8 @@ public class ManualShipPlacer {
     }
 
     /**
-     * Method returns the number of ships within the radius of the placed ship
+     * Method returns the number of ships within the radius of the placed single-deck ship
+     *
      * @param ship ship to be placed
      * @return number of another ships around placement ship
      */

@@ -5,8 +5,8 @@ import homeworks.seaBattle.data.Player;
 import java.util.Scanner;
 
 /**
- * @version 1.1
  * @author Andrew Nuzha
+ * @version 1.1
  */
 public class Application {
 
@@ -35,7 +35,7 @@ public class Application {
             }
         } catch (InterruptedException intEx) {
             System.err.println("There is a problem with thread");
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             System.err.println("Something went wrong " + ex.getMessage());
         } finally {
             scanner.close();

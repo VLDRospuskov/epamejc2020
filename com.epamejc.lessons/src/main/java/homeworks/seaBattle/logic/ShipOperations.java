@@ -12,6 +12,17 @@ public class ShipOperations {
 
     private List<Ship> ships = new ArrayList<>();
 
+    public void removeShip(Ship ship) {
+        ships.remove(ship);
+    }
+
+    public List<Ship> getShips() {
+        return ships;
+    }
+
+    /**
+     * Method to populate the list of ships {@link ShipOperations#ships}
+     */
     public void generateShips() {
         for (int i = 0; i < Configuration.getLincorNumber(); i++) {
             ships.add(new Ship(ShipType.LINCOR.getType(), Configuration.getLincorDecks()));
@@ -28,14 +39,9 @@ public class ShipOperations {
         ships.sort(Comparator.comparingInt(Ship::getShipDecks).reversed());
     }
 
-    public void removeShip(Ship ship) {
-        ships.remove(ship);
-    }
-
-    public List<Ship> getShips() {
-        return ships;
-    }
-
+    /**
+     * Method for printing the number of ships in the ships-list {@link ShipOperations#ships}
+     */
     public void printShipsNumber() {
         long lincorCount = ships.stream().filter(ship -> ship.getShipType()
                 .equals(ShipType.LINCOR.getType())).count();

@@ -23,6 +23,7 @@ public class AutomaticShipPlacer {
 
     /**
      * Method for placing one ship {@link Ship}
+     *
      * @param ship ship to be placed
      */
     public void placeShip(Ship ship) {
@@ -49,9 +50,10 @@ public class AutomaticShipPlacer {
 
     /**
      * Method checks the radius around the selected cell at a distance {@param shipDecks}
+     *
      * @param direction direction of potential {@link Ship} placement
-     * @param xCoord horizontal coordinate
-     * @param yCoord vertical coordinate
+     * @param xCoord    horizontal coordinate
+     * @param yCoord    vertical coordinate
      * @param shipDecks distance of potential {@link Ship} placement
      * @return true or false, if we can/can't place ship on selected attributes
      */
@@ -78,6 +80,7 @@ public class AutomaticShipPlacer {
 
     /**
      * Method checks if there are ship cells in the list of cells
+     *
      * @param cellsInRadius list of selected cells {@link Cell}
      * @return true or false, if there aren't/are another ships cells
      */
@@ -92,10 +95,11 @@ public class AutomaticShipPlacer {
 
     /**
      * Method for initializing {@link Ship} attributes
-     * @param ship ship object to be initialized
+     *
+     * @param ship            ship object to be initialized
      * @param randomDirection generated direction of ship placement
-     * @param randomCoordX horizontal coordinate
-     * @param randomCoordY vertical coordinate
+     * @param randomCoordX    horizontal coordinate
+     * @param randomCoordY    vertical coordinate
      */
     private void initializeShip(Ship ship, String randomDirection, int randomCoordX, int randomCoordY) {
         ship.setDirection(randomDirection);

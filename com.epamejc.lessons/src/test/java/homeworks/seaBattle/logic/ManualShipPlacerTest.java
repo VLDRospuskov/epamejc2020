@@ -1,12 +1,14 @@
 package homeworks.seaBattle.logic;
 
+import homeworks.seaBattle.data.Cell;
 import homeworks.seaBattle.data.Ship;
 import homeworks.seaBattle.data.enums.Directions;
 import homeworks.seaBattle.data.enums.ShipType;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.io.ByteArrayInputStream;
+import java.util.Scanner;
 
 public class ManualShipPlacerTest {
 
@@ -57,6 +59,60 @@ public class ManualShipPlacerTest {
         Assert.assertTrue(actualResult1);
         Assert.assertFalse(actualResult2);
         Assert.assertFalse(actualResult3);
+    }
+
+    /**
+     * Testing {@link ManualShipPlacer#ManualShipPlacer(FieldOperations)}
+     */
+    @Test
+    public void testPlaceSingleShip() {
+        FieldOperations testFieldOperations = new FieldOperations();
+        testFieldOperations.generateField();
+        ManualShipPlacer manualShipPlacer = new ManualShipPlacer(testFieldOperations);
+        Ship singleDeckShip1 = generateShip(2, 2, Directions.UP.getDirection(), 1);
+        Ship singleDeckShip2 = generateShip(6, 2, Directions.UP.getDirection(), 1);
+        Ship singleDeckShip3 = generateShip(4, 4, Directions.UP.getDirection(), 1);
+        testFieldOperations.getCellByCoords(2, 2).setCellShip(singleDeckShip1);
+        testFieldOperations.getCellByCoords(6, 2).setCellShip(singleDeckShip2);
+        testFieldOperations.getCellByCoords(4, 4).setCellShip(singleDeckShip3);
+
+        Ship placingShip = generateShip(4, 1, "", 1);
+        System.setIn(new ByteArrayInputStream("D 1".getBytes()));
+        Scanner scanner = new Scanner(System.in);
+        manualShipPlacer.placeSingleShip(placingShip, scanner);
+        Cell test = testFieldOperations.getCellByCoords(4, 1);
+        boolean actualResult = test.getCellShip() != null;
+        Assert.assertTrue(actualResult);
+    }
+
+    /**
+     * Testing {@link ManualShipPlacer#placeShip(Ship, Scanner)}
+     */
+    @Test
+    public void testPlaceShip() {
+        FieldOperations testFieldOperations = new FieldOperations();
+        testFieldOperations.generateField();
+        ManualShipPlacer manualShipPlacer = new ManualShipPlacer(testFieldOperations);
+        Ship singleDeckShip1 = generateShip(2, 2, Directions.UP.getDirection(), 1);
+        Ship singleDeckShip2 = generateShip(6, 2, Directions.UP.getDirection(), 1);
+        Ship singleDeckShip3 = generateShip(4, 4, Directions.UP.getDirection(), 1);
+        testFieldOperations.getCellByCoords(2, 2).setCellShip(singleDeckShip1);
+        testFieldOperations.getCellByCoords(6, 2).setCellShip(singleDeckShip2);
+        testFieldOperations.getCellByCoords(4, 4).setCellShip(singleDeckShip3);
+
+        Ship placingShip = generateShip(1, 4, "", 2);
+        String simulatedUserInput = "D 1" + System.getProperty("line.separator")
+                + "down" + System.getProperty("line.separator");
+        System.setIn(new ByteArrayInputStream(simulatedUserInput.getBytes()));
+        //System.setIn(new ByteArrayInputStream("down".getBytes()));
+        Scanner scanner = new Scanner(System.in);
+        manualShipPlacer.placeShip(placingShip, scanner);
+        boolean actualResult = false;
+        if (testFieldOperations.getCellByCoords(4, 1).getCellShip() != null &&
+                testFieldOperations.getCellByCoords(4, 2).getCellShip() != null) {
+            actualResult = true;
+        }
+        Assert.assertTrue(actualResult);
     }
 
     /**
