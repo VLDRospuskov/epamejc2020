@@ -95,10 +95,17 @@ homework        -  Test all homework tasks with JUnit 4.12.
 homework7.task1 -  Read text from a file and write it to another file by two ways - through byte and symbol streams. 
                    Measure the runtime of both methods.                                   
                    
-                 
+homework8.task1 -  Write your own functional interfaces like BiFunction and Supplier (Producer).
+                   Create any class with several fields. Create a method that will take functional interfaces created 
+                   earlier. Get 2 fields and process the received and return.               
                    
-                  
+homework8.task2 -  Use already written code.
+                   In class "StreamOperations" realize streams.
                    
+homework9.task1 -  Write an emulator program for several ATMs and users. There is one general balance, 
+                   there are several ATMs that work with this balance - imagine that they are in different parts of the 
+                   city, and the balance is common. There are also several users who will go to these ATMs, 
+                   replenish / withdraw / check the balance.
                    
                    
 
