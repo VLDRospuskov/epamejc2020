@@ -1,4 +1,4 @@
-# epamejc2020 \m/ Yury Kofanov
+# epamejc2020 \m/ 
 
 homework1.task1 -  Create a “traffic light” that outputs a signal-color. You enter a time from 0-3 minutes 
                    - the program displays "green", 4-5 minutes - "yellow", 6-10 - "red". 
