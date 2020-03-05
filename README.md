@@ -6,3 +6,4 @@ HW4 - Strings
 HW5 - Recursion
 HW6 - Custom Annotation
 HW7 - Java IO
+HW8 - Functional Interfaces and Stream Operations
