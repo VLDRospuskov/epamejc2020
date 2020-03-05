@@ -7,7 +7,7 @@ public class FilesWriter {
     private static String text = "Hello, dear! Have a seat and let's talk.";
 
     public void writeByBytes() {
-        String fileName = "D://Studies/Java/InputOutput/fileoutputstreamtext.txt";
+        String fileName = "fileoutputstreamtext.txt";
 
         try (FileOutputStream fos = new FileOutputStream(fileName)) {
             byte[] buffer = text.getBytes();
@@ -23,7 +23,7 @@ public class FilesWriter {
     }
 
     public void writeWithBuffer() {
-        String fileName = "D://Studies/Java/InputOutput/bufferedoutputstreamtext.txt";
+        String fileName = "bufferedoutputstreamtext.txt";
 
         try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(fileName))) {
             byte[] buffer = text.getBytes();
@@ -38,7 +38,7 @@ public class FilesWriter {
     }
 
     public void writeFileByFileWriter() {
-        String fileName = "D://Studies/Java/InputOutput/fileWriter.txt";
+        String fileName = "fileWriter.txt";
 
         try (FileWriter fileWriter = new FileWriter(fileName, false)) {
             for (int i = 0; i < 100000; i++) {
@@ -52,7 +52,7 @@ public class FilesWriter {
     }
 
     public void writeFileWithBufferedWriter() {
-        String fileName = "D://Studies/Java/InputOutput/bufferedWriterFile.txt";
+        String fileName = "bufferedWriterFile.txt";
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName, false))) {
             for (int i = 0; i < 100000; i++) {

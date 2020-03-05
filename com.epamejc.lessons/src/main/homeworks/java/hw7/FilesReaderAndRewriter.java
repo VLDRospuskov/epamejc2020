@@ -6,10 +6,10 @@ import java.util.Arrays;
 public class FilesReaderAndRewriter {
 
     public void readAndRewriteByBytes() {
-        String fileName = "D://Studies/Java/InputOutput/fileoutputstreamtext.txt";
-        String newFileName = "D://Studies/Java/InputOutput/fileoutputstreamtext.txt";
+        String fileNameToRead = "fileoutputstreamtext.txt";
+        String newFileName = "fileoutputstreamtext_new.txt";
 
-        try (FileInputStream fis = new FileInputStream(fileName);
+        try (FileInputStream fis = new FileInputStream(fileNameToRead);
              FileOutputStream fos = new FileOutputStream
                      (newFileName)) {
             System.out.format("File size is %d bytes\n", fis.available());
@@ -23,10 +23,10 @@ public class FilesReaderAndRewriter {
     }
 
     public void readAndRewriteByBuffer() {
-        String fileName = "D://Studies/Java/InputOutput/bufferedoutputstreamtext.txt";
-        String newFileName = "D://Studies/Java/InputOutput/bufferedoutputstreamtext_new.txt";
+        String fileNameToRead = "bufferedoutputstreamtext.txt";
+        String newFileName = "bufferedoutputstreamtext_new.txt";
 
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(fileName));
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(fileNameToRead));
              BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFileName))) {
             System.out.format("File size is %d bytes\n", bis.available());
             byte[] buffer = new byte[bis.available()];
@@ -41,9 +41,9 @@ public class FilesReaderAndRewriter {
     }
 
     public void readAndRewriteByFileReaderWriter() {
-        String fileName = "D://Studies/Java/InputOutput/fileWriter.txt";
-        String newFileName = "D://Studies/Java/InputOutput/fileWriter_new.txt";
-        try (FileReader fileReader = new FileReader(fileName);
+        String fileNameToRead = "fileWriter.txt";
+        String newFileName = "fileWriter_new.txt";
+        try (FileReader fileReader = new FileReader(fileNameToRead);
              FileWriter fileWriter = new FileWriter(newFileName)) {
             char[] buff = new char[1024];
             int c;
@@ -61,10 +61,10 @@ public class FilesReaderAndRewriter {
     }
 
     public void readAndRewriteByBufferedReaderWriter() {
-        String fileName = "D://Studies/Java/InputOutput/bufferedWriterFile.txt";
-        String newFileName = "D://Studies/Java/InputOutput/bufferedWriterFile_new.txt";
+        String fileNameToRead = "bufferedWriterFile.txt";
+        String newFileName = "bufferedWriterFile_new.txt";
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileNameToRead));
              BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(newFileName))) {
             char[] buff = new char[1024];
             int c;
