@@ -14,12 +14,12 @@ public class Main {
             ob2.t.join();
             ob3.t.join();
         } catch (InterruptedException e) {
-            System.out.println("Main thread Interrupted");
+            System.out.println("SemDemo thread Interrupted");
         }
         System.out.println("Thread One is alive: " + ob1.t.isAlive()); // FALSE
         System.out.println("Thread Two is alive: " + ob2.t.isAlive()); // FALSE
         System.out.println("Thread Three is alive: " + ob3.t.isAlive()); // FALSE
-        System.out.println("Main thread exiting.");
+        System.out.println("SemDemo thread exiting.");
     }
 
 }
