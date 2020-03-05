@@ -7,11 +7,20 @@ import java.util.List;
 public class Positions {
 
     public static List<Integer> playerHitPositions = new ArrayList<>();
-    public static List<Integer> playerMissPositions = new ArrayList<>();
     public static List<Integer> opponentHitPositions = new ArrayList<>();
+
+    public static List<Integer> playerMissPositions = new ArrayList<>();
     public static List<Integer> opponentMissPositions = new ArrayList<>();
+
     public static List<Integer> playerShipPositions = new ArrayList<>();
     public static List<Integer> opponentShipPositions = new ArrayList<>();
+
+    public static List<Integer> playerDeadShipPositions = new ArrayList<>();
+    public static List<Integer> opponentDeadShipPositions = new ArrayList<>();
+
+    public static List<Ship> playerShips = new ArrayList<>();
+    public static List<Ship> opponentShips = new ArrayList<>();
+
     public static final List<String> allCells = Arrays.asList(
             "A1", "B1", "C1", "D1", "E1", "F1", "G1", "H1", "Y1", "J1",
             "A2", "B2", "C2", "D2", "E2", "F2", "G2", "H2", "Y2", "J2",
@@ -25,15 +34,26 @@ public class Positions {
             "A10", "B10", "C10", "D10", "E10", "F10", "G10", "H10", "Y10", "J10");
 
 
-    public static void swapAndSet (List<Integer> hitPosition, List<Integer> missPosition) {
-        List<Integer> x;
+    public static void swapAndSet (List<Integer> hitPosition, List<Integer> missPosition, List<Integer> deadShipPosition) {
+
         opponentHitPositions = playerHitPositions;
         opponentMissPositions = playerMissPositions;
+
         playerHitPositions = hitPosition;
         playerMissPositions = missPosition;
+
+        playerDeadShipPositions = opponentDeadShipPositions;
+        opponentDeadShipPositions = deadShipPosition;
+
+        List<Integer> x;
         x = playerShipPositions;
         playerShipPositions = opponentShipPositions;
         opponentShipPositions = x;
+
+        List<Ship> s;
+        s = playerShips;
+        playerShips = opponentShips;
+        opponentShips = s;
     }
 
 }

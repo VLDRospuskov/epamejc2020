@@ -2,6 +2,7 @@ package homeworks.seabattle.battlefield;
 
 import homeworks.seabattle.ConsoleReader;
 import homeworks.seabattle.Positions;
+import homeworks.seabattle.Ship;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 public class FieldInitiator {
 
     public List<String> cellPool = new ArrayList<>();
+
+    public List<Ship> ships = new ArrayList<>();
 
     private List<String> cells = Positions.allCells;
 
@@ -53,7 +56,9 @@ public class FieldInitiator {
             for (String shipCell : shipCells) {
                 cellPool.add(shipCell.toUpperCase());
             }
-
+            ships.add(new Ship(Arrays.stream(findCellPositions(shipCells))
+                    .boxed()
+                    .collect(Collectors.toList())));
         } else {
             System.out.println("\nWrong input!\nTry again!");
         }

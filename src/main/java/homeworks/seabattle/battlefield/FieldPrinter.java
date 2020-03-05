@@ -9,10 +9,11 @@ public class FieldPrinter {
     public void print () {
 
         Cell cellsToPrint = new Cell();
+
         String[] playerCells = cellsToPrint.initCells(Positions.playerShipPositions, Positions.opponentHitPositions,
-                Positions.opponentMissPositions, true);
+                Positions.opponentMissPositions, Positions.playerDeadShipPositions, true);
         String[] opponentCells = cellsToPrint.initCells(Positions.opponentShipPositions, Positions.playerHitPositions,
-                Positions.playerMissPositions, true);
+                Positions.playerMissPositions, Positions.opponentDeadShipPositions, true);
 
         System.out.println("      " + "A   B   C   D   E   F   G   H   Y   J"
                 + "          " + "A   B   C   D   E   F   G   H   Y   J");

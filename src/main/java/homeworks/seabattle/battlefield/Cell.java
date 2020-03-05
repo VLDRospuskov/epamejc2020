@@ -6,18 +6,25 @@ import java.util.List;
 public class Cell {
 
     public String[] initCells(List<Integer> shipPositions, List<Integer> hitPositions,
-                              List<Integer> missPositions, boolean shipVisibility) {
-
+                              List<Integer> missPositions, List<Integer> deadShipPositions, boolean shipVisibility) {
+        deadShipPositions.sort(Comparator.comparingInt(a -> a));
         shipPositions.sort(Comparator.comparingInt(a -> a));
         hitPositions.sort(Comparator.comparingInt(a -> a));
         missPositions.sort(Comparator.comparingInt(a -> a));
         String[] cells = new String[100];
 
+        int d = 0;
         int s = 0;
         int h = 0;
         int m = 0;
-        for (int i=0; i<cells.length; i++) {
-            if (hitPositions.size() != 0 && h < hitPositions.size() && i == hitPositions.get(h)) {
+        for (int i = 0; i < cells.length; i++) {
+
+            if (deadShipPositions.size() != 0 && d < deadShipPositions.size() && i == deadShipPositions.get(d)) {
+                cells[i] = "ʘ";
+                d++;
+                h++;
+                s++;
+            } else if (hitPositions.size() != 0 && h < hitPositions.size() && i == hitPositions.get(h)) {
                 cells[i] = "¤";//◻ ✦ ☒ ¤ ʘ ⊗ ❂
                 h++;
                 s++;
