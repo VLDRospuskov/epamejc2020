@@ -25,6 +25,8 @@ public class Engine {
         field1.printField();
         manualShipPlacement(field1);
         field1.printField();
+        System.out.println("Ships size: " + field1.getShips().size());
+
 
     }
 
@@ -43,8 +45,11 @@ public class Engine {
         Integer[] startYX = (Integer[]) params.get(1);
         Integer[] endYX = (Integer[]) params.get(2);
 
-
         field.getShips().add(new Ship(shipType, startYX, endYX, field));
+        boolean shipInitOk = field.getShips().get(field.getShips().size() - 1).isInitOk();
+        if (!shipInitOk) {
+            field.getShips().remove(field.getShips().size() - 1);
+        }
         return field;
     }
 

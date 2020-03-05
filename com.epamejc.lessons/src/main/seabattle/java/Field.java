@@ -29,11 +29,16 @@ public class Field {
     }
 
     public void printField() {
+        System.out.println("");
+        System.out.println("    A  B  C  D  E  F  G  H  I  J");
+        int index = 1;
         for (ArrayList row : field) {
+            System.out.printf("%2d  ", index);
             ArrayList<Cell> col = row;
             for (Cell cell : col) {
                 System.out.print(cell + "  ");
             }
+            index++;
             System.out.println("");
         }
         clearScreen();

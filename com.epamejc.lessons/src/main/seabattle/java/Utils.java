@@ -29,6 +29,9 @@ public class Utils {
     private static String scanInput() {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
+        if (input.equals("exit")) {
+            System.exit(0); // убрать перед сдачей
+            }
         return input;
     }
 
@@ -47,7 +50,7 @@ public class Utils {
                     throw new NumberFormatException();
                 }
             } catch (Exception e) {
-                System.out.println("Bad coordinates. Try again.");
+                System.out.println("\nBad coordinates. Try again.");
             }
         }
         return coordYX;
@@ -65,6 +68,7 @@ public class Utils {
         boolean isBadEnter = true;
         while (isBadEnter) {
             try {
+                System.out.println("\nEnter ship type. It matches to the number of occupied cells.");
                 System.out.print("Please enter ship type(1-4): ");
                 String input = scanInput();
                 shipType = Integer.parseInt(input);
@@ -73,7 +77,7 @@ public class Utils {
                     throw new NumberFormatException();
                 }
             } catch (Exception e) {
-                System.out.println("Bad type. Try again.");
+                System.out.println("\nBad type. Try again.");
             }
         }
         return shipType;
@@ -89,12 +93,13 @@ public class Utils {
     public static ArrayList scanShipParams(Field field) {
         ArrayList params = null;
         boolean isLimitOfShip = true;
+
         while (isLimitOfShip) {
             params = new ArrayList();
-            System.out.println("\nEnter ship type. It matches to the number of occupied cells.");
             int shipType = scanShipType();
             params.add(shipType);
             boolean isVacant = checkShipCount(field, shipType);
+
             if (isVacant){
                 System.out.println("\nЕnter the coordinates of the cell in which the beginning of the ship will be.");
                 params.add(scanCoordinates());
@@ -108,13 +113,25 @@ public class Utils {
     }
 
     public static boolean checkShipCount(Field field, int shipType) {
-        int count = (int) field.getShips().stream()
+        int actualCount = (int) field.getShips().stream()
                 .filter(ship -> ship.getShipType().equals(shipType))
                 .count();
-        if (count < 3) {
+        int maxCount = getCountOfShipByType(shipType);
+        if (actualCount < maxCount) {
             return true;
         }
         return false;
+    }
+
+    public static int getCountOfShipByType(int shipType) {
+        if(shipType == 4) {
+            return 1;
+        } else if (shipType == 3) {
+            return 2;
+        } else if (shipType == 2) {
+            return 3;
+        }
+        return 4;
     }
 
 }

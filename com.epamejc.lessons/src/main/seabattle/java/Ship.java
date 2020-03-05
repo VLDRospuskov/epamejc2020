@@ -39,36 +39,44 @@ public class Ship {
             setBarier(field);
             isInitOk = true;
         } else {
-            System.out.println("Bad coordinates: " + Arrays.toString(startYX) + " " + Arrays.toString(endYX));
+            System.out.println("\nBad coordinates: " + Arrays.toString(startYX) + " " + Arrays.toString(endYX) + ". Try again.");
         }
 
     }
 
     private boolean checkPosition(Field field) {
-        if (isHorizontal) {
-            int count = 0;
-            for (int i = startYX[1]; i <= endYX[1]; i++) {
-                int status = field.getField().get(startYX[0]).get(i).getStatus();
-                if (status == 0) {
-                    count++;
-                }
-            }
-            if (count == shipType) {
-                return true;
-            }
-        } else {
-            int count = 0;
-            for (int i = startYX[0]; i <= endYX[0]; i++) {
-                int status = field.getField().get(i).get(startYX[1]).getStatus();
-                if (status == 0 || status == -1) {
-                    count++;
-                }
-            }
-            if (count == shipType) {
-                return true;
-            }
+        if (startYX[0] != endYX[0] && startYX[1] != endYX[1]) {
+            return false;
+        }
+
+        if (isHorizontal && countFreeCellsInHorizontal(field) == shipType) {
+            return true;
+        } else if (!isHorizontal && countFreeCellsInVertical(field) == shipType) {
+            return true;
         }
         return false;
+    }
+
+    private int countFreeCellsInHorizontal(Field field) {
+        int count = 0;
+        for (int i = startYX[1]; i <= endYX[1]; i++) {
+            int status = field.getField().get(startYX[0]).get(i).getStatus();
+            if (status == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int countFreeCellsInVertical(Field field) {
+        int count = 0;
+        for (int i = startYX[0]; i <= endYX[0]; i++) {
+            int status = field.getField().get(i).get(startYX[1]).getStatus();
+            if (status == 0) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private boolean checkHorizontality() {
