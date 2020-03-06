@@ -3,6 +3,7 @@ package homework2.ArrayPyramid;
 public class Main {
 
     public static void main(String[] args) {
-        new ArrayPyramid();
+        buildPyramid buildPyramid = new buildPyramid();
+        buildPyramid.run();
     }
 }

@@ -1,16 +1,15 @@
-package homework2.ArrayRandomChar;
+package homework2.ArrayRandomCharRactangle;
 
-import java.util.Random;
 import java.util.Scanner;
 
-public class RandomCharRectangleLogic {
+public class randomCharRectangle {
     private int width = 0;
     private int height = 0;
 
     public void run() {
         getWH();
-        RandomCharRectangle randomCharRectangle = new RandomCharRectangle();
-        System.out.println(randomCharRectangle.buildRectangle(height,width));
+        randomCharRectangleLogic randomCharRectangleLogic = new randomCharRectangleLogic();
+        System.out.println(randomCharRectangleLogic.buildRectangle(height,width));
     }
 
     private void getWH() {
