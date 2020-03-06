@@ -27,7 +27,21 @@ public class Cell {
                 output = "-";
             }
         } else {
-            if (status.equals(0)) {
+            if (status.equals(0) || status.equals(-1)) {
+                output = "*";
+            } else {
+                output = "X";
+            }
+        }
+        return output;
+    }
+
+    public String printHidden() {
+        String output = "";
+        if (!isHit) {
+            output = "_";
+        } else {
+            if (status.equals(0) || status.equals(-1)) {
                 output = "*";
             } else {
                 output = "X";

@@ -58,25 +58,35 @@ public class Ship {
     }
 
     private int countFreeCellsInHorizontal(Field field) {
-        int count = 0;
+        int countFreeCells = 0;
+        int countCells = 0;
         for (int i = startYX[1]; i <= endYX[1]; i++) {
             int status = field.getField().get(startYX[0]).get(i).getStatus();
             if (status == 0) {
-                count++;
+                countFreeCells++;
             }
+            countCells++;
         }
-        return count;
+        if(countFreeCells != countCells){
+            return 0;
+        }
+        return countFreeCells;
     }
 
     private int countFreeCellsInVertical(Field field) {
-        int count = 0;
+        int countFreeCells = 0;
+        int countCells = 0;
         for (int i = startYX[0]; i <= endYX[0]; i++) {
             int status = field.getField().get(i).get(startYX[1]).getStatus();
             if (status == 0) {
-                count++;
+                countFreeCells++;
             }
+            countCells++;
         }
-        return count;
+        if(countFreeCells != countCells){
+            return 0;
+        }
+        return countFreeCells;
     }
 
     private boolean checkHorizontality() {

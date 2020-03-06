@@ -26,6 +26,62 @@ public class Utils {
         System.out.println("\n");
     }
 
+    public static void printField(Field field) {
+        System.out.println("");
+        System.out.println("    A  B  C  D  E  F  G  H  I  J");
+        int index = 1;
+        for (ArrayList row : field.getField()) {
+            System.out.printf("%2d  ", index);
+            ArrayList<Cell> col = row;
+            for (Cell cell : col) {
+                System.out.print(cell + "  ");
+            }
+            index++;
+            System.out.println("");
+        }
+        clearScreen();
+    }
+
+    public static void printHiddenField(Field field) {
+        System.out.println("");
+        System.out.println("    A  B  C  D  E  F  G  H  I  J");
+        int index = 1;
+        for (ArrayList row : field.getField()) {
+            System.out.printf("%2d  ", index);
+            ArrayList<Cell> col = row;
+            for (Cell cell : col) {
+                System.out.print(cell.printHidden() + "  ");
+            }
+            index++;
+            System.out.println("");
+        }
+        clearScreen();
+    }
+
+    public static void printTwoField(Field field1, Field field2) {
+        System.out.println("");
+        System.out.println("    A  B  C  D  E  F  G  H  I  J              A  B  C  D  E  F  G  H  I  J");
+        int index = 1;
+        for (int i = 0; i < 10; i++) {
+            System.out.printf("%2d  ", index);
+
+            ArrayList<Cell> col1 = field1.getField().get(i);
+            for (Cell cell : col1) {
+                System.out.print(cell + "  ");
+            }
+            System.out.print("        ");
+
+            System.out.printf("%2d  ", index);
+            ArrayList<Cell> col2 = field2.getField().get(i);
+            for (Cell cell : col2) {
+                System.out.print(cell.printHidden() + "  ");
+            }
+            index++;
+            System.out.println("");
+        }
+        clearScreen();
+    }
+
     private static String scanInput() {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
@@ -41,7 +97,7 @@ public class Utils {
         boolean isBadEnter = true;
         while (isBadEnter) {
             try {
-                System.out.print("Please enter coordinate with a space(example \"10 F\"): ");
+                System.out.print("\nPlease enter coordinate with a space(example \"10 F\"): ");
                 String[] input = scanInput().split(" ");
                 coordYX[0] = (Integer.parseInt(input[0])) - 1;
                 coordYX[1] = dictionary.get(input[1].toUpperCase());
@@ -106,9 +162,24 @@ public class Utils {
                 System.out.println("\nЕnter the coordinates of the cell in which the end of the ship will be.");
                 params.add(scanCoordinates());
                 isLimitOfShip = false;
+            } else {
+                System.out.println("\nThe limit of ships of this type has been reached. Add another ship type!");
             }
         }
+        params = sortCoordinatesAscending(params);
+        return params;
+    }
 
+    public static ArrayList sortCoordinatesAscending(ArrayList params) {
+        Integer[] startYX = (Integer[]) params.get(1);
+        Integer[] endYX = (Integer[]) params.get(2);
+        if(startYX[0] > endYX[0] || startYX[1] > endYX[1]) {
+            Integer[] temp = startYX;
+            startYX = endYX;
+            endYX = temp;
+        }
+        params.set(1, startYX);
+        params.set(2, endYX);
         return params;
     }
 
