@@ -9,11 +9,27 @@ public class EvenOddString {
     private String input;
     private String parity = "";
 
+    public void setParity(String parity) {
+        this.parity = parity;
+    }
+
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public String getParity() {
+        return parity;
+    }
+
+    public String getInput() {
+        return input;
+    }
+
     public void run() {
         inputString();
     }
 
-    private void inputString() {
+    public void inputString() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("Enter string: ");
@@ -33,13 +49,13 @@ public class EvenOddString {
         }
     }
 
-    private boolean oddOrEven() {
+    public boolean oddOrEven() {
         if (parity.equals("even") || parity.equals("Even")) {
-            evenChars();
+            System.out.println(evenChars());
             return true;
         }
         if (parity.equals("odd") || parity.equals("Odd")) {
-            oddChars();
+            System.out.println(oddChars());
             return true;
         }
         try {
@@ -50,24 +66,24 @@ public class EvenOddString {
         return false;
     }
 
-    private void oddChars() {
+    public String oddChars() {
         String output = "";
         if (input.length() >= 1) {
             for (int i = 0; i < input.length(); i += 2) {
                 output += input.charAt(i);
             }
         }
-        System.out.print(output);
+        return output;
     }
 
-    private void evenChars() {
+    public String evenChars() {
         String output = "";
         if (input.length() >= 2) {
             for (int i = 1; i < input.length(); i += 2) {
                 output += input.charAt(i);
             }
         }
-        System.out.print(output);
+        return output;
     }
 
 }

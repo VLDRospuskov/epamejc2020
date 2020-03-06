@@ -9,6 +9,34 @@ public class RandomCharGenerationStrategiesAB {
     private int m;
     private String output = "";
 
+    public void setArray(char[][] array) {
+        this.array = array;
+    }
+
+    public void setN(int n) {
+        this.n = n;
+    }
+
+    public void setM(int m) {
+        this.m = m;
+    }
+
+    public char[][] getArray() {
+        return array;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public String getOutput() {
+        return output;
+    }
+
     public void run() {
         inputDimension();
         fillArray();
@@ -16,7 +44,7 @@ public class RandomCharGenerationStrategiesAB {
         inputStrategy();
     }
 
-    private void inputDimension() {
+    public void inputDimension() {
         System.out.print("Please, enter the dimension of the array: ");
         boolean valueOk = false;
         while (!valueOk) {
@@ -36,7 +64,7 @@ public class RandomCharGenerationStrategiesAB {
         }
     }
 
-    private void inputStrategy() {
+    public void inputStrategy() {
         Scanner sc = new Scanner(System.in);
         String strategy = "";
         boolean valueOk = false;
@@ -57,7 +85,7 @@ public class RandomCharGenerationStrategiesAB {
         whichStrategy(strategy);
     }
 
-    private void fillArray() {
+    public void fillArray() {
         array = new char[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -66,7 +94,7 @@ public class RandomCharGenerationStrategiesAB {
         }
     }
 
-    private void outputArray() {
+    public void outputArray() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 System.out.print(array[i][j] + " ");
@@ -75,7 +103,7 @@ public class RandomCharGenerationStrategiesAB {
         }
     }
 
-    private void whichStrategy(String strategy) {
+    public void whichStrategy(String strategy) {
         if (strategy.equals("A") || strategy.equals("a")) {
             stringGenerationStrategyA();
         }
