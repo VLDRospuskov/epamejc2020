@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class TrafficLights {
 
-    private static Double getTime(String inputString) {
+    public static Double getTime(String inputString) {
       //  Double d = new Double(null);
         try {
            return  Double.parseDouble(inputString);
@@ -16,7 +16,7 @@ public class TrafficLights {
         return null;
     }
 
-    private static String getColor(Double time) {
+    public static String getColor(Double time) {
         time = time % 10;
         if ((time >= 0) && (time <= 3)) {
             return "green";
