@@ -3,7 +3,7 @@ package homework3.StringGenStrByIndex;
 
 import java.util.Scanner;
 
-class StringGenStrByIndex {
+class StringGenStrByIndexLogic {
     private String str;
     private int min;
 
