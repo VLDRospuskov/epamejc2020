@@ -13,7 +13,7 @@ public class FieldPrinter {
         String[] playerCells = cellsToPrint.initCells(Positions.playerShipPositions, Positions.opponentHitPositions,
                 Positions.opponentMissPositions, Positions.playerDeadShipPositions, true);
         String[] opponentCells = cellsToPrint.initCells(Positions.opponentShipPositions, Positions.playerHitPositions,
-                Positions.playerMissPositions, Positions.opponentDeadShipPositions, true);
+                Positions.playerMissPositions, Positions.opponentDeadShipPositions, false);
 
         System.out.println("      " + "A   B   C   D   E   F   G   H   Y   J"
                 + "          " + "A   B   C   D   E   F   G   H   Y   J");
@@ -39,5 +39,4 @@ public class FieldPrinter {
                     opponentCells[i*10+5], opponentCells[i*10+6], opponentCells[i*10+7], opponentCells[i*10+8], opponentCells[i*10+9]);
         }
     }
-
 }

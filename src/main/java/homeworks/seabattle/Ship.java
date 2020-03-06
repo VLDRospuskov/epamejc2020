@@ -1,13 +1,17 @@
 package homeworks.seabattle;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 public class Ship {
 
-    public List<Integer> coordinates;
+    public List<Integer> coordinates = new ArrayList<>();
+    public int length = coordinates.size();
+
+    public Ship (List<Integer> coordinates) {
+        this.coordinates = coordinates;
+    }
 }

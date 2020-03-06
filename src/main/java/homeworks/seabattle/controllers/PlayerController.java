@@ -30,6 +30,12 @@ public class PlayerController implements Controller {
 
             String shot = ConsoleReader.reader.readLine();
 
+            if (shot.equalsIgnoreCase("exit")) {
+                Positions.opponentShipPositions.clear();
+                Positions.opponentDeadShipPositions.clear();
+                break;
+            }
+
             int shotPosition = Positions.allCells.indexOf(shot.toUpperCase());
 
             if (shotPosition != -1) {
@@ -37,6 +43,7 @@ public class PlayerController implements Controller {
                 if (!hitPositions.contains(shotPosition) && !missPositions.contains(shotPosition)) {
 
                     if (Positions.opponentShipPositions.contains(shotPosition)) {
+
                         hitPositions.add(shotPosition);
                         deadShipPositions = getDeadShipPosition(hitPositions);
                         Positions.opponentDeadShipPositions = deadShipPositions;

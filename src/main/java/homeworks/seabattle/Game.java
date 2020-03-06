@@ -14,7 +14,7 @@ public class Game {
     Controller opponent;
 
     @SneakyThrows
-    public void run () {
+    public void run() {
 
         player = new PlayerController();
 
@@ -22,37 +22,35 @@ public class Game {
         opponent = selector.select();
 
         FieldInitiator initiator1 = new FieldInitiator();
-        Positions.opponentShipPositions = initiator1.init();
-        Positions.opponentShips = initiator1.ships;
+        initiator1.init();
 
         FieldInitiator initiator2 = new FieldInitiator();
-        Positions.playerShipPositions = initiator2.init();
-        Positions.playerShips = initiator2.ships;
+        initiator2.init();
 
-        while (true) {
-
+        while (Positions.opponentDeadShipPositions.size() != Positions.opponentShipPositions.size()) {
             player.makeMove();
-
             swapPlayers();
-
-            if (Positions.opponentDeadShipPositions.size() == Positions.opponentShipPositions.size()) {
-                System.out.println("Congratulations, you just won the game!!!");
-                break;
-            }
         }
 
-        for (int i = 15; i > 0; i--) {
-            for (int j = i; j > 0; j--) {
-                System.out.print(Colors.colors[ThreadLocalRandom.current().nextInt(1, 9)]
-                        + " ■ " + Colors.colors[0]);
+        if (Positions.opponentDeadShipPositions.size() != 0) {
+
+            System.out.println("Congratulations, you just won the game!!!");
+
+            for (int i = 15; i > 0; i--) {
+                for (int j = i; j > 0; j--) {
+                    System.out.print(Colors.colors[ThreadLocalRandom.current().nextInt(1, 9)]
+                            + " ■ " + Colors.colors[0]);
+                }
+                System.out.println();
             }
-            System.out.println();
+        } else {
+            System.out.println("You ended the game!");
         }
 
         ConsoleReader.reader.close();
     }
 
-    private void swapPlayers () {
+    private void swapPlayers() {
         Controller x;
         x = player;
         player = opponent;
