@@ -10,13 +10,37 @@ public class ExchangeElement {
     private int firstIndex;
     private int secondIndex;
 
+    public void setInput(String input) {
+        this.input = input;
+    }
+
+    public void setFirstIndex(int firstIndex) {
+        this.firstIndex = firstIndex;
+    }
+
+    public void setSecondIndex(int secondIndex) {
+        this.secondIndex = secondIndex;
+    }
+
+    public String getInput() {
+        return input;
+    }
+
+    public int getFirstIndex() {
+        return firstIndex;
+    }
+
+    public int getSecondIndex() {
+        return secondIndex;
+    }
+
     public void run() {
         inputString();
         inputIndexes();
-        exchange();
+        System.out.println(exchange());
     }
 
-    private void inputString() {
+    public void inputString() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("Enter string: ");
@@ -26,7 +50,7 @@ public class ExchangeElement {
         }
     }
 
-    private void inputIndexes() {
+    public void inputIndexes() {
         try {
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter indexes for exchange: ");
@@ -39,7 +63,7 @@ public class ExchangeElement {
         }
     }
 
-    private void exchange() {
+    public String exchange() {
         char ch1;
         char ch2;
         ch1= input.charAt(firstIndex);
@@ -53,7 +77,7 @@ public class ExchangeElement {
             back = input.substring(secondIndex + 1);
         }
         String newString = front  + ch2 + input.substring(firstIndex + 1, secondIndex) + ch1 + back;
-        System.out.println(newString);
+        return newString;
     }
 
 }

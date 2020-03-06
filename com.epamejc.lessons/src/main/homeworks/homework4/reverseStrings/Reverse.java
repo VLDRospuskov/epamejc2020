@@ -7,12 +7,16 @@ public class Reverse {
 
     private String input;
 
-    public void run() {
-        inputString();
-        reverseString();
+    public void setInput(String input) {
+        this.input = input;
     }
 
-    private void inputString() {
+    public void run() {
+        inputString();
+        System.out.println(reverseString());
+    }
+
+    public void inputString() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("Enter string: ");
@@ -22,7 +26,7 @@ public class Reverse {
         }
     }
 
-    private void reverseString() {
+    public String reverseString() {
         String world;
         String result = "";
         int first = 0;
@@ -37,10 +41,10 @@ public class Reverse {
                 result += reverseWorld(world);
             }
         }
-        System.out.println(result);
+        return result;
     }
 
-    private String reverseWorld(String world) {
+    public String reverseWorld(String world) {
         String result = "";
         for (int i = world.length() - 1; i >= 0; i--) {
             result += world.charAt(i);
