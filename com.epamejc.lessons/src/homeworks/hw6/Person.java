@@ -1,7 +1,7 @@
-package src.homeworks.hw6;
+package homeworks.hw6;
 
 import lombok.Data;
-import src.homeworks.hw6.InformationAnnotation;
+import homeworks.hw6.InformationAnnotation;
 
 import java.lang.reflect.Constructor;
 

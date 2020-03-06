@@ -1,4 +1,4 @@
-package src.homeworks.hw2;
+package homeworks.hw2;
 
 public class Main {
 
