@@ -4,7 +4,6 @@ import homeworks.seabattle.Positions;
 import homeworks.seabattle.Ship;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,11 +41,11 @@ public abstract class FieldInitiator {
 
                 Positions.playerShips = ships;
 
-            } else {
+//            } else {
 //                System.out.println("You have no such type of ships left!");
             }
 
-        } else {
+//        } else {
 //            System.out.println("\nWrong input!\nTry again!");
         }
     }
@@ -57,12 +56,6 @@ public abstract class FieldInitiator {
             return true;
         }
         return false;
-    }
-
-    protected List<String> getCells(String userShip) {
-        return Arrays.stream(userShip.split(" "))
-                .map(String::toUpperCase)
-                .collect(Collectors.toList());
     }
 
 
@@ -78,16 +71,6 @@ public abstract class FieldInitiator {
         }
         return shipCells.size() < 5 && !shipCells.contains(-1);
     }
-
-
-    protected List<Integer> findCellPositions(List<String> shipCells) {
-
-        List<Integer> cellPositions = new ArrayList<>();
-        shipCells.forEach(x -> cellPositions.add(Positions.allCells.indexOf(x)));
-
-        return cellPositions;
-    }
-
 
     private int[] getCount(List<Integer> shipCells) {
 
