@@ -7,8 +7,8 @@ public class ChangeCharsInLineByIndexes {
     public void run() {
         String str = scanInputString();
         int len = str.length() - 1;
-        int[] i = scanIndexes(len);
-        printLine(i, str, len);
+        int[] indexes = scanIndexes(len);
+        printLine(indexes, str, len);
     }
 
     public String scanInputString() {
@@ -44,27 +44,29 @@ public class ChangeCharsInLineByIndexes {
         return indexes;
     }
 
-    public String buildString(int[] i, String str) {
+    public String buildString(int[] indexes, String str) {
         String output = "";
-        String left = str.substring(0, i[0]) + str.charAt(i[1]);
-        String middle = str.substring(i[0] + 1, i[1]) + str.charAt(i[0]);
-        String right = str.substring(i[1] + 1);
+        String left = str.substring(0, indexes[0]) + str.charAt(indexes[1]);
+        String middle = str.substring(indexes[0] + 1, indexes[1]) + str.charAt(indexes[0]);
+        String right = str.substring(indexes[1] + 1);
         output = left + middle + right;
 
         return output;
     }
 
-    public void printLine(int[] i, String str, int len) {
+    public void printLine(int[] indexes, String str, int len) {
 
-        if (i[0] < 0 || i[0] > len || i[1] < 0 || i[1] > len || i[0] == i[1]) {
+        if (indexes[0] < 0 || indexes[0] > len
+                || indexes[1] < 0 || indexes[1] > len
+                || indexes[0] == indexes[1]) {
             System.out.println("Wrong enter!");
         } else {
-            if (i[0] > i[1]) {
-                int tmp = i[0];
-                i[0] = i[1];
-                i[1] = tmp;
+            if (indexes[0] > indexes[1]) {
+                int tmp = indexes[0];
+                indexes[0] = indexes[1];
+                indexes[1] = tmp;
             }
-            System.out.println("Result: " + buildString(i, str));
+            System.out.println("Result: " + buildString(indexes, str));
         }
     }
 

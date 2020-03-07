@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class GenerateStringFromInputStringByIndexTest {
 
-   /* private static GenerateStringFromInputStringByIndex generator;
+    private GenerateStringFromInputStringByIndex generator;
 
     @Before
     public void setup() {
@@ -13,7 +13,11 @@ public class GenerateStringFromInputStringByIndexTest {
     }
 
     @Test
-    public void
+    public void getCharByIndexTest() {
+        char expected = 'l';
+        char actual = generator.getCharByIndex(2, "Hello");
+        assertEquals(expected, actual);
+    }
 
-    */
+
 }

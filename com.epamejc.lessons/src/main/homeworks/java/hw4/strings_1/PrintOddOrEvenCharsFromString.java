@@ -5,7 +5,8 @@ import java.util.*;
 public class PrintOddOrEvenCharsFromString {
 
     public void run() {
-        String output = buildString(scanString());
+        String[] str = scanString();
+        String output = buildString(str);
         System.out.println("Result: " + output);
     }
 
@@ -20,8 +21,6 @@ public class PrintOddOrEvenCharsFromString {
             strings[1] = scan.next();
         } catch (Exception e) {
             System.out.println("Error! " + e);
-        } finally {
-            scan.close();
         }
 
         return strings;
@@ -31,15 +30,27 @@ public class PrintOddOrEvenCharsFromString {
         String output = "";
 
         if (strings[1].equals("even")) {
-            for (int i = 1; i < strings[0].length(); i += 2) {
-                output += strings[0].charAt(i);
-            }
+            output = buildEvenString(strings);
         } else if (strings[1].equals("odd")) {
-            for (int i = 0; i < strings[0].length(); i += 2) {
-                output += strings[0].charAt(i);
-            }
+            output = buildOddString(strings);
         } else {
             System.out.println("Wrong enter!");
+        }
+        return output;
+    }
+
+    private String buildEvenString(String[] strings) {
+        String output = "";
+        for (int i = 1; i < strings[0].length(); i += 2) {
+            output += strings[0].charAt(i);
+        }
+        return output;
+    }
+
+    private String buildOddString(String[] strings) {
+        String output = "";
+        for (int i = 0; i < strings[0].length(); i += 2) {
+            output += strings[0].charAt(i);
         }
         return output;
     }

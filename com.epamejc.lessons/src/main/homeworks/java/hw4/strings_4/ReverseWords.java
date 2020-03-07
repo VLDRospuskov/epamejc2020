@@ -21,8 +21,6 @@ public class ReverseWords {
             str = scan.nextLine();
         } catch (Exception e) {
             System.out.println("Error! " + e);
-        } finally {
-            scan.close();
         }
 
         return str;

@@ -11,11 +11,15 @@ public class Person {
     private int age;
 
     @PersonFields(name = "Valera", age = 43)
-    public Person() throws NoSuchMethodException {
-        Constructor<Person> constructor = Person.class.getDeclaredConstructor();
-        PersonFields annotation = constructor.getAnnotation(PersonFields.class);
-        this.name = annotation.name();
-        this.age = annotation.age();
+    public Person() {
+        try {
+            Constructor<Person> constructor = Person.class.getDeclaredConstructor();
+            PersonFields annotation = constructor.getAnnotation(PersonFields.class);
+            this.name = annotation.name();
+            this.age = annotation.age();
+        } catch (NoSuchMethodException e) {
+            System.out.println("No such method! " + e);
+        }
     }
 
 }

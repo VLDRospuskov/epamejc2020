@@ -12,7 +12,7 @@ public class NumberOfDigitsCounterTest {
     }
 
     @Test
-    public void countNumberOfDigits() {
+    public void countNumberOfDigitsTest() {
         int expected = 4;
         int actual = counter.countNumberOfDigits(2020, 0);
         assertEquals(expected, actual);

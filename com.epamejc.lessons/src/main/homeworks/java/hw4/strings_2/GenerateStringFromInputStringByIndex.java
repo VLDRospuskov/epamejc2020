@@ -9,7 +9,7 @@ public class GenerateStringFromInputStringByIndex {
         buildStringInLoop(str);
     }
 
-    public void buildStringInLoop(String str) {
+    private String buildStringInLoop(String str) {
         String output = "";
         boolean loop = true;
 
@@ -21,13 +21,18 @@ public class GenerateStringFromInputStringByIndex {
                 System.out.println("Wrong index!");
                 continue;
             } else {
-                output += str.charAt(index);
+                output += getCharByIndex(index, str);
                 System.out.println(output);
             }
         }
+        return output;
     }
 
-    public String scanInputString() {
+    public char getCharByIndex(int index, String str) {
+        return str.charAt(index);
+    }
+
+    private String scanInputString() {
         Scanner scan = new Scanner(System.in);
         String str = "";
 
