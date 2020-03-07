@@ -4,17 +4,17 @@ import homeworks.control.commands.Commands;
 
 import homeworks.control.exeption.IllegalDataException;
 import homeworks.control.services.Service;
-import homeworks.homework1.TrafficLight;
-import homeworks.homework2.arrays.Pyramid;
-import homeworks.homework2.arrays.RandomChar;
-import homeworks.homework2.arrays.strategy.MakeString;
-import homeworks.homework2.recursion.CountNums;
-import homeworks.homework2.recursion.Exponentiation;
-import homeworks.homework2.recursion.FibonacciNumbers;
-import homeworks.homework2.strings.EvenOdd;
-import homeworks.homework2.strings.MakeWord;
-import homeworks.homework2.strings.RewerseWords;
-import homeworks.homework2.strings.SwitchChar;
+import homeworks.homework1_trafficlight.TrafficLight;
+import homeworks.homework2_arrays.Pyramid;
+import homeworks.homework2_arrays.RandomChar;
+import homeworks.homework2_arrays.strategy.MakeString;
+import homeworks.homework3_recursion.CountNums;
+import homeworks.homework3_recursion.Exponentiation;
+import homeworks.homework3_recursion.FibonacciNumbers;
+import homeworks.homework4_strings.EvenOdd;
+import homeworks.homework4_strings.MakeWord;
+import homeworks.homework4_strings.RewerseWords;
+import homeworks.homework4_strings.SwitchChar;
 
 import java.io.BufferedReader;
 import java.io.IOException;

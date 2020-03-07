@@ -18,7 +18,6 @@ public abstract class ServiceImpl implements Service {
 
     }
 
-
     public Integer[] chekArray(String string){
         Integer[] array = new Integer[2];
         String[] temp = string.split("[\\s+]");
@@ -37,14 +36,9 @@ public abstract class ServiceImpl implements Service {
 
     public char makeRandomChar(){
         Random r = new Random();
-        char ab = (char)(r.nextInt(26) + 'a');
-        return ab;
+        return (char)(r.nextInt(26) + 'a');
     }
     public boolean isEvenOdd(String string){
-        if (EVEN.equals(string) || ODD.equals(string)){
-            return true;
-        }  else {
-           return false;
-        }
+        return EVEN.equals(string) || ODD.equals(string);
     }
 }
