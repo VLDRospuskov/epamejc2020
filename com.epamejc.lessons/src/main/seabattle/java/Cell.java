@@ -19,13 +19,13 @@ public class Cell {
     public String toString() {
         String output = "";
         if (!isHit) {
-            if (status.equals(0)) {
+            if (status.equals(0) || status.equals(-1)) {
                 output = "_";
             } else if (status.equals(1)) {
                 output = "#";
-            } else if (status.equals(-1)) {
-                output = "-";
-            }
+            } //else if (status.equals(-1)) {
+              // output = "-";
+           // }
         } else {
             if (status.equals(0) || status.equals(-1)) {
                 output = "*";

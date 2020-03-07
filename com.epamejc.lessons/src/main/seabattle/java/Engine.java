@@ -78,14 +78,45 @@ public class Engine {
     }
 
     private void battle(Field field1, Field field2) {
-        while (true) {
-            shoot(field2);
+        boolean isGameOver = false;
+        while (!isGameOver) {
+            System.out.println("\n Player 1 move.");
             printTwoField(field1, field2);
+            playerMove(field2, field1);
+
+            System.out.println("\n Player 2 move.");
+            printTwoField(field2, field1);
+            playerMove(field1, field2);
+
         }
     }
 
-    private Field shoot(Field field) {
-        Integer[] coordYX = scanCoordinates();
+    private boolean checkEndGame(Field field) {
+        return true;
+    }
+
+    private Field playerMove(Field field1, Field field2) {
+        boolean isContinueMove = true;
+        while (isContinueMove) {
+            Integer[] coordYX = scanCoordinates();
+            if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
+                System.out.println("\nYou already shoot there! The move goes to another player.");
+                return field1;
+            }
+            shoot(field1, coordYX);
+            int cellStatus = field1.getField().get(coordYX[0]).get(coordYX[1]).getStatus();
+            printTwoField(field2, field1);
+            isContinueMove = false;
+            if (cellStatus == 1) {
+                isContinueMove = true;
+                System.out.println("\nGot it! Shoot again!");
+            }
+        }
+
+        return field1;
+    }
+
+    private Field shoot(Field field, Integer[] coordYX) {
         field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
         return field;
     }
