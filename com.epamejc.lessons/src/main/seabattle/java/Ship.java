@@ -100,7 +100,6 @@ public class Ship {
         if (isHorizontal) {
             for (int i = startYX[1]; i <= endYX[1]; i++) {
                 field.getField().get(startYX[0]).get(i).setStatus(1);
-                isHorizontal = true;
             }
         } else {
             for (int i = startYX[0]; i <= endYX[0]; i++) {
@@ -125,90 +124,94 @@ public class Ship {
         if (endYX[1] > 8) {
             isPressRight = true;
         }
-//        System.out.println("Left: " + isPressLeft + ", Top: " + isPressTop + ", Right: " + isPressRight + ", Bottom: " + isPressBottom);
-//        System.out.println("Horizontal: " + isHorizontal);
 
     }
 
-    private int setBarier(Field field) {
-        if (isPressLeft) {
-            if (isPressTop) {
-                for (int i = startYX[1]; i <= endYX[1]; i++) {
-                    field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
-                }
-                for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
-                    field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
-                }
-                return 0;
-            }
-            if (isPressBottom) {
-                for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
-                    field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
-                }
-                for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
-                    field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
-                }
-                return 0;
-            }
-            for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
-                field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
-                field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
-            }
-            for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
-                field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
-            }
-            return 0;
+    private int setBarrierLeftTopCorner(Field field) {
+        for (int i = startYX[1]; i <= endYX[1]; i++) {
+            field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
+        for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
+            field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+        }
+        return 0;
+    }
 
-        if (isPressRight) {
-            if (isPressTop) {
-                for (int i = startYX[0]; i <= endYX[0]; i++) {
-                    field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
-                }
-                for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
-                    field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
-                }
-                return 0;
-            }
-            if (isPressBottom) {
-                for (int i = startYX[1]; i <= endYX[1]; i++) {
-                    field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
-                }
-                for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
-                    field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
-                }
-                return 0;
-            }
-            for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
-                field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
-            }
-            for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
-                field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
-                field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
-            }
-            return 0;
+    private int setBarrierLeftBottomCorner(Field field) {
+        for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
+            field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
         }
-        if (isPressTop) {
-            for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
-                field.getField().get(startYX[0] + 1).get(i).setStatus(-1);
-            }
-            for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
-                field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
-                field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
-            }
-            return 0;
+        for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
+            field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        if (isPressBottom) {
-            for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
-                field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
-            }
-            for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
-                field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
-                field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
-            }
-            return 0;
+        return 0;
+    }
+
+    private int setBarrierLeftSide(Field field) {
+        for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
+            field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+            field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
-//        if (!isPressBottom && !isPressTop && !isPressLeft && !isPressRight) {
+        for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
+            field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+        }
+        return 0;
+    }
+
+    private int setBarrierRightTopCorner(Field field) {
+        for (int i = startYX[0]; i <= endYX[0]; i++) {
+            field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+        }
+        for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
+            field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
+        }
+        return 0;
+    }
+
+    private int setBarrierRightBottomCorner(Field field) {
+        for (int i = startYX[1]; i <= endYX[1]; i++) {
+            field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+        }
+        for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
+            field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+        }
+        return 0;
+    }
+
+    private int setBarrierRightSide(Field field) {
+        for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
+            field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+        }
+        for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
+            field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+            field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
+        }
+        return 0;
+    }
+
+    private int setBarrierTopSide(Field field) {
+        for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
+            field.getField().get(startYX[0] + 1).get(i).setStatus(-1);
+        }
+        for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
+            field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+            field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+        }
+        return 0;
+    }
+
+    private int setBarrierBottomSide(Field field) {
+        for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
+            field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
+        }
+        for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
+            field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
+            field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
+        }
+        return 0;
+    }
+
+    private int setBarrierNoneSide(Field field) {
         for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
@@ -218,7 +221,35 @@ public class Ship {
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
         return 0;
-//        }
-//        return 0;
+    }
+
+    private int setBarier(Field field) {
+        if (isPressLeft) {
+            if (isPressTop) {
+                return setBarrierLeftTopCorner(field);
+            }
+            if (isPressBottom) {
+                return setBarrierLeftBottomCorner(field);
+            }
+            return setBarrierLeftSide(field);
+        }
+
+        if (isPressRight) {
+            if (isPressTop) {
+                return setBarrierRightTopCorner(field);
+            }
+            if (isPressBottom) {
+                return setBarrierRightBottomCorner(field);
+            }
+            return setBarrierRightSide(field);
+
+        }
+        if (isPressTop) {
+            return setBarrierTopSide(field);
+        }
+        if (isPressBottom) {
+            return setBarrierBottomSide(field);
+        }
+        return setBarrierNoneSide(field);
     }
 }
