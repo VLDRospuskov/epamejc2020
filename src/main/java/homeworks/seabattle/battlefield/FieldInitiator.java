@@ -1,10 +1,8 @@
 package homeworks.seabattle.battlefield;
 
-import homeworks.seabattle.ConsoleReader;
 import homeworks.seabattle.Positions;
 import homeworks.seabattle.Ship;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,44 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FieldInitiator {
+public abstract class FieldInitiator {
 
-    private List<String> cellPool = new ArrayList<>();
-    private List<String> cells = Positions.allCells;
-    private List<Ship> ships = new ArrayList<>();
+    protected List<Ship> ships = new ArrayList<>();
     private List<Integer> shipsAmount = Stream.of(4, 3, 2, 1)
             .collect(Collectors.toList());
 
-    public void init() throws IOException {
+    public abstract void init();
 
-        swapShipPositions();
-
-        FieldPrinter fieldPrinter = new FieldPrinter();
-
-        String userShip;
-
-        while (ships.size() != 10) {
-
-            fieldPrinter.print();
-
-            System.out.print("\nSelect cells to put your ship in\n" +
-                    "for example 'a1 a2 a3 a4'\n" +
-                    "dont forget that ship should be a straight line and not diagonal: ");
-
-            userShip = ConsoleReader.reader.readLine();
-
-            if (userShip.equalsIgnoreCase("exit")) {
-                break;
-            }
-
-            if (userShip.length() != 0) {
-                filterAndSet(userShip);
-            }
-        }
-    }
-
-
-    private void swapShipPositions() {
+    protected void swapShipPositions() {
 
         List<Integer> x = Positions.playerShipPositions;
         Positions.playerShipPositions = Positions.opponentShipPositions;
@@ -61,87 +30,75 @@ public class FieldInitiator {
     }
 
 
-    private void filterAndSet(String userShip) {
-
-        List<String> shipCells = getList(userShip);
+    protected void filterAndSet(List<Integer> shipCells) {
 
         if (isStraightLineCells(shipCells) && isNoOverlapping(shipCells)) {
 
             if (isRightShip(shipCells)) {
 
-                cellPool.addAll(shipCells);
+                ships.add(new Ship(shipCells));
 
-                ships.add(new Ship(Arrays.stream(findCellPositions(shipCells))
-                        .boxed()
-                        .collect(Collectors.toList())));
-
-                Positions.playerShipPositions = Arrays
-                        .stream(findCellPositions(cellPool))
-                        .boxed()
-                        .collect(Collectors.toList());
+                Positions.playerShipPositions.addAll(shipCells);
 
                 Positions.playerShips = ships;
+
             } else {
-                System.out.println("You have no such type of ships left!");
+//                System.out.println("You have no such type of ships left!");
             }
 
         } else {
-            System.out.println("\nWrong input!\nTry again!");
+//            System.out.println("\nWrong input!\nTry again!");
         }
     }
 
-    private boolean isRightShip(List<String> shipCells) {
-        if (shipsAmount.get(shipCells.size()-1) != 0) {
-            shipsAmount.set(shipCells.size()-1, shipsAmount.get(shipCells.size()-1) - 1);
+    private boolean isRightShip(List<Integer> shipCells) {
+        if (shipCells.size() > 0 && shipsAmount.get(shipCells.size() - 1) != 0) {
+            shipsAmount.set(shipCells.size() - 1, shipsAmount.get(shipCells.size() - 1) - 1);
             return true;
         }
         return false;
     }
 
-    private List<String> getList(String userShip) {
+    protected List<String> getCells(String userShip) {
         return Arrays.stream(userShip.split(" "))
                 .map(String::toUpperCase)
                 .collect(Collectors.toList());
     }
 
 
-    private boolean isStraightLineCells(List<String> shipCells) {
+    private boolean isStraightLineCells(List<Integer> shipCells) {
 
-        int size = shipCells.size();
-        if (size > 1) {
+        if (shipCells.size() > 1) {
 
-            int[] cellPositions = findCellPositions(shipCells);
+            int[] count = getCount(shipCells);
 
-            int[] count = getCount(cellPositions);
-
-            if (count[0] != cellPositions.length - 1 && count[1] != cellPositions.length - 1) {
+            if (count[0] != shipCells.size() - 1 && count[1] != shipCells.size() - 1) {
                 return false;
             }
         }
-        return size < 5;
+        return shipCells.size() < 5 && !shipCells.contains(-1);
     }
 
 
-    private int[] findCellPositions(List<String> shipCells) {
+    protected List<Integer> findCellPositions(List<String> shipCells) {
 
-        int[] cellPositions = new int[shipCells.size()];
+        List<Integer> cellPositions = new ArrayList<>();
+        shipCells.forEach(x -> cellPositions.add(Positions.allCells.indexOf(x)));
 
-        for (int i = 0; i < shipCells.size(); i++) {
-            cellPositions[i] = cells.indexOf(shipCells.get(i));
-        }
         return cellPositions;
     }
 
 
-    private int[] getCount(int[] cellPositions) {
+    private int[] getCount(List<Integer> shipCells) {
 
         int dCount = 0;
         int oCount = 0;
-        for (int i = 0; i < cellPositions.length; i++) {
 
-            if (i != 0 && Math.abs(cellPositions[i] - cellPositions[i - 1]) == 1) {
+        for (int i = 0; i < shipCells.size(); i++) {
+
+            if (i != 0 && Math.abs(shipCells.get(i) - shipCells.get(i - 1)) == 1) {
                 oCount++;
-            } else if (i != 0 && Math.abs(cellPositions[i] - cellPositions[i - 1]) == 10) {
+            } else if (i != 0 && Math.abs(shipCells.get(i) - shipCells.get(i - 1)) == 10) {
                 dCount++;
             }
         }
@@ -149,66 +106,58 @@ public class FieldInitiator {
     }
 
 
-    private boolean isNoOverlapping(List<String> shipCells) {
+    private boolean isNoOverlapping(List<Integer> shipCells) {
 
-        List<String> busyCells = new ArrayList<>();
+        List<Integer> busyCells = new ArrayList<>();
+        Positions.playerShipPositions.forEach(x -> busyCells.addAll(getArea(busyCells, x)));
 
-        for (String s : cellPool) {
-
-            busyCells.add(s);
-            int target = cells.indexOf(s);
-
-            if (s.equalsIgnoreCase(cells.get(0))) {
-                busyCells.add(cells.get(target + 1));
-                busyCells.add(cells.get(target + 10));
-                busyCells.add(cells.get(target + 11));
-            } else if (s.equalsIgnoreCase(cells.get(9))) {
-                busyCells.add(cells.get(target - 1));
-                busyCells.add(cells.get(target + 9));
-                busyCells.add(cells.get(target + 10));
-            } else if (s.equalsIgnoreCase(cells.get(90))) {
-                busyCells.add(cells.get(target - 10));
-                busyCells.add(cells.get(target - 9));
-                busyCells.add(cells.get(target + 1));
-            } else if (s.equalsIgnoreCase(cells.get(99))) {
-                busyCells.add(cells.get(target - 11));
-                busyCells.add(cells.get(target - 10));
-                busyCells.add(cells.get(target - 1));
-            } else if (s.matches("^.1$")) {
-                busyCells.add(cells.get(target - 1));
-                busyCells.add(cells.get(target + 1));
-                busyCells.add(cells.get(target + 9));
-                busyCells.add(cells.get(target + 10));
-                busyCells.add(cells.get(target + 11));
-            } else if (s.matches("^.10$")) {
-                busyCells.add(cells.get(target - 1));
-                busyCells.add(cells.get(target + 1));
-                busyCells.add(cells.get(target - 9));
-                busyCells.add(cells.get(target - 10));
-                busyCells.add(cells.get(target - 11));
-            } else if (s.matches("^[Aa].$")) {
-                busyCells.add(cells.get(target - 10));
-                busyCells.add(cells.get(target - 9));
-                busyCells.add(cells.get(target + 1));
-                busyCells.add(cells.get(target + 10));
-                busyCells.add(cells.get(target + 11));
-            } else if (s.matches("^[Jj].$")) {
-                busyCells.add(cells.get(target - 11));
-                busyCells.add(cells.get(target - 10));
-                busyCells.add(cells.get(target - 1));
-                busyCells.add(cells.get(target + 9));
-                busyCells.add(cells.get(target + 10));
-            } else {
-                busyCells.add(cells.get(target - 11));
-                busyCells.add(cells.get(target - 10));
-                busyCells.add(cells.get(target - 9));
-                busyCells.add(cells.get(target - 1));
-                busyCells.add(cells.get(target + 1));
-                busyCells.add(cells.get(target + 9));
-                busyCells.add(cells.get(target + 10));
-                busyCells.add(cells.get(target + 11));
-            }
-        }
         return Collections.disjoint(busyCells, shipCells);
     }
+
+    private List<Integer> getArea(List<Integer> busyCells, Integer x) {
+
+        busyCells.add(x);
+
+        switch (x % 10) {
+            case 0:
+                downRightQuarter(busyCells, x);
+                upRightQuarter(busyCells, x);
+                break;
+            case 9:
+                downLeftQuarter(busyCells, x);
+                upLeftQuarter(busyCells, x);
+                break;
+            default:
+                upRightQuarter(busyCells, x);
+                upLeftQuarter(busyCells, x);
+                downRightQuarter(busyCells, x);
+                downLeftQuarter(busyCells, x);
+        }
+        return busyCells;
+    }
+
+    private void downLeftQuarter(List<Integer> busyCells, Integer x) {
+        busyCells.add(x - 11);
+        busyCells.add(x - 10);
+        busyCells.add(x - 1);
+    }
+
+    private void downRightQuarter(List<Integer> busyCells, Integer x) {
+        busyCells.add(x - 10);
+        busyCells.add(x - 9);
+        busyCells.add(x + 1);
+    }
+
+    private void upLeftQuarter(List<Integer> busyCells, Integer x) {
+        busyCells.add(x - 1);
+        busyCells.add(x + 9);
+        busyCells.add(x + 10);
+    }
+
+    private void upRightQuarter(List<Integer> busyCells, Integer x) {
+        busyCells.add(x + 1);
+        busyCells.add(x + 10);
+        busyCells.add(x + 11);
+    }
 }
+

@@ -26,7 +26,7 @@ public class PlayerController implements Controller {
 
             fieldPrinter.print();
 
-            System.out.println("Decide where to shoot: ");
+            System.out.print("\nDecide where to shoot: ");
 
             String shot = ConsoleReader.reader.readLine();
 

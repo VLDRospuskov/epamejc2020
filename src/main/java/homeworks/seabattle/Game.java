@@ -2,6 +2,7 @@ package homeworks.seabattle;
 
 import homeworks.homework3.allInAll.Colors;
 import homeworks.seabattle.battlefield.FieldInitiator;
+import homeworks.seabattle.battlefield.PlayerFieldInitiator;
 import homeworks.seabattle.controllers.Controller;
 import homeworks.seabattle.controllers.PlayerController;
 import lombok.SneakyThrows;
@@ -16,22 +17,23 @@ public class Game {
     @SneakyThrows
     public void run() {
 
-        player = new PlayerController();
+        OpponentSelector selector1 = new OpponentSelector();
+        player = selector1.select();
 
-        OpponentSelector selector = new OpponentSelector();
-        opponent = selector.select();
-
-        FieldInitiator initiator1 = new FieldInitiator();
-        initiator1.init();
-
-        FieldInitiator initiator2 = new FieldInitiator();
-        initiator2.init();
+        OpponentSelector selector2 = new OpponentSelector();
+        opponent = selector2.select();
 
         while (Positions.opponentDeadShipPositions.size() != Positions.opponentShipPositions.size()) {
             player.makeMove();
             swapPlayers();
         }
 
+        showEndGame();
+
+        ConsoleReader.reader.close();
+    }
+
+    private void showEndGame() {
         if (Positions.opponentDeadShipPositions.size() != 0) {
 
             System.out.println("Congratulations, you just won the game!!!");
@@ -46,8 +48,6 @@ public class Game {
         } else {
             System.out.println("You ended the game!");
         }
-
-        ConsoleReader.reader.close();
     }
 
     private void swapPlayers() {
