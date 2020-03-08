@@ -22,6 +22,7 @@ public  class InputReader {
             value = Integer.parseInt(nextString());
         } catch (NumberFormatException e) {
             System.out.println("Wrong number format");
+            System.out.println("Input val = 0 now");
             e.printStackTrace();
         }
         return value;

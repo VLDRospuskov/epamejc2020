@@ -1,47 +1,38 @@
 package homeworks.homework2.arrays.task2_2;
 
-import homeworks.InputReader;
-
 public class ABStrategy {
 
-    public String selectStrategy(char[][] inputArray) {
-        System.out.println("Input \"A\" or \"B\" to select specific strategy");
-        String inputString = InputReader.nextString();
-        String result;
-        switch (inputString.toUpperCase()) {
+    public String selectStrategy(char[][] inputArray, String strategy) {
+        switch (strategy.toUpperCase()) {
             case "A":
-               result = useAStrategy(inputArray);
-                break;
+                return useAStrategy(inputArray);
             case "B":
-               result =  useBStrategy(inputArray);
-                break;
+                return useBStrategy(inputArray);
             default:
                 System.out.println("Wrong input");
-                result = "";
-                break;
+                return "";
         }
-        return result;
     }
 
     private String useAStrategy(char[][] inputArray) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < inputArray.length; i += 2) {
             for (int j = 0; j < inputArray[0].length; j += 2) {
-                stringBuffer.append(inputArray[i][j]);
+                stringBuilder.append(inputArray[i][j]);
             }
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
     private String useBStrategy(char[][] inputArray) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         if ((inputArray.length > 1) && (inputArray[0].length > 1)) {
             for (int i = 1; i < inputArray.length; i += 2) {
                 for (int j = 1; j < inputArray[0].length; j += 2) {
-                    stringBuffer.append(inputArray[i][j]);
+                    stringBuilder.append(inputArray[i][j]);
                 }
             }
-            return stringBuffer.toString();
+            return stringBuilder.toString();
         } else {
             System.out.println("Too short for B strategy");
             return "";

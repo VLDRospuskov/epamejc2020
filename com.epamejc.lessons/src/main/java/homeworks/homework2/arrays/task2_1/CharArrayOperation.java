@@ -1,8 +1,6 @@
 package homeworks.homework2.arrays.task2_1;
 
 
-import homeworks.InputReader;
-
 public class CharArrayOperation {
 
     public void printTwoDimensionalCharArray(char[][] charArray) {
@@ -14,19 +12,39 @@ public class CharArrayOperation {
         }
     }
 
-    public char[][] getRandomFilledArrayOfArrays() {
-        System.out.println("Insert rows and columns amount");
-        System.out.println("For example:");
-        System.out.println("5 3");
-        String[] values = argsInput(InputReader.nextString());
-        int rows = getRows(values);
-        int columns = getColumns(values);
+    public char[][] getRandomFilledArrayOfArrays(String arg) {
+        String[] params = argsInput(arg);
+        int rows = getRows(params);
+        int columns = getColumns(params);
         char[][] chars = getDeclaredArrayOfArrays(rows, columns);
         fillCharsArray(chars);
         return chars;
     }
 
-    public int getRows(String[] stringToParse) {
+    public char[][] getRandomFilledArrayOfArrays(int rows, int columns) {
+        char[][] chars = getDeclaredArrayOfArrays(rows, columns);
+        fillCharsArray(chars);
+        return chars;
+    }
+
+    private char[][] getDeclaredArrayOfArrays(int rows, int columns) {
+        if ((rows > 0) && (columns > 0)) {
+            return new char[rows][columns];
+        } else {
+            System.out.println("Need TWO positives numbers");
+            return new char[0][0];
+        }
+    }
+
+    private void fillCharsArray(char[][] charArray) {
+        for (int i = 0; i < charArray.length; i++) {
+            for (int j = 0; j < charArray[0].length; j++) {
+                charArray[i][j] = (char) (Math.random() * 26 + 'a');
+            }
+        }
+    }
+
+    private int getRows(String[] stringToParse) {
         int rows = 0;
         if (stringToParse.length == 2) {
             try {
@@ -40,7 +58,7 @@ public class CharArrayOperation {
         return rows;
     }
 
-    public int getColumns(String[] stringToParse) {
+    private int getColumns(String[] stringToParse) {
         int columns = 0;
         if (stringToParse.length == 2) {
             try {
@@ -54,31 +72,8 @@ public class CharArrayOperation {
         return columns;
     }
 
-    public char[][] getDeclaredArrayOfArrays(int rows, int columns) {
-        char[][] charArray;
-        if ((rows > 0) && (columns > 0)) {
-            charArray = new char[rows][columns];
-            return charArray;
-        } else {
-            charArray = new char[0][0];
-            System.err.println("Need TWO positives numbers");
-            return charArray;
-        }
-    }
-
-    public char[][] fillCharsArray(char[][] charArray) {
-        for (int i = 0; i < charArray.length; i++) {
-            for (int j = 0; j < charArray[0].length; j++) {
-                charArray[i][j] = (char) (Math.random() * 26 + 'a');
-            }
-        }
-        return charArray;
-    }
-
     private String[] argsInput(String s) {
-        String[] splitString = {};
-        splitString = s.split(" ");
-        return splitString;
+        return s.split(" ");
     }
 
 }

@@ -14,37 +14,42 @@ public class TrafficLightTest {
         trafficLight = new TrafficLight();
     }
 
+
     @Test
-    public void getColor() {
+    public void getGreenColor() {
         String actual1 = trafficLight.getColor(0);
-        String actual2 = trafficLight.getColor(10);
-        String actual3 = trafficLight.getColor(11);
-        String actual4 = trafficLight.getColor(5);
-        String actual5 = trafficLight.getColor(-1);
-        String expected1 = "Green color";
-        String expected2 = "Green color";
-        String expected3 = "Green color";
-        String expected4 = "Yellow color";
-        String expected5 = "Green color";
-        assertEquals(expected1, actual1);
-        assertEquals(expected2, actual2);
-        assertEquals(expected3, actual3);
-        assertEquals(expected4, actual4);
-        assertEquals(expected5, actual5);
+        String actual2 = trafficLight.getColor(1);
+        String actual3 = trafficLight.getColor(2);
+        String actual4 = trafficLight.getColor(10);
+        String expectedGreen = "Green color";
+        assertEquals(expectedGreen, actual1);
+        assertEquals(expectedGreen, actual2);
+        assertEquals(expectedGreen, actual3);
+        assertEquals(expectedGreen, actual4);
     }
 
     @Test
-    public void getProcessedMinutes() {
-        int actual = trafficLight.getProcessedMinutes(0);
-        int actualSecond = trafficLight.getProcessedMinutes(10);
-        int actualThird = trafficLight.getProcessedMinutes(-1);
+    public void getYellowColor() {
+        String actual1 = trafficLight.getColor(3);
+        String actual2 = trafficLight.getColor(4);
+        String actual3 = trafficLight.getColor(5);
+        String expectedYellow = "Yellow color";
+        assertEquals(expectedYellow, actual1);
+        assertEquals(expectedYellow, actual2);
+        assertEquals(expectedYellow, actual3);
+    }
 
-        int expected = 0;
-        int expectedSecond = 0;
-        int expectedThird = 1;
-        assertEquals(expected, actual);
-        assertEquals(expectedSecond, actualSecond);
-        assertEquals(expectedThird, actualThird);
+    @Test
+    public void getRedColor() {
+        String actual1 = trafficLight.getColor(6);
+        String actual2 = trafficLight.getColor(7);
+        String actual3 = trafficLight.getColor(8);
+        String actual4 = trafficLight.getColor(9);
+        String expectedRed = "Red color";
+        assertEquals(expectedRed, actual1);
+        assertEquals(expectedRed, actual2);
+        assertEquals(expectedRed, actual3);
+        assertEquals(expectedRed, actual4);
     }
 
 }

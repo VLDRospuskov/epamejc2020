@@ -1,13 +1,9 @@
 package homeworks.homework2.strings.task3_1;
 
-import homeworks.InputReader;
-
 public class OddEvenSubstring {
 
-    public String useStrategy(String inputString) {
-        System.out.println("Input \"odd\" or \"even\"");
-        String mod = InputReader.nextString().toLowerCase();
-        switch (mod) {
+    public String useStrategy(String inputString, String mod) {
+        switch (mod.toLowerCase()) {
             case "even":
                 return createStringFromEven(inputString);
             case "odd":
@@ -19,24 +15,24 @@ public class OddEvenSubstring {
     }
 
     private String createStringFromEven(String s) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         if (s.length() > 0) {
             for (int i = 1; i < s.length(); i += 2) {
-                stringBuffer.append(s.charAt(i));
+                stringBuilder.append(s.charAt(i));
             }
         } else {
             System.out.println("String is too short for even");
         }
 
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
     private String createStringFromOdd(String s) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < s.length(); i += 2) {
-            stringBuffer.append(s.charAt(i));
+            stringBuilder.append(s.charAt(i));
         }
-        return stringBuffer.toString();
+        return stringBuilder.toString();
     }
 
 }

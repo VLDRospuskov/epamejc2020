@@ -7,12 +7,15 @@ public class ReverseWords {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder reversedStringBuilder = new StringBuilder();
 
-        for (String s : splited) {
+        for (int i = 0; i < splited.length; i++) {
+            String s = splited[i];
             reversedStringBuilder.append(s);
-            stringBuilder.append(reversedStringBuilder.reverse()).append(" ");
+            stringBuilder.append(reversedStringBuilder.reverse());
+            if (i < splited.length - 1) {
+                stringBuilder.append(" ");
+            }
             reversedStringBuilder.delete(0, reversedStringBuilder.length());
         }
-
         return stringBuilder.toString();
     }
 

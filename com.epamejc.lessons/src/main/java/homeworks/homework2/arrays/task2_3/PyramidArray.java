@@ -14,6 +14,10 @@ public class PyramidArray {
     }
 
     private char[][] declarePyramidArray(int n) {
+        if (n < 0) {
+            n = 0;
+            System.out.println("Only positive number");
+        }
         char[][] pyramid = new char[n][];
         for (int i = 0; i < pyramid.length; i++) {
             pyramid[i] = new char[pyramid.length - i];

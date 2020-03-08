@@ -12,22 +12,34 @@ public class RunArrayTasks {
         String task = InputReader.nextString();
         CharArrayOperation operation = new CharArrayOperation();
         char[][] chars;
+        int rows;
+        int columns;
         switch (task) {
             case "1":
-                chars = operation.getRandomFilledArrayOfArrays();
+                System.out.println("Insert rows and columns amount");
+                System.out.println("For example:");
+                System.out.println("5 3");
+                String nextString = InputReader.nextString();
+                chars = operation.getRandomFilledArrayOfArrays(nextString);
                 operation.printTwoDimensionalCharArray(chars);
                 break;
             case "2":
-                chars = operation.getRandomFilledArrayOfArrays();
+                System.out.println("Input rows");
+                rows = InputReader.nextInt();
+                System.out.println("Input columns");
+                columns = InputReader.nextInt();
+                chars = operation.getRandomFilledArrayOfArrays(rows, columns);
                 operation.printTwoDimensionalCharArray(chars);
                 ABStrategy strategy = new ABStrategy();
-                System.out.println(strategy.selectStrategy(chars));
+                System.out.println("Input \"A\" or \"B\" to select specific strategy");
+                String str = InputReader.nextString();
+                System.out.println(strategy.selectStrategy(chars, str));
                 break;
             case "3":
                 PyramidArray pyramidArray = new PyramidArray();
                 System.out.println("Input height of pyramid");
-                int levels = InputReader.nextInt();
-                chars = pyramidArray.initializePyramidArray(levels);
+                rows = InputReader.nextInt();
+                chars = pyramidArray.initializePyramidArray(rows);
                 operation.printTwoDimensionalCharArray(chars);
                 break;
         }
