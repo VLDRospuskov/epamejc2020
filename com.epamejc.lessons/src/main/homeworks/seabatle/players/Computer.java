@@ -33,7 +33,6 @@ public class Computer extends Player {
         targets = getTargets();
         ship = new ArrayList<>();
         creator = new ShipAreaCreatorImpl();
-
     }
 
     /**
@@ -75,7 +74,6 @@ public class Computer extends Player {
         }
         setCurrentTarget(coordinate);
         if (targets.contains(coordinate)){
-            System.out.println(coordinate);
             return coordinate;
         } else return shoot();
 

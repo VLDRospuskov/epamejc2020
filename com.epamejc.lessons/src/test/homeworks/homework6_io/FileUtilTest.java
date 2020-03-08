@@ -11,7 +11,8 @@ public class FileUtilTest {
     public void compareSpeed() {
         FileUtil fileUtil = new FileUtil();
         String actualResult = fileUtil.compareSpeed();
-        String expectedResult = "Stream slower. Difference is";
+        String expectedResult = "Stream in Java IO slower. Difference is";
+        System.out.println(actualResult);
         assertTrue(actualResult.contains(expectedResult));
     }
 }

@@ -1,6 +1,7 @@
 package homeworks.seabatle.servises.factories;
 
 import homeworks.seabatle.board.PlayerShipsRepository;
+import homeworks.seabatle.board.ShipsRepository;
 import homeworks.seabatle.myenum.ShipType;
 import homeworks.seabatle.ship.Ship;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class ShipAutoGeneratorTest {
     @Test
     public void testGetGeneratedRepository() {
         for (int i = 0; i < 20000; i++){
-            PlayerShipsRepository repository = generator.getGeneratedRepository();
+            ShipsRepository repository = generator.getGeneratedRepository();
             assertNotNull(repository);
             List<Ship> ships = repository.getAll();
             int countBoat = 0;

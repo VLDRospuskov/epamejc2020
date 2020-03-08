@@ -18,10 +18,10 @@ public class GameBoardTest {
         player1 = new User();
         player2 = new User();
 
-        PlayerShipsRepository repository1 = new ShipAutoGenerator().getGeneratedRepository();
+        ShipsRepository repository1 = new ShipAutoGenerator().getGeneratedRepository();
         Field field1 = new Field(repository1);
 
-        PlayerShipsRepository repository2 = new ShipAutoGenerator().getGeneratedRepository();
+        ShipsRepository repository2 = new ShipAutoGenerator().getGeneratedRepository();
         Field field2 = new Field(repository2);
 
         player1.setField(field1);

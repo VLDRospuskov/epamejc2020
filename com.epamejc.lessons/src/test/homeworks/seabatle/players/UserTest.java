@@ -2,6 +2,7 @@ package homeworks.seabatle.players;
 
 import homeworks.seabatle.board.Field;
 import homeworks.seabatle.board.PlayerShipsRepository;
+import homeworks.seabatle.board.ShipsRepository;
 import homeworks.seabatle.servises.factories.ShipAutoGenerator;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class UserTest {
     private String name = "Alex";
     @Before
     public void setUp() throws Exception {
-        PlayerShipsRepository repository = new ShipAutoGenerator().getGeneratedRepository();
+        ShipsRepository repository = new ShipAutoGenerator().getGeneratedRepository();
         field = new Field(repository);
         player = new User();
     }

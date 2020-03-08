@@ -14,8 +14,8 @@ public class BankOperations implements Runnable{
         DataFactory factory = new DataFactory();
         List<Person> people = factory.getPersons();
         List<Account> accounts = factory.getAccounts(people);
-        Bank Tinkoff = new Bank(new BigDecimal(9999999999999999999.2121),accounts);
-        BigDecimal startBalance = new BigDecimal(2000);
+        Bank Tinkoff = new Bank(new BigDecimal(9999999999.2121),accounts);
+        BigDecimal startBalance = new BigDecimal(7000);
 
         ATM stachek = new ATM("Stachek",startBalance,Tinkoff);
         ATM nevsky = new ATM("Nevsky",startBalance,Tinkoff);

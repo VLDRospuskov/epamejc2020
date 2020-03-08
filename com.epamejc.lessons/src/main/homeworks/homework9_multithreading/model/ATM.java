@@ -29,7 +29,6 @@ public class ATM {
     }
     public void deposit(BigDecimal amount, Person person){
         synchronized (mutex){
-            System.out.println(Thread.currentThread().getName());
             try {
                 bank.updateAccountBalance(person.getCard(),amount);
                 balance = balance.add(amount);
@@ -43,7 +42,6 @@ public class ATM {
     }
     public void withdraw(BigDecimal amount, Person person){
         synchronized (mutex) {
-            System.out.println(Thread.currentThread().getName());
             try {
                 BigDecimal limit = bank.getAccountBalance(person.getCard());
                 if (limit.compareTo(amount) >= 0){
@@ -56,7 +54,7 @@ public class ATM {
                 } else {
                     System.out.printf("%s don`t have enough money \n",person);
                     balance = bank.getMoney(new BigDecimal(2000));
-                    System.out.printf("Bank balance: %s",bank.getBalance());
+                    System.out.printf("Bank balance: %s\n",bank.getBalance());
                 }
 
             } catch (AccountNotFoundException ex){

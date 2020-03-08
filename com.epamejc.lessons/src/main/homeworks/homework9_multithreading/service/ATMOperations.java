@@ -14,15 +14,21 @@ public class ATMOperations extends Thread {
     private Person person;
     private volatile ATM atm;
     private final Object mutex = new Object();
+
     @Override
-    @SneakyThrows
+
     public void run() {
-        while (true){
+        while (true) {
             Operation operation = getRandomOperation();
             BigDecimal amount = new BigDecimal(getRandomAmount());
-            Thread.sleep(0);
-            synchronized (mutex){
-                atm.makeOperation(amount,person,operation);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+
+            synchronized (mutex) {
+                atm.makeOperation(amount, person, operation);
             }
 
         }
@@ -31,7 +37,7 @@ public class ATMOperations extends Thread {
     private Operation getRandomOperation() {
         Random random = new Random();
         int position = random.nextInt(20);
-        if (position == 0){
+        if (position == 0) {
             return Operation.DEPOSIT;
         } else {
             return Operation.WITHDRAW;
