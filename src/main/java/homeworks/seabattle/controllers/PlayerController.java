@@ -2,14 +2,13 @@ package homeworks.seabattle.controllers;
 
 import homeworks.seabattle.ConsoleReader;
 import homeworks.seabattle.Positions;
-import homeworks.seabattle.Ship;
 import homeworks.seabattle.battlefield.FieldPrinter;
 import lombok.SneakyThrows;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerController implements Controller {
+public class PlayerController extends Controller {
 
     private List<Integer> hitPositions = new ArrayList<>();
     private List<Integer> missPositions = new ArrayList<>();
@@ -40,8 +39,12 @@ public class PlayerController implements Controller {
 
             if (shotPosition != -1) {
 
-                if (!hitPositions.contains(shotPosition) && !missPositions.contains(shotPosition)) {
+                if (!hitPositions.contains(shotPosition)
+                        && !missPositions.contains(shotPosition)) {
 
+//                    if (decideHitOrMiss(shotPosition)) {
+//                        break;
+//                    }
                     if (Positions.opponentShipPositions.contains(shotPosition)) {
 
                         hitPositions.add(shotPosition);
@@ -51,7 +54,6 @@ public class PlayerController implements Controller {
                         if (Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size()) {
                             break;
                         }
-
                     } else {
                         missPositions.add(shotPosition);
                         break;
@@ -63,14 +65,5 @@ public class PlayerController implements Controller {
                 System.out.println("Invalid input");
             }
         }
-    }
-
-    private List<Integer> getDeadShipPosition(List<Integer> hitPositions) {
-
-        return Positions.opponentShips.stream()
-                .map(Ship::getCoordinates)
-                .filter(hitPositions::containsAll)
-                .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
-
     }
 }

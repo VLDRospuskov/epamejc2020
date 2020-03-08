@@ -11,6 +11,8 @@ public class BotFieldInitiator extends FieldInitiator {
     @Override
     public void init() {
 
+        System.out.println("Please wait...");
+
         swapShipPositions();
 
         int length = 4;
@@ -47,7 +49,7 @@ public class BotFieldInitiator extends FieldInitiator {
     }
 
     private boolean getRandomDirection() {
-        return new Random(System.currentTimeMillis()).nextInt() > 0;
+        return Math.random() > 0.5;
     }
 
     private List<Integer> getCellPositions(int randomPosition, int randomLength, boolean randomDirection) {

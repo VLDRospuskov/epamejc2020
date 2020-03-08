@@ -29,7 +29,7 @@ public class Cell {
                 cells[i] = "¤";
                 h++;
                 s++;
-            } else if (shipPositions.size() != 0 && s < shipPositions.size() && i == shipPositions.get(s)) {//&& shipVisibility) {
+            } else if (shipPositions.size() != 0 && s < shipPositions.size() && i == shipPositions.get(s)) { //&& shipVisibility) {
                 cells[i] = "■";
                 s++;
             } else if (missPositions.size() != 0 && m < missPositions.size() && i == missPositions.get(m)) {

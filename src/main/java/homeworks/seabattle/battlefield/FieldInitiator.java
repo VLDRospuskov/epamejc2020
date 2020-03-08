@@ -103,41 +103,30 @@ public abstract class FieldInitiator {
 
         switch (x % 10) {
             case 0:
-                downRightQuarter(busyCells, x);
-                upRightQuarter(busyCells, x);
+                rightHalf(busyCells, x);
                 break;
             case 9:
-                downLeftQuarter(busyCells, x);
-                upLeftQuarter(busyCells, x);
+                leftHalf(busyCells, x);
                 break;
             default:
-                upRightQuarter(busyCells, x);
-                upLeftQuarter(busyCells, x);
-                downRightQuarter(busyCells, x);
-                downLeftQuarter(busyCells, x);
+                rightHalf(busyCells, x);
+                leftHalf(busyCells, x);
         }
         return busyCells;
     }
 
-    private void downLeftQuarter(List<Integer> busyCells, Integer x) {
+    private void leftHalf(List<Integer> busyCells, Integer x) {
         busyCells.add(x - 11);
         busyCells.add(x - 10);
-        busyCells.add(x - 1);
-    }
-
-    private void downRightQuarter(List<Integer> busyCells, Integer x) {
-        busyCells.add(x - 10);
-        busyCells.add(x - 9);
-        busyCells.add(x + 1);
-    }
-
-    private void upLeftQuarter(List<Integer> busyCells, Integer x) {
         busyCells.add(x - 1);
         busyCells.add(x + 9);
         busyCells.add(x + 10);
     }
 
-    private void upRightQuarter(List<Integer> busyCells, Integer x) {
+    private void rightHalf(List<Integer> busyCells, Integer x) {
+        busyCells.add(x - 10);
+        busyCells.add(x - 9);
+        busyCells.add(x + 1);
         busyCells.add(x + 1);
         busyCells.add(x + 10);
         busyCells.add(x + 11);

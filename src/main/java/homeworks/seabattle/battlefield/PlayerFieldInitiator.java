@@ -36,6 +36,8 @@ public class PlayerFieldInitiator extends FieldInitiator {
 
             if (userShip.length() != 0) {
                 filterAndSet(findCellPositions(getCells(userShip)));
+            } else {
+                System.out.println("Wrong input");
             }
         }
     }
