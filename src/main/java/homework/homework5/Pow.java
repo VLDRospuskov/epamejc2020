@@ -1,4 +1,4 @@
-package homework.homework2.recursion;
+package homework.homework5;
 
 public class Pow {
     public static double getPow(double number, int pow) {

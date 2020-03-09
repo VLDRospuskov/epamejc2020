@@ -1,4 +1,4 @@
-package homework.homework2.matrix;
+package homework.homework3;
 
 import org.junit.Test;
 

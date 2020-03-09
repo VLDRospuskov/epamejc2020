@@ -1,4 +1,4 @@
-package homework.homework5;
+package homework.homework8.functionalInterfaces;
 
 @FunctionalInterface
 public interface Getter<T> {

@@ -1,6 +1,4 @@
-package homework.homework4;
-
-import lombok.Data;
+package homework.homework7;
 
 public class Timer {
     private long lastDuration = 0;

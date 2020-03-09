@@ -1,4 +1,4 @@
-package homework.homework2.recursion;
+package homework.homework5;
 
 import org.junit.Test;
 

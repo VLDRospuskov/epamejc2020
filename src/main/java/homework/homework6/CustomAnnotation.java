@@ -1,4 +1,4 @@
-package homework.homework3;
+package homework.homework6;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

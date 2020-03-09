@@ -1,8 +1,6 @@
-package homework.homework3;
+package homework.homework6;
 
 import lombok.Data;
-
-import java.lang.annotation.Annotation;
 
 @Data
 public class ClassWithAnnotation {

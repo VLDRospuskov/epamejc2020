@@ -1,4 +1,4 @@
-package homework.homework3;
+package homework.homework6;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;

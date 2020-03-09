@@ -1,4 +1,4 @@
-package homework.homework2;
+package homework.homework4;
 
 public class StringGenerator {
 

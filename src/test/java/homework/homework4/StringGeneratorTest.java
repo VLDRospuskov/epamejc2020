@@ -1,5 +1,6 @@
-package homework.homework2;
+package homework.homework4;
 
+import homework.homework4.StringGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

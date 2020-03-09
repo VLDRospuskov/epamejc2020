@@ -1,6 +1,6 @@
-package homework.homework3;
+package homework.homework6;
 
-import homework.homework2.matrix.CharMatrix;
+import homework.homework3.CharMatrix;
 import lombok.Data;
 import org.junit.Test;
 
