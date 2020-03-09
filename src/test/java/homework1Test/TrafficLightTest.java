@@ -12,7 +12,6 @@ public class TrafficLightTest {
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
-    private ByteArrayInputStream testIn;
     private ByteArrayOutputStream testOut;
 
     private TrafficLight trafficLight;
@@ -25,7 +24,7 @@ public class TrafficLightTest {
     }
 
     private void provideInput(String data) {
-        testIn = new ByteArrayInputStream(data.getBytes());
+        ByteArrayInputStream testIn = new ByteArrayInputStream(data.getBytes());
         System.setIn(testIn);
     }
 

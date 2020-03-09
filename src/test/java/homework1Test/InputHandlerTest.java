@@ -49,8 +49,7 @@ public class InputHandlerTest {
     @Test
     public void handleUserInputTestNullString () {
 
-        String input = null;
-        handler.handleUserInput(input);
+        handler.handleUserInput(null);
 
         String actual = getOutput();
         String output = "Time should be a digit";
