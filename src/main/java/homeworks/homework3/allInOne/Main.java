@@ -1,4 +1,4 @@
-package homeworks.homework3.allInAll;
+package homeworks.homework3.allInOne;
 
 public class Main {
     public static void main(String[] args) {

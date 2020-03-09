@@ -2,7 +2,7 @@ package homework1Test;
 
 import homeworks.homework1.InputHandler;
 import homeworks.homework1.TrafficColors;
-import homeworks.homework3.allInAll.Colors;
+import homeworks.homework3.allInOne.Colors;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

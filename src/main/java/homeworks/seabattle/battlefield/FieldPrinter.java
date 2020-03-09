@@ -1,6 +1,6 @@
 package homeworks.seabattle.battlefield;
 
-import homeworks.seabattle.Positions;
+import homeworks.seabattle.util.Positions;
 
 public class FieldPrinter {
 
@@ -8,7 +8,7 @@ public class FieldPrinter {
 
     public void print () {
 
-        Cell cellsToPrint = new Cell();
+        CellsToPrint cellsToPrint = new CellsToPrint();
 
         String[] playerCells = cellsToPrint.initCells(Positions.playerShipPositions, Positions.opponentHitPositions,
                 Positions.opponentMissPositions, Positions.playerDeadShipPositions, true);

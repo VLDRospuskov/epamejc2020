@@ -1,7 +1,7 @@
 package homeworks.seabattle.battlefield;
 
-import homeworks.seabattle.Positions;
-import homeworks.seabattle.Ship;
+import homeworks.seabattle.util.Positions;
+import homeworks.seabattle.util.Ship;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -71,6 +71,7 @@ public abstract class FieldInitiator {
         }
         return shipCells.size() < 5 && !shipCells.contains(-1);
     }
+
 
     private int[] getCount(List<Integer> shipCells) {
 

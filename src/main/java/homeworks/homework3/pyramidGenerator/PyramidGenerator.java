@@ -1,7 +1,7 @@
 package homeworks.homework3.pyramidGenerator;
 
-import homeworks.homework3.allInAll.Colors;
-import homeworks.homework3.allInAll.ThreadController;
+import homeworks.homework3.allInOne.Colors;
+import homeworks.homework3.allInOne.ThreadController;
 
 import java.util.concurrent.ThreadLocalRandom;
 

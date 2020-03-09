@@ -1,6 +1,7 @@
 package homeworks.homework4.indexStringGenerator;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 class UserController {
@@ -21,30 +22,33 @@ class UserController {
                     System.out.println("String mustn't begin or end with space or tab symbol");
                     continue;
                 }
-
-                while (true) {
-
-                    System.out.print("Enter index or 'next': ");
-                    String userIndex = reader.readLine();
-
-                    if (userIndex.equalsIgnoreCase("next")) {
-                        break;
-                    }
-
-                    int badInput = -1;
-                    int index = indexFilter(userIndex);
-
-                    if (index != badInput && userString.length() > index) {
-                        StringGenerator generator = new StringGenerator();
-                        generator.generate(userString, index);
-                    } else {
-                        System.out.println("Index must be positive integer and less then string's length");
-                    }
-
-                }
+                decideIndex(reader, userString);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void decideIndex(BufferedReader reader, String userString) throws IOException {
+        while (true) {
+
+            System.out.print("Enter index or 'next': ");
+            String userIndex = reader.readLine();
+
+            if (userIndex.equalsIgnoreCase("next")) {
+                break;
+            }
+
+            int badInput = -1;
+            int index = indexFilter(userIndex);
+
+            if (index != badInput && userString.length() > index) {
+                StringGenerator generator = new StringGenerator();
+                generator.generate(userString, index);
+            } else {
+                System.out.println("Index must be positive integer and less then string's length");
+            }
+
         }
     }
 
@@ -57,7 +61,10 @@ class UserController {
     }
 
     private boolean isIncorrectFormatOfString (String str) {
-        return str.charAt(0) == ' ' || str.charAt(str.length()-1) == ' ' || str.substring(0,1).equals("\t") || str.substring(str.length()-1).equals("\t");
+        return str.charAt(0) == ' '
+                || str.charAt(str.length()-1) == ' '
+                || str.substring(0,1).equals("\t")
+                || str.substring(str.length()-1).equals("\t");
     }
 
     private boolean isPositiveDigit (String str) {

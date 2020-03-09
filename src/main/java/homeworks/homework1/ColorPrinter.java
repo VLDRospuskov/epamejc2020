@@ -1,6 +1,6 @@
 package homeworks.homework1;
 
-import homeworks.homework3.allInAll.Colors;
+import homeworks.homework3.allInOne.Colors;
 
 public class ColorPrinter {
 

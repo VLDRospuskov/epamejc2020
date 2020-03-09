@@ -1,5 +1,6 @@
-package homeworks.seabattle;
+package homeworks.seabattle.logic;
 
+import homeworks.seabattle.util.ConsoleReader;
 import homeworks.seabattle.battlefield.BotFieldInitiator;
 import homeworks.seabattle.battlefield.FieldInitiator;
 import homeworks.seabattle.battlefield.PlayerFieldInitiator;

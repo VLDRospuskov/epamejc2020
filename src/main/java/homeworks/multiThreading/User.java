@@ -15,7 +15,7 @@ public class User {
 
 
     public boolean chooseRandomOperation() {
-        return new Random().nextInt() > 0;
+        return Math.random() > 0.5;
     }
 
     public double getRandomAmount() {

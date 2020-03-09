@@ -1,4 +1,4 @@
-package homeworks.seabattle;
+package homeworks.seabattle.util;
 
 import lombok.Data;
 
@@ -12,6 +12,7 @@ public class Ship {
     public int length = coordinates.size();
 
     public Ship (List<Integer> coordinates) {
+
         this.coordinates = coordinates;
     }
 }

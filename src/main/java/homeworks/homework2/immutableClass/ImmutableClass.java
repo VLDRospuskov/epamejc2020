@@ -1,12 +1,13 @@
 package homeworks.homework2.immutableClass;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public final class ImmutableClass {
     private final int id;
     private final String name;
-    private final HashMap valueMap = new HashMap();
+    private final Map<Integer, String> valueMap = new HashMap<>();
 
     public ImmutableClass(int id, String name) {
         this.id = id;
@@ -22,7 +23,7 @@ public final class ImmutableClass {
         return this.name;
     }
 
-    public HashMap getValueMap() {
+    public Map<Integer, String> getValueMap() {
         return valueMap;
     }
 }

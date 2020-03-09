@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Getter
 public class Undefined implements Human {
+
     final Date dateOfBirth;
     String name;
     Gender gender = Gender.UNDEFINED;
@@ -16,6 +17,7 @@ public class Undefined implements Human {
     }
 
     int getAge() {
+
         return getAgeFromDateOfBirth(this.dateOfBirth);
     }
 

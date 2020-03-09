@@ -1,7 +1,7 @@
 package homeworks.seabattle.controllers;
 
-import homeworks.seabattle.ConsoleReader;
-import homeworks.seabattle.Positions;
+import homeworks.seabattle.util.ConsoleReader;
+import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.battlefield.FieldPrinter;
 import lombok.SneakyThrows;
 
@@ -52,6 +52,7 @@ public class PlayerController extends Controller {
                         Positions.opponentDeadShipPositions = deadShipPositions;
 
                         if (Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size()) {
+                            System.out.println("Moves amount: " + moveCount);
                             break;
                         }
                     } else {

@@ -1,4 +1,4 @@
-package homeworks.seabattle;
+package homeworks.seabattle.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;

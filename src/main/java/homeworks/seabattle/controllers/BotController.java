@@ -1,6 +1,6 @@
 package homeworks.seabattle.controllers;
 
-import homeworks.seabattle.Positions;
+import homeworks.seabattle.util.Positions;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class BotController extends Controller {
 
-    List<Integer> hitCells = new ArrayList<>();
-    boolean hit = false;
+    private List<Integer> hitCells = new ArrayList<>();
+    private boolean hit = false;
 
     public void makeMove() {
 
@@ -40,6 +40,8 @@ public class BotController extends Controller {
             if (!hitPositions.contains(shotPosition)
                     && !missPositions.contains(shotPosition)) {
 
+                moveCount++;
+
 //                if (decideHitOrMiss(shotPosition)) {
 //                    break;
 //                }
@@ -50,6 +52,7 @@ public class BotController extends Controller {
                     Positions.opponentDeadShipPositions = deadShipPositions;
 
                     if (Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size()) {
+                        System.out.println("Moves amount: " + moveCount);
                         break;
                     }
                 } else {

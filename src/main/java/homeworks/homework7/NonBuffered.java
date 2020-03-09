@@ -8,24 +8,25 @@ public class NonBuffered {
 
     public long measureTime() {
 
+        long startTime = 0;
+        long endTime = 0;
+
         try (FileReader reader = new FileReader("src/main/resources/fileForReading1.txt");
              FileWriter writer = new FileWriter("src/main/resources/fileForWriting2.txt")) {
 
             int c;
 
-            long startTime = System.nanoTime();
+            startTime = System.nanoTime();
 
             while ((c = reader.read()) != -1) {
                 writer.write(c);
             }
 
-            long endTime = System.nanoTime();
-
-            return endTime - startTime;
+            endTime = System.nanoTime();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return -1;
+        return endTime - startTime;
     }
 }

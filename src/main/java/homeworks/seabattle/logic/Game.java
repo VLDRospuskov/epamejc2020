@@ -1,10 +1,9 @@
-package homeworks.seabattle;
+package homeworks.seabattle.logic;
 
-import homeworks.homework3.allInAll.Colors;
-import homeworks.seabattle.battlefield.FieldInitiator;
-import homeworks.seabattle.battlefield.PlayerFieldInitiator;
+import homeworks.homework3.allInOne.Colors;
+import homeworks.seabattle.util.ConsoleReader;
+import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.controllers.Controller;
-import homeworks.seabattle.controllers.PlayerController;
 import lombok.SneakyThrows;
 
 import java.util.concurrent.ThreadLocalRandom;

@@ -4,10 +4,10 @@ class Even {
 
     void createString (String str) {
 
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for(int i=1; i<str.length(); i=i+2) {
-            result += str.charAt(i);
+            result.append(str.charAt(i));
         }
 
         System.out.println(result);

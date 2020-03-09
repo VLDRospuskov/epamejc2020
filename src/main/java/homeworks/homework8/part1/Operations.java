@@ -9,12 +9,11 @@ public class Operations {
 
     public void operate () {
 
-        DataToValidate dataToValidate = getData(() -> {
-            Random r = new Random();
-            return r.ints(0, (100 + 1))
-                    .findFirst()
-                    .orElse(0);
-        });
+        DataToValidate dataToValidate = getData(() ->
+                new Random().ints(0, (100 + 1))
+                .findFirst()
+                .orElse(0)
+        );
 
         List<Integer> data = dataToValidate.getDataToValidate();
         data.forEach(number -> System.out.println(" " + number));

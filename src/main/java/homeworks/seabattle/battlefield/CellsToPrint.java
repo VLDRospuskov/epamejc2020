@@ -3,7 +3,7 @@ package homeworks.seabattle.battlefield;
 import java.util.Comparator;
 import java.util.List;
 
-public class Cell {
+public class CellsToPrint {
 
     public String[] initCells(List<Integer> shipPositions, List<Integer> hitPositions,
                               List<Integer> missPositions, List<Integer> deadShipPositions, boolean shipVisibility) {
@@ -29,7 +29,7 @@ public class Cell {
                 cells[i] = "¤";
                 h++;
                 s++;
-            } else if (shipPositions.size() != 0 && s < shipPositions.size() && i == shipPositions.get(s)) { //&& shipVisibility) {
+            } else if (shipPositions.size() != 0 && s < shipPositions.size() && i == shipPositions.get(s) && shipVisibility) {
                 cells[i] = "■";
                 s++;
             } else if (missPositions.size() != 0 && m < missPositions.size() && i == missPositions.get(m)) {

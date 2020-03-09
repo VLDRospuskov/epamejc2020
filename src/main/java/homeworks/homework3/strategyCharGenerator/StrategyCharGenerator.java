@@ -1,6 +1,6 @@
 package homeworks.homework3.strategyCharGenerator;
 
-import homeworks.homework3.allInAll.ThreadController;
+import homeworks.homework3.allInOne.ThreadController;
 
 import java.util.ArrayList;
 

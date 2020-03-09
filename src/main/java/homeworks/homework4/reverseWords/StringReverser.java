@@ -34,17 +34,19 @@ class StringReverser {
     private String reverse (String userString) {
 
         String[] strings = userString.split(" ");
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (int i=0; i<strings.length; i++) {
+
             for (int j=strings[i].length()-1; j>=0; j--) {
-                result += strings[i].charAt(j);
+                result.append(strings[i].charAt(j));
             }
+
             if (strings.length > 1 && i != strings.length-1) {
-                result += " ";
+                result.append(" ");
             }
         }
-        return result;
+        return result.toString();
     }
 
 

@@ -15,7 +15,7 @@ class Swaper {
                 String userString = reader.readLine();
 
                 if (userString.equalsIgnoreCase("exit")) {
-                    System.out.println("Swaper stopped!");
+                    System.out.println("Swapper stopped!");
                     break;
                 }
 

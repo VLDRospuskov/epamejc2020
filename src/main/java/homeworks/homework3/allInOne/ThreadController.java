@@ -1,4 +1,4 @@
-package homeworks.homework3.allInAll;
+package homeworks.homework3.allInOne;
 
 import homeworks.homework3.pyramidGenerator.PyramidGenerator;
 import homeworks.homework3.randomCharGenerator.RandomCharGenerator;

@@ -1,7 +1,7 @@
 package homeworks.seabattle.battlefield;
 
-import homeworks.seabattle.ConsoleReader;
-import homeworks.seabattle.Positions;
+import homeworks.seabattle.util.ConsoleReader;
+import homeworks.seabattle.util.Positions;
 import lombok.SneakyThrows;
 
 import java.util.Arrays;

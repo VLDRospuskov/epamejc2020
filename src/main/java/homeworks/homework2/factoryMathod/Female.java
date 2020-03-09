@@ -17,6 +17,7 @@ public class Female implements Human {
     }
 
     int getAge() {
+
         return getAgeFromDateOfBirth(this.dateOfBirth);
     }
 

@@ -27,7 +27,4 @@ public class TrafficLight {
             System.out.println("Got a IOException");
         }
     }
-
-
-
 }

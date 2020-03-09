@@ -1,4 +1,4 @@
-package homeworks.homework3.allInAll;
+package homeworks.homework3.allInOne;
 
 public class Colors {
     private static final String ANSI_RESET = "\u001B[0m";

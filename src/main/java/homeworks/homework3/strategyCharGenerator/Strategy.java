@@ -1,6 +1,6 @@
 package homeworks.homework3.strategyCharGenerator;
 
-import homeworks.homework3.allInAll.Colors;
+import homeworks.homework3.allInOne.Colors;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;

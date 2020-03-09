@@ -5,8 +5,6 @@ import lombok.SneakyThrows;
 
 public class ThreadController {
 
-    public final static Object lock = new Object();
-
     @SneakyThrows
     public void start() {
 
@@ -19,10 +17,10 @@ public class ThreadController {
         ATM atm4 = new ATM("ATM4",500);
 
 
-        User user1 = new User("Boris1", 250, false);
-        User user2 = new User("Vladimir2", 250, false);
-        User user3 = new User("Dmitriy3", 250, false);
-        User user4 = new User("Vladimir4", 250, false);
+        User user1 = new User("Boris1", 500, false);
+        User user2 = new User("Vladimir2", 500, false);
+        User user3 = new User("Dmitriy3", 500, false);
+        User user4 = new User("Vladimir4", 500, false);
 
         ThreadATMOperations threadATMOperations1 = new ThreadATMOperations(bank, user1, atm1);
         ThreadATMOperations threadATMOperations2 = new ThreadATMOperations(bank, user2, atm2);
@@ -43,7 +41,7 @@ public class ThreadController {
                 + atm4.getBalance() + user1.getBalance() + user2.getBalance() + user3.getBalance()
                 + user4.getBalance();
 
-        System.out.println("Expected sum: 5500\n" +
+        System.out.println("Expected sum: 6500\n" +
                 "Actual sum:   " + sum);
     }
 }

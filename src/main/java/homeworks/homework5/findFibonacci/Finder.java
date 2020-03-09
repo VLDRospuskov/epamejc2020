@@ -3,14 +3,15 @@ package homeworks.homework5.findFibonacci;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Finder {
 
-    int count;
-    ArrayList array = new ArrayList();
+    private int count;
+    private List<Integer> array = new ArrayList<>();
 
-    void find () {
+    void run () {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
 
@@ -20,26 +21,30 @@ public class Finder {
                 String userNumber = reader.readLine();
 
                 if (isPositiveAndNotZero(userNumber)) {
-                    count = 2;
-                    int size = Integer.parseInt(userNumber);
-                    int[] randomArray = generateRandomArray(size);
-                    ArrayList allFibonacci = findAllFibonacci(randomArray);
-                    if (!array.isEmpty()) {
-                        System.out.println(allFibonacci.toString());
-                        array.clear();
-                    } else {
-                        System.out.println("No Fibonacci here");
-                    }
+                    findAndShowResult(userNumber);
                 } else if (userNumber.equalsIgnoreCase("exit")) {
                     System.out.println("Finder stopped!");
                     break;
                 } else {
-                    System.out.println("Length must be a positive and single number");
+                    System.out.println("Length must be a positive single number and less then 5000");
                 }
 
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void findAndShowResult(String userNumber) {
+        count = 2;
+        int size = Integer.parseInt(userNumber);
+        int[] randomArray = generateRandomArray(size);
+        List<Integer> allFibonacci = findAllFibonacci(randomArray);
+        if (!array.isEmpty()) {
+            System.out.println(allFibonacci.toString());
+            array.clear();
+        } else {
+            System.out.println("No Fibonacci here");
         }
     }
 
@@ -54,7 +59,7 @@ public class Finder {
     }
 
 
-    private ArrayList findAllFibonacci (int[] randomArray) {
+    private List<Integer> findAllFibonacci (int[] randomArray) {
         if (count < randomArray.length && (randomArray[count] == randomArray[count-2] + randomArray[count-1])) {
             array.add(randomArray[count]);
             count++;

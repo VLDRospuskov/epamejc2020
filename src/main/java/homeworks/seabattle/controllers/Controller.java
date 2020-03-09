@@ -1,8 +1,8 @@
 package homeworks.seabattle.controllers;
 
 
-import homeworks.seabattle.Positions;
-import homeworks.seabattle.Ship;
+import homeworks.seabattle.util.Positions;
+import homeworks.seabattle.util.Ship;
 import homeworks.seabattle.battlefield.FieldPrinter;
 
 import java.util.ArrayList;
@@ -13,6 +13,8 @@ public abstract class Controller {
     protected List<Integer> hitPositions = new ArrayList<>();
     protected List<Integer> missPositions = new ArrayList<>();
     protected List<Integer> deadShipPositions = new ArrayList<>();
+
+    protected int moveCount = 0;
 
     protected FieldPrinter fieldPrinter = new FieldPrinter();
 
@@ -38,6 +40,7 @@ public abstract class Controller {
             return Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size();
 
         } else {
+            System.out.println("Moves amount: " + moveCount);
             missPositions.add(shotPosition);
             return true;
         }

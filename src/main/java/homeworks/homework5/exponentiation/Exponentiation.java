@@ -1,6 +1,7 @@
 package homeworks.homework5.exponentiation;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Exponentiation {
@@ -22,36 +23,42 @@ public class Exponentiation {
 
                     double number = Double.parseDouble(userNumber);
 
-                    while (true) {
+                    decideSteppe(reader, number);
 
-                        product = 1;
-                        System.out.print("Enter steppe or 'next': ");
-                        String userSteppe = reader.readLine();
-
-                        if (userSteppe.equalsIgnoreCase("next")) {
-                            break;
-                        } else if (determineSteppeType(userSteppe).equals(TypeOfSteppe.INTEGER)) {
-
-                            int steppe = Integer.parseInt(userSteppe);
-                            double result = exponent(number, steppe);
-                            System.out.println(result);
-
-                        } else if (determineSteppeType(userSteppe).equals(TypeOfSteppe.DOUBLE)) {
-
-                            double steppe = Double.parseDouble(userSteppe);
-                            double result = Math.pow(number, steppe);
-                            System.out.println(result);
-
-                        } else {
-                            System.out.println("Steppe must be double or integer");
-                        }
-                    }
                 } else {
                     System.out.println("Base must be double or integer");
                 }
             }
         } catch (Exception ex)  {
             ex.printStackTrace();
+        }
+    }
+
+    private void decideSteppe(BufferedReader reader, double number) throws IOException {
+
+        while (true) {
+
+            product = 1;
+            System.out.print("Enter steppe or 'next': ");
+            String userSteppe = reader.readLine();
+
+            if (userSteppe.equalsIgnoreCase("next")) {
+                break;
+            } else if (determineSteppeType(userSteppe).equals(TypeOfSteppe.INTEGER)) {
+
+                int steppe = Integer.parseInt(userSteppe);
+                double result = exponent(number, steppe);
+                System.out.println(result);
+
+            } else if (determineSteppeType(userSteppe).equals(TypeOfSteppe.DOUBLE)) {
+
+                double steppe = Double.parseDouble(userSteppe);
+                double result = Math.pow(number, steppe);
+                System.out.println(result);
+
+            } else {
+                System.out.println("Steppe must be double or integer");
+            }
         }
     }
 

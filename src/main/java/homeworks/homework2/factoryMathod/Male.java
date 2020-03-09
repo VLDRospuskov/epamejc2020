@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Getter
 class Male implements Human {
+
     final Date dateOfBirth;
     String name;
     Gender gender = Gender.MALE;
@@ -16,6 +17,7 @@ class Male implements Human {
     }
 
     int getAge() {
+
         return getAgeFromDateOfBirth(this.dateOfBirth);
     }
 

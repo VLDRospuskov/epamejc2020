@@ -6,25 +6,26 @@ public class BufferedLine {
 
     public long measureTime () {
 
+        long startTime = 0;
+        long endTime = 0;
+
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/fileForReading1.txt"));
              BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/fileForWriting3.txt"))) {
 
             String c;
 
-            long startTime = System.nanoTime();
+            startTime = System.nanoTime();
 
             while ((c = reader.readLine()) != null) {
                 writer.write(c);
                 writer.newLine();
             }
 
-            long endTime = System.nanoTime();
-
-            return endTime - startTime;
+            endTime = System.nanoTime();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return -1;
+        return endTime - startTime;
     }
 }

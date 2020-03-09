@@ -6,9 +6,13 @@ public class Author {
     public int age;
 
     public Author () throws NegativeAgeException {
+
         Package thisPackage = Author.class.getPackage();
+
         int age = thisPackage.getDeclaredAnnotation(AuthorAnnotation.class).age();
+
         String name = thisPackage.getDeclaredAnnotation(AuthorAnnotation.class).name();
+
         createAuthor(name, age);
     }
 
