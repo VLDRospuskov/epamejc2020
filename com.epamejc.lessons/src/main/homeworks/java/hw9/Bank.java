@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Bank {
 
-    private double balance;
+    private volatile double balance;
 
     public synchronized void collect(double amount) {
         balance += amount;

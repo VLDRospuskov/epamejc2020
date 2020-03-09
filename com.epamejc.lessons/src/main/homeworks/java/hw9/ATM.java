@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ATM {
 
-    private double balance;
+    private volatile double balance;
     private int index;
 
     public synchronized void deposit(double amount) {
