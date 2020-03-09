@@ -33,11 +33,11 @@ public class Main {
                         (sc, su) -> sc.stream()
                                 .mapToInt(Integer::intValue)
                                 .sum() / su
-        );
+                );
 
         String output = student.getInfo(() -> student, (st) ->
                 String.format("Student %1$s, group - %2$s, year %3$d, average score - %4$d"
-                ,st.getName(), st.getGroup(), st.getYear(), averageScore));
+                        , st.getName(), st.getGroup(), st.getYear(), averageScore));
 
         System.out.println(output);
 

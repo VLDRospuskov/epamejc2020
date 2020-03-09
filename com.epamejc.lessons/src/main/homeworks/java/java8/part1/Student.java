@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Student <S> {
+public class Student<S> {
 
     private String name;
     private String group;
@@ -13,7 +13,7 @@ public class Student <S> {
     private S numOfSubjects;
     private S year;
 
-    public Student (List<S> score, S numOfSubjects, S year, String name, String group) {
+    public Student(List<S> score, S numOfSubjects, S year, String name, String group) {
 
         this.name = name;
         this.group = group;
@@ -23,7 +23,7 @@ public class Student <S> {
 
     }
 
-    public<R> R getAverageScore(MySupplier<? extends List<S>> score, MySupplier<? extends S> disciplines, MyBiFunction<? super List<S>, ? super S, R> function) {
+    public <R> R getAverageScore(MySupplier<? extends List<S>> score, MySupplier<? extends S> disciplines, MyBiFunction<? super List<S>, ? super S, R> function) {
 
         return function.apply(score.get(), disciplines.get());
 
