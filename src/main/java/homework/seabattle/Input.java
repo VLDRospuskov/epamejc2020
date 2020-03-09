@@ -8,8 +8,8 @@ import static homework.seabattle.Strings.*;
 
 public class Input {
 
-    private static Map<String, Ship.Type> shipTypes;
-    private static Map<String, Player.Type> playersTypes;
+    private final static Map<String, Ship.Type> shipTypes;
+    private final static Map<String, Player.Type> playersTypes;
 
     static {
         shipTypes = new HashMap<>();
@@ -25,7 +25,7 @@ public class Input {
         System.out.println(ENTER_PLAYER_TYPE);
 
         Scanner scanner = new Scanner(System.in);
-        String inputString = "";
+        String inputString;
         Player.Type type = null;
         boolean isEntered = false;
 
@@ -68,7 +68,7 @@ public class Input {
         System.out.println(ENTER_COURSE);
 
         Scanner scanner = new Scanner(System.in);
-        String inputString = "";
+        String inputString;
         Ship.Type type = null;
         boolean isEntered = false;
 

@@ -21,7 +21,7 @@ public class ShipsField {
     }
 
     public Set<Ship> getOwnActiveShips() {
-        return ownActiveShips;
+        return new HashSet<>(ownActiveShips);
     }
 
     public void tryAddShip(Coordinate coordinate, Ship.Type type, int length) {
@@ -33,7 +33,7 @@ public class ShipsField {
     }
 
     public void printShipsOnMap() {
-        String state = "";
+        String state;
         System.out.print("  ABCDEFGHIJ");
         for (int number = 1; number <= MAX_NUMBER; number++) {
             System.out.print("\n" + number + (number != MAX_NUMBER ? " " : ""));

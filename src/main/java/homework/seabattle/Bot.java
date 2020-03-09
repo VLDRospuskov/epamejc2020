@@ -3,7 +3,7 @@ package homework.seabattle;
 import java.util.Random;
 
 import static homework.seabattle.Config.*;
-import static homework.seabattle.Ship.Type.*;
+import static homework.seabattle.Ship.Type.HORIZONTAL;
 import static homework.seabattle.Strings.COMPUTERS_SHOTS;
 import static homework.seabattle.Strings.COMPUTER_NEW_SHOT;
 
@@ -110,7 +110,7 @@ public class Bot extends Player {
 
     private Ship.Type getRandomShipType() {
         Random random = new Random();
-        return Ship.Type.values()[ random.nextInt(HORIZONTAL.ordinal() + 1)];
+        return Ship.Type.values()[random.nextInt(HORIZONTAL.ordinal() + 1)];
     }
 
     private Coordinate getRandomCoordinate() {

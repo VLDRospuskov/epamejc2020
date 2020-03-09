@@ -1,7 +1,6 @@
 package homework.seabattle;
 
 import static homework.seabattle.Input.enterPlayerType;
-import static homework.seabattle.Strings.YOUR_SHIPS;
 
 public class Game {
 

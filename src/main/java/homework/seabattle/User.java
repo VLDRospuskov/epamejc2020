@@ -3,7 +3,6 @@ package homework.seabattle;
 import java.util.HashMap;
 import java.util.Map;
 
-import static homework.seabattle.Config.*;
 import static homework.seabattle.Input.*;
 import static homework.seabattle.Strings.*;
 

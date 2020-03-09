@@ -9,7 +9,7 @@ public abstract class Ship {
 
     public enum Type {
         VERTICAL,
-        HORIZONTAL;
+        HORIZONTAL
     }
 
     protected final int length;
@@ -52,11 +52,11 @@ public abstract class Ship {
     }
 
     public List<Coordinate> getCoordinates() {
-        return coordinates;
+        return new ArrayList<>(coordinates);
     }
 
     public Set<Coordinate> getAreaCoordinates() {
-        return areaCoordinates;
+        return new HashSet<>(areaCoordinates);
     }
 
     public Coordinate getFirstCoordinate() {
@@ -80,20 +80,14 @@ public abstract class Ship {
     }
 
     public boolean contains(Coordinate coordinate) {
-        if (coordinates.contains(coordinate)) {
-            return true;
-        }
-        return false;
+        return coordinates.contains(coordinate);
     }
 
     public boolean occupies(Coordinate coordinate) {
         if (coordinates.contains(coordinate)) {
             return true;
         }
-        if (areaCoordinates.contains(coordinate)) {
-            return true;
-        }
-        return false;
+        return areaCoordinates.contains(coordinate);
     }
 
     public boolean intersects(Ship anotherShip) {
