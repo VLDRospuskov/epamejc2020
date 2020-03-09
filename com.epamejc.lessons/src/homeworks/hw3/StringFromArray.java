@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class StringFromArray {
 
-    public static void getStringFromArray() {
+    public static String getStringFromArray() {
         Integer[] sizeArray = RandomCharArray.getSizeFromInput();
         Integer x = sizeArray[0];
         Integer y = sizeArray[1];
@@ -41,8 +41,7 @@ public class StringFromArray {
         }
 
         System.out.println(resultString);
-
+        return resultString;
     }
-
 
 }

@@ -9,9 +9,4 @@ public class Fibonacci {
         return fibonacciSeries(numberPlace - 1) + fibonacciSeries(numberPlace - 2);
     }
 
-    public static void main(String[] args) {
-        Integer n = fibonacciSeries(5);
-        System.out.print(n);
-    }
-
 }

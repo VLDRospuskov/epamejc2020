@@ -31,6 +31,7 @@ public class TrafficLightsTest {
     public void testGetTime() {
         Double expected1 = 3.0;
         Double actual = trafficLights.getTime("3.0");
+        assertEquals(expected1, actual);
     }
 
     @Test(expected = NumberFormatException.class)
