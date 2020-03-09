@@ -1,11 +1,12 @@
 package homeworks.HW_8_Java8.functionalInterfaces;
 
-import java.util.function.BiFunction;
-import java.util.function.Supplier;
-
 public class Main {
 
     public static void main(String[] args) {
+        int random100 = Calculator.getRandomInt(() -> (int) (Math.random() * 100));
+        System.out.println(random100);
+
+
     }
 
 }
