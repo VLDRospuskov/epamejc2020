@@ -23,13 +23,16 @@ public class Student<S> {
 
     }
 
-    public <R> R getAverageScore(MySupplier<? extends List<S>> score, MySupplier<? extends S> disciplines, MyBiFunction<? super List<S>, ? super S, R> function) {
+    public <R> R getAverageScore(MySupplier<? extends List<S>> score,
+                                 MySupplier<? extends S> disciplines,
+                                 MyBiFunction<? super List<S>, ? super S, R> function) {
 
         return function.apply(score.get(), disciplines.get());
 
     }
 
-    public String getInfo(MySupplier<? extends Student<S>> person, MyFunction<? super Student<S>, String> function) {
+    public String getInfo(MySupplier<? extends Student<S>> person,
+                          MyFunction<? super Student<S>, String> function) {
 
         return function.apply(person.get());
 
