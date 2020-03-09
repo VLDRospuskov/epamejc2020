@@ -1,70 +1,123 @@
 package homework.seabattle;
 
-import lombok.Data;
-
-import java.util.List;
-
+import static homework.seabattle.Config.*;
 import static homework.seabattle.Strings.*;
 
-@Data
-public class Player {
+abstract public class Player {
 
-    private String name;
-    private ShipsField shipsField = new ShipsField();
-    private Player opponent;
-    private TacticalSituation situation = new TacticalSituation();
+    public enum Type {
+        HUMAN,
+        COMPUTER
+    }
 
-    public void shoot(Coordinate coordinate) {
-        notifyShotAnnounce(coordinate);
+    protected String name;
+
+    protected ShipsField shipsField = new ShipsField();
+
+    protected Player opponent;
+
+    protected TacticalSituation situation = new TacticalSituation();
+
+    public static Player create(Type type) {
+        if (type.equals(Type.HUMAN)) {
+            return new User();
+        } else if (type.equals(Type.COMPUTER)) {
+            return new Bot();
+        }
+        throw new RuntimeException("Undefined player type");
+    }
+
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ShipsField getShipsField() {
+        return shipsField;
+    }
+
+    public abstract void createName();
+
+    abstract protected void addShip(int length);
+
+    abstract protected void shoot();
+
+    public void createShipsLocation() {
+        addShip(4);
+
+        for (int i = 0; i < THREEDECKS_SHIPS_COUNT; i++) {
+            addShip(3);
+        }
+
+        for (int i = 0; i < TWODECKS_SHIPS_COUNT; i++) {
+            addShip(2);
+        }
+
+        for (int i = 0; i < ONEDECK_SHIPS_COUNT; i++) {
+            addShip(1);
+        }
+
+        System.out.println("\n" + name + YOUR_SHIPS);
+        shipsField.printShipsOnMap();
+    }
+
+    public void startGame() {
+        shoot();
     }
 
     public void onShotAnnounced(Coordinate coordinate) {
-        if (shipsField.getOwnEmptyCoordinates().contains(coordinate)) {
+        if (shipsField.containsEmptyCoordinate(coordinate)) {
             notifyShotFailed(coordinate);
+            shoot();
             return;
         }
 
         for (Ship ship : shipsField.getOwnActiveShips()) {
-            List<Coordinate> coordinates = ship.getCoordinates();
+            if (ship.contains(coordinate)) {
+                shipsField.addEmptyCoordinate(coordinate);
+                ship.removeCoordinate(coordinate);
 
-            if (coordinates.contains(coordinate)) {
-                int size = coordinates.size();
-
-                shipsField.getOwnEmptyCoordinates().add(coordinate);
-
-                if (size > 1) {
+                if (ship.isValid()) {
                     notifyShipWasDamaged(coordinate);
-                    coordinates.remove(coordinate);
                     return;
                 }
 
-                if (size == 1) {
-                    notifyShipWasKilled(coordinate);
-                    shipsField.getOwnActiveShips().remove(ship);
-                    return;
-                }
+                shipsField.removeActiveShip(ship);
+                notifyShipWasKilled(coordinate);
+                return;
             }
         }
     }
 
     public void onShipKilled(Coordinate lastCoordinate) {
-        situation.setCoordinateState(lastCoordinate, TacticalSituation.CellState.DAMAGED);
         situation.decrementOpponentShipsCount();
-
-        for (Coordinate coordinate : situation.searchKilledShip(lastCoordinate).getAreaCoordinates()) {
-            situation.setCoordinateState(coordinate, TacticalSituation.CellState.EMPTY);
+        if (situation.getOpponentActiveShipsCount() == 0) {
+            System.out.println(name + WIN);
+            return;
         }
+
+        situation.setCellState(lastCoordinate, TacticalSituation.CellState.DAMAGED);
+
+        for (Coordinate coordinate : situation.searchShip(lastCoordinate).getAreaCoordinates()) {
+            situation.setCellState(coordinate, TacticalSituation.CellState.EMPTY);
+        }
+
+        shoot();
     }
 
     public void onShipDamaged(Coordinate coordinate) {
-        situation.setCoordinateState(coordinate, TacticalSituation.CellState.DAMAGED);
+        situation.setCellState(coordinate, TacticalSituation.CellState.DAMAGED);
+        shoot();
     }
 
     public void onShotFailed(Coordinate coordinate) {
-        situation.setCoordinateState(coordinate, TacticalSituation.CellState.EMPTY);
+        situation.setCellState(coordinate, TacticalSituation.CellState.EMPTY);
     }
 
-    private void notifyShotAnnounce(Coordinate coordinate) {
+    protected void notifyShotAnnounce(Coordinate coordinate) {
         opponent.onShotAnnounced(coordinate);
     }
 
@@ -82,5 +135,4 @@ public class Player {
         System.out.println(ANSWER_MISSED);
         opponent.onShotFailed(coordinate);
     }
-
 }

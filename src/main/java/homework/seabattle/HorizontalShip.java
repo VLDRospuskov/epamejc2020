@@ -1,35 +1,42 @@
 package homework.seabattle;
 
-import static homework.seabattle.Config.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import static homework.seabattle.Config.MAX_LETTER;
 
 public class HorizontalShip extends Ship {
 
-    public HorizontalShip(Coordinate startCoordinate, int length){
+    public HorizontalShip(Coordinate startCoordinate, int length) {
         super(startCoordinate, length);
     }
 
     @Override
     protected void calculateAllCoordinates(Coordinate startCoordinate) {
         char startChar = startCoordinate.getLetter();
-        char endChar = (char)(startChar + length - 1);
-        if (endChar <= MAX_LETTER){
-            for (char ch = startChar; ch <= endChar; ch++){
+        char endChar = (char) (startChar + length - 1);
+        if (endChar <= MAX_LETTER) {
+            for (char ch = startChar; ch <= endChar; ch++) {
                 Coordinate coordinate = new Coordinate(ch, startCoordinate.getNumber());
-                coordinates.add(coordinate);
+                addCoordinate(coordinate);
             }
         }
     }
 
     @Override
-    protected void calculateArea() {
-        int shipNumber = coordinates.get(0).getNumber();
-        calculateUpDownArea(shipNumber);
-        calculateLeftArea(shipNumber);
-        calculateRightArea(shipNumber);
+    protected Set<Coordinate> calculateArea() {
+        Set<Coordinate> areaCoordinates = new HashSet<>();
+        int shipNumber = getFirstCoordinate().getNumber();
+
+        areaCoordinates.addAll(calculateUpDownArea(shipNumber));
+        areaCoordinates.addAll(calculateLeftArea(shipNumber));
+        areaCoordinates.addAll(calculateRightArea(shipNumber));
+        return areaCoordinates;
     }
 
-    private void calculateUpDownArea(int shipNumber) {
-        for(Coordinate coordinate : coordinates){
+    private Set<Coordinate> calculateUpDownArea(int shipNumber) {
+        Set<Coordinate> areaCoordinates = new HashSet<>();
+        for (Coordinate coordinate : getCoordinates()) {
             Character letter = coordinate.getLetter();
 
             try {
@@ -44,19 +51,21 @@ public class HorizontalShip extends Ship {
             } catch (IllegalArgumentException ignored) {
             }
         }
+        return areaCoordinates;
     }
 
-    private void calculateLeftArea(int shipNumber) {
-        char leftLetter = (char)(coordinates.get(0).getLetter() - 1);
-        calculateVerticalArea(shipNumber, leftLetter);
+    private Set<Coordinate> calculateLeftArea(int shipNumber) {
+        char leftLetter = (char) (getFirstCoordinate().getLetter() - 1);
+        return calculateVerticalArea(shipNumber, leftLetter);
     }
 
-    private void calculateRightArea(int shipNumber) {
-        char rightLetter = (char)(coordinates.get(coordinates.size() - 1).getLetter() + 1);
-        calculateVerticalArea(shipNumber, rightLetter);
+    private Set<Coordinate> calculateRightArea(int shipNumber) {
+        char rightLetter = (char) (getLastCoordinate().getLetter() + 1);
+        return calculateVerticalArea(shipNumber, rightLetter);
     }
 
-    private void calculateVerticalArea(int shipNumber, char letter) {
+    private Set<Coordinate> calculateVerticalArea(int shipNumber, char letter) {
+        Set<Coordinate> areaCoordinates = new HashSet<>();
         for (int number = shipNumber - 1; number <= shipNumber + 1; number++) {
             try {
                 Coordinate coordinate = new Coordinate(letter, number);
@@ -64,5 +73,6 @@ public class HorizontalShip extends Ship {
             } catch (IllegalArgumentException ignored) {
             }
         }
+        return areaCoordinates;
     }
 }

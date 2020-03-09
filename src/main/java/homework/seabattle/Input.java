@@ -9,18 +9,42 @@ import static homework.seabattle.Strings.*;
 public class Input {
 
     private static Map<String, Ship.Type> shipTypes;
-    private static Map<Integer, String> enterShipMessages;
+    private static Map<String, Player.Type> playersTypes;
 
     static {
         shipTypes = new HashMap<>();
         shipTypes.put("h", Ship.Type.HORIZONTAL);
         shipTypes.put("v", Ship.Type.VERTICAL);
 
-        enterShipMessages = new HashMap<>();
-        enterShipMessages.put(1, ENTER_ONE_DECK);
-        enterShipMessages.put(2, ENTER_TWO_DECKS);
-        enterShipMessages.put(3, ENTER_THREE_DECKS);
-        enterShipMessages.put(4, ENTER_FOUR_DECKS);
+        playersTypes = new HashMap<>();
+        playersTypes.put("c", Player.Type.COMPUTER);
+        playersTypes.put("h", Player.Type.HUMAN);
+    }
+
+    public static Player.Type enterPlayerType() {
+        System.out.println(ENTER_PLAYER_TYPE);
+
+        Scanner scanner = new Scanner(System.in);
+        String inputString = "";
+        Player.Type type = null;
+        boolean isEntered = false;
+
+        while (!isEntered) {
+            inputString = scanner.nextLine();
+
+            if (inputString.equals("c") || inputString.equals("h")) {
+                type = playersTypes.get(inputString);
+                isEntered = true;
+            } else {
+                System.out.println(ENTER_PLAYER_TYPE_ERROR);
+            }
+        }
+        return type;
+    }
+
+    public static String enterPlayerName() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     public static Coordinate enterCoordinate() {
@@ -58,34 +82,6 @@ public class Input {
                 System.out.println(ENTER_COURSE_ERROR);
             }
         }
-
         return type;
-    }
-
-    public static void enterShip(ShipsField shipsField, int length) {
-        System.out.println(enterShipMessages.get(length));
-
-        Ship ship = null;
-        Coordinate coordinate = null;
-        Ship.Type type = null;
-
-        boolean isShipEntered = false;
-        while (!isShipEntered) {
-            coordinate = Input.enterCoordinate();
-
-            if (length == 1) {
-                ship = Ship.createOneDeckShip(coordinate);
-            } else {
-                type = Input.enterShipType();
-                ship = Ship.create(type, coordinate, length);
-            }
-
-            try {
-                shipsField.tryAddShip(ship);
-                isShipEntered = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 }

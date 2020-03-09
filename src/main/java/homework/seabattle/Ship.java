@@ -1,13 +1,10 @@
 package homework.seabattle;
 
-import lombok.Data;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Data
 public abstract class Ship {
 
     public enum Type {
@@ -16,8 +13,10 @@ public abstract class Ship {
     }
 
     protected final int length;
-    protected List<Coordinate> coordinates = new ArrayList<>();
-    protected Set<Coordinate> areaCoordinates = new HashSet<>();
+
+    private List<Coordinate> coordinates = new ArrayList<>();
+
+    private Set<Coordinate> areaCoordinates = new HashSet<>();
 
     public static Ship create(Type type, Coordinate startCoordinate, int length) {
         if (type == Type.HORIZONTAL) {
@@ -40,8 +39,40 @@ public abstract class Ship {
         calculateAllCoordinates(startCoordinate);
 
         if (isValid()) {
-            calculateArea();
+            areaCoordinates.addAll(calculateArea());
         }
+    }
+
+    protected abstract void calculateAllCoordinates(Coordinate startCoordinate);
+
+    protected abstract Set<Coordinate> calculateArea();
+
+    public int getLength() {
+        return length;
+    }
+
+    public List<Coordinate> getCoordinates() {
+        return coordinates;
+    }
+
+    public Set<Coordinate> getAreaCoordinates() {
+        return areaCoordinates;
+    }
+
+    public Coordinate getFirstCoordinate() {
+        return coordinates.get(0);
+    }
+
+    public Coordinate getLastCoordinate() {
+        return coordinates.get(coordinates.size() - 1);
+    }
+
+    public boolean addCoordinate(Coordinate coordinate) {
+        return coordinates.add(coordinate);
+    }
+
+    public boolean removeCoordinate(Coordinate coordinate) {
+        return coordinates.remove(coordinate);
     }
 
     public boolean isValid() {
@@ -65,8 +96,12 @@ public abstract class Ship {
         return false;
     }
 
-    protected abstract void calculateAllCoordinates(Coordinate startCoordinate);
-
-    protected abstract void calculateArea();
-
+    public boolean intersects(Ship anotherShip) {
+        for (Coordinate coordinate : coordinates) {
+            if (anotherShip.occupies(coordinate)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

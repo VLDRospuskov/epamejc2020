@@ -30,6 +30,10 @@ public class Coordinate {
         verifyNumber(number);
     }
 
+    public String toString() {
+        return letter + String.valueOf(number);
+    }
+
     private static int parseNumber(String letterNumberStr) {
         String numberStr = letterNumberStr.substring(1);
         int number;
