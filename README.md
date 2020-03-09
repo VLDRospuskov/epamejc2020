@@ -106,4 +106,20 @@ HW7: Working with files
 Create text file, fill it with text (a lot of text), then read it and write data to another file.
 Create another method but with buffered.
 Compare time between buffered and non-buffered.
+
+HW8: Java 8.
+Part 1:
+Write functional interfaces like BiFunction and Supplier (Producer).
+Create class with several parameters. Create method that take functional interfaces created before.
+Select 2 fields, process and return data.
+
+Part 2:
+Pick this package:
+стянуть с моей ветки данный package
+https://github.com/VLDRospuskov/epamejc2020/tree/develop/com.epamejc.lessons/src/main/homework/homework8
+in StreamOperations class create own stream.
+
+HW9: Multithreading
+Create ATM.
+We have one general account and several ATMs working with it. We have several users that could deposit/withdraw/something else (check balance). Make it in loop. Add more features: no negative balance. No integers.
 ```
