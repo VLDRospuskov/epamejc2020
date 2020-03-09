@@ -115,7 +115,6 @@ Select 2 fields, process and return data.
 
 Part 2:
 Pick this package:
-стянуть с моей ветки данный package
 https://github.com/VLDRospuskov/epamejc2020/tree/develop/com.epamejc.lessons/src/main/homework/homework8
 in StreamOperations class create own stream.
 
