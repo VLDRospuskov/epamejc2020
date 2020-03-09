@@ -59,18 +59,16 @@ public class Utils {
     }
 
     public static void printTwoField(Field field1, Field field2) {
-        System.out.println("");
+        System.out.println("\n           YOUR FIELD                                ENEMY FIELD       ");
         System.out.println("    A  B  C  D  E  F  G  H  I  J              A  B  C  D  E  F  G  H  I  J");
         int index = 1;
         for (int i = 0; i < 10; i++) {
             System.out.printf("%2d  ", index);
-
             ArrayList<Cell> col1 = field1.getField().get(i);
             for (Cell cell : col1) {
                 System.out.print(cell + "  ");
             }
             System.out.print("        ");
-
             System.out.printf("%2d  ", index);
             ArrayList<Cell> col2 = field2.getField().get(i);
             for (Cell cell : col2) {

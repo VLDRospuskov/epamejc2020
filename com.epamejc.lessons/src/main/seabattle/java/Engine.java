@@ -1,5 +1,7 @@
 package seabattle.java;
 
+import lombok.SneakyThrows;
+
 import java.util.ArrayList;
 
 import static seabattle.java.Utils.*;
@@ -80,39 +82,68 @@ public class Engine {
     private void battle(Field field1, Field field2) {
         boolean isGameOver = false;
         while (!isGameOver) {
-            System.out.println("\n Player 1 move.");
             printTwoField(field1, field2);
+            System.out.println("\nPlayer 1 shoot.");
             playerMove(field2, field1);
+            isGameOver = checkEndGame(field2);
 
-            System.out.println("\n Player 2 move.");
-            printTwoField(field2, field1);
-            playerMove(field1, field2);
-
+            if (!isGameOver) {
+                printTwoField(field2, field1);
+                System.out.println("\nPlayer 2 shoot.");
+                playerMove(field1, field2);
+                isGameOver = checkEndGame(field1);
+            }
         }
+        System.out.println("Game over! " + getWinner(field1, field2) + " WIN!");
     }
 
     private boolean checkEndGame(Field field) {
-        return true;
+        int sunkShipsCount = countSunkShips(field);
+        int shipsSize = field.getShips().size();
+        if(sunkShipsCount == shipsSize) {
+            return true;
+        }
+        return false;
     }
 
+    private int countSunkShips(Field field) {
+        field.getShips().stream()
+                .forEach(ship -> ship.checkSunk(field));
+        int sunkShipsCount = (int) field.getShips().stream()
+                .filter(ship -> ship.isSunk())
+                .count();
+//        System.out.println("Ships sunk: " + sunkShipsCount);
+        return sunkShipsCount;
+    }
+
+    private String getWinner(Field field1, Field field2) {
+        if (countSunkShips(field1) > countSunkShips(field2)) {
+            return "Player 2";
+        }
+            return"Player 1";
+    }
+
+    @SneakyThrows
     private Field playerMove(Field field1, Field field2) {
         boolean isContinueMove = true;
-        while (isContinueMove) {
+        while (isContinueMove && !checkEndGame(field1)) {
             Integer[] coordYX = scanCoordinates();
             if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
                 System.out.println("\nYou already shoot there! The move goes to another player.");
                 return field1;
             }
             shoot(field1, coordYX);
-            int cellStatus = field1.getField().get(coordYX[0]).get(coordYX[1]).getStatus();
             printTwoField(field2, field1);
             isContinueMove = false;
-            if (cellStatus == 1) {
+            if (field1.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == 1 && !checkEndGame(field1)) {
                 isContinueMove = true;
                 System.out.println("\nGot it! Shoot again!");
             }
         }
-
+        if (!checkEndGame(field1)) {
+            System.out.println("\nMissed! The move goes to another player...\n");
+            Thread.sleep(2000);
+        }
         return field1;
     }
 
@@ -120,5 +151,7 @@ public class Engine {
         field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
         return field;
     }
+
+
 
 }

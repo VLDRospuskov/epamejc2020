@@ -25,7 +25,7 @@ public class Ship {
         this.startYX = startYX;
         this.endYX = endYX;
         this.isSunk = false;
-        isHorizontal = checkHorizontality();
+        isHorizontal = checkHorizontal();
         isPossibleToSetShip = checkPosition(field);
         isInitOk = false;
         isPressLeft = false;
@@ -44,11 +44,38 @@ public class Ship {
 
     }
 
+    public void checkSunk(Field field) {
+        if (isHorizontal && countHitCellsInHorizontal(field) == shipType) {
+            isSunk = true;
+        } else if (!isHorizontal && countHitCellsInVertical(field) == shipType) {
+            isSunk = true;
+        }
+    }
+
+    private int countHitCellsInHorizontal(Field field) {
+        int countHitCells = 0;
+        for (int i = startYX[1]; i <= endYX[1]; i++) {
+            if (field.getField().get(startYX[0]).get(i).isHit()) {
+                countHitCells++;
+            }
+        }
+        return countHitCells;
+    }
+
+    private int countHitCellsInVertical(Field field) {
+        int countHitCells = 0;
+        for (int i = startYX[0]; i <= endYX[0]; i++) {
+            if (field.getField().get(i).get(startYX[1]).isHit()) {
+                countHitCells++;
+            }
+        }
+        return countHitCells;
+    }
+
     private boolean checkPosition(Field field) {
         if (startYX[0] != endYX[0] && startYX[1] != endYX[1]) {
             return false;
         }
-
         if (isHorizontal && countFreeCellsInHorizontal(field) == shipType) {
             return true;
         } else if (!isHorizontal && countFreeCellsInVertical(field) == shipType) {
@@ -89,7 +116,7 @@ public class Ship {
         return countFreeCells;
     }
 
-    private boolean checkHorizontality() {
+    private boolean checkHorizontal() {
         if (startYX[0].equals(endYX[0])) {
             return true;
         }
