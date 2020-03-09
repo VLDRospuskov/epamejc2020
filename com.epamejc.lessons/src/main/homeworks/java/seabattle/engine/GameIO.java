@@ -1,27 +1,24 @@
 package homeworks.java.seabattle.engine;
 
-import homeworks.java.seabattle.data.Cell;
 import homeworks.java.seabattle.data.Player;
 import homeworks.java.seabattle.data.enums.Ships;
 import homeworks.java.utils.UserInputReader;
 
 import java.util.List;
 
-import static homeworks.java.seabattle.data.Field.deckSize;
-
 public class GameIO {
 
-    private static final String REGEX = "^[a-zA-Z]\\d+$";
-    private static final String WRONG_INPUT = "Wrong input, please try again!";
-    private static int count = 1;
+    private int DECK_SIZE = new Settings().getDeckSize();
+    private final String REGEX = "^[a-zA-Z]\\d+$";
+    private final String WRONG_INPUT = "Wrong input, please try again!";
 
-    public static void printGame(List<Player> players) {
+    public void printGame(List<Player> players) {
         System.out.println("\n\n\n");
         System.out.println(printName(players.get(0).getName()) + "\t" + printName(players.get(1).getName()) + "\n");
         System.out.println(shipsRemains(players));
         System.out.println(printHead() + "\t" + printHead());
 
-        for (int i = 0; i < deckSize; i++) {
+        for (int i = 0; i < DECK_SIZE; i++) {
             System.out.println((char) (65 + i) + "\t" +
                     players.get(0).getField().printLine(i, players.get(0).isVisible()) + "\t" +
                     (char) (65 + i) + "\t" +
@@ -30,7 +27,7 @@ public class GameIO {
 
     }
 
-    public static String getParsedInput() {
+    public String getParsedInput() {
 
         System.out.print("Enter coords to shoot: ");
         boolean isOK = false;
@@ -48,53 +45,47 @@ public class GameIO {
 
     }
 
-    public static String getInput() {
+    public String getInput() {
 
         return UserInputReader.readInput();
 
     }
 
-    public static void print(String message) {
+    public void print(String message) {
 
         System.out.println(message);
 
     }
 
-    public static String nameInput() {
+    public String nameInput() {
 
         System.out.println("Enter Your name, or press \"Enter\" to generate it randomly: ");
         return UserInputReader.readInput();
 
     }
 
-    private static boolean checkCell(Cell cell) {
-
-        return (cell.getCoordY() <= deckSize && cell.getCoordX() <= deckSize);
-
-    }
-
-    private static String printName(String name) {
+    private String printName(String name) {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(name);
-        for (int i = 0; i <= deckSize - name.length() / 4; i++) {
+        for (int i = 0; i <= DECK_SIZE - name.length() / 4; i++) {
             stringBuilder.append("\t");
         }
         return stringBuilder.toString();
 
     }
 
-    private static String printHead() {
+    private String printHead() {
 
         StringBuilder stringBuilder = new StringBuilder("\t");
-        for (int i = 1; i <= deckSize; i++) {
+        for (int i = 1; i <= DECK_SIZE; i++) {
             stringBuilder.append(i).append("\t");
         }
         return stringBuilder.toString();
 
     }
 
-    private static String shipTypeRamains(Ships type, Player player) {
+    private String shipTypeRamains(Ships type, Player player) {
 
         StringBuilder stringBuilder = new StringBuilder();
         long count = player.getField().getShips().stream()
@@ -104,13 +95,13 @@ public class GameIO {
 
     }
 
-    private static String shipsRemains(List<Player> players) {
+    private String shipsRemains(List<Player> players) {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (Ships ship : Ships.values()) {
             String message = shipTypeRamains(ship, players.get(0));
             stringBuilder.append(message);
-            for (int i = 0; i <= deckSize - message.length() / 4 + 1; i++) {
+            for (int i = 0; i <= DECK_SIZE - message.length() / 4 + 1; i++) {
                 stringBuilder.append("\t");
             }
             stringBuilder.append(shipTypeRamains(ship, players.get(1))).append("\n");
@@ -118,4 +109,5 @@ public class GameIO {
         return stringBuilder.toString();
 
     }
+
 }

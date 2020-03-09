@@ -1,15 +1,14 @@
 package homeworks.java.seabattle.data;
 
 import homeworks.java.seabattle.data.enums.GameState;
-import homeworks.java.seabattle.data.enums.Ships;
+import homeworks.java.seabattle.engine.Settings;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static homeworks.java.seabattle.data.Field.deckSize;
-
 public class AI {
 
+    private int DECK_SIZE;
     private List<Cell> area;
     private List<Cell> finishOffArea;
     private List<Cell> excludedList;
@@ -22,11 +21,12 @@ public class AI {
 
     public AI() {
 
-        offset = findTheBiggestShip();
-        this.excludedList = new ArrayList<>();
-        this.finishOffArea = new ArrayList<>();
-        this.area = generateShootingArea(offset);
-        foundShip = null;
+        Settings settings = new Settings();
+        offset = settings.getTheBiggestShip();
+        DECK_SIZE = settings.getDeckSize();
+        excludedList = new ArrayList<>();
+        finishOffArea = new ArrayList<>();
+        area = generateShootingArea(offset);
         finishOffMode = false;
 
     }
@@ -91,7 +91,7 @@ public class AI {
         int vertical = alignment.getCoordY();
         for (int i = coordX * horizontal + coordY * vertical - 1;
              i <= coordX * horizontal + coordY * vertical + 1; i++) {
-            if (i > 0 && i <= deckSize) {
+            if (i > 0 && i <= DECK_SIZE) {
                 finishOffArea.add(new Cell(i * horizontal + coordX * vertical,
                         i * vertical + coordY * horizontal));
             }
@@ -103,8 +103,8 @@ public class AI {
     private List<Cell> generateShootingArea(int offset) {
 
         List<Cell> area = new ArrayList<>();
-        for (int i = 1; i <= deckSize; i++) {
-            for (int j = i - deckSize / offset * offset; j <= deckSize; j += offset) {
+        for (int i = 1; i <= DECK_SIZE; i++) {
+            for (int j = i - DECK_SIZE / offset * offset; j <= DECK_SIZE; j += offset) {
                 if (j > 0) {
                     area.add(new Cell(i, j));
                 }
@@ -121,15 +121,6 @@ public class AI {
                 .filter(cell -> !cell.isShootable())
                 .collect(Collectors.toList());
         area.removeAll(excludedList);
-
-    }
-
-    private int findTheBiggestShip() {
-
-        return Arrays.stream(Ships.values())
-                .max(Comparator.comparing(Ships::getLength))
-                .map(Ships::getLength)
-                .get();
 
     }
 

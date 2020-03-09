@@ -6,35 +6,53 @@ import homeworks.java.seabattle.data.enums.Ships;
 public class Ship {
 
     private Ships type;
+    private int length;
     private int hitPoints;
     private Cell startPoint;
     private Cell alignment;
 
-    public Ship(Ships type) {
+    public Ship(Ships type, int length) {
 
         this.type = type;
-        hitPoints = type.getLength();
+        this.length = length;
+        hitPoints = length;
 
     }
 
     public void setStartPoint(Cell startPoint) {
+
         this.startPoint = startPoint;
+
     }
 
     public void setAlignment(Cell alignment) {
+
         this.alignment = alignment;
+
+    }
+
+    public int getSize() {
+
+        return length;
+
     }
 
     public Ships getType() {
+
         return type;
+
     }
 
     public Cell getStartPoint() {
+
         return startPoint;
+
     }
 
     public Cell getAlignment() {
+
         return alignment;
+
     }
 
     public GameState hit() {

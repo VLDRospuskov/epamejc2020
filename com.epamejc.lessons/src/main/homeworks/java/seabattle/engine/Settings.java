@@ -1,26 +1,54 @@
 package homeworks.java.seabattle.engine;
 
-import lombok.SneakyThrows;
+import homeworks.java.seabattle.data.Ship;
+import homeworks.java.seabattle.data.enums.Ships;
 
-import java.io.FileReader;
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Settings {
 
-    private Properties properties = new Properties();
-    private String propertiesFilePath =
-            "com.epamejc.lessons/src/resources/seabattle.config";
+    private int deckSize = 10;
+    private int cruisersCount = 1;
+    private int cruisersSize = 4;
+    private int destroyersCount = 2;
+    private int destroyersSize = 3;
+    private int corvetteCount = 3;
+    private int corvetteSize = 2;
+    private int boatCount = 4;
+    private int boatSize = 1;
+    private List<Ship> ships;
 
-    @SneakyThrows
-    public Settings() {
+    public List<Ship> getShipsList() {
 
-        properties.load(new FileReader(propertiesFilePath));
+        ships = new ArrayList<>();
+        addShipsByType(cruisersCount, cruisersSize, Ships.CRUISER);
+        addShipsByType(destroyersCount, destroyersSize, Ships.DESTROYER);
+        addShipsByType(corvetteCount, corvetteSize, Ships.CORVETTE);
+        addShipsByType(boatCount, boatSize, Ships.BOAT);
+        return ships;
 
     }
 
-    public Properties getProperties() {
+    public int getDeckSize() {
 
-        return properties;
+        return deckSize;
+
+    }
+
+    public int getTheBiggestShip() {
+
+        int first = Integer.max(cruisersSize, destroyersSize);
+        int second = Integer.max(corvetteSize, boatSize);
+        return Integer.max(first, second);
+
+    }
+
+    private void addShipsByType(int count, int length, Ships type) {
+
+        for (int i = 0; i < count; i++) {
+            ships.add(new Ship(type, length));
+        }
 
     }
 

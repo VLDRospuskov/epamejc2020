@@ -6,13 +6,15 @@ import homeworks.java.seabattle.utils.RandomNameGenerator;
 
 public class HumanPlayer extends Player {
 
-    private static final String REGEX = "(?<=[a-zA-Z])(?=\\d)";
+    private final String REGEX = "(?<=[a-zA-Z])(?=\\d)";
+    private GameIO io;
 
-    public HumanPlayer(String name) {
+    public HumanPlayer(GameIO io) {
 
         super();
-        generateName(name);
+        generateName(io.nameInput());
         this.setVisible(true);
+        this.io = io;
 
     }
 
@@ -20,7 +22,7 @@ public class HumanPlayer extends Player {
     public GameState shoot(Player enemy) {
 
         moves++;
-        String input = GameIO.getParsedInput();
+        String input = io.getParsedInput();
         return enemy.getField().hit(makeCell(input));
 
     }

@@ -14,7 +14,7 @@ public class Cell {
     private final int coordY;
     private boolean occupied;
     private boolean shootable;
-    private Ship ship = null;
+    private Ship ship;
 
     public Cell(int coordX, int coordY) {
 
