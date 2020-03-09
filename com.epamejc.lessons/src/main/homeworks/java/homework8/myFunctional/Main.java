@@ -6,7 +6,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Movie> movies = new ArrayList<>();
-        movies.add(new Movie("Blowup ", 1966));
+        movies.add(new Movie("Blowup", 1966));
         movies.add(new Movie("The Tree of Life", 2010));
         movies.add(new Movie("Modern Times", 1936));
         movies.add(new Movie("There Will Be Blood", 2007));
