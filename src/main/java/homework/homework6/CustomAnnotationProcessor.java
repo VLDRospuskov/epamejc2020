@@ -19,11 +19,11 @@ public class CustomAnnotationProcessor {
         }
 
         try {
-            Field nameField = aClass.getField("name");
+            Field nameField = aClass.getDeclaredField("name");
             nameField.setAccessible(true);
             nameField.set(instance, annotation.name());
 
-            Field ageField = aClass.getField("age");
+            Field ageField = aClass.getDeclaredField("age");
             ageField.setAccessible(true);
             ageField.set(instance, annotation.age());
         } catch (NoSuchFieldException e) {
