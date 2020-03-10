@@ -10,8 +10,10 @@ public class TimeComparator {
         FileManager fileManager = new FileManager();
         BufferedFileManager bufferedFileManager = new BufferedFileManager();
 
-        long unBufferedTime = measureRunTime("com.epamejc.lessons/src/main/homeworks/java/files/resources/resultUnbuffered.txt", fileManager);
-        long BufferedTime = measureRunTime("com.epamejc.lessons/src/main/homeworks/java/files/resources/resultBuffered.txt", bufferedFileManager);
+        long unBufferedTime = measureRunTime("com.epamejc.lessons/src/main/homeworks/java" +
+                "/files/resources/resultUnbuffered.txt", fileManager);
+        long BufferedTime = measureRunTime("com.epamejc.lessons/src/main/homeworks/java/" +
+                "files/resources/resultBuffered.txt", bufferedFileManager);
 
         System.out.println("unBuffered -  " + unBufferedTime / 1000000);
         System.out.println("Buffered -  " + BufferedTime / 1000000);
@@ -20,8 +22,8 @@ public class TimeComparator {
 
     /**
      * @param outputFilePath the path to a new file to be created
-     * @param fileManager    {@link homeworks.java.files.FileManager} or {@link homeworks.java.files.BufferedFileManager}
-     *                       instance.
+     * @param fileManager    {@link homeworks.java.files.FileManager} or
+     * {@link homeworks.java.files.BufferedFileManager} instance.
      * @return long run time in milliseconds
      */
     private long measureRunTime(String outputFilePath, FileManager fileManager) {

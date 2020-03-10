@@ -14,7 +14,6 @@ public class StreamOperations {
     List<Person> findPersonsEverWorkedInEpam() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toList()
         List<Person> personsEverWorkedInEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory()
                         .stream()
@@ -23,30 +22,24 @@ public class StreamOperations {
                 .collect(Collectors.toList());
 
         return personsEverWorkedInEpam;
-//        personsEverWorkedInEpam - should contain employees.get(0),  employees.get(1),
-//                employees.get(4), employees.get(5)
+
     }
 
     List<Person> findPersonsBeganCareerInEpam() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toList()
         List<Person> startedFromEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory().get(0).getCompany().equalsIgnoreCase("EPAM"))
                 .map(Employee::getPerson)
                 .collect(Collectors.toList());
 
         return startedFromEpam;
-//        startedFromEpam - should contain
-//                employees.get(0).getPerson(),
-//                employees.get(1).getPerson(),
-//                employees.get(4).getPerson()
+
     }
 
     Set<String> findAllCompanies() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toSet()
         Set<String> companies = employees.stream()
                 .map(Employee::getJobHistory)
                 .flatMap(Collection::stream)
@@ -54,13 +47,12 @@ public class StreamOperations {
                 .collect(Collectors.toSet());
 
         return companies;
-//        companies - should contain "EPAM", "google", "yandex", "mail.ru", "T-Systems"
+
     }
 
     Integer findMinimalAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация
         Integer minimalAge = employees.stream()
                 .map(Employee::getPerson)
                 .map(Person::getAge)
@@ -68,10 +60,9 @@ public class StreamOperations {
                 .orElse(0);
 
         return minimalAge;
-        // minmalAge = 21
+
     }
 
-    // Посчитать средний возраст работников
     Double calcAverageAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
@@ -85,13 +76,13 @@ public class StreamOperations {
 
     }
 
-    // Найти Person с самым длинным fullName
     Person findPersonWithLongestFullName() {
         List<Employee> employees = getEmployees();
 
         Person expected = employees.stream()
                 .map(Employee::getPerson)
-                .reduce((person1, person2) -> person1.getFirstName().length() + person1.getLastName().length() >
+                .reduce((person1, person2) ->
+                        person1.getFirstName().length() + person1.getLastName().length() >
                         person2.getFirstName().length() + person2.getLastName().length() ? person1 : person2)
                 .orElseThrow(() -> new RuntimeException("There are no employees in the list"));
 
@@ -99,7 +90,6 @@ public class StreamOperations {
 
     }
 
-    // Найти работника с самой большой продолжительность на одной же позиции
     Employee findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 

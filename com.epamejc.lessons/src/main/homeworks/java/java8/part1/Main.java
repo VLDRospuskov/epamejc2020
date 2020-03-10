@@ -29,15 +29,17 @@ public class Main {
         Student<Integer> student = new Student<>(score, subjects, 3, "Vladimir", "Z7431");
 
         Integer averageScore =
-                student.getAverageScore(student::getScore, student::getNumOfSubjects,
+                student.getAverageScore(
+                        student::getScore,
+                        student::getNumOfSubjects,
                         (sc, su) -> sc.stream()
                                 .mapToInt(Integer::intValue)
                                 .sum() / su
                 );
 
         String output = student.getInfo(() -> student, (st) ->
-                String.format("Student %1$s, group - %2$s, year %3$d, average score - %4$d"
-                        , st.getName(), st.getGroup(), st.getYear(), averageScore));
+                String.format("Student %1$s, group - %2$s, year %3$d, average score - %4$d",
+                        st.getName(), st.getGroup(), st.getYear(), averageScore));
 
         System.out.println(output);
 
