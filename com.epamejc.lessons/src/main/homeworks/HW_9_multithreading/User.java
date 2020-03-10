@@ -18,7 +18,7 @@ public class User {
 
     public boolean getCash(BigDecimal amount) {
         BigDecimal temp = accountBalance.subtract(amount);
-        if (temp.doubleValue() > 0) {
+        if (temp.compareTo(BigDecimal.ZERO) >= 0) {
             cashBalance = cashBalance.add(amount);
             accountBalance = accountBalance.subtract(amount);
             System.out.println(lastName + " " + firstName + " withdrew " + format(amount) + " from his account.");
@@ -36,7 +36,7 @@ public class User {
 
     public boolean putCash(BigDecimal amount) {
         BigDecimal temp = cashBalance.subtract(amount);
-        if (temp.doubleValue() > 0) {
+        if (temp.compareTo(BigDecimal.ZERO) >= 0) {
             cashBalance = cashBalance.subtract(amount);
             accountBalance = accountBalance.add(amount);
             System.out.println(lastName + " " + firstName + " deposited " + format(amount) + " on his account.");
