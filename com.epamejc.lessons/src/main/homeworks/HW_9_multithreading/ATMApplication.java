@@ -12,18 +12,15 @@ public class ATMApplication {
         initialize();
         final ATMOperations thread1 = new ATMOperations();
         final ATMOperations thread2 = new ATMOperations();
+        final ATMOperations thread3 = new ATMOperations();
+        final ATMOperations thread4 = new ATMOperations();
+        final ATMOperations thread5 = new ATMOperations();
 
         thread1.start();
         thread2.start();
-
-
-//        int i = 5;
-//        while (i > 0) {
-//            withdraw(users.get(0), atms.get(0), BigDecimal.valueOf(5000.00));
-////            put(users.get(0), atms.get(0), BigDecimal.valueOf(5000.00));
-//            i--;
-//            System.out.println("Money in the bank: " + format(bankAccount));
-//            System.out.println("-------------------------------------------");
+        thread3.start();
+        thread4.start();
+        thread5.start();
     }
 
 

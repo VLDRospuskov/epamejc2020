@@ -17,13 +17,13 @@ public class ATMOperations extends Thread {
     @Override
     public void run() {
         while (true) {
-            final Boolean chooseOperation = generateRandomBoolean();
-            if (chooseOperation) {
+            System.out.println(Thread.currentThread().getName());
+            if (getRandomBoolean()) {
                 withdraw(getRandom(users), getRandom(atms), getRandomBigDecimal(100.00, 2000.00));
             } else {
                 put(getRandom(users), getRandom(atms), getRandomBigDecimal(100.00, 2000.00));
             }
-            Thread.sleep(20);
+            Thread.sleep((int) (Math.random() * 1000));
         }
     }
 
@@ -41,7 +41,7 @@ public class ATMOperations extends Thread {
         return arrayList.get(n);
     }
 
-    private Boolean generateRandomBoolean() {
+    private Boolean getRandomBoolean() {
         return new Random().nextInt() > 0;
     }
 
