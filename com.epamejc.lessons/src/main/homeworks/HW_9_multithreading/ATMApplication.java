@@ -7,25 +7,24 @@ import static homeworks.HW_9_multithreading.ATMOperations.*;
 import static homeworks.HW_9_multithreading.BankAccount.bankAccount;
 
 public class ATMApplication {
-    private ArrayList<User> users;
-    private ArrayList<ATM> atms;
 
     public void run() {
         initialize();
-        int i = 5;
-        while (i > 0) {
-            withdraw(users.get(0), atms.get(0), BigDecimal.valueOf(5000.00));
-//            put(users.get(0), atms.get(0), BigDecimal.valueOf(5000.00));
-            i--;
-            System.out.println("Money in the bank: " + format(bankAccount));
-            System.out.println("-------------------------------------------");
-        }
+        final ATMOperations thread1 = new ATMOperations();
+        final ATMOperations thread2 = new ATMOperations();
+
+        thread1.start();
+        thread2.start();
+
+
+//        int i = 5;
+//        while (i > 0) {
+//            withdraw(users.get(0), atms.get(0), BigDecimal.valueOf(5000.00));
+////            put(users.get(0), atms.get(0), BigDecimal.valueOf(5000.00));
+//            i--;
+//            System.out.println("Money in the bank: " + format(bankAccount));
+//            System.out.println("-------------------------------------------");
     }
-
-
-
-
-
 
 
     private void initialize() {
