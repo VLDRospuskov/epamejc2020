@@ -1,5 +1,6 @@
 package homeworks.homework4;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,6 +15,11 @@ public class StringChangerTest {
     @BeforeClass
     public static void setup() {
         changer = new StringChanger();
+    }
+
+    @After
+    public void after() {
+        changer.clearTemp();
     }
 
     @Test
@@ -38,8 +44,6 @@ public class StringChangerTest {
         Assert.assertEquals(expected1, actual1);
         Assert.assertEquals(expected2, actual2);
         Assert.assertEquals(expected3, actual3);
-
-        changer.clearTemp();
     }
 
     @Test

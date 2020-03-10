@@ -26,5 +26,5 @@ hs_err_pid*
 out
 target
 *.iml
-/.idea
+/.idea/
 src/main/java/experiments

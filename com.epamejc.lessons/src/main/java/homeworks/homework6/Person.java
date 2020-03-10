@@ -12,10 +12,13 @@ public class Person {
 
     @PersonInit(name = "Bruce Wayne", age = 30)
     public Person() {
+        this.name = getPersonInit().name();
+        this.age = getPersonInit().age();
+    }
+
+    private PersonInit getPersonInit() {
         Constructor<?>[] declaredConstructors = Person.class.getDeclaredConstructors();
-        PersonInit annotation = declaredConstructors[0].getAnnotation(PersonInit.class);
-        this.name = annotation.name();
-        this.age = annotation.age();
+        return declaredConstructors[0].getAnnotation(PersonInit.class);
     }
 
 }

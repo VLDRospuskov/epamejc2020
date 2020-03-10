@@ -16,7 +16,6 @@ public class Hero<T extends Number> {
     private T damageCoefficient;
     private boolean ultimateIsReady;
 
-
     public Hero(String name, String ultimate, String ability, T damageCoefficient) {
         this.name = name;
         this.ultimate = ultimate;
