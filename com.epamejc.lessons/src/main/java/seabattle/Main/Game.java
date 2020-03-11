@@ -22,7 +22,7 @@ public class Game {
 
     public Game() {
         player1 = new Player();
-        player2 = new Player();
+        player2 = new PlayerAI();
         initPlayers();
     }
 
@@ -31,7 +31,7 @@ public class Game {
     }
 
     public void runGame() {
-        currentPlayerTurn = chooseRandomPlayer(player1, player2);
+        currentPlayerTurn = player1; //chooseRandomPlayer(player1, player2);
         player1.placeShips();
         player2.placeShips(); //TODO заменить на MenuShipPlacer.run()
         new BattleMenu().run();

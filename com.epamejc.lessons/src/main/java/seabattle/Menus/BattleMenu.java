@@ -2,6 +2,7 @@ package seabattle.Menus;
 
 import seabattle.FieldDrawer;
 import seabattle.Players.Player;
+import seabattle.Players.PlayerAI;
 
 public class BattleMenu extends Menu {
 
@@ -13,7 +14,7 @@ public class BattleMenu extends Menu {
     @Override
     public void executeCommand(String command) {
         int column = command.charAt(0) - 97;
-        int row = Integer.parseInt(command.substring(1, 2)) - 1;
+        int row = Integer.parseInt(command.substring(1)) - 1;
         Player currentPlayer = game.currentPlayerTurn;
         if (currentPlayer.isStrikeSuccessful(row, column)) {
             currentPlayer.shoot(row, column);
@@ -49,7 +50,9 @@ public class BattleMenu extends Menu {
         while (!game.gameOver() && !command.equals("exit")) {
             FieldDrawer.printFields(game.currentPlayerTurn.getMainField(), game.currentPlayerTurn.getSupportField());
             System.out.print("Shoot, " + game.currentPlayerTurn.getName() + ": ");
-            command = readCommand();
+
+            command = game.currentPlayerTurn.getShootingCommand();
+
             if (!command.equals("exit")) {
                 executeCommand(command);
             }

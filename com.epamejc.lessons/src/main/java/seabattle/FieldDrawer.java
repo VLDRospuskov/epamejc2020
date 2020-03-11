@@ -25,7 +25,7 @@ public abstract class FieldDrawer {
         }
     }
 
-    public static void printMenu(Field field) {
+    public static void printField(Field field) {
         System.out.print("\t");
         for (int i = 0; i < field.getCellField()[0].length; i++) {
             System.out.print(" " + (char) (97 + i) + " ");

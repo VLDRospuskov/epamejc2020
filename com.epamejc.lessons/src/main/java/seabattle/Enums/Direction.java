@@ -34,7 +34,7 @@ public enum Direction {
             case 3:
                 return RIGHT;
             default:
-                break;
+                return null;
         }
     }
 

@@ -1,17 +1,22 @@
 package seabattle.Players;
 
 import lombok.Data;
+import lombok.SneakyThrows;
 import seabattle.*;
 import seabattle.Enums.FieldCellState;
+import seabattle.Menus.BattleMenu;
+import seabattle.Menus.Menu;
 import seabattle.Menus.MenuShipPlacer;
+
+import java.io.IOException;
 
 @Data
 public class Player {
-    private String name;
-    private Player enemy;
-    private Field mainField = new Field(Settings.fieldRows, Settings.fieldColumns);
-    private Field supportField = new Field(Settings.fieldRows, Settings.fieldColumns);
-    private ShipsCounter shipsCounter;
+    protected String name;
+    protected Player enemy;
+    protected Field mainField = new Field(Settings.fieldRows, Settings.fieldColumns);
+    protected Field supportField = new Field(Settings.fieldRows, Settings.fieldColumns);
+    protected ShipsCounter shipsCounter;
 
     public boolean isStrikeSuccessful(int row, int column) {
         return enemy.mainField.isCellOfState(row, column, FieldCellState.SHIP_CELL_ALIVE);
@@ -43,6 +48,11 @@ public class Player {
 
     public void placeShips() {
         new MenuShipPlacer().runForPlayer(this);
+    }
+
+    @SneakyThrows
+    public String getShootingCommand() {
+        return Menu.reader.readLine();
     }
 
 }

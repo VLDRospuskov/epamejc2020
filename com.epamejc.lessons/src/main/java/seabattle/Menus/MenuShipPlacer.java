@@ -31,7 +31,7 @@ public class MenuShipPlacer extends Menu {
 
         player.getShipsCounter().shipMap.forEach((decks, numberOfShips) -> {
             for (int i = 0; i < numberOfShips; i++) {
-                FieldDrawer.printMenu(player.getMainField());
+                FieldDrawer.printField(player.getMainField());
                 ShipPlacingParams shipPlacingParams;
                 do {
                     String shipPlacement = readShipPlacement(decks);

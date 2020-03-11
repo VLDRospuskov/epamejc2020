@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public abstract class Menu {
-    static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     static Game game = new Game();
     Settings settings = new Settings();
 
