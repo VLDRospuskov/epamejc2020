@@ -2,30 +2,45 @@ package homeworks.multiThreading;
 
 import lombok.SneakyThrows;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
+
 
 public class ThreadController {
+
+    public static ReentrantLock locker = new ReentrantLock();
 
     @SneakyThrows
     public void start() {
 
-        Bank bank = new Bank("Tinkovv", 2500, false);
+        Bank bank = new Bank("Tinkovv", new BigDecimal(2500), false);
 
+        List<ATM> atms = new ArrayList<>();
+        atms.add(new ATM("ATM1", new BigDecimal(500)));
+        atms.add(new ATM("ATM2", new BigDecimal(500)));
+        atms.add(new ATM("ATM3", new BigDecimal(500)));
+        atms.add(new ATM("ATM4", new BigDecimal(500)));
 
-        ATM atm1 = new ATM("ATM1",500);
-        ATM atm2 = new ATM("ATM2",500);
-        ATM atm3 = new ATM("ATM3",500);
-        ATM atm4 = new ATM("ATM4",500);
+        List<User> users = new ArrayList<>();
+        users.add(new User("Boris1", new BigDecimal(500), false));
+        users.add(new User("Vladimir2", new BigDecimal(500), false));
+        users.add(new User("Dmitriy3", new BigDecimal(500), false));
+        users.add(new User("Volodya4", new BigDecimal(500), false));
 
-
-        User user1 = new User("Boris1", 500, false);
-        User user2 = new User("Vladimir2", 500, false);
-        User user3 = new User("Dmitriy3", 500, false);
-        User user4 = new User("Vladimir4", 500, false);
-
-        ThreadATMOperations threadATMOperations1 = new ThreadATMOperations(bank, user1, atm1);
-        ThreadATMOperations threadATMOperations2 = new ThreadATMOperations(bank, user2, atm2);
-        ThreadATMOperations threadATMOperations3 = new ThreadATMOperations(bank, user3, atm3);
-        ThreadATMOperations threadATMOperations4 = new ThreadATMOperations(bank, user4, atm4);
+        ThreadATMOperations threadATMOperations1 =
+                new ThreadATMOperations(bank, users, atms,
+                        new BigDecimal(1000), new BigDecimal(50));
+        ThreadATMOperations threadATMOperations2 =
+                new ThreadATMOperations(bank, users, atms,
+                        new BigDecimal(1000), new BigDecimal(50));
+        ThreadATMOperations threadATMOperations3 =
+                new ThreadATMOperations(bank, users, atms,
+                        new BigDecimal(1000), new BigDecimal(50));
+        ThreadATMOperations threadATMOperations4 =
+                new ThreadATMOperations(bank, users, atms,
+                        new BigDecimal(1000), new BigDecimal(50));
 
         threadATMOperations1.start();
         threadATMOperations2.start();
@@ -37,11 +52,23 @@ public class ThreadController {
         threadATMOperations3.join();
         threadATMOperations4.join();
 
-        double sum = bank.getBalance() + atm1.getBalance() + atm2.getBalance() + atm3.getBalance()
-                + atm4.getBalance() + user1.getBalance() + user2.getBalance() + user3.getBalance()
-                + user4.getBalance();
+        BigDecimal sum = getSum(bank, atms);
 
         System.out.println("Expected sum: 6500\n" +
                 "Actual sum:   " + sum);
+    }
+
+    private BigDecimal getSum(Bank bank, List<ATM> atms) {
+
+        BigDecimal bankBalance = bank.getBalance();
+
+        BigDecimal atmsBalance = new BigDecimal(0);
+        for (ATM atm : atms) {
+            atmsBalance = atmsBalance.add(atm.getBalance());
+        }
+
+        BigDecimal usersBalance = UsersSum.sum;
+
+        return bankBalance.add(usersBalance.add(atmsBalance));
     }
 }

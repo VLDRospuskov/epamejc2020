@@ -3,36 +3,52 @@ package homeworks.multiThreading;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+
+import static homeworks.multiThreading.ThreadController.locker;
+
 @Data
 @AllArgsConstructor
 public class Bank {
 
     public String name;
-    private volatile double balance;
+    private volatile BigDecimal balance;
     public volatile boolean bankrupt;
 
-    public void controlATM(ATM atm, double max, double min) {
+    public void controlATM(List<ATM> atms, BigDecimal max, BigDecimal min) {
 
-        System.out.println("Bank balance: " + balance);
-        double atmBalance = atm.getBalance();
+        locker.lock();
 
-        if (atmBalance > max) {
+        for (ATM atm : atms) {
+            BigDecimal atmBalance = atm.getBalance();
 
-            depositATM(atm, atmBalance, max);
+            if (atmBalance.compareTo(max) > 0) {
 
-        } else if (atmBalance <= min) {
+                System.out.println("Bank balance: " + balance);
+                depositATM(atm, atmBalance, max);
 
-            withdrawATM(atm, atmBalance, max);
+            } else if (atmBalance.compareTo(min) <= 0) {
 
+                System.out.println("Bank balance: " + balance);
+                withdrawATM(atm, atmBalance, max);
+
+            }
         }
+
+        locker.unlock();
     }
 
-    private synchronized void withdrawATM(ATM atm, double atmBalance, double max) {
-        if (balance > max / 2) {
+    private void withdrawATM(ATM atm, BigDecimal atmBalance, BigDecimal max) {
 
-            double amount = max / 2 - atmBalance;
-            atm.setBalance(max / 2);
-            balance -= amount;
+        BigDecimal halfMax = max.divide(BigDecimal.valueOf(2), RoundingMode.HALF_UP);
+
+        if (balance.compareTo(halfMax) > 0) {
+
+            BigDecimal amount = halfMax.subtract(atmBalance);
+            atm.setBalance(halfMax);
+            setBalance(balance.subtract(amount));
             System.out.println(atm.getName() + " got " + amount + " from bank!\n");
 
         } else {
@@ -42,11 +58,13 @@ public class Bank {
 
     }
 
-    private synchronized void depositATM(ATM atm, double atmBalance, double max) {
+    private void depositATM(ATM atm, BigDecimal atmBalance, BigDecimal max) {
 
-        double amount = atmBalance - max / 2;
-        atm.setBalance(max / 2);
-        balance += amount;
+        BigDecimal halfMax = max.divide(BigDecimal.valueOf(2), RoundingMode.HALF_UP);
+
+        BigDecimal amount = atmBalance.subtract(halfMax);
+        atm.setBalance(halfMax);
+        setBalance(balance.add(amount));
         System.out.println(atm.getName() + " gave " + amount + " to bank!\n");
 
     }

@@ -3,31 +3,35 @@ package homeworks.multiThreading;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 public class ATM {
 
     public String name;
-    private double balance;
+    private volatile BigDecimal balance;
 
-    public void deposit(double amount) {
+    public void deposit(BigDecimal amount) {
 
-        balance += amount;
+        setBalance(balance.add(amount));
         System.out.println("Deposit to " + getName() + " " + amount + " balance " + getBalance());
-
     }
 
-    public boolean withdraw(double amount) {
+    public boolean withdraw(BigDecimal amount) {
 
-        if (amount < balance) {
-            balance -= amount;
+        int compare = amount.compareTo(balance);
+        boolean result;
+
+        if (compare < 0) {
+            setBalance(balance.subtract(amount));
             System.out.println("Withdraw from " + getName() + " " + amount + " balance " + getBalance());
-            return true;
+            result = true;
         } else {
             System.out.println("Sorry, withdraw " + amount + " from " +
                     balance + " at " + getName() + " is not available!");
-            return false;
+            result = false;
         }
-
+        return result;
     }
 }

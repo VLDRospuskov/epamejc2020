@@ -9,8 +9,10 @@ public class BufferedLine {
         long startTime = 0;
         long endTime = 0;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/fileForReading1.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/fileForWriting3.txt"))) {
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("src/main/resources/fileForReading1.txt"));
+             BufferedWriter writer = new BufferedWriter(
+                     new FileWriter("src/main/resources/fileForWriting3.txt"))) {
 
             String c;
 

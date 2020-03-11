@@ -58,7 +58,8 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         Set<String> companies = employees.stream()
-                .flatMap(employee -> employee.getJobHistory().stream().map(JobHistoryEntry::getCompany))
+                .flatMap(employee -> employee.getJobHistory().stream()
+                        .map(JobHistoryEntry::getCompany))
                 .collect(Collectors.toSet());
 
 
@@ -102,7 +103,8 @@ public class StreamOperations {
 
         Person expected = employees.stream()
                 .map(Employee::getPerson)
-                .max((Comparator.comparingInt(person -> person.getFirstName().length() + person.getLastName().length())))
+                .max((Comparator.comparingInt(person ->
+                        person.getFirstName().length() + person.getLastName().length())))
                 .orElseGet(() -> {
                     throw new EmployeeNotFoundException();
                 });

@@ -8,7 +8,8 @@ public class Main {
         NonBuffered nonBuffered = new NonBuffered();
         BufferedLine bufferedLine = new BufferedLine();
 
-        System.out.printf("BufferedLine time: %d nanoseconds\nBuffered time:     %d nanoseconds\nNonBuffered time:  %d nanoseconds",
+        System.out.printf("BufferedLine time: %d nanoseconds\nBuffered time:" +
+                        "     %d nanoseconds\nNonBuffered time:  %d nanoseconds",
                            bufferedLine.measureTime(), buffered.measureTime(), nonBuffered.measureTime());
     }
 }

@@ -7,17 +7,21 @@ public class Author {
 
     public Author () throws NegativeAgeException {
 
-        Package thisPackage = Author.class.getPackage();
+        AuthorAnnotation annotation = getDeclaredAnnotation();
 
-        int age = thisPackage.getDeclaredAnnotation(AuthorAnnotation.class).age();
+        int age = annotation.age();
 
-        String name = thisPackage.getDeclaredAnnotation(AuthorAnnotation.class).name();
+        String name = annotation.name();
 
         createAuthor(name, age);
     }
 
     public Author (String name, int age) throws NegativeAgeException {
         createAuthor(name, age);
+    }
+
+    private AuthorAnnotation getDeclaredAnnotation() {
+        return Author.class.getPackage().getDeclaredAnnotation(AuthorAnnotation.class);
     }
 
     private void createAuthor (String name, int age) throws NegativeAgeException {

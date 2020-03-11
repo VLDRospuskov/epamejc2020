@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ShowOff coolGuy = author -> System.out.printf("\nAuthor's age is %d and you'll never guess his name ... it's %s\n",
-                author.age, author.name);
+        ShowOff coolGuy = author -> System.out.printf("\nAuthor's age is %d" +
+                        " and you'll never guess his name ... it's %s\n", author.age, author.name);
 
         try {
 
