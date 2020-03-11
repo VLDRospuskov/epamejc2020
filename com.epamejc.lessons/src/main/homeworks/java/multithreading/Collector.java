@@ -1,12 +1,13 @@
 package homeworks.java.multithreading;
 
+import lombok.SneakyThrows;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Collector extends Person implements Runnable {
+public class Collector implements Runnable {
 
     private List<ATM> atms;
-
     public Collector(List<ATM> atms) {
 
         super();
@@ -24,10 +25,12 @@ public class Collector extends Person implements Runnable {
 
     }
 
+    @SneakyThrows
     @Override
     public void run() {
 
         while (true) {
+            Thread.sleep(2000L);
             for (ATM atm : atms) {
                 if (atm.isOnService()) {
                     service(atm);

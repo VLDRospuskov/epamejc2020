@@ -2,6 +2,7 @@ package homeworks.java.multithreading;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class Bank {
@@ -13,6 +14,12 @@ public final class Bank {
     private Bank() {
         userAccounts = new HashMap<>();
         moneyStash = BigDecimal.valueOf(1_000_000_000);
+    }
+
+    public void registerUsers(List<User> users) {
+        for (User user : users) {
+            userAccounts.put(user, BigDecimal.ZERO);
+        }
     }
 
     public static Bank getInstance() {
@@ -27,7 +34,7 @@ public final class Bank {
 
     public BigDecimal getUserAccountDetails(User user) throws RuntimeException {
 
-        synchronized (user) {
+        synchronized (User.class) {
             return userAccounts.entrySet().stream()
                     .filter(person -> person.getKey().equals(user))
                     .map(Map.Entry::getValue)
@@ -37,12 +44,29 @@ public final class Bank {
 
     }
 
-    public void transferSalary () {
+    public boolean userAccountUpdate(User user, BigDecimal amount) {
+
+        synchronized (User.class) {
+            BigDecimal current = getUserAccountDetails(user);
+            if (current.add(amount).doubleValue() < 0) {
+                return false;
+            } else {
+                userAccounts.put(user, current.add(amount));
+                return true;
+            }
+        }
+    }
+
+    public void transferSalary(User user) {
 
         synchronized (Bank.class) {
             userAccounts.entrySet()
-                    .forEach(user -> user.setValue(user.getValue().add(user.getKey().getSalary())));
+                    .stream()
+                    .filter(u -> u.getKey().equals(user))
+                    .forEach(u -> u.setValue(u.getValue().add(u.getKey().getSalary())));
         }
+        System.out.println("User " + user.getName() + " got a salary. Account value: " + getUserAccountDetails(user));
+
     }
 
     public BigDecimal getMoneyStash() {
@@ -53,7 +77,7 @@ public final class Bank {
 
     public void serviceOperation(BigDecimal amount) throws RuntimeException {
 
-        synchronized(Collector.class) {
+        synchronized (Bank.class) {
             if (moneyStash.compareTo(amount) < 0) {
                 throw new RuntimeException("The bank went bankrupt ");
             }

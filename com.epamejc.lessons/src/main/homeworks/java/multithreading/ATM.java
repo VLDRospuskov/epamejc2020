@@ -33,17 +33,20 @@ public class ATM {
 
     }
 
-    public void deposit(BigDecimal amount) {
+    public void deposit(BigDecimal amount, User user) {
 
         synchronized (lock) {
             account = account.add(amount);
+            Bank.getInstance().userAccountUpdate(user, amount);
             System.out.println("Deposit of " + amount + " to " + serialNumber + " ATM");
-            System.out.println(("Current balance: " + account));
+            System.out.println(("Current ATM: " + serialNumber + " balance: " + account));
+            System.out.println("Current User balance: " + user.getName() +
+                    " " + Bank.getInstance().getUserAccountDetails(user));
             isOnService = isServiceNeeded();
         }
     }
 
-    public void withdraw(BigDecimal amount) {
+    public void withdraw(BigDecimal amount, User user) {
 
         if (isOnService) {
             System.out.println("Failed to withdraw, ATM " + serialNumber + " is closed for service");
@@ -53,9 +56,15 @@ public class ATM {
                     isOnService = true;
                     System.out.println("Failed to withdraw, not enough cash, ATM is closing for service");
                 } else {
-                    account = account.subtract(amount);
-                    System.out.println("Withdraw of " + amount + " from " + serialNumber + " ATM");
-                    System.out.println(("Current balance: " + account));
+                    if (Bank.getInstance().userAccountUpdate(user, amount.negate())) {
+                        account = account.subtract(amount);
+                        System.out.println("Withdraw of " + amount + " from " + serialNumber + " ATM");
+                        System.out.println(("Current ATM: " + serialNumber + " balance: " + account));
+                        System.out.println("Current User balance: " + user.getName() +
+                                " " + Bank.getInstance().getUserAccountDetails(user));
+                    } else {
+                        System.out.println("Failed to withdraw, not enough funds on user account");
+                    }
                     isOnService = isServiceNeeded();
                 }
             }
