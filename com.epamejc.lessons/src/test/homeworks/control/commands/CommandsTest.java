@@ -3,11 +3,9 @@ package homeworks.control.commands;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CommandsTest {
 
@@ -26,28 +24,28 @@ public class CommandsTest {
         String RewerseWord = "/rewerseword Description: push a string and i will reverse only words";
         String swirchChar = "/swithchar Description: push a string and two int's indexes and i will switch chars";
 
-        assertEquals(traffic,Commands.TRAFFICLIGHT.getDescription());
-        assertEquals(evenOddStr,Commands.EVENODDSTR.getDescription());
-        assertEquals(pyramid,Commands.PYRAMID.getDescription());
-        assertEquals(randomChar,Commands.RANDOMCHAR.getDescription());
-        assertEquals(countNums,Commands.COUNTNUMS.getDescription());
-        assertEquals(poweder,Commands.POW.getDescription());
-        assertEquals(fibonacci,Commands.FIBONACCI.getDescription());
-        assertEquals(EvenOdd,Commands.EVENODD.getDescription());
-        assertEquals(MakeWord,Commands.MAKEWORD.getDescription());
-        assertEquals(RewerseWord,Commands.REWERSEWORD.getDescription());
-        assertEquals(swirchChar,Commands.SWITHCHAR.getDescription());
+        assertEquals(traffic, Commands.TRAFFICLIGHT.getDescription());
+        assertEquals(evenOddStr, Commands.EVENODDSTR.getDescription());
+        assertEquals(pyramid, Commands.PYRAMID.getDescription());
+        assertEquals(randomChar, Commands.RANDOMCHAR.getDescription());
+        assertEquals(countNums, Commands.COUNTNUMS.getDescription());
+        assertEquals(poweder, Commands.POW.getDescription());
+        assertEquals(fibonacci, Commands.FIBONACCI.getDescription());
+        assertEquals(EvenOdd, Commands.EVENODD.getDescription());
+        assertEquals(MakeWord, Commands.MAKEWORD.getDescription());
+        assertEquals(RewerseWord, Commands.REWERSEWORD.getDescription());
+        assertEquals(swirchChar, Commands.SWITHCHAR.getDescription());
 
 
         List<String> commandNames = new ArrayList<>();
         List<String> actual = new ArrayList<>();
 
-        for (Commands commands : Commands.values()){
+        for (Commands commands : Commands.values()) {
             commandNames.add(commands.name().toLowerCase());
             actual.add(commands.toString());
         }
 
-        assertEquals(commandNames,actual);
+        assertEquals(commandNames, actual);
 
 
     }

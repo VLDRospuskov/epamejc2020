@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class ShipFactoryTest {
     ShipFactory factory;
+
     @Before
     public void setUp() throws Exception {
         factory = new ShipFactory();
@@ -17,20 +18,20 @@ public class ShipFactoryTest {
     @Test
     public void testGetShip() {
 
-       assertNotNull(factory.getShip(ShipType.BOAT));
-       assertNotNull(factory.getShip(ShipType.DESTROYER));
-       assertNotNull(factory.getShip(ShipType.CRUISER));
-       assertNotNull(factory.getShip(ShipType.BATTLESHIP));
+        assertNotNull(factory.getShip(ShipType.BOAT));
+        assertNotNull(factory.getShip(ShipType.DESTROYER));
+        assertNotNull(factory.getShip(ShipType.CRUISER));
+        assertNotNull(factory.getShip(ShipType.BATTLESHIP));
 
-       assertEquals(ShipType.BOAT,factory.getShip(ShipType.BOAT).getType());
-       assertEquals(ShipType.DESTROYER,factory.getShip(ShipType.DESTROYER).getType());
-       assertEquals(ShipType.CRUISER,factory.getShip(ShipType.CRUISER).getType());
-       assertEquals(ShipType.BATTLESHIP,factory.getShip(ShipType.BATTLESHIP).getType());
+        assertEquals(ShipType.BOAT, factory.getShip(ShipType.BOAT).getType());
+        assertEquals(ShipType.DESTROYER, factory.getShip(ShipType.DESTROYER).getType());
+        assertEquals(ShipType.CRUISER, factory.getShip(ShipType.CRUISER).getType());
+        assertEquals(ShipType.BATTLESHIP, factory.getShip(ShipType.BATTLESHIP).getType());
 
-       assertEquals(1,factory.getShip(ShipType.BOAT).getLives());
-       assertEquals(2,factory.getShip(ShipType.DESTROYER).getLives());
-       assertEquals(3,factory.getShip(ShipType.CRUISER).getLives());
-       assertEquals(4,factory.getShip(ShipType.BATTLESHIP).getLives());
+        assertEquals(1, factory.getShip(ShipType.BOAT).getLives());
+        assertEquals(2, factory.getShip(ShipType.DESTROYER).getLives());
+        assertEquals(3, factory.getShip(ShipType.CRUISER).getLives());
+        assertEquals(4, factory.getShip(ShipType.BATTLESHIP).getLives());
 
     }
 }

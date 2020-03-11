@@ -12,7 +12,7 @@ public class EvenOddTest {
     private EvenOdd evenOdd;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         evenOdd = new EvenOdd();
     }
 
@@ -29,9 +29,10 @@ public class EvenOddTest {
         String request2 = "World of Warcraft odd";
         String expectedEven = "Wrdo acat";
         String expectedOdd = "ol fWrrf";
-        assertEquals(expectedEven,evenOdd.getResult(request1));
-        assertEquals(expectedOdd,evenOdd.getResult(request2));
+        assertEquals(expectedEven, evenOdd.getResult(request1));
+        assertEquals(expectedOdd, evenOdd.getResult(request2));
     }
+
     @Test(expected = IllegalDataException.class)
     public void getResult() {
         String request1 = "World of Warcraft 12";

@@ -1,9 +1,9 @@
 package homeworks.seabatle.model.board;
 
 
+import homeworks.seabatle.model.ship.Ship;
 import homeworks.seabatle.myenum.StrikeResult;
 import homeworks.seabatle.servises.factories.ShipAutoGenerator;
-import homeworks.seabatle.model.ship.Ship;
 import org.junit.Before;
 import org.junit.Test;
 

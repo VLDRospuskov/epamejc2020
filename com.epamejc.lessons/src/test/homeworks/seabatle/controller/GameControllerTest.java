@@ -17,10 +17,12 @@ import static org.junit.Assert.assertTrue;
 public class GameControllerTest {
 
     GameController controller;
+
     @Before
     public void setUp() throws Exception {
         controller = new GameController();
     }
+
     @Test
     public void chooseRegime() {
         BufferedReader reader = getReader("singleplayer");
@@ -35,8 +37,9 @@ public class GameControllerTest {
                 e.printStackTrace();
             }
         }
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+
     @Test
     public void choose2Regime() {
         BufferedReader reader = getReader("multiplayer");
@@ -51,8 +54,9 @@ public class GameControllerTest {
                 e.printStackTrace();
             }
         }
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
+
     @Test
     public void nameUsers() {
         chooseRegime();
@@ -68,7 +72,7 @@ public class GameControllerTest {
                 e.printStackTrace();
             }
         }
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -88,7 +92,7 @@ public class GameControllerTest {
                 e.printStackTrace();
             }
         }
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -97,7 +101,7 @@ public class GameControllerTest {
         nameUsers();
         createGameBoard();
         String battleField = controller.printBattleField();
-        assertEquals(562,battleField.length());
+        assertEquals(562, battleField.length());
     }
 
 
@@ -116,7 +120,7 @@ public class GameControllerTest {
         String expected = "is a winner!!! Congratulations, admiral!";
         String actual;
         try {
-            actual = controller.runBattle(reader,0);
+            actual = controller.runBattle(reader, 0);
         } finally {
             try {
                 reader.close();
@@ -128,7 +132,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void testManualShipBuild (){
+    public void testManualShipBuild() {
         String request = "manual\nA1 A4\nF2 H2\nJ7 J9\nG10 I10\nA9 B9\nC1 C2\nF7 F8\nA5 A6\nH10\nA6\nI5\nD9";
         chooseRegime();
         nameUsers();
@@ -145,9 +149,10 @@ public class GameControllerTest {
                 e.printStackTrace();
             }
         }
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
-    private BufferedReader getReader(String request){
+
+    private BufferedReader getReader(String request) {
         StringReader reader = new StringReader(request);
         return new BufferedReader(reader);
     }

@@ -4,10 +4,11 @@ import homeworks.control.exeption.IllegalDataException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MakeStringTest {
     MakeString makeString;
+
     @Before
     public void setUp() throws Exception {
         makeString = new MakeString();
@@ -27,21 +28,25 @@ public class MakeStringTest {
         assertEquals(expected2, makeString.getResult(request2).length());
         assertEquals(expected3, makeString.getResult(request3).length());
     }
+
     @Test(expected = IllegalDataException.class)
     public void testExGetResult() {
         String request = "2 1";
         makeString.getResult(request);
     }
+
     @Test(expected = IllegalDataException.class)
     public void testEx2GetResult() {
         String request = "2 1 fgfg";
         makeString.getResult(request);
     }
+
     @Test(expected = IllegalDataException.class)
     public void testEx3GetResult() {
         String request = "";
         makeString.getResult(request);
     }
+
     @Test(expected = IllegalDataException.class)
     public void testEx4GetResult() {
         String request = "2 odd";

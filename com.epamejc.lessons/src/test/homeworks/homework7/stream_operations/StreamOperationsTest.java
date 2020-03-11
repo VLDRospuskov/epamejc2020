@@ -3,10 +3,12 @@ package homeworks.homework7.stream_operations;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class StreamOperationsTest {
 
@@ -64,14 +66,14 @@ public class StreamOperationsTest {
     public void calcAverageAgeOfEmployees() {
         Double ageExpected = 33.7;
         Double ageActual = operations.calcAverageAgeOfEmployees();
-        assertEquals(ageExpected,ageActual,0.1);
+        assertEquals(ageExpected, ageActual, 0.1);
     }
 
     @Test
     public void findPersonWithLongestFullName() {
         Person personExpected = new Person("Александр", "Дементьев", 28);
         Person personActual = operations.findPersonWithLongestFullName();
-        assertEquals(personExpected,personActual);
+        assertEquals(personExpected, personActual);
     }
 
     @Test
@@ -83,6 +85,6 @@ public class StreamOperationsTest {
                         new JobHistoryEntry(6, "QA", "EPAM")
                 ));
         Employee employeeActual = operations.findEmployeeWithMaximumDurationAtOnePosition();
-        assertEquals(employeeExpected,employeeActual);
+        assertEquals(employeeExpected, employeeActual);
     }
 }

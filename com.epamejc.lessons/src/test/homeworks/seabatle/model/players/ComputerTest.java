@@ -13,19 +13,22 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class ComputerTest {
-    private int[] ship = {12,13,14,15};
-    private List<Integer> deckArea = Arrays.asList(2,11,13,22);
+    private int[] ship = {12, 13, 14, 15};
+    private List<Integer> deckArea = Arrays.asList(2, 11, 13, 22);
     private Computer computer;
+
     @Before
     public void setUp() throws Exception {
         computer = new Computer();
     }
+
     @Test
     public void testAreaShoot() {
         computer.setCurrentTarget(12);
         computer.notifyShootResult(StrikeResult.WOUND);
         assertTrue(deckArea.contains(computer.shoot()));
     }
+
     @Test
     public void testKillShoot() {
         computer.setCurrentTarget(16);
@@ -46,7 +49,6 @@ public class ComputerTest {
         System.out.println(gorShoots.toString());
         assertTrue(gorShoots.contains(12));
         assertTrue(gorShoots.contains(15));
-
 
 
         computer.setCurrentTarget(36);
@@ -70,12 +72,14 @@ public class ComputerTest {
         assertTrue(shoots.contains(76));
         computer.shoot();
     }
+
     @Test
     public void testGetShip() {
-        List<Integer> coords = Arrays.asList(10,12,12,13);
+        List<Integer> coords = Arrays.asList(10, 12, 12, 13);
         computer.setShip(coords);
-        assertThat(coords,is(computer.getShip()));
+        assertThat(coords, is(computer.getShip()));
     }
+
     @Test
     public void testRecursion() {
         computer.setCurrentTarget(26);
