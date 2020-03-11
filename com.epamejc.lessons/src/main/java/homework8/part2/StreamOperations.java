@@ -1,9 +1,13 @@
 package homework8.part2;
 
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import static homework.homework8.GenerateData.getEmployees;
+import static homework8.part2.GenerateData.getEmployees;
 
 @SuppressWarnings({"unused"})
 public class StreamOperations {
@@ -12,7 +16,12 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         // TODO реализация, использовать Collectors.toList()
-        List<Person> personsEverWorkedInEpam = null;
+        List<Person> personsEverWorkedInEpam = employees.stream()
+                .filter(employee -> employee.getJobHistory().stream().anyMatch(jhe -> jhe.getCompany().equals("EPAM")))
+                .map(Employee::getPerson)
+                .collect(Collectors.toList());
+
+
 
 //        personsEverWorkedInEpam - should contain employees.get(0),  employees.get(1),
 //                employees.get(4), employees.get(5)
@@ -22,7 +31,10 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         // TODO реализация, использовать Collectors.toList()
-        List<Person> startedFromEpam = null;
+        List<Person> startedFromEpam = employees.stream()
+                .filter(employee -> employee.getJobHistory().get(0).getCompany().equals("EPAM"))
+                .map(Employee::getPerson)
+                .collect(Collectors.toList());
 
 //        startedFromEpam - should contain
 //                employees.get(0).getPerson(),
@@ -34,7 +46,11 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         // TODO реализация, использовать Collectors.toSet()
-        Set<String> companies = null;
+        Set<String> companies = employees.stream()
+                .map(Employee::getJobHistory)
+                .flatMap(Collection::stream)
+                .map(JobHistoryEntry::getCompany)
+                .collect(Collectors.toSet());
 
 //        companies - should contain "EPAM", "google", "yandex", "mail.ru", "T-Systems"
     }
@@ -43,7 +59,10 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
 
         // TODO реализация
-        Integer minimalAge = null;
+        Integer minimalAge = employees.stream()
+                .map(Employee::getPerson)
+                .map(Person::getAge)
+                .min(Integer::compareTo).orElse(0);
 
         // minmalAge = 21
     }
@@ -52,7 +71,10 @@ public class StreamOperations {
     void calcAverageAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
-        Double expected = null;
+        Double expected = employees.stream()
+                .mapToInt(employee -> employee.getPerson().getAge())
+                .average()
+                .getAsDouble();
 
     }
 
@@ -60,7 +82,10 @@ public class StreamOperations {
     void findPersonWithLongestFullName() {
         List<Employee> employees = getEmployees();
 
-        Person expected = null;
+        Person expected = employees.stream()
+                .map(Employee::getPerson)
+                .max(Comparator.comparingInt(person -> person.getLastName().length() + person.getFirstName().length()))
+                .get();
 
     }
 
@@ -68,7 +93,10 @@ public class StreamOperations {
     void findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 
-        Employee expected = null;
+        Employee expected = employees.stream()
+                .max(Comparator.comparingInt(employee -> employee.getJobHistory().stream()
+                .max(Comparator.comparingInt(JobHistoryEntry::getDuration)).get().getDuration()))
+                .get();
 
     }
 
