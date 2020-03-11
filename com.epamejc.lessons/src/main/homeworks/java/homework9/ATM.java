@@ -38,19 +38,20 @@ public class ATM {
         return "ATM " + id + " ";
     }
 
-    private synchronized int getFromBank() {
-        Random rand = new Random();
-        if (this.balance == 0) {
-            int balance = 0;
-            for (Bills bill : Bills.values()) {
-                balance += bill.getValue() * (rand.nextInt(100) + 1);
+    private int getFromBank() {
+        synchronized (this) {
+            Random rand = new Random();
+            if (this.balance == 0) {
+                int balance = 0;
+                for (Bills bill : Bills.values()) {
+                    balance += bill.getValue() * (rand.nextInt(100) + 1);
+                }
+                if (balance < bank.getBalance()) {
+                    bank.withdraw(balance);
+                    return balance;
+                }
             }
-            if (balance < bank.getBalance()) {
-                bank.withdraw(balance);
-                return balance;
-            }
+            return getBalance();
         }
-        return getBalance();
     }
-
 }

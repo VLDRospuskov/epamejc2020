@@ -1,8 +1,7 @@
 package main.homeworks.java.homework7;
 
-import com.sun.jndi.toolkit.url.Uri;
-
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -25,20 +24,26 @@ public class URLtoFileSaver {
         }
     }
 
-    private String getBook() throws Exception {
+    private String getBook() throws MalformedURLException {
         URL website = new URL(fromURL);
-        URLConnection connection = website.openConnection();
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(
-                        connection.getInputStream()));
 
         StringBuilder response = new StringBuilder();
-        String inputLine;
+        try {
 
-        while ((inputLine = in.readLine()) != null)
-            response.append(inputLine).append("\r\n");
+            URLConnection connection = website.openConnection();
 
-        in.close();
+            try (
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            connection.getInputStream()))
+            ) {
+                String inputLine;
+                while ((inputLine = in.readLine()) != null)
+                    response.append(inputLine).append("\r\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return response.toString();
     }

@@ -48,7 +48,8 @@ public class StreamOperations {
 
         Integer minimalAge = employees.stream()
                 .map(employee -> employee.getPerson().getAge())
-                .min(Integer::compare).get();
+                .min(Integer::compare)
+                .orElse(0);
 
         return minimalAge;
     }
@@ -59,7 +60,7 @@ public class StreamOperations {
         Double expected = employees.stream()
                 .mapToDouble(employee -> employee.getPerson().getAge())
                 .average()
-                .getAsDouble();
+                .orElse(0);
         return expected;
     }
 
@@ -71,7 +72,7 @@ public class StreamOperations {
                 .reduce((person, person2) ->
                         person.getFirstName().length() + person.getLastName().length() >
                         person2.getFirstName().length() + person2.getLastName().length()
-                        ? person : person2).get();
+                        ? person : person2).orElseThrow(() -> new RuntimeException("Person not found"));
         return expected;
     }
 
@@ -86,7 +87,7 @@ public class StreamOperations {
                         employee2.getJobHistory().stream()
                                 .map(JobHistoryEntry::getDuration)
                                 .max(Integer::compareTo).get()
-                        ? employee : employee2).get();
+                        ? employee : employee2).orElseThrow(() -> new RuntimeException("Employee not found"));
         return expected;
     }
 

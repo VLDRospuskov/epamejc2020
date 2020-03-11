@@ -9,7 +9,6 @@ public class ATMOperations implements Runnable {
     private ATM atm;
     private List<Client> clients;
     private Bills[] bills = Bills.values();
-    private Random rand = new Random();
 
     public ATMOperations(ATM atm, List<Client> clients) {
         this.atm = atm;
@@ -23,17 +22,18 @@ public class ATMOperations implements Runnable {
                 operate();
             }
         } catch (InterruptedException e) {
-            System.out.println("Interrupted");
+            System.out.println(atm + " is closed.");
         }
-        System.out.println(atm + " is closed.");
     }
 
 
     private void operate() {
+        Random rand = new Random();
         boolean b = rand.nextBoolean();
         int nClient = rand.nextInt(clients.size());
         int amount = bills[rand.nextInt(bills.length)].getValue() * (rand.nextInt(5) + 1);
         Client currentClient = clients.get(nClient);
+
         try {
                 if (b) {
                     atm.withdraw(amount);

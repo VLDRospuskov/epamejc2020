@@ -7,12 +7,13 @@ public class Client {
     private static int count;
     private final int id = count++;
     private int balance;
+    private int walletMoney;
     private Bills[] bills = Bills.values();
     private Random rand = new Random();
-    private int walletMoney = bills[rand.nextInt(bills.length)].getValue() * rand.nextInt(30);
 
     public Client() {
         balance = generateBalance();
+        walletMoney = generateWalletMoney();
     }
 
     public int getBalance() {
@@ -53,5 +54,9 @@ public class Client {
             balance += bill.getValue() * (rand.nextInt(50) + 1);
         }
         return balance;
+    }
+
+    private int generateWalletMoney() {
+        return bills[rand.nextInt(bills.length)].getValue() * rand.nextInt(50);
     }
 }
