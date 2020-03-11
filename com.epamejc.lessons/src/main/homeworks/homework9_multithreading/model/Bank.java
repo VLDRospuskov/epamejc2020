@@ -14,30 +14,28 @@ public class Bank {
     private volatile BigDecimal balance;
     private final List<Account> accounts;
 
-    public synchronized BigDecimal getAccountBalance(Long card){
-        Account account = accounts
-                .stream()
+    public synchronized BigDecimal getAccountBalance(Long card) {
+        Account account = accounts.stream()
                 .filter(account1 -> account1.getCard().equals(card))
                 .findAny()
-                .orElseThrow(()->new AccountNotFoundException(String.valueOf(card)));
+                .orElseThrow(() -> new AccountNotFoundException(String.valueOf(card)));
         return account.getBalance();
     }
 
-    public synchronized String updateAccountBalance(Long card, BigDecimal balance){
-        Account account = accounts
-                .stream()
+    public synchronized String updateAccountBalance(Long card, BigDecimal balance) {
+        Account account = accounts.stream()
                 .filter(account1 -> account1.getCard().equals(card))
                 .findAny()
-                .orElseThrow(()->new AccountNotFoundException(String.valueOf(card)));
+                .orElseThrow(() -> new AccountNotFoundException(String.valueOf(card)));
         int index = accounts.indexOf(account);
         account.setBalance(balance);
-        accounts.set(index,account);
+        accounts.set(index, account);
         return "Balance updated";
     }
 
     public synchronized BigDecimal getMoney(BigDecimal amount) {
 
-        if (balance.compareTo(amount) >= 0){
+        if (balance.compareTo(amount) >= 0) {
             balance = balance.subtract(amount);
             return amount;
         } else {

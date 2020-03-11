@@ -1,5 +1,5 @@
 package homeworks.seabatle.myenum;
 
-public enum  GameMode {
+public enum GameMode {
     SINGLEPLAYER, MULTIPLAYER
 }

@@ -1,6 +1,6 @@
 package homeworks.seabatle.aplication;
 
-public class Game implements Runnable{
+public class Game implements Runnable {
     @Override
     public void run() {
         StartingLogo logo = new StartingLogo();

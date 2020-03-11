@@ -8,12 +8,19 @@ import java.lang.reflect.Constructor;
 public class Person {
     int age;
     String name;
+
     @MyAnnotation()
-    public Person(){
-        Class mPerson = Person.class;
-        Constructor[] constructors = mPerson.getConstructors();
-        MyAnnotation annotation = (MyAnnotation)constructors[0].getAnnotation(MyAnnotation.class);
+    public Person() {
+
+        MyAnnotation annotation = getAnnotation();
         this.age = annotation.age();
         this.name = annotation.name();
     }
+
+    private MyAnnotation getAnnotation() {
+        Class mPerson = Person.class;
+        Constructor[] constructors = mPerson.getConstructors();
+        return (MyAnnotation) constructors[0].getAnnotation(MyAnnotation.class);
+    }
+
 }

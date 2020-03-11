@@ -4,7 +4,6 @@ import homeworks.homework9_multithreading.model.ATM;
 import homeworks.homework9_multithreading.model.Person;
 import homeworks.homework9_multithreading.myenum.Operation;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -16,7 +15,6 @@ public class ATMOperations extends Thread {
     private final Object mutex = new Object();
 
     @Override
-
     public void run() {
         while (true) {
             Operation operation = getRandomOperation();
@@ -43,7 +41,6 @@ public class ATMOperations extends Thread {
             return Operation.WITHDRAW;
         }
     }
-
 
     private double getRandomAmount() {
         Random random = new Random();

@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 
 public class FileUtil {
@@ -24,8 +23,8 @@ public class FileUtil {
         int streamTime = getStreamTime();
         int nioTime = getNioTime();
         System.out.printf("BufferedReader copied file in %s milliseconds\n", bufDuration);
-        System.out.printf("BufferedReader copied file in %s milliseconds\n", streamTime);
-        System.out.printf("BufferedReader copied file in %s milliseconds\n", nioTime);
+        System.out.printf("OutputStream copied file in %s milliseconds\n", streamTime);
+        System.out.printf("Files copied file in %s milliseconds\n", nioTime);
         String stream = bufDuration > streamTime ? "Buffered" : "Stream";
         int difference = Math.abs(bufDuration - streamTime) / 1000;
         return String.format("%s in Java IO slower. Difference is %s seconds", stream, difference);
@@ -66,7 +65,6 @@ public class FileUtil {
                 writer.write(line);
                 writer.write(System.lineSeparator());
             }
-            writer.flush();
             System.out.println("Buffered done!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -83,7 +81,6 @@ public class FileUtil {
             while (stream.available() > 0) {
                 outputStream.write(stream.read());
             }
-            outputStream.flush();
             System.out.println("Stream done!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();

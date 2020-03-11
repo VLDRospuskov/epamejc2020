@@ -1,9 +1,8 @@
 package homeworks.seabatle.servises.factories;
 
-import homeworks.seabatle.board.PlayerShipsRepository;
-import homeworks.seabatle.board.ShipsRepository;
+import homeworks.seabatle.model.board.ShipsRepository;
 import homeworks.seabatle.myenum.ShipType;
-import homeworks.seabatle.ship.Ship;
+import homeworks.seabatle.model.ship.Ship;
 import org.junit.Before;
 import org.junit.Test;
 

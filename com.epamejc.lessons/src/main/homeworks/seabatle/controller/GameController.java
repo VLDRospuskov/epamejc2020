@@ -1,22 +1,22 @@
 package homeworks.seabatle.controller;
 
 
-import homeworks.seabatle.board.Field;
-import homeworks.seabatle.board.GameBoard;
-import homeworks.seabatle.board.PlayerShipsRepository;
-import homeworks.seabatle.board.ShipsRepository;
 import homeworks.seabatle.exception.IncorrectRequestException;
+import homeworks.seabatle.model.board.Field;
+import homeworks.seabatle.model.board.GameBoard;
+import homeworks.seabatle.model.board.PlayerShipsRepository;
+import homeworks.seabatle.model.board.ShipsRepository;
+import homeworks.seabatle.model.players.Computer;
+import homeworks.seabatle.model.players.Player;
+import homeworks.seabatle.model.players.User;
+import homeworks.seabatle.model.ship.Ship;
 import homeworks.seabatle.myenum.GameMode;
 import homeworks.seabatle.myenum.ShipType;
 import homeworks.seabatle.myenum.StrikeResult;
-import homeworks.seabatle.players.Computer;
-import homeworks.seabatle.players.Player;
-import homeworks.seabatle.players.User;
 import homeworks.seabatle.servises.factories.ShipAutoGenerator;
 import homeworks.seabatle.servises.factories.ShipFactory;
 import homeworks.seabatle.servises.locationservice.LocationService;
 import homeworks.seabatle.servises.locationservice.LocationServiceImpl;
-import homeworks.seabatle.ship.Ship;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,6 +34,7 @@ public class GameController {
 
     /**
      * method that get user request, parse them and if the request is valid sets game mode
+     *
      * @param reader input stream
      * @return information , about what mode was chosen
      */
@@ -44,10 +45,10 @@ public class GameController {
         while (!isAllrite) {
             try {
                 result = reader.readLine();
-                if (result.equals(SINGLEPLAYER.toString().toLowerCase())){
+                if (result.equals(SINGLEPLAYER.toString().toLowerCase())) {
                     gameMode = SINGLEPLAYER;
                     isAllrite = true;
-                } else if (result.equals(MULTIPLAYER.toString().toLowerCase())){
+                } else if (result.equals(MULTIPLAYER.toString().toLowerCase())) {
                     gameMode = MULTIPLAYER;
                     isAllrite = true;
                 } else {
@@ -59,11 +60,12 @@ public class GameController {
                 System.out.println(ex.getMessage());
             }
         }
-        return String.format("You chose %s mode",result);
+        return String.format("You chose %s mode", result);
     }
 
     /**
      * method sets players names. Default name for Computer is "Computer"
+     *
      * @param reader input stream
      * @return
      */
@@ -74,11 +76,12 @@ public class GameController {
         if (playerTwo instanceof User) {
             playerTwo.setName(chooseName(reader));
         }
-        return String.format("Hello %s! Hello %s!",playerOne.getName(), playerTwo.getName());
+        return String.format("Hello %s! Hello %s!", playerOne.getName(), playerTwo.getName());
     }
 
     /**
      * method creates GameBoard from two players and there fields
+     *
      * @param reader input stream
      * @return visual information of board creation
      */
@@ -94,21 +97,19 @@ public class GameController {
     }
 
     /**
-     *
      * @return visual information of GameBoard condition
      */
-    public String printBattleField(){
+    public String printBattleField() {
         return gameBoard.printBattlefield();
     }
 
     /**
-     *
      * @param reader input stream
-     * @param speed contains time that thread need to sleep. For tests time = 0, for game time = 1000. param is made
-     * for comfortable visualisation, when computer wounds ship twice or more
+     * @param speed  contains time that thread need to sleep. For tests time = 0, for game time = 1000. param is made
+     *               for comfortable visualisation, when computer wounds ship twice or more
      * @return result of the game
      */
-    public String runBattle(BufferedReader reader,int speed) {
+    public String runBattle(BufferedReader reader, int speed) {
         boolean pOneWin = false;
         boolean pTwoWin = false;
         while (!pOneWin && !pTwoWin) {
@@ -125,10 +126,9 @@ public class GameController {
     }
 
     /**
-     *
      * @return instance of second player depends of chosen game mode
      */
-    private Player getPlayerTwo()  {
+    private Player getPlayerTwo() {
         Player player = null;
         switch (gameMode) {
             case SINGLEPLAYER:
@@ -142,7 +142,6 @@ public class GameController {
     }
 
     /**
-     *
      * @param reader input stream
      * @return players name
      */
@@ -169,6 +168,7 @@ public class GameController {
 
     /**
      * method that choose strategy of ship placement depends on user choice
+     *
      * @param player instance of Player
      * @param reader input stream
      * @return created ships repository
@@ -192,6 +192,7 @@ public class GameController {
 
     /**
      * depends on user choice method choose ships placement strategy
+     *
      * @param reader input stream
      * @return strategy
      */
@@ -211,12 +212,13 @@ public class GameController {
                 e.printStackTrace();
             }
         }
-        System.out.println(String.format("You chose %s mode",mode));
+        System.out.println(String.format("You chose %s mode", mode));
         return mode;
     }
 
     /**
      * if user chose manual strategy this method creates ship repository
+     *
      * @param reader input stream
      * @return instance of ShipsRepository
      */
@@ -233,9 +235,10 @@ public class GameController {
     /**
      * method get user request, parse it in location service and try to add ship to repository,
      * if repository contains ship, that in zone of created in method, all the steps are repeated
-     * @param type enum type of Ship
+     *
+     * @param type       enum type of Ship
      * @param repository ship add to this repository
-     * @param reader input stream
+     * @param reader     input stream
      */
     private void addShip(ShipType type, ShipsRepository repository, BufferedReader reader) {
         boolean isLocated = false;
@@ -258,10 +261,11 @@ public class GameController {
 
     /**
      * alert, shown to player before the ship creation
+     *
      * @param type enum ShipType
      */
     private void printShipAdvice(ShipType type) {
-        System.out.println(String.format("%s is creating",type));
+        System.out.println(String.format("%s is creating", type));
         if (ShipType.BOAT.equals(type)) {
             System.out.println("Please write the locationservice in format \"A1\"");
         } else {
@@ -270,28 +274,26 @@ public class GameController {
     }
 
     /**
-     *
      * @param name - name of the winner
      * @return end game message
      */
     private String declareResult(String name) {
-        return String.format("Game Over \n%s is a winner!!! Congratulations, admiral!",name);
+        return String.format("Game Over \n%s is a winner!!! Congratulations, admiral!", name);
     }
 
     /**
-     *
-     * @param player - player, who make strike
+     * @param player   - player, who make strike
      * @param defender - player, who defends
-     * @param reader - input stream
-     * @param speed - contains time that thread need to sleep. For tests time = 0, for game time = 1000. param is made
-     *      * for comfortable visualisation, when computer wounds ship twice or more
+     * @param reader   - input stream
+     * @param speed    - contains time that thread need to sleep. For tests time = 0, for game time = 1000. param is made
+     *                 * for comfortable visualisation, when computer wounds ship twice or more
      * @return if player kills the last ship of the defender returns true in other case return false
      */
     private boolean shoot(Player player, Player defender, BufferedReader reader, int speed) {
         boolean shooting = true;
         StrikeResult strikeResult1 = null;
         while (shooting) {
-            System.out.println(String.format("%s write your choice",player.getName()));
+            System.out.println(String.format("%s write your choice", player.getName()));
             try {
                 if (player instanceof User) {
                     strikeResult1 = gameBoard.getPlayerStrikeResult(reader.readLine(), defender);
@@ -300,7 +302,7 @@ public class GameController {
                     ((Computer) player).notifyShootResult(strikeResult1);
                     Thread.sleep(speed);
                 }
-                System.out.print(String.format("%s\n",strikeResult1.getDescription()));
+                System.out.print(String.format("%s\n", strikeResult1.getDescription()));
                 Thread.sleep(speed);
                 System.out.println(gameBoard.printBattlefield());
                 shooting = strikeResult1.equals(StrikeResult.WOUND) || strikeResult1.equals(StrikeResult.KILL)
