@@ -1,6 +1,14 @@
 package homeworks.java.seabattle.input;
 
-interface InputListener {
+import homeworks.java.seabattle.field.Coordinatepointer;
 
-    void makeship(int x, int y, int decksNum, Orientation o);
+public interface InputListener {
+
+    boolean makeShip(int decksNum, Orientation o, Coordinatepointer startCoordinate);
+
+    void fillAutomatically();
+
+    void exitGame();
+
+    void attack(int x, int y);
 }
