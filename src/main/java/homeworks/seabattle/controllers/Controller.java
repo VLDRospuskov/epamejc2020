@@ -31,6 +31,8 @@ public abstract class Controller {
 
     protected boolean decideHitOrMiss(int shotPosition) {
 
+        moveCount++;
+
         if (Positions.opponentShipPositions.contains(shotPosition)) {
 
             hitPositions.add(shotPosition);
@@ -40,7 +42,6 @@ public abstract class Controller {
             return Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size();
 
         } else {
-            System.out.println("Moves amount: " + moveCount);
             missPositions.add(shotPosition);
             return true;
         }

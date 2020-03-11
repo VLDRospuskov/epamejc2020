@@ -5,14 +5,7 @@ import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.battlefield.FieldPrinter;
 import lombok.SneakyThrows;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PlayerController extends Controller {
-
-    private List<Integer> hitPositions = new ArrayList<>();
-    private List<Integer> missPositions = new ArrayList<>();
-    private List<Integer> deadShipPositions = new ArrayList<>();
 
     private FieldPrinter fieldPrinter = new FieldPrinter();
 
@@ -42,23 +35,10 @@ public class PlayerController extends Controller {
                 if (!hitPositions.contains(shotPosition)
                         && !missPositions.contains(shotPosition)) {
 
-//                    if (decideHitOrMiss(shotPosition)) {
-//                        break;
-//                    }
-                    if (Positions.opponentShipPositions.contains(shotPosition)) {
-
-                        hitPositions.add(shotPosition);
-                        deadShipPositions = getDeadShipPosition(hitPositions);
-                        Positions.opponentDeadShipPositions = deadShipPositions;
-
-                        if (Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size()) {
-                            System.out.println("Moves amount: " + moveCount);
-                            break;
-                        }
-                    } else {
-                        missPositions.add(shotPosition);
+                    if (decideHitOrMiss(shotPosition)) {
                         break;
                     }
+
                 } else {
                     System.out.println("Cell is already shot!");
                 }

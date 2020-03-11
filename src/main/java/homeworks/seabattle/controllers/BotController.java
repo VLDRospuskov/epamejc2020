@@ -40,23 +40,7 @@ public class BotController extends Controller {
             if (!hitPositions.contains(shotPosition)
                     && !missPositions.contains(shotPosition)) {
 
-                moveCount++;
-
-//                if (decideHitOrMiss(shotPosition)) {
-//                    break;
-//                }
-                if (Positions.opponentShipPositions.contains(shotPosition)) {
-
-                    hitPositions.add(shotPosition);
-                    deadShipPositions = getDeadShipPosition(hitPositions);
-                    Positions.opponentDeadShipPositions = deadShipPositions;
-
-                    if (Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size()) {
-                        System.out.println("Moves amount: " + moveCount);
-                        break;
-                    }
-                } else {
-                    missPositions.add(shotPosition);
+                if (decideHitOrMiss(shotPosition)) {
                     break;
                 }
             }
