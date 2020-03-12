@@ -1,4 +1,4 @@
-package homework.homework9;
+package homework.homework9.atm;
 
 import homework.homework9.util.Log;
 import org.apache.commons.math3.util.Precision;

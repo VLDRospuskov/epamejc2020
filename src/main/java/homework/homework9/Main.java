@@ -1,5 +1,8 @@
 package homework.homework9;
 
+import homework.homework9.atm.Account;
+import homework.homework9.atm.AutomatedTellerMachine;
+import homework.homework9.atm.User;
 import homework.homework9.util.IdGenerator;
 import homework.homework9.util.Log;
 

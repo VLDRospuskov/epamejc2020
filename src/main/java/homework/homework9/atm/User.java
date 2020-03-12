@@ -1,4 +1,4 @@
-package homework.homework9;
+package homework.homework9.atm;
 
 import homework.homework9.util.Log;
 import lombok.SneakyThrows;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static homework.homework9.AutomatedTellerMachine.*;
+import static homework.homework9.atm.AutomatedTellerMachine.*;
 
 public class User {
 
