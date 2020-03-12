@@ -1,10 +1,5 @@
 package Homeworks.HW4;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-
-
 public class Person {
 
     private String name;
@@ -16,9 +11,13 @@ public class Person {
         // empty constructor
 
         // reflection
-        MyAnnotation myAnnotation = getClass().getDeclaredConstructors()[0].getAnnotation(MyAnnotation.class);
+        MyAnnotation myAnnotation = getAnnotation();
         this.name = myAnnotation.name();
         this.age = myAnnotation.age();
+    }
+
+    private MyAnnotation getAnnotation() {
+        return getClass().getDeclaredConstructors()[0].getAnnotation(MyAnnotation.class);
     }
 
     @Override
