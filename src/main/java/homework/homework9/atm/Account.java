@@ -13,7 +13,7 @@ public class Account {
     public void deposit(AutomatedTellerMachine atm, double sum) {
         Log.log("ATM " + atm.getId() + " waits for account");
         synchronized (this) {
-            Log.log("ATM " + atm.getId() + " got account and wants to deposit " + sum);
+            Log.log("ATM " + atm.getId() + " got account and wants to deposit " + Precision.round(sum,2));
             balance += sum;
             Log.log("Success. General account balance " + Precision.round(balance, 2));
         }
@@ -22,7 +22,7 @@ public class Account {
     public void withdraw(AutomatedTellerMachine atm, double sum) {
         Log.log("ATM " + atm.getId() + " waits for account");
         synchronized (this) {
-            Log.log("ATM " + atm.getId() + " got account and wants to withdraw " + sum);
+            Log.log("ATM " + atm.getId() + " got account and wants to withdraw " + Precision.round(sum,2));
             if (balance >= sum) {
                 balance -= sum;
                 Log.log("Success. General account balance " + Precision.round(balance, 2));
