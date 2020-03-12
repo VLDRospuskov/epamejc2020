@@ -1,5 +1,7 @@
 package homework.homework9;
 
+import homework.homework9.util.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +17,14 @@ public class Main {
 
         final int ATM_COUNT = 3;
         List<Integer> atmIds = IdGenerator.generateIds(ATM_COUNT);
-        System.out.println("ATMs" + atmIds);
+        Log.log("ATMs" + atmIds);
 
         for (Integer id : atmIds) {
             atms.add(new AutomatedTellerMachine(id, account));
         }
 
         List<String> userNames = Arrays.asList("Alex", "Brian", "Fred", "Helen", "John", "Kate", "Laura", "Selena");
-        System.out.println("Users" + userNames);
+        Log.log("Users" + userNames);
 
         ExecutorService executorService = Executors.newFixedThreadPool(userNames.size());
 

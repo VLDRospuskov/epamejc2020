@@ -1,5 +1,6 @@
 package homework.homework9;
 
+import homework.homework9.util.Log;
 import org.apache.commons.math3.util.Precision;
 
 public class Account {
@@ -10,21 +11,21 @@ public class Account {
     }
 
     public void deposit(AutomatedTellerMachine atm, double sum) {
-        System.out.println("ATM " + atm.getId() + " waits for account");
+        Log.log("ATM " + atm.getId() + " waits for account");
         synchronized (this) {
-            System.out.println("ATM " + atm.getId() + " got account and wants to deposit " + sum);
+            Log.log("ATM " + atm.getId() + " got account and wants to deposit " + sum);
             balance += sum;
-            System.out.println("Success. General account balance " + Precision.round(balance, 2));
+            Log.log("Success. General account balance " + Precision.round(balance, 2));
         }
     }
 
     public void withdraw(AutomatedTellerMachine atm, double sum) {
-        System.out.println("ATM " + atm.getId() + " waits for account");
+        Log.log("ATM " + atm.getId() + " waits for account");
         synchronized (this) {
-            System.out.println("ATM " + atm.getId() + " got account and wants to withdraw " + sum);
+            Log.log("ATM " + atm.getId() + " got account and wants to withdraw " + sum);
             if (balance >= sum) {
                 balance -= sum;
-                System.out.println("Success. General account balance " + Precision.round(balance, 2));
+                Log.log("Success. General account balance " + Precision.round(balance, 2));
             } else {
                 throw new IllegalStateException("ATM " + atm.getId() + " doesn't have enough money");
             }

@@ -1,5 +1,6 @@
 package homework.homework9;
 
+import homework.homework9.util.Log;
 import lombok.SneakyThrows;
 import org.apache.commons.math3.util.Precision;
 
@@ -28,27 +29,27 @@ public class User {
     }
 
     public void putCash(double sum, AutomatedTellerMachine automatedTellerMachine) {
-        System.out.println(name + " wants to put cash " + sum);
+        Log.log(name + " wants to put cash " + sum);
 
         if (cash >= sum) {
             cash -= sum;
             automatedTellerMachine.deposit(this, sum);
-            System.out.println(name + " succeeded. Users cash " + cash);
+            Log.log(name + " succeeded. Users cash " + cash);
         } else {
-            System.out.println(name + " doesn't have enough cash");
+            Log.log(name + " doesn't have enough cash");
         }
     }
 
     public void getCash(double sum, AutomatedTellerMachine automatedTellerMachine) {
-        System.out.println(name + " wants to get cash " + sum);
+        Log.log(name + " wants to get cash " + sum);
 
         automatedTellerMachine.withdraw(this, sum);
         cash += sum;
-        System.out.println(name + " succeeded. Users cash " + cash);
+        Log.log(name + " succeeded. Users cash " + cash);
     }
 
     public double checkCash() {
-        System.out.println(name + " checked cash " + cash);
+        Log.log(name + " checked cash " + cash);
         return cash;
     }
 

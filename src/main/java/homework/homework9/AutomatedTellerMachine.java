@@ -1,5 +1,7 @@
 package homework.homework9;
 
+import homework.homework9.util.Log;
+
 public class AutomatedTellerMachine {
 
     public static double MIN_SUM = 5.0;
@@ -23,21 +25,21 @@ public class AutomatedTellerMachine {
     }
 
     public void deposit(User user, double sum) {
-        System.out.println(user.getName() + " waits for " + ATM_DESCRIPTION);
+        Log.log(user.getName() + " waits for " + ATM_DESCRIPTION);
         synchronized (this) {
-            System.out.println(user.getName() + " got " + ATM_DESCRIPTION + "wants to deposit " + sum);
+            Log.log(user.getName() + " got " + ATM_DESCRIPTION + "wants to deposit " + sum);
             account.deposit(this, sum);
         }
     }
 
     public void withdraw(User user, double sum) {
-        System.out.println(user.getName() + " waits for " + ATM_DESCRIPTION);
+        Log.log(user.getName() + " waits for " + ATM_DESCRIPTION);
         synchronized (this) {
-            System.out.println(user.getName() + " got " + ATM_DESCRIPTION + "wants to withdraw " + sum);
+            Log.log(user.getName() + " got " + ATM_DESCRIPTION + "wants to withdraw " + sum);
             try {
                 account.withdraw(this, sum);
             } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
+                Log.log(e.getMessage());
             }
         }
     }
