@@ -1,4 +1,4 @@
-package homework.homework8;
+package homeworks.homework8;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,5 +11,13 @@ public class Employee {
 
     private final Person person;
     private final List<JobHistoryEntry> jobHistory;
-
+    
+    public Person getPerson() {
+        return person;
+    }
+    
+    public List<JobHistoryEntry> getJobHistory() {
+        return jobHistory;
+    }
+    
 }

@@ -1,4 +1,4 @@
-package homework.homework8;
+package homeworks.homework8;
 
 @SuppressWarnings({"unused"})
 public class Main {
