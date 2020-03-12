@@ -56,16 +56,19 @@ public class User {
     @SneakyThrows
     public void performRandomTasks() {
         while (true) {
-            int randomOperation = 1 + random.nextInt(OPERATIONS_COUNT);
             double randomSum = MIN_SUM + (MAX_SUM - MIN_SUM) * Precision.round(random.nextDouble(), 2);
             AutomatedTellerMachine randomATM = atms.get(random.nextInt(atms.size()));
 
-            if (randomOperation % 2 == 0) {
-                putCash(randomSum, randomATM);
-            } else if (randomOperation % 3 == 0) {
-                getCash(randomSum, randomATM);
-            } else {
-                checkCash();
+            switch (random.nextInt(OPERATIONS_COUNT)) {
+                case 0:
+                    putCash(randomSum, randomATM);
+                    break;
+                case 1:
+                    getCash(randomSum, randomATM);
+                    break;
+                case 2:
+                    checkCash();
+                    break;
             }
 
             Thread.sleep(3000);
