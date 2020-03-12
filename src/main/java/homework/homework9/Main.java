@@ -1,10 +1,12 @@
 package homework.homework9;
 
+import homework.homework9.util.IdGenerator;
 import homework.homework9.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,7 +18,7 @@ public class Main {
         List<AutomatedTellerMachine> atms = new ArrayList<>();
 
         final int ATM_COUNT = 3;
-        List<Integer> atmIds = IdGenerator.generateIds(ATM_COUNT);
+        Set<Integer> atmIds = IdGenerator.generateIds(ATM_COUNT);
         Log.log("ATMs" + atmIds);
 
         for (Integer id : atmIds) {
