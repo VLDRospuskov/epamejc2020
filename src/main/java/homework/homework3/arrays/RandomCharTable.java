@@ -1,4 +1,4 @@
-package homework.homework3;
+package homework.homework3.arrays;
 
 public class RandomCharTable extends CharMatrix {
 

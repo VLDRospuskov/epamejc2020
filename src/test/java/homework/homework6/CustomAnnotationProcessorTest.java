@@ -1,10 +1,10 @@
 package homework.homework6;
 
-import homework.homework3.CharMatrix;
+import homework.homework3.arrays.CharMatrix;
 import lombok.Data;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CustomAnnotationProcessorTest {
 

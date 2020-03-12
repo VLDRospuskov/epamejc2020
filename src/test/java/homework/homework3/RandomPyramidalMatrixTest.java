@@ -1,8 +1,9 @@
 package homework.homework3;
 
+import homework.homework3.arrays.RandomPyramidalMatrix;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class RandomPyramidalMatrixTest {
 

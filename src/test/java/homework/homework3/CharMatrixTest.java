@@ -1,9 +1,10 @@
 package homework.homework3;
 
+import homework.homework3.arrays.CharMatrix;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CharMatrixTest {
 

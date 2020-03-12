@@ -1,4 +1,4 @@
-package homework.homework5;
+package homework.homework5.recursion;
 
 public class DigitsCounter {
 
