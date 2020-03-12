@@ -16,6 +16,7 @@ public class Field {
     }
 
     public void draw(){
+
         System.out.print("   ");
         for(int i = 0; i < 10; i++){
             System.out.print(coordinateY++ + " ");

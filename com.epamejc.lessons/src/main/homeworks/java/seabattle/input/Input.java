@@ -1,37 +1,120 @@
 package homeworks.java.seabattle.input;
 
+import homeworks.java.seabattle.field.Coordinatepointer;
+
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import static homeworks.java.seabattle.input.Orientation.*;
 
-public class Input implements InputListener{
+public class Input {
 
-    public void process(String line, boolean cond){
+    private BufferedReader buffer;
+    private InputListener inListener;
+    private int currentShipDeckNumber;
+    private final String baseFillingMessage = "Input %d-deck ship in format %s";
+    private String currentMessage;
+    private String line;
 
-        String[] shipInfo = line.split(", ");
+    public Input(){
 
+        buffer = new BufferedReader(new InputStreamReader(System.in));
+//        inListener = listener;
+        currentShipDeckNumber = 1;
+
+        showNewMessage();
+    }
+
+    private void showNewMessage() {
+        String format = currentShipDeckNumber > 1 ? "x, y, orientation" : "x, y";
+        currentMessage = String.format(baseFillingMessage, currentShipDeckNumber, format);
+    }
+
+    public void process(GameState state) {
+        System.out.println(currentMessage);
+        line = null;
+
+        try {
+            line = buffer.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        boolean exitDone = line.equalsIgnoreCase("exit");
+
+        if (exitDone) {
+            inListener.exitGame();
+            return;
+        }
+
+        if (state == GameState.SETUP) {
+            fillField(line);
+        } else if (state == GameState.BATTLE) {
+            doBattle(line);
+        }
+    }
+
+    public Coordinatepointer parseCoordinates(String inLine) {
+        String[] coordinates = inLine.split(",");
         int x = -1;
         int y = -1;
-        int decksNumber = -1;
+
+        if (coordinates.length == 2) {
+            x = Character.toLowerCase(coordinates[0].charAt(0)) - 'a';
+            y = Integer.parseInt(coordinates[1]);
+        }
+
+        return new Coordinatepointer(x, y);
+    }
+
+    private void fillField(String line) {
+
+        String[] shipInfo = line.split(";");
+
         Orientation orient = NONE; //ориентация корабля
 
-        if(!cond && shipInfo.length >= 2){
-            x = Character.toLowerCase(shipInfo[0].charAt(0)) - 'a'; //получаем число от 0 до 9,
-            // которое будет указывать координату по горизонтали
-            y = Integer.parseInt(shipInfo[1]); //координата по вертикали
-            decksNumber = Integer.parseInt(shipInfo[2]); // количество палуб
+        if (shipInfo.length == 1 && line.equalsIgnoreCase("auto fill")) {
+            inListener.fillAutomatically();
+        }
 
-            if(shipInfo[3] != null && shipInfo[3].equalsIgnoreCase("h")){
+        if (shipInfo.length > 1) {
+            Coordinatepointer coordinate = parseCoordinates(line);
+
+            if(currentShipDeckNumber == 1) {
+                orient = DEFAULT;
+            }else if (shipInfo[1] != null && shipInfo[1].equalsIgnoreCase("h")) {
                 orient = HORIZONTAL;
-            } else if(shipInfo[3] != null && shipInfo[3].equalsIgnoreCase("v")){
+            } else if (shipInfo[1] != null && shipInfo[1].equalsIgnoreCase("v")) {
                 orient = VERTICAL;
+            } else {
+                orient = NONE;
+            }
+
+            if(orient != NONE && coordinate.x >= 0 && coordinate.y >= 0){
+                if(!inListener.makeShip(currentShipDeckNumber, orient,
+                        new Coordinatepointer(coordinate.x, coordinate.y))) {
+                    currentShipDeckNumber++;
+                    showNewMessage();
+                }
             }
         }
     }
 
-    @Override
-    public void makeship(int x, int y, int decksNumber, Orientation o) {
+    private void doBattle(String line) {
+        Coordinatepointer coordinate = parseCoordinates(line);
 
+        if(coordinate.x >= 0 && coordinate.y >= 0){
+            inListener.attack(coordinate.x, coordinate.y);
+        }
+    }
+
+    public void closeBuffer(){
+        try {
+            buffer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
