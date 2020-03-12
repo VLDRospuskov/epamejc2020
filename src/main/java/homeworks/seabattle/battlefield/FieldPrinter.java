@@ -5,7 +5,6 @@ import homeworks.seabattle.util.Positions;
 public class FieldPrinter {
 
 
-
     public void print () {
 
         CellsToPrint cellsToPrint = new CellsToPrint();

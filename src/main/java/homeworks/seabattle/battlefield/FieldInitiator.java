@@ -1,5 +1,6 @@
 package homeworks.seabattle.battlefield;
 
+import homeworks.seabattle.util.Area;
 import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.util.Ship;
 
@@ -9,25 +10,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class FieldInitiator {
+public abstract class FieldInitiator implements Area<List<Integer>> {
 
-    protected List<Ship> ships = new ArrayList<>();
     private List<Integer> shipsAmount = Stream.of(4, 3, 2, 1)
             .collect(Collectors.toList());
 
     public abstract void init();
 
-    protected void swapShipPositions() {
+    @Override
+    public boolean isNoOverlapping(List<Integer> shipCells) {
 
-        List<Integer> x = Positions.playerShipPositions;
-        Positions.playerShipPositions = Positions.opponentShipPositions;
-        Positions.opponentShipPositions = x;
+        List<Integer> busyCells = new ArrayList<>();
+        Positions.playerShipPositions.forEach(x -> busyCells.addAll(getArea(busyCells, x)));
 
-        List<Ship> s = Positions.playerShips;
-        Positions.playerShips = Positions.opponentShips;
-        Positions.opponentShips = s;
+        return Collections.disjoint(busyCells, shipCells);
     }
-
 
     protected void filterAndSet(List<Integer> shipCells) {
 
@@ -35,18 +32,10 @@ public abstract class FieldInitiator {
 
             if (isRightShip(shipCells)) {
 
-                ships.add(new Ship(shipCells));
-
                 Positions.playerShipPositions.addAll(shipCells);
 
-                Positions.playerShips = ships;
-
-//            } else {
-//                System.out.println("You have no such type of ships left!");
+                Positions.playerShips.add(new Ship(shipCells));
             }
-
-//        } else {
-//            System.out.println("\nWrong input!\nTry again!");
         }
     }
 
@@ -87,50 +76,6 @@ public abstract class FieldInitiator {
             }
         }
         return new int[]{oCount, dCount};
-    }
-
-
-    private boolean isNoOverlapping(List<Integer> shipCells) {
-
-        List<Integer> busyCells = new ArrayList<>();
-        Positions.playerShipPositions.forEach(x -> busyCells.addAll(getArea(busyCells, x)));
-
-        return Collections.disjoint(busyCells, shipCells);
-    }
-
-    private List<Integer> getArea(List<Integer> busyCells, Integer x) {
-
-        busyCells.add(x);
-
-        switch (x % 10) {
-            case 0:
-                rightHalf(busyCells, x);
-                break;
-            case 9:
-                leftHalf(busyCells, x);
-                break;
-            default:
-                rightHalf(busyCells, x);
-                leftHalf(busyCells, x);
-        }
-        return busyCells;
-    }
-
-    private void leftHalf(List<Integer> busyCells, Integer x) {
-        busyCells.add(x - 11);
-        busyCells.add(x - 10);
-        busyCells.add(x - 1);
-        busyCells.add(x + 9);
-        busyCells.add(x + 10);
-    }
-
-    private void rightHalf(List<Integer> busyCells, Integer x) {
-        busyCells.add(x - 10);
-        busyCells.add(x - 9);
-        busyCells.add(x + 1);
-        busyCells.add(x + 1);
-        busyCells.add(x + 10);
-        busyCells.add(x + 11);
     }
 }
 

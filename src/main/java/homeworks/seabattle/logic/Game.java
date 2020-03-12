@@ -1,6 +1,7 @@
 package homeworks.seabattle.logic;
 
 import homeworks.homework3.allInOne.Colors;
+import homeworks.seabattle.battlefield.FieldPrinter;
 import homeworks.seabattle.util.ConsoleReader;
 import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.controllers.Controller;
@@ -27,12 +28,17 @@ public class Game {
             swapPlayers();
         }
 
-        showEndGame();
-
         ConsoleReader.reader.close();
+        showEndGame();
     }
 
     private void showEndGame() {
+
+        FieldPrinter fieldPrinter = new FieldPrinter();
+        fieldPrinter.print();
+
+        System.out.println("Moves amount: " + opponent.moveCount);
+
         if (Positions.opponentDeadShipPositions.size() != 0) {
 
             System.out.println("Congratulations, you just won the game!!!");

@@ -14,13 +14,13 @@ public class PlayerFieldInitiator extends FieldInitiator {
     @SneakyThrows
     public void init() {
 
-        swapShipPositions();
+        Positions.swapAndSet();
 
         FieldPrinter fieldPrinter = new FieldPrinter();
 
         String userShip;
 
-        while (ships.size() != 10) {
+        while (Positions.playerShips.size() != 10) {
 
             fieldPrinter.print();
 
@@ -34,11 +34,15 @@ public class PlayerFieldInitiator extends FieldInitiator {
                 break;
             }
 
-            if (userShip.length() != 0) {
-                filterAndSet(findCellPositions(getCells(userShip)));
-            } else {
-                System.out.println("Wrong input");
-            }
+            handleUserInput(userShip);
+        }
+    }
+
+    private void handleUserInput(String userShip) {
+        if (userShip.length() != 0) {
+            filterAndSet(findCellPositions(getCells(userShip)));
+        } else {
+            System.out.println("Wrong input");
         }
     }
 

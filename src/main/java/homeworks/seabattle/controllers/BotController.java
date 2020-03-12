@@ -1,20 +1,18 @@
 package homeworks.seabattle.controllers;
 
+import homeworks.seabattle.util.Area;
 import homeworks.seabattle.util.Positions;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
-public class BotController extends Controller {
+public class BotController extends Controller implements Area<Integer> {
 
     private List<Integer> hitCells = new ArrayList<>();
     private boolean hit = false;
 
     public void makeMove() {
 
-        Positions.swapAndSet(hitPositions, missPositions, deadShipPositions);
+        Positions.swapAndSet();
 
         int shotPosition = 0;
         int beforeHitSize = 0;
@@ -24,31 +22,38 @@ public class BotController extends Controller {
 
         while (true) {
 
-            if (beforeDeadSize < afterDeadSize) {
-                hit = false;
-                hitCells.clear();
-            } else if (beforeHitSize < afterHitSize) {
-                hit = true;
-                hitCells.add(shotPosition);
-            }
+            decideHitOrKill(shotPosition, beforeHitSize, afterHitSize, beforeDeadSize, afterDeadSize);
 
             shotPosition = getRandomPosition();
 
-            beforeHitSize = hitPositions.size();
-            beforeDeadSize = deadShipPositions.size();
+            beforeHitSize = Positions.playerHitPositions.size();
+            beforeDeadSize = Positions.opponentDeadShipPositions.size();
 
-            if (!hitPositions.contains(shotPosition)
-                    && !missPositions.contains(shotPosition)) {
+            if (!Positions.playerHitPositions.contains(shotPosition)
+                    && !Positions.playerMissPositions.contains(shotPosition)
+                    && isNoOverlapping(shotPosition)) {
 
                 if (decideHitOrMiss(shotPosition)) {
                     break;
                 }
             }
 
-            afterHitSize = hitPositions.size();
-            afterDeadSize = deadShipPositions.size();
+            afterHitSize = Positions.playerHitPositions.size();
+            afterDeadSize = Positions.opponentDeadShipPositions.size();
         }
         fieldPrinter.print();
+    }
+
+    private void decideHitOrKill(int shotPosition, int beforeHitSize, int afterHitSize,
+                                 int beforeDeadSize, int afterDeadSize) {
+
+        if (beforeDeadSize < afterDeadSize) {
+            hit = false;
+            hitCells.clear();
+        } else if (beforeHitSize < afterHitSize) {
+            hit = true;
+            hitCells.add(shotPosition);
+        }
     }
 
     private int getRandomPosition() {
@@ -71,13 +76,9 @@ public class BotController extends Controller {
 
     private int getRandomEdge() {
 
-        int maxIndex = hitCells.indexOf(hitCells.stream()
-                .max(Comparator.comparingInt(a -> a))
-                .orElse(-1));
+        int maxIndex = getMaxIndex();
 
-        int minIndex = hitCells.indexOf(hitCells.stream()
-                .min(Comparator.comparingInt(a -> a))
-                .orElse(-1));
+        int minIndex = getMinIndex();
 
         int difference = hitCells.get(maxIndex) - hitCells.get(minIndex);
 
@@ -116,6 +117,18 @@ public class BotController extends Controller {
         return result;
     }
 
+    private int getMinIndex() {
+        return hitCells.indexOf(hitCells.stream()
+                .min(Comparator.comparingInt(a -> a))
+                .orElse(-1));
+    }
+
+    private int getMaxIndex() {
+        return hitCells.indexOf(hitCells.stream()
+                .max(Comparator.comparingInt(a -> a))
+                .orElse(-1));
+    }
+
     private int verticalUp(int i, int i2) {
         return hitCells.get(i) + 10 < 100 ? hitCells.get(i) + 10 : hitCells.get(i2) - 10;
     }
@@ -133,5 +146,13 @@ public class BotController extends Controller {
     private int horizontalRight(int i, int i2) {
         return hitCells.get(i) + 1 < 100
                 && hitCells.get(i) % 10 != 9 ? hitCells.get(i) + 1 : hitCells.get(i2) - 1;
+    }
+
+    @Override
+    public boolean isNoOverlapping(Integer shotPosition) {
+        List<Integer> busyCells = new ArrayList<>();
+        Positions.opponentDeadShipPositions.forEach(x -> busyCells.addAll(getArea(busyCells, x)));
+
+        return !busyCells.contains(shotPosition);
     }
 }

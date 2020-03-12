@@ -14,18 +14,26 @@ public class OpponentSelector {
 
     @SneakyThrows
     public Controller select() {
+
         FieldInitiator initiator;
+
         while (true) {
+
             System.out.print("Choose your opponent 'bot' or 'player': ");
             String userPlayer = ConsoleReader.reader.readLine();
+
             if (userPlayer.equalsIgnoreCase("bot")) {
+
                 initiator = new BotFieldInitiator();
                 initiator.init();
                 return new BotController();
+
             } else if (userPlayer.equalsIgnoreCase("player")) {
+
                 initiator = new PlayerFieldInitiator();
                 initiator.init();
                 return new PlayerController();
+
             } else {
                 System.out.println("There is no such opponent!");
             }

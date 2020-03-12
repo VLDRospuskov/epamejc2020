@@ -34,18 +34,22 @@ public class Positions {
             "A10", "B10", "C10", "D10", "E10", "F10", "G10", "H10", "Y10", "J10");
 
 
-    public static void swapAndSet (List<Integer> hitPosition, List<Integer> missPosition, List<Integer> deadShipPosition) {
-
-        opponentHitPositions = playerHitPositions;
-        opponentMissPositions = playerMissPositions;
-
-        playerHitPositions = hitPosition;
-        playerMissPositions = missPosition;
-
-        playerDeadShipPositions = opponentDeadShipPositions;
-        opponentDeadShipPositions = deadShipPosition;
+    public static void swapAndSet () {
 
         List<Integer> x;
+
+        x = playerHitPositions;
+        playerHitPositions = opponentHitPositions;
+        opponentHitPositions = x;
+
+        x = playerMissPositions;
+        playerMissPositions = opponentMissPositions;
+        opponentMissPositions = x;
+
+        x = playerDeadShipPositions;
+        playerDeadShipPositions = opponentDeadShipPositions;
+        opponentDeadShipPositions = x;
+
         x = playerShipPositions;
         playerShipPositions = opponentShipPositions;
         opponentShipPositions = x;

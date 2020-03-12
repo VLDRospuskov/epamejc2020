@@ -69,7 +69,34 @@
     Imitation of bank working with several ATMs with their users in parallel
     
 #### sea battle:
-    Implemantation of well known sea battle game on terminal
+    Implemantation of well known sea battle game on terminal:
+    
+    Available game modes: Player vs Player; Player vs Bot; Bot vs Bot;
+    
+    Ship rules '■':
+    - Amount of ships each type is limited: 4 cells - 1; 3 cells - 2;
+      2 cells - 3; 1 cell - 4;
+    - Ship should be a non-diagonal straight line and position of each it's cell should be at least
+      on cell away from amother ships cells;
+      
+    Player can choose cells to put his ship in format 'a1 a2 a3 a4' according to ship rules;
+    Bot generates positions of it's ships randomly according to ship rules;
+    
+    Shot rules:
+    - Player can't shoot twice in one cell;
+    - Players move ends if you miss opponents ship 'x';
+    - If player hit opponents ship he can shoot again '¤';
+    - If player killed opponents ship it becomes '□' and he can shoot again;
+    - If player killed all opponents ships game ends immediately;
+    
+    Player can choose where to shoot in format 'e5' according to shot rules;
+    Bot generates where to shoot randomly according to shot rules, but: 
+    - If it hits opponents ship for the first time it seeks nearby non-diagonal cells to hit it again;
+    - If it hits opponents ship again it seeks nearby horizontal or vertical cells according to ship
+      orientation to hit it again;
+    - If it kills opponents ship it starts to shoot at random positions, but not near dead ships;
+    
+    At the end of the game player can see the congratulations and amount of his moves;
     
 #### test:
-    Unit tests on homework
+    Unit tests on homeworks

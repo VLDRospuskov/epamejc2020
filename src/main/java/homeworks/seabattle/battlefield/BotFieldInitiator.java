@@ -1,5 +1,7 @@
 package homeworks.seabattle.battlefield;
 
+import homeworks.seabattle.util.Positions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,39 +10,48 @@ import java.util.stream.Stream;
 
 public class BotFieldInitiator extends FieldInitiator {
 
+    private int length;
+    private int beforeSize;
+    private int afterSize;
+    private int count;
+
     @Override
     public void init() {
 
         System.out.println("Please wait...");
 
-        swapShipPositions();
+        Positions.swapAndSet();
 
-        int length = 4;
-        int beforeSize = 0;
-        int afterSize = 0;
-        int count = 1;
+        length = 4;
+        beforeSize = 0;
+        afterSize = 0;
+        count = 1;
 
-        while (ships.size() != 10) {
+        while (Positions.playerShips.size() != 10) {
 
             int randomPosition = getRandomPosition();
 
-            if (beforeSize == afterSize - 1) {
-                count--;
-                if (count == 0) {
-                    length--;
-                    count = 5 - length;
-                }
-            }
+            countShipsAndUpdate();
 
             boolean randomDirection = getRandomDirection();
 
-            beforeSize = ships.size();
+            beforeSize = Positions.playerShips.size();
 
-            List<Integer> userShip = getCellPositions(randomPosition, length, randomDirection);
+            List<Integer> cellPositions = getCellPositions(randomPosition, length, randomDirection);
 
-            filterAndSet(userShip);
+            filterAndSet(cellPositions);
 
-            afterSize = ships.size();
+            afterSize = Positions.playerShips.size();
+        }
+    }
+
+    private void countShipsAndUpdate() {
+        if (beforeSize == afterSize - 1) {
+            count--;
+            if (count == 0) {
+                length--;
+                count = 5 - length;
+            }
         }
     }
 

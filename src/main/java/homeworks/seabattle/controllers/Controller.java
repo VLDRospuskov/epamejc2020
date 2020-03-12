@@ -10,11 +10,7 @@ import java.util.List;
 
 public abstract class Controller {
 
-    protected List<Integer> hitPositions = new ArrayList<>();
-    protected List<Integer> missPositions = new ArrayList<>();
-    protected List<Integer> deadShipPositions = new ArrayList<>();
-
-    protected int moveCount = 0;
+    public int moveCount = 0;
 
     protected FieldPrinter fieldPrinter = new FieldPrinter();
 
@@ -35,14 +31,13 @@ public abstract class Controller {
 
         if (Positions.opponentShipPositions.contains(shotPosition)) {
 
-            hitPositions.add(shotPosition);
-            deadShipPositions = getDeadShipPosition(hitPositions);
-            Positions.opponentDeadShipPositions = deadShipPositions;
+            Positions.playerHitPositions.add(shotPosition);
+            Positions.opponentDeadShipPositions = getDeadShipPosition(Positions.playerHitPositions);
 
             return Positions.opponentShipPositions.size() == Positions.opponentDeadShipPositions.size();
 
         } else {
-            missPositions.add(shotPosition);
+            Positions.playerMissPositions.add(shotPosition);
             return true;
         }
     }

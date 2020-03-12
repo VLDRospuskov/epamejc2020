@@ -2,17 +2,14 @@ package homeworks.seabattle.controllers;
 
 import homeworks.seabattle.util.ConsoleReader;
 import homeworks.seabattle.util.Positions;
-import homeworks.seabattle.battlefield.FieldPrinter;
 import lombok.SneakyThrows;
 
 public class PlayerController extends Controller {
 
-    private FieldPrinter fieldPrinter = new FieldPrinter();
-
     @SneakyThrows
     public void makeMove() {
 
-        Positions.swapAndSet(hitPositions, missPositions, deadShipPositions);
+        Positions.swapAndSet();
 
         while (true) {
 
@@ -32,8 +29,8 @@ public class PlayerController extends Controller {
 
             if (shotPosition != -1) {
 
-                if (!hitPositions.contains(shotPosition)
-                        && !missPositions.contains(shotPosition)) {
+                if (!Positions.playerHitPositions.contains(shotPosition)
+                        && !Positions.playerMissPositions.contains(shotPosition)) {
 
                     if (decideHitOrMiss(shotPosition)) {
                         break;
