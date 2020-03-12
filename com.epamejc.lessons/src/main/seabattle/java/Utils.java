@@ -1,7 +1,6 @@
 package seabattle.java;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -58,7 +57,7 @@ public class Utils {
         clearScreen();
     }
 
-    public static void printTwoField(Field field1, Field field2) {
+    public static void printTwoFields(Field field1, Field field2) {
         System.out.println("\n           YOUR FIELD                                ENEMY FIELD       ");
         System.out.println("    A  B  C  D  E  F  G  H  I  J              A  B  C  D  E  F  G  H  I  J");
         int index = 1;
@@ -111,10 +110,7 @@ public class Utils {
     }
 
     public static boolean checkCoordinates(Integer[] coordYX) {
-        if (coordYX[0] == null || coordYX[1] == null || coordYX[0] > 9 || coordYX[1] > 9) {
-            return true;
-        }
-        return false;
+        return coordYX[0] == null || coordYX[1] == null || coordYX[0] > 9 || coordYX[1] > 9;
     }
 
     public static Integer scanShipType() {
@@ -185,14 +181,14 @@ public class Utils {
         int actualCount = (int) field.getShips().stream()
                 .filter(ship -> ship.getShipType().equals(shipType))
                 .count();
-        int maxCount = getCountOfShipByType(shipType);
+        int maxCount = getMaxCountOfShipByType(shipType);
         if (actualCount < maxCount) {
             return true;
         }
         return false;
     }
 
-    public static int getCountOfShipByType(int shipType) {
+    public static int getMaxCountOfShipByType(int shipType) {
         if(shipType == 4) {
             return 1;
         } else if (shipType == 3) {

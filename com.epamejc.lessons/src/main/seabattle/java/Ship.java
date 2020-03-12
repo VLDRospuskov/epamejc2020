@@ -38,10 +38,12 @@ public class Ship {
             setFlags();
             setBarier(field);
             isInitOk = true;
-        } else {
-            System.out.println("\nBad coordinates: " + Arrays.toString(startYX) + " " + Arrays.toString(endYX) + ". Try again.");
         }
 
+    }
+
+    public void printBadCoordinates() {
+        System.out.println("\nBad coordinates: " + Arrays.toString(startYX) + " " + Arrays.toString(endYX) + ". Try again.");
     }
 
     public void checkSunk(Field field) {
@@ -218,7 +220,7 @@ public class Ship {
 
     private int setBarrierTopSide(Field field) {
         for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
-            field.getField().get(startYX[0] + 1).get(i).setStatus(-1);
+            field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
         for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);

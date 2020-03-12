@@ -24,8 +24,8 @@ public class Cell {
             } else if (status.equals(1)) {
                 output = "#";
             } //else if (status.equals(-1)) {
-              // output = "-";
-           // }
+               //output = "-";
+            //}
         } else {
             if (status.equals(0) || status.equals(-1)) {
                 output = "*";
