@@ -1,11 +1,11 @@
 package lessons.lesson11.example1;
 
 public class Operations {
-
+    
     public int getSum(int a, int b) {
         return a + b;
     }
-
+    
     public int getSumOfStrings(String a, String b) {
         try {
             Integer integer = Integer.valueOf(a);
@@ -16,5 +16,5 @@ public class Operations {
         }
         throw new NumberFormatException();
     }
-
+    
 }

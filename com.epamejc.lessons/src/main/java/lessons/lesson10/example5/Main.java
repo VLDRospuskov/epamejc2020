@@ -1,7 +1,7 @@
 package lessons.lesson10.example5;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         try {
             try {
@@ -18,4 +18,5 @@ public class Main {
             System.out.println("FINALLY 2");
         }
     }
+    
 }

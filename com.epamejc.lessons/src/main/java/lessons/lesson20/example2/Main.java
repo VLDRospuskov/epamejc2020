@@ -1,7 +1,7 @@
 package lessons.lesson20.example2;
 
 public class Main {
-
+    
     public static void main(String[] args) {
 //        final HashMap<String, String> hashMap = new HashMap<>();
 //        hashMap.put();
@@ -12,4 +12,5 @@ public class Main {
 //        final Map<String, String> synchronizedMap = Collections.synchronizedMap(hashMap);
 //        synchronizedMap.put();
     }
+    
 }

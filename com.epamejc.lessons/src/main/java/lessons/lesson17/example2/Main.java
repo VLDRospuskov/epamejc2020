@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         List<Integer> integers = new ArrayList<>();
         integers.add(1);
@@ -18,6 +18,7 @@ public class Main {
         stream.forEach(System.out::println);
         List<Integer> collect = stream.collect(Collectors.toList());
 //        stream.forEach(System.out::println);
-
+    
     }
+    
 }

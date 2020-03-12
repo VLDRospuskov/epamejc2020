@@ -2,7 +2,7 @@ package lessons.lesson7.example8;
 
 public enum Day {
     FRIDAY, SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, SATURDAY;
-
+    
     public boolean isWeekend() {
         switch (this) {
             case SUNDAY:
@@ -12,5 +12,5 @@ public enum Day {
                 return false;
         }
     }
-
+    
 }

@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cat {
-
+    
     private Integer id;
     private String name;
-
+    
 }

@@ -1,23 +1,24 @@
 package lessons.lesson5.example4;
 
 public class A {
-
-    private int x;
+    
     private static int y;
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
+    private int x;
+    
     public static int getY() {
         return y;
     }
-
+    
     public static void setY(int y) {
         A.y = y;
     }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public void setX(int x) {
+        this.x = x;
+    }
+    
 }

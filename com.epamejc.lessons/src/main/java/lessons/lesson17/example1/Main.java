@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         List<Integer> integers = new ArrayList<>();
         integers.add(1);
@@ -15,11 +15,11 @@ public class Main {
         integers.add(5);
         final int moreThanThree = getMoreThanThree();
         List<Integer> collect = integers.stream()
-                .filter(number -> number > moreThanThree)
-                .filter(number -> number > moreThanThree)
-                .collect(Collectors.toList());
+                                        .filter(number -> number > moreThanThree)
+                                        .filter(number -> number > moreThanThree)
+                                        .collect(Collectors.toList());
     }
-
+    
     private static int getMoreThanThree() {
         boolean isDone = false;
         if (isDone) {
@@ -28,5 +28,5 @@ public class Main {
             return 4;
         }
     }
-
+    
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         int x = 1;
         List<Number> list = new ArrayList<Number>();
@@ -17,9 +17,9 @@ public class Main {
         Number number3 = list1.get(2);
         System.out.println(number);
         System.out.println(number2);
-
+        
     }
-
+    
     private static List<? extends Number> getList(int x) {
         if (x == 1) {
             List<Integer> list = new ArrayList<>();
@@ -35,5 +35,5 @@ public class Main {
             return list;
         }
     }
-
+    
 }

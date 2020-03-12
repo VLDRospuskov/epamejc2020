@@ -1,7 +1,7 @@
 package lessons.lesson1.modifier_access.model;
 
 public class Woman extends Human {
-
+    
     private void callWomanMethodsFromHuman() {
         /**
          * public - доступен везде
@@ -14,5 +14,5 @@ public class Woman extends Human {
         packageMove();
 //        privateMove();
     }
-
+    
 }

@@ -1,7 +1,7 @@
 package lessons.lesson9.solid.single;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         Animal animal = new Animal("Barsik");
         Animal animal2 = new Animal("Rijik");
@@ -12,5 +12,5 @@ public class Main {
         animalOperations.saveAnimal(animal3);
         System.out.println(animalOperations.getAnimal(animal2));
     }
-
+    
 }

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         final Cat cat = new Cat();
         final CatThread catThread = new CatThread(cat);
@@ -14,7 +14,7 @@ public class Main {
         catThread.start();
         catThreadNotify.start();
         catThreadNotifySetAge.start();
-
+        
         try {
             catThread.join();
             catThreadNotify.join();
@@ -22,18 +22,19 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        
     }
+    
 }
 
 class CatThreadNotifySetName extends Thread {
-
+    
     private final Cat cat;
-
+    
     public CatThreadNotifySetName(Cat cat) {
         this.cat = cat;
     }
-
+    
     @Override
     @SneakyThrows
     public void run() {
@@ -44,16 +45,17 @@ class CatThreadNotifySetName extends Thread {
             cat.notifyAll();
         }
     }
+    
 }
 
 class CatThreadNotifySetAge extends Thread {
-
+    
     private final Cat cat;
-
+    
     public CatThreadNotifySetAge(Cat cat) {
         this.cat = cat;
     }
-
+    
     @Override
     @SneakyThrows
     public void run() {
@@ -64,16 +66,17 @@ class CatThreadNotifySetAge extends Thread {
         }
         System.out.println("THREAD CAT AGE ENDED!");
     }
+    
 }
 
 class CatThread extends Thread {
-
+    
     private final Cat cat;
-
+    
     public CatThread(Cat cat) {
         this.cat = cat;
     }
-
+    
     @Override
     @SneakyThrows
     public void run() {
@@ -85,13 +88,14 @@ class CatThread extends Thread {
         System.out.println(cat.getAge());
         System.out.println("THREAD CAT ENDED!");
     }
+    
 }
 
 @Data
 @NoArgsConstructor
 class Cat {
-
+    
     private String name;
     private int age;
-
+    
 }

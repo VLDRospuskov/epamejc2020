@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         ArrayList<Integer> arrayList = new ArrayList<>(1000);
         arrayList.add(1);
@@ -40,7 +40,7 @@ public class Main {
 //        System.out.println(set);
         LinkedList<Object> linkedList = new LinkedList<>();
         linkedList.addFirst(1);
-
+        
     }
-
+    
 }

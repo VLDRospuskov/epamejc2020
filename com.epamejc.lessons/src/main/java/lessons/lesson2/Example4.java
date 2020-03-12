@@ -1,7 +1,7 @@
 package lessons.lesson2;
 
 public class Example4 {
-
+    
     public static void main(String[] args) {
         int x = 9;
         Object object;
@@ -17,6 +17,7 @@ public class Example4 {
             case 40:
                 System.out.println("40");
         }
-
+        
     }
+    
 }

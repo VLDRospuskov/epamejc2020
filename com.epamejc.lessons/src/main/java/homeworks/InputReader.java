@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public  class InputReader {
+public class InputReader {
+    
     public static String nextString() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String inputString = "";
@@ -15,7 +16,7 @@ public  class InputReader {
         }
         return inputString;
     }
-
+    
     public static int nextInt() {
         int value = 0;
         try {
@@ -27,4 +28,5 @@ public  class InputReader {
         }
         return value;
     }
+    
 }

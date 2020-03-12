@@ -3,7 +3,7 @@ package lessons.lesson14.example3;
 import java.util.ArrayDeque;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         ArrayDeque<Integer> integers = new ArrayDeque<>();
         integers.add(1);
@@ -16,4 +16,5 @@ public class Main {
         System.out.println(integers.getFirst());
         System.out.println(integers.getLast());
     }
+    
 }

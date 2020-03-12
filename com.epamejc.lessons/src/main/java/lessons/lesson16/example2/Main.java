@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-
+    
     public void Producer() {
         List<? extends Number> list = getList();
         Number number = 10;
 //        list.add(number);
 //        list.add(1);
 //        list.add(2.0);
-
+        
         Number number1 = list.get(0);
     }
-
+    
     public List getList() {
         boolean isDone = false;
         if (isDone) {
@@ -27,7 +27,7 @@ public class Main {
             return new ArrayList<Double>();
         }
     }
-
+    
     public void Consumer() {
         List<? super Number> list = new ArrayList<>();
         Number number = 10;
@@ -37,8 +37,8 @@ public class Main {
         list.add(null);
 //        list.add("sdfgh");
 //        list.add(new Object());
-
+        
         Object object = list.get(0);
     }
-
+    
 }

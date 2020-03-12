@@ -1,7 +1,7 @@
 package lessons.lesson10.example7;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         try {
             method();
@@ -12,13 +12,13 @@ public class Main {
             throw new NullPointerException();
         }
     }
-
+    
     private static void method() {
         throw new RuntimeException();
     }
-
+    
     public static void methodThrow() throws MyException {
         throw new MyException("THROW RUNTIME EXCEPTION", new ArithmeticException("ARTHIMETICS "), false, false);
     }
-
+    
 }

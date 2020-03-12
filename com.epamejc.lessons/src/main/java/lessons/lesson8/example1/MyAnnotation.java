@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation {
-
+    
     String value() default "";
-
+    
     int number();
-
+    
 }

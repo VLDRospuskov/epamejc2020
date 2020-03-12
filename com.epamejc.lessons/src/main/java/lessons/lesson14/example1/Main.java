@@ -3,7 +3,7 @@ package lessons.lesson14.example1;
 import java.util.PriorityQueue;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         PriorityQueue<Integer> integers = new PriorityQueue<>();
 //        integers.add(1);
@@ -17,4 +17,5 @@ public class Main {
         System.out.println(integers.peek());
         System.out.println(integers);
     }
+    
 }

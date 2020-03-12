@@ -7,7 +7,7 @@ import lombok.SneakyThrows;
 import java.util.concurrent.Semaphore;
 
 public class Main {
-
+    
     public static void main(String[] args) {
 //    final Phaser phaser = new Phaser();
 //    final Exchanger<Object> objectExchanger = new Exchanger<Object>();
@@ -19,50 +19,54 @@ public class Main {
         final Cat kitty = new Cat("Kitty");
         final Cat rijik = new Cat("Rijik");
         final Cat bagira = new Cat("Bagira");
-
+        
         new MySemaphoreThread(barsik, semaphore).start();
         new MySemaphoreThread(murzik, semaphore).start();
         new MySemaphoreThread(kitty, semaphore).start();
         new MySemaphoreThread(rijik, semaphore).start();
         new MySemaphoreThread(bagira, semaphore).start();
     }
-
+    
 }
 
 class MySemaphoreThread extends Thread {
-
-
+    
     private final Semaphore semaphore;
-
+    
     public MySemaphoreThread(Cat cat, Semaphore semaphore) {
         super(cat.getName());
         this.semaphore = semaphore;
     }
-
+    
     @Override
     @SneakyThrows
     public void run() {
         Thread.sleep(1000);
-        System.out.println(Thread.currentThread().getName() + " ready to get dish");
+        System.out.println(Thread.currentThread()
+                                 .getName() + " ready to get dish");
         try {
             semaphore.acquire();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Thread.sleep(1000);
-        System.out.println(Thread.currentThread().getName() + " is eating");
+        System.out.println(Thread.currentThread()
+                                 .getName() + " is eating");
         Thread.sleep(1000);
-        System.out.println(Thread.currentThread().getName() + " ready to leave");
+        System.out.println(Thread.currentThread()
+                                 .getName() + " ready to leave");
         Thread.sleep(1000);
-        System.out.println(Thread.currentThread().getName() + " left");
+        System.out.println(Thread.currentThread()
+                                 .getName() + " left");
         semaphore.release();
     }
+    
 }
 
 @Data
 @AllArgsConstructor
 class Cat {
-
+    
     private String name;
-
+    
 }

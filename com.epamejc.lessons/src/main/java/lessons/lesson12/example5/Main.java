@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         InputStream in = System.in;
         PrintStream err = System.err;
@@ -13,5 +13,5 @@ public class Main {
         Scanner scanner = new Scanner("hello");
         System.out.println(scanner.nextLine());
     }
-
+    
 }

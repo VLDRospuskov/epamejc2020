@@ -3,12 +3,11 @@ package lessons.lesson15.example5;
 import java.util.HashMap;
 
 public class Main {
-
+    
     /**
-     *
      * a 00000
      * b 11111
-     *
+     * <p>
      * a aaaaa
      * b bbbbb
      */
@@ -28,10 +27,11 @@ public class Main {
 //            }
 //        };
 //        stringStringHashMap2.replaceAll(biFunction);
-
+    
         stringStringHashMap2.replaceAll(stringStringHashMap::put);
-
+    
         System.out.println(stringStringHashMap);
         System.out.println(stringStringHashMap2);
     }
+    
 }

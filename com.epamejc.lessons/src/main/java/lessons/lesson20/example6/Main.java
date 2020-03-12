@@ -3,7 +3,7 @@ package lessons.lesson20.example6;
 import java.util.concurrent.*;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
         final ScheduledFuture<Integer> schedule =
@@ -23,12 +23,14 @@ public class Main {
         }
         scheduledExecutorService.shutdown();
     }
+    
 }
 
 class MyCallable implements Callable<Integer> {
-
+    
     @Override
     public Integer call() throws Exception {
         return 10;
     }
+    
 }

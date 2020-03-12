@@ -5,9 +5,10 @@ import java.util.PriorityQueue;
 
 // slack
 public class Main {
-
+    
     public static void main(String[] args) {
         PriorityQueue<Integer> integers = new PriorityQueue<>(new Comparator<Integer>() {
+    
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1.compareTo(o2);
@@ -21,4 +22,5 @@ public class Main {
 //        integers.offer(63);
         System.out.println(integers);
     }
+    
 }

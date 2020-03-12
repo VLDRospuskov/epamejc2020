@@ -1,19 +1,20 @@
 package lessons.lesson18.example8;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         final Thread walk = new Thread(new Walk());
         final Talk talk = new Talk();
         talk.setDaemon(true);
-
+        
         walk.start();
         talk.start();
     }
-
+    
 }
 
 class Walk implements Runnable {
+    
     public void run() {
         for (int i = 0; i < 8; i++) {
             System.out.println("Walking");
@@ -24,9 +25,11 @@ class Walk implements Runnable {
             }
         }
     }
+    
 }
 
 class Talk extends Thread {
+    
     public void run() {
         try {
             for (int i = 0; i < 100; i++) {
@@ -41,4 +44,5 @@ class Talk extends Thread {
             System.out.println("TALK FINNALY BLOCK");
         }
     }
+    
 }

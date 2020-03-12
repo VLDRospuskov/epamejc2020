@@ -3,7 +3,7 @@ package lessons.lesson14.example4;
 import java.util.PriorityQueue;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         PriorityQueue<String> queue1 = new PriorityQueue<>();
         queue1.offer("Oklahoma");
@@ -15,5 +15,5 @@ public class Main {
             System.out.print(queue1.remove() + " ");
         }
     }
-
+    
 }

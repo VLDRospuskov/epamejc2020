@@ -10,8 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
-
+    
     private String bookName;
     private List<Author> authorList;
-
+    
 }

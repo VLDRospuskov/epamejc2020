@@ -6,13 +6,13 @@ public class Outer7 {
 //        public class Inner1 {
 //        } // ОШИБКА
 //    }
-
-    abstract class Inner {
-
-    }
-
+    
     interface InnerInterface {
-
+    
     }
-
+    
+    abstract class Inner {
+    
+    }
+    
 }

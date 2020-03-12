@@ -3,7 +3,7 @@ package lessons.lesson14.example7;
 import java.util.TreeSet;
 
 public class Main {
-
+    
     public static void main(String[] args) {
         TreeSet<Integer> integers = new TreeSet<>();
         integers.add(3);
@@ -12,7 +12,7 @@ public class Main {
         integers.add(30);
         integers.add(63);
         System.out.println(integers);
-
+        
         TreeSet<Cat> cats = new TreeSet<>();
         cats.add(new Cat(3));
         cats.add(new Cat(1));
@@ -21,5 +21,5 @@ public class Main {
         cats.add(new Cat(63));
         System.out.println(cats);
     }
-
+    
 }
