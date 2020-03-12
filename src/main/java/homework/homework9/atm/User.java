@@ -3,6 +3,7 @@ package homework.homework9.atm;
 import homework.homework9.util.Log;
 import homework.homework9.util.RandomUtil;
 import lombok.SneakyThrows;
+import org.apache.commons.math3.util.Precision;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,27 +30,32 @@ public class User {
     }
 
     public void putCash(double sum, AutomatedTellerMachine automatedTellerMachine) {
-        Log.log(name + " wants to put cash " + sum);
+        Log.log(name + " wants to put cash " + Precision.round(sum,2));
 
         if (cash >= sum) {
             cash -= sum;
             automatedTellerMachine.deposit(this, sum);
-            Log.log(name + " succeeded. Users cash " + cash);
+            Log.log(name + " succeeded. Users cash " + Precision.round(cash,2));
         } else {
             Log.log(name + " doesn't have enough cash");
         }
     }
 
     public void getCash(double sum, AutomatedTellerMachine automatedTellerMachine) {
-        Log.log(name + " wants to get cash " + sum);
+        Log.log(name + " wants to get cash " + Precision.round(sum,2));
 
-        automatedTellerMachine.withdraw(this, sum);
-        cash += sum;
-        Log.log(name + " succeeded. Users cash " + cash);
+        try {
+            automatedTellerMachine.withdraw(this, sum);
+            cash += sum;
+            Log.log(name + " succeeded. Users cash " + Precision.round(cash,2));
+        } catch (IllegalStateException e) {
+            Log.log(e.getMessage());
+            Log.log(name + " failed");
+        }
     }
 
     public double checkCash() {
-        Log.log(name + " checked cash " + cash);
+        Log.log(name + " checked cash " + Precision.round(cash,2));
         return cash;
     }
 

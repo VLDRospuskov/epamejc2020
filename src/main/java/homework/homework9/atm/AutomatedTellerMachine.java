@@ -1,6 +1,7 @@
 package homework.homework9.atm;
 
 import homework.homework9.util.Log;
+import org.apache.commons.math3.util.Precision;
 
 public class AutomatedTellerMachine {
 
@@ -27,20 +28,16 @@ public class AutomatedTellerMachine {
     public void deposit(User user, double sum) {
         Log.log(user.getName() + " waits for " + atmDescription);
         synchronized (this) {
-            Log.log(user.getName() + " got " + atmDescription + "wants to deposit " + sum);
+            Log.log(user.getName() + " got " + atmDescription + "wants to deposit " + Precision.round(sum,2));
             account.deposit(this, sum);
         }
     }
 
-    public void withdraw(User user, double sum) {
+    public void withdraw(User user, double sum) throws IllegalStateException {
         Log.log(user.getName() + " waits for " + atmDescription);
         synchronized (this) {
-            Log.log(user.getName() + " got " + atmDescription + "wants to withdraw " + sum);
-            try {
-                account.withdraw(this, sum);
-            } catch (IllegalStateException e) {
-                Log.log(e.getMessage());
-            }
+            Log.log(user.getName() + " got " + atmDescription + "wants to withdraw " + Precision.round(sum,2));
+            account.withdraw(this, sum);
         }
     }
 
