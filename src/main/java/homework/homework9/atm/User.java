@@ -57,7 +57,7 @@ public class User {
     public void performRandomTasks() {
         while (true) {
             double randomSum = RandomUtil.nextDoubleBetween(MIN_SUM, MAX_SUM);
-            AutomatedTellerMachine randomATM = atms.get(random.nextInt(atms.size()));
+            AutomatedTellerMachine randomATM = RandomUtil.randomElement(atms);
 
             switch (random.nextInt(OPERATIONS_COUNT)) {
                 case 0:
