@@ -15,12 +15,13 @@ import java.util.concurrent.Executors;
 
 public class Main {
 
+    public static final int ATM_COUNT = 3;
+
     public static void main(String[] args) {
         Account account = new Account(AutomatedTellerMachine.MIN_SUM);
 
         List<AutomatedTellerMachine> atms = new ArrayList<>();
 
-        final int ATM_COUNT = 3;
         Set<Integer> atmIds = IdGenerator.generateIds(ATM_COUNT);
         Log.log("ATMs" + atmIds);
 
@@ -36,5 +37,7 @@ public class Main {
         for (String name : userNames) {
             executorService.submit(() -> new User(name, 50.0, atms).performRandomTasks());
         }
+
+        executorService.shutdown();
     }
 }
