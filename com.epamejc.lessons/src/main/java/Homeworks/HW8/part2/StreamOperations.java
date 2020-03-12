@@ -6,13 +6,11 @@ import java.util.stream.Collectors;
 
 import static Homeworks.HW8.part2.GenerateData.getEmployees;
 
-@SuppressWarnings({"unused"})
 public class StreamOperations {
 
     void findPersonsEverWorkedInEpam() {
         List<Employee> employees = getEmployees();
 
-        // реализация, использовать Collectors.toList()
         List<Person> personsEverWorkedInEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory().stream()
                         .anyMatch(jobHistoryEntry -> jobHistoryEntry.getCompany().equals("EPAM")))
@@ -20,45 +18,32 @@ public class StreamOperations {
                 .collect(Collectors.toList());
 
         System.out.println("Persons Ever Worked In Epam: \n" + personsEverWorkedInEpam + "\n");
-
-//        personsEverWorkedInEpam - should contain employees.get(0),  employees.get(1),
-//                employees.get(4), employees.get(5)
     }
 
     void findPersonsBeganCareerInEpam() {
         List<Employee> employees = getEmployees();
 
-        // реализация, использовать Collectors.toList()
         List<Person> startedFromEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory().stream().findFirst().get().getCompany().equals("EPAM"))
                 .map(Employee::getPerson)
                 .collect(Collectors.toList());
 
         System.out.println("Persons Began Career In Epam: \n" + startedFromEpam + "\n");
-
-//        startedFromEpam - should contain
-//                employees.get(0).getPerson(),
-//                employees.get(1).getPerson(),
-//                employees.get(4).getPerson()
     }
 
     void findAllCompanies() {
         List<Employee> employees = getEmployees();
 
-        // реализация, использовать Collectors.toSet()
         Set<String> companies = employees.stream()
                 .flatMap(employee -> employee.getJobHistory().stream().map(JobHistoryEntry::getCompany))
                 .collect(Collectors.toSet());
 
         System.out.println("All Companies: \n" + companies + "\n");
-
-//        companies - should contain "EPAM", "google", "yandex", "mail.ru", "T-Systems"
     }
 
     void findMinimalAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
-        // реализация
         Integer minimalAge = employees.stream()
                 .min((employee1, employee2) -> {
                     Integer age1 = employee1.getPerson().getAge();
@@ -69,22 +54,17 @@ public class StreamOperations {
                 .get();
 
         System.out.println("Minimal Age Of Employees: \n" + minimalAge + "\n");
-
-        // minimalAge = 21
     }
 
-    // Посчитать средний возраст работников
     void calcAverageAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
         Double average = employees.stream()
                 .collect(Collectors.averagingDouble(employee -> employee.getPerson().getAge()));
 
-
         System.out.println("Average Age Of Employees: \n" + average + "\n");
     }
 
-    // Найти Person с самым длинным fullName
     void findPersonWithLongestFullName() {
         List<Employee> employees = getEmployees();
 
@@ -101,23 +81,21 @@ public class StreamOperations {
         System.out.println("Person With Longest Full Name: \n" + longest + "\n");
     }
 
-    // Найти работника с самой большой продолжительность на одной же позиции
     void findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 
         Employee duration = employees.stream()
                 .reduce((employee1, employee2) ->
-                    employee1.getJobHistory().stream()
-                            .map(JobHistoryEntry::getDuration)
-                            .max(Integer::compareTo)
-                            .orElse(0)
-                            > employee2.getJobHistory()
-                            .stream().map(JobHistoryEntry::getDuration)
-                            .max(Integer::compareTo).orElse(0)
-                            ? employee1 : employee2)
-                    .orElse(null);
+                        employee1.getJobHistory().stream()
+                                .map(JobHistoryEntry::getDuration)
+                                .max(Integer::compareTo)
+                                .orElse(0)
+                                > employee2.getJobHistory()
+                                .stream().map(JobHistoryEntry::getDuration)
+                                .max(Integer::compareTo).orElse(0)
+                                ? employee1 : employee2)
+                .orElse(null);
 
         System.out.println("Employee With Maximum Duration At One Position: \n" + duration + "\n");
     }
-
 }
