@@ -1,8 +1,8 @@
 package homework.homework9.atm;
 
 import homework.homework9.util.Log;
+import homework.homework9.util.RandomUtil;
 import lombok.SneakyThrows;
-import org.apache.commons.math3.util.Precision;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class User {
     @SneakyThrows
     public void performRandomTasks() {
         while (true) {
-            double randomSum = MIN_SUM + (MAX_SUM - MIN_SUM) * Precision.round(random.nextDouble(), 2);
+            double randomSum = RandomUtil.nextDoubleBetween(MIN_SUM, MAX_SUM);
             AutomatedTellerMachine randomATM = atms.get(random.nextInt(atms.size()));
 
             switch (random.nextInt(OPERATIONS_COUNT)) {
