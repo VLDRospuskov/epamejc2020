@@ -1,14 +1,19 @@
 package homework.homework1;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static homework.homework1.TrafficLight.*;
+import static org.junit.Assert.assertEquals;
 
 public class TrafficLightTest {
 
@@ -33,6 +38,7 @@ public class TrafficLightTest {
         System.setOut(new PrintStream(baOutputStream));
     }
 
+    @After
     public void setDown() {
         System.setIn(sysInBackup);
         System.setOut(sysOutBackup);
