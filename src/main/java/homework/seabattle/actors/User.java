@@ -1,10 +1,11 @@
-package homework.seabattle;
+package homework.seabattle.actors;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static homework.seabattle.Input.*;
-import static homework.seabattle.Strings.*;
+import static homework.seabattle.config.Strings.*;
+import static homework.seabattle.utils.Input.*;
+import static homework.seabattle.view.Printer.printShootsOnMap;
 
 public class User extends Player {
 
@@ -33,7 +34,7 @@ public class User extends Player {
     @Override
     protected void shoot() {
         System.out.println("\n" + name + YOUR_SHOTS);
-        situation.printShootsOnMap();
+        printShootsOnMap(situation.getOpponentSituation());
         System.out.println(name + ENTER_SHOT_COORDINATE);
         notifyShotAnnounce(enterCoordinate());
     }

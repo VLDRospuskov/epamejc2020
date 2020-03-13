@@ -1,7 +1,13 @@
-package homework.seabattle;
+package homework.seabattle.actors;
 
-import static homework.seabattle.Config.*;
-import static homework.seabattle.Strings.*;
+import homework.seabattle.model.Coordinate;
+import homework.seabattle.model.ShipsField;
+import homework.seabattle.model.TacticalSituation;
+import homework.seabattle.model.ships.Ship;
+
+import static homework.seabattle.config.Config.*;
+import static homework.seabattle.config.Strings.*;
+import static homework.seabattle.view.Printer.printShipsOnMap;
 
 abstract public class Player {
 
@@ -61,7 +67,7 @@ abstract public class Player {
         }
 
         System.out.println("\n" + name + YOUR_SHIPS);
-        shipsField.printShipsOnMap();
+        printShipsOnMap(shipsField.getOwnActiveShips(), shipsField.getOwnEmptyCoordinates());
     }
 
     public void startGame() {

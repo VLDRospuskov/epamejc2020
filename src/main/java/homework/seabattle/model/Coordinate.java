@@ -1,8 +1,8 @@
-package homework.seabattle;
+package homework.seabattle.model;
 
 import lombok.Data;
 
-import static homework.seabattle.Config.*;
+import static homework.seabattle.config.Config.*;
 
 @Data
 public class Coordinate {
@@ -22,7 +22,7 @@ public class Coordinate {
         return new Coordinate(letter, number);
     }
 
-    Coordinate(Character letter, int number) {
+    public Coordinate(Character letter, int number) {
         this.letter = letter;
         this.number = number;
 

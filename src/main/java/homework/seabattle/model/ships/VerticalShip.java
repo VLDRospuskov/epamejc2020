@@ -1,13 +1,15 @@
-package homework.seabattle;
+package homework.seabattle.model.ships;
+
+import homework.seabattle.model.Coordinate;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static homework.seabattle.Config.MAX_NUMBER;
+import static homework.seabattle.config.Config.MAX_NUMBER;
 
 public class VerticalShip extends Ship {
 
-    VerticalShip(Coordinate startCoordinate, int length) {
+    public VerticalShip(Coordinate startCoordinate, int length) {
         super(startCoordinate, length);
     }
 

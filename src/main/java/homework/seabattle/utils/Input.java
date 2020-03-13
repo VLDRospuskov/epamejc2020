@@ -1,10 +1,14 @@
-package homework.seabattle;
+package homework.seabattle.utils;
+
+import homework.seabattle.actors.Player;
+import homework.seabattle.model.Coordinate;
+import homework.seabattle.model.ships.Ship;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import static homework.seabattle.Strings.*;
+import static homework.seabattle.config.Strings.*;
 
 public class Input {
 

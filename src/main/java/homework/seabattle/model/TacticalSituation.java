@@ -1,11 +1,17 @@
-package homework.seabattle;
+package homework.seabattle.model;
 
-import static homework.seabattle.Config.*;
-import static homework.seabattle.TacticalSituation.CellState.DAMAGED;
+import homework.seabattle.model.ships.HorizontalShip;
+import homework.seabattle.model.ships.Ship;
+import homework.seabattle.model.ships.VerticalShip;
+
+import java.util.Arrays;
+
+import static homework.seabattle.config.Config.*;
+import static homework.seabattle.model.TacticalSituation.CellState.DAMAGED;
 
 public class TacticalSituation {
 
-    enum CellState {
+    public enum CellState {
         UNCHECKED,
         EMPTY,
         DAMAGED
@@ -26,6 +32,14 @@ public class TacticalSituation {
 
     public int getOpponentActiveShipsCount() {
         return opponentActiveShipsCount;
+    }
+
+    public CellState[][] getOpponentSituation() {
+        CellState[][] states = new CellState[MAX_NUMBER][MAX_NUMBER];
+        for (int i = 0; i < MAX_NUMBER; i++) {
+            states[i] = Arrays.copyOf(opponentSituation[i], MAX_NUMBER);
+        }
+        return states;
     }
 
     public void setCellState(Coordinate coordinate, CellState cellState) {
@@ -74,25 +88,5 @@ public class TacticalSituation {
 
     public void decrementOpponentShipsCount() {
         opponentActiveShipsCount--;
-    }
-
-    public void printShootsOnMap() {
-        String state = "";
-        System.out.print("  ABCDEFGHIJ");
-        for (int number = 0; number < MAX_NUMBER; number++) {
-            System.out.print("\n" + (number + 1) + (number != MAX_NUMBER - 1 ? " " : ""));
-            for (char letter = MIN_LETTER; letter <= MAX_LETTER; letter++) {
-                state = "";
-                if (opponentSituation[number][letter - A_CHAR_OFFSET].equals(DAMAGED)) {
-                    state = "X";
-                } else if (opponentSituation[number][letter - A_CHAR_OFFSET].equals(CellState.EMPTY)) {
-                    state = "~";
-                } else {
-                    state = "?";
-                }
-                System.out.print(state);
-            }
-        }
-        System.out.println("\n");
     }
 }

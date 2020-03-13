@@ -1,9 +1,11 @@
-package homework.seabattle;
+package homework.seabattle.model;
+
+import homework.seabattle.model.ships.Ship;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static homework.seabattle.Config.*;
+import static homework.seabattle.config.Config.*;
 
 public class ShipsField {
 
@@ -24,36 +26,16 @@ public class ShipsField {
         return new HashSet<>(ownActiveShips);
     }
 
+    public Set<Coordinate> getOwnEmptyCoordinates() {
+        return new HashSet<>(ownEmptyCoordinates);
+    }
+
     public void tryAddShip(Coordinate coordinate, Ship.Type type, int length) {
         if (length == 1) {
             addShip(Ship.createOneDeckShip(coordinate));
         } else {
             addShip(Ship.create(type, coordinate, length));
         }
-    }
-
-    public void printShipsOnMap() {
-        String state;
-        System.out.print("  ABCDEFGHIJ");
-        for (int number = 1; number <= MAX_NUMBER; number++) {
-            System.out.print("\n" + number + (number != MAX_NUMBER ? " " : ""));
-            for (char letter = MIN_LETTER; letter <= MAX_LETTER; letter++) {
-                state = "";
-                Coordinate currentCoord = new Coordinate(letter, number);
-                if (ownEmptyCoordinates.contains(currentCoord)) {
-                    state = "~";
-                } else {
-                    for (Ship ship : ownActiveShips) {
-                        if (ship.contains(currentCoord)) {
-                            state = "S";
-                            break;
-                        }
-                    }
-                }
-                System.out.print(state);
-            }
-        }
-        System.out.print("\n");
     }
 
     private void addShip(Ship newShip) {

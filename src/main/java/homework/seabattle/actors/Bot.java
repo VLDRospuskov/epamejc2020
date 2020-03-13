@@ -1,11 +1,18 @@
-package homework.seabattle;
+package homework.seabattle.actors;
+
+import homework.seabattle.model.Coordinate;
+import homework.seabattle.model.TacticalSituation;
+import homework.seabattle.model.ships.HorizontalShip;
+import homework.seabattle.model.ships.Ship;
+import homework.seabattle.model.ships.VerticalShip;
 
 import java.util.Random;
 
-import static homework.seabattle.Config.*;
-import static homework.seabattle.Ship.Type.HORIZONTAL;
-import static homework.seabattle.Strings.COMPUTERS_SHOTS;
-import static homework.seabattle.Strings.COMPUTER_NEW_SHOT;
+import static homework.seabattle.config.Config.*;
+import static homework.seabattle.config.Strings.COMPUTERS_SHOTS;
+import static homework.seabattle.config.Strings.COMPUTER_NEW_SHOT;
+import static homework.seabattle.model.ships.Ship.Type.HORIZONTAL;
+import static homework.seabattle.view.Printer.printShootsOnMap;
 
 public class Bot extends Player {
 
@@ -31,7 +38,7 @@ public class Bot extends Player {
     @Override
     protected void shoot() {
         System.out.println("\n" + COMPUTERS_SHOTS);
-        situation.printShootsOnMap();
+        printShootsOnMap(situation.getOpponentSituation());
         Coordinate coordinate = defineNextShot();
         System.out.println(COMPUTER_NEW_SHOT + coordinate.toString());
         notifyShotAnnounce(coordinate);

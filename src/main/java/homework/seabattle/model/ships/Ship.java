@@ -1,4 +1,6 @@
-package homework.seabattle;
+package homework.seabattle.model.ships;
+
+import homework.seabattle.model.Coordinate;
 
 import java.util.ArrayList;
 import java.util.HashSet;

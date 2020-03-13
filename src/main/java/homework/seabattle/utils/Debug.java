@@ -1,4 +1,8 @@
-package homework.seabattle;
+package homework.seabattle.utils;
+
+import homework.seabattle.model.Coordinate;
+import homework.seabattle.model.ShipsField;
+import homework.seabattle.model.ships.Ship;
 
 /*
 Class for debugging, allows setting ships location without console input
