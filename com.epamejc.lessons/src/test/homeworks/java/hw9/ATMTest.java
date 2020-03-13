@@ -12,7 +12,7 @@ public class ATMTest {
     public void setUp() {
         GeneralBalance.commonATMBalance = 1000;
         testUser = new Customer("TestUser", 500);
-        atm = new ATM();
+        atm = new ATM("TestATM");
     }
 
     @Test
