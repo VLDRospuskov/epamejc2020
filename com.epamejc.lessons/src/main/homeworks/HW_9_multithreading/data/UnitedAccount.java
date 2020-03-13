@@ -4,6 +4,6 @@ import java.math.BigDecimal;
 
 public class UnitedAccount {
 
-    public static BigDecimal unitedAccount = BigDecimal.valueOf(0.00);
+    public static BigDecimal unitedAccount = BigDecimal.valueOf(10000.00);
 
 }

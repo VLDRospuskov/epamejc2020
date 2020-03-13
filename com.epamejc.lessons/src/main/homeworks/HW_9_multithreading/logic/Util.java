@@ -32,11 +32,4 @@ public class Util {
         return BigDecimal.valueOf(result);
     }
 
-    @SneakyThrows
-    public static void sleepBetweenMs(int min, int max) {
-        int temp = (int) (Math.random() * (max - min));
-        int sleepTime = temp + min;
-        Thread.sleep(sleepTime);
-    }
-
 }

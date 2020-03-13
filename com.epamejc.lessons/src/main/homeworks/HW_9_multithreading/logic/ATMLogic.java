@@ -5,17 +5,29 @@ import homeworks.HW_9_multithreading.data.ATM;
 import java.math.BigDecimal;
 
 import static homeworks.HW_9_multithreading.data.UnitedAccount.unitedAccount;
+import static homeworks.HW_9_multithreading.data.Counter.*;
 
 public class ATMLogic {
 
-    public synchronized void withdraw(ATM atm, BigDecimal amount) {
+    public void withdraw(ATM atm, BigDecimal amount) {
         getFromUnitedAccountIfNeeded(atm, amount);
         subtract(atm, amount);
     }
 
-    public synchronized void deposit(ATM atm, BigDecimal amount) {
+    public void deposit(ATM atm, BigDecimal amount) {
         add(atm, amount);
         putIntoUnitedAccountIfNeeded(atm);
+    }
+
+    public boolean hasCash(ATM atm, BigDecimal amount) {
+        boolean result = atm.getBalance().add(unitedAccount).subtract(amount).compareTo(BigDecimal.ZERO) > 0;
+
+        if (!result) {
+            System.out.println("\033[1;91m" + "UnitedAccount doesn't have enough cash!" + "\u001B[0m");
+            declinedATM++;
+        }
+
+        return result;
     }
 
     private void getFromUnitedAccountIfNeeded(ATM atm, BigDecimal amount) {
@@ -35,11 +47,10 @@ public class ATMLogic {
     }
 
     private void subtract(ATM atm, BigDecimal amount) {
-        atm.setBalance(atm.getBalance().add(amount));
+        atm.setBalance(atm.getBalance().subtract(amount));
     }
 
     private void add(ATM atm, BigDecimal amount) {
         atm.setBalance(atm.getBalance().add(amount));
     }
-
 }

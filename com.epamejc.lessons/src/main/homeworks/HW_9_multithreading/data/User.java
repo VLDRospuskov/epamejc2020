@@ -11,7 +11,6 @@ public class User {
 
     private BigDecimal cashBalance;
     private BigDecimal accountBalance;
-    private String firstName;
-    private String lastName;
+    private String name;
 
 }

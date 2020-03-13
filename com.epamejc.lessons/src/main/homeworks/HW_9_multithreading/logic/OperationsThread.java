@@ -1,5 +1,6 @@
 package homeworks.HW_9_multithreading.logic;
 
+
 import homeworks.HW_9_multithreading.data.ATM;
 import homeworks.HW_9_multithreading.data.User;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 
 import static homeworks.HW_9_multithreading.data.UnitedAccount.unitedAccount;
 import static homeworks.HW_9_multithreading.logic.Util.*;
+import static homeworks.HW_9_multithreading.data.Counter.*;
 
 public class OperationsThread extends Thread {
 
@@ -19,40 +21,44 @@ public class OperationsThread extends Thread {
     private String operation;
     private ATMLogic atmLogic = new ATMLogic();
     private UserLogic userLogic = new UserLogic();
+    private int amountOfOperations = 1000;
 
     @Override
     public void run() {
-        while (true) {
+        while (amountOfOperations > 0) {
+            amountOfOperations--;
             initializeOperationData();
-            printStatusMessage();
-            makeOperation();
-            sleepBetweenMs(1000, 2000);
+            synchronized (OperationsThread.class) {
+                printStatusMessage();
+                makeOperation();
+            }
         }
     }
 
-    private void initializeOperationData() {
+    public void initializeOperationData() {
         user = getRandom(users);
         atm = getRandom(atms);
         amount = getRandomBigDecimal(100.00, 2000.00);
         operation = getDepositOrWithdraw();
     }
 
-    private void makeOperation() {
+    public void makeOperation() {
         switch (operation) {
-            case "withdraw" : {
+            case "withdraw": {
                 withdraw();
                 break;
-            } case "deposit" : {
+            }
+            case "deposit": {
                 deposit();
                 break;
             }
         }
     }
 
-    private void printStatusMessage() {
+    public void printStatusMessage() {
         System.out.println(Thread.currentThread().getName());
-        System.out.println(user.getFirstName() + " " + user.getLastName() + " wants to " +
-                operation + " " + format(amount) + ", ATM on " + atm.getLocation());
+        System.out.println(user.getName() + " wants to " + operation + " " +
+                format(amount) + ", ATM on " + atm.getLocation());
         System.out.println("User account: " + format(user.getAccountBalance()) +
                 ", cash: " + format(user.getCashBalance()));
         System.out.println("ATM: " + format(atm.getBalance()));
@@ -60,17 +66,23 @@ public class OperationsThread extends Thread {
     }
 
 
-    public void withdraw () {
-        if (userLogic.getCash(user, amount)) {
+    public void withdraw() {
+        if (userLogic.hasOnAccount(user, amount) && atmLogic.hasCash(atm, amount)) {
+            userLogic.getCash(user, amount);
             atmLogic.withdraw(atm, amount);
         }
+
+        withdrawals++;
         System.out.println("----------------------");
     }
 
-    public void deposit () {
-        if (userLogic.putCash(user, amount)) {
+    public void deposit() {
+        if (userLogic.hasInCash(user, amount)) {
+            userLogic.putCash(user, amount);
             atmLogic.deposit(atm, amount);
         }
+
+        deposits++;
         System.out.println("----------------------");
     }
 

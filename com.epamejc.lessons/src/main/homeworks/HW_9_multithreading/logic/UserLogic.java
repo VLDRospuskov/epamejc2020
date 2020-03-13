@@ -5,56 +5,58 @@ import homeworks.HW_9_multithreading.data.User;
 import java.math.BigDecimal;
 
 import static homeworks.HW_9_multithreading.logic.Util.format;
+import static homeworks.HW_9_multithreading.data.Counter.*;
+
 
 public class UserLogic {
 
-    public synchronized boolean getCash(User user, BigDecimal amount) {
-        boolean isSuccessful = false;
-
-        try {
-            getCashIfPossible(user, amount);
-            isSuccessful = true;
-        } catch (Exception e) {
-            System.out.println(user.getFirstName() + " " + user.getLastName() + " doesn't have enough money on account! " +
-                    "Operation terminated!");
-        }
-
-        return isSuccessful;
+    public void getCash(User user, BigDecimal amount) {
+        substractAccount(user, amount);
+        addCash(user, amount);
+        System.out.println(user.getName() + " withdrew " + format(amount) + " from the account.");
     }
 
-    public synchronized boolean putCash(User user, BigDecimal amount) {
-        boolean isSuccessful = false;
-
-        try {
-            putCashIfPossible(user, amount);
-            isSuccessful = true;
-        } catch (Exception e) {
-            System.out.println(user.getFirstName() + " " + user.getLastName() + " doesn't have enough cash! " +
-                    "Operation terminated!");
-        }
-
-        return isSuccessful;
+    public void putCash(User user, BigDecimal amount) {
+        substractCash(user, amount);
+        addAccount(user, amount);
+        System.out.println(user.getName() + " deposited " + format(amount) + " on the account.");
     }
 
-    private void getCashIfPossible(User user, BigDecimal amount) throws Exception {
-        if (user.getAccountBalance().subtract(amount).compareTo(BigDecimal.ZERO) >= 0) {
-            user.setCashBalance(user.getCashBalance().add(amount));
-            user.setAccountBalance(user.getAccountBalance().subtract(amount));
-            System.out.println(user.getFirstName() + " " + user.getLastName() +
-                    " withdrew " + format(amount) + " from his account.");
-        } else {
-            throw new Exception();
+    public boolean hasOnAccount(User user, BigDecimal amount) {
+        boolean result = user.getAccountBalance().subtract(amount).compareTo(BigDecimal.ZERO) > 0;
+
+        if (!result) {
+            System.out.println("\033[1;91m" + "User doesn't have enough money on the account!" + "\u001B[0m");
+            declinedAccount++;
         }
+
+        return result;
     }
 
-    private void putCashIfPossible(User user, BigDecimal amount) throws Exception {
-        if (user.getCashBalance().subtract(amount).compareTo(BigDecimal.ZERO) >= 0) {
-            user.setCashBalance(user.getCashBalance().subtract(amount));
-            user.setAccountBalance(user.getAccountBalance().add(amount));
-            System.out.println(user.getFirstName() + " " + user.getLastName() + " deposited " + format(amount) + " on his account.");
-        } else {
-            throw new Exception();
+    public boolean hasInCash(User user, BigDecimal amount) {
+        boolean result = user.getCashBalance().subtract(amount).compareTo(BigDecimal.ZERO) > 0;
+
+        if (!result) {
+            System.out.println("\033[1;91m" + "User doesn't have enough cash!" + "\u001B[0m");
+            declinedCash++;
         }
+
+        return result;
     }
 
+    private void substractAccount(User user, BigDecimal amount) {
+        user.setAccountBalance(user.getAccountBalance().subtract(amount));
+    }
+
+    private void addCash(User user, BigDecimal amount) {
+        user.setCashBalance(user.getCashBalance().add(amount));
+    }
+
+    private void addAccount(User user, BigDecimal amount) {
+        user.setAccountBalance(user.getAccountBalance().add(amount));
+    }
+
+    private void substractCash(User user, BigDecimal amount) {
+        user.setCashBalance(user.getCashBalance().subtract(amount));
+    }
 }
