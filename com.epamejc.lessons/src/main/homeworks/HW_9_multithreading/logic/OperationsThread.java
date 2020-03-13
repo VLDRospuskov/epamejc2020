@@ -19,8 +19,8 @@ public class OperationsThread extends Thread {
     private ATM atm;
     private BigDecimal amount;
     private String operation;
-    private ATMLogic atmLogic = new ATMLogic();
-    private UserLogic userLogic = new UserLogic();
+    private ATMLogic atmLogic;
+    private UserLogic userLogic;
     private int amountOfOperations = 1000;
 
     @Override
@@ -40,6 +40,8 @@ public class OperationsThread extends Thread {
         atm = getRandom(atms);
         amount = getRandomBigDecimal(100.00, 2000.00);
         operation = getDepositOrWithdraw();
+        atmLogic = new ATMLogic(atm, amount);
+        userLogic = new UserLogic(user, amount);
     }
 
     public void makeOperation() {
@@ -67,9 +69,9 @@ public class OperationsThread extends Thread {
 
 
     public void withdraw() {
-        if (userLogic.hasOnAccount(user, amount) && atmLogic.hasCash(atm, amount)) {
-            userLogic.getCash(user, amount);
-            atmLogic.withdraw(atm, amount);
+        if (userLogic.hasOnAccount() && atmLogic.hasCash()) {
+            userLogic.getCash();
+            atmLogic.withdraw();
         }
 
         withdrawals++;
@@ -77,9 +79,9 @@ public class OperationsThread extends Thread {
     }
 
     public void deposit() {
-        if (userLogic.hasInCash(user, amount)) {
-            userLogic.putCash(user, amount);
-            atmLogic.deposit(atm, amount);
+        if (userLogic.hasInCash()) {
+            userLogic.putCash();
+            atmLogic.deposit();
         }
 
         deposits++;

@@ -1,28 +1,34 @@
 package homeworks.HW_9_multithreading.logic;
 
 import homeworks.HW_9_multithreading.data.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
 import static homeworks.HW_9_multithreading.logic.Util.format;
 import static homeworks.HW_9_multithreading.data.Counter.*;
 
-
+@Data
+@AllArgsConstructor
 public class UserLogic {
 
-    public void getCash(User user, BigDecimal amount) {
-        substractAccount(user, amount);
-        addCash(user, amount);
+    private User user;
+    private BigDecimal amount;
+
+    public void getCash() {
+        substractAccount();
+        addCash();
         System.out.println(user.getName() + " withdrew " + format(amount) + " from the account.");
     }
 
-    public void putCash(User user, BigDecimal amount) {
-        substractCash(user, amount);
-        addAccount(user, amount);
+    public void putCash() {
+        substractCash();
+        addAccount();
         System.out.println(user.getName() + " deposited " + format(amount) + " on the account.");
     }
 
-    public boolean hasOnAccount(User user, BigDecimal amount) {
+    public boolean hasOnAccount() {
         boolean result = user.getAccountBalance().subtract(amount).compareTo(BigDecimal.ZERO) > 0;
 
         if (!result) {
@@ -33,7 +39,7 @@ public class UserLogic {
         return result;
     }
 
-    public boolean hasInCash(User user, BigDecimal amount) {
+    public boolean hasInCash() {
         boolean result = user.getCashBalance().subtract(amount).compareTo(BigDecimal.ZERO) > 0;
 
         if (!result) {
@@ -44,19 +50,19 @@ public class UserLogic {
         return result;
     }
 
-    private void substractAccount(User user, BigDecimal amount) {
+    private void substractAccount() {
         user.setAccountBalance(user.getAccountBalance().subtract(amount));
     }
 
-    private void addCash(User user, BigDecimal amount) {
+    private void addCash() {
         user.setCashBalance(user.getCashBalance().add(amount));
     }
 
-    private void addAccount(User user, BigDecimal amount) {
+    private void addAccount() {
         user.setAccountBalance(user.getAccountBalance().add(amount));
     }
 
-    private void substractCash(User user, BigDecimal amount) {
+    private void substractCash() {
         user.setCashBalance(user.getCashBalance().subtract(amount));
     }
 }
