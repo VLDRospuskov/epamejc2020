@@ -1,26 +1,24 @@
-package homeworks.HW_9_multithreading;
+package homeworks.HW_9_multithreading.logic;
+
+import homeworks.HW_9_multithreading.data.ATM;
+import homeworks.HW_9_multithreading.data.User;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import static homeworks.HW_9_multithreading.ATMOperations.*;
-import static homeworks.HW_9_multithreading.BankAccount.bankAccount;
+import static homeworks.HW_9_multithreading.logic.OperationsThread.*;
 
 public class ATMApplication {
 
     public void run() {
         initialize();
-        final ATMOperations thread1 = new ATMOperations();
-        final ATMOperations thread2 = new ATMOperations();
-        final ATMOperations thread3 = new ATMOperations();
-        final ATMOperations thread4 = new ATMOperations();
-        final ATMOperations thread5 = new ATMOperations();
+        final OperationsThread thread1 = new OperationsThread();
+        final OperationsThread thread2 = new OperationsThread();
+        final OperationsThread thread3 = new OperationsThread();
 
         thread1.start();
         thread2.start();
         thread3.start();
-        thread4.start();
-        thread5.start();
     }
 
 
@@ -33,9 +31,9 @@ public class ATMApplication {
         users.add(new User(BigDecimal.valueOf(315.16), BigDecimal.valueOf(2000.00), "Diana", "Terezova"));
 
         atms = new ArrayList<>();
-        atms.add(new ATM(BigDecimal.valueOf(15000.00), "Prospect Prosveshenia 12a"));
-        atms.add(new ATM(BigDecimal.valueOf(15000.00), "Ulitsa Dobrolubova 44"));
-        atms.add(new ATM(BigDecimal.valueOf(15000.00), "Krasnii Prospect 8"));
+        atms.add(new ATM(BigDecimal.valueOf(0.00), "Prospect Prosveshenia 12a"));
+        atms.add(new ATM(BigDecimal.valueOf(0.00), "Ulitsa Dobrolubova 44"));
+        atms.add(new ATM(BigDecimal.valueOf(0.00), "Krasnii Prospect 8"));
     }
 
 }

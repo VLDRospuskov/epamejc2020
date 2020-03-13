@@ -14,26 +14,34 @@ public class Field {
     private static final char EMPTY = ' ';
     private char[][] cells;
     private ArrayList<Ship> ships;
+    private int sleepTimeMs = 1500;
 
     //SHOOTING////////////
+    @SneakyThrows
     public boolean shoot(Point p) {
         if (cells[p.y][p.x] == SHIP) {
             hit(p);
             return true;
         } else {
             miss(p);
+            System.out.println("Мимо!");
+            Thread.sleep(sleepTimeMs);
             return false;
         }
     }
 
-    private void hit(Point p) {
+    private void hit(Point p) throws InterruptedException {
         Ship ship = getShipByHitCell(p);
         ship.hit(p);
 
         if (ship.isDead()) {
             sink(ship);
+            System.out.println("Убит!");
+            Thread.sleep(sleepTimeMs);
         } else {
             markHitOnField(p);
+            System.out.println("Попал!");
+            Thread.sleep(sleepTimeMs);
         }
     }
 

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import static homeworks.HW_8_Java8.streamOperations.GenerateData.getEmployees;
 
-@SuppressWarnings({"unused"})
 public class StreamOperations {
     public List<Employee> employees = getEmployees();
 
