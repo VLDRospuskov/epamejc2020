@@ -7,7 +7,7 @@ public class Main {
         System.out.println(main.getId());
         System.out.println(main.getName());
         System.out.println(main.getThreadGroup());
-        main.setName("My Main Thread");
+        main.setName("My SemDemo Thread");
         main.setPriority(Thread.MAX_PRIORITY);
         System.out.println(main);
 

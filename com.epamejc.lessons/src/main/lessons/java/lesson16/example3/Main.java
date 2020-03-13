@@ -49,7 +49,7 @@ public class Main {
 
         /**
          * extends - ГРАНИЦА максимум Cat и ВСЕ ЧТО НИЖЕ (<? extends Cat>) Cat, Kitty
-         * super - Cat -> Main -> Object
+         * super - Cat -> SemDemo -> Object
          */
 //        sortBy(animals, comparatorByAge);
         sortBy(kitties, comparatorByAge);
@@ -86,7 +86,7 @@ class Animal {
 
     @Override
     public String toString() {
-        return "Main{" +
+        return "SemDemo{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
