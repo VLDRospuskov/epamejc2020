@@ -8,13 +8,6 @@ import java.util.Random;
 @Data
 public class AI {
 
-    private boolean isShipNotFinished;
-
-    public AI() {
-        isShipNotFinished = false;
-    }
-
-
     protected ArrayList generateRandomShipParamsByShipType(int shipType) {
         ArrayList params = new ArrayList();
         params.add(shipType);

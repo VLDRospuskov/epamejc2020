@@ -83,7 +83,7 @@ public class Utils {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
         if (input.equals("exit")) {
-            System.exit(0); // убрать перед сдачей
+            System.exit(0); // TODO убрать перед сдачей
             }
         return input;
     }
@@ -143,13 +143,11 @@ public class Utils {
     public static ArrayList scanShipParams(Field field) {
         ArrayList params = null;
         boolean isLimitOfShip = true;
-
         while (isLimitOfShip) {
             params = new ArrayList();
             int shipType = scanShipType();
             params.add(shipType);
             boolean isVacant = checkShipCount(field, shipType);
-
             if (isVacant){
                 System.out.println("\nЕnter the coordinates of the cell in which the beginning of the ship will be.");
                 params.add(scanCoordinates());

@@ -18,8 +18,9 @@ public class Engine {
         AI = new AI();
     }
 
+    // TODO Добавить Welcome сообщение и меню выбора типа игры
     public void startWithManualShipPlacement() {
-//        manualShipPlacement(field1);
+//        manualShipPlacement(FIELD_1);
         autoShipPlacement(FIELD_1);
         autoShipPlacement(FIELD_2);
 //        testShipPlacement(field1);
@@ -29,8 +30,6 @@ public class Engine {
         printField(FIELD_2);
 //        printHiddenField(field1);
         battle();
-
-
     }
 
     public void testShipPlacement(Field field) {
@@ -140,6 +139,7 @@ public class Engine {
         autoMove(FIELD_1, FIELD_2);
     }
 
+    // TODO разбить метод
     private Field playerMove(Field field1, Field field2) {
         boolean isContinueMove = true;
         while (isContinueMove && !checkEndGame()) {
@@ -185,6 +185,7 @@ public class Engine {
         return coordYX;
     }
 
+    //TODO реализовать добивание
     private void finishingShoting() {
 
     }
