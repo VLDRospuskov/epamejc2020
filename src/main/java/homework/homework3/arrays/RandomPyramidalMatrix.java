@@ -11,7 +11,7 @@ public class RandomPyramidalMatrix extends CharMatrix {
             int sizeI = rowsCount - i;
             matrix[i] = new char[sizeI];
             for (int j = 0; j < sizeI; j++){
-                matrix[i][j] = randomCharacterGenerator.getChar();
+                matrix[i][j] = randomCharacterGenerator.getRandomChar();
             }
         }
     }

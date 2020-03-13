@@ -10,7 +10,6 @@ public class DigitsCounter {
         if (Math.abs(number) < 10) {
             return digitsCount;
         }
-
         return countDigits(number / 10, digitsCount + 1);
     }
 

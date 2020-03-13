@@ -45,7 +45,7 @@ public class StringGenerator {
 
         StringBuilder resultBuilder = new StringBuilder();
 
-        for (String word : words) { // make method reverseString
+        for (String word : words) {
             String reversedWord = new StringBuilder(word).reverse().toString();
             resultBuilder.append(reversedWord);
             resultBuilder.append(" ");
