@@ -1,6 +1,5 @@
-package homework.homework8;
+package homework.homework8.streamAPI;
 
-@SuppressWarnings({"unused"})
 public class Main {
 
     public static void main(String[] args) {
