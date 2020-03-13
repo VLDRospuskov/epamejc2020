@@ -6,22 +6,13 @@ public class OperatingSpeedCalculator {
 
     private Timer timer = new Timer();
 
-    public static void main(String[] args) {
-
-        OperatingSpeedCalculator calculator = new OperatingSpeedCalculator();
-
-        System.out.println("Timer speed " + calculator.measureTimerSpeed());
-        System.out.println("FileReader and FileWriter speed " + calculator.measureFileReaderWriterSpeed());
-        System.out.println("BufferedReader and BufferedWriter speed " + calculator.measureBufferedReaderWriterSpeed());
-    }
-
-    private long measureTimerSpeed() {
+    public long measureTimerSpeed() {
         timer.start();
         timer.stop();
         return timer.getLastDuration();
     }
 
-    private long measureFileReaderWriterSpeed() {
+    public long measureFileReaderWriterSpeed() {
         try (Reader fileReader = new FileReader("source.txt");
              Writer fileWriter = new FileWriter("target1.txt")) {
 
@@ -42,7 +33,7 @@ public class OperatingSpeedCalculator {
         return -1;
     }
 
-    private long measureBufferedReaderWriterSpeed() {
+    public long measureBufferedReaderWriterSpeed() {
         try (Reader bufferedReader = new BufferedReader(new FileReader("source.txt"));
              Writer bufferedWriter = new BufferedWriter(new FileWriter("target2.txt"))) {
 
@@ -50,7 +41,7 @@ public class OperatingSpeedCalculator {
 
             char[] data = new char[1024];
             int charCounts = bufferedReader.read(data, 0, data.length);
-            while(charCounts != -1) {
+            while (charCounts != -1) {
                 bufferedWriter.write(data, 0, charCounts);
                 charCounts = bufferedReader.read(data, 0, data.length);
             }

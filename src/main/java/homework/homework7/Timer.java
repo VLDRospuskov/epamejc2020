@@ -2,7 +2,7 @@ package homework.homework7;
 
 public class Timer {
     private long lastDuration = 0;
-    long startTime = 0;
+    private long startTime = 0;
 
     public long getLastDuration(){
         return lastDuration;
