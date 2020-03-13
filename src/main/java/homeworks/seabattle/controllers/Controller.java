@@ -14,7 +14,7 @@ public abstract class Controller {
 
     protected FieldPrinter fieldPrinter = new FieldPrinter();
 
-    public abstract void makeMove ();
+    public abstract void makeMove();
 
     protected List<Integer> getDeadShipPosition(List<Integer> hitPositions) {
 

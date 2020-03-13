@@ -4,8 +4,7 @@ import homeworks.seabattle.util.Positions;
 
 public class FieldPrinter {
 
-
-    public void print () {
+    public void print() {
 
         CellsToPrint cellsToPrint = new CellsToPrint();
 
@@ -19,11 +18,11 @@ public class FieldPrinter {
         System.out.println("  " + "  .   .   .   .   .   .   .   .   .   .   ."
                 + "    " + "  .   .   .   .   .   .   .   .   .   .   .");
 
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             int row = i + 1;
             if (i == 9) {
                 System.out.printf(row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s ."
-                        + "  " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s .\n",
+                                + "  " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s .\n",
                         playerCells[90], playerCells[91], playerCells[92], playerCells[93], playerCells[94],
                         playerCells[95], playerCells[96], playerCells[97], playerCells[98], playerCells[99],
                         opponentCells[90], opponentCells[91], opponentCells[92], opponentCells[93], opponentCells[94],
@@ -31,11 +30,14 @@ public class FieldPrinter {
                 continue;
             }
             System.out.printf(" " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s ."
-                    + "   " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s .\n",
-                    playerCells[i*10], playerCells[i*10+1], playerCells[i*10+2], playerCells[i*10+3], playerCells[i*10+4],
-                    playerCells[i*10+5], playerCells[i*10+6], playerCells[i*10+7], playerCells[i*10+8], playerCells[i*10+9],
-                    opponentCells[i*10], opponentCells[i*10+1], opponentCells[i*10+2], opponentCells[i*10+3], opponentCells[i*10+4],
-                    opponentCells[i*10+5], opponentCells[i*10+6], opponentCells[i*10+7], opponentCells[i*10+8], opponentCells[i*10+9]);
+                            + "   " + row + "  . %s . %s . %s . %s . %s . %s . %s . %s . %s . %s .\n",
+                    playerCells[i * 10], playerCells[i * 10 + 1], playerCells[i * 10 + 2], playerCells[i * 10 + 3],
+                    playerCells[i * 10 + 4], playerCells[i * 10 + 5], playerCells[i * 10 + 6], playerCells[i * 10 + 7],
+                    playerCells[i * 10 + 8], playerCells[i * 10 + 9],
+                    opponentCells[i * 10], opponentCells[i * 10 + 1], opponentCells[i * 10 + 2],
+                    opponentCells[i * 10 + 3], opponentCells[i * 10 + 4], opponentCells[i * 10 + 5],
+                    opponentCells[i * 10 + 6], opponentCells[i * 10 + 7], opponentCells[i * 10 + 8],
+                    opponentCells[i * 10 + 9]);
         }
     }
 }

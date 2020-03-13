@@ -52,7 +52,6 @@ public class PlayerFieldInitiator extends FieldInitiator {
                 .collect(Collectors.toList());
     }
 
-
     private List<String> getCells(String userShip) {
         return Arrays.stream(userShip.split(" "))
                 .map(String::toUpperCase)

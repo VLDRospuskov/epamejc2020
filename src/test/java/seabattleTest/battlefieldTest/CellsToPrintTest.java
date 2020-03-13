@@ -1,4 +1,4 @@
-package seabattleTest;
+package seabattleTest.battlefieldTest;
 
 import homeworks.homework3.allInOne.Colors;
 import homeworks.seabattle.battlefield.CellsToPrint;

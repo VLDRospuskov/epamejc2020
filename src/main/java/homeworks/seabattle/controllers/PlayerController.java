@@ -9,8 +9,6 @@ public class PlayerController extends Controller {
     @SneakyThrows
     public void makeMove() {
 
-        Positions.swapAndSet();
-
         while (true) {
 
             fieldPrinter.print();

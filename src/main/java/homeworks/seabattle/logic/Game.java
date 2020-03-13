@@ -24,6 +24,7 @@ public class Game {
         opponent = selector2.select();
 
         while (Positions.opponentDeadShipPositions.size() != Positions.opponentShipPositions.size()) {
+            Positions.swapAndSet();
             player.makeMove();
             swapPlayers();
         }

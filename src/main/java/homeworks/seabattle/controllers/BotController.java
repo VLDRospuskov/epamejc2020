@@ -12,8 +12,6 @@ public class BotController extends Controller implements Area<Integer> {
 
     public void makeMove() {
 
-        Positions.swapAndSet();
-
         int shotPosition = 0;
         int beforeHitSize = 0;
         int afterHitSize = 0;
@@ -92,7 +90,7 @@ public class BotController extends Controller implements Area<Integer> {
             if (Math.random() > 0.5) {
                 return horizontalLeft(minIndex, maxIndex);
             } else {
-                return horizontalRight(maxIndex,minIndex);
+                return horizontalRight(maxIndex, minIndex);
             }
         }
     }
@@ -109,7 +107,7 @@ public class BotController extends Controller implements Area<Integer> {
             }
         } else {
             if (Math.random() > 0.5) {
-                result = horizontalRight(0,0);
+                result = horizontalRight(0, 0);
             } else {
                 result = horizontalLeft(0, 0);
             }

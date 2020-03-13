@@ -1,4 +1,4 @@
-package seabattleTest;
+package seabattleTest.battlefieldTest;
 
 import homeworks.seabattle.battlefield.BotFieldInitiator;
 import homeworks.seabattle.battlefield.FieldInitiator;

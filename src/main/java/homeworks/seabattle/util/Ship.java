@@ -11,7 +11,7 @@ public class Ship {
     public List<Integer> coordinates = new ArrayList<>();
     public int length = coordinates.size();
 
-    public Ship (List<Integer> coordinates) {
+    public Ship(List<Integer> coordinates) {
 
         this.coordinates = coordinates;
     }
