@@ -9,8 +9,8 @@ import static java.lang.Thread.sleep;
 
 public class RunATM {
     
-    static int atmId;
-    static int userId;
+    private static int atmId;
+    private static int userId;
     
     public static void main(String[] args) {
         
@@ -32,7 +32,7 @@ public class RunATM {
                 }
                 for (ATM atm : atmList) {
                     if (atm.getATMBalance()
-                           .compareTo(new BigDecimal("10000")) < 0) {
+                           .compareTo(new BigDecimal("200000")) < 0) {
                         if (ATM.getGlobalBalance()
                                .compareTo(new BigDecimal(100_000)) < 0) {
                             atm.setATMBalance(atm.getATMBalance()
@@ -40,21 +40,19 @@ public class RunATM {
                             ATM.setGlobalBalance(new BigDecimal(0));
                         } else {
                             atm.setATMBalance(atm.getATMBalance()
-                                                 .add(new BigDecimal("10000")));
+                                                 .add(new BigDecimal(600_000)));
                             ATM.setGlobalBalance(ATM.getGlobalBalance()
-                                                    .subtract(new BigDecimal(10000)));
-                            System.out.printf("Inquisitors came to atm #%d and added 10000 to it\n", atm.getID());
+                                                    .subtract(new BigDecimal(600_000)));
+                            System.out.println("Added 600_000 to ATM from global balance");
                         }
                     } else if (atm.getATMBalance()
-                                  .compareTo(new BigDecimal(1000000)) > 0) {
+                                  .compareTo(new BigDecimal(2_000_000)) > 0) {
+    
                         ATM.setGlobalBalance(ATM.getGlobalBalance()
-                                                .add(atm.getATMBalance()
-                                                        .subtract(new BigDecimal(1000000))));
-                        System.out.printf("Inquisitors came to atm #%d and took %s from it\n",
-                                          atm.getID(),
-                                          atm.getATMBalance()
-                                             .subtract(new BigDecimal(1000000)));
-                        atm.setATMBalance(new BigDecimal(1000000));
+                                                .add(new BigDecimal(1_500_000)));
+                        atm.setATMBalance(atm.getATMBalance()
+                                             .subtract(new BigDecimal(1_500_000)));
+                        System.out.println("Subtract 1_500_000 from ATM to global balance");
                     }
                 }
             }
