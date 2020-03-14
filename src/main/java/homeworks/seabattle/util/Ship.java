@@ -9,7 +9,6 @@ import java.util.List;
 public class Ship {
 
     public List<Integer> coordinates = new ArrayList<>();
-    public int length = coordinates.size();
 
     public Ship(List<Integer> coordinates) {
 
