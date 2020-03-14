@@ -64,55 +64,66 @@ public class Bot extends Player {
             }
             return randomCoordinate;
         }
-        return searchDamagedShipCoordinate();
+        return findDamagedShipNextCoordinate();
     }
 
-    private Coordinate searchDamagedShipCoordinate() {
+    private Coordinate findDamagedShipNextCoordinate() {
         Ship ship = situation.searchShip(previousDamage);
 
         if (ship.isValid()) {
             Coordinate firstCoordinate = ship.getFirstCoordinate();
             Coordinate lastCoordinate = ship.getLastCoordinate();
+            Coordinate nextCoordinate = null;
+
+            char firstLetter = firstCoordinate.getLetter();
+            int firstNumber = firstCoordinate.getNumber();
 
             if (ship instanceof VerticalShip || ship.getLength() == 1) {
-                char letter = firstCoordinate.getLetter();
-                int firstNumber = firstCoordinate.getNumber();
-                int lastNumber = lastCoordinate.getNumber();
-
-                if (firstNumber > MIN_NUMBER) {
-                    Coordinate coordinate = new Coordinate(letter, firstNumber - 1);
-                    if (situation.getCellState(coordinate).equals(TacticalSituation.CellState.UNCHECKED))
-                        return coordinate;
-                }
-
-                if (lastNumber < MAX_NUMBER) {
-                    Coordinate coordinate = new Coordinate(letter, lastNumber + 1);
-                    if (situation.getCellState(coordinate).equals(TacticalSituation.CellState.UNCHECKED)) {
-                        return coordinate;
-                    }
-                }
+                nextCoordinate = findVerticalShipNextCoordinate(firstLetter, firstNumber, lastCoordinate.getNumber());
             }
-            if (ship instanceof HorizontalShip || ship.getLength() == 1) {
-                char firstLetter = firstCoordinate.getLetter();
-                char lastLetter = lastCoordinate.getLetter();
-                int number = firstCoordinate.getNumber();
 
-                if (firstLetter > MIN_LETTER) {
-                    Coordinate coordinate = new Coordinate((char) (firstLetter - 1), number);
-                    if (situation.getCellState(coordinate).equals(TacticalSituation.CellState.UNCHECKED)) {
-                        return coordinate;
-                    }
-                }
+            if (nextCoordinate == null && (ship instanceof HorizontalShip || ship.getLength() == 1)) {
+                nextCoordinate = findHorizontalShipNextCoordinate(firstNumber, firstLetter, lastCoordinate.getLetter());
+            }
 
-                if (lastLetter < MAX_LETTER) {
-                    Coordinate coordinate = new Coordinate((char) (lastLetter + 1), number);
-                    if (situation.getCellState(coordinate).equals(TacticalSituation.CellState.UNCHECKED)) {
-                        return coordinate;
-                    }
-                }
+            if (nextCoordinate != null) {
+                return nextCoordinate;
             }
         }
+
         throw new IllegalStateException("Damaged ship was not found");
+    }
+
+    private Coordinate findHorizontalShipNextCoordinate(int firstNumber, char firstLetter, char lastLetter) {
+        Coordinate nextCoordinate = null;
+        if (firstLetter > MIN_LETTER) {
+            nextCoordinate = getUncheckedCoordinate((char) (firstLetter - 1), firstNumber);
+        }
+
+        if (nextCoordinate == null && lastLetter < MAX_LETTER) {
+            nextCoordinate = getUncheckedCoordinate((char) (lastLetter + 1), firstNumber);
+        }
+        return nextCoordinate;
+    }
+
+    private Coordinate findVerticalShipNextCoordinate(char firstLetter, int firstNumber, int lastNumber) {
+        Coordinate nextCoordinate = null;
+        if (firstNumber > MIN_NUMBER) {
+            nextCoordinate = getUncheckedCoordinate(firstLetter, firstNumber - 1);
+        }
+
+        if (nextCoordinate == null && lastNumber < MAX_NUMBER) {
+            nextCoordinate = getUncheckedCoordinate(firstLetter, lastNumber + 1);
+        }
+        return nextCoordinate;
+    }
+
+    private Coordinate getUncheckedCoordinate(char letter, int number) {
+        Coordinate coordinate = new Coordinate(letter, number);
+        if (situation.getCellState(coordinate).equals(TacticalSituation.CellState.UNCHECKED)) {
+            return coordinate;
+        }
+        return null;
     }
 
     private Ship.Type getRandomShipType() {
