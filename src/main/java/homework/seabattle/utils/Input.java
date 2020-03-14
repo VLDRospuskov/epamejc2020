@@ -1,8 +1,8 @@
 package homework.seabattle.utils;
 
-import homework.seabattle.actors.Player;
+import homework.seabattle.actors.PlayerType;
 import homework.seabattle.model.Coordinate;
-import homework.seabattle.model.ships.Ship;
+import homework.seabattle.model.ships.ShipType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,25 +12,25 @@ import static homework.seabattle.config.Strings.*;
 
 public class Input {
 
-    private final static Map<String, Ship.Type> shipTypes;
-    private final static Map<String, Player.Type> playersTypes;
+    private final static Map<String, ShipType.Type> shipTypes;
+    private final static Map<String, PlayerType.Type> playersTypes;
 
     static {
         shipTypes = new HashMap<>();
-        shipTypes.put("h", Ship.Type.HORIZONTAL);
-        shipTypes.put("v", Ship.Type.VERTICAL);
+        shipTypes.put("h", ShipType.Type.HORIZONTAL);
+        shipTypes.put("v", ShipType.Type.VERTICAL);
 
         playersTypes = new HashMap<>();
-        playersTypes.put("c", Player.Type.COMPUTER);
-        playersTypes.put("h", Player.Type.HUMAN);
+        playersTypes.put("c", PlayerType.Type.COMPUTER);
+        playersTypes.put("h", PlayerType.Type.HUMAN);
     }
 
-    public static Player.Type enterPlayerType() {
+    public static PlayerType.Type enterPlayerType() {
         System.out.println(ENTER_PLAYER_TYPE);
 
         Scanner scanner = new Scanner(System.in);
         String inputString;
-        Player.Type type = null;
+        PlayerType.Type type = PlayerType.Type.COMPUTER;
         boolean isEntered = false;
 
         while (!isEntered) {
@@ -68,12 +68,12 @@ public class Input {
         return coordinate;
     }
 
-    public static Ship.Type enterShipType() {
+    public static ShipType.Type enterShipType() {
         System.out.println(ENTER_COURSE);
 
         Scanner scanner = new Scanner(System.in);
         String inputString;
-        Ship.Type type = null;
+        ShipType.Type type = null;
         boolean isEntered = false;
 
         while (!isEntered) {

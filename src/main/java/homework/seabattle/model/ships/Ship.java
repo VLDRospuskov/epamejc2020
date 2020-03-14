@@ -9,23 +9,18 @@ import java.util.Set;
 
 public abstract class Ship {
 
-    public enum Type {
-        VERTICAL,
-        HORIZONTAL
-    }
-
     protected final int length;
 
     private List<Coordinate> coordinates = new ArrayList<>();
 
     private Set<Coordinate> areaCoordinates = new HashSet<>();
 
-    public static Ship create(Type type, Coordinate startCoordinate, int length) {
-        if (type == Type.HORIZONTAL) {
+    public static Ship create(ShipType.Type type, Coordinate startCoordinate, int length) {
+        if (type == ShipType.Type.HORIZONTAL) {
             return new HorizontalShip(startCoordinate, length);
         }
 
-        if (type == Type.VERTICAL) {
+        if (type == ShipType.Type.VERTICAL) {
             return new VerticalShip(startCoordinate, length);
         }
 

@@ -1,5 +1,6 @@
 package homework.seabattle.actors;
 
+import homework.seabattle.model.CellState;
 import homework.seabattle.model.Coordinate;
 import homework.seabattle.model.ShipsField;
 import homework.seabattle.model.TacticalSituation;
@@ -11,11 +12,6 @@ import static homework.seabattle.view.Printer.printShipsOnMap;
 
 abstract public class Player {
 
-    public enum Type {
-        HUMAN,
-        COMPUTER
-    }
-
     protected String name;
 
     protected ShipsField shipsField = new ShipsField();
@@ -24,10 +20,10 @@ abstract public class Player {
 
     protected TacticalSituation situation = new TacticalSituation();
 
-    public static Player create(Type type) {
-        if (type.equals(Type.HUMAN)) {
+    public static Player create(PlayerType.Type type) {
+        if (type.equals(PlayerType.Type.HUMAN)) {
             return new User();
-        } else if (type.equals(Type.COMPUTER)) {
+        } else if (type.equals(PlayerType.Type.COMPUTER)) {
             return new Bot();
         }
         throw new RuntimeException("Undefined player type");
@@ -105,22 +101,22 @@ abstract public class Player {
             return;
         }
 
-        situation.setCellState(lastCoordinate, TacticalSituation.CellState.DAMAGED);
+        situation.setCellState(lastCoordinate, CellState.State.DAMAGED);
 
         for (Coordinate coordinate : situation.searchShip(lastCoordinate).getAreaCoordinates()) {
-            situation.setCellState(coordinate, TacticalSituation.CellState.EMPTY);
+            situation.setCellState(coordinate, CellState.State.EMPTY);
         }
 
         shoot();
     }
 
     public void onShipDamaged(Coordinate coordinate) {
-        situation.setCellState(coordinate, TacticalSituation.CellState.DAMAGED);
+        situation.setCellState(coordinate, CellState.State.DAMAGED);
         shoot();
     }
 
     public void onShotFailed(Coordinate coordinate) {
-        situation.setCellState(coordinate, TacticalSituation.CellState.EMPTY);
+        situation.setCellState(coordinate, CellState.State.EMPTY);
     }
 
     protected void notifyShotAnnounce(Coordinate coordinate) {

@@ -1,9 +1,10 @@
 package homework.seabattle.actors;
 
+import homework.seabattle.model.CellState;
 import homework.seabattle.model.Coordinate;
-import homework.seabattle.model.TacticalSituation;
 import homework.seabattle.model.ships.HorizontalShip;
 import homework.seabattle.model.ships.Ship;
+import homework.seabattle.model.ships.ShipType;
 import homework.seabattle.model.ships.VerticalShip;
 
 import java.util.Random;
@@ -11,7 +12,7 @@ import java.util.Random;
 import static homework.seabattle.config.Config.*;
 import static homework.seabattle.config.Strings.COMPUTERS_SHOTS;
 import static homework.seabattle.config.Strings.COMPUTER_NEW_SHOT;
-import static homework.seabattle.model.ships.Ship.Type.HORIZONTAL;
+import static homework.seabattle.model.ships.ShipType.Type.HORIZONTAL;
 import static homework.seabattle.view.Printer.printShootsOnMap;
 
 public class Bot extends Player {
@@ -59,7 +60,7 @@ public class Bot extends Player {
     private Coordinate defineNextShot() {
         if (previousDamage == null) {
             Coordinate randomCoordinate = getRandomCoordinate();
-            while (!situation.getCellState(randomCoordinate).equals(TacticalSituation.CellState.UNCHECKED)) {
+            while (!situation.getCellState(randomCoordinate).equals(CellState.State.UNCHECKED)) {
                 randomCoordinate = getRandomCoordinate();
             }
             return randomCoordinate;
@@ -120,15 +121,15 @@ public class Bot extends Player {
 
     private Coordinate getUncheckedCoordinate(char letter, int number) {
         Coordinate coordinate = new Coordinate(letter, number);
-        if (situation.getCellState(coordinate).equals(TacticalSituation.CellState.UNCHECKED)) {
+        if (situation.getCellState(coordinate).equals(CellState.State.UNCHECKED)) {
             return coordinate;
         }
         return null;
     }
 
-    private Ship.Type getRandomShipType() {
+    private ShipType.Type getRandomShipType() {
         Random random = new Random();
-        return Ship.Type.values()[random.nextInt(HORIZONTAL.ordinal() + 1)];
+        return ShipType.Type.values()[random.nextInt(HORIZONTAL.ordinal() + 1)];
     }
 
     private Coordinate getRandomCoordinate() {

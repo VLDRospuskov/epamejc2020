@@ -1,6 +1,7 @@
 package homework.seabattle.model;
 
 import homework.seabattle.model.ships.Ship;
+import homework.seabattle.model.ships.ShipType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,7 +31,7 @@ public class ShipsField {
         return new HashSet<>(ownEmptyCoordinates);
     }
 
-    public void tryAddShip(Coordinate coordinate, Ship.Type type, int length) {
+    public void tryAddShip(Coordinate coordinate, ShipType.Type type, int length) {
         if (length == 1) {
             addShip(Ship.createOneDeckShip(coordinate));
         } else {
