@@ -22,7 +22,7 @@ public class UserOperations implements Runnable{
 
         while(true) {
             Thread.sleep(2000L);
-            if (Bank.getInstance().getUserAccountDetails(user).doubleValue() < 50_000.0) {
+            if (Bank.getInstance().getUserAccountDetails(user).doubleValue() < 30_000.0) {
                 doJob();
             } else {
                 useATM();
@@ -33,7 +33,7 @@ public class UserOperations implements Runnable{
     private void doJob() {
 
         try {
-            Thread.sleep(500L);
+            Thread.sleep(5000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class UserOperations implements Runnable{
             amount = BigDecimal.valueOf((new Random().nextDouble() * user.getCash().doubleValue()));
             atm.deposit(amount, user);
         } else {
-            amount = BigDecimal.valueOf(new Random().nextDouble() * 100_000.0);
+            amount = BigDecimal.valueOf(new Random().nextDouble() * 45_000.0);
             atm.withdraw(amount, user);
         }
 

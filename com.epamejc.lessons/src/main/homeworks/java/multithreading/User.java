@@ -24,19 +24,27 @@ public class User{
 
     }
 
-    public BigDecimal getBankAccountDetails () {
+    public void addCash(BigDecimal cash) {
 
-        return Bank.getInstance().getUserAccountDetails(this);
+        this.cash = this.cash.add(cash);
+
+    }
+
+    public void substractCash(BigDecimal cash) {
+
+        this.cash = this.cash.subtract(cash);
 
     }
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
                 Objects.equals(name, user.name);
+
     }
 
     @Override

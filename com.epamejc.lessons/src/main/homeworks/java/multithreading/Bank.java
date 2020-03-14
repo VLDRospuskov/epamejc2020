@@ -65,7 +65,8 @@ public final class Bank {
                     .filter(u -> u.getKey().equals(user))
                     .forEach(u -> u.setValue(u.getValue().add(u.getKey().getSalary())));
         }
-        System.out.println("User " + user.getName() + " got a salary. Account value: " + getUserAccountDetails(user));
+        System.out.println("\nUser " + user.getName() + " got a salary. Account details: "
+                + getUserAccountDetails(user).setScale(2, BigDecimal.ROUND_DOWN) + "\n");
 
     }
 
@@ -79,7 +80,7 @@ public final class Bank {
 
         synchronized (Bank.class) {
             if (moneyStash.compareTo(amount) < 0) {
-                throw new RuntimeException("The bank went bankrupt ");
+                throw new RuntimeException("\nThe bank went bankrupt\n");
             }
             moneyStash = moneyStash.add(amount);
         }
