@@ -1,8 +1,9 @@
 package lessons.java.lesson11.example1;
 
+import lessons.lesson11.example1.Operations;
 import org.junit.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class OperationsTest {
 
