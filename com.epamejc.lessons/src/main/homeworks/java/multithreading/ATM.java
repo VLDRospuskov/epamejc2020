@@ -41,14 +41,7 @@ public class ATM {
             account = account.add(amount);
             Bank.getInstance().userAccountUpdate(user, amount);
             user.substractCash(amount);
-            System.out.println("\nDeposit of " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
-                    " to " + serialNumber + " ATM" + "\n" +
-                    "Current ATM: " + serialNumber +
-                    " balance: " + account.setScale(2, BigDecimal.ROUND_DOWN) + "\n" +
-                    "Current User: " + user.getName() + " balance " +
-                    Bank.getInstance().getUserAccountDetails(user)
-                            .setScale(2, BigDecimal.ROUND_DOWN) +
-                    ", cash " + user.getCash().setScale(2, BigDecimal.ROUND_DOWN) + "\n");
+            printCurrentState("Deposit", user, amount);
             isOnService = isServiceNeeded();
         }
 
@@ -69,14 +62,7 @@ public class ATM {
                     if (Bank.getInstance().userAccountUpdate(user, amount.negate())) {
                         account = account.subtract(amount);
                         user.addCash(amount);
-                        System.out.println("\nWithdraw of " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
-                                " from " + serialNumber + " ATM" + "\n" +
-                                "Current ATM: " + serialNumber +
-                                " balance: " + account.setScale(2, BigDecimal.ROUND_DOWN) + "\n" +
-                                "Current User: " + user.getName() + " balance " +
-                                Bank.getInstance().getUserAccountDetails(user)
-                                        .setScale(2, BigDecimal.ROUND_DOWN) +
-                                ", cash " + user.getCash().setScale(2, BigDecimal.ROUND_DOWN) + "\n");
+                        printCurrentState("Withdraw", user, amount);
                     } else {
                         System.out.println("\nFailed to withdraw " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
                                 ", not enough funds on user " + user.getName() + " account\n" +
@@ -96,6 +82,16 @@ public class ATM {
             System.out.println("\nATM " + serialNumber + " is closed for service\n");
         }
         return isServiceNeeded;
+    }
+
+    private void printCurrentState(String operation, User user, BigDecimal amount) {
+        System.out.println("\n" + operation + " " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
+                " ATM: " + serialNumber + "\n" +
+                "ATM balance: " + account.setScale(2, BigDecimal.ROUND_DOWN) + "\n" +
+                "Current User: " + user.getName() + " balance " +
+                Bank.getInstance().getUserAccountDetails(user)
+                        .setScale(2, BigDecimal.ROUND_DOWN) +
+                ", cash " + user.getCash().setScale(2, BigDecimal.ROUND_DOWN) + "\n");
     }
 
 }
