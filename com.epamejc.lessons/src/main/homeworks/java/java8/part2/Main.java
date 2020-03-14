@@ -3,7 +3,11 @@ package homeworks.java.java8.part2;
 import java.util.List;
 import java.util.Set;
 
-@SuppressWarnings({"unused"})
+/**
+ * The goal is to update {@link StreamOperations} class using streams so that program works correctly.
+ *
+ * @author Vladimir Ivanov
+ */
 public class Main {
 
     public static void main(String[] args) {

@@ -10,14 +10,9 @@ public class PersonReflectiveDefaultsSetDefaultTest {
 
         Person person = new Person();
 
-        comparePersonFields(person, "John Doe", "unknown");
+        Assert.assertEquals("John Doe", person.getName());
+        Assert.assertEquals("unknown", person.getAge());
 
     }
 
-    private void comparePersonFields(Person person, String name, String age) {
-
-        Assert.assertEquals(name, person.getName());
-        Assert.assertEquals(age, person.getAge());
-
-    }
 }

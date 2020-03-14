@@ -12,17 +12,22 @@ public final class Bank {
     private volatile BigDecimal moneyStash;
 
     private Bank() {
+
         userAccounts = new HashMap<>();
         moneyStash = BigDecimal.valueOf(1_000_000_000);
+
     }
 
     public void registerUsers(List<User> users) {
+
         for (User user : users) {
             userAccounts.put(user, BigDecimal.ZERO);
+
         }
     }
 
     public static Bank getInstance() {
+
         if (instance == null)
             synchronized (Bank.class) {
                 if (instance == null) {
@@ -30,6 +35,7 @@ public final class Bank {
                 }
             }
         return instance;
+
     }
 
     public BigDecimal getUserAccountDetails(User user) throws RuntimeException {
@@ -44,6 +50,12 @@ public final class Bank {
 
     }
 
+    /**
+     * Used to update user account.
+     *
+     * @param amount is {@code BigDecimal} value which can de positive or negative.
+     * @return {@code true} if an operation is possible and done, or {@code false} otherwise
+     */
     public boolean userAccountUpdate(User user, BigDecimal amount) {
 
         synchronized (User.class) {
@@ -76,6 +88,12 @@ public final class Bank {
 
     }
 
+    /**
+     * Used during service operation.
+     *
+     * @param amount is {@code BigDecimal} value which can be positive or negative
+     * @throws RuntimeException if bank account went empty
+     */
     public void serviceOperation(BigDecimal amount) throws RuntimeException {
 
         synchronized (Bank.class) {

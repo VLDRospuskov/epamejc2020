@@ -19,8 +19,8 @@ public class CollectorOperations extends Thread {
                     collector.service(atm);
                 }
             }
-
         }
 
     }
+
 }

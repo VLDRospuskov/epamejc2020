@@ -2,29 +2,25 @@ package homeworks.java.java8.part1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Main {
 
+    /**
+     * This is the java8 educational program.
+     * Program uses an own functional interfaces {@link MyFunction}, {@link MyBiFunction} and {@link MySupplier}.
+     * There is a usage of them in main class.
+     *
+     * @author Vladimir Ivanov
+     */
     public static void main(String[] args) {
 
-        int subjects = 15;
         List<Integer> score = new ArrayList<>();
-        score.add(85);
-        score.add(75);
-        score.add(34);
-        score.add(98);
-        score.add(14);
-        score.add(8);
-        score.add(57);
-        score.add(43);
-        score.add(22);
-        score.add(76);
-        score.add(55);
-        score.add(65);
-        score.add(87);
-        score.add(63);
-        score.add(45);
-        score.add(95);
+        for (int i = 0; i < 20; i++) {
+            score.add(new Random().nextInt(100));
+        }
+
+        int subjects = score.size();
 
         Student<Integer> student = new Student<>(score, subjects, 3, "Vladimir", "Z7431");
 

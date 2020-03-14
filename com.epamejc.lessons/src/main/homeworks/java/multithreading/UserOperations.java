@@ -6,21 +6,23 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 
-public class UserOperations implements Runnable{
+public class UserOperations implements Runnable {
 
     private User user;
     private List<ATM> atms;
 
     public UserOperations(List<ATM> atms, User user) {
+
         this.user = user;
         this.atms = atms;
+
     }
 
     @SneakyThrows
     @Override
     public void run() {
 
-        while(true) {
+        while (true) {
             Thread.sleep(2000L);
             if (Bank.getInstance().getUserAccountDetails(user).doubleValue() < 30_000.0) {
                 doJob();
@@ -28,6 +30,7 @@ public class UserOperations implements Runnable{
                 useATM();
             }
         }
+
     }
 
     private void doJob() {
@@ -55,7 +58,7 @@ public class UserOperations implements Runnable{
 
     }
 
-    private ATM randomATM () {
+    private ATM randomATM() {
 
         int i = new Random().nextInt(atms.size());
         return atms.get(i);

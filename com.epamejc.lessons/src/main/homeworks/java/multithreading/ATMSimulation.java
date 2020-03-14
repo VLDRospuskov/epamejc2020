@@ -6,9 +6,10 @@ import java.util.Random;
 
 public class ATMSimulation {
 
-    List<ATM> atms = new ArrayList<>();
+    private List<ATM> atms = new ArrayList<>();
 
     public void run() {
+
         for (int i = 0; i < 20; i++) {
             atms.add(new ATM(new Random().nextInt(100)));
         }
@@ -30,4 +31,5 @@ public class ATMSimulation {
         }
 
     }
+
 }

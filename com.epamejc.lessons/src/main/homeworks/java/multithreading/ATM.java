@@ -14,13 +14,21 @@ public class ATM {
 
     public ATM(int serialNumber) {
 
-        account = BigDecimal.valueOf(1_000_000.0);
+        account = BigDecimal.valueOf(500_000.0);
         this.serialNumber = serialNumber;
         lock = new Object();
         isOnService = false;
 
     }
 
+    /**
+     * Used to update ATM balance during collection and
+     * print the current operation to console.
+     * The balance after collection will always be 500_000.
+     *
+     * @param cash can be positive or negative depending on the current
+     *             account state.
+     */
     public void service(BigDecimal cash) {
 
         synchronized (lock) {
@@ -37,12 +45,16 @@ public class ATM {
 
     public void deposit(BigDecimal amount, User user) {
 
-        synchronized (lock) {
-            account = account.add(amount);
-            Bank.getInstance().userAccountUpdate(user, amount);
-            user.substractCash(amount);
-            printCurrentState("Deposit", user, amount);
-            isOnService = isServiceNeeded();
+        if (isOnService) {
+            System.out.println("\nFailed to deposit, ATM " + serialNumber + " is closed for service\n");
+        } else {
+            synchronized (lock) {
+                account = account.add(amount);
+                Bank.getInstance().userAccountUpdate(user, amount);
+                user.substractCash(amount);
+                printCurrentState("Deposit", user, amount);
+                isOnService = isServiceNeeded();
+            }
         }
 
     }
@@ -51,13 +63,11 @@ public class ATM {
 
         if (isOnService) {
             System.out.println("\nFailed to withdraw, ATM " + serialNumber + " is closed for service\n");
-            System.out.println();
         } else {
             synchronized (lock) {
                 if (account.subtract(amount).doubleValue() < 0) {
-                    isOnService = true;
                     System.out.println("\nFailed to withdraw " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
-                            ", not enough cash, ATM " + serialNumber + " is closing for service\n");
+                            ", not enough cash, ATM " + serialNumber + "\n");
                 } else {
                     if (Bank.getInstance().userAccountUpdate(user, amount.negate())) {
                         account = account.subtract(amount);
@@ -73,18 +83,22 @@ public class ATM {
                 }
             }
         }
+
     }
 
     private boolean isServiceNeeded() {
+
         boolean isServiceNeeded = false;
         if (account.doubleValue() >= 1_500_000 || account.doubleValue() <= 10_000) {
             isServiceNeeded = true;
             System.out.println("\nATM " + serialNumber + " is closed for service\n");
         }
         return isServiceNeeded;
+
     }
 
     private void printCurrentState(String operation, User user, BigDecimal amount) {
+
         System.out.println("\n" + operation + " " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
                 " ATM: " + serialNumber + "\n" +
                 "ATM balance: " + account.setScale(2, BigDecimal.ROUND_DOWN) + "\n" +
@@ -92,6 +106,7 @@ public class ATM {
                 Bank.getInstance().getUserAccountDetails(user)
                         .setScale(2, BigDecimal.ROUND_DOWN) +
                 ", cash " + user.getCash().setScale(2, BigDecimal.ROUND_DOWN) + "\n");
+
     }
 
 }

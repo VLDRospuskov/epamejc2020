@@ -14,8 +14,8 @@ public class LightsLogicTest {
 
         input = new String[]{"0", "2", "2.59"};
 
-        for (int i = 0; i < input.length; i++) {
-            Lights actual = new LightsLogic().parseInputString(input[i]);
+        for (String s : input) {
+            Lights actual = new LightsLogic().parseInputString(s);
             Assert.assertEquals(Lights.GREEN, actual);
         }
 

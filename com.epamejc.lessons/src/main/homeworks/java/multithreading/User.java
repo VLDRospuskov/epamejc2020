@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Data
-public class User{
+public class User {
 
     private static int count = 0;
     private int id;
@@ -49,7 +49,9 @@ public class User{
 
     @Override
     public int hashCode() {
+
         return Objects.hash(id, name);
+
     }
 
 }
