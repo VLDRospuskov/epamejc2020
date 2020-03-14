@@ -1,6 +1,8 @@
 package homeworks.homework9.logic;
 
 import homeworks.homework9.data.ATM;
+import homeworks.homework9.data.CentralStorage;
+import homeworks.homework9.data.Statistics;
 import homeworks.homework9.data.User;
 import lombok.SneakyThrows;
 
@@ -31,6 +33,7 @@ public class Simulation {
         operations3.join();
         operations4.join();
 
+        prinStatistics();
     }
 
     private void init() {
@@ -45,5 +48,10 @@ public class Simulation {
         users.add(new User("Vladimir Iljich", BigDecimal.valueOf(250_000.00), BigDecimal.valueOf(1_000_000.00)));
         users.add(new User("Tony Stark", BigDecimal.valueOf(180_000.00), BigDecimal.valueOf(25_000_000_000.00)));
         users.add(new User("Petr Romanov", BigDecimal.valueOf(50_000.00), BigDecimal.valueOf(350_000_000)));
+    }
+
+    private void prinStatistics() {
+        AtmOperations.statistics.reserveAfterChanged = CentralStorage.reserve;
+        System.out.println(AtmOperations.statistics.toString());
     }
 }

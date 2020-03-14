@@ -19,6 +19,7 @@ public class ThreadOperations extends Thread {
     private UserOperations userOperations;
     private String operation;
     private BigDecimal amount;
+    private int count;
 
     public ThreadOperations(ArrayList<ATM> atms, ArrayList<User> users) {
         this.atms = atms;
@@ -28,13 +29,14 @@ public class ThreadOperations extends Thread {
     @SneakyThrows
     @Override
     public void run() {
-        synchronized (ThreadOperations.class) {
-            while (true) {
-                init();
+        while (count < 100) {
+            init();
+            synchronized (ThreadOperations.class) {
                 doOperation();
                 printMessage();
                 Thread.sleep(1000);
             }
+            count++;
         }
     }
 
