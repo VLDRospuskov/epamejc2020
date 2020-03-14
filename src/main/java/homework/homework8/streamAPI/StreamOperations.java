@@ -46,9 +46,7 @@ public class StreamOperations {
                 .map(Employee::getPerson)
                 .map(Person::getAge)
                 .min(Integer::compareTo)
-                .orElseThrow(() -> {
-                    throw new IllegalStateException("Cant't find employee with minimal age");
-                });
+                .orElseThrow(() -> new IllegalStateException("Cant't find employee with minimal age"));
     }
 
     Double calcAverageAgeOfEmployees() {
@@ -58,9 +56,7 @@ public class StreamOperations {
                 .map(Employee::getPerson)
                 .mapToInt(Person::getAge)
                 .average()
-                .orElseThrow(() -> {
-                    throw new IllegalStateException("Cant't calculate average age of employees");
-                });
+                .orElseThrow(() -> new IllegalStateException("Cant't calculate average age of employees"));
     }
 
     Person findPersonWithLongestFullName() {
@@ -70,9 +66,7 @@ public class StreamOperations {
                 .map(Employee::getPerson)
                 .reduce((person1, person2) -> (person1.getLastName() + person1.getFirstName()).length() >
                         (person2.getLastName() + person2.getFirstName()).length() ? person1 : person2)
-                .orElseThrow(() -> {
-                    throw new IllegalStateException("Cant't find person with longest full name");
-                });
+                .orElseThrow(() -> new IllegalStateException("Cant't find person with longest full name"));
     }
 
     Employee findEmployeeWithMaximumDurationAtOnePosition() {
@@ -80,11 +74,10 @@ public class StreamOperations {
 
         return employees.stream()
                 .reduce((employee1, employee2) -> getMaxDuration(employee1) > getMaxDuration(employee2) ?
-                        employee1 : employee2
-                )
-                .orElseThrow(() -> {
-                    throw new IllegalStateException("Cant't find employee with maximum duration at one position");
-                });
+                        employee1 : employee2)
+                .orElseThrow(
+                        () -> new IllegalStateException("Cant't find employee with maximum duration at one position")
+                );
     }
 
     private int getMaxDuration(Employee employee) {
@@ -92,8 +85,6 @@ public class StreamOperations {
                 .stream()
                 .mapToInt(JobHistoryEntry::getDuration)
                 .max()
-                .orElseThrow(() -> {
-                    throw new IllegalStateException("Cant't find job with maximum duration");
-                });
+                .orElseThrow(() -> new IllegalStateException("Cant't find job with maximum duration"));
     }
 }
