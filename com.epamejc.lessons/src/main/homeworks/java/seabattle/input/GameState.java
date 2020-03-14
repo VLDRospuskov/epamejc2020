@@ -1,6 +1,6 @@
 package homeworks.java.seabattle.input;
 
-public enum  GameState {
+public enum GameState {
     SETUP,
     BATTLE
 }

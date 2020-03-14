@@ -1,20 +1,15 @@
 package homeworks.java.seabattle;
 
-import homeworks.java.seabattle.field.Field;
-import homeworks.java.seabattle.input.Input;
+import homeworks.java.seabattle.battle.Game;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args) {
+        Game game = new Game();
 
-
-        Input in = new Input();
-        System.out.println("---- player's field ----");
-        Field playerField = new Field();
-        System.out.println("---- enemy's field ----");
-        Field enemyField = new Field();
-
-
+        do {
+            game.process();
+        } while (!game.isGameOver());
     }
 
 }
