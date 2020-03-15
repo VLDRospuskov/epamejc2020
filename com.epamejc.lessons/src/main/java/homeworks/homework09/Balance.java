@@ -1,12 +1,12 @@
 package homeworks.homework09;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 public class Balance {
-
-    @Getter
+    @Setter
     private static BigDecimal balance = BigDecimal.valueOf(0);
 
     public static synchronized boolean addToBalance(BigDecimal value) {
@@ -21,6 +21,10 @@ public class Balance {
         }
         balance = balance.add(value.negate());
         return true;
+    }
+
+    public static synchronized BigDecimal getBalance() {
+        return balance;
     }
 
 }

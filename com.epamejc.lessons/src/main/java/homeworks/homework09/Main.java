@@ -10,7 +10,6 @@ public class Main {
 
     @SneakyThrows
     public static void main(String[] args) {
-        new ATM_System(10);
 
         UserThread userThread1 = new UserThread(new User("Masha"));
         UserThread userThread2 = new UserThread(new User("Sasha"));
@@ -23,6 +22,7 @@ public class Main {
         userThread3.start();
         userThread4.start();
         userThread5.start();
+
     }
 
 }

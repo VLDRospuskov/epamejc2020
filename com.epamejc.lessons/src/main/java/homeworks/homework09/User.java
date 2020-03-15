@@ -1,7 +1,11 @@
 package homeworks.homework09;
 
+import jdk.nashorn.internal.objects.annotations.Setter;
+import lombok.SneakyThrows;
+
 import java.math.BigDecimal;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class User {
 
@@ -13,14 +17,24 @@ public class User {
         this.name = name;
     }
 
+    @SneakyThrows
     public boolean executeOperation(int operation, BigDecimal amount, ATM atm) {
-        switch (operation) {
-            case 0:
-                return addToBalance(atm, amount);
-            case 1:
-                return takeFromBalance(atm, amount);
-            default:
-                return false;
+        synchronized (atm) {
+            System.out.println(name + " occupied ATM №" + atm.id);
+            TimeUnit.MILLISECONDS.sleep(2000 + new Random().nextInt(3000));
+            boolean operationResult;
+            switch (operation) {
+                case 0:
+                    operationResult = addToBalance(atm, amount);
+                    System.out.println(name + " released ATM №" + atm.id);
+                    return operationResult;
+                case 1:
+                    operationResult = takeFromBalance(atm, amount);
+                    System.out.println(name + " released ATM №" + atm.id);
+                    return operationResult;
+                default:
+                    return false;
+            }
         }
     }
 
@@ -61,15 +75,5 @@ public class User {
         return ATM_System.atmList.get(randomInt);
     }
 
-    public String getOperationName(int operation) {
-        switch (operation) {
-            case 0:
-                return "add to balance";
-            case 1:
-                return "take from balance";
-            default:
-                return "";
-        }
-    }
 
 }
