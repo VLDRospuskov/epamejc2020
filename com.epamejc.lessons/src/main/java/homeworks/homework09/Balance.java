@@ -5,6 +5,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 public class Balance {
+
     @Setter
     private static BigDecimal balance = BigDecimal.valueOf(1_000_000);
 

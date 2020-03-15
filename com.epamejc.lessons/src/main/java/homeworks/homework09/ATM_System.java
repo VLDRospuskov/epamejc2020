@@ -12,7 +12,6 @@ public class ATM_System {
     static {
         for (int i = 0; i < ATM_NUMBER; i++) {
             atmList.add(new ATM(i + 1));
-            Incassation.fillATM(atmList.get(i), BigDecimal.valueOf(200_000));
         }
     }
 
