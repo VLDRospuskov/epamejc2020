@@ -11,7 +11,7 @@ public class User {
 
     public final String name;
 
-    BigDecimal userBalance = new BigDecimal(100_000);
+    BigDecimal userBalance = new BigDecimal(200_000);
 
     public User(String name) {
         this.name = name;
@@ -20,17 +20,17 @@ public class User {
     @SneakyThrows
     public boolean executeOperation(int operation, BigDecimal amount, ATM atm) {
         synchronized (atm) {
-            System.out.println(name + " occupied ATM №" + atm.id);
-            TimeUnit.MILLISECONDS.sleep(2000 + new Random().nextInt(3000));
+            System.out.println(atm.getIdColumnForPrint() + name + " occupied ATM №" + atm.id);
+            TimeUnit.MILLISECONDS.sleep(1000 + new Random().nextInt(1000));
             boolean operationResult;
             switch (operation) {
                 case 0:
                     operationResult = addToBalance(atm, amount);
-                    System.out.println(name + " released ATM №" + atm.id);
+                    System.out.println(atm.getIdColumnForPrint() + name + " released ATM №" + atm.id);
                     return operationResult;
                 case 1:
                     operationResult = takeFromBalance(atm, amount);
-                    System.out.println(name + " released ATM №" + atm.id);
+                    System.out.println(atm.getIdColumnForPrint() + name + " released ATM №" + atm.id);
                     return operationResult;
                 default:
                     return false;
@@ -42,8 +42,8 @@ public class User {
         return new Random().nextInt(2);
     }
 
-    public BigDecimal chooseRandomAmountFrom0To10000() {
-        double random = new Random().nextDouble() * 10000;
+    public BigDecimal chooseRandomAmount() {
+        double random = 10000 + new Random().nextDouble() * 50000;
         return new BigDecimal(random);
     }
 
@@ -74,6 +74,7 @@ public class User {
         int randomInt = new Random().nextInt(ATM_System.atmList.size());
         return ATM_System.atmList.get(randomInt);
     }
+
 
 
 }

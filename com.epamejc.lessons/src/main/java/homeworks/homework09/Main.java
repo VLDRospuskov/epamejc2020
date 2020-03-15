@@ -4,7 +4,15 @@ import lombok.SneakyThrows;
 
 import java.math.BigDecimal;
 
+
+
+/**
+ * To make app run without sleeping, comment line #24 in {@link User#executeOperation}
+ * To make output ordinary, switch {@link Main#ATM_PRINT_IN_COLUMNS} to false
+ * To make app run infinitely, change condition in {@link UserThread#run()} to while(true)
+ */
 public class Main {
+    public final static boolean ATM_PRINT_IN_COLUMNS = true;
     public static int valueInt = 0;
     public static BigDecimal valueBD = BigDecimal.ZERO;
 
