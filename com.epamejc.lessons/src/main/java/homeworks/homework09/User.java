@@ -10,10 +10,11 @@ public class User {
 
     public final String name;
 
-    BigDecimal userBalance = new BigDecimal(200_000);
+    BigDecimal userBalance;
 
     public User(String name) {
         this.name = name;
+         userBalance = new BigDecimal(200_000);
     }
 
     @SneakyThrows

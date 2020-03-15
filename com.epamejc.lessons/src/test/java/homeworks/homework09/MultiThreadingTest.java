@@ -129,4 +129,58 @@ public class MultiThreadingTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testUserGoodDeposit() {
+        User user = new User("Masha");
+
+        BigDecimal expected = BigDecimal.valueOf(150_000);
+
+        user.addToBalance(new ATM(1), BigDecimal.valueOf(50_000));
+
+        BigDecimal actual = user.userBalance;
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUserOverDeposit() {
+        User user = new User("Masha");
+
+        BigDecimal expected = user.userBalance;
+
+        user.addToBalance(new ATM(1), user.userBalance.add(BigDecimal.ONE));
+
+        BigDecimal actual = user.userBalance;
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUserGoodCredit() {
+        Balance.setBalance(BigDecimal.valueOf(200_000));
+        User user = new User("Masha");
+
+        BigDecimal expected = user.userBalance.add(BigDecimal.valueOf(50_000));
+
+        user.takeFromBalance(new ATM(1), BigDecimal.valueOf(50_000));
+
+        BigDecimal actual = user.userBalance;
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testUserOverCredit() {
+        Balance.setBalance(BigDecimal.valueOf(200_000));
+        User user = new User("Masha");
+
+        BigDecimal expected = user.userBalance;
+
+        user.takeFromBalance(new ATM(1), BigDecimal.valueOf(1_000_000));
+
+        BigDecimal actual = user.userBalance;
+
+        Assert.assertEquals(expected, actual);
+    }
+
 }
