@@ -1,10 +1,7 @@
 package homeworks.homework09;
 
-import lombok.AllArgsConstructor;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
 
 public class ATM {
     public int id;

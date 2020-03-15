@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Incassation {
 
-    public static boolean fillATM (ATM atm, BigDecimal value) {
+    public static boolean fillATM(ATM atm, BigDecimal value) {
         if (Balance.subtractFromBalance(value)) {
             return atm.addToBalance(value);
         } else {
@@ -13,7 +13,7 @@ public class Incassation {
         }
     }
 
-    public static boolean freeATM (ATM atm, BigDecimal value) {
+    public static boolean freeATM(ATM atm, BigDecimal value) {
         atm.subtractFromBalance(value);
         if (!Balance.addToBalance(value)) {
             System.out.println("Incassation FAILED!");

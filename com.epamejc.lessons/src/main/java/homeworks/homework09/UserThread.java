@@ -41,21 +41,21 @@ public class UserThread extends Thread {
         System.out.println("ATMs balance = " + ATM_System.getAllAtmBalance());
         System.out.println("Total balance = " +
                 allUsersBalance
-                .add(Balance.getBalance())
-                .add(ATM_System.getAllAtmBalance())
+                        .add(Balance.getBalance())
+                        .add(ATM_System.getAllAtmBalance())
                         .setScale(4, RoundingMode.HALF_UP) +
                 ". Should be: " + 2_000_000.0);
     }
 
     private void printOperationResults(int operationID, BigDecimal newBalanceValue) {
-        System.out.println("Operation "+ operationID +
+        System.out.println("Operation " + operationID +
                 ": balance changed to " + newBalanceValue.setScale(3, RoundingMode.HALF_UP));
     }
 
     private void printOperationDetails(int operationID, int operation, User user, BigDecimal amount, ATM atm) {
 
 
-        System.out.println("Operation "+ operationID + ": " +
+        System.out.println("Operation " + operationID + ": " +
                 user.name + " tries to " + getOperationName(operation) +
                 " " + amount.setScale(3, RoundingMode.HALF_UP) + " dollars from ATM № " + atm.id);
     }

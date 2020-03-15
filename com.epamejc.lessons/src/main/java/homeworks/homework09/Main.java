@@ -2,9 +2,6 @@ package homeworks.homework09;
 
 import lombok.SneakyThrows;
 
-import java.math.BigDecimal;
-
-
 
 /**
  * To make app run without sleeping, comment line #24 in {@link User#executeOperation}
@@ -13,8 +10,6 @@ import java.math.BigDecimal;
  */
 public class Main {
     public final static boolean ATM_PRINT_IN_COLUMNS = true;
-    public static int valueInt = 0;
-    public static BigDecimal valueBD = BigDecimal.ZERO;
 
     @SneakyThrows
     public static void main(String[] args) {

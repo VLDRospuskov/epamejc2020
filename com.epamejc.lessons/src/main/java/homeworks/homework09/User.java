@@ -1,6 +1,5 @@
 package homeworks.homework09;
 
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.SneakyThrows;
 
 import java.math.BigDecimal;
@@ -74,7 +73,6 @@ public class User {
         int randomInt = new Random().nextInt(ATM_System.atmList.size());
         return ATM_System.atmList.get(randomInt);
     }
-
 
 
 }
