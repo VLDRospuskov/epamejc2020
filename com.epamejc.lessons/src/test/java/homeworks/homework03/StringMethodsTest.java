@@ -22,7 +22,7 @@ public class StringMethodsTest {
 
     @Test
     public void testGetStringFromIndexes() {
-        int[] indexes = {2,4,5,7};
+        int[] indexes = {2, 4, 5, 7};
         String expected = "lo,w";
 
         String actual = "";

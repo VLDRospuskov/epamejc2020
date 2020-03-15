@@ -22,19 +22,9 @@ package homeworks.homework03;
 import lombok.Setter;
 import lombok.SneakyThrows;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 @Setter
 public class StringMethods {
 
-
-    /**
-     * 3.1
-     * readString() called
-     * need to enter mode (even or odd)
-     */
     @SneakyThrows
     public String getStringOfOddOrEvenLetters(String value, PrintMode printMode) {
         String result = "";
@@ -49,14 +39,6 @@ public class StringMethods {
         return result;
     }
 
-    /**
-     * 3.2
-     * readString() called
-     * need to enter indexes (int) in loop
-     * then print "exit" to get the result
-     */
-
-
     public Character getCharFromStringAtIndex(String value, int index) {
         if (index < 0 || index >= value.length()) {
             System.out.println("Index out of borders");
@@ -66,12 +48,6 @@ public class StringMethods {
         }
     }
 
-    /**
-     * 3.3
-     * readString() called
-     * need to enter 2 indexes (int)
-     * Indexes start with 0
-     */
     @SneakyThrows
     public String swapLetters(String value, int i, int j) {
         String result = value.substring(0, i) + value.charAt(j) +
@@ -81,10 +57,6 @@ public class StringMethods {
         return result;
     }
 
-    /**
-     * 3.4
-     * readString() called
-     */
     public String reverseWords(String value) {
         String result = "";
 
