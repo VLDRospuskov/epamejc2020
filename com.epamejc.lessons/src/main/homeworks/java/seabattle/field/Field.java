@@ -7,10 +7,8 @@ public class Field {
 
     public static Logger log = Logger.getLogger(Field.class.getName());
 
-    private final int width = 10;
-    private final int height = 10;
-    private int coordinateX = 1;
-    private char coordinateY = 'A';
+    public static final int WIDTH = 10;
+    public static final int HEIGHT = 10;
 
     private char[][] cells;
     private IFieldObject[][] objects;
@@ -19,8 +17,8 @@ public class Field {
 
 
     public Field() {
-        cells = new char[height][width];
-        objects = new IFieldObject[width][height];
+        cells = new char[HEIGHT][WIDTH];
+        objects = new IFieldObject[WIDTH][HEIGHT];
 
         neighbours = new Coordinatepointer[8];
         neighbours[0] = new Coordinatepointer(-1, -1);
@@ -44,7 +42,7 @@ public class Field {
     }
 
     public boolean isValidCoordinate(Coordinatepointer point) {
-        return point.x >= 0 && point.x < width && point.y >= 0 && point.y <= height;
+        return point.x >= 0 && point.x < WIDTH && point.y >= 0 && point.y <= HEIGHT;
     }
 
     public boolean isCollide(Coordinatepointer position) {
@@ -67,8 +65,8 @@ public class Field {
     }
 
     public void clean() {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
                 cells[x][y] = ' ';
             }
         }
@@ -76,8 +74,8 @@ public class Field {
 
     public void update() {
         clean();
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
                 IFieldObject currentObject = objects[x][y];
 
                 if (currentObject != null) {
@@ -91,6 +89,8 @@ public class Field {
     public void draw() {
 
         update();
+        int coordinateX = 1;
+        char coordinateY = 'A';
 
         System.out.print("   ");
         for (int i = 0; i < 10; i++) {
@@ -98,13 +98,13 @@ public class Field {
         }
         System.out.println();
 
-        for (int y = 0; y < height; y++) {
-            if (coordinateX < height) {
+        for (int y = 0; y < HEIGHT; y++) {
+            if (coordinateX < HEIGHT) {
                 System.out.print(coordinateX++ + " |");
             } else {
                 System.out.print(coordinateX++ + "|");
             }
-            for (int x = 0; x < width; x++) {
+            for (int x = 0; x < WIDTH; x++) {
                 cells[x][y] = '_';
                 System.out.print(cells[x][y]);
                 System.out.print('|');

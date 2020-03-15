@@ -1,9 +1,12 @@
 package homeworks.java.seabattle.player;
 
 import homeworks.java.seabattle.field.Coordinatepointer;
+import homeworks.java.seabattle.field.Field;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 import homeworks.java.seabattle.input.Orientation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ShipFiller {
@@ -18,6 +21,13 @@ public class ShipFiller {
     public void fill() {
 
         Random rand = new Random();
+        List<Coordinatepointer> fieldPoints = new ArrayList<>();
+
+        for(int x = 0; x < Field.WIDTH; x++) {
+            for (int y = 0; y < Field.HEIGHT; y++) {
+                fieldPoints.add(new Coordinatepointer(x, y));
+            }
+        }
 
         for (int i = 1; i < DeckNumberCount.values().length; i++) {
 
@@ -29,10 +39,9 @@ public class ShipFiller {
                         : Orientation.VERTICAL;
 
                 do {
-                    int x = rand.nextInt(10);
-                    int y = rand.nextInt(10);
+                    int index = rand.nextInt(fieldPoints.size());
 
-                    Coordinatepointer coord = new Coordinatepointer(x, y);
+                    Coordinatepointer coord = fieldPoints.get(index);
 
                     if (player.isPosibleToPlace(orient, dc, coord)) {
                         player.addShip(orient, dc, coord);
@@ -40,7 +49,7 @@ public class ShipFiller {
                         break;
                     }
                 }
-                while (true);
+                while (!fieldPoints.isEmpty());
             }
         }
     }

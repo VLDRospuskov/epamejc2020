@@ -35,20 +35,17 @@ public class BasePlayer {
         maxShips = 0;
         aliveShips = 0;
         filler = new ShipFiller(this);
-        shipCounter = new HashMap<DeckNumberCount, Integer>();
+        shipCounter = new HashMap<>();
 
         for (int i = 1; i < DeckNumberCount.values().length; ++i) {
 
             int shipCount = 5 - i;
 
             shipCounter.put(DeckNumberCount.valueOf(i), shipCount);
-
-            // _max_ships = _max_ships + ship_count;
             maxShips += shipCount;
         }
-
         if (maxShips > 0) {
-            ships = new ArrayList<Ship>();
+            ships = new ArrayList<>();
         }
     }
 
@@ -82,21 +79,17 @@ public class BasePlayer {
     }
 
     public boolean addShip(Orientation orient, DeckNumberCount dc, Coordinatepointer startCoord) {
-
         int freePlaces = getFreePlace(dc);
 
         if (freePlaces > 0) {
             Coordinatepointer[] coords = Ship.getCoordsForShip(field, dc, orient, startCoord);
 
             if (coords == null) {
-
                 return false;
             }
 
             Ship ship = new Ship(field, dc, orient, coords);
-
             ships.add(ship);
-
             freePlaces -= 1;
             shipCounter.replace(dc, freePlaces);
             aliveShips++;
