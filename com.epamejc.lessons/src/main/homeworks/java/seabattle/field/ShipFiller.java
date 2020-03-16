@@ -4,10 +4,7 @@ import homeworks.java.seabattle.field.ship.DeckNumberCount;
 import homeworks.java.seabattle.input.Orientation;
 import homeworks.java.seabattle.player.BasePlayer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
 
 public class ShipFiller {
 

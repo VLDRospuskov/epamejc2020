@@ -21,6 +21,11 @@ public class Deck implements IFieldObject {
     }
 
     @Override
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    @Override
     public Coordinatepointer getPosition() {
         return position;
     }

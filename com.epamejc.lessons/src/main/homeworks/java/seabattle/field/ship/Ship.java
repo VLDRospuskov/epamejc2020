@@ -31,6 +31,14 @@ public class Ship {
         }
     }
 
+    public Coordinatepointer[] getCoordinates() {
+        return coordinates;
+    }
+
+    public Deck[] getDecks() {
+        return decks;
+    }
+
     public DeckNumberCount getDeckCount() {
         return deckCount;
     }
@@ -41,7 +49,7 @@ public class Ship {
                 coordinates != null;
     }
 
-    public boolean isAlive() {
+    public boolean isShipAlive() {
         boolean isAlive = false;
 
         for (Deck deck : decks) {
