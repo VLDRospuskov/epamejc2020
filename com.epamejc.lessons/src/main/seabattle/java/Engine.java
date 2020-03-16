@@ -1,7 +1,6 @@
 package seabattle.java;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import static seabattle.java.Utils.*;
 
@@ -21,10 +20,10 @@ public class Engine {
     // TODO Добавить Welcome сообщение и меню выбора типа игры
     public void startWithManualShipPlacement() {
 //        manualShipPlacement(FIELD_1);
-        autoShipPlacement(FIELD_1);
-        autoShipPlacement(FIELD_2);
-//        testShipPlacement(field1);
-//        testShipPlacement(field2);
+//        autoShipPlacement(FIELD_1);
+//        autoShipPlacement(FIELD_2);
+        testShipPlacement(FIELD_1);
+        testShipPlacement(FIELD_2);
 //        printTwoFields(field1, field2);
         printField(FIELD_1);
         printField(FIELD_2);
@@ -41,8 +40,8 @@ public class Engine {
         field.getShips().add(new Ship(2, new Integer[]{6, 0}, new Integer[]{7, 0}, field));
         field.getShips().add(new Ship(2, new Integer[]{2, 9}, new Integer[]{3, 9}, field));
         field.getShips().add(new Ship(3, new Integer[]{1, 2}, new Integer[]{3, 2}, field));
-        field.getShips().add(new Ship(3, new Integer[]{6, 6}, new Integer[]{8, 6}, field));
-        field.getShips().add(new Ship(4, new Integer[]{3, 4}, new Integer[]{6, 4}, field));
+        field.getShips().add(new Ship(3, new Integer[]{7, 5}, new Integer[]{7, 7}, field));
+        field.getShips().add(new Ship(4, new Integer[]{2, 4}, new Integer[]{2, 7}, field));
     }
 
     public void manualShipPlacement(Field field) {
@@ -68,7 +67,6 @@ public class Engine {
             }
         }
     }
-
 
 
     public boolean checkAllShipsLimit(Field field) {
@@ -163,34 +161,65 @@ public class Engine {
     }
 
     private Field autoMove(Field field1, Field field2) {
-        boolean isContinueShooting;
-            do {
-                isContinueShooting = false;
-                Integer[] coordYX = randomShoting(field1);
-                printTwoFields(field2, field1);
-                if (field1.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == 1 && !checkEndGame()) {
-                    isContinueShooting = true;
-                    System.out.println("\nGot it! Shoot again!");
-                }
-            } while (isContinueShooting && !checkEndGame());
+        if (AI.getShootData() != null && !AI.getShootData().isDone()) {
+            continueShooting(field1, field2, AI.getShootData().getSTART_YX());
+        } else {
+            Integer[] coordYX = randomShooting(field1);
+//            Integer[] coordYX = {7, 7};
+//            if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
+//                System.out.println("\nYou already shoot there! The move goes to another player.");
+//                return field1;
+//            }
+//            shoot(field1, coordYX);
+            if (AI.getShootData() == null || AI.getShootData().isDone()) {
+                AI.setShootData(new ShootData(coordYX));
+            }
+            if(!checkIsCellAShip(field1, coordYX)){
+                AI.getShootData().setDone(true);
+            }
+            continueShooting(field1, field2, coordYX);
+        }
+
+
+        printTwoFields(field2, field1);
         if (!checkEndGame()) {
             System.out.println("\nMissed! The move goes to another player...\n");
+
+            System.out.println("Shoot left counter: " + AI.getShootData().getShootLeft());
+            System.out.println("DoNotShootLeft: " + AI.getShootData().isDoNotShootLeft());
+            System.out.println("DoNotShootUp: " + AI.getShootData().isDoNotShootUp());
+            System.out.println("DoNotShootRight: " + AI.getShootData().isDoNotShootRight());
+            System.out.println("DoNotShootDown: " + AI.getShootData().isDoNotShootDown());
+            System.out.println("isDone: " + AI.getShootData().isDone());
+
+            if (AI.getShootData().isDone()) {
+                AI.setShootData(null);
+            }
+
         }
         return field1;
     }
 
-    private Integer[] randomShoting(Field field) {
+    private void continueShooting(Field field1, Field field2, Integer[] coordYX) {
+        boolean isContinueShooting;
+        do {
+            isContinueShooting = false;
+
+            if (checkIsCellAShip(field1, coordYX) && !checkEndGame()) {
+                System.out.println("\nGot it! Shoot again!");
+                AI.finishingShooting(field1);
+                printTwoFields(field2, field1);
+                coordYX = AI.getShootData().getLastYX();
+                isContinueShooting = checkIsCellAShip(field1, coordYX) && !checkEndGame() && !AI.getShootData().isDone();
+            }
+        } while (isContinueShooting && !checkEndGame());
+    }
+
+    private Integer[] randomShooting(Field field) {
         Integer[] coordYX = AI.generateRandomCoordinate(field);
         shoot(field, coordYX);
         return coordYX;
     }
-
-    //TODO реализовать добивание
-    private void finishingShoting() {
-
-    }
-
-
 
     protected boolean checkEndGame() {
         int sunkShipsCountOnField1 = countSunkShips(FIELD_1);
@@ -214,11 +243,6 @@ public class Engine {
             return FIELD_2.getId();
         }
         return FIELD_2.getId();
-    }
-
-    protected Field shoot(Field field, Integer[] coordYX) {
-        field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
-        return field;
     }
 
 

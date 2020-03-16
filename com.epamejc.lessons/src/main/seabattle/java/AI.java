@@ -3,10 +3,18 @@ package seabattle.java;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
+import static seabattle.java.Utils.*;
 
 @Data
 public class AI {
+
+    private ShootData shootData;
+
+    public AI() {
+        shootData = null;
+    }
 
     protected ArrayList generateRandomShipParamsByShipType(int shipType) {
         ArrayList params = new ArrayList();
@@ -55,6 +63,83 @@ public class AI {
             }
         } while (isAlreadyHit);
         return coordYX;
+    }
+
+    protected void finishingShooting(Field field) {
+        Integer[] coordYX = shootData.getSTART_YX();
+        int y = coordYX[0];
+        int x = coordYX[1];
+        if (!shootData.isDoNotShootLeft()) {
+            finishingShootLeft(field, y, x);
+        } else if (!shootData.isDoNotShootUp()) {
+            finishingShootUp(field, y, x);
+        } else if (!shootData.isDoNotShootRight()) {
+            finishingShootRight(field, y, x);
+        } else if (!shootData.isDoNotShootDown()) {
+            finishingShootDown(field, y, x);
+        }
+        shootData.checkFlags();
+    }
+
+    private void finishingShootLeft(Field field, int y, int x) {
+        x -= shootData.getShootLeft() + 1;
+        Integer[] coordYX = new Integer[] {y, x};
+        shoot(field, coordYX);
+        shootData.setShootLeft(shootData.getShootLeft() + 1);
+
+        shootData.setLastYX(coordYX);
+        if (!checkIsCellAShip(field, coordYX)) {
+            shootData.setDoNotShootLeft(true);
+        }
+        if (shootData.getShootLeft() > 1) {
+            shootData.setDoNotShootUp(true);
+            shootData.setDoNotShootDown(true);
+        }
+    }
+
+    private void finishingShootUp(Field field, int y, int x) {
+        y -= shootData.getShootUp() + 1;
+        Integer[] coordYX = new Integer[] {y, x};
+        shoot(field, coordYX);
+        shootData.setShootUp(shootData.getShootUp() + 1);
+        shootData.setLastYX(coordYX);
+        if (!checkIsCellAShip(field, coordYX)) {
+            shootData.setDoNotShootUp(true);
+        }
+        if (shootData.getShootUp() > 1) {
+            shootData.setDoNotShootLeft(true);
+            shootData.setDoNotShootRight(true);
+        }
+    }
+
+    private void finishingShootRight(Field field, int y, int x) {
+        x += shootData.getShootRight() + 1;
+        Integer[] coordYX = new Integer[] {y, x};
+        shoot(field, coordYX);
+        shootData.setShootRight(shootData.getShootRight() + 1);
+        shootData.setLastYX(coordYX);
+        if (!checkIsCellAShip(field, coordYX)) {
+            shootData.setDoNotShootRight(true);
+        }
+        if (shootData.getShootRight() > 1) {
+            shootData.setDoNotShootUp(true);
+            shootData.setDoNotShootDown(true);
+        }
+    }
+
+    private void finishingShootDown(Field field, int y, int x) {
+        y += shootData.getShootDown() + 1;
+        Integer[] coordYX = new Integer[] {y, x};
+        shoot(field, coordYX);
+        shootData.setShootDown(shootData.getShootDown() + 1);
+        shootData.setLastYX(coordYX);
+        if (!checkIsCellAShip(field, coordYX)) {
+            shootData.setDoNotShootDown(true);
+        }
+        if (shootData.getShootDown() > 1) {
+            shootData.setDoNotShootLeft(true);
+            shootData.setDoNotShootRight(true);
+        }
     }
 
 }

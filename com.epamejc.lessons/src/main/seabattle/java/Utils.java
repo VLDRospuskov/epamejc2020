@@ -197,4 +197,15 @@ public class Utils {
         return 4;
     }
 
+    public static boolean checkIsCellAShip(Field field, Integer[] coordYX) {
+        return field.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == 1;
+    }
+
+    public static Field shoot(Field field, Integer[] coordYX) {
+        field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
+        return field;
+    }
+
+
+
 }
