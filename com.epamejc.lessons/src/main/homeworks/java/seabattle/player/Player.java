@@ -28,7 +28,7 @@ public class Player extends BasePlayer implements InputListener {
 
     @Override
     public void attack(int x, int y) {
-
+//        game.getBasePlayer().getAliveShips()
     }
 
     @Override
@@ -44,4 +44,9 @@ public class Player extends BasePlayer implements InputListener {
         input.process(game.getState());
     }
 
+    @Override
+    public void process(int index) {
+        super.process();
+        input.process(game.getState());
+    }
 }

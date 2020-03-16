@@ -1,5 +1,6 @@
 package homeworks.java.seabattle.field;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,15 +11,28 @@ public class Field {
     public static final int WIDTH = 10;
     public static final int HEIGHT = 10;
 
+    private char[] head;
     private char[][] cells;
+
     private IFieldObject[][] objects;
+    Coordinatepointer[] neighbours;
 
-    private Coordinatepointer[] neighbours;
-
+    public IFieldObject[][] getObjects() {
+        return objects;
+    }
 
     public Field() {
+        head = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         cells = new char[HEIGHT][WIDTH];
         objects = new IFieldObject[WIDTH][HEIGHT];
+
+        for (int y = 0; y < HEIGHT; ++y) {
+
+            for (int x = 0; x < WIDTH; ++x) {
+
+                cells[x][y] = ' ';
+            }
+        }
 
         neighbours = new Coordinatepointer[8];
         neighbours[0] = new Coordinatepointer(-1, -1);
@@ -32,7 +46,7 @@ public class Field {
     }
 
     public void addObject(IFieldObject fieldObject) {
-        Coordinatepointer position = new Coordinatepointer();
+        Coordinatepointer position = fieldObject.getPosition();
 
         if (isValidCoordinate(fieldObject.getPosition())) {
             objects[position.x][position.y] = fieldObject;
@@ -42,7 +56,7 @@ public class Field {
     }
 
     public boolean isValidCoordinate(Coordinatepointer point) {
-        return point.x >= 0 && point.x < WIDTH && point.y >= 0 && point.y <= HEIGHT;
+        return point.x >= 0 && point.x < WIDTH && point.y >= 0 && point.y < HEIGHT;
     }
 
     public boolean isCollide(Coordinatepointer position) {
@@ -56,9 +70,11 @@ public class Field {
         for (Coordinatepointer p : neighbours) {
             Coordinatepointer neighbour = new Coordinatepointer(position.x + p.x, position.y + p.y);
 
-            if (isValidCoordinate(neighbour) && objects[neighbour.x][neighbour.y] != null) {
-                result = true;
-                break;
+            if (isValidCoordinate(neighbour)) {
+                if (objects[neighbour.x][neighbour.y] != null) {
+                    result = true;
+                    break;
+                }
             }
         }
         return result;
@@ -86,30 +102,35 @@ public class Field {
         }
     }
 
-    public void draw() {
+    public void draw(boolean isUpdate) {
 
-        update();
-        int coordinateX = 1;
-        char coordinateY = 'A';
+        if (isUpdate) update();
+        int coordX = 0;
+        int coordY = 1;
 
-        System.out.print("   ");
-        for (int i = 0; i < 10; i++) {
-            System.out.print(coordinateY++ + " ");
+        System.out.print(' ');
+        for (int x = 0; x < WIDTH; x++) {
+
+            System.out.print(' ');
+            System.out.print(head[coordX]);
+
+            coordX += 1;
         }
+
         System.out.println();
 
         for (int y = 0; y < HEIGHT; y++) {
-            if (coordinateX < HEIGHT) {
-                System.out.print(coordinateX++ + " |");
-            } else {
-                System.out.print(coordinateX++ + "|");
-            }
+
+            System.out.print(coordY++);
+
             for (int x = 0; x < WIDTH; x++) {
-                cells[x][y] = '_';
+
+                if (!(x == 0 && coordY == 11)) {
+                    System.out.print(' ');
+                }
                 System.out.print(cells[x][y]);
-                System.out.print('|');
             }
-            System.out.println();
+            System.out.println('|');
         }
     }
 }

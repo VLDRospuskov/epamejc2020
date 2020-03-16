@@ -3,8 +3,10 @@ package homeworks.java.seabattle.player;
 import homeworks.java.seabattle.battle.Game;
 import homeworks.java.seabattle.field.Coordinatepointer;
 import homeworks.java.seabattle.field.Field;
+import homeworks.java.seabattle.field.ShipFiller;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 import homeworks.java.seabattle.field.ship.Ship;
+import homeworks.java.seabattle.input.GameState;
 import homeworks.java.seabattle.input.Orientation;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class BasePlayer {
         filler = new ShipFiller(this);
         shipCounter = new HashMap<>();
 
-        for (int i = 1; i < DeckNumberCount.values().length; ++i) {
+        for (int i = 1; i < DeckNumberCount.decksOnField.length + 1; i++) {
 
             int shipCount = 5 - i;
 
@@ -61,8 +63,7 @@ public class BasePlayer {
 
         Coordinatepointer position = new Coordinatepointer(startCoord.x, startCoord.y);
 
-        for (int i = 0; i < dc.getValue(); ++i) {
-
+        for (int i = 0; i < dc.getValue(); i++) {
             isPossibleToPlace = field.isValidCoordinate(position) &&
                     !field.isCollide(position) &&
                     !field.hasNeighbours(position);
@@ -101,7 +102,14 @@ public class BasePlayer {
     }
 
     public void process() {
-        field.draw();
+        field.draw(true);
+    }
+
+    public void process(int index) {
+        if (game.getState() != GameState.BATTLE) field.draw(false);
+        if (index == 1 && !isFieldFilled()) {
+            fillAutomatically();
+        }
     }
 
     public boolean isFieldFilled() {
@@ -112,4 +120,7 @@ public class BasePlayer {
         return aliveShips;
     }
 
+    public void fillAutomatically() {
+        filler.fill();
+    }
 }

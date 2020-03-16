@@ -2,22 +2,24 @@ package homeworks.java.seabattle.field.ship;
 
 public enum DeckNumberCount {
 
-    INVALIDE(-1),
     ONE(1),
     TWO(2),
     THREE(3),
-    FOUR(4);
+    FOUR(4),
+    INVALID(-1);
 
     private int value;
-    private static DeckNumberCount[] field;
+    public static DeckNumberCount[] decksOnField;
 
     static {
-        field = new DeckNumberCount[5];
+        decksOnField = new DeckNumberCount[4];
 
         int counter = 0;
 
         for (DeckNumberCount d : DeckNumberCount.values()) {
-            field[counter++] = d;
+            if(d.getValue() > 0) {
+                decksOnField[counter++] = d;
+            }
         }
     }
 
@@ -30,9 +32,11 @@ public enum DeckNumberCount {
     }
 
     public static DeckNumberCount valueOf(int i) {
+
         if (i >= 0 && i < 5) {
-            return field[i];
+            return decksOnField[i-1];
         }
-        return INVALIDE;
+        return INVALID;
     }
+
 }

@@ -1,17 +1,18 @@
-package homeworks.java.seabattle.player;
+package homeworks.java.seabattle.field;
 
-import homeworks.java.seabattle.field.Coordinatepointer;
-import homeworks.java.seabattle.field.Field;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 import homeworks.java.seabattle.input.Orientation;
+import homeworks.java.seabattle.player.BasePlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 public class ShipFiller {
 
     private BasePlayer player;
+    private int shipCounter = 0;
 
     public ShipFiller(BasePlayer player) {
 
@@ -19,37 +20,26 @@ public class ShipFiller {
     }
 
     public void fill() {
-
         Random rand = new Random();
-        List<Coordinatepointer> fieldPoints = new ArrayList<>();
 
-        for(int x = 0; x < Field.WIDTH; x++) {
-            for (int y = 0; y < Field.HEIGHT; y++) {
-                fieldPoints.add(new Coordinatepointer(x, y));
-            }
-        }
-
-        for (int i = 1; i < DeckNumberCount.values().length; i++) {
-
+        for (int i = 1; i < DeckNumberCount.decksOnField.length + 1; i++) {
             DeckNumberCount dc = DeckNumberCount.valueOf(i);
 
             while (player.getFreePlace(dc) > 0) {
-
                 Orientation orient = rand.nextInt(2) > 0 ? Orientation.HORIZONTAL
                         : Orientation.VERTICAL;
+                while(shipCounter < 10) {
+                    int x = rand.nextInt(10);
+                    int y = rand.nextInt(10);
 
-                do {
-                    int index = rand.nextInt(fieldPoints.size());
-
-                    Coordinatepointer coord = fieldPoints.get(index);
+                    Coordinatepointer coord = new Coordinatepointer(x, y);
 
                     if (player.isPosibleToPlace(orient, dc, coord)) {
                         player.addShip(orient, dc, coord);
-
+                        shipCounter++;
                         break;
                     }
                 }
-                while (!fieldPoints.isEmpty());
             }
         }
     }

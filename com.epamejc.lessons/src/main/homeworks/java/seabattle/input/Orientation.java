@@ -5,8 +5,7 @@ import homeworks.java.seabattle.field.Coordinatepointer;
 public enum Orientation {
     HORIZONTAL(0),
     VERTICAL(1),
-    NONE(-1),
-    DEFAULT(0);
+    NONE(-1);
 
     private final int value;
 

@@ -28,12 +28,20 @@ public class Input {
     }
 
     private void showNewMessage() {
-        String format = currentShipDeckNumber > 1 ? "x, y, orientation" : "x, y";
-        currentMessage = String.format(baseFillingMessage, currentShipDeckNumber, format);
+        String format = currentShipDeckNumber > 1 ? "x,y;orientation(v/h)" : "x,y";
+        if (currentShipDeckNumber >= 5) {
+        } else {
+            currentMessage = String.format(baseFillingMessage, currentShipDeckNumber, format);
+        }
     }
 
     public void process(GameState state) {
-        System.out.println(currentMessage);
+        if (state == GameState.BATTLE) {
+            System.out.println("Chose point to attack as 'x,y'");
+        } else {
+            System.out.println(currentMessage);
+        }
+
         line = null;
 
         try {
@@ -63,9 +71,9 @@ public class Input {
         int x = -1;
         int y = -1;
 
-        if (coordinates.length == 2) {
+        if (coordinates.length >= 2) {
             x = Character.toLowerCase(coordinates[0].charAt(0)) - 'a';
-            y = Integer.parseInt(coordinates[1]);
+            y = Integer.parseInt(coordinates[1]) - 1;
         }
         return new Coordinatepointer(x, y);
     }
@@ -82,11 +90,11 @@ public class Input {
 
         DeckNumberCount dc = DeckNumberCount.valueOf(currentShipDeckNumber);
 
-        if (shipInfo.length > 1) {
-            Coordinatepointer coordinate = parseCoordinates(line);
+        if (shipInfo.length >= 1) {
+            Coordinatepointer coordinate = parseCoordinates(shipInfo[0]);
 
             if (currentShipDeckNumber == 1) {
-                orient = DEFAULT;
+                orient = HORIZONTAL;
             } else if (shipInfo[1] != null && shipInfo[1].equalsIgnoreCase("h")) {
                 orient = HORIZONTAL;
             } else if (shipInfo[1] != null && shipInfo[1].equalsIgnoreCase("v")) {
@@ -108,7 +116,7 @@ public class Input {
     private void doBattle(String line) {
         Coordinatepointer coordinate = parseCoordinates(line);
 
-        if (coordinate.x >= 0 && coordinate.y >= 0) {
+        if (coordinate.x >= 0 && coordinate.y >= 0 && coordinate.x <=10 && coordinate.y <= 10) {
             inListener.attack(coordinate.x, coordinate.y);
         }
     }

@@ -28,6 +28,14 @@ public class Game {
         return gameState;
     }
 
+    public BasePlayer getBasePlayer() {
+        return players[1];
+    }
+
+    public BasePlayer getPlayer() {
+        return players[0];
+    }
+
     private void nextStep(){
         currentIndex++;
 
@@ -42,7 +50,7 @@ public class Game {
                 players[1].isFieldFilled()){
             gameState = GameState.BATTLE;
         }
-        players[currentIndex].process();
+        players[currentIndex].process(currentIndex);
         nextStep();
     }
 

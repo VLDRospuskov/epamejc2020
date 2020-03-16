@@ -13,7 +13,7 @@ public class Ship {
 
     public Ship() {
         decks = null;
-        deckCount = DeckNumberCount.INVALIDE;
+        deckCount = DeckNumberCount.INVALID;
         orientation = Orientation.NONE;
         coordinates = null;
     }
@@ -36,7 +36,7 @@ public class Ship {
     }
 
     public boolean isValid() {
-        return deckCount != DeckNumberCount.INVALIDE &&
+        return deckCount != DeckNumberCount.INVALID &&
                 orientation != Orientation.NONE &&
                 coordinates != null;
     }
