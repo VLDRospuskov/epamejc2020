@@ -1,9 +1,8 @@
 package seabattle;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Field {
     
@@ -71,13 +70,11 @@ public class Field {
             if (coordinate.getX() > 0 && coordinate.getY() < 9) {
                 assistSet.add(new Assist(new Coordinate(coordinate.getX() - 1, coordinate.getY() + 1)));
             }
-            //7
             if (coordinate.getY() < 9 && !ship.getShipParts()
                                               .contains(new Coordinate(coordinate.getX(),
                                                                        coordinate.getY() + 1))) {
                 assistSet.add(new Assist(new Coordinate(coordinate.getX(), coordinate.getY() + 1)));
             }
-            //8
             if (coordinate.getX() < 9 && coordinate.getY() < 9) {
                 assistSet.add(new Assist(new Coordinate(coordinate.getX() + 1, coordinate.getY() + 1)));
             }
@@ -304,13 +301,16 @@ public class Field {
                 if (first.getX() > second.getX() || first.getY() > second.getY()) {
                     ship = new Ship(second, first);
                 }
+                if (checkNoShipCollision(ship)) {
+                    System.out.println("No collision!");
+                    ships.add(ship);
+                    addPointsAroundShip(ship);
+                    view.updateFieldView(this);
+                    view.printField(this);
+                } else {
+                    System.out.println("Collision");
+                }
                 
-                ships.add(ship);
-                //  System.out.println(ship.getDirection());
-                addPointsAroundShip(ship);
-                view.updateFieldView(this);
-                view.printField(this);
-                // TODO: 15-Mar-20 коллизия кораблей
                 // TODO: 15-Mar-20 ограничение кол-ва кораблей по типу
             } else {
                 System.out.println(ships);
@@ -320,9 +320,16 @@ public class Field {
         
     }
     
-    public boolean checkShipCollision(Ship ship) {
-        // TODO: 16-Mar-20 Функция проверки пересечения частей корабля с Ship или Assist
-        return false;
+    public boolean checkNoShipCollision(Ship ship) {
+        Stream<Coordinate> coordinateOneStream = ships.stream()
+                                                      .map(Ship::getShipParts)
+                                                      .flatMap(Collection::stream);
+        Stream<Coordinate> coordinateTwoStream = assistSet.stream()
+                                                          .map(Assist::getAssistPoint);
+        Stream<Coordinate> concat = Stream.concat(coordinateOneStream, coordinateTwoStream);
+        List<Coordinate> coordinateList = concat.collect(Collectors.toList());
+        List<Coordinate> shipParts = ship.getShipParts();
+        return Collections.disjoint(coordinateList, shipParts);
     }
     
     public void printState() {
