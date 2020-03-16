@@ -45,8 +45,48 @@ public class Field {
     }
     
     public void addPointsAroundShip(Ship ship) {
+        for (Coordinate coordinate :
+                ship.getShipParts()) {
+            if (coordinate.getX() > 0 && coordinate.getY() > 0) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX() - 1, coordinate.getY() - 1)));
+            }
+            if (coordinate.getY() > 0 && !ship.getShipParts()
+                                              .contains(new Coordinate(coordinate.getX(),
+                                                                       coordinate.getY() - 1))) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX(), coordinate.getY() - 1)));
+            }
+            if (coordinate.getX() < 9 && coordinate.getY() > 0) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX() + 1, coordinate.getY() - 1)));
+            }
+            if (coordinate.getX() > 0 && !ship.getShipParts()
+                                              .contains(new Coordinate(coordinate.getX() - 1,
+                                                                       coordinate.getY()))) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX() - 1, coordinate.getY())));
+            }
+            if (coordinate.getX() < 9 && !ship.getShipParts()
+                                              .contains(new Coordinate(coordinate.getX() + 1,
+                                                                       coordinate.getY()))) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX() + 1, coordinate.getY())));
+            }
+            if (coordinate.getX() > 0 && coordinate.getY() < 9) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX() - 1, coordinate.getY() + 1)));
+            }
+            //7
+            if (coordinate.getY() < 9 && !ship.getShipParts()
+                                              .contains(new Coordinate(coordinate.getX(),
+                                                                       coordinate.getY() + 1))) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX(), coordinate.getY() + 1)));
+            }
+            //8
+            if (coordinate.getX() < 9 && coordinate.getY() < 9) {
+                assistSet.add(new Assist(new Coordinate(coordinate.getX() + 1, coordinate.getY() + 1)));
+            }
+        }
+    }
+    
+   /* public void addPointsAroundShip(Ship ship) {
         //Assist assist = new Assist(new Coordinate())
-        
+
         int direction = ship.getDirection();
         switch (direction) {
             case 0:
@@ -63,7 +103,7 @@ public class Field {
                                                                 .getX() + 1,
                                                             ship.getFirstCoordinate()
                                                                 .getY())));
-                    
+
                 }
                 if (ship.getFirstCoordinate()
                         .getY() > 0) {
@@ -112,7 +152,7 @@ public class Field {
                                                                 .getY() + 1)));
                 }
                 break;
-    
+
             case 1:
                 if (ship.getFirstCoordinate()
                         .getX() > 0) {
@@ -185,7 +225,7 @@ public class Field {
                                                             ship.getFirstCoordinate()
                                                                 .getY() - 1)));
                 }
-                
+
                 if (ship.getFirstCoordinate()
                         .getY() > 0 && ship.getFirstCoordinate()
                                            .getX() > 0) {
@@ -194,7 +234,7 @@ public class Field {
                                                             ship.getFirstCoordinate()
                                                                 .getY() - 1)));
                 }
-                
+
                 if (ship.getFirstCoordinate()
                         .getY() > 0 && ship.getFirstCoordinate()
                                            .getX() < 9) {
@@ -203,7 +243,7 @@ public class Field {
                                                             ship.getFirstCoordinate()
                                                                 .getY() - 1)));
                 }
-                
+
                 for (int i = 0; i < ship.getLength(); i++) {
                     if (ship.getFirstCoordinate()
                             .getX() < 9) {
@@ -220,7 +260,7 @@ public class Field {
                                                                     .getY() + i)));
                     }
                 }
-                
+
                 if (ship.getSecondCoordinate()
                         .getY() < 9) {
                     assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
@@ -245,9 +285,9 @@ public class Field {
                                                                 .getY() + 1)));
                 }
                 break;
-    
+
         }
-    }
+    }*/
     
     public void fillListOfShips() {
         
