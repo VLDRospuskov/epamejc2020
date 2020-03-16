@@ -1,15 +1,15 @@
 package seabattle;
 
+import java.util.Arrays;
+
 public class View {
     
     private String[][] textView = new String[10][10];
     private String[] names = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
     
     public View() {
-        for (int i = 0; i < textView.length; i++) {
-            for (int j = 0; j < textView[i].length; j++) {
-                textView[i][j] = GameObjectView.EMPTY.getState();
-            }
+        for (String[] strings : textView) {
+            Arrays.fill(strings, GameObjectView.EMPTY.getState());
         }
     }
     
@@ -33,31 +33,39 @@ public class View {
         updateShipView(field);
         updateAssistantView(field);
         updateShotsView(field);
+        //printField(field);
     }
     
     public void updateShipView(Field field) {
-        for (int i = 0; i < field.ships.size(); i++) {
-            Ship ship = field.ships.get(i);
-            Coordinate firstCoordinate = ship.getFirstCoordinate();
-            //Coordinate secondCoordinate = ship.getSecondCoordinate();
-            int length = ship.getLength();
-            int direction = ship.getDirection();
-            for (int j = 0; j < length; j++) {
-                switch (direction) {
-                    case 0:
-                        textView[firstCoordinate.getY()][firstCoordinate.getX()] = GameObjectView.UNBROKEN.getState();
-                        break;
-                    case 1:
-                        textView[firstCoordinate.getY()][firstCoordinate.getX() + j] =
-                                GameObjectView.UNBROKEN.getState();
-                        break;
-                    case 2:
-                        textView[firstCoordinate.getY() + j][firstCoordinate.getX()] =
-                                GameObjectView.UNBROKEN.getState();
-                        break;
-                }
+        for (Ship ship :
+                field.getShips()) {
+            for (Coordinate coordinate :
+                    ship.getShipParts()) {
+                textView[coordinate.getY()][coordinate.getX()] = GameObjectView.UNBROKEN.getState();
             }
         }
+//        for (int i = 0; i < field.ships.size(); i++) {
+//            Ship ship = field.ships.get(i);
+//            Coordinate firstCoordinate = ship.getFirstCoordinate();
+//            //Coordinate secondCoordinate = ship.getSecondCoordinate();
+//            int length = ship.getLength();
+//            int direction = ship.getDirection();
+//            for (int j = 0; j < length; j++) {
+//                switch (direction) {
+//                    case 0:
+//                        textView[firstCoordinate.getY()][firstCoordinate.getX()] = GameObjectView.UNBROKEN.getState();
+//                        break;
+//                    case 1:
+//                        textView[firstCoordinate.getY()][firstCoordinate.getX() + j] =
+//                                GameObjectView.UNBROKEN.getState();
+//                        break;
+//                    case 2:
+//                        textView[firstCoordinate.getY() + j][firstCoordinate.getX()] =
+//                                GameObjectView.UNBROKEN.getState();
+//                        break;
+//                }
+//            }
+//        }
     }
     
     public void updateAssistantView(Field field) {

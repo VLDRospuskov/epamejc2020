@@ -1,5 +1,6 @@
 package seabattle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ship {
@@ -34,6 +35,14 @@ public class Ship {
         this.secondCoordinate = secondCoordinate;
     }
     
+    public List<Coordinate> getShipParts() {
+        return shipParts;
+    }
+    
+    public void setShipParts(List<Coordinate> shipParts) {
+        this.shipParts = shipParts;
+    }
+    
     public int getLength() {
         return length;
     }
@@ -46,40 +55,53 @@ public class Ship {
         return this.direction;
     }
     
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+    
     public int calculateLength() {
-        return firstCoordinate.getX() == secondCoordinate.getX() ?
-               Math.abs(firstCoordinate.getY() - secondCoordinate.getY()) :
-               Math.abs(firstCoordinate.getX() - secondCoordinate.getX());
+        return (firstCoordinate.getX() == secondCoordinate.getX() ?
+                Math.abs(firstCoordinate.getY() - secondCoordinate.getY()) :
+                Math.abs(firstCoordinate.getX() - secondCoordinate.getX())) + 1;
     }
     
     public int calculateDirection() {
-//        if (firstCoordinate.getY() == secondCoordinate.getY() && secondCoordinate.getX() == firstCoordinate.getX()) {
-//            return 0;
-//        }
         if (firstCoordinate.getY() - secondCoordinate.getY() < 0) {
             return 2;
-            }
-            if (firstCoordinate.getX() - secondCoordinate.getX() < 0) {
-                return 1;
-            }
+        }
+        if (firstCoordinate.getX() - secondCoordinate.getX() < 0) {
+            return 1;
+        }
         return 0;
     }
     
     private List<Coordinate> fillShipPartsList() {
-        
-        switch (selectStrategy()) {
-            case "vertically":
+        List<Coordinate> coordinates = new ArrayList<>();
+        switch (direction) {
+            case 0:
+                coordinates.add(firstCoordinate);
                 break;
-            case "horizontally":
+            case 1:
+                fillHorizontally(coordinates);
+                break;
+            case 2:
+                fillVertically(coordinates);
                 break;
         }
-        
-        return null;
+    
+        return coordinates;
     }
     
-    private String selectStrategy() {
-        // TODO: 16-Mar-20 Выбор стратегии заполнения списка частей корабля в зависимости от направления
-        return null;
+    private void fillHorizontally(List<Coordinate> coordinates) {
+        for (int i = 0; i < length; i++) {
+            coordinates.add(new Coordinate(firstCoordinate.getX() + i, firstCoordinate.getY()));
+        }
+    }
+    
+    private void fillVertically(List<Coordinate> coordinates) {
+        for (int i = 0; i < length; i++) {
+            coordinates.add(new Coordinate(firstCoordinate.getX(), firstCoordinate.getY() + i));
+        }
     }
     
 }
