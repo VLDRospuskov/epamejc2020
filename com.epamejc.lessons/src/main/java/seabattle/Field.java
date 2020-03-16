@@ -301,17 +301,16 @@ public class Field {
                 if (first.getX() > second.getX() || first.getY() > second.getY()) {
                     ship = new Ship(second, first);
                 }
-                if (checkNoShipCollision(ship)) {
-                    System.out.println("No collision!");
+                if (checkNoShipCollision(ship) && checkCorrectAmountOfShips(ship)) {
+                    //System.out.println("No collision!");
                     ships.add(ship);
                     addPointsAroundShip(ship);
                     view.updateFieldView(this);
                     view.printField(this);
                 } else {
-                    System.out.println("Collision");
+                    System.out.println("You need to place 4 ships of length 1, 3 ships of length 2, 2 ships of length" +
+                                       " 3, 1 ship of length 4 in empty squares");
                 }
-                
-                // TODO: 15-Mar-20 ограничение кол-ва кораблей по типу
             } else {
                 System.out.println(ships);
                 System.out.println("Wrong coordinates");
@@ -330,6 +329,32 @@ public class Field {
         List<Coordinate> coordinateList = concat.collect(Collectors.toList());
         List<Coordinate> shipParts = ship.getShipParts();
         return Collections.disjoint(coordinateList, shipParts);
+    }
+    
+    public boolean checkCorrectAmountOfShips(Ship ship) {
+        switch (ship.getLength()) {
+            case 1:
+                return ships.stream()
+                            .map(Ship::getLength)
+                            .filter(integer -> integer == 1)
+                            .count() < 4;
+            case 2:
+                return ships.stream()
+                            .map(Ship::getLength)
+                            .filter(integer -> integer == 2)
+                            .count() < 3;
+            case 3:
+                return ships.stream()
+                            .map(Ship::getLength)
+                            .filter(integer -> integer == 3)
+                            .count() < 2;
+            case 4:
+                return ships.stream()
+                            .map(Ship::getLength)
+                            .noneMatch(integer -> integer == 4);
+            default:
+                return false;
+        }
     }
     
     public void printState() {
