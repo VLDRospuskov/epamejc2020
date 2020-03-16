@@ -8,7 +8,7 @@ import static Seabattle.OutputFormatter.printColored;
 public class Game {
 
     enum Difficulty {
-        EASYPEASY, NORMAL
+        EASYPEASY, NORMAL, HARD
     }
 
     enum Mode {
@@ -71,6 +71,7 @@ public class Game {
         player1.requestPlayerName();
         player1.placeAllShips();
 
+        if (mode == Mode.PVP) ui.userInput.pressAnyKeyToContinue();
         ui.clearConsole();
 
         player2.requestPlayerName();
@@ -80,9 +81,19 @@ public class Game {
 
         try {
             while (true) {
-                if (mode == Mode.PVP) ui.clearConsole();
+                if (mode == Mode.PVP) {
+                    ui.clearConsole();
+                    printColored("Ход игрока " + player1.getName(), OutputFormatter.TextColor.YELLOW);
+                    ui.userInput.pressAnyKeyToContinue();
+                } else {
+                    printColored("Ваш ход", OutputFormatter.TextColor.YELLOW);
+                }
                 player1.turn();
                 ui.clearConsole();
+                if (mode == Mode.PVP) {
+                    printColored("Ход игрока " + player2.getName(), OutputFormatter.TextColor.YELLOW);
+                    ui.userInput.pressAnyKeyToContinue();
+                }
                 player2.turn();
             }
         } catch (SurrenderedException e) {

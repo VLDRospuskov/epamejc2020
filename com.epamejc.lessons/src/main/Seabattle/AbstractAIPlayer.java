@@ -16,6 +16,10 @@ public abstract class AbstractAIPlayer extends AbstractPlayer {
     public void turn() throws IOException, SurrenderedException, WonException {
         while (makeShot()) ;
     }
+
+    protected CellCoordinates selectNewShotCoordinates() {
+        return GameField.getRandomCellCoordinates();
+    }
 }
 
 class EasyAIPlayer extends AbstractAIPlayer {
@@ -59,14 +63,14 @@ class EasyAIPlayer extends AbstractAIPlayer {
     protected CellCoordinates cellToShot() {
         CellCoordinates cc;
         do {
-            cc = GameField.getRandomCellCoordinates();
+            cc = selectNewShotCoordinates();
         } while (visibleEnemyGameField.getCellState(cc) != CellState.EMPTY);
         return cc;
     }
 }
 
 class NormalAIPlayer extends AbstractAIPlayer {
-    private Set<CellCoordinates> enemyShipCells = new HashSet<>();
+    protected Set<CellCoordinates> enemyShipCells = new HashSet<>();
 
     @Override
     public void requestPlayerName() {
@@ -153,7 +157,7 @@ class NormalAIPlayer extends AbstractAIPlayer {
         }
 
         do {
-            cc = GameField.getRandomCellCoordinates();
+            cc = selectNewShotCoordinates();
         } while (visibleEnemyGameField.getCellState(cc) != CellState.EMPTY);
 
         return cc;

@@ -1,6 +1,7 @@
 package Seabattle;
 
 import java.io.IOException;
+import java.util.Set;
 
 import static Seabattle.OutputFormatter.*;
 
@@ -54,8 +55,8 @@ public final class HoomanPlayer extends AbstractPlayer {
             placeAllShipsManual();
         } catch (CancelledByUserException e) {
             printColored("User changed their mind and stopped", TextColor.YELLOW);
+            placeAllShips();
         }
-        userInput.pressAnyKeyToContinue();
     }
 
     private void placeAllShipsManual() throws IOException, CancelledByUserException {
@@ -72,9 +73,6 @@ public final class HoomanPlayer extends AbstractPlayer {
 
     @Override
     public void turn() throws IOException, SurrenderedException, WonException {
-        printColored("Ход игрока " + getName(), TextColor.YELLOW);
-        userInput.pressAnyKeyToContinue();
-
         do {
             printColored("Чтобы сдаться введите Surrender", OutputFormatter.TextColor.YELLOW);
             printColored("Ваше поле: ", OutputFormatter.TextColor.BLUE);
@@ -89,6 +87,34 @@ public final class HoomanPlayer extends AbstractPlayer {
         System.out.println();
         System.out.println(visibleEnemyGameField);
         userInput.pressAnyKeyToContinue();
+    }
+
+    @Override
+    protected boolean makeShot() throws IOException, SurrenderedException, WonException {
+        CellCoordinates shotCell = cellToShot();
+
+        if (!getEnemy().hasShipAt(shotCell)) {
+            visibleEnemyGameField.setCell(shotCell, CellState.MISSED);
+            printColored("Вы промахнулись!", OutputFormatter.TextColor.YELLOW);
+            getEnemy().setMissAt(shotCell);
+            return false;
+        } else {
+            printColored("Вы попали!", OutputFormatter.TextColor.GREEN);
+            visibleEnemyGameField.setCell(shotCell, CellState.SHIP_HIT);
+            getEnemy().hitShipAt(shotCell);
+            if (getEnemy().checkShipDestroyed(shotCell)) {
+                printColored("Вы уничтожили вражеский корабль!", OutputFormatter.TextColor.GREEN);
+                Set<CellCoordinates> destroyedEnemyShip =
+                        visibleEnemyGameField.getSetOfShipCells(shotCell,false);
+                for (CellCoordinates cc: destroyedEnemyShip) {
+                    visibleEnemyGameField.setAreaDestroyedShipCellsMissed(cc);
+                }
+                if (!getEnemy().hasShips())
+                    throw new WonException(this);
+            }
+        }
+
+        return true;
     }
 
     @Override

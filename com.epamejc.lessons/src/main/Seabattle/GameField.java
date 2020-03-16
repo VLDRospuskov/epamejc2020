@@ -35,6 +35,18 @@ public class GameField {
         return sb.toString();
     }
 
+    public GameField copy() {
+        GameField copy = new GameField();
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                copy.cellStates[i][j] = cellStates[i][j];
+            }
+        }
+
+        return copy;
+    }
+
     private void checkCell(char c, int n) {
         if (n < 1 || n > 10) {
             throw new IndexOutOfBoundsException("GameField indices should be in range [1, 10]. Got " + n);
@@ -81,6 +93,7 @@ public class GameField {
     }
 
     boolean checkCreateShip(char c, int n, int size, Direction direction) {
+        if (getCellState(c, n) != CellState.EMPTY) return false;
         CellCoordinates c1 = new CellCoordinates();
         CellCoordinates c2 = new CellCoordinates();
         areaToCheck(c, n, size, direction, c1, c2);
@@ -128,7 +141,7 @@ public class GameField {
     }
 
     boolean checkNewShipArea(CellCoordinates c1, CellCoordinates c2) {
-        Set<CellState> emptyOrOOB = new HashSet<>(Arrays.asList(CellState.EMPTY, CellState.OUT_OF_BOUNDS));
+        Set<CellState> emptyOrOOB = new HashSet<>(Arrays.asList(CellState.MISSED, CellState.EMPTY, CellState.OUT_OF_BOUNDS));
         Set<CellState> empty = new HashSet<>(Collections.singletonList(CellState.EMPTY));
 
         return checkArea(c1, c2, emptyOrOOB) && checkArea(c1.add((char) 1, 1), c2.subtract((char) 1, 1), empty);
@@ -144,13 +157,14 @@ public class GameField {
         return true;
     }
 
-    boolean checkShipDestroyed(CellCoordinates shotCoordinates) {
+    int checkShipDestroyed(CellCoordinates shotCoordinates) {
         Set<CellCoordinates> ship = getSetOfShipCells(shotCoordinates, true);
 
         for (CellCoordinates cc: ship){
-            if (getCellState(cc) != CellState.SHIP_HIT) return false;
+            if (getCellState(cc) != CellState.SHIP_HIT) return 0;
         }
-        return true;
+
+        return ship.size();
     }
 
     void setAreaDestroyedShipCellsMissed(CellCoordinates shotCell) {
@@ -241,7 +255,10 @@ public class GameField {
     }
 
     void randomPlaceShip(int size) {
-        CellCoordinates randomStartCell = getRandomCellCoordinates();
+        CellCoordinates randomStartCell;
+        do {
+            randomStartCell = getRandomCellCoordinates();
+        } while (getCellState(randomStartCell) != CellState.EMPTY);
         Set<CellCoordinates> forbiddenStartCells = new HashSet<>();
         Direction randomDirection = Direction.randomDirection();
         if (this.getCellState(randomStartCell) != CellState.EMPTY

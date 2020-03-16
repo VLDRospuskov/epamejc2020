@@ -54,33 +54,6 @@ public abstract class AbstractPlayer implements Player {
                 currentShipCountBySize[4] != maxShipCountBySize[4];
     }
 
-    protected boolean makeShot() throws IOException, SurrenderedException, WonException {
-        CellCoordinates shotCell = cellToShot();
-
-        if (!getEnemy().hasShipAt(shotCell)) {
-            visibleEnemyGameField.setCell(shotCell, CellState.MISSED);
-            printColored("Вы промахнулись!", OutputFormatter.TextColor.YELLOW);
-            getEnemy().setMissAt(shotCell);
-            return false;
-        } else {
-            printColored("Вы попали!", OutputFormatter.TextColor.GREEN);
-            visibleEnemyGameField.setCell(shotCell, CellState.SHIP_HIT);
-            getEnemy().hitShipAt(shotCell);
-            if (getEnemy().checkShipDestroyed(shotCell)) {
-                printColored("Вы уничтожили вражеский корабль!", OutputFormatter.TextColor.YELLOW);
-                Set<CellCoordinates> destroyedEnemyShip =
-                        visibleEnemyGameField.getSetOfShipCells(shotCell,false);
-                for (CellCoordinates cc: destroyedEnemyShip) {
-                    visibleEnemyGameField.setAreaDestroyedShipCellsMissed(cc);
-                }
-                if (!getEnemy().hasShips())
-                    throw new WonException(this);
-            }
-        }
-
-        return true;
-    }
-
     @Override
     public boolean hasShips(){
         return gameField.hasShips();
@@ -90,6 +63,8 @@ public abstract class AbstractPlayer implements Player {
     public boolean hasShipAt(CellCoordinates cellCoordinates){
         return gameField.getCellState(cellCoordinates) == CellState.SHIP;
     }
+
+    abstract protected boolean makeShot() throws IOException, SurrenderedException, WonException;
 
     @Override
     public void hitShipAt(CellCoordinates cellCoordinates){
@@ -103,7 +78,10 @@ public abstract class AbstractPlayer implements Player {
 
     @Override
     public boolean checkShipDestroyed(CellCoordinates shipCell){
-        return gameField.checkShipDestroyed(shipCell);
+        int destroyedShipSize = gameField.checkShipDestroyed(shipCell);
+        if (destroyedShipSize == 0) return false;
+        currentShipCountBySize[destroyedShipSize]--;
+        return true;
     }
 
     protected abstract CellCoordinates cellToShot() throws IOException, SurrenderedException;
