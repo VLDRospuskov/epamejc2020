@@ -20,13 +20,13 @@ public class Engine {
     // TODO Добавить Welcome сообщение и меню выбора типа игры
     public void startWithManualShipPlacement() {
 //        manualShipPlacement(FIELD_1);
-//        autoShipPlacement(FIELD_1);
-//        autoShipPlacement(FIELD_2);
-        testShipPlacement(FIELD_1);
-        testShipPlacement(FIELD_2);
+        autoShipPlacement(FIELD_1);
+        autoShipPlacement(FIELD_2);
+//        testShipPlacement(FIELD_1);
+//        testShipPlacement(FIELD_2);
 //        printTwoFields(field1, field2);
-        printField(FIELD_1);
-        printField(FIELD_2);
+//        printField(FIELD_1);
+//        printField(FIELD_2);
 //        printHiddenField(field1);
         battle();
     }
@@ -162,8 +162,13 @@ public class Engine {
 
     private Field autoMove(Field field1, Field field2) {
         if (AI.getShootData() != null && !AI.getShootData().isDone()) {
+            System.out.println("Continue shoot");
             continueShooting(field1, field2, AI.getShootData().getSTART_YX());
+
+
+
         } else {
+            System.out.println("New shoot");
             Integer[] coordYX = randomShooting(field1);
 //            Integer[] coordYX = {7, 7};
 //            if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
@@ -177,11 +182,11 @@ public class Engine {
             if(!checkIsCellAShip(field1, coordYX)){
                 AI.getShootData().setDone(true);
             }
+            printTwoFields(field2, field1);
             continueShooting(field1, field2, coordYX);
         }
 
 
-        printTwoFields(field2, field1);
         if (!checkEndGame()) {
             System.out.println("\nMissed! The move goes to another player...\n");
 
@@ -206,7 +211,6 @@ public class Engine {
             isContinueShooting = false;
 
             if (checkIsCellAShip(field1, coordYX) && !checkEndGame()) {
-                System.out.println("\nGot it! Shoot again!");
                 AI.finishingShooting(field1);
                 printTwoFields(field2, field1);
                 coordYX = AI.getShootData().getLastYX();

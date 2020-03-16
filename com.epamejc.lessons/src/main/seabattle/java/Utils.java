@@ -58,7 +58,9 @@ public class Utils {
     }
 
     public static void printTwoFields(Field field1, Field field2) {
-        System.out.println("\n           YOUR FIELD                                ENEMY FIELD       ");
+        System.out.println(
+                "\n         PLAYER " + field1.getId()
+                + " FIELD                                ENEMY FIELD       ");
         System.out.println("    A  B  C  D  E  F  G  H  I  J              A  B  C  D  E  F  G  H  I  J");
         int index = 1;
         for (int i = 0; i < 10; i++) {
