@@ -112,140 +112,73 @@ public class Field {
                                                                 .getY() + 1)));
                 }
                 break;
+    
             case 1:
                 if (ship.getFirstCoordinate()
-                        .getY() < 9) {
+                        .getX() > 0) {
                     assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX(),
+                                                                .getX() - 1,
                                                             ship.getFirstCoordinate()
-                                                                .getY() + 1)));
+                                                                .getY())));
                 }
                 if (ship.getFirstCoordinate()
-                        .getY() < 9 && ship.getFirstCoordinate()
-                                           .getX() < 9) {
+                        .getX() > 0 && ship.getFirstCoordinate()
+                                           .getY() > 0) {
                     assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() + 1,
+                                                                .getX() - 1,
                                                             ship.getFirstCoordinate()
-                                                                .getY() + 1)));
+                                                                .getY() - 1)));
                 }
                 if (ship.getFirstCoordinate()
-                        .getY() < 9 && ship.getFirstCoordinate()
-                                           .getX() > 0) {
+                        .getX() > 0 && ship.getFirstCoordinate()
+                                           .getY() < 9) {
                     assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
                                                                 .getX() - 1,
                                                             ship.getFirstCoordinate()
                                                                 .getY() + 1)));
                 }
-                
                 for (int i = 0; i < ship.getLength(); i++) {
                     if (ship.getFirstCoordinate()
-                            .getX() < 9) {
+                            .getY() > 0) {
                         assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                    .getX() + 1,
+                                                                    .getX() + i,
                                                                 ship.getFirstCoordinate()
-                                                                    .getY() - i)));
+                                                                    .getY() - 1)));
                     }
                     if (ship.getFirstCoordinate()
-                            .getX() > 0) {
+                            .getY() < 9) {
                         assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                    .getX() - 1,
+                                                                    .getX() + i,
                                                                 ship.getFirstCoordinate()
-                                                                    .getY() - i)));
+                                                                    .getY() + 1)));
                     }
                 }
-                
                 if (ship.getSecondCoordinate()
-                        .getY() > 0) {
+                        .getX() < 9) {
                     assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX(),
+                                                                .getX() + 1,
                                                             ship.getSecondCoordinate()
-                                                                .getY() - 1)));
-                }
-                
-                if (ship.getSecondCoordinate()
-                        .getY() > 0 && ship.getSecondCoordinate()
-                                           .getX() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY() - 1)));
+                                                                .getY())));
                 }
                 if (ship.getSecondCoordinate()
-                        .getY() > 0 && ship.getSecondCoordinate()
-                                           .getX() < 9) {
+                        .getX() < 9 && ship.getSecondCoordinate()
+                                           .getY() > 0) {
                     assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
                                                                 .getX() + 1,
                                                             ship.getSecondCoordinate()
                                                                 .getY() - 1)));
                 }
-                
+                if (ship.getSecondCoordinate()
+                        .getX() < 9 && ship.getSecondCoordinate()
+                                           .getY() < 9) {
+                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
+                                                                .getX() + 1,
+                                                            ship.getSecondCoordinate()
+                                                                .getY() + 1)));
+                }
                 break;
             case 2:
                 if (ship.getFirstCoordinate()
-                        .getX() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getFirstCoordinate()
-                                                                .getY())));
-                }
-                if (ship.getFirstCoordinate()
-                        .getX() > 0 && ship.getFirstCoordinate()
-                                           .getY() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getFirstCoordinate()
-                                                                .getY() - 1)));
-                }
-                if (ship.getFirstCoordinate()
-                        .getX() > 0 && ship.getFirstCoordinate()
-                                           .getY() < 9) {
-                    assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getFirstCoordinate()
-                                                                .getY() + 1)));
-                }
-                for (int i = 0; i < ship.getLength(); i++) {
-                    if (ship.getFirstCoordinate()
-                            .getY() > 0) {
-                        assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                    .getX() + i,
-                                                                ship.getFirstCoordinate()
-                                                                    .getY() - 1)));
-                    }
-                    if (ship.getFirstCoordinate()
-                            .getY() < 9) {
-                        assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                    .getX() + i,
-                                                                ship.getFirstCoordinate()
-                                                                    .getY() + 1)));
-                    }
-                }
-                if (ship.getSecondCoordinate()
-                        .getX() < 9) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() + 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY())));
-                }
-                if (ship.getSecondCoordinate()
-                        .getX() < 9 && ship.getSecondCoordinate()
-                                           .getY() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() + 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY() - 1)));
-                }
-                if (ship.getSecondCoordinate()
-                        .getX() < 9 && ship.getSecondCoordinate()
-                                           .getY() < 9) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() + 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY() + 1)));
-                }
-                break;
-            case 3:
-                if (ship.getFirstCoordinate()
                         .getY() > 0) {
                     assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
                                                                 .getX(),
@@ -312,71 +245,7 @@ public class Field {
                                                                 .getY() + 1)));
                 }
                 break;
-            case 4:
-                if (ship.getFirstCoordinate()
-                        .getX() < 9) {
-                    assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() + 1,
-                                                            ship.getFirstCoordinate()
-                                                                .getY())));
-                }
-                if (ship.getFirstCoordinate()
-                        .getX() < 9 && ship.getFirstCoordinate()
-                                           .getY() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() + 1,
-                                                            ship.getFirstCoordinate()
-                                                                .getY() - 1)));
-                }
-                if (ship.getFirstCoordinate()
-                        .getX() < 9 && ship.getFirstCoordinate()
-                                           .getY() < 9) {
-                    assistSet.add(new Assist(new Coordinate(ship.getFirstCoordinate()
-                                                                .getX() + 1,
-                                                            ship.getFirstCoordinate()
-                                                                .getY() + 1)));
-                }
-                
-                for (int i = 0; i < ship.getLength(); i++) {
-                    if (ship.getSecondCoordinate()
-                            .getY() > 0) {
-                        assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                    .getX() + i,
-                                                                ship.getSecondCoordinate()
-                                                                    .getY() - 1)));
-                    }
-                    if (ship.getSecondCoordinate()
-                            .getY() < 9) {
-                        assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                    .getX() + i,
-                                                                ship.getSecondCoordinate()
-                                                                    .getY() + 1)));
-                    }
-                }
-                if (ship.getSecondCoordinate()
-                        .getX() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY())));
-                }
-                if (ship.getSecondCoordinate()
-                        .getX() > 0 && ship.getSecondCoordinate()
-                                           .getY() > 0) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY() - 1)));
-                }
-                if (ship.getSecondCoordinate()
-                        .getX() > 0 && ship.getSecondCoordinate()
-                                           .getY() < 9) {
-                    assistSet.add(new Assist(new Coordinate(ship.getSecondCoordinate()
-                                                                .getX() - 1,
-                                                            ship.getSecondCoordinate()
-                                                                .getY() + 1)));
-                }
-                break;
+    
         }
     }
     
@@ -384,7 +253,6 @@ public class Field {
         
         Coordinate first;
         Coordinate second;
-        int length;
         View view = new View();
         while (ships.size() != 10) {
             printState();
@@ -393,9 +261,9 @@ public class Field {
             second = new Coordinate().input();
             if (Coordinate.checkCoordinates(first, second)) {
                 Ship ship = new Ship(first, second);
-//                if (first.getX() > second.getX() || first.getY() > second.getY()){
-//                    ship = new Ship(second, first);
-//                }
+                if (first.getX() > second.getX() || first.getY() > second.getY()) {
+                    ship = new Ship(second, first);
+                }
                 
                 ships.add(ship);
                 //  System.out.println(ship.getDirection());
@@ -413,7 +281,7 @@ public class Field {
     }
     
     public boolean checkShipCollision(Ship ship) {
-        
+        // TODO: 16-Mar-20 Функция проверки пересечения частей корабля с Ship или Assist
         return false;
     }
     
@@ -440,7 +308,7 @@ public class Field {
     }
     
     public List<Ship> fillRandomListOfShips() {
-        
+        // TODO: 16-Mar-20 Случайное заполнение списка кораблей
         return null;
     }
     

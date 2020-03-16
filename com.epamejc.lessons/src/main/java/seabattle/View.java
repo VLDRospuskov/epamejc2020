@@ -48,19 +48,11 @@ public class View {
                         textView[firstCoordinate.getY()][firstCoordinate.getX()] = GameObjectView.UNBROKEN.getState();
                         break;
                     case 1:
-                        textView[firstCoordinate.getY() - j][firstCoordinate.getX()] =
-                                GameObjectView.UNBROKEN.getState();
-                        break;
-                    case 2:
                         textView[firstCoordinate.getY()][firstCoordinate.getX() + j] =
                                 GameObjectView.UNBROKEN.getState();
                         break;
-                    case 3:
+                    case 2:
                         textView[firstCoordinate.getY() + j][firstCoordinate.getX()] =
-                                GameObjectView.UNBROKEN.getState();
-                        break;
-                    case 4:
-                        textView[firstCoordinate.getY()][firstCoordinate.getX() - j] =
                                 GameObjectView.UNBROKEN.getState();
                         break;
                 }
@@ -78,7 +70,7 @@ public class View {
     }
     
     public void updateShotsView(Field field) {
-    
+        // TODO: 16-Mar-20 Отображение выстрелов на поле
     }
     
 }

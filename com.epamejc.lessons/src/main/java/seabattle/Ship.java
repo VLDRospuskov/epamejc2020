@@ -53,22 +53,16 @@ public class Ship {
     }
     
     public int calculateDirection() {
-        if (firstCoordinate.getY() == secondCoordinate.getY() && secondCoordinate.getX() == firstCoordinate.getX()) {
-            return 0;
-        }
-        if (firstCoordinate.getX() == secondCoordinate.getX()) {
-            if (firstCoordinate.getY() - secondCoordinate.getY() > 0) {
-                return 1;
-            } else {
-                return 3;
+//        if (firstCoordinate.getY() == secondCoordinate.getY() && secondCoordinate.getX() == firstCoordinate.getX()) {
+//            return 0;
+//        }
+        if (firstCoordinate.getY() - secondCoordinate.getY() < 0) {
+            return 2;
             }
-        } else {
             if (firstCoordinate.getX() - secondCoordinate.getX() < 0) {
-                return 2;
-            } else {
-                return 4;
+                return 1;
             }
-        }
+        return 0;
     }
     
     private List<Coordinate> fillShipPartsList() {
@@ -84,6 +78,7 @@ public class Ship {
     }
     
     private String selectStrategy() {
+        // TODO: 16-Mar-20 Выбор стратегии заполнения списка частей корабля в зависимости от направления
         return null;
     }
     
