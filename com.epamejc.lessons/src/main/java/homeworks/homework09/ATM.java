@@ -19,7 +19,8 @@ public class ATM {
     }
 
     public boolean addToBalance(BigDecimal value) {
-        System.out.print(getIdColumnForPrint() + "ATM №" + id + " balance changes from " + atmBalance.setScale(3, RoundingMode.HALF_UP));
+        System.out.print(getIdColumnForPrint() + "ATM №" + id + " balance changes from " +
+                atmBalance.setScale(3, RoundingMode.HALF_UP));
 
         atmBalance = atmBalance.add(value);
         if (atmBalance.compareTo(MAXIMUM_BALANCE) > 0) {
@@ -33,7 +34,8 @@ public class ATM {
     }
 
     public boolean subtractFromBalance(BigDecimal value) {
-        System.out.print(getIdColumnForPrint() + "ATM №" + id + " balance changes from " + atmBalance.setScale(3, RoundingMode.HALF_UP));
+        System.out.print(getIdColumnForPrint() + "ATM №" + id + " balance changes from " +
+                atmBalance.setScale(3, RoundingMode.HALF_UP));
 
         if (atmBalance.compareTo(value) < 0) {
             System.out.println("Not enough money on ATM balance!!!");
