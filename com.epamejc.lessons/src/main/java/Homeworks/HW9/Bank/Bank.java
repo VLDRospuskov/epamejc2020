@@ -18,23 +18,14 @@ public class Bank {
     private List<User> userList;
 
     public Bank(int moneySupply, int atmsCount, int usersCount) {
-
-        if (atmsCount * atmDefaultBalanceLimit > moneySupply) {
-            // throw new Exception("Not enough money in the bank to supply all ATMs!"); // later
-        }
-
         this.moneySupply = moneySupply;
         this.atmsCount = atmsCount;
         this.usersCount = usersCount;
 
         createAtms();
         createUsers();
-    }
 
-    public void makeOperations(int count) {
-        for (int i = 0; i < count; i++) {
-            makeRandomOperation();
-        }
+        System.out.println("Money supply: " + moneySupply);
     }
 
     private void createAtms() {
@@ -52,6 +43,12 @@ public class Bank {
             int balance = new Random().nextInt(userDefaultBalanceLimit);
             userList.add(new User(i, balance));
             System.out.println("Created new User with id: " + i + " and balance " + balance);
+        }
+    }
+
+    public void makeOperations(int count) {
+        for (int i = 0; i < count; i++) {
+            makeRandomOperation();
         }
     }
 
