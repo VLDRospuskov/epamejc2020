@@ -3,8 +3,8 @@ package seabattle.java;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
+
 import static seabattle.java.Utils.*;
 
 @Data
@@ -58,7 +58,7 @@ public class AI {
             coordYX = new Integer[2];
             coordYX[0] = new Random().nextInt(10);
             coordYX[1] = new Random().nextInt(10);
-            if (field.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
+            if (checkIsCellHit(field, coordYX)) {
                 isAlreadyHit = true;
             }
         } while (isAlreadyHit);
@@ -66,6 +66,7 @@ public class AI {
     }
 
     protected void finishingShooting(Field field) {
+        shootData.checkFlags();
         Integer[] coordYX = shootData.getSTART_YX();
         int y = coordYX[0];
         int x = coordYX[1];
@@ -83,29 +84,25 @@ public class AI {
 
     private void finishingShootLeft(Field field, int y, int x) {
         x -= shootData.getShootLeft() + 1;
-        Integer[] coordYX = new Integer[] {y, x};
-//        if (!checkIsCellHit(field, coordYX)) {
-            shoot(field, coordYX);
-            shootData.setShootLeft(shootData.getShootLeft() + 1);
-            shootData.setLastYX(coordYX);
-            if (!checkIsCellAShip(field, coordYX)) {
-                shootData.setDoNotShootLeft(true);
-            }
-            if (shootData.getShootLeft() > 1) {
-                shootData.setDoNotShootUp(true);
-                shootData.setDoNotShootDown(true);
-            }
-//        } else {
-//            coordYX = generateRandomCoordinate(field);
-//            shoot(field, coordYX);
-//            shootData = new ShootData(coordYX);
-//        }
+        Integer[] coordYX = new Integer[]{y, x};
+        shoot(field, coordYX);
+        System.out.println("\nComputer shoot " + printCoord(coordYX));
+        shootData.setShootLeft(shootData.getShootLeft() + 1);
+        shootData.setLastYX(coordYX);
+        if (!checkIsCellAShip(field, coordYX)) {
+            shootData.setDoNotShootLeft(true);
+        }
+        if (shootData.getShootLeft() > 1) {
+            shootData.setDoNotShootUp(true);
+            shootData.setDoNotShootDown(true);
+        }
     }
 
     private void finishingShootUp(Field field, int y, int x) {
         y -= shootData.getShootUp() + 1;
-        Integer[] coordYX = new Integer[] {y, x};
+        Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);
+        System.out.println("Computer shoot " + printCoord(coordYX));
         shootData.setShootUp(shootData.getShootUp() + 1);
         shootData.setLastYX(coordYX);
         if (!checkIsCellAShip(field, coordYX)) {
@@ -119,8 +116,9 @@ public class AI {
 
     private void finishingShootRight(Field field, int y, int x) {
         x += shootData.getShootRight() + 1;
-        Integer[] coordYX = new Integer[] {y, x};
+        Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);
+        System.out.println("Computer shoot " + printCoord(coordYX));
         shootData.setShootRight(shootData.getShootRight() + 1);
         shootData.setLastYX(coordYX);
         if (!checkIsCellAShip(field, coordYX)) {
@@ -134,8 +132,9 @@ public class AI {
 
     private void finishingShootDown(Field field, int y, int x) {
         y += shootData.getShootDown() + 1;
-        Integer[] coordYX = new Integer[] {y, x};
+        Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);
+        System.out.println("Computer shoot " + printCoord(coordYX));
         shootData.setShootDown(shootData.getShootDown() + 1);
         shootData.setLastYX(coordYX);
         if (!checkIsCellAShip(field, coordYX)) {

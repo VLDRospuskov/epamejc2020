@@ -1,10 +1,12 @@
 package seabattle.java;
 
 import lombok.Data;
+import static seabattle.java.Utils.*;
 
 @Data
 public class ShootData {
 
+    private Field field;
     private boolean doNotShootLeft;
     private boolean doNotShootUp;
     private boolean doNotShootRight;
@@ -17,7 +19,8 @@ public class ShootData {
     private int shootRight;
     private int shootDown;
 
-    public ShootData(Integer[] startYX) {
+    public ShootData(Field field, Integer[] startYX) {
+        this.field = field;
         this.START_YX = startYX;
         this.lastYX = null;
         doNotShootLeft = false;
@@ -49,6 +52,12 @@ public class ShootData {
 
 
     public void checkFlags() {
+        checkBorders();
+        checkDone();
+        checkHit();
+    }
+
+    private void checkBorders() {
         if (START_YX[1] - (shootLeft + 1) < 0) {
             doNotShootLeft = true;
         }
@@ -61,11 +70,64 @@ public class ShootData {
         if (START_YX[0] + (shootDown + 1) > 9) {
             doNotShootDown = true;
         }
+    }
+
+    private void checkDone() {
         if ((doNotShootLeft && doNotShootUp && doNotShootRight && doNotShootDown)
                 || (shootLeft > 3 || shootUp > 3 || shootRight > 3 || shootDown > 3)) {
             isDone = true;
         }
-     }
+    }
+
+    private void checkHit() {
+        checkLeftHit();
+        checkUpHit();
+        checkRightHit();
+        checkDownHit();
+    }
+
+    private void checkLeftHit() {
+        int y = START_YX[0];
+        int x = START_YX[1] - (shootLeft + 1);
+
+        Integer[] coordYX = {y, x};
+        if (x >= 0 && checkIsCellHit(field, coordYX)) {
+            doNotShootLeft = true;
+        }
+    }
+
+    private void checkUpHit() {
+        int y = START_YX[0] - (shootUp + 1);
+        int x = START_YX[1];
+        Integer[] coordYX = {y, x};
+        if (y >= 0 && checkIsCellHit(field, coordYX)) {
+            doNotShootUp = true;
+        }
+    }
+
+    private void checkRightHit() {
+        int y = START_YX[0];
+        int x = START_YX[1] + (shootRight + 1);
+        Integer[] coordYX = {y, x};
+        if (x <= 9 && checkIsCellHit(field, coordYX)) {
+            doNotShootRight = true;
+        }
+    }
+
+    private void checkDownHit() {
+        int y = START_YX[0] + (shootDown + 1);
+        int x = START_YX[1];
+        Integer[] coordYX = {y, x};
+        if (y <= 9 && checkIsCellHit(field, coordYX)) {
+            doNotShootDown = true;
+        }
+    }
+
+
+
+
+
+
 
 
 }

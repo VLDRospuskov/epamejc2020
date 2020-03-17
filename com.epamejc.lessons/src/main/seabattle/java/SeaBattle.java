@@ -2,13 +2,13 @@ package seabattle.java;
 
 import static seabattle.java.Utils.*;
 
+/**
+ * @author Vitaly Bogdanov
+ * @version 1.0
+ */
 public class SeaBattle {
 
     Engine engine;
-
-    public SeaBattle() {
-        engine = new Engine();
-    }
 
     public void run() {
         System.out.println("\n===================================================================");
@@ -16,6 +16,7 @@ public class SeaBattle {
         System.out.println("===================================================================");
         boolean repeat;
         do {
+            engine = new Engine();
             gameplay();
             repeat = repeatGame();
         } while (repeat);

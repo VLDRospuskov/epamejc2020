@@ -58,8 +58,7 @@ public class Utils {
     }
 
     public static void printTwoFields(Field field1, Field field2) {
-        System.out.println(
-                "\n         PLAYER " + field1.getId()
+        System.out.println("\n         PLAYER " + field1.getId()
                 + " FIELD                                ENEMY FIELD       ");
         System.out.println("    A  B  C  D  E  F  G  H  I  J              A  B  C  D  E  F  G  H  I  J");
         int index = 1;
@@ -79,6 +78,12 @@ public class Utils {
             System.out.println("");
         }
         clearScreen();
+    }
+
+    public static String printCoord(Integer[] coordYX) {
+        String[] dictionary = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+        int key = coordYX[1];
+        return (coordYX[0] + 1) + " " + dictionary[key];
     }
 
     private static String scanInput() {
@@ -220,10 +225,16 @@ public class Utils {
     }
 
     public static boolean checkIsCellAShip(Field field, Integer[] coordYX) {
+        if(coordYX == null) {
+            return false;
+        }
         return field.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == 1;
     }
 
     public static boolean checkIsCellHit(Field field, Integer[] coordYX) {
+        if(coordYX == null) {
+            return false;
+        }
         return field.getField().get(coordYX[0]).get(coordYX[1]).isHit();
     }
 

@@ -1,7 +1,6 @@
 package seabattle.java;
 
 import lombok.Data;
-
 import java.util.Arrays;
 
 @Data

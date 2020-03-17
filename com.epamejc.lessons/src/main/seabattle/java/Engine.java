@@ -17,12 +17,11 @@ public class Engine {
         AI = new AI();
     }
 
-    // TODO Добавить Welcome сообщение и меню выбора типа игры
     public void startPvPWithManualShipPlacement() {
-        System.out.println("\nPlayer 1 start placement ships.");
+        System.out.println("\nPlayer 1 start placement ships...");
         manualShipPlacement(FIELD_1);
         System.out.println("\nPlayer 1 successfully set ships.");
-        System.out.println("\nPlayer 2 start placement ships.");
+        System.out.println("\nPlayer 2 start placement ships...");
         manualShipPlacement(FIELD_2);
         System.out.println("\nPlayer 2 successfully set ships.");
         battlePlayerVsPlayer();
@@ -37,7 +36,7 @@ public class Engine {
     }
 
     public void startPvCWithManualShipPlacement() {
-        System.out.println("\nPlayer start placement ships.");
+        System.out.println("\nPlayer start placement ships...");
         manualShipPlacement(FIELD_1);
         System.out.println("\nPlayer successfully set ships.");
         autoShipPlacement(FIELD_2);
@@ -90,7 +89,6 @@ public class Engine {
         }
     }
 
-
     public boolean checkAllShipsLimit(Field field) {
         final int SHIP_LIMIT = 20;
         int shipsChecksum = field.getShips().stream()
@@ -132,7 +130,6 @@ public class Engine {
         while (!isGameOver) {
             playerMovePvC();
             isGameOver = checkEndGame();
-
             if (!isGameOver) {
                 computerMovePvC();
                 isGameOver = checkEndGame();
@@ -157,25 +154,25 @@ public class Engine {
 
     private void playerOneMovePvP() {
         printTwoFields(FIELD_1, FIELD_2);
-        System.out.println("\nPlayer 1 shoot.");
+        System.out.println("\nPlayer 1 move...");
         playerMove(FIELD_2, FIELD_1);
     }
 
     private void playerTwoMovePvP() {
         printTwoFields(FIELD_2, FIELD_1);
-        System.out.println("\nPlayer 2 shoot.");
+        System.out.println("\nPlayer 2 move...");
         playerMove(FIELD_1, FIELD_2);
     }
 
     private void playerMovePvC() {
         printTwoFields(FIELD_1, FIELD_2);
-        System.out.println("\nPlayer shoot.");
+        System.out.println("\nPlayer move...");
         playerMove(FIELD_2, FIELD_1);
     }
 
     private void computerMovePvC() {
-        System.out.println("\nComputer shoot.");
-        autoMove(FIELD_1, FIELD_2);
+        System.out.println("\nComputer move...");
+        computerMove(FIELD_1, FIELD_2);
     }
 
     // TODO разбить метод
@@ -201,60 +198,45 @@ public class Engine {
         return field1;
     }
 
-    private Field autoMove(Field field1, Field field2) {
+    private Field computerMove(Field field1, Field field2) {
         if (AI.getShootData() != null && !AI.getShootData().isDone()) {
-//            System.out.println("Continue shoot");
             continueShooting(field1, field2, AI.getShootData().getSTART_YX());
         } else {
-//            System.out.println("New shoot");
-            Integer[] coordYX = randomShooting(field1);
-//            Integer[] coordYX = {7, 7};
-//            if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
-//                System.out.println("\nYou already shoot there! The move goes to another player.");
-//                return field1;
-//            }
-//            shoot(field1, coordYX);
-            if (AI.getShootData() == null || AI.getShootData().isDone()) {
-                AI.setShootData(new ShootData(coordYX));
-            }
-            if(!checkIsCellAShip(field1, coordYX)){
-                AI.getShootData().setDone(true);
-            }
-            printTwoFields(field2, field1);
-            continueShooting(field1, field2, coordYX);
+            startShooting(field1, field2);
         }
-
-
         if (!checkEndGame()) {
             System.out.println("\nMissed! The move goes to another player...\n");
-
-//            System.out.println("Shoot left counter: " + AI.getShootData().getShootLeft());
-//            System.out.println("DoNotShootLeft: " + AI.getShootData().isDoNotShootLeft());
-//            System.out.println("DoNotShootUp: " + AI.getShootData().isDoNotShootUp());
-//            System.out.println("DoNotShootRight: " + AI.getShootData().isDoNotShootRight());
-//            System.out.println("DoNotShootDown: " + AI.getShootData().isDoNotShootDown());
-//            System.out.println("isDone: " + AI.getShootData().isDone());
-
             if (AI.getShootData().isDone()) {
                 AI.setShootData(null);
             }
-
         }
         return field1;
     }
 
-    private void continueShooting(Field field1, Field field2, Integer[] coordYX) {
-        boolean isContinueShooting;
-        do {
-            isContinueShooting = false;
+    private void startShooting(Field field1, Field field2) {
+        Integer[] coordYX = randomShooting(field1);
+        System.out.println("\nComputer shoot " + printCoord(coordYX));
+        if (AI.getShootData() == null || AI.getShootData().isDone()) {
+            AI.setShootData(new ShootData(field1, coordYX));
+        }
+        if (!checkIsCellAShip(field1, coordYX)) {
+            AI.getShootData().setDone(true);
+        }
+        printTwoFields(field2, field1);
+        continueShooting(field1, field2, coordYX);
+    }
 
+    private void continueShooting(Field field1, Field field2, Integer[] coordYX) {
+        boolean isContinueMove;
+        do {
+            isContinueMove = false;
             if (checkIsCellAShip(field1, coordYX) && !checkEndGame()) {
                 AI.finishingShooting(field1);
                 printTwoFields(field2, field1);
                 coordYX = AI.getShootData().getLastYX();
-                isContinueShooting = checkIsCellAShip(field1, coordYX) && !checkEndGame() && !AI.getShootData().isDone();
+                isContinueMove = checkIsCellAShip(field1, coordYX) && !checkEndGame() && !AI.getShootData().isDone();
             }
-        } while (isContinueShooting && !checkEndGame());
+        } while (isContinueMove && !checkEndGame());
     }
 
     private Integer[] randomShooting(Field field) {
