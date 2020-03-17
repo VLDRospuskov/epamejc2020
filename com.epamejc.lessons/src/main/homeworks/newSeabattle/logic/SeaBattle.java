@@ -1,11 +1,9 @@
 package homeworks.newSeabattle.logic;
 
 import homeworks.newSeabattle.data.players.Player;
-import homeworks.utility.helper.Helper;
-import lombok.SneakyThrows;
 
-import static homeworks.newSeabattle.data.enums.Messages.*;
-import static homeworks.newSeabattle.logic.GameGeneration.*;
+import static homeworks.newSeabattle.logic.Util.generateComputer;
+import static homeworks.newSeabattle.logic.Util.generateUser;
 
 public class SeaBattle {
     private Player player1;
@@ -17,14 +15,19 @@ public class SeaBattle {
     }
 
     private void initializeGame() {
-        generatePlayersWithNames();
-        generateField(player1);
-        generateField(player2);
+        generatePlayers();
+        generateFields();
     }
 
-    @SneakyThrows
-    private void generatePlayersWithNames() {
-        int gameType = Helper.getInt(GAME_CHOOSING.toString());
+    private void generateFields() {
+        FieldGenerator FG = new FieldGenerator();
+        FG.generateField(player1);
+        FG.generateField(player2);
+    }
+
+    private void generatePlayers() {
+        int gameType = IO.getGameType();
+
         switch (gameType) {
             case 0 : {
                 player1 = generateComputer();
