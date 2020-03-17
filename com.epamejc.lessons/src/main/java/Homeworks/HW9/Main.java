@@ -13,6 +13,6 @@ public class Main {
         int atmsCount = 5;
         int usersCount = 10;
         Bank bank = new Bank(moneySupply, atmsCount, usersCount);
-        //bank.makeOperations(1000);
+        //bank.makeOperations(10);
     }
 }
