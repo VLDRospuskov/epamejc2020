@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
 
-        do {
+        while (!game.isGameOver()) {
             game.process();
-        } while (!game.isGameOver());
+        }
     }
 
 }

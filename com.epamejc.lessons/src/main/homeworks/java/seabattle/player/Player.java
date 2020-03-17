@@ -2,7 +2,6 @@ package homeworks.java.seabattle.player;
 
 import homeworks.java.seabattle.battle.Game;
 import homeworks.java.seabattle.field.Coordinatepointer;
-import homeworks.java.seabattle.field.IFieldObject;
 import homeworks.java.seabattle.field.ship.Deck;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 import homeworks.java.seabattle.field.ship.Ship;
@@ -12,16 +11,19 @@ import homeworks.java.seabattle.input.Orientation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Player extends BasePlayer implements InputListener {
 
     private Input input;
-    private static List<Coordinatepointer> listOfAttackedPoints = new ArrayList<>();
+    private static List<Coordinatepointer> listOfAttackedPoints = new ArrayList<Coordinatepointer>(100);
 
-    public Player(Game game){
+    public Player(Game game) {
         super(game);
         this.input = new Input(this);
+    }
+
+    public static List<Coordinatepointer> getListOfAttackedPoints() {
+        return listOfAttackedPoints;
     }
 
     @Override
@@ -35,30 +37,6 @@ public class Player extends BasePlayer implements InputListener {
     }
 
     @Override
-    public void attack(int x, int y) {
-        Coordinatepointer position = new Coordinatepointer(x, y);
-//        IFieldObject[][] shipsOfBasePlayer = game.getBasePlayer().field.getObjects();
-
-        if(field.isValidCoordinate(position) && !listOfAttackedPoints.contains(position)){
-                for (Ship ship : game.getBasePlayer().ships) {
-                    for (Deck deck : ship.getDecks()) {
-                        if (deck.getPosition().equals(position)) {
-                            deck.setAlive(false);
-                            System.out.println(deck.getView());
-                            if (ship.isShipAlive()) {
-                                System.out.println("Hit!");
-                            } else {
-                                System.out.println("Sank!");
-                            }
-                        }
-                    }
-                }
-                process();
-        }
-        listOfAttackedPoints.add(position);
-    }
-
-    @Override
     public boolean makeShip(DeckNumberCount decksNum, Orientation o, Coordinatepointer startCoordinate) {
         System.out.println("Make ship x, y (" + startCoordinate.x + "," + startCoordinate.y + ")");
         addShip(o, decksNum, startCoordinate);
@@ -66,7 +44,7 @@ public class Player extends BasePlayer implements InputListener {
     }
 
     @Override
-    public void process(){
+    public void process() {
         super.process();
         input.process(game.getState());
     }
@@ -75,5 +53,72 @@ public class Player extends BasePlayer implements InputListener {
     public void process(int index) {
         super.process();
         input.process(game.getState());
+    }
+
+    @Override
+    public void attack(int x, int y) {
+        Coordinatepointer position = new Coordinatepointer(x, y);
+//        IFieldObject[][] shipsOfBasePlayer = game.getBasePlayer().field.getObjects();
+
+        if (field.isValidCoordinate(position) && !listOfAttackedPoints.contains(position)) {
+            boolean isMissed = true;
+
+            for (Ship ship : game.getBasePlayer().ships) {
+                isMissed = !(checkIfAttackedPointIsAnEnemyShipPoint(ship, position));
+                if (!isMissed) break;
+            }
+
+            if(isMissed){
+                listOfAttackedPoints.add(position);
+                System.out.println("You missed! :P");
+                return;
+            }
+
+            if(isThatTheLastShip()) {
+                System.out.println("Congratulations! You won!");
+                exitGame();
+                return;
+            } else {
+                game.getBasePlayer().field.drawBattle();
+                process();
+            }
+        } else {
+            System.out.println("You already attacked this position/Some problems with the coordinate validation");
+            game.getBasePlayer().field.drawBattle();
+            process();
+        }
+    }
+
+    private boolean checkIfAttackedPointIsAnEnemyShipPoint(Ship ship, Coordinatepointer attackedPoint) {
+        for (Deck deck : ship.getDecks()) {
+            if (deck.getPosition().equals(attackedPoint)) {
+                deck.setAlive(false);
+                listOfAttackedPoints.add(attackedPoint);
+                printMessageBasedOnIsShipAliveOrDied(ship);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isThatTheLastShip() {
+        int deadShipCounter = 0;
+        for(Ship ship : game.getBasePlayer().ships){
+            if(ship.isShipAlive() == false){
+                deadShipCounter++;
+            }
+        }
+        if(deadShipCounter == ships.size()){
+            return true;
+        }
+        return false;
+    }
+
+    private void printMessageBasedOnIsShipAliveOrDied(Ship ship) {
+        if (ship.isShipAlive()) {
+            System.out.println("Hit!");
+        } else {
+            System.out.println("Sank!");
+        }
     }
 }

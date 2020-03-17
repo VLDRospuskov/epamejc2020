@@ -106,9 +106,14 @@ public class BasePlayer {
     }
 
     public void process(int index) {
-        if (game.getState() != GameState.BATTLE) field.draw(false);
         if (index == 1 && !isFieldFilled()) {
             fillAutomatically();
+        }
+
+        if (game.getState() != GameState.BATTLE) {
+            field.draw(false);
+        } else {
+            field.drawBattle();
         }
     }
 

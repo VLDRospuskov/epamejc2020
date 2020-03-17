@@ -14,7 +14,8 @@ public class Input {
     private BufferedReader buffer;
     private InputListener inListener;
     private int currentShipDeckNumber;
-    private final String baseFillingMessage = "Input %d-deck ship in format %s";
+    private final String baseFillingMessage = "Input %d-deck ship in format %s\nOr input \"auto fill\" " +
+            "to fill your field automatically" ;
     private String currentMessage;
     private String line;
 

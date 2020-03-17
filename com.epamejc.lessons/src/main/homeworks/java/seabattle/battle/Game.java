@@ -36,7 +36,7 @@ public class Game {
         return players[0];
     }
 
-    private void nextStep(){
+    public void nextStep(){
         currentIndex++;
 
         if(currentIndex >= players.length){

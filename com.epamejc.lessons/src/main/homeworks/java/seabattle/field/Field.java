@@ -1,6 +1,11 @@
 package homeworks.java.seabattle.field;
 
+import homeworks.java.seabattle.battle.Game;
+import homeworks.java.seabattle.player.BasePlayer;
+import homeworks.java.seabattle.player.Player;
+
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -105,6 +110,53 @@ public class Field {
     public void draw(boolean isUpdate) {
 
         if (isUpdate) update();
+        int coordX = 0;
+        int coordY = 1;
+
+        System.out.print(' ');
+        for (int x = 0; x < WIDTH; x++) {
+
+            System.out.print(' ');
+            System.out.print(head[coordX]);
+
+            coordX += 1;
+        }
+
+        System.out.println();
+
+        for (int y = 0; y < HEIGHT; y++) {
+
+            System.out.print(coordY++);
+
+            for (int x = 0; x < WIDTH; x++) {
+
+                if (!(x == 0 && coordY == 11)) {
+                    System.out.print(' ');
+                }
+                System.out.print(cells[x][y]);
+            }
+            System.out.println('|');
+        }
+    }
+
+    public void updateBattle() {
+        clean();
+        List<Coordinatepointer> attackedPoints = Player.getListOfAttackedPoints();
+        for(Coordinatepointer point : attackedPoints) {
+            IFieldObject currentObject = objects[point.x][point.y];
+            if (currentObject != null && currentObject.getView() == 'X') {
+                cells[point.x][point.y] = currentObject.getView();
+            } else if(currentObject == null) {
+                cells[point.x][point.y] = '0';
+            } else {
+                cells[point.x][point.y] = ' ';
+            }
+        }
+    }
+
+    public void drawBattle() {
+
+        updateBattle();
         int coordX = 0;
         int coordY = 1;
 
