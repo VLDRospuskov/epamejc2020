@@ -18,17 +18,39 @@ public class Engine {
     }
 
     // TODO Добавить Welcome сообщение и меню выбора типа игры
-    public void startWithManualShipPlacement() {
-//        manualShipPlacement(FIELD_1);
+    public void startPvPWithManualShipPlacement() {
+        System.out.println("\nPlayer 1 start placement ships.");
+        manualShipPlacement(FIELD_1);
+        System.out.println("\nPlayer 1 successfully set ships.");
+        System.out.println("\nPlayer 2 start placement ships.");
+        manualShipPlacement(FIELD_2);
+        System.out.println("\nPlayer 2 successfully set ships.");
+        battlePlayerVsPlayer();
+    }
+
+    public void startPvPWithAutoShipPlacement() {
         autoShipPlacement(FIELD_1);
+        System.out.println("\nPlayer 1 successfully set ships.");
         autoShipPlacement(FIELD_2);
-//        testShipPlacement(FIELD_1);
-//        testShipPlacement(FIELD_2);
-//        printTwoFields(field1, field2);
-//        printField(FIELD_1);
-//        printField(FIELD_2);
-//        printHiddenField(field1);
-        battle();
+        System.out.println("\nPlayer 2 successfully set ships.");
+        battlePlayerVsPlayer();
+    }
+
+    public void startPvCWithManualShipPlacement() {
+        System.out.println("\nPlayer start placement ships.");
+        manualShipPlacement(FIELD_1);
+        System.out.println("\nPlayer successfully set ships.");
+        autoShipPlacement(FIELD_2);
+        System.out.println("\nComputer successfully set ships.");
+        battlePlayerVsComputer();
+    }
+
+    public void startPvCWithAutoShipPlacement() {
+        autoShipPlacement(FIELD_1);
+        System.out.println("\nPlayer successfully set ships.");
+        autoShipPlacement(FIELD_2);
+        System.out.println("\nComputer successfully set ships.");
+        battlePlayerVsComputer();
     }
 
     public void testShipPlacement(Field field) {
@@ -105,34 +127,53 @@ public class Engine {
         return field;
     }
 
-    private void battle() {
+    private void battlePlayerVsComputer() {
         boolean isGameOver = false;
         while (!isGameOver) {
-            playerOneManualMove();
+            playerMovePvC();
             isGameOver = checkEndGame();
 
             if (!isGameOver) {
-                playerTwoAutoMove();
+                computerMovePvC();
                 isGameOver = checkEndGame();
             }
         }
-        System.out.println("Game over! Player " + getWinner() + " WIN!");
+        System.out.println("Game over! " + getWinnerPvC());
     }
 
-    private void playerOneManualMove() {
+    private void battlePlayerVsPlayer() {
+        boolean isGameOver = false;
+        while (!isGameOver) {
+            playerOneMovePvP();
+            isGameOver = checkEndGame();
+
+            if (!isGameOver) {
+                playerTwoMovePvP();
+                isGameOver = checkEndGame();
+            }
+        }
+        System.out.println("Game over! " + getWinnerPvP());
+    }
+
+    private void playerOneMovePvP() {
         printTwoFields(FIELD_1, FIELD_2);
         System.out.println("\nPlayer 1 shoot.");
         playerMove(FIELD_2, FIELD_1);
     }
 
-    private void playerTwoManualMove() {
+    private void playerTwoMovePvP() {
         printTwoFields(FIELD_2, FIELD_1);
         System.out.println("\nPlayer 2 shoot.");
         playerMove(FIELD_1, FIELD_2);
     }
 
-    private void playerTwoAutoMove() {
-        printTwoFields(FIELD_2, FIELD_1);
+    private void playerMovePvC() {
+        printTwoFields(FIELD_1, FIELD_2);
+        System.out.println("\nPlayer shoot.");
+        playerMove(FIELD_2, FIELD_1);
+    }
+
+    private void computerMovePvC() {
         System.out.println("\nComputer shoot.");
         autoMove(FIELD_1, FIELD_2);
     }
@@ -162,13 +203,10 @@ public class Engine {
 
     private Field autoMove(Field field1, Field field2) {
         if (AI.getShootData() != null && !AI.getShootData().isDone()) {
-            System.out.println("Continue shoot");
+//            System.out.println("Continue shoot");
             continueShooting(field1, field2, AI.getShootData().getSTART_YX());
-
-
-
         } else {
-            System.out.println("New shoot");
+//            System.out.println("New shoot");
             Integer[] coordYX = randomShooting(field1);
 //            Integer[] coordYX = {7, 7};
 //            if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
@@ -190,12 +228,12 @@ public class Engine {
         if (!checkEndGame()) {
             System.out.println("\nMissed! The move goes to another player...\n");
 
-            System.out.println("Shoot left counter: " + AI.getShootData().getShootLeft());
-            System.out.println("DoNotShootLeft: " + AI.getShootData().isDoNotShootLeft());
-            System.out.println("DoNotShootUp: " + AI.getShootData().isDoNotShootUp());
-            System.out.println("DoNotShootRight: " + AI.getShootData().isDoNotShootRight());
-            System.out.println("DoNotShootDown: " + AI.getShootData().isDoNotShootDown());
-            System.out.println("isDone: " + AI.getShootData().isDone());
+//            System.out.println("Shoot left counter: " + AI.getShootData().getShootLeft());
+//            System.out.println("DoNotShootLeft: " + AI.getShootData().isDoNotShootLeft());
+//            System.out.println("DoNotShootUp: " + AI.getShootData().isDoNotShootUp());
+//            System.out.println("DoNotShootRight: " + AI.getShootData().isDoNotShootRight());
+//            System.out.println("DoNotShootDown: " + AI.getShootData().isDoNotShootDown());
+//            System.out.println("isDone: " + AI.getShootData().isDone());
 
             if (AI.getShootData().isDone()) {
                 AI.setShootData(null);
@@ -242,11 +280,18 @@ public class Engine {
         return sunkShipsCount;
     }
 
-    private int getWinner() {
+    private String getWinnerPvP() {
         if (countSunkShips(FIELD_1) > countSunkShips(FIELD_2)) {
-            return FIELD_2.getId();
+            return "Player " + FIELD_2.getId() + " win!";
         }
-        return FIELD_2.getId();
+        return "Player " + FIELD_1.getId() + " win!";
+    }
+
+    private String getWinnerPvC() {
+        if (countSunkShips(FIELD_1) > countSunkShips(FIELD_2)) {
+            return "Computer win!";
+        }
+        return "Player win!";
     }
 
 

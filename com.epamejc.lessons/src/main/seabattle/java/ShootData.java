@@ -12,7 +12,6 @@ public class ShootData {
     private final Integer[] START_YX;
     private Integer[] lastYX;
     private boolean isDone;
-    private int shootCounter;
     private int shootLeft;
     private int shootUp;
     private int shootRight;
@@ -27,7 +26,6 @@ public class ShootData {
         doNotShootDown = false;
         initFlags();
         isDone = false;
-        shootCounter = 0;
         shootLeft = 0;
         shootUp = 0;
         shootRight = 0;

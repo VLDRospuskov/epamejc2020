@@ -90,6 +90,26 @@ public class Utils {
         return input;
     }
 
+    public static int scanOption() {
+        int option = 0;
+        boolean isBadEnter = false;
+            do {
+                isBadEnter = false;
+                System.out.print("\nEnter number(1 or 2): ");
+                String input = scanInput();
+                try {
+                    option = Integer.parseInt(input);
+                    if (option < 1 || option > 2) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("\nBad enter. Try again.");
+                    isBadEnter = true;
+                }
+            } while (isBadEnter);
+        return option;
+    }
+
     public static Integer[] scanCoordinates() {
         HashMap<String, Integer> dictionary = keyMap();
         Integer[] coordYX = new Integer[2];
@@ -201,6 +221,10 @@ public class Utils {
 
     public static boolean checkIsCellAShip(Field field, Integer[] coordYX) {
         return field.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == 1;
+    }
+
+    public static boolean checkIsCellHit(Field field, Integer[] coordYX) {
+        return field.getField().get(coordYX[0]).get(coordYX[1]).isHit();
     }
 
     public static Field shoot(Field field, Integer[] coordYX) {

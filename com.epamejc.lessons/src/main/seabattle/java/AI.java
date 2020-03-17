@@ -84,17 +84,22 @@ public class AI {
     private void finishingShootLeft(Field field, int y, int x) {
         x -= shootData.getShootLeft() + 1;
         Integer[] coordYX = new Integer[] {y, x};
-        shoot(field, coordYX);
-        shootData.setShootLeft(shootData.getShootLeft() + 1);
-
-        shootData.setLastYX(coordYX);
-        if (!checkIsCellAShip(field, coordYX)) {
-            shootData.setDoNotShootLeft(true);
-        }
-        if (shootData.getShootLeft() > 1) {
-            shootData.setDoNotShootUp(true);
-            shootData.setDoNotShootDown(true);
-        }
+//        if (!checkIsCellHit(field, coordYX)) {
+            shoot(field, coordYX);
+            shootData.setShootLeft(shootData.getShootLeft() + 1);
+            shootData.setLastYX(coordYX);
+            if (!checkIsCellAShip(field, coordYX)) {
+                shootData.setDoNotShootLeft(true);
+            }
+            if (shootData.getShootLeft() > 1) {
+                shootData.setDoNotShootUp(true);
+                shootData.setDoNotShootDown(true);
+            }
+//        } else {
+//            coordYX = generateRandomCoordinate(field);
+//            shoot(field, coordYX);
+//            shootData = new ShootData(coordYX);
+//        }
     }
 
     private void finishingShootUp(Field field, int y, int x) {
