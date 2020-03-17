@@ -38,7 +38,7 @@ public class RandomFileGeneratorTest {
             }
         }
         assertEquals(5, countLines);
-        file.delete();
+        assertTrue(file.delete());
     }
 
 

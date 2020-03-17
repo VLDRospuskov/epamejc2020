@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class BattleMapTest {
     EventHandler eventHandler;
     BattleMap map;
-    String name = "Мария";
+    final String name = "Мария";
 
     @Before
     public void init() {
@@ -18,7 +18,7 @@ public class BattleMapTest {
 
     @Test
     public void getOwner() {
-        assertTrue(map.getOwner().equals(name));
+        assertEquals(map.getOwner(), name);
     }
 
     @Test
@@ -33,13 +33,13 @@ public class BattleMapTest {
         Ship ship = new Ship(new Cell("а", 1));
         boolean isAdded = map.addShip(ship);
         assertTrue(isAdded);
-        assertTrue(map.getFullMap()[0][0].getStatus() == CellStatus.SHIP);
+        assertSame(map.getFullMap()[0][0].getStatus(), CellStatus.SHIP);
         assertTrue(map.haveAliveShips());
         assertEquals(1, map.getNumberAliveShips());
     }
 
     @Test
-    public void tryАddShipInEmptySpaceAroundOtherShip() {
+    public void tryAddShipInEmptySpaceAroundOtherShip() {
         Ship ship = new Ship(new Cell("а", 1));
         boolean isAdded = map.addShip(ship);
         assertTrue(isAdded);
@@ -54,7 +54,7 @@ public class BattleMapTest {
     }
 
     @Test
-    public void tryАddShipOnOtherShip() {
+    public void tryAddShipOnOtherShip() {
         Ship ship = new Ship(new Cell("а", 1));
         boolean isAdded = map.addShip(ship);
         assertTrue(isAdded);
@@ -70,7 +70,7 @@ public class BattleMapTest {
         Cell[][] cells = map.getMapWithoutShip();
         for (int i = 0; i < 10; i++) {
             for (int k = 0; k < 10; k++) {
-                assertTrue(cells[i][k].getStatus() != CellStatus.SHIP);
+                assertNotSame(cells[i][k].getStatus(), CellStatus.SHIP);
             }
         }
     }
@@ -80,7 +80,7 @@ public class BattleMapTest {
         boolean shoot = map.shootByCell(new Cell("а", 1));
         assertFalse(shoot);
         assertTrue(eventHandler.getStringEvents().contains("промахнулся"));
-        assertTrue(map.getFullMap()[0][0].getStatus() == CellStatus.MISS);
+        assertSame(map.getFullMap()[0][0].getStatus(), CellStatus.MISS);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class BattleMapTest {
         boolean shoot = map.shootByCell(cell);
         assertTrue(shoot);
         assertTrue(eventHandler.getStringEvents().contains("попал"));
-        assertTrue(map.getFullMap()[0][0].getStatus() == CellStatus.HIT);
+        assertSame(map.getFullMap()[0][0].getStatus(), CellStatus.HIT);
     }
 
     @Test

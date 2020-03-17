@@ -31,8 +31,7 @@ public class StarterTest {
         systemInMock.provideLines(negativeNumLevels, normalLevels, order, side, fillChar);
         new Starter().start();
         String actualOut = systemErrRule.getLog();
-        String expectedOut = ERROR_LEVELS_MSG;
-        assertEquals(expectedOut, actualOut);
+        assertEquals(ERROR_LEVELS_MSG, actualOut);
     }
 
     @Test
@@ -45,8 +44,7 @@ public class StarterTest {
         systemInMock.provideLines(normalLevels, order, errorSide, side, fillChar);
         new Starter().start();
         String actualOut = systemErrRule.getLog();
-        String expectedOut = ERROR_SIDE_MSG;
-        assertEquals(expectedOut, actualOut);
+        assertEquals(ERROR_SIDE_MSG, actualOut);
     }
 
     @Test
@@ -59,8 +57,7 @@ public class StarterTest {
         systemInMock.provideLines(normalLevels, errorOrder, order, side, fillChar);
         new Starter().start();
         String actualOut = systemErrRule.getLog();
-        String expectedOut = ERROR_ORDER_MSG;
-        assertEquals(actualOut, expectedOut);
+        assertEquals(actualOut, ERROR_ORDER_MSG);
     }
 
     @Test
@@ -73,7 +70,6 @@ public class StarterTest {
         systemInMock.provideLines(normalLevels, order, side, errorFillChar, fillChar);
         new Starter().start();
         String actualOut = systemErrRule.getLog();
-        String expectedOut = ERROR_CHAR_MSG;
-        assertEquals(expectedOut, actualOut);
+        assertEquals(ERROR_CHAR_MSG, actualOut);
     }
 }

@@ -26,8 +26,7 @@ public class StarterTest {
         systemInMock.provideLines(notIntegerValue, normalValue, normalPower);
         new Starter().start();
         String actualError = systemErrRule.getLog();
-        String expectedError = NOT_INTEGER_ERR_MSG;
-        assertEquals(actualError, expectedError);
+        assertEquals(actualError, NOT_INTEGER_ERR_MSG);
     }
 
     @Test
@@ -38,8 +37,7 @@ public class StarterTest {
         systemInMock.provideLines(normalValue, notIntegerValue, normalPower);
         new Starter().start();
         String actualError = systemErrRule.getLog();
-        String expectedError = NOT_INTEGER_ERR_MSG;
-        assertEquals(actualError, expectedError);
+        assertEquals(actualError, NOT_INTEGER_ERR_MSG);
     }
 
     @Test

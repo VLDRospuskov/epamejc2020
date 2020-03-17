@@ -14,7 +14,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class FileReaderTesterTest {
-    static String name = "test_file";
+    static final String name = "test_file";
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
     @Rule
@@ -28,6 +28,7 @@ public class FileReaderTesterTest {
     @AfterClass
     public static void deleteTestFile() {
         File file = new File(name);
+        //noinspection ResultOfMethodCallIgnored
         file.delete();
     }
 

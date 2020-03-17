@@ -7,8 +7,6 @@ import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import java.io.ByteArrayOutputStream;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
@@ -19,8 +17,6 @@ public class StarterTest {
     public final SystemErrRule systemErrRule = new SystemErrRule().enableLog();
     @Rule
     public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
-    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream err = new ByteArrayOutputStream();
     private final String FIRST_MSG = "Print integer value between 0 and 10 to change color of traffic light or 'exit' to close the program\n";
     private final String EXIT_MSG = "Bye-bye!\n";
     private final String COLOR_CHANGE_MSG = "Traffic Light : ";
@@ -58,8 +54,7 @@ public class StarterTest {
         String expectedOut = FIRST_MSG + COLOR_CHANGE_MSG + "YELLOW\n" + EXIT_MSG;
         assertEquals(actualOut, expectedOut);
         String actualErrorOut = systemErrRule.getLog();
-        String expectedErrorOut = ERROR_INT_VALUE_MSG;
-        assertEquals(expectedErrorOut, actualErrorOut);
+        assertEquals(ERROR_INT_VALUE_MSG, actualErrorOut);
     }
 
     @Test

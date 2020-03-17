@@ -40,8 +40,8 @@ public class RandomArrayWrapperTest {
         int expectedRows = rows / 2 + rows % 2;
         assertEquals(actualRows, expectedRows);
         int expectedColumns = columns / 2 + columns % 2;
-        for (int i = 0; i < arr.length; i++) {
-            int actualColumn = arr[i].length;
+        for (String[] strings : arr) {
+            int actualColumn = strings.length;
             assertEquals(expectedColumns, actualColumn);
         }
     }
@@ -60,8 +60,8 @@ public class RandomArrayWrapperTest {
         int expectedRows = rows / 2 - rows % 2;
         assertEquals(actualRows, expectedRows);
         int expectedColumns = columns / 2 - columns % 2;
-        for (int i = 0; i < arr.length; i++) {
-            int actualColumn = arr[i].length;
+        for (String[] strings : arr) {
+            int actualColumn = strings.length;
             assertEquals(expectedColumns, actualColumn);
         }
     }
@@ -78,8 +78,8 @@ public class RandomArrayWrapperTest {
                         .toArray(String[]::new)).toArray(String[][]::new);
         int actualRows = arr.length;
         assertEquals(actualRows, rows);
-        for (int i = 0; i < arr.length; i++) {
-            int actualColumn = arr[i].length;
+        for (String[] strings : arr) {
+            int actualColumn = strings.length;
             assertEquals(columns, actualColumn);
         }
     }

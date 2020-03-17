@@ -26,8 +26,7 @@ public class StarterTest {
         systemInMock.provideLines(errRows, rows, columns, strategy);
         new Starter().start();
         String actualErrorOut = systemErrRule.getLog();
-        String expectedErrorOut = ERROR_NUMBERS_MSG;
-        assertEquals(expectedErrorOut, actualErrorOut);
+        assertEquals(ERROR_NUMBERS_MSG, actualErrorOut);
     }
 
     @Test
@@ -39,8 +38,7 @@ public class StarterTest {
         systemInMock.provideLines(rows, errColumns, columns, strategy);
         new Starter().start();
         String actualErrorOut = systemErrRule.getLog();
-        String expectedErrorOut = ERROR_NUMBERS_MSG;
-        assertEquals(expectedErrorOut, actualErrorOut);
+        assertEquals(ERROR_NUMBERS_MSG, actualErrorOut);
     }
 
     @Test
@@ -52,8 +50,7 @@ public class StarterTest {
         systemInMock.provideLines(errRows, rows, columns, strategy);
         new Starter().start();
         String actualErrorOut = systemErrRule.getLog();
-        String expectedErrorOut = ERROR_NUMBERS_MSG;
-        assertEquals(expectedErrorOut, actualErrorOut);
+        assertEquals(ERROR_NUMBERS_MSG, actualErrorOut);
     }
 
     @Test
@@ -65,8 +62,7 @@ public class StarterTest {
         systemInMock.provideLines(rows, errColumns, columns, strategy);
         new Starter().start();
         String actualErrorOut = systemErrRule.getLog();
-        String expectedErrorOut = ERROR_NUMBERS_MSG;
-        assertEquals(expectedErrorOut, actualErrorOut);
+        assertEquals(ERROR_NUMBERS_MSG, actualErrorOut);
     }
 
     @Test
@@ -78,8 +74,7 @@ public class StarterTest {
         systemInMock.provideLines(rows, columns, errStrategy, strategy);
         new Starter().start();
         String actualErrorOut = systemErrRule.getLog();
-        String expectedErrorOut = ERROR_STRATEGY_MSG;
-        assertEquals(expectedErrorOut, actualErrorOut);
+        assertEquals(ERROR_STRATEGY_MSG, actualErrorOut);
     }
 
 

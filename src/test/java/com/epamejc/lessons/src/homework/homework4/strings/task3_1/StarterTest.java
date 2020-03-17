@@ -26,8 +26,7 @@ public class StarterTest {
         systemInMock.provideLines(str, errOption, normalOption);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedOut = ERR_OPTION_MSG;
-        assertEquals(expectedOut, actualErrOut);
+        assertEquals(ERR_OPTION_MSG, actualErrOut);
     }
 
     @Test

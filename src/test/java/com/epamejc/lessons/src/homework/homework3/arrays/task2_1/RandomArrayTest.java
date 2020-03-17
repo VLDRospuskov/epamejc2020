@@ -38,8 +38,8 @@ public class RandomArrayTest {
                         .toArray(String[]::new)).toArray(String[][]::new);
         int actualRows = arr.length;
         assertEquals(actualRows, rows);
-        for (int i = 0; i < arr.length; i++) {
-            int actualColumn = arr[i].length;
+        for (String[] strings : arr) {
+            int actualColumn = strings.length;
             assertEquals(columns, actualColumn);
         }
     }

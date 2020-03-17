@@ -30,8 +30,7 @@ public class StarterTest {
         systemInMock.provideLines(str, errorArg, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = ERR_NUM_ARG_MSG;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(ERR_NUM_ARG_MSG, actualErrOut);
     }
 
     @Test
@@ -41,8 +40,7 @@ public class StarterTest {
         systemInMock.provideLines(str, errorArg, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = ERR_ARG_MSG;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(ERR_ARG_MSG, actualErrOut);
     }
 
     @Test
@@ -52,8 +50,7 @@ public class StarterTest {
         systemInMock.provideLines(str, outOfBoundArg, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = ERR_POSITION_MSG;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(ERR_POSITION_MSG, actualErrOut);
     }
 
     @Test
@@ -63,8 +60,7 @@ public class StarterTest {
         systemInMock.provideLines(str, normalStr, EXIT);
         new com.epamejc.lessons.src.homework.homework4.strings.task3_2.Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = EMPTY_FIRST_STRING;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(EMPTY_FIRST_STRING, actualErrOut);
     }
 
     @Test

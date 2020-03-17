@@ -10,8 +10,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class StreamOperationsTest {
-    StreamOperations streamOperations = new StreamOperations();
-    List<Employee> employees = getEmployees();
+    final StreamOperations streamOperations = new StreamOperations();
+    final List<Employee> employees = getEmployees();
 
     @Test
     public void findPersonsEverWorkedInEpam() {
@@ -56,8 +56,8 @@ public class StreamOperationsTest {
 
     @Test
     public void findMinimalAgeOfEmployees() {
-        Integer minimal = streamOperations.findMinimalAgeOfEmployees();
-        Integer foundedMinimal = employees.get(0).getPerson().getAge();
+        int minimal = streamOperations.findMinimalAgeOfEmployees();
+        int foundedMinimal = employees.get(0).getPerson().getAge();
         for (Employee employee : employees) {
             foundedMinimal = Math.min(foundedMinimal, employee.getPerson().getAge());
         }
@@ -67,7 +67,7 @@ public class StreamOperationsTest {
     @Test
     public void calcAverageAgeOfEmployees() {
         Double average = streamOperations.calcAverageAgeOfEmployees();
-        Double sum = 0.0;
+        double sum = 0.0;
         for (Employee employee : employees) {
             sum += employee.getPerson().getAge();
         }

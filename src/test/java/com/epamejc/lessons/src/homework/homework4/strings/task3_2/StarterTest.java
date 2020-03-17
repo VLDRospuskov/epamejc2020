@@ -29,8 +29,7 @@ public class StarterTest {
         systemInMock.provideLines(str, errorArg, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = ERR_ARG_MSG;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(ERR_ARG_MSG, actualErrOut);
     }
 
     @Test
@@ -40,8 +39,7 @@ public class StarterTest {
         systemInMock.provideLines(str, negativePosition, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = ERR_POSITION;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(ERR_POSITION, actualErrOut);
     }
 
     @Test
@@ -51,8 +49,7 @@ public class StarterTest {
         systemInMock.provideLines(str, outOfBoundsPosition, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = ERR_POSITION;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(ERR_POSITION, actualErrOut);
     }
 
     @Test
@@ -62,8 +59,7 @@ public class StarterTest {
         systemInMock.provideLines(str, normalStr, EXIT);
         new Starter().start();
         String actualErrOut = systemErrRule.getLog();
-        String expectedErrOut = EMPTY_FIRST_STRING;
-        assertEquals(expectedErrOut, actualErrOut);
+        assertEquals(EMPTY_FIRST_STRING, actualErrOut);
     }
 
     @Test
@@ -75,7 +71,7 @@ public class StarterTest {
         systemInMock.provideLines(str, position1, position2, position3, EXIT);
         new Starter().start();
         String out = systemOutRule.getLog();
-        String lines[] = out.split("\\n");
+        String[] lines = out.split("\\n");
         String modifiedString = lines[lines.length - 2];
         assertTrue(modifiedString.endsWith("Output:042"));
     }
