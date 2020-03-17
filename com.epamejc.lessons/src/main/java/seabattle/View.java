@@ -44,28 +44,6 @@ public class View {
                 textView[coordinate.getY()][coordinate.getX()] = GameObjectView.UNBROKEN.getState();
             }
         }
-//        for (int i = 0; i < field.ships.size(); i++) {
-//            Ship ship = field.ships.get(i);
-//            Coordinate firstCoordinate = ship.getFirstCoordinate();
-//            //Coordinate secondCoordinate = ship.getSecondCoordinate();
-//            int length = ship.getLength();
-//            int direction = ship.getDirection();
-//            for (int j = 0; j < length; j++) {
-//                switch (direction) {
-//                    case 0:
-//                        textView[firstCoordinate.getY()][firstCoordinate.getX()] = GameObjectView.UNBROKEN.getState();
-//                        break;
-//                    case 1:
-//                        textView[firstCoordinate.getY()][firstCoordinate.getX() + j] =
-//                                GameObjectView.UNBROKEN.getState();
-//                        break;
-//                    case 2:
-//                        textView[firstCoordinate.getY() + j][firstCoordinate.getX()] =
-//                                GameObjectView.UNBROKEN.getState();
-//                        break;
-//                }
-//            }
-//        }
     }
     
     public void updateAssistantView(Field field) {

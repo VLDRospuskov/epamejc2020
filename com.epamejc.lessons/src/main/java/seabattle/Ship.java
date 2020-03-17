@@ -12,8 +12,14 @@ public class Ship {
     private int direction;
     
     public Ship(Coordinate firstCoordinate, Coordinate secondCoordinate) {
-        this.firstCoordinate = firstCoordinate;
-        this.secondCoordinate = secondCoordinate;
+        if (firstCoordinate.getX() > secondCoordinate.getX() || firstCoordinate.getY() > secondCoordinate.getY()) {
+            this.firstCoordinate = secondCoordinate;
+            this.secondCoordinate = firstCoordinate;
+            //ship = new Ship(second, first);
+        } else {
+            this.firstCoordinate = firstCoordinate;
+            this.secondCoordinate = secondCoordinate;
+        }
         this.length = calculateLength();
         this.direction = calculateDirection();
         this.shipParts = fillShipPartsList();

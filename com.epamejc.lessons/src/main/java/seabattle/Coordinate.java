@@ -37,6 +37,7 @@ public class Coordinate {
     
     public static boolean checkCoordinates(Coordinate first, Coordinate second) {
         return first.getX() >= 0 && first.getX() < 10 && first.getY() >= 0 && first.getY() < 10 &&
+               second.getX() >= 0 && second.getX() < 10 && second.getY() >= 0 && second.getY() < 10 &&
                (first.getX() == second.getX() || first.getY() == second.getY()) &&
                (Math.abs(first.getX() - second.getX()) <= 3 && Math.abs(first.getY() - second.getY()) <= 3);
     }
