@@ -20,13 +20,9 @@ public class Statistics {
 
     public Statistics() {
         reserveBeforeChanged = CentralStorage.reserve;
-        depositTimes = 0;
         depositedAmount = BigDecimal.valueOf(0);
-        withdrawTimes = 0;
         withdrawAmount = BigDecimal.valueOf(0);
-        putToReserveTimes = 0;
         putToReserveAmount = BigDecimal.valueOf(0);
-        getFromReserveTimes = 0;
         getFromReserveAmount = BigDecimal.valueOf(0);
         reserveAfterChanged = BigDecimal.valueOf(0);
     }

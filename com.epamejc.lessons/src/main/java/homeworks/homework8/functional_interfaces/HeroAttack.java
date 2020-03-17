@@ -3,7 +3,10 @@ package homeworks.homework8.functional_interfaces;
 public class HeroAttack {
 
     public void execute() {
-        Hero<Float> heroDva = new Hero<>("D.Va", "BlowUpAll", "MakeDamge", 10.532465f);
+        Hero<Float> heroDva = new Hero<>("D.Va",
+                                         "BlowUpAll",
+                                         "MakeDamge",
+                                         10.532465f);
 
         while (!(heroDva.isUltimateIsReady())) {
             heroDva.useAbility();
