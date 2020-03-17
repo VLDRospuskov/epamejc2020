@@ -5,7 +5,8 @@ import java.math.BigDecimal;
 public class ATM {
     private final BankBalance bankBalance;
     private final int id;
-    private final BigDecimal RECOMMENDED_BALANCE = new BigDecimal("50000.0").setScale(2, BigDecimal.ROUND_HALF_DOWN);
+    private final BigDecimal RECOMMENDED_BALANCE =
+            new BigDecimal("50000.0").setScale(2, BigDecimal.ROUND_HALF_DOWN);
     private BigDecimal balance = new BigDecimal("50000.0").setScale(2, BigDecimal.ROUND_HALF_DOWN);
 
     public ATM(int id, BankBalance bankBalance) {
@@ -17,7 +18,7 @@ public class ATM {
         return id;
     }
 
-    synchronized public BigDecimal withdraw(BigDecimal money) {
+    public synchronized BigDecimal withdraw(BigDecimal money) {
         if (money.compareTo(balance) <= 0) {
             balance = balance.subtract(money);
             System.out.println("ATM " + id + " withdraw:" + money);
@@ -28,13 +29,13 @@ public class ATM {
         }
     }
 
-    synchronized public void deposit(BigDecimal money) {
+    public synchronized void deposit(BigDecimal money) {
         System.out.println("ATM " + id + " deposit:" + money);
         balance = balance.add(money);
         System.out.println("ATM " + id + " balance:" + balance);
     }
 
-    synchronized public void encashment() {
+    public synchronized void encashment() {
         System.out.println("ATM " + id + " encashment.");
         if (RECOMMENDED_BALANCE.compareTo(balance) < 0) {
             sendMoneyToBank();

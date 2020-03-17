@@ -26,12 +26,12 @@ public class RandomFileGenerator {
         File file = new File(name);
         Files.deleteIfExists(file.toPath());
         file.createNewFile();
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-        for (int i = 0; i < numberLines; i++) {
-            String randomLine = generateRandomLineOfLength(10000);
-            bufferedWriter.write(randomLine + "\n");
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+            for (int i = 0; i < numberLines; i++) {
+                String randomLine = generateRandomLineOfLength(10000);
+                bufferedWriter.write(randomLine + "\n");
+            }
         }
-        bufferedWriter.close();
     }
 
     private String generateRandomLineOfLength(int length) {

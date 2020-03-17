@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 public class AtmOperations {
-    private static final Random r = new Random();
+    private static final Random random = new Random();
 
-    static public void withdrawRandom(Person person, ATM atm) {
+    public static void withdrawRandom(Person person, ATM atm) {
         BigDecimal random = getRandomBigDecimal();
         System.out.println(person.getName() + " try to withdraw " + random
                 + " from ATM " + atm.getId());
@@ -15,7 +15,7 @@ public class AtmOperations {
         System.out.println(person.getName() + " got: " + temp + ". Balance: " + person.getBalance().toString());
     }
 
-    static public void depositRandom(Person person, ATM atm) {
+    public static void depositRandom(Person person, ATM atm) {
         if (person.getBalance().compareTo(BigDecimal.TEN) > 0) {
             BigDecimal random = getRandomBigDecimal();
             while (random.compareTo(person.getBalance()) > 0) {
@@ -28,13 +28,13 @@ public class AtmOperations {
         }
     }
 
-    static public void encashment(ATM atm) {
+    public static void encashment(ATM atm) {
         atm.encashment();
         System.out.println("Encashment of ATM:" + atm.getId() + " occurred.");
     }
 
     private static BigDecimal getRandomBigDecimal() {
-        return BigDecimal.valueOf(Math.abs(r.nextDouble() + r.nextInt(40000)))
+        return BigDecimal.valueOf(Math.abs(random.nextDouble() + random.nextInt(40000)))
                 .setScale(2, BigDecimal.ROUND_HALF_DOWN);
     }
 }

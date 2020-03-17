@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class BankSystem {
     private final List<ATM> listATM;
-    private final Random r = new Random();
+    private final Random random = new Random();
 
     public BankSystem() {
         BankBalance bankBalance = new BankBalance();
@@ -18,7 +18,7 @@ public class BankSystem {
     }
 
     public ATM getRandomATM() {
-        int index = r.nextInt(2);
+        int index = random.nextInt(2);
         return listATM.get(index);
     }
 }

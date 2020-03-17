@@ -13,9 +13,13 @@ public class Person {
     @SneakyThrows
     @PersonInfo(name = "Rick", age = 90)
     Person() {
-        Constructor<? extends Person> constructor = this.getClass().getDeclaredConstructor();
-        PersonInfo annotation = constructor.getAnnotation(PersonInfo.class);
+        PersonInfo annotation = getPersonInfo();
         this.name = annotation.name();
         this.age = annotation.age();
+    }
+
+    private PersonInfo getPersonInfo() throws NoSuchMethodException {
+        Constructor<? extends Person> constructor = this.getClass().getDeclaredConstructor();
+        return constructor.getAnnotation(PersonInfo.class);
     }
 }
