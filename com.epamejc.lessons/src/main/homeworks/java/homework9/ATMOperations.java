@@ -19,7 +19,7 @@ public class ATMOperations implements Runnable {
         try {
             while (!Thread.interrupted()) {
                 TimeUnit.MILLISECONDS.sleep(150);
-                operate();
+                chooseOperation();
             }
         } catch (InterruptedException e) {
             System.out.println(atm + " is closed.");
@@ -27,7 +27,7 @@ public class ATMOperations implements Runnable {
     }
 
 
-    private void operate() {
+    private void chooseOperation() {
         Random rand = new Random();
         boolean b = rand.nextBoolean();
         int nClient = rand.nextInt(clients.size());
@@ -36,23 +36,31 @@ public class ATMOperations implements Runnable {
 
         try {
                 if (b) {
-                    atm.withdraw(amount);
-                    currentClient.deposit(amount);
-                    System.out.println(Thread.currentThread().getName() + "    " + currentClient + "used: " +
-                            atm + " got: " + amount + ". Current balance: " + currentClient.getBalance() +
-                            ". Current walletMoney: " + currentClient.getWalletMoney() +
-                            "\n" + atm + " Current balance: " + atm.getBalance());
+                    clientWithdraw(currentClient, amount);
                 } else {
-                    currentClient.withdraw(amount);
-                    atm.deposit(amount);
-                    System.out.println(Thread.currentThread().getName() + "    " + currentClient + "used: " +
-                            atm + " deposited: " + amount + ". Current balance: " + currentClient.getBalance() +
-                            ". Current walletMoney: " + currentClient.getWalletMoney() +
-                            " \n" + atm + " Current balance: " + atm.getBalance());
+                    clientDeposit(currentClient, amount);
                 }
 
         } catch (NotEnoughMoneyException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void clientWithdraw(Client currentClient, int amount) {
+        atm.withdraw(amount);
+        currentClient.deposit(amount);
+        System.out.println(Thread.currentThread().getName() + "    " + currentClient + "used: " +
+                atm + " got: " + amount + ". Current balance: " + currentClient.getBalance() +
+                ". Current walletMoney: " + currentClient.getWalletMoney() +
+                "\n" + atm + " Current balance: " + atm.getBalance());
+    }
+
+    private void clientDeposit(Client currentClient, int amount) {
+        currentClient.withdraw(amount);
+        atm.deposit(amount);
+        System.out.println(Thread.currentThread().getName() + "    " + currentClient + "used: " +
+                atm + " deposited: " + amount + ". Current balance: " + currentClient.getBalance() +
+                ". Current walletMoney: " + currentClient.getWalletMoney() +
+                " \n" + atm + " Current balance: " + atm.getBalance());
     }
 }
