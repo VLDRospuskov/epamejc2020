@@ -50,7 +50,7 @@ public class Util {
         return false;
     }
 
-    private static boolean isInField(Point p) {
+    public static boolean isInField(Point p) {
         return ((0 <= p.x && p.x <= 9) && (0 <= p.y && p.y <= 9));
     }
 
@@ -66,12 +66,6 @@ public class Util {
 
         list.remove(p);
         return list;
-    }
-
-    public static Point getComputerSmartShoot() {
-        int x = (int) (Math.random() * 10);
-        int y = (int) (Math.random() * 10);
-        return new Point(x, y);
     }
 
     private static int between0_9(int y) {

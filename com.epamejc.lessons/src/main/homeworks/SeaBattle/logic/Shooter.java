@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static homeworks.SeaBattle.data.StaticVariables.TOTAL_SCORE;
 import static homeworks.SeaBattle.data.StaticVariables.sleepTimeMs;
 import static homeworks.SeaBattle.logic.IO.printFields;
-import static homeworks.SeaBattle.logic.Util.getComputerSmartShoot;
+import static homeworks.SeaBattle.logic.Util.isInField;
 
 public class Shooter {
 
@@ -43,18 +43,72 @@ public class Shooter {
     @SneakyThrows
     private void computerKeepShooting() {
         boolean isHit;
+        Point p = getComputerSmartShoot();
 
         do {
             System.out.println("It's computer's turn!");
-            Point p = getComputerSmartShoot();
             isHit = shoot(p);
             if (winningCondition()) {
                 break;
+            }
+
+            if (isHit) {
+                p = getComputerNearShot(p, target);
             }
         } while (isHit);
 
         System.out.println("Computer's turn is finished.");
         Thread.sleep(sleepTimeMs);
+    }
+
+    private Point getComputerNearShot(Point p, Player target) {
+        ArrayList<Point> points = new ArrayList<>();
+        points.add(new Point(p.x-1, p.y));
+        points.add(new Point(p.x+1, p.y));
+        points.add(new Point(p.x, p.y-1));
+        points.add(new Point(p.x, p.y+1));
+
+        points.removeIf(point -> !isInField(point)
+                || target.getField()[point.y][point.x] == Chars.MISS.getChar()
+                || target.getField()[point.y][point.x] == Chars.DESTROYED.getChar()
+                || target.getField()[point.y][point.x] == Chars.HIT.getChar());
+
+        if (points.size() < 1) {
+            return getComputerSmartShoot();
+        } else {
+            return points.get((int) (Math.random() * points.size()));
+        }
+    }
+
+    public Point getComputerSmartShoot() {
+        if (targetHasHitShips()) {
+            ArrayList<Point> points = findHitShipCells();
+            return points.get((int) (Math.random() * points.size()));
+        } else {
+            int x = (int) (Math.random() * 10);
+            int y = (int) (Math.random() * 10);
+            return new Point(x, y);
+        }
+    }
+
+    private boolean targetHasHitShips() {
+        return !findHitShipCells().isEmpty();
+    }
+
+    private ArrayList<Point> findHitShipCells() {
+        ArrayList<Point> hitShipPoints = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (target.getField()[j][i] == Chars.HIT.getChar()) {
+                    hitShipPoints.add(new Point(i, j));
+                }
+            }
+        }
+
+        return hitShipPoints;
+
+
     }
 
     private void userKeepShooting() {
