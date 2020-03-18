@@ -2,16 +2,17 @@ package homeworks.newSeabattle.logic;
 
 import homeworks.newSeabattle.data.players.Player;
 
+import static homeworks.newSeabattle.logic.IO.showFields;
 import static homeworks.newSeabattle.logic.Util.generateComputer;
 import static homeworks.newSeabattle.logic.Util.generateUser;
 
 public class SeaBattle {
     private Player player1;
     private Player player2;
-    private Player currentPlayer;
 
     public void play() {
         initializeGame();
+        showFields(player1, player2);
     }
 
     private void initializeGame() {
@@ -43,6 +44,8 @@ public class SeaBattle {
                 break;
             }
         }
+
+        player1.setActive(true);
     }
 
 }

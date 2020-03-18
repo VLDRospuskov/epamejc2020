@@ -9,22 +9,14 @@ import lombok.SneakyThrows;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static homeworks.newSeabattle.logic.Util.*;
-
 public class FieldGenerator {
 
     private Player player;
-    private ArrayList<Ship> ships;
-    private char[][] field;
 
     public void generateField(Player player) {
         this.player = player;
-        this.field = generateFieldWithEmptySpaces();
-
+        fillGameFieldWithEmptySpaces(player);
         putShipsOnField();
-
-        player.setShips(ships);
-        player.setField(field);
     }
 
     private void putShipsOnField() {
@@ -35,45 +27,9 @@ public class FieldGenerator {
         }
     }
 
-    private char[][] generateFieldWithEmptySpaces() {
-        char[][] field = new char[10][10];
-        fillWithEmptySpaces(field);
-        return field;
-    }
-
-    private ArrayList<Ship> generateArrayListWithShips() {
-        ArrayList<Ship> ships = new ArrayList<>();
-
-        addShips(1, 4);
-        addShips(2, 3);
-        addShips(3, 2);
-        addShips(4, 1);
-
-        return ships;
-    }
-
-    private void addShips(int amount, int size) {
-        for (int i = 0; i < amount; i++) {
-            ships.add(generateShip(size));
-        }
-    }
-
-    private Ship generateShip(int size) {
-        ArrayList<Point> cells = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            cells.add(new Point(0, 0));
-        }
-
-        return new Ship(cells);
-    }
-
     private void putShipsManually() {
-
+        System.out.println("Not ready yet!");
     }
-
-
-
-
 
 
     @SneakyThrows
@@ -93,7 +49,7 @@ public class FieldGenerator {
     private void generateAShip(int size) {
         ArrayList<Point> cells = generateCellsForShip(size);
         if (isPossible(cells)) {
-//            ships.add(cells);
+            player.getShips().add(new Ship(cells));
             putOnField(cells);
         } else {
             generateAShip(size);
@@ -125,7 +81,7 @@ public class FieldGenerator {
 
     private boolean isNearAShip(Point p) {
         for (Point point : existingCellsNear(p)) {
-            if (field[point.y][point.x] == 'S') {
+            if (player.getField()[point.y][point.x] == 'S') {
                 return true;
             }
         }
@@ -152,6 +108,7 @@ public class FieldGenerator {
         return list;
     }
 
+
     ////Util methods
 
     private boolean isAutomaticCreation() {
@@ -160,7 +117,7 @@ public class FieldGenerator {
 
     private void putOnField(ArrayList<Point> cells) {
         for (Point p : cells) {
-            field[p.y][p.x] = Chars.SHIP.getChar();
+            player.getField()[p.y][p.x] = Chars.SHIP.getChar();
         }
     }
 
@@ -186,10 +143,10 @@ public class FieldGenerator {
         return new Point(x, y);
     }
 
-    private void fillWithEmptySpaces(char[][] field) {
+    private void fillGameFieldWithEmptySpaces(Player player) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                field[j][i] = Chars.EMPTY.getChar();
+                player.getField()[j][i] = Chars.EMPTY.getChar();
             }
         }
     }

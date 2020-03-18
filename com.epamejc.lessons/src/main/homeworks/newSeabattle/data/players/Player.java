@@ -11,6 +11,13 @@ public abstract class Player {
     private String name;
     private char[][] field;
     private ArrayList<Ship> ships;
-    private int score = 0;
+    private boolean isActive;
+    private int score;
+
+    public Player() {
+        this.field = new char[10][10];
+        this.ships = new ArrayList<>();
+        this.score = 0;
+    }
 
 }
