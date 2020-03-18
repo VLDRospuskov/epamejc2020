@@ -1,4 +1,4 @@
-package homeworks.seabattle.battlefield;
+package homeworks.seabattle.field;
 
 import homeworks.homework3.allInOne.Colors;
 

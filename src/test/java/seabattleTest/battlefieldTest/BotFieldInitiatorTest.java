@@ -1,7 +1,7 @@
 package seabattleTest.battlefieldTest;
 
-import homeworks.seabattle.battlefield.BotFieldInitiator;
-import homeworks.seabattle.battlefield.FieldInitiator;
+import homeworks.seabattle.initiator.BotFieldInitiator;
+import homeworks.seabattle.initiator.FieldInitiator;
 import homeworks.seabattle.util.Positions;
 import org.junit.After;
 import org.junit.Before;

@@ -3,7 +3,7 @@ package homeworks.seabattle.controllers;
 
 import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.util.Ship;
-import homeworks.seabattle.battlefield.FieldPrinter;
+import homeworks.seabattle.field.FieldPrinter;
 
 import java.util.ArrayList;
 import java.util.List;

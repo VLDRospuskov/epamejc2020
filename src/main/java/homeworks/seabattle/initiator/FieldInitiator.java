@@ -1,4 +1,4 @@
-package homeworks.seabattle.battlefield;
+package homeworks.seabattle.initiator;
 
 import homeworks.seabattle.util.Area;
 import homeworks.seabattle.util.Positions;

@@ -1,9 +1,9 @@
 package homeworks.seabattle.logic;
 
 import homeworks.seabattle.util.ConsoleReader;
-import homeworks.seabattle.battlefield.BotFieldInitiator;
-import homeworks.seabattle.battlefield.FieldInitiator;
-import homeworks.seabattle.battlefield.PlayerFieldInitiator;
+import homeworks.seabattle.initiator.BotFieldInitiator;
+import homeworks.seabattle.initiator.FieldInitiator;
+import homeworks.seabattle.initiator.PlayerFieldInitiator;
 import homeworks.seabattle.controllers.BotController;
 import homeworks.seabattle.controllers.Controller;
 import homeworks.seabattle.controllers.PlayerController;

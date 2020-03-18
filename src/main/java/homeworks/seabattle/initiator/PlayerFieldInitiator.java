@@ -1,5 +1,6 @@
-package homeworks.seabattle.battlefield;
+package homeworks.seabattle.initiator;
 
+import homeworks.seabattle.field.FieldPrinter;
 import homeworks.seabattle.util.ConsoleReader;
 import homeworks.seabattle.util.Positions;
 import lombok.SneakyThrows;

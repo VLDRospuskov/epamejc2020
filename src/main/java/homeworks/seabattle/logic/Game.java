@@ -1,7 +1,7 @@
 package homeworks.seabattle.logic;
 
 import homeworks.homework3.allInOne.Colors;
-import homeworks.seabattle.battlefield.FieldPrinter;
+import homeworks.seabattle.field.FieldPrinter;
 import homeworks.seabattle.util.ConsoleReader;
 import homeworks.seabattle.util.Positions;
 import homeworks.seabattle.controllers.Controller;

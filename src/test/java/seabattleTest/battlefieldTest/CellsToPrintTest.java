@@ -1,7 +1,7 @@
 package seabattleTest.battlefieldTest;
 
 import homeworks.homework3.allInOne.Colors;
-import homeworks.seabattle.battlefield.CellsToPrint;
+import homeworks.seabattle.field.CellsToPrint;
 import org.junit.Assert;
 import org.junit.Test;
 
