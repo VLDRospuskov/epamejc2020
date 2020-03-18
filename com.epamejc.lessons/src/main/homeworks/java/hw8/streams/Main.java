@@ -7,11 +7,11 @@ public class Main {
         StreamOperations streamOperations = new StreamOperations();
 //        streamOperations.findAllCompanies();
 //        streamOperations.calcAverageAgeOfEmployees();
-//        streamOperations.findMinimalAgeOfEmployees();
+        streamOperations.findMinimalAgeOfEmployees();
 //        streamOperations.findPersonWithLongestFullName();
 //        streamOperations.findPersonsEverWorkedInEpam();
 //        streamOperations.findPersonsBeganCareerInEpam();
-        streamOperations.findEmployeeWithMaximumDurationAtOnePosition();
+//        streamOperations.findEmployeeWithMaximumDurationAtOnePosition();
 
 
     }
