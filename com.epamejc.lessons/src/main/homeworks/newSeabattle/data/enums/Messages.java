@@ -2,12 +2,11 @@ package homeworks.newSeabattle.data.enums;
 
 public enum Messages {
 
-    CHOOSE_PLAYERS ("Какой тип игры выбираете? " +
-            "2 игрока (2), " +
-            "игрок-компьютер (1), " +
-            "или два компьютера (0)?"),
-    NAME("Введите имя игрока : "),
-    MANUAL_CREATION("Put ships manually (yes)? ");
+    GREETING("Welcome to the \"SeaBattle\" game!"),
+    CHOOSE_PLAYERS ("How many players, 1 or 2? "),
+    ERROR_WHILE_GAME_TYPE_CHOOSING("1 or 2 only: "),
+    NAME("Player's name: "),
+    MANUAL_CREATION("Generate ships manually (1-yes, 0-no) ");
 
     private String str;
 

@@ -12,6 +12,7 @@ public abstract class Player {
     private char[][] field;
     private ArrayList<Ship> ships;
     private boolean isActive;
+    private boolean isManualShipGeneration;
     private int score;
 
     public Player() {

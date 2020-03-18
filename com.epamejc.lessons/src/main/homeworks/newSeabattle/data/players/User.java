@@ -9,5 +9,6 @@ import lombok.Data;
 public class User extends Player {
 
     private String name;
+    private boolean isManualShipGeneration;
 
 }

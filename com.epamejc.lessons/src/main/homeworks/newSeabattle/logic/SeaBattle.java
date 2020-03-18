@@ -1,51 +1,95 @@
 package homeworks.newSeabattle.logic;
 
+import homeworks.newSeabattle.data.enums.Messages;
 import homeworks.newSeabattle.data.players.Player;
+import homeworks.utility.helper.Helper;
 
-import static homeworks.newSeabattle.logic.IO.showFields;
+import java.util.ArrayList;
+
+import static homeworks.newSeabattle.data.StaticVariables.TOTAL_SCORE;
+import static homeworks.newSeabattle.logic.IO.printFields;
 import static homeworks.newSeabattle.logic.Util.generateComputer;
 import static homeworks.newSeabattle.logic.Util.generateUser;
 
 public class SeaBattle {
     private Player player1;
     private Player player2;
+    private ArrayList<Player> players;
 
-    public void play() {
+    public void run() {
         initializeGame();
-        showFields(player1, player2);
+        play();
+        endGame();
+    }
+
+    private void endGame() {
+        Player winner = null;
+
+        for (Player player : players) {
+            if (player.getScore() == TOTAL_SCORE) {
+                winner = player;
+            }
+        }
+
+        if (winner != null) {
+            System.out.println(winner.getName() + " is a winner!");
+            System.out.println("Thank you for the game!");
+        }
+
+        Helper.closeReaderSilently();
+    }
+
+    private void play() {
+        while(!winningCondition()) {
+            Shooter shooter = new Shooter(players);
+            shooter.keepShooting();
+            changeTurns(players);
+        }
+    }
+
+    private void changeTurns(ArrayList<Player> players) {
+        for (Player player : players) {
+            if (player.isActive()) {
+                player.setActive(false);
+            } else {
+                player.setActive(true);
+            }
+        }
+    }
+
+    private boolean winningCondition() {
+        return player1.getScore() == TOTAL_SCORE || player2.getScore() == TOTAL_SCORE;
     }
 
     private void initializeGame() {
+        System.out.println(Messages.GREETING);
         generatePlayers();
         generateFields();
     }
 
-    private void generateFields() {
-        FieldGenerator FG = new FieldGenerator();
-        FG.generateField(player1);
-        FG.generateField(player2);
-    }
-
     private void generatePlayers() {
-        int gameType = IO.getGameType();
+        player1 = generateUser();
+        player1.setActive(true);
 
+        int gameType = IO.getGameType();
         switch (gameType) {
-            case 0 : {
-                player1 = generateComputer();
-                player2 = generateComputer();
-                break;
-            } case 1 : {
-                player1 = generateUser();
+            case 1 : {
                 player2 = generateComputer();
                 break;
             } case 2 : {
-                player1 = generateUser();
                 player2 = generateUser();
                 break;
             }
         }
 
-        player1.setActive(true);
+        players = new ArrayList<>();
+        players.add(player1);
+        players.add(player2);
+    }
+
+    private void generateFields() {
+        new FieldGenerator(player1).generateField();
+        new FieldGenerator(player2).generateField();
     }
 
 }

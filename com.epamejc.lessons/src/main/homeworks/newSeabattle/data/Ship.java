@@ -16,13 +16,13 @@ public class Ship {
         this.hitCells = new ArrayList<>();
     }
 
-//    public void hit(Point p) {
-//        cells.remove(p);
-//        hitCells.add(p);
-//    }
-//
-//    public boolean isDead() {
-//        return cells.isEmpty();
-//    }
+    public void hit(Point p) {
+        cells.remove(p);
+        hitCells.add(p);
+    }
+
+    public boolean isDead() {
+        return cells.isEmpty();
+    }
 
 }

@@ -5,30 +5,81 @@ import homeworks.newSeabattle.data.players.Player;
 import homeworks.newSeabattle.data.players.User;
 
 import java.awt.*;
+import java.util.ArrayList;
+
+import static homeworks.newSeabattle.logic.IO.printWaiting;
 
 public class Util {
 
     public static Player generateUser() {
-        String name = IO.getNameFromUser();
-        return new User(name);
+        String name = IO.getName();
+        boolean isManualShipGeneration = IO.getShipsGenerationType(name);
+        if (!isManualShipGeneration) {
+            printWaiting();
+        }
+        return new User(name, isManualShipGeneration);
     }
 
     public static Player generateComputer() {
         return new Computer();
     }
 
-    public static int between0_9(int y) {
-        if (0 <= y && y <= 9) {
-            return y;
-        } else {
-            throw new RuntimeException();
+    public static int convertStringToIntForShooting(String str) {
+        char charY = str.toUpperCase().charAt(0);
+        int y = charY - 65;
+        return between0_9(y);
+    }
+
+    public static ArrayList<Point> existingCellsNear(Point p) {
+        ArrayList<Point> list = getCellsAround(p);
+        list.removeIf(point -> !isInField(point));
+        return list;
+    }
+
+    public static boolean isPossible(Point p, Player player) {
+        return isInField(p) && !isNearAShip(p, player);
+    }
+
+    private static boolean isNearAShip(Point p, Player player) {
+        for (Point point : existingCellsNear(p)) {
+            if (player.getField()[point.y][point.x] == 'S') {
+                return true;
+            }
         }
+
+        return false;
+    }
+
+    private static boolean isInField(Point p) {
+        return ((0 <= p.x && p.x <= 9) && (0 <= p.y && p.y <= 9));
+    }
+
+
+    private static ArrayList<Point> getCellsAround(Point p) {
+        ArrayList<Point> list = new ArrayList<>();
+
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                list.add(new Point(p.x + i, p.y + j));
+            }
+        }
+
+        list.remove(p);
+        return list;
     }
 
     public static Point getComputerSmartShoot() {
         int x = (int) (Math.random() * 10);
         int y = (int) (Math.random() * 10);
         return new Point(x, y);
+    }
+
+    private static int between0_9(int y) {
+        if (0 <= y && y <= 9) {
+            return y;
+        } else {
+            throw new RuntimeException();
+        }
     }
 
 }
