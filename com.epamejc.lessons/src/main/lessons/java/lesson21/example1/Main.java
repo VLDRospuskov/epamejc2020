@@ -1,3 +1,5 @@
+package lessons.java.lesson21.example1;
+
 import java.util.Scanner;
 
 public class Main {
