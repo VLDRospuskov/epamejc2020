@@ -7,7 +7,6 @@ import homeworks.utility.helper.Helper;
 import java.util.ArrayList;
 
 import static homeworks.newSeabattle.data.StaticVariables.TOTAL_SCORE;
-import static homeworks.newSeabattle.logic.IO.printFields;
 import static homeworks.newSeabattle.logic.Util.generateComputer;
 import static homeworks.newSeabattle.logic.Util.generateUser;
 
@@ -40,7 +39,7 @@ public class SeaBattle {
     }
 
     private void play() {
-        while(!winningCondition()) {
+        while (!winningCondition()) {
             Shooter shooter = new Shooter(players);
             shooter.keepShooting();
             changeTurns(players);
@@ -73,10 +72,11 @@ public class SeaBattle {
 
         int gameType = IO.getGameType();
         switch (gameType) {
-            case 1 : {
+            case 1: {
                 player2 = generateComputer();
                 break;
-            } case 2 : {
+            }
+            case 2: {
                 player2 = generateUser();
                 break;
             }

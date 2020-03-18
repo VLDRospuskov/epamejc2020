@@ -117,7 +117,7 @@ public class Shooter {
 
     private Ship getShipByHitCell(Point givenP) {
         for (Ship ship : target.getShips()) {
-            for (Point foundP: ship.getCells()) {
+            for (Point foundP : ship.getCells()) {
                 if (givenP.equals(foundP)) {
                     return ship;
                 }

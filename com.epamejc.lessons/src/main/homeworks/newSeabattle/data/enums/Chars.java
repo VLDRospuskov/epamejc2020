@@ -2,11 +2,11 @@ package homeworks.newSeabattle.data.enums;
 
 public enum Chars {
 
-    SHIP ('S'),
-    MISS ('·'),
-    HIT ('/'),
-    DESTROYED ('X'),
-    EMPTY (' ');
+    SHIP('S'),
+    MISS('·'),
+    HIT('/'),
+    DESTROYED('X'),
+    EMPTY(' ');
 
     private char ch;
 
