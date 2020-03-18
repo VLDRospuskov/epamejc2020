@@ -1,6 +1,6 @@
-package homeworks.newSeabattle.data.players;
+package homeworks.SeaBattle.data.players;
 
-import homeworks.newSeabattle.data.Ship;
+import homeworks.SeaBattle.data.Ship;
 import lombok.Data;
 
 import java.util.ArrayList;

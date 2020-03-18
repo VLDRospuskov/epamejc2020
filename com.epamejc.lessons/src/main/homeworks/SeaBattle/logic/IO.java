@@ -1,15 +1,15 @@
-package homeworks.newSeabattle.logic;
+package homeworks.SeaBattle.logic;
 
-import homeworks.newSeabattle.data.enums.Chars;
-import homeworks.newSeabattle.data.enums.Messages;
-import homeworks.newSeabattle.data.players.Player;
+import homeworks.SeaBattle.data.enums.Chars;
+import homeworks.SeaBattle.data.enums.Messages;
+import homeworks.SeaBattle.data.players.Player;
 import homeworks.utility.helper.Helper;
 import lombok.SneakyThrows;
 
 import java.awt.*;
 
-import static homeworks.newSeabattle.data.enums.Messages.*;
-import static homeworks.newSeabattle.logic.Util.*;
+import static homeworks.SeaBattle.data.enums.Messages.*;
+import static homeworks.SeaBattle.logic.Util.*;
 
 public class IO {
 
@@ -95,7 +95,7 @@ public class IO {
             System.out.print(numbers[i] + "|");
             printPlayerLine(player1, i);
             System.out.print("     " + numbers[i] + "|");
-            printPlayerLine(player2, i);
+            printEnemyLine(player2, i);
             System.out.print("\n");
         }
 

@@ -1,16 +1,16 @@
-package homeworks.newSeabattle.logic;
+package homeworks.SeaBattle.logic;
 
-import homeworks.newSeabattle.data.Ship;
-import homeworks.newSeabattle.data.enums.Chars;
-import homeworks.newSeabattle.data.players.Computer;
-import homeworks.newSeabattle.data.players.Player;
+import homeworks.SeaBattle.data.Ship;
+import homeworks.SeaBattle.data.enums.Chars;
+import homeworks.SeaBattle.data.players.Computer;
+import homeworks.SeaBattle.data.players.Player;
 import homeworks.utility.helper.Helper;
 import lombok.SneakyThrows;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static homeworks.newSeabattle.logic.IO.*;
+import static homeworks.SeaBattle.logic.IO.*;
 
 public class FieldGenerator {
 

@@ -1,19 +1,19 @@
-package homeworks.newSeabattle.logic;
+package homeworks.SeaBattle.logic;
 
-import homeworks.newSeabattle.data.Ship;
-import homeworks.newSeabattle.data.enums.Chars;
-import homeworks.newSeabattle.data.players.Player;
-import homeworks.newSeabattle.data.players.User;
+import homeworks.SeaBattle.data.Ship;
+import homeworks.SeaBattle.data.enums.Chars;
+import homeworks.SeaBattle.data.players.Player;
+import homeworks.SeaBattle.data.players.User;
 import homeworks.utility.helper.Helper;
 import lombok.SneakyThrows;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static homeworks.newSeabattle.data.StaticVariables.TOTAL_SCORE;
-import static homeworks.newSeabattle.data.StaticVariables.sleepTimeMs;
-import static homeworks.newSeabattle.logic.IO.printFields;
-import static homeworks.newSeabattle.logic.Util.getComputerSmartShoot;
+import static homeworks.SeaBattle.data.StaticVariables.TOTAL_SCORE;
+import static homeworks.SeaBattle.data.StaticVariables.sleepTimeMs;
+import static homeworks.SeaBattle.logic.IO.printFields;
+import static homeworks.SeaBattle.logic.Util.getComputerSmartShoot;
 
 public class Shooter {
 

@@ -1,13 +1,13 @@
-package homeworks.newSeabattle.logic;
+package homeworks.SeaBattle.logic;
 
-import homeworks.newSeabattle.data.players.Computer;
-import homeworks.newSeabattle.data.players.Player;
-import homeworks.newSeabattle.data.players.User;
+import homeworks.SeaBattle.data.players.Computer;
+import homeworks.SeaBattle.data.players.Player;
+import homeworks.SeaBattle.data.players.User;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static homeworks.newSeabattle.logic.IO.printWaiting;
+import static homeworks.SeaBattle.logic.IO.printWaiting;
 
 public class Util {
 

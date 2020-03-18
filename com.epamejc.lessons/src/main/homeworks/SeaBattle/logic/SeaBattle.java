@@ -1,14 +1,14 @@
-package homeworks.newSeabattle.logic;
+package homeworks.SeaBattle.logic;
 
-import homeworks.newSeabattle.data.enums.Messages;
-import homeworks.newSeabattle.data.players.Player;
+import homeworks.SeaBattle.data.enums.Messages;
+import homeworks.SeaBattle.data.players.Player;
 import homeworks.utility.helper.Helper;
 
 import java.util.ArrayList;
 
-import static homeworks.newSeabattle.data.StaticVariables.TOTAL_SCORE;
-import static homeworks.newSeabattle.logic.Util.generateComputer;
-import static homeworks.newSeabattle.logic.Util.generateUser;
+import static homeworks.SeaBattle.data.StaticVariables.TOTAL_SCORE;
+import static homeworks.SeaBattle.logic.Util.generateComputer;
+import static homeworks.SeaBattle.logic.Util.generateUser;
 
 public class SeaBattle {
     private Player player1;

@@ -1,4 +1,4 @@
-package homeworks.newSeabattle.data.players;
+package homeworks.SeaBattle.data.players;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

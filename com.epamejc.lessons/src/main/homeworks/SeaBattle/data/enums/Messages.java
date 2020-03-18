@@ -1,4 +1,4 @@
-package homeworks.newSeabattle.data.enums;
+package homeworks.SeaBattle.data.enums;
 
 public enum Messages {
 

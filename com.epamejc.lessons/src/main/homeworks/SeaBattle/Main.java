@@ -1,4 +1,6 @@
-package homeworks.seabattle;
+package homeworks.SeaBattle;
+
+import homeworks.SeaBattle.logic.SeaBattle;
 
 public class Main {
 

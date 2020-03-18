@@ -1,4 +1,4 @@
-package homeworks.newSeabattle.data;
+package homeworks.SeaBattle.data;
 
 public class StaticVariables {
 
