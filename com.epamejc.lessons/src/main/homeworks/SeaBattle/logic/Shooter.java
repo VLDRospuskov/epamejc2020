@@ -58,27 +58,83 @@ public class Shooter {
     }
 
     public Point getComputerSmartShoot() {
-        if (targetHasHitShips()) {
-            ArrayList<Point> hitCells = findHitShipCells();
-            return getComputerNearShot(hitCells);
-        } else {
-            return getRandomShot();
+        ArrayList<Point> hitCells = findHitShipCells();
+
+        switch (hitCells.size()) {
+            case 0 : {
+                return getRandomShot();
+            } case 1 : {
+                return getComputerNearShot(hitCells);
+            } default: {
+                return getComputerContinuedShot(hitCells);
+            }
         }
     }
 
+    private Point getComputerContinuedShot(ArrayList<Point> hitCells) {
+        Point p1 = hitCells.get(0);
+        Point p2 = hitCells.get(1);
+        int lowestY = p1.y;
+        int highestY = p1.y;
+        int lowestX = p1.x;
+        int highestX = p1.x;
+
+        boolean horizontalShip = false;
+        if (p1.x != p2.x) {
+            horizontalShip = true;
+        }
+
+        for (Point p : hitCells) {
+            if (p.x > highestX) {
+                highestX = p.x;
+            }
+            if (p.x < lowestX) {
+                lowestX = p.x;
+            }
+            if (p.y > highestY) {
+                highestY = p.y;
+            }
+            if (p.y < lowestY) {
+                lowestY = p.y;
+            }
+        }
+
+        ArrayList<Point> probablePoints = new ArrayList<>();
+        if (horizontalShip) {
+            probablePoints.add(new Point(highestX + 1, p1.y));
+            probablePoints.add(new Point(lowestX - 1, p1.y));
+        } else {
+            probablePoints.add(new Point(p1.x, highestY + 1));
+            probablePoints.add(new Point(p1.x, lowestY - 1));
+        }
+
+        removePointsThatCantBeHit(probablePoints);
+        return randomFrom(probablePoints);
+    }
+
+    private void removePointsThatCantBeHit(ArrayList<Point> points) {
+        points.removeIf(point -> !isInField(point)
+                || target.getField()[point.y][point.x] == Chars.MISS.getChar()
+                || target.getField()[point.y][point.x] == Chars.HIT.getChar()
+                || target.getField()[point.y][point.x] == Chars.DESTROYED.getChar());
+    }
+
     private Point getRandomShot() {
-        ArrayList<Point> avaliablePoints = new ArrayList<>();
+        ArrayList<Point> availablePoints = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (target.getField()[j][i] == Chars.EMPTY.getChar()
                         || target.getField()[j][i] == Chars.SHIP.getChar()) {
-                    avaliablePoints.add(new Point(i, j));
+                    availablePoints.add(new Point(i, j));
                 }
             }
         }
+        return randomFrom(availablePoints);
+    }
 
-        return avaliablePoints.get((int) (Math.random() * avaliablePoints.size()));
+    private Point randomFrom(ArrayList<Point> points) {
+        return points.get((int) (Math.random() * points.size()));
     }
 
     private Point getComputerNearShot(ArrayList<Point> hitCells) {
@@ -90,20 +146,8 @@ public class Shooter {
             aims.add(new Point(p.x, p.y+1));
         }
 
-        aims.removeIf(point -> !isInField(point)
-                || target.getField()[point.y][point.x] == Chars.MISS.getChar()
-                || target.getField()[point.y][point.x] == Chars.DESTROYED.getChar()
-                || target.getField()[point.y][point.x] == Chars.HIT.getChar());
-
-        if (hitCells.size() < 1) {
-            return getComputerSmartShoot();
-        } else {
-            return aims.get((int) (Math.random() * aims.size()));
-        }
-    }
-
-    private boolean targetHasHitShips() {
-        return !findHitShipCells().isEmpty();
+        removePointsThatCantBeHit(aims);
+        return randomFrom(aims);
     }
 
     private ArrayList<Point> findHitShipCells() {
@@ -121,14 +165,6 @@ public class Shooter {
 
 
     }
-
-
-
-
-
-
-
-
 
     private void userKeepShooting() {
         boolean isHit;
