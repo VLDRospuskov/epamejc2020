@@ -43,17 +43,13 @@ public class Shooter {
     @SneakyThrows
     private void computerKeepShooting() {
         boolean isHit;
-        Point p = getComputerSmartShoot();
 
         do {
             System.out.println("It's computer's turn!");
+            Point p = getComputerSmartShoot();
             isHit = shoot(p);
             if (winningCondition()) {
                 break;
-            }
-
-            if (isHit) {
-                p = getComputerNearShot(p, target);
             }
         } while (isHit);
 
@@ -61,33 +57,48 @@ public class Shooter {
         Thread.sleep(sleepTimeMs);
     }
 
-    private Point getComputerNearShot(Point p, Player target) {
-        ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(p.x-1, p.y));
-        points.add(new Point(p.x+1, p.y));
-        points.add(new Point(p.x, p.y-1));
-        points.add(new Point(p.x, p.y+1));
+    public Point getComputerSmartShoot() {
+        if (targetHasHitShips()) {
+            ArrayList<Point> hitCells = findHitShipCells();
+            return getComputerNearShot(hitCells);
+        } else {
+            return getRandomShot();
+        }
+    }
 
-        points.removeIf(point -> !isInField(point)
+    private Point getRandomShot() {
+        ArrayList<Point> avaliablePoints = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (target.getField()[j][i] == Chars.EMPTY.getChar()
+                        || target.getField()[j][i] == Chars.SHIP.getChar()) {
+                    avaliablePoints.add(new Point(i, j));
+                }
+            }
+        }
+
+        return avaliablePoints.get((int) (Math.random() * avaliablePoints.size()));
+    }
+
+    private Point getComputerNearShot(ArrayList<Point> hitCells) {
+        ArrayList<Point> aims = new ArrayList<>();
+        for (Point p : hitCells) {
+            aims.add(new Point(p.x-1, p.y));
+            aims.add(new Point(p.x+1, p.y));
+            aims.add(new Point(p.x, p.y-1));
+            aims.add(new Point(p.x, p.y+1));
+        }
+
+        aims.removeIf(point -> !isInField(point)
                 || target.getField()[point.y][point.x] == Chars.MISS.getChar()
                 || target.getField()[point.y][point.x] == Chars.DESTROYED.getChar()
                 || target.getField()[point.y][point.x] == Chars.HIT.getChar());
 
-        if (points.size() < 1) {
+        if (hitCells.size() < 1) {
             return getComputerSmartShoot();
         } else {
-            return points.get((int) (Math.random() * points.size()));
-        }
-    }
-
-    public Point getComputerSmartShoot() {
-        if (targetHasHitShips()) {
-            ArrayList<Point> points = findHitShipCells();
-            return points.get((int) (Math.random() * points.size()));
-        } else {
-            int x = (int) (Math.random() * 10);
-            int y = (int) (Math.random() * 10);
-            return new Point(x, y);
+            return aims.get((int) (Math.random() * aims.size()));
         }
     }
 
@@ -110,6 +121,14 @@ public class Shooter {
 
 
     }
+
+
+
+
+
+
+
+
 
     private void userKeepShooting() {
         boolean isHit;
