@@ -1,5 +1,7 @@
 package homeworks.homework08.part2;
 
+import lombok.SneakyThrows;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,8 +14,7 @@ public class StreamOperations {
     public List<Person> findPersonsEverWorkedInEpam() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toList()
-        List<Person> personsEverWorkedInEpam = null;
+        List<Person> personsEverWorkedInEpam;
 
         personsEverWorkedInEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory()
@@ -25,15 +26,12 @@ public class StreamOperations {
                 .collect(Collectors.toList());
 
         return personsEverWorkedInEpam;
-//        personsEverWorkedInEpam - should contain employees.get(0),  employees.get(1),
-//                employees.get(4), employees.get(5)
     }
 
-    List<Person> findPersonsBeganCareerInEpam() {
+    public List<Person> findPersonsBeganCareerInEpam() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toList()
-        List<Person> startedFromEpam = null;
+        List<Person> startedFromEpam;
 
         startedFromEpam = employees.stream()
                 .filter(employee -> employee.getJobHistory()
@@ -44,59 +42,82 @@ public class StreamOperations {
                 .collect(Collectors.toList());
 
         return startedFromEpam;
-//        startedFromEpam - should contain
-//                employees.get(0).getPerson(),
-//                employees.get(1).getPerson(),
-//                employees.get(4).getPerson()
     }
 
-    void findAllCompanies() {
+    public Set<String> findAllCompanies() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация, использовать Collectors.toSet()
-        Set<String> companies = null;
+        Set<String> companies;
 
-        companies = employees.stream()
-                .map(employee -> employee.getJobHistory()
-                        .stream()
-                        .map(JobHistoryEntry::getCompany)
-                        .collect(Collectors.toSet()))
-                .map()
+        companies = employees
+                .stream()
+                .flatMap(employee -> employee
+                        .getJobHistory()
+                        .stream())
+                .map(JobHistoryEntry::getCompany)
+                .collect(Collectors.toSet());
 
-//        companies - should contain "EPAM", "google", "yandex", "mail.ru", "T-Systems"
+        return companies;
     }
 
-    void findMinimalAgeOfEmployees() {
+    public Integer findMinimalAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
-        // TODO реализация
-        Integer minimalAge = null;
+        Integer minimalAge;
 
-        // minmalAge = 21
+        minimalAge = employees.stream()
+                .map(employee -> employee.getPerson().getAge())
+                .min(Integer::compareTo)
+                .orElse(-1);
+
+        return minimalAge;
     }
 
-    // Посчитать средний возраст работников
-    void calcAverageAgeOfEmployees() {
+    public Double calcAverageAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
-        Double expected = null;
+        Double averageAge;
 
+        averageAge = employees.stream()
+                .mapToDouble(employee -> employee.getPerson().getAge())
+                .average()
+                .orElse(-1);
+
+        return averageAge;
     }
 
-    // Найти Person с самым длинным fullName
-    void findPersonWithLongestFullName() {
+    @SneakyThrows
+    public Person findPersonWithLongestFullName() {
         List<Employee> employees = getEmployees();
 
-        Person expected = null;
+        Person personWithLongestFullName;
 
+        personWithLongestFullName = employees.stream()
+                .map(Employee::getPerson)
+                .reduce((left, right) ->
+                        (left.getFirstName() + left.getLastName()).length() >
+                                (right.getFirstName() + right.getLastName()).length() ? left : right)
+                .orElseThrow(() -> new Exception("No employees"));
+
+        return personWithLongestFullName;
     }
 
-    // Найти работника с самой большой продолжительность на одной же позиции
-    void findEmployeeWithMaximumDurationAtOnePosition() {
+    @SneakyThrows
+    public Employee findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 
-        Employee expected = null;
+        Employee employeeWithMaximumDurationAtOnePosition;
 
+        employeeWithMaximumDurationAtOnePosition = employees.stream()
+                .reduce((empl1, empl2) ->
+                        empl1.getJobHistory().stream()
+                                .mapToInt(JobHistoryEntry::getDuration).max().orElse(-1)
+                        > empl2.getJobHistory().stream()
+                                .mapToInt(JobHistoryEntry::getDuration).max().orElse(-1)
+                        ? empl1 : empl2)
+                .orElseThrow(() -> new Exception("No employees"));
+
+        return employeeWithMaximumDurationAtOnePosition;
     }
 
 }
