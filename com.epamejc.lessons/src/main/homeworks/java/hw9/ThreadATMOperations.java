@@ -15,15 +15,15 @@ public class ThreadATMOperations extends Thread {
     @Override
     public void run() {
         while (true) {
-            int chooseATM = generateRandomInt3();
-            int chooseUser = generateRandomInt4();
+            int chooseATM = generateRandomIntBound3();
+            int chooseUser = generateRandomIntBound4();
             performAtmOperation(userList.get(chooseUser), atmList.get(chooseATM));
             performAtmService(atmList.get(chooseATM));
         }
     }
 
     private void performAtmOperation(User user, ATM atm) {
-        int chooseOperation = generateRandomInt3();
+        int chooseOperation = generateRandomIntBound3();
         if (chooseOperation == 0) {
             atmWithdraw(user, atm);
         } else if (chooseOperation == 1) {
@@ -58,11 +58,11 @@ public class ThreadATMOperations extends Thread {
         }
     }
 
-    private int generateRandomInt3() {
+    private int generateRandomIntBound3() {
         return new Random().nextInt(3);
     }
 
-    private int generateRandomInt4() {
+    private int generateRandomIntBound4() {
         return new Random().nextInt(4);
     }
 
