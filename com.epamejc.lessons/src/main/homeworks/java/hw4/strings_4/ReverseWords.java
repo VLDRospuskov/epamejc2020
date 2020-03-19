@@ -12,7 +12,13 @@ public class ReverseWords {
         }
     }
 
-    public String scanString() {
+    /**
+     * I did not close the Scanner because:
+     * https://coderanch.com/wiki/678613/Don-close-Scanner-tied-System
+     * https://www.omnijava.com/2018/08/23/if-you-are-using-javas-scanner-class-for-keyboard-input-then-you-might-be-doing-it-wrong/
+     * https://stackoverflow.com/questions/52040576/scanner-close-method-closes-all-scanners-why
+     */
+    private String scanString() {
         Scanner scan = new Scanner(System.in);
         String str = "";
 

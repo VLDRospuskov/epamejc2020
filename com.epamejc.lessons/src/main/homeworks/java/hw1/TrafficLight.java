@@ -5,8 +5,8 @@ import java.util.Scanner;
 class TrafficLight {
 
     final private String MESSAGE = "Enter number(enter \"-1\" to exit): ";
-    final private String ERR_MESSAGE = "Wrong enter! Please enter positive number between 0 and "
-            + Integer.MAX_VALUE + "!";
+    final private String ERR_MESSAGE =
+            "Wrong enter! Please enter positive number between 0 and " + Integer.MAX_VALUE + "!";
 
     public void run() {
         boolean loop = true;
@@ -19,6 +19,12 @@ class TrafficLight {
         }
     }
 
+    /**
+     * I did not close the Scanner because:
+     * https://coderanch.com/wiki/678613/Don-close-Scanner-tied-System
+     * https://www.omnijava.com/2018/08/23/if-you-are-using-javas-scanner-class-for-keyboard-input-then-you-might-be-doing-it-wrong/
+     * https://stackoverflow.com/questions/52040576/scanner-close-method-closes-all-scanners-why
+     */
     public int scanMinutes() {
         Scanner sc;
         int minutes = 0;

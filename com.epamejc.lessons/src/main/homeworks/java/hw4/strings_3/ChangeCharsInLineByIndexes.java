@@ -11,12 +11,17 @@ public class ChangeCharsInLineByIndexes {
         printLine(indexes, str, len);
     }
 
+    /**
+     * I did not close the Scanner because:
+     * https://coderanch.com/wiki/678613/Don-close-Scanner-tied-System
+     * https://www.omnijava.com/2018/08/23/if-you-are-using-javas-scanner-class-for-keyboard-input-then-you-might-be-doing-it-wrong/
+     * https://stackoverflow.com/questions/52040576/scanner-close-method-closes-all-scanners-why
+     */
     public String scanInputString() {
         Scanner scan = new Scanner(System.in);
         String str = "";
 
         try {
-
             System.out.print("Please enter text: ");
             str = scan.nextLine();
 
@@ -29,7 +34,7 @@ public class ChangeCharsInLineByIndexes {
 
     public int[] scanIndexes(int len) {
         Scanner scan2 = new Scanner(System.in);
-        int indexes[] = new int[2];
+        int[] indexes = new int[2];
 
         try {
             System.out.print("Please enter two indexes to change (between 0 and " + len + "): ");
@@ -37,8 +42,6 @@ public class ChangeCharsInLineByIndexes {
             indexes[1] = scan2.nextInt();
         } catch (Exception e) {
             System.out.println("Error! " + e);
-        } finally {
-            scan2.close();
         }
 
         return indexes;

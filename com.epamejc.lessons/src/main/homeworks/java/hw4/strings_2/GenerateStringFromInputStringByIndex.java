@@ -32,6 +32,12 @@ public class GenerateStringFromInputStringByIndex {
         return str.charAt(index);
     }
 
+    /**
+     * I did not close the Scanner because:
+     * https://coderanch.com/wiki/678613/Don-close-Scanner-tied-System
+     * https://www.omnijava.com/2018/08/23/if-you-are-using-javas-scanner-class-for-keyboard-input-then-you-might-be-doing-it-wrong/
+     * https://stackoverflow.com/questions/52040576/scanner-close-method-closes-all-scanners-why
+     */
     private String scanInputString() {
         Scanner scan = new Scanner(System.in);
         String str = "";
@@ -46,7 +52,7 @@ public class GenerateStringFromInputStringByIndex {
         return str;
     }
 
-    public int scanIndex(String str) {
+    private int scanIndex(String str) {
         final String MSG = "Please enter index between 0 and " + (str.length() - 1) + " (-1 to exit): ";
         int index = 0;
         Scanner scan2 = new Scanner(System.in);

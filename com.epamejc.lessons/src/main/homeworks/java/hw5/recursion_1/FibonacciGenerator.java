@@ -14,7 +14,7 @@ public class FibonacciGenerator {
         }
     }
 
-    public int scanCountOfNumbers() {
+    private int scanCountOfNumbers() {
         Scanner scan = new Scanner(System.in);
         int count = 0;
 
@@ -28,16 +28,16 @@ public class FibonacciGenerator {
         return count;
     }
 
-    public String generateFibonacciNumbers(int n1, int n2, int count) {
-        int n3 = n1 + n2;
+    public String generateFibonacciNumbers(int num1, int num2, int count) {
+        int num3 = num1 + num2;
 
         if (count < 2) {
-            return n3 + " ";
+            return num3 + " ";
         }
 
         count--;
 
-        return n3 + " " + generateFibonacciNumbers(n2, n3, count);
+        return num3 + " " + generateFibonacciNumbers(num2, num3, count);
     }
 
 }

@@ -2,7 +2,7 @@ package homeworks.java.hw3.arrays_3;
 
 public class PyramidBuilder {
 
-    final private char EX = 'X';
+    private final char EX = 'X';
 
     public char[][] buildPyramid(int n) {
         int nCopy = n;

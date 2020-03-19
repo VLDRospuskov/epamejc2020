@@ -9,7 +9,13 @@ public class NumberOfDigitsCounter {
         System.out.println("Amount of digits: " + countNumberOfDigits(number, 0));
     }
 
-    public int scanNumber() {
+    /**
+     * I did not close the Scanner because:
+     * https://coderanch.com/wiki/678613/Don-close-Scanner-tied-System
+     * https://www.omnijava.com/2018/08/23/if-you-are-using-javas-scanner-class-for-keyboard-input-then-you-might-be-doing-it-wrong/
+     * https://stackoverflow.com/questions/52040576/scanner-close-method-closes-all-scanners-why
+     */
+    private int scanNumber() {
         int number = 0;
         Scanner scan = new Scanner(System.in);
 

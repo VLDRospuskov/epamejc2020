@@ -4,29 +4,29 @@ import java.io.*;
 
 public class FileCopier {
 
-    final String COPY_FROM = "com.epamejc.lessons/src/main/homeworks/java/hw7/hoking.txt";
-    final String COPY_TO = "com.epamejc.lessons/src/main/homeworks/java/hw7/NewFile.txt";
+    private final String COPY_FROM = "com.epamejc.lessons/src/main/homeworks/java/hw7/Text.txt";
+    private final String COPY_TO = "com.epamejc.lessons/src/main/homeworks/java/hw7/TextCopy.txt";
 
     public void run() {
-        copySimple();
-        copyBuffered();
+        measureSimpleCopy();
+        measureBufferedCopy();
     }
 
-    private void copySimple() {
+    private void measureSimpleCopy() {
         long startTime = System.currentTimeMillis();
-        readThenWrite(COPY_FROM, COPY_TO);
+        simpleCopy(COPY_FROM, COPY_TO);
         long endTime = System.currentTimeMillis();
-        System.out.println("Simple work time in milliseconds: " + (endTime - startTime));
+        System.out.println("Simple copy work time: " + (endTime - startTime) + " ms");
     }
 
-    private void copyBuffered() {
+    private void measureBufferedCopy() {
         long startTime = System.currentTimeMillis();
-        bufferedReadThenWrite(COPY_FROM, COPY_TO);
+        bufferedCopy(COPY_FROM, COPY_TO);
         long endTime = System.currentTimeMillis();
-        System.out.println("Buffered work time in milliseconds: " + (endTime - startTime));
+        System.out.println("Buffered copy work time: " + (endTime - startTime) + " ms");
     }
 
-    private void readThenWrite(String copyFrom, String copyTo) {
+    private void simpleCopy(String copyFrom, String copyTo) {
         char[] textBuffer = new char[256];
 
         try(FileReader fr = new FileReader(copyFrom);
@@ -39,7 +39,7 @@ public class FileCopier {
         }
     }
 
-    private void bufferedReadThenWrite(String copyFrom, String copyTo) {
+    private void bufferedCopy(String copyFrom, String copyTo) {
         char[] textBuffer = new char[256];
 
         try(BufferedReader br = new BufferedReader(new FileReader(copyFrom));
