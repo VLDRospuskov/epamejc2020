@@ -1,10 +1,8 @@
 package homeworks.java.seabattle.field;
 
-import homeworks.java.seabattle.battle.Game;
 import homeworks.java.seabattle.player.BasePlayer;
 import homeworks.java.seabattle.player.Player;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,10 +19,6 @@ public class Field {
 
     private IFieldObject[][] objects;
     Coordinatepointer[] neighbours;
-
-    public IFieldObject[][] getObjects() {
-        return objects;
-    }
 
     public Field() {
         head = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
@@ -48,6 +42,18 @@ public class Field {
         neighbours[5] = new Coordinatepointer(1, 0);
         neighbours[6] = new Coordinatepointer(1, -1);
         neighbours[7] = new Coordinatepointer(0, -1);
+    }
+
+    public IFieldObject[][] getObjects() {
+        return objects;
+    }
+
+    public Coordinatepointer[] getNeighbours() {
+        return neighbours;
+    }
+
+    public char[] getHead() {
+        return head;
     }
 
     public void addObject(IFieldObject fieldObject) {
@@ -105,9 +111,20 @@ public class Field {
                 }
             }
         }
+
+        List<Coordinatepointer> attackedPoints = BasePlayer.getListOfAttackedPointsForBot();
+        for(Coordinatepointer point : attackedPoints) {
+            IFieldObject currentObject = objects[point.x][point.y];
+            if (currentObject != null && currentObject.getView() == 'X') {
+                cells[point.x][point.y] = currentObject.getView();
+            } else if(currentObject == null) {
+                cells[point.x][point.y] = '0';
+            }
+        }
     }
 
     public void draw(boolean isUpdate) {
+        System.out.println("---- Your field ----");
 
         if (isUpdate) update();
         int coordX = 0;
@@ -137,9 +154,10 @@ public class Field {
             }
             System.out.println('|');
         }
+        System.out.println();
     }
 
-    public void updateBattle() {
+    public void updateBattleFieldForBot() {
         clean();
         List<Coordinatepointer> attackedPoints = Player.getListOfAttackedPoints();
         for(Coordinatepointer point : attackedPoints) {
@@ -154,9 +172,10 @@ public class Field {
         }
     }
 
-    public void drawBattle() {
+    public void drawBotField() {
+        System.out.println("---- Bot Field ----");
 
-        updateBattle();
+        updateBattleFieldForBot();
         int coordX = 0;
         int coordY = 1;
 
@@ -184,5 +203,6 @@ public class Field {
             }
             System.out.println('|');
         }
+        System.out.println();
     }
 }

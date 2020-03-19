@@ -8,7 +8,7 @@ public class Main {
         Game game = new Game();
 
         while (!game.isGameOver()) {
-            game.process();
+            game.runGameWithBotPlayer();
         }
     }
 

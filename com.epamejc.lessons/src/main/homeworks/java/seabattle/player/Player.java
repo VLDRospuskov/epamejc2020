@@ -15,7 +15,7 @@ import java.util.List;
 public class Player extends BasePlayer implements InputListener {
 
     private Input input;
-    private static List<Coordinatepointer> listOfAttackedPoints = new ArrayList<Coordinatepointer>(100);
+    private static List<Coordinatepointer> listOfAttackedPoints = new ArrayList<>(100);
 
     public Player(Game game) {
         super(game);
@@ -46,13 +46,13 @@ public class Player extends BasePlayer implements InputListener {
     @Override
     public void process() {
         super.process();
-        input.process(game.getState());
+        input.humanPlayerProcess(game.getState());
     }
 
     @Override
-    public void process(int index) {
+    public void process(int index, boolean wasLastAttackLucky, boolean isAttackedPoint) {
         super.process();
-        input.process(game.getState());
+        input.humanPlayerProcess(game.getState());
     }
 
     @Override
@@ -72,19 +72,18 @@ public class Player extends BasePlayer implements InputListener {
                 listOfAttackedPoints.add(position);
                 System.out.println("You missed! :P");
                 return;
-            }
-
-            if(isThatTheLastShip()) {
+            } else if(isThatTheLastShip()) {
+                game.getBasePlayer().field.drawBotField();
                 System.out.println("Congratulations! You won!");
                 exitGame();
                 return;
             } else {
-                game.getBasePlayer().field.drawBattle();
+                game.getBasePlayer().field.drawBotField();
                 process();
             }
         } else {
             System.out.println("You already attacked this position/Some problems with the coordinate validation");
-            game.getBasePlayer().field.drawBattle();
+            game.getBasePlayer().field.drawBotField();
             process();
         }
     }

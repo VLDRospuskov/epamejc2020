@@ -1,5 +1,6 @@
 package homeworks.java.seabattle.input;
 
+import homeworks.java.seabattle.battle.Game;
 import homeworks.java.seabattle.field.Coordinatepointer;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 
@@ -36,7 +37,7 @@ public class Input {
         }
     }
 
-    public void process(GameState state) {
+    public void humanPlayerProcess(GameState state) {
         if (state == GameState.BATTLE) {
             System.out.println("Chose point to attack as 'x,y'");
         } else {
@@ -119,6 +120,8 @@ public class Input {
 
         if (coordinate.x >= 0 && coordinate.y >= 0 && coordinate.x <=10 && coordinate.y <= 10) {
             inListener.attack(coordinate.x, coordinate.y);
+        } else {
+            humanPlayerProcess(GameState.BATTLE);
         }
     }
 

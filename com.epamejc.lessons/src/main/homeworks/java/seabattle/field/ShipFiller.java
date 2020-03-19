@@ -25,7 +25,7 @@ public class ShipFiller {
             while (player.getFreePlace(dc) > 0) {
                 Orientation orient = rand.nextInt(2) > 0 ? Orientation.HORIZONTAL
                         : Orientation.VERTICAL;
-                while(shipCounter < 10) {
+                while (shipCounter < 10) {
                     int x = rand.nextInt(10);
                     int y = rand.nextInt(10);
 

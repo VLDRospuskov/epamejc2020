@@ -36,22 +36,22 @@ public class Game {
         return players[0];
     }
 
+    public void runGameWithBotPlayer(){
+        if(gameState != GameState.BATTLE &&
+                players[0].isFieldFilled() &&
+                players[1].isFieldFilled()){ //BotPlayer
+            gameState = GameState.BATTLE;
+        }
+        players[currentIndex].process(currentIndex, players[currentIndex].isLucky(), false);
+        nextStep();
+    }
+
     public void nextStep(){
         currentIndex++;
 
         if(currentIndex >= players.length){
             currentIndex = 0;
         }
-    }
-
-    public void process(){
-        if(gameState != GameState.BATTLE &&
-                players[0].isFieldFilled() &&
-                players[1].isFieldFilled()){
-            gameState = GameState.BATTLE;
-        }
-        players[currentIndex].process(currentIndex);
-        nextStep();
     }
 
     public boolean isGameOver(){
