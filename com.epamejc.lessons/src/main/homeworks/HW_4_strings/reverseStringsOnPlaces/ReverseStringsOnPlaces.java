@@ -12,8 +12,8 @@ class ReverseStringsOnPlaces {
     }
 
     private String getUserInput() {
-        String input = Helper.getStringSilently("").trim();
-        Helper.closeReaderSilently();
+        String input = Helper.getString("").trim();
+        Helper.closeReader();
         return input;
     }
 

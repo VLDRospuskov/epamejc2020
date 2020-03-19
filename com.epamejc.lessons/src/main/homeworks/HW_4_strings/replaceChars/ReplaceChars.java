@@ -10,9 +10,9 @@ class ReplaceChars {
             System.out.println(Helper.GREETING);
 
             while (true) {
-                String input = Helper.getString().trim();
-                int chIndex1 = Helper.getInt("Write down the 1st index: ");
-                int chIndex2 = Helper.getInt("Write down the 2nd index: ");
+                String input = Helper.getStringInLoop().trim();
+                int chIndex1 = Helper.getIntInLoop("Write down the 1st index: ");
+                int chIndex2 = Helper.getIntInLoop("Write down the 2nd index: ");
                 printStringWithReplacedChars(input, chIndex1, chIndex2);
             }
         } catch (CancellationException ignored) {}

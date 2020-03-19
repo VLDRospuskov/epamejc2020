@@ -181,7 +181,7 @@ public class Shooter {
             }
         } while (isHit);
 
-        Helper.getStringSilently(Messages.USER_TURN_FINISHED.toString());
+        Helper.getString(Messages.USER_TURN_FINISHED.toString());
     }
 
     //SHOOTING////////////

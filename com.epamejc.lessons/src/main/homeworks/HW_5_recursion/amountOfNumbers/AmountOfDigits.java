@@ -10,7 +10,7 @@ class AmountOfDigits {
             System.out.println(Helper.GREETING);
 
             while (true) {
-                int input = Helper.getInt();
+                int input = Helper.getIntInLoop();
                 System.out.println("Amount of digits in the number is: " + getDigits(input));
                 System.out.println("---------------------------------------");
             }

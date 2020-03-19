@@ -15,16 +15,16 @@ public class IO {
 
     public static String getName() {
         String message = NAME.toString();
-        return Helper.getStringSilently(message);
+        return Helper.getString(message);
     }
 
     public static int getGameType() {
         String message = CHOOSE_PLAYERS.toString();
-        int gameType = Helper.getIntSilently(message);
+        int gameType = Helper.getInt(message);
 
         while (gameType != 1 && gameType != 2) {
             message = ERROR_WHILE_GAME_TYPE_CHOOSING.toString();
-            gameType = Helper.getIntSilently(message);
+            gameType = Helper.getInt(message);
         }
 
         return gameType;
@@ -32,18 +32,18 @@ public class IO {
 
     public static boolean getShipsGenerationType(String name) {
         String message = Messages.MANUAL_CREATION.toString() + "for " + name + "? ";
-        return Helper.getStringSilently(message).equals("1");
+        return Helper.getString(message).equals("1");
     }
 
     @SneakyThrows
     public static Point getUserShoot() {
-        String input = Helper.getStringSilently(Messages.INPUT_FOR_SHOOTING.toString()).trim();
+        String input = Helper.getString(Messages.INPUT_FOR_SHOOTING.toString()).trim();
 
         if (input.length() < 2) {
             return getUserShoot();
         }
 
-        int y = Helper.parseInt(input.substring(1)) - 1;
+        int y = Helper.parseIntInLoop(input.substring(1)) - 1;
         int x = convertStringToIntForShooting(input.substring(0, 1));
 
         if (y > 10) {

@@ -15,7 +15,7 @@ class Fibonacci {
             System.out.println(Helper.GREETING);
 
             while (true) {
-                int input = Helper.getInt("Write down the ordinal Fibonacci number: ");
+                int input = Helper.getIntInLoop("Write down the ordinal Fibonacci number: ");
                 int n1 = Math.max(0, input);
                 int n2 = Math.min(50, n1);
                 printFibonacci(n2);

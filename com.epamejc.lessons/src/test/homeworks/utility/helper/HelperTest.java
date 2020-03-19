@@ -20,7 +20,7 @@ public class HelperTest {
     public void testGetString() {
         String expected = "Hello World";
         System.setIn(new ByteArrayInputStream(expected.getBytes()));
-        String actual = Helper.getString();
+        String actual = Helper.getStringInLoop();
         Assert.assertEquals(expected, actual);
     }
 

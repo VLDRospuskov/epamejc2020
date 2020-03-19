@@ -10,8 +10,8 @@ class EvenOdd {
             System.out.println(Helper.GREETING);
 
             while (true) {
-                String input = Helper.getString().trim();
-                String evenOrOdd = Helper.getString("Write even or odd: ").trim().toLowerCase();
+                String input = Helper.getStringInLoop().trim();
+                String evenOrOdd = Helper.getStringInLoop("Write even or odd: ").trim().toLowerCase();
                 printEvenOrOddString(input, evenOrOdd);
             }
         } catch (CancellationException ignored) {}

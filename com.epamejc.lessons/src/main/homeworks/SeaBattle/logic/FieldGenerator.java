@@ -80,7 +80,7 @@ public class FieldGenerator {
     }
 
     private boolean getUserDirection() {
-        String str = Helper.getStringSilently(Messages.GETTING_DIRECTION.toString());
+        String str = Helper.getString(Messages.GETTING_DIRECTION.toString());
         switch (str) {
             case "right": {
                 return true;

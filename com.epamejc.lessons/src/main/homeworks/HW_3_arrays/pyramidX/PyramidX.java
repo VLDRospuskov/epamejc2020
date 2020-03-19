@@ -11,8 +11,8 @@ public class PyramidX {
     }
 
     private int getUserInput() {
-        int n = Helper.getIntSilently("Input the size of the pyramid: ");
-        Helper.closeReaderSilently();
+        int n = Helper.getInt("Input the size of the pyramid: ");
+        Helper.closeReader();
         return n;
     }
 

@@ -9,12 +9,12 @@ class StringByIndexes {
 
     void run() {
         try {
-            input = Helper.getString().trim();
+            input = Helper.getStringInLoop().trim();
 
             while (true) {
                 String message = "Write down the index (from 0 to " +
                         (input.length() - 1) + " inclusively): ";
-                int index = Helper.getInt(message);
+                int index = Helper.getIntInLoop(message);
                 updateResult(index);
                 System.out.println(result);
             }

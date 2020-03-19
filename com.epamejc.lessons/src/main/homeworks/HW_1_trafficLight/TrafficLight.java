@@ -9,7 +9,7 @@ class TrafficLight {
         System.out.println(Helper.GREETING);
         try {
             while (true) {
-                int input = Helper.getInt("Seconds from the start of the TrafficLight: ");
+                int input = Helper.getIntInLoop("Seconds from the start of the TrafficLight: ");
                 String message = getTrafficLightColor(input);
                 System.out.println(message + "\n" + "---------------------------------------");
             }

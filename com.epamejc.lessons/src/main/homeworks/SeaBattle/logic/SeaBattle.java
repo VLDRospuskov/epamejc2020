@@ -35,7 +35,7 @@ public class SeaBattle {
             System.out.println(Messages.ENDGAME);
         }
 
-        Helper.closeReaderSilently();
+        Helper.closeReader();
     }
 
     private void play() {

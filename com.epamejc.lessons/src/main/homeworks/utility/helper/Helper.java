@@ -9,150 +9,98 @@ import java.io.InputStreamReader;
  * 1) Handles IO errors and exceptions
  * 2) Handles exceptions when parsing
  * 3) Removes all empty spaces around numbers when parsing
- * 4) When inputting an empty space, throws custom CancellingException, for breaking a loop
- * It automatically frees resources when throwing Exception.
+ * 4) When inputting an empty space, throws custom CancellationException, for breaking a loop
+ * It automatically frees resources when throwing CancellationException.
  * If some other way of closing is meant, use closeReaderSilently();
  */
 
 public class Helper {
+
     public static final String GREETING = "To exit just prompt an empty string";
-    private static final String FINAL_MESSAGE = "Thank you!";
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static final String NOT_INT = "It's not an int! Try again: ";
+    private static final String STREAM_CLOSED = "The stream is successfully closed.";
+    private static final String STREAM_NOT_CLOSED = "Problems closing the stream!";
 
-    public static String getString() throws CancellationException {
-        String input = "";
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        try {
-            System.out.print("Write down a string: ");
-            input = reader.readLine();
-            checkExit(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return input;
+    public static String getString() {
+        return getString("");
     }
 
-    public static String getString(String message) throws CancellationException {
-        String input = "";
-
+    public static String getString(String message) {
         try {
             System.out.print(message);
-            input = reader.readLine();
-            checkExit(input);
+            return reader.readLine();
         } catch (IOException e) {
             System.out.println("IOException: " + e);
+            return "";
         }
-
-        return input;
     }
 
-    public static String getStringSilently(String message) {
-        String input = "";
-
-        try {
-            System.out.print(message);
-            input = reader.readLine();
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-
-        return input;
+    public static int getInt(String message) {
+        return parseInt(getString(message));
     }
 
-
-    public static int getInt() throws CancellationException {
-        int input = 0;
-
+    public static int parseInt(String str) {
         try {
-            System.out.print("Write down a number: ");
-            String s = reader.readLine();
-            checkExit(s);
-            input = parseInt(s);
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-
-        return input;
-    }
-
-    public static int getInt(String message) throws CancellationException {
-        int input = 0;
-
-        try {
-            System.out.print(message);
-            String s = reader.readLine();
-            checkExit(s);
-            input = parseInt(s);
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-
-        return input;
-    }
-
-    public static int getIntSilently(String message) {
-        int input = 0;
-
-        try {
-            System.out.print(message);
-            String s = reader.readLine();
-            input = parseIntSilently(s);
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-
-        return input;
-    }
-
-    private static int parseIntSilently(String s) {
-        int input;
-        s = s.replaceAll(" ", "");
-
-        try {
-            input = Integer.parseInt(s);
+            String input = str.replaceAll(" ", "");
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            input = getIntSilently("It's not an int! Try again: ");
+            return getInt(NOT_INT);
         }
-
-        return input;
     }
 
+    //LOOP EXIT HANDLING METHODS
+    public static String getStringInLoop() throws CancellationException {
+        return getStringInLoop("");
+    }
+
+    public static String getStringInLoop(String message) throws CancellationException {
+        try {
+            System.out.print(message);
+            String input = reader.readLine();
+            ifEmptyThrowExceptionAndCloseStream(input);
+            return input;
+        } catch (IOException e) {
+            System.out.println("IOException: " + e);
+            return "";
+        }
+    }
+
+    public static int getIntInLoop() throws CancellationException {
+        return getIntInLoop("");
+    }
+
+    public static int getIntInLoop(String message) throws CancellationException {
+        return parseIntInLoop(getStringInLoop(message));
+    }
+
+    public static int parseIntInLoop(String str) throws CancellationException {
+        try {
+            String input = str.replaceAll(" ", "");
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            return getIntInLoop(NOT_INT);
+        }
+    }
+
+
+    //Util methods
     public static void closeReader() {
         try {
-            System.out.println("The stream is successfully closed.");
             reader.close();
-            System.out.println(FINAL_MESSAGE);
+            System.out.println(STREAM_CLOSED);
         } catch (IOException e) {
+            System.out.println(STREAM_NOT_CLOSED);
             e.printStackTrace();
         }
     }
 
-    public static void closeReaderSilently() {
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static int parseInt(String s) throws CancellationException {
-        int input;
-        s = s.replaceAll(" ", "");
-
-        try {
-            input = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            input = getInt("It's not an int! Try again: ");
-        }
-
-        return input;
-    }
-
-    private static void checkExit(String input) throws CancellationException {
+    private static void ifEmptyThrowExceptionAndCloseStream(String input) throws CancellationException {
         if (input.length() == 0) {
             closeReader();
             throw new CancellationException();
         }
     }
+
 }

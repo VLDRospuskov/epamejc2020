@@ -19,10 +19,10 @@ public class RandomChars {
     }
 
     private void getUserInputs() {
-        amount = Helper.getIntSilently("Write down amount of arrays: ");
-        length = Helper.getIntSilently("Write down the length of arrays: ");
-        strategy = Helper.getStringSilently("Write down the strategy: ");
-        Helper.closeReaderSilently();
+        amount = Helper.getInt("Write down amount of arrays: ");
+        length = Helper.getInt("Write down the length of arrays: ");
+        strategy = Helper.getString("Write down the strategy: ");
+        Helper.closeReader();
     }
 
 
@@ -72,7 +72,7 @@ public class RandomChars {
         } else if (strategy.equalsIgnoreCase("b")) {
             result = evenChars;
         } else {
-            String strategy2 = Helper.getStringSilently("Wrong character! Try again: ");
+            String strategy2 = Helper.getString("Wrong character! Try again: ");
             result = getEvenOrOddChars(evenChars, oddChars, strategy2);
         }
 

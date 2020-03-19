@@ -10,9 +10,9 @@ class RaiseToThePower {
             System.out.println(Helper.GREETING);
 
             while (true) {
-                int input1 = Helper.getInt("Input number: ");
+                int input1 = Helper.getIntInLoop("Input number: ");
                 int number = Math.max(0, input1);
-                int input2 = Helper.getInt("The power of the number: ");
+                int input2 = Helper.getIntInLoop("The power of the number: ");
                 int row = Math.max(0, input2);
 
                 PrintPowerOfNumber(number, row);
