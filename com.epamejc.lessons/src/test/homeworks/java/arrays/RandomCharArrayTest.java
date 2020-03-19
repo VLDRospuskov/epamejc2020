@@ -12,11 +12,10 @@ public class RandomCharArrayTest {
     public void testGenerateArrWrongInput() {
 
         input = "asdf";
-        boolean expected = false;
 
         boolean actual = randomCharArray.generateArr(input);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertFalse(actual);
 
     }
 
@@ -24,11 +23,10 @@ public class RandomCharArrayTest {
     public void testGenerateArrCorrectInput() {
 
         input = "14 15";
-        boolean expected = true;
 
         boolean actual = randomCharArray.generateArr(input);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual);
 
     }
 

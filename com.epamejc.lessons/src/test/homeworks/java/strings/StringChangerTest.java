@@ -31,11 +31,9 @@ public class StringChangerTest {
     @Test
     public void testByIndexFalse() {
 
-        boolean expected = false;
-
         boolean actual = stringChanger.byIndex(50);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertFalse(actual);
 
     }
 
