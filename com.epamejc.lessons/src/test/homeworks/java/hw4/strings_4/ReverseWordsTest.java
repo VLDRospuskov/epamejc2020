@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 public class ReverseWordsTest {
 
-    private static ReverseWords reverser;
+    private ReverseWords reverser;
 
     @Before
     public void setup() {

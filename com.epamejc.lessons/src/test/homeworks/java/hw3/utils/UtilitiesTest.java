@@ -1,13 +1,10 @@
 package homeworks.java.hw3.utils;
 
-import homeworks.java.hw3.arrays_1.ArrayOfArraysGenerator;
 import org.junit.*;
 import static homeworks.java.hw3.utils.Utilities.*;
 import static org.junit.Assert.*;
 
 public class UtilitiesTest {
-
-    private static ArrayOfArraysGenerator generator;
 
     @Test
     public void buildArrayTest() {

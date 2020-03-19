@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class ChangeCharsInLineByIndexesTest {
 
-    private static ChangeCharsInLineByIndexes changer;
+    private ChangeCharsInLineByIndexes changer;
 
     @Before
     public void setup() {

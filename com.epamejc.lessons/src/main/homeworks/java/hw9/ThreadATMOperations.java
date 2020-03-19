@@ -1,105 +1,73 @@
 package homeworks.java.hw9;
 
+import lombok.AllArgsConstructor;
+
+import java.util.List;
 import java.util.Random;
 
+@AllArgsConstructor
 public class ThreadATMOperations extends Thread {
 
-    private final Bank bank;
-    private final ATM atm;
-    private final User user;
-
-    public ThreadATMOperations(Bank bank, ATM atm, User user) {
-        super(user.getName());
-        this.bank = bank;
-        this.atm = atm;
-        this.user = user;
-    }
+    private Bank bank;
+    private List<ATM> atmList;
+    private List<User> userList;
 
     @Override
     public void run() {
         while (true) {
-            atmOperate();
-            bankOperate();
+            int chooseATM = generateRandomInt3();
+            int chooseUser = generateRandomInt4();
+            performAtmOperation(userList.get(chooseUser), atmList.get(chooseATM));
+            performAtmService(atmList.get(chooseATM));
         }
     }
 
-    private void atmOperate() {
-            final int chooseOperation = generateRandomInt();
-            if (chooseOperation == 1) {
-                atmWithdraw();
-            } else if (chooseOperation == 2) {
-                atmDeposit();
-            } else {
-                atmCheckUserBalance();
-            }
+    private void performAtmOperation(User user, ATM atm) {
+        int chooseOperation = generateRandomInt3();
+        if (chooseOperation == 0) {
+            atmWithdraw(user, atm);
+        } else if (chooseOperation == 1) {
+            atmDeposit(user, atm);
+        } else {
+            atmCheckUserBalance(user, atm);
+        }
     }
 
-    private synchronized void atmWithdraw() {
-            double amount = generateRandomAmount();
-            if (amount < user.getBalance() && amount < atm.getBalance()) {
-                atm.withdraw(amount);
-                user.setBalance(user.getBalance() - amount);
-                System.out.println("\n================ WITHDRAW ==================");
-                System.out.println("User name: " + user.getName() + " withdraw: " + String.format("%.2f", amount));
-                System.out.println("ATM " + atm.getIndex() + " balance: " + String.format("%.2f", atm.getBalance()));
-                System.out.println("=========================================\n");
-            }
+    private void atmWithdraw(User user, ATM atm) {
+        double amount = generateRandomAmount();
+        atm.withdraw(user, atm, amount);
     }
 
-    private synchronized void atmDeposit() {
-            double amount = generateRandomAmount();
-            atm.deposit(generateRandomAmount());
-            user.setBalance(user.getBalance() + amount);
-            System.out.println("\n================ DEPOSIT ==================");
-            System.out.println("User name: " + user.getName() + " deposit: " + String.format("%.2f", amount));
-            System.out.println("ATM " + atm.getIndex() + " balance: " + String.format("%.2f", atm.getBalance()));
-            System.out.println("=========================================\n");
+    private void atmDeposit(User user, ATM atm) {
+        double amount = generateRandomAmount();
+        atm.deposit(user, atm, amount);
     }
 
-    private synchronized void atmCheckUserBalance() {
-            System.out.println("\n================ CHECK BALANCE ============");
-            System.out.println("User name: " + user.getName() + " balance: " + String.format("%.2f", user.getBalance()));
-            System.out.println("============================================\n");
+    private void atmCheckUserBalance(User user, ATM atm) {
+        atm.checkUserBalance(user, atm);
     }
 
-
-
-    private void bankOperate() {
-            double amount = 500.00;
-            if (atm.getBalance() > 2500.00) {
-                    bankCollectAtm(amount);
-            } else if (atm.getBalance() < 750.00) {
-                    bankFillAtm(amount);
-            }
+    private void performAtmService(ATM atm) {
+        double amount = 500.00;
+        double maxBalance = 2500.00;
+        double minBalance = 750.00;
+        if (atm.getBalance() > maxBalance) {
+            bank.collectMoneyFromAtm(atm, amount);
+        } else if (atm.getBalance() < minBalance) {
+            bank.fillAtmWithMoney(atm, amount);
+        }
     }
 
-    private synchronized void bankCollectAtm(double amount) {
-            bank.collect(amount);
-            atm.setBalance(atm.getBalance() - amount);
-            System.out.println("\n================ COLLECTING ==================");
-            System.out.println("ATM # " + atm.getIndex() + " collect out: " + String.format("%.2f", amount));
-            System.out.println("Bank balance: " + String.format("%.2f", bank.getBalance()));
-            System.out.println("===============================================\n");
+    private int generateRandomInt3() {
+        return new Random().nextInt(3);
     }
 
-    private synchronized void bankFillAtm(double amount) {
-            if (amount < bank.getBalance()) {
-                bank.fill(amount);
-                atm.setBalance(atm.getBalance() + amount);
-                System.out.println("\n================ FILLING =====================");
-                System.out.println("ATM #" + atm.getIndex() + " fill in: " + String.format("%.2f", amount));
-                System.out.println("Bank balance: " + String.format("%.2f", bank.getBalance()));
-                System.out.println("===============================================\n");
-            } else {
-                System.out.println("\nBank OUT OF MONEY\n");
-            }
-    }
-
-    private int generateRandomInt() {
+    private int generateRandomInt4() {
         return new Random().nextInt(4);
     }
 
     private Double generateRandomAmount() {
         return new Random().nextDouble() + new Random().nextInt(500);
     }
+
 }

@@ -4,6 +4,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class NumberOfDigitsCounterTest {
+
     NumberOfDigitsCounter counter;
 
     @Before

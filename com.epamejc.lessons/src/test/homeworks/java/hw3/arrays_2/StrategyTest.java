@@ -4,11 +4,12 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class StrategyTest {
-    private Strategy s;
+
+    private Strategy strategy;
 
     @Before
     public void setup() {
-        s = new Strategy();
+        strategy = new Strategy();
     }
 
     @Test
@@ -17,8 +18,8 @@ public class StrategyTest {
         boolean expectedFalse = false;
         String strategyTrue = "error";
         String strategyFalse = "A";
-        boolean actualTrue = s.checkStrategy(strategyTrue);
-        boolean actualFalse = s.checkStrategy(strategyFalse);
+        boolean actualTrue = strategy.checkStrategy(strategyTrue);
+        boolean actualFalse = strategy.checkStrategy(strategyFalse);
         assertEquals(expectedTrue, actualTrue);
         assertEquals(expectedFalse, actualFalse);
     }
