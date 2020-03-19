@@ -17,7 +17,7 @@ public enum DeckNumberCount {
         int counter = 0;
 
         for (DeckNumberCount d : DeckNumberCount.values()) {
-            if(d.getValue() > 0) {
+            if (d.getValue() > 0) {
                 decksOnField[counter++] = d;
             }
         }
@@ -34,7 +34,7 @@ public enum DeckNumberCount {
     public static DeckNumberCount valueOf(int i) {
 
         if (i >= 0 && i < 5) {
-            return decksOnField[i-1];
+            return decksOnField[i - 1];
         }
         return INVALID;
     }

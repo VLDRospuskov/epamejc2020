@@ -58,7 +58,6 @@ public class Player extends BasePlayer implements InputListener {
     @Override
     public void attack(int x, int y) {
         Coordinatepointer position = new Coordinatepointer(x, y);
-//        IFieldObject[][] shipsOfBasePlayer = game.getBasePlayer().field.getObjects();
 
         if (field.isValidCoordinate(position) && !listOfAttackedPoints.contains(position)) {
             boolean isMissed = true;
@@ -68,11 +67,11 @@ public class Player extends BasePlayer implements InputListener {
                 if (!isMissed) break;
             }
 
-            if(isMissed){
+            if (isMissed) {
                 listOfAttackedPoints.add(position);
                 System.out.println("You missed! :P");
                 return;
-            } else if(isThatTheLastShip()) {
+            } else if (isThatTheLastShip()) {
                 game.getBasePlayer().field.drawBotField();
                 System.out.println("Congratulations! You won!");
                 exitGame();
@@ -102,12 +101,12 @@ public class Player extends BasePlayer implements InputListener {
 
     private boolean isThatTheLastShip() {
         int deadShipCounter = 0;
-        for(Ship ship : game.getBasePlayer().ships){
-            if(ship.isShipAlive() == false){
+        for (Ship ship : game.getBasePlayer().ships) {
+            if (ship.isShipAlive() == false) {
                 deadShipCounter++;
             }
         }
-        if(deadShipCounter == ships.size()){
+        if (deadShipCounter == ships.size()) {
             return true;
         }
         return false;

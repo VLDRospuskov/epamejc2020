@@ -113,11 +113,11 @@ public class Field {
         }
 
         List<Coordinatepointer> attackedPoints = BasePlayer.getListOfAttackedPointsForBot();
-        for(Coordinatepointer point : attackedPoints) {
+        for (Coordinatepointer point : attackedPoints) {
             IFieldObject currentObject = objects[point.x][point.y];
             if (currentObject != null && currentObject.getView() == 'X') {
                 cells[point.x][point.y] = currentObject.getView();
-            } else if(currentObject == null) {
+            } else if (currentObject == null) {
                 cells[point.x][point.y] = '0';
             }
         }
@@ -160,11 +160,11 @@ public class Field {
     public void updateBattleFieldForBot() {
         clean();
         List<Coordinatepointer> attackedPoints = Player.getListOfAttackedPoints();
-        for(Coordinatepointer point : attackedPoints) {
+        for (Coordinatepointer point : attackedPoints) {
             IFieldObject currentObject = objects[point.x][point.y];
             if (currentObject != null && currentObject.getView() == 'X') {
                 cells[point.x][point.y] = currentObject.getView();
-            } else if(currentObject == null) {
+            } else if (currentObject == null) {
                 cells[point.x][point.y] = '0';
             } else {
                 cells[point.x][point.y] = ' ';

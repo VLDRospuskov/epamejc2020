@@ -1,6 +1,5 @@
 package homeworks.java.seabattle.input;
 
-import homeworks.java.seabattle.battle.Game;
 import homeworks.java.seabattle.field.Coordinatepointer;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 
@@ -16,7 +15,7 @@ public class Input {
     private InputListener inListener;
     private int currentShipDeckNumber;
     private final String baseFillingMessage = "Input %d-deck ship in format %s\nOr input \"auto fill\" " +
-            "to fill your field automatically" ;
+            "to fill your field automatically";
     private String currentMessage;
     private String line;
 
@@ -118,7 +117,7 @@ public class Input {
     private void doBattle(String line) {
         Coordinatepointer coordinate = parseCoordinates(line);
 
-        if (coordinate.x >= 0 && coordinate.y >= 0 && coordinate.x <=10 && coordinate.y <= 10) {
+        if (coordinate.x >= 0 && coordinate.y >= 0 && coordinate.x <= 10 && coordinate.y <= 10) {
             inListener.attack(coordinate.x, coordinate.y);
         } else {
             humanPlayerProcess(GameState.BATTLE);

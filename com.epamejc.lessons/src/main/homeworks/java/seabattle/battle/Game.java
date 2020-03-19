@@ -11,7 +11,7 @@ public class Game {
     private int currentIndex;
     private boolean gameOver;
 
-    public Game(){
+    public Game() {
         this.gameState = GameState.SETUP;
         this.players = new BasePlayer[2];
         this.players[0] = new Player(this);
@@ -20,11 +20,11 @@ public class Game {
         this.gameOver = false;
     }
 
-    public void setGameOverTrue(){
+    public void setGameOverTrue() {
         this.gameOver = true;
     }
 
-    public GameState getState(){
+    public GameState getState() {
         return gameState;
     }
 
@@ -36,25 +36,25 @@ public class Game {
         return players[0];
     }
 
-    public void runGameWithBotPlayer(){
-        if(gameState != GameState.BATTLE &&
+    public void runGameWithBotPlayer() {
+        if (gameState != GameState.BATTLE &&
                 players[0].isFieldFilled() &&
-                players[1].isFieldFilled()){ //BotPlayer
+                players[1].isFieldFilled()) { //BotPlayer
             gameState = GameState.BATTLE;
         }
         players[currentIndex].process(currentIndex, players[currentIndex].isLucky(), false);
         nextStep();
     }
 
-    public void nextStep(){
+    public void nextStep() {
         currentIndex++;
 
-        if(currentIndex >= players.length){
+        if (currentIndex >= players.length) {
             currentIndex = 0;
         }
     }
 
-    public boolean isGameOver(){
+    public boolean isGameOver() {
         return gameOver;
     }
 }
