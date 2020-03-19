@@ -35,7 +35,7 @@ public class OperationsThread extends Thread {
         }
     }
 
-    public void initializeOperationData() {
+    private void initializeOperationData() {
         user = getRandom(users);
         atm = getRandom(atms);
         amount = getRandomBigDecimal(100.00, 2000.00);
@@ -44,7 +44,7 @@ public class OperationsThread extends Thread {
         userLogic = new UserLogic(user, amount);
     }
 
-    public void makeOperation() {
+    private void makeOperation() {
         switch (operation) {
             case "withdraw": {
                 withdraw();
@@ -57,7 +57,7 @@ public class OperationsThread extends Thread {
         }
     }
 
-    public void printStatusMessage() {
+    private void printStatusMessage() {
         System.out.println(Thread.currentThread().getName());
         System.out.println(user.getName() + " wants to " + operation + " " +
                 format(amount) + ", ATM on " + atm.getLocation());
@@ -68,7 +68,7 @@ public class OperationsThread extends Thread {
     }
 
 
-    public void withdraw() {
+    private void withdraw() {
         if (userLogic.hasOnAccount() && atmLogic.hasCash()) {
             userLogic.getCash();
             atmLogic.withdraw();
@@ -78,7 +78,7 @@ public class OperationsThread extends Thread {
         System.out.println("----------------------");
     }
 
-    public void deposit() {
+    private void deposit() {
         if (userLogic.hasInCash()) {
             userLogic.putCash();
             atmLogic.deposit();

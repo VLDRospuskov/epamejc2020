@@ -17,13 +17,13 @@ public class UserLogic {
     private BigDecimal amount;
 
     public void getCash() {
-        substractAccount();
+        subtractAccount();
         addCash();
         System.out.println(user.getName() + " withdrew " + format(amount) + " from the account.");
     }
 
     public void putCash() {
-        substractCash();
+        subtractCash();
         addAccount();
         System.out.println(user.getName() + " deposited " + format(amount) + " on the account.");
     }
@@ -50,7 +50,7 @@ public class UserLogic {
         return result;
     }
 
-    private void substractAccount() {
+    private void subtractAccount() {
         user.setAccountBalance(user.getAccountBalance().subtract(amount));
     }
 
@@ -62,7 +62,7 @@ public class UserLogic {
         user.setAccountBalance(user.getAccountBalance().add(amount));
     }
 
-    private void substractCash() {
+    private void subtractCash() {
         user.setCashBalance(user.getCashBalance().subtract(amount));
     }
 }

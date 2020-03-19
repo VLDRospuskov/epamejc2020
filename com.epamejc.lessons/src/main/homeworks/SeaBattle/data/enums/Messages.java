@@ -15,7 +15,9 @@ public enum Messages {
     WRONG_DIRECTION_INPUT("Input only right or down"),
     INPUT_FOR_SHOOTING("Input (a1 format): "),
     ENDGAME("Thank you for the game!"),
-    USER_TURN_FINISHED("Your turn is finished. Press any button.");
+    USER_TURN_FINISHED("Your turn is finished. Press any button."),
+    COMPUTER_TURN_FINISHED("Computer's turn is finished."),
+    COMPUTER_TURN_STARTED("It's computer's turn!");
 
     private String str;
 
