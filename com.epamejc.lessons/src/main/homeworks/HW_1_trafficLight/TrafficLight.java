@@ -5,37 +5,31 @@ import homeworks.utility.helper.Helper;
 
 class TrafficLight {
 
-    void run() {
+    public void run() {
         System.out.println(Helper.GREETING);
         try {
             while (true) {
                 int input = Helper.getInt("Seconds from the start of the TrafficLight: ");
-                System.out.println(getTrafficLightColor(input));
-                System.out.println("---------------------------------------");
+                String message = getTrafficLightColor(input);
+                System.out.println(message + "\n" + "---------------------------------------");
             }
         } catch (CancellationException ignored) {}
     }
 
-    public Colors getTrafficLightColor(int n) {
-        n = zeroIfNegative(n);
-        n = n % 10;
+    public String getTrafficLightColor(int n) {
+        int result = formatNumber(n);
 
-        if (0 <= n && n <= 3) {
-            return Colors.GREEN;
-        } else if (4 <= n && n <= 5) {
-            return Colors.YELLOW;
+        if (0 <= result && result <= 3) {
+            return Messages.GREEN.toString();
+        } else if (4 <= result && result <= 5) {
+            return Messages.YELLOW.toString();
         } else {
-            return Colors.RED;
+            return Messages.RED.toString();
         }
     }
 
-    private int zeroIfNegative(int input) {
-        if (input < 0) {
-            input = 0;
-            System.out.println("You need to write a positive int!");
-        }
-
-        return input;
+    private int formatNumber(int n) {
+        return n < 0 ? 0 : n % 10;
     }
 
 }

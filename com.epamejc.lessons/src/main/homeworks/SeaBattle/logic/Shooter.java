@@ -2,6 +2,7 @@ package homeworks.SeaBattle.logic;
 
 import homeworks.SeaBattle.data.Ship;
 import homeworks.SeaBattle.data.enums.Chars;
+import homeworks.SeaBattle.data.enums.Messages;
 import homeworks.SeaBattle.data.players.Player;
 import homeworks.SeaBattle.data.players.User;
 import homeworks.utility.helper.Helper;
@@ -61,11 +62,13 @@ public class Shooter {
         ArrayList<Point> hitCells = findHitShipCells();
 
         switch (hitCells.size()) {
-            case 0 : {
+            case 0: {
                 return getRandomShot();
-            } case 1 : {
+            }
+            case 1: {
                 return getComputerNearShot(hitCells);
-            } default: {
+            }
+            default: {
                 return getComputerContinuedShot(hitCells);
             }
         }
@@ -140,10 +143,10 @@ public class Shooter {
     private Point getComputerNearShot(ArrayList<Point> hitCells) {
         ArrayList<Point> aims = new ArrayList<>();
         for (Point p : hitCells) {
-            aims.add(new Point(p.x-1, p.y));
-            aims.add(new Point(p.x+1, p.y));
-            aims.add(new Point(p.x, p.y-1));
-            aims.add(new Point(p.x, p.y+1));
+            aims.add(new Point(p.x - 1, p.y));
+            aims.add(new Point(p.x + 1, p.y));
+            aims.add(new Point(p.x, p.y - 1));
+            aims.add(new Point(p.x, p.y + 1));
         }
 
         removePointsThatCantBeHit(aims);
@@ -178,7 +181,7 @@ public class Shooter {
             }
         } while (isHit);
 
-        Helper.getStringSilently("Your turn is finished. Press any button.");
+        Helper.getStringSilently(Messages.USER_TURN_FINISHED.toString());
     }
 
     //SHOOTING////////////
@@ -190,7 +193,7 @@ public class Shooter {
             return true;
         } else {
             miss(p);
-            System.out.println("Мимо!");
+            System.out.println(Messages.MISS);
             Thread.sleep(sleepTimeMs);
             return false;
         }
@@ -208,10 +211,10 @@ public class Shooter {
 
         if (ship.isDead()) {
             sink(ship);
-            System.out.println("Убит!");
+            System.out.println(Messages.DESTROYED);
         } else {
             markHitOnField(p);
-            System.out.println("Попал!");
+            System.out.println(Messages.HIT);
         }
 
         Thread.sleep(sleepTimeMs);

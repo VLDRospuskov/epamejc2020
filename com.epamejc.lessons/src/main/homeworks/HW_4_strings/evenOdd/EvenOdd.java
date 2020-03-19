@@ -5,7 +5,7 @@ import homeworks.utility.helper.Helper;
 
 class EvenOdd {
 
-    void run() {
+    public void run() {
         try {
             System.out.println(Helper.GREETING);
 
@@ -18,18 +18,18 @@ class EvenOdd {
     }
 
     private void printEvenOrOddString(String input, String evenOrOdd) {
-        String even = "";
-        String odd = "";
+        StringBuilder even = new StringBuilder();
+        StringBuilder odd = new StringBuilder();
 
         for (int i = 0; i < input.length(); i++) {
             if (i % 2 == 0) {
-                odd += input.charAt(i);
+                odd.append(input.charAt(i));
             } else {
-                even += input.charAt(i);
+                even.append(input.charAt(i));
             }
         }
 
-        System.out.println(getEvenOrOdd(even, odd, evenOrOdd));
+        System.out.println(getEvenOrOdd(even.toString(), odd.toString(), evenOrOdd));
         System.out.println("---------------------------------");
     }
 
@@ -46,4 +46,5 @@ class EvenOdd {
 
         return result;
     }
+
 }

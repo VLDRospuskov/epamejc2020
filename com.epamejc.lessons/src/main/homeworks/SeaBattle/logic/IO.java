@@ -37,9 +37,9 @@ public class IO {
 
     @SneakyThrows
     public static Point getUserShoot() {
-        String input = Helper.getStringSilently("Input (a1 format): ");
+        String input = Helper.getStringSilently(Messages.INPUT_FOR_SHOOTING.toString()).trim();
 
-        while (input.length() < 2) {
+        if (input.length() < 2) {
             return getUserShoot();
         }
 

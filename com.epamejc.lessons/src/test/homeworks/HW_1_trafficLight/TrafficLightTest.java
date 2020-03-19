@@ -9,15 +9,15 @@ public class TrafficLightTest {
 
     @Test
     public void testGetTrafficLightColor() {
-        Colors expected = Colors.YELLOW;
-        Colors actual = trafficLight.getTrafficLightColor(5);
+        String expected = Messages.YELLOW.toString();
+        String actual = trafficLight.getTrafficLightColor(5);
         assertEquals(expected, actual);
 
-        expected = Colors.GREEN;
+        expected = Messages.GREEN.toString();
         actual = trafficLight.getTrafficLightColor(-100);
         assertEquals(expected, actual);
 
-        expected = Colors.RED;
+        expected = Messages.RED.toString();
         actual = trafficLight.getTrafficLightColor(1118);
         assertEquals(expected, actual);
     }

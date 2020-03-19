@@ -5,7 +5,7 @@ import homeworks.utility.helper.Helper;
 
 class AmountOfDigits {
 
-    void run() {
+    public void run() {
         try {
             System.out.println(Helper.GREETING);
 
@@ -24,4 +24,5 @@ class AmountOfDigits {
             return 1 + getDigits(n / 10);
         }
     }
+
 }

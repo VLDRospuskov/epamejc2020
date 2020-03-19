@@ -10,7 +10,7 @@ import homeworks.utility.helper.Helper;
 
 class Fibonacci {
 
-    void run() {
+    public void run() {
         try {
             System.out.println(Helper.GREETING);
 

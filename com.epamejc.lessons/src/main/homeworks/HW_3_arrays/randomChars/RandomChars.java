@@ -1,14 +1,14 @@
 package homeworks.HW_3_arrays.randomChars;
 
-import homeworks.utility.helper.CancellationException;
 import homeworks.utility.helper.Helper;
 
 import java.util.Arrays;
 
 public class RandomChars {
-    int amount;
-    int length;
-    String strategy;
+
+    private int amount;
+    private int length;
+    private String strategy;
 
     public void run() {
         System.out.println(Helper.GREETING);
@@ -19,12 +19,10 @@ public class RandomChars {
     }
 
     private void getUserInputs() {
-        try {
-            amount = Helper.getInt("Write down amount of arrays: ");
-            length = Helper.getInt("Write down the length of arrays: ");
-            strategy = Helper.getString("Write down the strategy: ");
-            Helper.closeReaderSilently();
-        } catch (CancellationException ignored) {}
+        amount = Helper.getIntSilently("Write down amount of arrays: ");
+        length = Helper.getIntSilently("Write down the length of arrays: ");
+        strategy = Helper.getStringSilently("Write down the strategy: ");
+        Helper.closeReaderSilently();
     }
 
 
@@ -49,37 +47,36 @@ public class RandomChars {
     }
 
     private void printFormattedString(char[][] charArrays, String strategy) {
-        String evenChars = "";
-        String oddChars = "";
+        StringBuilder evenChars = new StringBuilder();
+        StringBuilder oddChars = new StringBuilder();
 
         for (char[] chars : charArrays) {
             for (int i = 0; i < chars.length; i++) {
                 if (i % 2 == 0) {
-                    oddChars += chars[i];
+                    oddChars.append(chars[i]);
                 } else {
-                    evenChars += chars[i];
+                    evenChars.append(chars[i]);
                 }
             }
         }
 
-        String result = getEvenOrOddChars(evenChars, oddChars, strategy);
+        String result = getEvenOrOddChars(evenChars.toString(), oddChars.toString(), strategy);
         System.out.println(result);
     }
 
     private String getEvenOrOddChars(String evenChars, String oddChars, String strategy) {
-        String result = "";
+        String result;
 
         if (strategy.equalsIgnoreCase("a")) {
             result = oddChars;
         } else if (strategy.equalsIgnoreCase("b")) {
             result = evenChars;
         } else {
-            try {
-                String strategy2 = Helper.getString("Wrong character! Try again: ");
-                result = getEvenOrOddChars(evenChars, oddChars, strategy2);
-            } catch (CancellationException e) {}
+            String strategy2 = Helper.getStringSilently("Wrong character! Try again: ");
+            result = getEvenOrOddChars(evenChars, oddChars, strategy2);
         }
 
         return result;
     }
+
 }

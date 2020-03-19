@@ -1,5 +1,6 @@
 package homeworks.SeaBattle.logic;
 
+import homeworks.SeaBattle.data.enums.Chars;
 import homeworks.SeaBattle.data.players.Computer;
 import homeworks.SeaBattle.data.players.Player;
 import homeworks.SeaBattle.data.players.User;
@@ -42,7 +43,7 @@ public class Util {
 
     private static boolean isNearAShip(Point p, Player player) {
         for (Point point : existingCellsNear(p)) {
-            if (player.getField()[point.y][point.x] == 'S') {
+            if (player.getField()[point.y][point.x] == Chars.SHIP.getChar()) {
                 return true;
             }
         }

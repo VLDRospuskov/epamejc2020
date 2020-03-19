@@ -6,7 +6,16 @@ public enum Messages {
     CHOOSE_PLAYERS("How many players, 1 or 2? "),
     ERROR_WHILE_GAME_TYPE_CHOOSING("1 or 2 only: "),
     NAME("Player's name: "),
-    MANUAL_CREATION("Generate ships manually (1-yes, 0-no) ");
+    MANUAL_CREATION("Generate ships manually (1-yes, 0-no) "),
+    MISS("Miss!"),
+    HIT("Hit!"),
+    DESTROYED("Destroyed!"),
+    WRONG_SHIP_PLACEMENT("The ship cannot be put this way!"),
+    GETTING_DIRECTION("Input direction (down or right): "),
+    WRONG_DIRECTION_INPUT("Input only right or down"),
+    INPUT_FOR_SHOOTING("Input (a1 format): "),
+    ENDGAME("Thank you for the game!"),
+    USER_TURN_FINISHED("Your turn is finished. Press any button.");
 
     private String str;
 

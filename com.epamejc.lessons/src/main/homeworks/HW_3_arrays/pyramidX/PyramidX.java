@@ -1,6 +1,5 @@
 package homeworks.HW_3_arrays.pyramidX;
 
-import homeworks.utility.helper.CancellationException;
 import homeworks.utility.helper.Helper;
 
 public class PyramidX {
@@ -12,13 +11,8 @@ public class PyramidX {
     }
 
     private int getUserInput() {
-        int n = 0;
-
-        try {
-            n = Helper.getInt();
-            Helper.closeReaderSilently();
-        } catch (CancellationException ignored) {}
-
+        int n = Helper.getIntSilently("Input the size of the pyramid: ");
+        Helper.closeReaderSilently();
         return n;
     }
 

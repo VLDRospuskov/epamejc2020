@@ -32,7 +32,7 @@ public class SeaBattle {
 
         if (winner != null) {
             System.out.println(winner.getName() + " is a winner!");
-            System.out.println("Thank you for the game!");
+            System.out.println(Messages.ENDGAME);
         }
 
         Helper.closeReaderSilently();

@@ -5,7 +5,7 @@ import homeworks.utility.helper.Helper;
 
 class ReplaceChars {
 
-    void run() {
+    public void run() {
         try {
             System.out.println(Helper.GREETING);
 
@@ -19,21 +19,22 @@ class ReplaceChars {
     }
 
     private void printStringWithReplacedChars(String input, int chIndex1, int chIndex2) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         char ch1 = input.charAt(chIndex1);
         char ch2 = input.charAt(chIndex2);
 
         for (int i = 0; i < input.length(); i++) {
             if (i == chIndex1) {
-                result += ch2;
+                result.append(ch2);
             } else if (i == chIndex2) {
-                result += ch1;
+                result.append(ch1);
             } else {
-                result += input.charAt(i);
+                result.append(input.charAt(i));
             }
         }
 
         System.out.println(result);
         System.out.println("-------------------------------------");
     }
+
 }

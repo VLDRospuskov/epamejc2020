@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import java.io.*;
 
 public class MyIOSpeedCheck {
+
     private File sourceFile = new File("sourceFile.txt");
     private File destinationFile = new File("destinationFile.txt");
 

@@ -2,30 +2,27 @@ package homeworks.SeaBattle.logic;
 
 import homeworks.SeaBattle.data.Ship;
 import homeworks.SeaBattle.data.enums.Chars;
+import homeworks.SeaBattle.data.enums.Messages;
 import homeworks.SeaBattle.data.players.Computer;
 import homeworks.SeaBattle.data.players.Player;
 import homeworks.utility.helper.Helper;
-import lombok.SneakyThrows;
+import lombok.AllArgsConstructor;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 import static homeworks.SeaBattle.logic.IO.*;
 
+@AllArgsConstructor
 public class FieldGenerator {
 
     private Player player;
-
-    public FieldGenerator(Player player) {
-        this.player = player;
-    }
 
     public void generateField() {
         fillGameFieldWithEmptySpaces();
         putShips();
     }
 
-    @SneakyThrows
     private void putShips() {
         generateShips(1, 4);
         generateShips(2, 3);
@@ -52,7 +49,7 @@ public class FieldGenerator {
             player.getShips().add(new Ship(cells));
             putOnField(cells);
         } else {
-            System.out.println("Так корабль поставить нельзя! Еще раз.");
+            System.out.println(Messages.WRONG_SHIP_PLACEMENT);
             inputAShip(size);
         }
     }
@@ -82,9 +79,8 @@ public class FieldGenerator {
         return cells;
     }
 
-    @SneakyThrows
     private boolean getUserDirection() {
-        String str = Helper.getString("Введите направление: ");
+        String str = Helper.getStringSilently(Messages.GETTING_DIRECTION.toString());
         switch (str) {
             case "right": {
                 return true;
@@ -93,7 +89,7 @@ public class FieldGenerator {
                 return false;
             }
             default: {
-                System.out.println("Введите right или down");
+                System.out.println(Messages.WRONG_DIRECTION_INPUT.toString());
                 return getUserDirection();
             }
         }
