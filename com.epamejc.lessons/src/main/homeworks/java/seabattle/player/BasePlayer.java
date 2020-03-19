@@ -14,11 +14,11 @@ import java.util.*;
 
 public class BasePlayer {
 
-    protected Game game;
-    protected Field field;
+    public List<Ship> ships;
+    public Field field;
 
+    protected Game game;
     protected Map<DeckNumberCount, Integer> shipCounter;
-    protected List<Ship> ships;
 
     protected int maxShips;
     protected int aliveShips;
@@ -66,6 +66,7 @@ public class BasePlayer {
         filler = new ShipFiller(this);
         shipCounter = new HashMap<>();
         isLucky = false;
+        pointToAttack = new Coordinatepointer(random.nextInt(10), random.nextInt(10));
         neighboursToAttack = new Coordinatepointer[4];
         neighboursToAttack[0] = new Coordinatepointer(-1, 0);
         neighboursToAttack[1] = new Coordinatepointer(0, 1);
@@ -103,7 +104,10 @@ public class BasePlayer {
     }
 
     private void doBotAttack(boolean wasLucky) {
-        pointToAttack = new Coordinatepointer(random.nextInt(10), random.nextInt(10));
+
+        while (listOfAttackedPointsForBot.size() != 0 && listOfAttackedPointsForBot.contains(pointToAttack)) {
+            pointToAttack = new Coordinatepointer(random.nextInt(10), random.nextInt(10));
+        }
 
         boolean isAttackedPoint = false;
         boolean isMissed = true;
@@ -124,6 +128,7 @@ public class BasePlayer {
                 game.setGameOverTrue();
                 return;
             } else {
+                System.out.println("We are in 'else'. " + "is Missed =" + isMissed + ", wasLucky = " + wasLucky);
                 game.getPlayer().field.draw(true);
                 process(1, isLucky(), isAttackedPoint);
             }
