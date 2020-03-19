@@ -54,6 +54,14 @@ class Ships {
         }
         return shipCoordinates;
     }
+
+    public boolean isDead() {
+        for(int i=0;i<ship.size();i++)
+        {
+         //   if(ship.get(i).g)
+        }
+        return false;
+    }
 }
 
 

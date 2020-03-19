@@ -49,7 +49,7 @@ public class Main {
             if (Users.get(queue).isHit(x, y)) {
                 System.out.println("Hit!");
                 Users.get(queue).addEnemyPartShipToPole(x, y);
-                if (Users.get(queue).isDeath(x, y)) {
+                if (Users.get(queue).isDead(x, y)) {
                     Users.get(queue).addEnemyShipToPole(Users.get(enemy).getShipCoordinates(x, y));
                     System.out.println("Ship Dead");
 

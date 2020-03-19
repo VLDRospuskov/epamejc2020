@@ -15,11 +15,12 @@ class ShipPart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShipPart shipPart = (ShipPart) o;
-        return Objects.equals(coordinates, shipPart.coordinates);
+        return hit == shipPart.hit &&
+                Objects.equals(coordinates, shipPart.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(coordinates);
+        return Objects.hash(coordinates, hit);
     }
 }

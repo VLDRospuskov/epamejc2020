@@ -21,9 +21,11 @@ class User {
     }
 
     // todo сделать метод который проверяет попал ли противник и если да отмечать у себя на карте что корабль подбит
+    //todo вынести ispole отдельно
     public boolean isHit(int x, int y) {
         if (inPole(x, y)) {
-            for (Ships ship : ships) {
+            for (int i = 0; i < ships.size(); i++) {
+                Ships ship = ships.get(i);
                 if (ship.isHit(x, y)) {
                     return true;
                 }
@@ -51,7 +53,13 @@ class User {
 
 
     //todo если мой корабль убит выстрелом противника, то отправить ему тип корабля
-    public boolean isDeath(int x, int y) {
+    public boolean isDead(int x, int y) {
+        int sell = findShipSell(x,y);
+        if (ships.get(sell).isDead())
+
+
+
+
         return false;
 
 
