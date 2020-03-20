@@ -15,42 +15,25 @@ class Pole {
         }
     }
 
-    /**
-     * метод добавляет на поле противника убитый корабль
-     * @param coordinates координаты корабля
-     */
-    //todo delete
-    void addShip(ArrayList<Coordinates> coordinates) {
-        for (Coordinates coordinate : coordinates) {
-            States.set(getCellId(coordinate.getX(), coordinate.getY()), State.DEAD);
-        }
-    }
-    // todo метод который добавляет часть вражеского корабля на карту
+
+
+    // to do метод который добавляет часть вражеского корабля на карту
     void  addShipPart(int x, int y)
     {
         States.set(getCellId(x, y), State.DEAD);
-
     }
 
     /**
      * переделывает координаты поля в номер яцекйки в массиве
-     * @param x
-     * @param y
+     * @param x координата х
+     * @param y координата у
      * @return возвращает ячейку в массиве
      */
-    int getCellId(int x, int y) {
+    private int getCellId(int x, int y) {
         return 10 * y + x;
     }
 
-    /**
-     * Возвращает статус ячейки поля по координатам
-     * @param x
-     * @param y
-     * @return статус
-     */
-    State getStateByXY(int x, int y) {
-        return States.get(getCellId(x, y));
-    }
+
 
     /**
      * выыодит на экран поле
@@ -59,9 +42,7 @@ class Pole {
     void printPole() {
         for (int i = 0; i < States.size(); i++) {
             switch (States.get(i)) {
-                case SHIP:
-                    System.out.print("S");
-                    break;
+
                 case HIT:
                     System.out.print("H");
                     break;
@@ -73,12 +54,12 @@ class Pole {
                     break;
             }
             if (i % 10 == 9) {
-                System.out.println("");
+                System.out.println();
             }
         }
     }
 
-    public void addHitPass(int x, int y) {
+    void addHitPass(int x, int y) {
         States.set(getCellId(x, y), State.HIT);
     }
 }

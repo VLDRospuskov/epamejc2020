@@ -10,6 +10,7 @@ import java.util.Objects;
 //to do написать икзс и хешкод
 public class Coordinates {
     private int X;
+    private int Y;
 
     @Override
     public boolean equals(Object o) {
@@ -25,5 +26,4 @@ public class Coordinates {
         return Objects.hash(X, Y);
     }
 
-    private int Y;
 }

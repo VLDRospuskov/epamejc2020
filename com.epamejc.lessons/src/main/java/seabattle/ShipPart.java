@@ -14,7 +14,6 @@ public class ShipPart {
     private Coordinates coordinates;
     private Boolean hit;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -29,8 +28,4 @@ public class ShipPart {
         return Objects.hash(coordinates, hit);
     }
 
-
-//    public boolean getHit() {
-//        return hit;
-////    }
 }
