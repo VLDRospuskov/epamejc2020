@@ -40,6 +40,24 @@ public class Bank {
         }
         System.out.println("ATMs and Users created.");
 
+        int atm = 1;
+        int user = 1;
+        int amount = 1000;
+
+        System.out.println("ATM id: " + atmList.get(atm).id + ", balance: " + atmList.get(atm).balance);
+        System.out.println("User id: " + userList.get(user).id + ", balance: " + userList.get(user).balance + " is trying to withdraw " + amount);
+
+        try {
+            if (atmList.get(atm).withdraw(amount) == userList.get(user).withdraw(amount)) {
+                System.out.print(""); // aa
+                System.out.println("All good!"); // asdasd
+                System.out.println("ATM id: " + atmList.get(atm).id + ", balance: " + atmList.get(atm).balance);
+                System.out.println("User id: " + userList.get(user).id + ", balance: " + userList.get(user).balance);
+            }
+        } catch (ATMException e) {
+            System.out.println("Error! " + e.getMessage());
+        }
+
         System.out.println("Money supply: " + moneySupply);
     }
 

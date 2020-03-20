@@ -36,7 +36,7 @@ public class User {
     }
 }
 
-class UserException extends Exception {
+class UserException extends RuntimeException {
 
     public UserException(String message) {
         super(message);
