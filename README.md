@@ -42,9 +42,10 @@ h g
 
 Implement 2 strategies that makes string on base of that array.
 
-strategy A - *_*_* (* - word in output, _ - word is skipped)
+strategy A - ( * _ * _ * ) (* - word in output,
+_ - word is skipped)
 
-strategyB - _*_*_ .
+strategy B - ( _ * _ * _ ).
 
 **Example:**
 
