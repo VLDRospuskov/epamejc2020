@@ -1,10 +1,7 @@
 package seabattle.Menus;
 
-import seabattle.Enums.DifficultyAI;
-import seabattle.FieldDrawer;
 import seabattle.Players.Player;
 import seabattle.Players.PlayerAI;
-import seabattle.Settings;
 
 public class MenuSettings extends Menu {
 
@@ -13,9 +10,9 @@ public class MenuSettings extends Menu {
         System.out.println(
                 "Current settings: Mode - " + getGameMode(game.player1, game.player2) +
                         //". Field - " + Settings.fieldRows + "x" + Settings.fieldColumns +
-                "\n1. Change player - " + game.player1.getName() +
-                "\n2. Change player - " + game.player2.getName() +
-                "\n0. Exit");
+                        "\n1. Change player - " + game.player1.getName() +
+                        "\n2. Change player - " + game.player2.getName() +
+                        "\n0. Exit");
     }
 
     @Override

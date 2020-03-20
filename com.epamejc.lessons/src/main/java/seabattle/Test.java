@@ -8,36 +8,37 @@ public class Test {
     public Player player2 = new Player();
 
     public Player whichPlayerTurn = player1;
-/*
-    @SneakyThrows
-    public void startGame() {
-        player1.enemy = player2;
-        player2.enemy = player1;
-        player1.name = "Alex";
-        player2.name = "Kristina";
-        System.out.println("HELLO!");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String command;
-        System.out.println("Shoot, " + whichPlayerTurn.name + "!");
 
-        command = reader.readLine();
-        while (!(command = reader.readLine()).equals("exit") && !gameOver()) {
-            int aim = Integer.parseInt(command);
-            if (whichPlayerTurn.enemy.field[aim] == 1) {
-                whichPlayerTurn.enemy.field[aim] = 0;
-                whichPlayerTurn.enemy.shipsLeft--;
-                System.out.println("Great shoot!");
-                if (gameOver()) {
-                    System.out.println(whichPlayerTurn.name + " wins!!!");
-                }
-            } else {
-                System.out.println("U missed =(");
-            }
-            whichPlayerTurn = whichPlayerTurn.enemy;
+    /*
+        @SneakyThrows
+        public void startGame() {
+            player1.enemy = player2;
+            player2.enemy = player1;
+            player1.name = "Alex";
+            player2.name = "Kristina";
+            System.out.println("HELLO!");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String command;
             System.out.println("Shoot, " + whichPlayerTurn.name + "!");
+
+            command = reader.readLine();
+            while (!(command = reader.readLine()).equals("exit") && !gameOver()) {
+                int aim = Integer.parseInt(command);
+                if (whichPlayerTurn.enemy.field[aim] == 1) {
+                    whichPlayerTurn.enemy.field[aim] = 0;
+                    whichPlayerTurn.enemy.shipsLeft--;
+                    System.out.println("Great shoot!");
+                    if (gameOver()) {
+                        System.out.println(whichPlayerTurn.name + " wins!!!");
+                    }
+                } else {
+                    System.out.println("U missed =(");
+                }
+                whichPlayerTurn = whichPlayerTurn.enemy;
+                System.out.println("Shoot, " + whichPlayerTurn.name + "!");
+            }
         }
-    }
-*/
+    */
     @SneakyThrows
     public static void main(String[] args) {
 
@@ -97,7 +98,7 @@ public class Test {
         }
         return result == 5;
     }
-    
+
     public static int eveluate(int[] real, int[] suggested) {
         int result = 0;
         for (int i = 0; i < suggested.length; i++) {

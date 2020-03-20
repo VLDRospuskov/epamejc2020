@@ -2,7 +2,6 @@ package seabattle.Menus;
 
 import seabattle.FieldDrawer;
 import seabattle.Players.Player;
-import seabattle.Players.PlayerAI;
 
 public class BattleMenu extends Menu {
 

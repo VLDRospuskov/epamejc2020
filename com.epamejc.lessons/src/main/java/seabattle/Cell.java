@@ -46,7 +46,7 @@ public class Cell {
 //            }
         }
         Cell nextCell = getNextCellByDirection(direction);
-        if (nextCell!=null && nextCell.isCellOfState(FieldCellState.SHIP_CELL_DEAD)) {
+        if (nextCell != null && nextCell.isCellOfState(FieldCellState.SHIP_CELL_DEAD)) {
             nextCell.surroundWithMissesTillEndOfShip(direction);
         }
     }

@@ -16,6 +16,30 @@ public class ReaderComparison {
     char[] chars = new char[SIZE];
 
     @SneakyThrows
+    public static void main(String[] args) {
+        //fillInFile();
+
+        ReaderComparison readerComparison = new ReaderComparison();
+
+        long before;
+        long after;
+
+        before = System.nanoTime();
+        readerComparison.readWithFileReader();
+        after = System.nanoTime();
+        long result1 = after - before;
+
+        before = System.nanoTime();
+        readerComparison.readWithBufferedReader();
+        after = System.nanoTime();
+        long result2 = after - before;
+
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println((result2 < result1 ? "BufferedReader " : "FileReader ") + "is faster by " + Math.abs(result2 - result1));
+    }
+
+    @SneakyThrows
     public ReaderComparison() {
         fileReader = new FileReader(inputFileName);
         bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(inputFileName)));
@@ -43,34 +67,9 @@ public class ReaderComparison {
         char[] chars = {' ', 'k', 'I', 'm', 'o', 'a'};
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("in.txt"));
         for (int i = 0; i < SIZE; i++) {
-            bufferedWriter.write( chars[ (int)(Math.random() * 6) ] );
+            bufferedWriter.write(chars[(int) (Math.random() * 6)]);
         }
         bufferedWriter.flush();
-    }
-
-
-    @SneakyThrows
-    public static void main(String[] args) {
-        //fillInFile();
-
-        ReaderComparison readerComparison = new ReaderComparison();
-
-        long before;
-        long after;
-
-        before = System.nanoTime();
-        readerComparison.readWithFileReader();
-        after = System.nanoTime();
-        long result1 = after - before;
-
-        before = System.nanoTime();
-        readerComparison.readWithBufferedReader();
-        after = System.nanoTime();
-        long result2 = after - before;
-
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println((result2 < result1 ? "BufferedReader " : "FileReader ") + "is faster by " + Math.abs(result2 - result1));
     }
 
 }

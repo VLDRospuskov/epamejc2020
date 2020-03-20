@@ -3,10 +3,6 @@ package homeworks.homework03;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
-
 public class StringMethodsTest {
 
     StringMethods stringMethods = new StringMethods();

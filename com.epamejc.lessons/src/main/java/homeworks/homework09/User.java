@@ -14,7 +14,7 @@ public class User {
 
     public User(String name) {
         this.name = name;
-         userBalance = new BigDecimal(200_000);
+        userBalance = new BigDecimal(200_000);
     }
 
     @SneakyThrows

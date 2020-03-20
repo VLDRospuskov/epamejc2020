@@ -3,8 +3,6 @@ package seabattle;
 import seabattle.Enums.Direction;
 import seabattle.Enums.ShipPlacingStrategy;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 public class ShipPlacer {

@@ -2,8 +2,8 @@ package seabattle.Main;
 
 import lombok.SneakyThrows;
 import seabattle.Menus.BattleMenu;
-import seabattle.Menus.MenuShipPlacer;
-import seabattle.Players.*;
+import seabattle.Players.Player;
+import seabattle.Players.PlayerAI;
 import seabattle.Settings;
 import seabattle.ShipsCounter;
 

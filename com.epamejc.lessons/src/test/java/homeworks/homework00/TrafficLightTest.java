@@ -3,12 +3,6 @@ package homeworks.homework00;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * TODO
- * можно ли делать тесты без ассерта?
- * Если с ним, то необходимо делать очень много тестов?
- */
-
 public class TrafficLightTest {
 
     private TrafficLight trafficLight = new TrafficLight();
@@ -18,9 +12,6 @@ public class TrafficLightTest {
         String expected = "Green";
 
         for (int i = 1; i <= 4; i++) {
-            //TODO можно ли инициализировать actual и вызывать assert в цикле?
-            // Или нужно делать 4 разных теста для каждого значения?
-            // Или можно обойтись тремя: крайние значения и внутренние?
             String actual = trafficLight.getTrafficLightColorFromMinute(i);
 
             Assert.assertEquals(expected, actual);
@@ -58,17 +49,7 @@ public class TrafficLightTest {
         Assert.assertEquals(expected, actual);
 
         actual = trafficLight.getTrafficLightColorFromMinute(11);
-        //TODO Можно ли дважды в одном тесте инициализировать actual и вызвать assert?
-        // Если нет, то как нужно сделать?
 
-        //TODO Как тестировать случаи, где ожидаемым результатом является ошибка, но вариантов неправильного ввода много?
-        // Создавать для каждого новый тест?
         Assert.assertEquals(expected, actual);
-    }
-
-    @Test(expected = Exception.class)
-    public void launchWrongInputs() {
-        //TODO после рефактора остался только один метод для тестирования, т.к. непонятно как тестировать методы с
-        // консольным вводом. Следовательно, можно ли обойтись без тестирования неверного ввода?
     }
 }

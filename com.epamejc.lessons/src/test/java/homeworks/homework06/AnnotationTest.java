@@ -5,8 +5,6 @@ import org.junit.Test;
 
 public class AnnotationTest {
 
-
-
     @Test
     public void testConstructor() {
         Person person = new Person();
@@ -16,4 +14,5 @@ public class AnnotationTest {
 
         Assert.assertEquals(expected, actual);
     }
+
 }

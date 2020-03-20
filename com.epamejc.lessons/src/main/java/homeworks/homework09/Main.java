@@ -25,7 +25,6 @@ public class Main {
         userThread3.start();
         userThread4.start();
         userThread5.start();
-
     }
 
 }

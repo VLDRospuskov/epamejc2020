@@ -2,13 +2,12 @@ package seabattle.Players;
 
 import lombok.Data;
 import lombok.SneakyThrows;
-import seabattle.*;
 import seabattle.Enums.FieldCellState;
-import seabattle.Menus.BattleMenu;
+import seabattle.Field;
 import seabattle.Menus.Menu;
 import seabattle.Menus.MenuShipPlacer;
-
-import java.io.IOException;
+import seabattle.Settings;
+import seabattle.ShipsCounter;
 
 @Data
 public class Player {

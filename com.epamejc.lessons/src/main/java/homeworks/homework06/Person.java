@@ -13,7 +13,7 @@ public class Person {
     private int age;
 
     @SneakyThrows
-    @DefaultValues (name = "Alex", age = 18)
+    @DefaultValues(name = "Alex", age = 18)
     public Person() {
         Constructor constructor = Person.class.getConstructor();
         DefaultValues defaultValues = constructor.getDeclaredAnnotation(DefaultValues.class);

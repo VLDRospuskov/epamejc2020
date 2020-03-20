@@ -1,22 +1,3 @@
-/**
- * 3. Strings
- * 3.1. Написать программу которая генерирует новую строку на основании входных данных, строка + четные/нечетные, пример:
- * Input: String        Input: even        output: tig
- * 3.2. Написать программу которая будет генерировать строку по индексам. Пример:
- * Input: Hello World,
- * input: 0  output: H,
- * input: 4  output: Ho,
- * input: 6 output: HoW
- * 3.3. Поменять местами символы в строке, на вход приходит строка и 2 индекса между, которыми нужно сделать обмен. Пример:
- * Input: Hello World
- * Input: 0, 4
- * output oelloH World
- * 3.4. Написать программу которая переворачивает слова, но при этом оставляет их на прежних местах. Пример
- * Input: Hello World
- * output: olleH dlroW
- */
-
-
 package homeworks.homework03;
 
 import lombok.Setter;
@@ -61,8 +42,8 @@ public class StringMethods {
         String result = "";
 
         int i = 0;
-        /**
-         * mode - check, what we are looking for right now: letters or signs
+        /*
+          mode - check, what we are looking for right now: letters or signs
          */
         boolean mode = true;
 
@@ -82,8 +63,8 @@ public class StringMethods {
             }
         }
 
-        /**
-         * add last word
+        /*
+          add last word
          */
         if (mode) {
             result = result + reverseWord(value.substring(i));

@@ -1,59 +1,49 @@
 package homeworks.homework02;
 
+import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
 
 public class ArrayMethodsTest {
 
     ArrayMethods arrayMethods = new ArrayMethods();
-    private BufferedReader reader;
-
-    @Test
-    public void testCreateArrayCorrect() {
-        String input = "4\n3";
-        mockReader(input);
-        arrayMethods.setReader(reader);
-
-        arrayMethods.createArray();
-        arrayMethods.printArray(); // TODO как тестировать методы, где нечего сравнивать в ассерте?
-    }
-
-    @Test (expected = NumberFormatException.class)
-    public void testCreateArrayIncorrect() {
-        String input = "4.6\nv";
-        mockReader(input);
-        arrayMethods.setReader(reader);
-
-        arrayMethods.createArray();
-        arrayMethods.printArray();
-    }
-
-    @Test
-    public void testPrintWithStrategy() {
-        String input = "4\n4\nA";
-        mockReader(input);
-        arrayMethods.setReader(reader);
-
-        arrayMethods.createArray();
-        arrayMethods.printWithStrategy();
-    }
 
     @Test
     public void testPrintPyramid() {
-        String input = "4";
-        mockReader(input);
-        arrayMethods.setReader(reader);
 
-        arrayMethods.printPyramid();
+        char[][] expected = {
+                {'X', 'X', 'X', 'X', 'X'},
+                {'X', 'X', 'X', 'X'},
+                {'X', 'X', 'X'},
+                {'X', 'X'},
+                {'X'}
+        };
+
+        char[][] actual = arrayMethods.generatePyramid(5);
+
+        for (int i = 0; i < 5; i++) {
+            Assert.assertArrayEquals(expected[i], actual[i]);
+        }
     }
 
-    // TODO можно ли так замокать?
-    private void mockReader(String str) {
-        byte[] bytes = str.getBytes();
-        reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bytes)));
+    @Test
+    public void testGetStringFromCharArrayByStrategy() {
+        char[][] values = {
+                {'a', 'b', 'c', 'd', 'e'},
+                {'1', '2', '3', '4', '5'},
+                {'b', 'c', 'd', 'e', 'f'},
+                {'2', '3', '4', '5', '6'},
+                {'c', 'd', 'e', 'f', 'g'}
+        };
+
+        String expected = "acebdfceg";
+        String actual = arrayMethods.getStringFromCharArrayByStrategy(values, "A");
+
+        Assert.assertEquals(expected, actual);
+
+        expected = "2435";
+        actual = arrayMethods.getStringFromCharArrayByStrategy(values, "B");
+
+        Assert.assertEquals(expected, actual);
     }
 
 }

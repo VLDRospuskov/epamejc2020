@@ -112,9 +112,9 @@ public class StreamOperations {
                 .reduce((empl1, empl2) ->
                         empl1.getJobHistory().stream()
                                 .mapToInt(JobHistoryEntry::getDuration).max().orElse(-1)
-                        > empl2.getJobHistory().stream()
+                                > empl2.getJobHistory().stream()
                                 .mapToInt(JobHistoryEntry::getDuration).max().orElse(-1)
-                        ? empl1 : empl2)
+                                ? empl1 : empl2)
                 .orElseThrow(() -> new Exception("No employees"));
 
         return employeeWithMaximumDurationAtOnePosition;
