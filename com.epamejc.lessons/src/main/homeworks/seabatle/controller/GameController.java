@@ -97,7 +97,7 @@ public class GameController {
     }
 
     /**
-     * @return visual information of GameBoard condition
+     * @return visual information of GameBoard condition.
      */
     public String printBattleField() {
         return gameBoard.printBattlefield();
