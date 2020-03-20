@@ -1,4 +1,4 @@
-package seabattle.java;
+package seabattle.java.models;
 
 import lombok.Data;
 
@@ -23,9 +23,7 @@ public class Cell {
                 output = "_";
             } else if (status.equals(1)) {
                 output = "#";
-            } //else if (status.equals(-1)) {
-               //output = "-";
-            //}
+            }
         } else {
             if (status.equals(0) || status.equals(-1)) {
                 output = "*";
@@ -49,4 +47,5 @@ public class Cell {
         }
         return output;
     }
+
 }

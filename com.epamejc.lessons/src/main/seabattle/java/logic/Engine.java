@@ -1,9 +1,10 @@
-package seabattle.java;
+package seabattle.java.logic;
 
+import seabattle.java.models.Field;
+import seabattle.java.models.Ship;
+import seabattle.java.models.ShootData;
 import java.util.ArrayList;
-
 import static seabattle.java.Utils.*;
-
 
 public class Engine {
 
@@ -52,19 +53,10 @@ public class Engine {
         battlePlayerVsComputer();
     }
 
-    public void testShipPlacement(Field field) {
-        field.getShips().add(new Ship(1, new Integer[]{0, 0}, new Integer[]{0, 0}, field));
-        field.getShips().add(new Ship(1, new Integer[]{9, 0}, new Integer[]{9, 0}, field));
-        field.getShips().add(new Ship(1, new Integer[]{9, 9}, new Integer[]{9, 9}, field));
-        field.getShips().add(new Ship(1, new Integer[]{0, 9}, new Integer[]{0, 9}, field));
-        field.getShips().add(new Ship(2, new Integer[]{2, 0}, new Integer[]{3, 0}, field));
-        field.getShips().add(new Ship(2, new Integer[]{6, 0}, new Integer[]{7, 0}, field));
-        field.getShips().add(new Ship(2, new Integer[]{2, 9}, new Integer[]{3, 9}, field));
-        field.getShips().add(new Ship(3, new Integer[]{1, 2}, new Integer[]{3, 2}, field));
-        field.getShips().add(new Ship(3, new Integer[]{7, 5}, new Integer[]{7, 7}, field));
-        field.getShips().add(new Ship(4, new Integer[]{2, 4}, new Integer[]{2, 7}, field));
-    }
-
+    /**
+     * I used the raw ArrayList as a wrapper for Ship parameters.
+     * ArrayList params contain of {int, Integer[], Integer[]}.
+     */
     public void manualShipPlacement(Field field) {
         ArrayList params;
         boolean isShipLimit = false;
@@ -112,7 +104,6 @@ public class Engine {
         Integer shipType = (Integer) params.get(0);
         Integer[] startYX = (Integer[]) params.get(1);
         Integer[] endYX = (Integer[]) params.get(2);
-
         field.getShips().add(new Ship(shipType, startYX, endYX, field));
         int lastElement = field.getShips().size() - 1;
         boolean shipInitOk = field.getShips().get(lastElement).isInitOk();
@@ -143,7 +134,6 @@ public class Engine {
         while (!isGameOver) {
             playerOneMovePvP();
             isGameOver = checkEndGame();
-
             if (!isGameOver) {
                 playerTwoMovePvP();
                 isGameOver = checkEndGame();
@@ -175,14 +165,20 @@ public class Engine {
         computerMove(FIELD_1, FIELD_2);
     }
 
-    // TODO разбить метод
-    private Field playerMove(Field field1, Field field2) {
+    private void playerMove(Field field1, Field field2) {
+        manualShoot(field1, field2);
+        if (!checkEndGame()) {
+            System.out.println("\nMissed! The move goes to another player...\n");
+        }
+    }
+
+    private void manualShoot(Field field1, Field field2) {
         boolean isContinueMove = true;
         while (isContinueMove && !checkEndGame()) {
             Integer[] coordYX = scanCoordinates();
             if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
                 System.out.println("\nYou already shoot there! The move goes to another player.");
-                return field1;
+                break;
             }
             shoot(field1, coordYX);
             printTwoFields(field2, field1);
@@ -192,17 +188,13 @@ public class Engine {
                 System.out.println("\nGot it! Shoot again!");
             }
         }
-        if (!checkEndGame()) {
-            System.out.println("\nMissed! The move goes to another player...\n");
-        }
-        return field1;
     }
 
-    private Field computerMove(Field field1, Field field2) {
+    private void computerMove(Field field1, Field field2) {
         if (AI.getShootData() != null && !AI.getShootData().isDone()) {
-            continueShooting(field1, field2, AI.getShootData().getSTART_YX());
+            continueAIShooting(field1, field2, AI.getShootData().getSTART_YX());
         } else {
-            startShooting(field1, field2);
+            startAIShooting(field1, field2);
         }
         if (!checkEndGame()) {
             System.out.println("\nMissed! The move goes to another player...\n");
@@ -210,10 +202,9 @@ public class Engine {
                 AI.setShootData(null);
             }
         }
-        return field1;
     }
 
-    private void startShooting(Field field1, Field field2) {
+    private void startAIShooting(Field field1, Field field2) {
         Integer[] coordYX = randomShooting(field1);
         System.out.println("\nComputer shoot " + printCoord(coordYX));
         if (AI.getShootData() == null || AI.getShootData().isDone()) {
@@ -223,15 +214,15 @@ public class Engine {
             AI.getShootData().setDone(true);
         }
         printTwoFields(field2, field1);
-        continueShooting(field1, field2, coordYX);
+        continueAIShooting(field1, field2, coordYX);
     }
 
-    private void continueShooting(Field field1, Field field2, Integer[] coordYX) {
+    private void continueAIShooting(Field field1, Field field2, Integer[] coordYX) {
         boolean isContinueMove;
         do {
             isContinueMove = false;
             if (checkIsCellAShip(field1, coordYX) && !checkEndGame()) {
-                AI.finishingShooting(field1);
+                AI.finishShooting(field1);
                 printTwoFields(field2, field1);
                 coordYX = AI.getShootData().getLastYX();
                 isContinueMove = checkIsCellAShip(field1, coordYX) && !checkEndGame() && !AI.getShootData().isDone();
@@ -275,6 +266,5 @@ public class Engine {
         }
         return "Player win!";
     }
-
 
 }

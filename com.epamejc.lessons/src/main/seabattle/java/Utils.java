@@ -1,5 +1,8 @@
 package seabattle.java;
 
+import seabattle.java.models.Cell;
+import seabattle.java.models.Field;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -58,8 +61,9 @@ public class Utils {
     }
 
     public static void printTwoFields(Field field1, Field field2) {
-        System.out.println("\n         PLAYER " + field1.getId()
-                + " FIELD                                ENEMY FIELD       ");
+        final String LEFT = "\n         PLAYER ";
+        final String RIGHT = " FIELD                                ENEMY FIELD       ";
+        System.out.println(LEFT + field1.getId() + RIGHT);
         System.out.println("    A  B  C  D  E  F  G  H  I  J              A  B  C  D  E  F  G  H  I  J");
         int index = 1;
         for (int i = 0; i < 10; i++) {
@@ -86,13 +90,15 @@ public class Utils {
         return (coordYX[0] + 1) + " " + dictionary[key];
     }
 
+    /**
+     * I did not close the Scanner because:
+     * https://coderanch.com/wiki/678613/Don-close-Scanner-tied-System
+     * https://www.omnijava.com/2018/08/23/if-you-are-using-javas-scanner-class-for-keyboard-input-then-you-might-be-doing-it-wrong/
+     * https://stackoverflow.com/questions/52040576/scanner-close-method-closes-all-scanners-why
+     */
     private static String scanInput() {
         Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
-        if (input.equals("exit")) {
-            System.exit(0); // TODO убрать перед сдачей
-            }
-        return input;
+        return scan.nextLine();
     }
 
     public static int scanOption() {
@@ -167,6 +173,10 @@ public class Utils {
         return false;
     }
 
+    /**
+     * I used the raw ArrayList as a wrapper for Ship parameters.
+     * ArrayList params contain of {int, Integer[], Integer[]}.
+     */
     public static ArrayList scanShipParams(Field field) {
         ArrayList params = null;
         boolean isLimitOfShip = true;
@@ -242,7 +252,5 @@ public class Utils {
         field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
         return field;
     }
-
-
 
 }

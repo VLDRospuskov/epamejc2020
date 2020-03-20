@@ -1,4 +1,4 @@
-package seabattle.java;
+package seabattle.java.models;
 
 import lombok.Data;
 import static seabattle.java.Utils.*;
@@ -50,7 +50,6 @@ public class ShootData {
         }
     }
 
-
     public void checkFlags() {
         checkBorders();
         checkDone();
@@ -73,8 +72,10 @@ public class ShootData {
     }
 
     private void checkDone() {
-        if ((doNotShootLeft && doNotShootUp && doNotShootRight && doNotShootDown)
-                || (shootLeft > 3 || shootUp > 3 || shootRight > 3 || shootDown > 3)) {
+        if (doNotShootLeft && doNotShootUp && doNotShootRight && doNotShootDown) {
+            isDone = true;
+        }
+        if (shootLeft > 3 || shootUp > 3 || shootRight > 3 || shootDown > 3) {
             isDone = true;
         }
     }
@@ -89,7 +90,6 @@ public class ShootData {
     private void checkLeftHit() {
         int y = START_YX[0];
         int x = START_YX[1] - (shootLeft + 1);
-
         Integer[] coordYX = {y, x};
         if (x >= 0 && checkIsCellHit(field, coordYX)) {
             doNotShootLeft = true;
@@ -122,12 +122,5 @@ public class ShootData {
             doNotShootDown = true;
         }
     }
-
-
-
-
-
-
-
 
 }

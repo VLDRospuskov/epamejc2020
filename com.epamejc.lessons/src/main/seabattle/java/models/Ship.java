@@ -1,6 +1,7 @@
-package seabattle.java;
+package seabattle.java.models;
 
 import lombok.Data;
+
 import java.util.Arrays;
 
 @Data
@@ -18,7 +19,6 @@ public class Ship {
     private boolean isPossibleToSetShip;
     private boolean isInitOk;
 
-
     public Ship(Integer shipType, Integer[] startYX, Integer[] endYX, Field field) {
         this.shipType = shipType;
         this.startYX = startYX;
@@ -35,10 +35,9 @@ public class Ship {
         if (isPossibleToSetShip) {
             setShip(field);
             setFlags();
-            setBarier(field);
+            setBarrier(field);
             isInitOk = true;
         }
-
     }
 
     public void printBadCoordinates() {
@@ -74,7 +73,7 @@ public class Ship {
     }
 
     private boolean checkPosition(Field field) {
-        if (startYX[0] != endYX[0] && startYX[1] != endYX[1]) {
+        if (!startYX[0].equals(endYX[0]) && !startYX[1].equals(endYX[1])) {
             return false;
         }
         if (isHorizontal && countFreeCellsInHorizontal(field) == shipType) {
@@ -95,7 +94,7 @@ public class Ship {
             }
             countCells++;
         }
-        if(countFreeCells != countCells){
+        if (countFreeCells != countCells) {
             return 0;
         }
         return countFreeCells;
@@ -111,17 +110,14 @@ public class Ship {
             }
             countCells++;
         }
-        if(countFreeCells != countCells){
+        if (countFreeCells != countCells) {
             return 0;
         }
         return countFreeCells;
     }
 
     private boolean checkHorizontal() {
-        if (startYX[0].equals(endYX[0])) {
-            return true;
-        }
-        return false;
+        return startYX[0].equals(endYX[0]);
     }
 
     private void setShip(Field field) {
@@ -140,19 +136,61 @@ public class Ship {
         if (startYX[0] < 1) {
             isPressTop = true;
         }
-
         if (startYX[1] < 1) {
             isPressLeft = true;
         }
-
         if (endYX[0] > 8) {
             isPressBottom = true;
         }
-
         if (endYX[1] > 8) {
             isPressRight = true;
         }
+    }
 
+    private void setBarrier(Field field) {
+        setBarrierLeft(field);
+        setBarrierRight(field);
+        setBarrierTop(field);
+        setBarrierBottom(field);
+        setBarrierCenter(field);
+    }
+
+    private void setBarrierLeft(Field field) {
+        if (isPressLeft && isPressTop) {
+            setBarrierLeftTopCorner(field);
+        } else if (isPressLeft && isPressBottom) {
+            setBarrierLeftBottomCorner(field);
+        } else if (!isPressTop && !isPressBottom && isPressLeft) {
+            setBarrierLeftSide(field);
+        }
+    }
+
+    private void setBarrierRight(Field field) {
+        if (isPressRight && isPressTop) {
+            setBarrierRightTopCorner(field);
+        } else if (isPressRight && isPressBottom) {
+            setBarrierRightBottomCorner(field);
+        } else if (!isPressTop && !isPressBottom && isPressRight) {
+            setBarrierRightSide(field);
+        }
+    }
+
+    private void setBarrierTop(Field field) {
+        if (!isPressLeft && !isPressRight && isPressTop) {
+            setBarrierTopSide(field);
+        }
+    }
+
+    private void setBarrierBottom(Field field) {
+        if (!isPressLeft && !isPressRight && isPressBottom) {
+            setBarrierBottomSide(field);
+        }
+    }
+
+    private void setBarrierCenter(Field field) {
+        if (!isPressLeft && !isPressTop && !isPressRight && !isPressBottom) {
+            setBarrierNoneSide(field);
+        }
     }
 
     private int setBarrierLeftTopCorner(Field field) {
@@ -251,33 +289,4 @@ public class Ship {
         return 0;
     }
 
-    private int setBarier(Field field) {
-        if (isPressLeft) {
-            if (isPressTop) {
-                return setBarrierLeftTopCorner(field);
-            }
-            if (isPressBottom) {
-                return setBarrierLeftBottomCorner(field);
-            }
-            return setBarrierLeftSide(field);
-        }
-
-        if (isPressRight) {
-            if (isPressTop) {
-                return setBarrierRightTopCorner(field);
-            }
-            if (isPressBottom) {
-                return setBarrierRightBottomCorner(field);
-            }
-            return setBarrierRightSide(field);
-
-        }
-        if (isPressTop) {
-            return setBarrierTopSide(field);
-        }
-        if (isPressBottom) {
-            return setBarrierBottomSide(field);
-        }
-        return setBarrierNoneSide(field);
-    }
 }

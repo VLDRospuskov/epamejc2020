@@ -1,4 +1,4 @@
-package seabattle.java;
+package seabattle.java.models;
 
 import lombok.Data;
 

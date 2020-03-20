@@ -1,6 +1,8 @@
-package seabattle.java;
+package seabattle.java.logic;
 
 import lombok.Data;
+import seabattle.java.models.Field;
+import seabattle.java.models.ShootData;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,6 +18,10 @@ public class AI {
         shootData = null;
     }
 
+    /**
+     * I used the raw ArrayList as a wrapper for Ship parameters.
+     * ArrayList params contain of {int, Integer[], Integer[]}.
+     */
     protected ArrayList generateRandomShipParamsByShipType(int shipType) {
         ArrayList params = new ArrayList();
         params.add(shipType);
@@ -65,24 +71,24 @@ public class AI {
         return coordYX;
     }
 
-    protected void finishingShooting(Field field) {
+    protected void finishShooting(Field field) {
         shootData.checkFlags();
         Integer[] coordYX = shootData.getSTART_YX();
         int y = coordYX[0];
         int x = coordYX[1];
         if (!shootData.isDoNotShootLeft()) {
-            finishingShootLeft(field, y, x);
+            finishShootLeft(field, y, x);
         } else if (!shootData.isDoNotShootUp()) {
-            finishingShootUp(field, y, x);
+            finishShootUp(field, y, x);
         } else if (!shootData.isDoNotShootRight()) {
-            finishingShootRight(field, y, x);
+            finishShootRight(field, y, x);
         } else if (!shootData.isDoNotShootDown()) {
-            finishingShootDown(field, y, x);
+            finishShootDown(field, y, x);
         }
         shootData.checkFlags();
     }
 
-    private void finishingShootLeft(Field field, int y, int x) {
+    private void finishShootLeft(Field field, int y, int x) {
         x -= shootData.getShootLeft() + 1;
         Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);
@@ -98,7 +104,7 @@ public class AI {
         }
     }
 
-    private void finishingShootUp(Field field, int y, int x) {
+    private void finishShootUp(Field field, int y, int x) {
         y -= shootData.getShootUp() + 1;
         Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);
@@ -114,7 +120,7 @@ public class AI {
         }
     }
 
-    private void finishingShootRight(Field field, int y, int x) {
+    private void finishShootRight(Field field, int y, int x) {
         x += shootData.getShootRight() + 1;
         Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);
@@ -130,7 +136,7 @@ public class AI {
         }
     }
 
-    private void finishingShootDown(Field field, int y, int x) {
+    private void finishShootDown(Field field, int y, int x) {
         y += shootData.getShootDown() + 1;
         Integer[] coordYX = new Integer[]{y, x};
         shoot(field, coordYX);

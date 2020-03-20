@@ -3,7 +3,10 @@
 У меня удален проект в котором лежал модуль com.epamejc.lessons.  
 (Корнем проекта должен быть модуль com.epamejc.lessons)
 
-
+***
+[SeaBattle](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/seabattle/java/)  
+Морской бой  
+***
 HW 1 [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw1)  
 Создать "светофор", который выводит сигнал-цвет. Вы вводите время от 0-3 минуты - зеленый,
 4-5 минуты - желтый, 6-10 красный. Вводим цифру 0 до n, получаем результат. Работу программы

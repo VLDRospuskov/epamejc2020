@@ -1,10 +1,12 @@
 package seabattle.java;
 
+import seabattle.java.logic.Engine;
+
 import static seabattle.java.Utils.*;
 
 /**
  * @author Vitaly Bogdanov
- * @version 1.0
+ * @version 1.1
  */
 public class SeaBattle {
 
@@ -12,7 +14,7 @@ public class SeaBattle {
 
     public void run() {
         System.out.println("\n===================================================================");
-        System.out.println("  Welcome to Seabattle v1.0 game. Author: Vitaly Bogdanov (C) 2020.");
+        System.out.println("  Welcome to Seabattle v1.1 game. Author: Vitaly Bogdanov (C) 2020.");
         System.out.println("===================================================================");
         boolean repeat;
         do {
@@ -51,7 +53,7 @@ public class SeaBattle {
     }
 
     private int choosePlacementMethod() {
-        System.out.println("\nChoose ship placement method.");
+        System.out.println("\nChoose ship placement method: ");
         System.out.println("     1. Manual");
         System.out.println("     2. Auto");
         int placementMethod = scanOption();
@@ -65,7 +67,5 @@ public class SeaBattle {
         int repeat = scanOption();
         return repeat == 1;
     }
-
-
 
 }
