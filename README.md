@@ -1,5 +1,5 @@
 # epamejc2020 \m/
-#####HW1 - TrafficLight
+##### HW1 - TrafficLight
 
 The logic follows:
 input from 0 to 3 (minutes) - output is green,
@@ -8,11 +8,11 @@ input from 6 to 10 - output is red.
 In total: we put a number from 0 to n and get the result based on that number.
 Program works continuously, exit executes by input "exit".
 
-#####HW2 - Own immutable class
+##### HW2 - Own immutable class
 Immutable class of student instance(ImmutableClassStudent) was created. Class has field from mutable class MutableAge.
 In StudentCreatorClass some operations were made on student's field.
 
-#####HW3 - Arrays
+##### HW3 - Arrays
 
 Arrays tasks:
 
@@ -59,7 +59,7 @@ XXX
 XX
 X
 
-#####HW4 - Strings
+##### HW4 - Strings
 Strings
 1. Make a program that generates a string on base of input (string + even/odd).
 
@@ -109,18 +109,18 @@ output: 64
 input: 567
 output: 3
 
-#####HW6 - Custom Annotation
+##### HW6 - Custom Annotation
 Create a custom annotation with "name - string" and "age - int",
 so, in annotation we pass the follow (name = "sdgf", age = "12")).
 Put the annotation before the constructor of class Person.
 Create an instance of Person with empty constructor (Person person = new Person()) and use the reflection to replace
 the values of name and age when object initializing to the annotation name and age values. Use the Lombok.
 
-#####HW7 - Java IO
+##### HW7 - Java IO
 Create a files, put the text into (big amount), then reade it and rewrite to another file.
 Make the second method, which does the same, but with using buffer.
 
-#####HW8 - Functional Interfaces and Stream Operations
+##### HW8 - Functional Interfaces and Stream Operations
 1. Make your own functional interfaces like BiFunction and Supplier(Producer).
 Create any class with several fields. Create a method which will use created interfaces.
 Get two fields, process them and return.
@@ -130,9 +130,9 @@ Get two fields, process them and return.
 
 Generate a multithreaded operations from several ATMs with common balance.
 
-#####SEA BATTLE
+##### SEA BATTLE
 
-######Task:
+###### Task:
 Make a standard sea battle. [Sea battle - wikipedia (on russian)](https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B9_%D0%B1%D0%BE%D0%B9_(%D0%B8%D0%B3%D1%80%D0%B0))
 Field 10 x 10, ships list the follow:
 4 pieces of 1-deck ships;
@@ -142,7 +142,7 @@ Field 10 x 10, ships list the follow:
 There has to be a space between ships on field.
 While battle if attack was lucky and ship has been hit or sank - keep attacking.
 
-######Realized:
+###### Realized:
 + Game with Bot is possible.
 + You can see the log of the whole game.
 + Player can fill the field by himself or to choose automatic filling.
@@ -152,7 +152,7 @@ While battle if attack was lucky and ship has been hit or sank - keep attacking.
 + Bot doesn't attacks the points around sank ship.
 + The game ends when all ships on one side are sank.
 
-######Remaining problems:
+###### Remaining problems:
 
 * If Bot hits the neighbour point after first hitting the players ship and new point is empty (Bot misses)
 he wouldn't try to finish off discovered ship and will return to random attack.
