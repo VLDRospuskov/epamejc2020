@@ -224,6 +224,8 @@ public class GameController {
      */
     private ShipsRepository getRepository(BufferedReader reader) {
         ShipsRepository repository = new PlayerShipsRepository();
+        System.out.println("From north to south field coordinates are from \"A\" to \"J\"");
+        System.out.println("From west to east field coordinates are from \"1\" to \"10\"");
         for (ShipType type : ShipType.values()) {
             for (int i = 0; i < type.ordinal() + 1; i++) {
                 addShip(type, repository, reader);
@@ -266,10 +268,21 @@ public class GameController {
      */
     private void printShipAdvice(ShipType type) {
         System.out.println(String.format("%s is creating", type));
-        if (ShipType.BOAT.equals(type)) {
-            System.out.println("Please write the locationservice in format \"A1\"");
-        } else {
-            System.out.println("\"Please write the locationservice in format \"A1 A3\"");
+        String form = "Please write coordinates in format";
+        String size = "ship length =";
+        switch (type){
+            case BOAT:
+                System.out.printf("%s \"A1 or J10\", %s 1 \n",form,size);
+                break;
+            case DESTROYER:
+                System.out.printf("%s \"A1 A2\" or \"D5 E5\", %s 2 \n", form,size);
+                break;
+            case CRUISER:
+                System.out.printf("%s \"A1 A3\" or \"E5 G5\", %s 3 \n", form,size);
+                break;
+            case BATTLESHIP:
+                System.out.printf("%s \"A1 A4\" or \"E5 H5\", %s 4 \n", form,size);
+                break;
         }
     }
 
@@ -315,4 +328,5 @@ public class GameController {
         }
         return strikeResult1.equals(StrikeResult.LOSE);
     }
+
 }

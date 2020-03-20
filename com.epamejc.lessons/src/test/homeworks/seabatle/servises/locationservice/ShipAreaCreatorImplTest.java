@@ -1,5 +1,6 @@
 package homeworks.seabatle.servises.locationservice;
 
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +10,12 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class ShipAreaCreatorImplTest {
-    ShipAreaCreator creator;
+    private ShipAreaCreator creator;
 
     @Before
     public void setUp() throws Exception {
         creator = new ShipAreaCreatorImpl();
+
     }
 
     @Test

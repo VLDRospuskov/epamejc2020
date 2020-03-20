@@ -3,6 +3,7 @@ package homeworks.homework9_multithreading.model;
 
 import homeworks.homework9_multithreading.exception.AccountNotFoundException;
 import homeworks.homework9_multithreading.myenum.Operation;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
