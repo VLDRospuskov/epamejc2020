@@ -1,12 +1,25 @@
 package Homeworks.HW9.Bank;
 
-import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 
-@AllArgsConstructor
 public class User {
+
+    private final Object userLock = new Object();
+    private final int userOperationTime = 500;
 
     int id;
     int balance;
+
+    @SneakyThrows
+    public User(int id, int balance) {
+        synchronized (userLock) {
+            //System.out.print("Creating new User... ");
+            Thread.sleep(userOperationTime);
+            this.id = id;
+            this.balance = balance;
+            System.out.println("Created new User with id: " + id + " and balance " + balance);
+        }
+    }
 
     public int deposit(int amount) throws UserException {
         if (balance >= amount) {
