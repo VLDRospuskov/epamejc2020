@@ -115,6 +115,9 @@ class User {
             for (int j = 0; j < 3; j++) {
                 int x = DigitalAround(coordinates.getX(), j);
                 int y = DigitalAround(coordinates.getY(), i);
+//                boolean contains = tempCoords.contains(new Coordinates(x, y));
+//                if(tempCoords.contains(new Coordinates(x, y)))
+//                if()
                 if (inPole(x, y)) {
                     tempCoords.add(new Coordinates(x, y));
                 }

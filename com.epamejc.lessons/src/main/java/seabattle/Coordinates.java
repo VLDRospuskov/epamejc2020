@@ -2,12 +2,10 @@ package seabattle;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 import java.util.Objects;
 
 @AllArgsConstructor
 @Getter
-//to do написать икзс и хешкод
 public class Coordinates {
     private int X;
     private int Y;
