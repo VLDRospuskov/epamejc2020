@@ -14,22 +14,25 @@ public class Main {
         int queue = 0;
         while (!allShipsDelivered) {
             System.out.println("Enter type:");
-            int type = readCom.readCom();
+            int type = new readCom().readCom();
             System.out.println("Enter x1:");
-            int x1 = readCom.readCom();
+            int x1 = new readCom().readCom();
             System.out.println("Enter y1:");
-            int y1 = readCom.readCom();
+            int y1 = new readCom().readCom();
             System.out.println("Enter x2:");
-            int x2 = readCom.readCom();
+            int x2 = new readCom().readCom();
             System.out.println("Enter y2:");
-            int y2 = readCom.readCom();
+            int y2 = new readCom().readCom();
             if (Users.get(queue).addShip(type, x1, y1, x2, y2)) {
                 Users.get(queue).ShipSet(type);
+                System.out.println("Ship Added!");
                 if (Users.get(queue).isAllShipOnDesk()) {
                     if (queue == 0) {
                         queue++;
+                        System.out.println("Player move number: " + (queue + 1));
                     } else {
                         allShipsDelivered = true;
+
                     }
                 }
             } else {
@@ -43,13 +46,13 @@ public class Main {
             int enemy = Math.abs(queue - 1);
             System.out.println("Player move number: " + (queue + 1));
             System.out.println("Enter x:");
-            int x = readCom.readCom();
+            int x = new readCom().readCom();
             System.out.println("Enter y:");
-            int y = readCom.readCom();
-            if (Users.get(queue).isHit(x, y)) {
+            int y = new readCom().readCom();
+            if ((Users.get(queue).inPole(x,y))&&(Users.get(enemy).isHit(x, y))) {
                 System.out.println("Hit!");
                 Users.get(queue).addEnemyPartShipToPole(x, y);
-                if (Users.get(queue).isDead(x, y)) {
+                if (Users.get(enemy).isDead(x, y)) {
                     Users.get(queue).addEnemyShipToPole(Users.get(enemy).getShipCoordinates(x, y));
                     System.out.println("Ship Dead");
 
@@ -65,15 +68,17 @@ public class Main {
                 queue = enemy;
 
             }
+            System.out.println("Player's"+(enemy+1)+ " field.");
             Users.get(queue).printEnemyPole();
         }
     }
 
 }
 class readCom{
-    // todo сделать проверку введены цифры или нет
-    public static int readCom() {
+    // todo сделать проверку введены целые цифры в диапозоне действия инта
+    public  int readCom() {
         Scanner in = new Scanner(System.in);
+       
         return Integer.parseInt(in.nextLine());
     }
     void parsCommand(){}//todo Сделать метод который будет парсть команды !!!!мб не надо!!!

@@ -2,13 +2,18 @@ package seabattle;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 @Getter
+@Setter
 @AllArgsConstructor
-class ShipPart {
+//todo везде убрать паблик классы
+public class ShipPart {
+
     private Coordinates coordinates;
-    private boolean hit = false;
+    private Boolean hit;
+
 
     @Override
     public boolean equals(Object o) {
@@ -23,4 +28,9 @@ class ShipPart {
     public int hashCode() {
         return Objects.hash(coordinates, hit);
     }
+
+
+//    public boolean getHit() {
+//        return hit;
+////    }
 }

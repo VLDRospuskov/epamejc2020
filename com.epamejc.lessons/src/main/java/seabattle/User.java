@@ -4,33 +4,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class User {
-    private ArrayList<Ships> ships = new ArrayList<>();//todo Сделать такую структуру, что бы можно было хранить количество и тип кораблей для поатвновки на доску
-    private Pole myPole = new Pole();
+    private ArrayList<Ships> ships = new ArrayList<>();//to do Сделать такую структуру, что бы можно было хранить количество и тип кораблей для поатвновки на доску
+    private Pole myPole = new Pole();//todo delete
     private Pole enemyPole = new Pole();
     private ArrayList<Integer> shipTrue = new ArrayList<>(); //todo переименовать переменную
 
     User() {
-        this.shipTrue.add(4);
-        this.shipTrue.add(3);
         this.shipTrue.add(2);
-        this.shipTrue.add(1);
+        this.shipTrue.add(0);
+        this.shipTrue.add(0);
+        this.shipTrue.add(0);
     }
 
     public boolean isAllShipOnDesk() {
         return (Collections.max(shipTrue) == 0);
     }
 
-    // todo сделать метод который проверяет попал ли противник и если да отмечать у себя на карте что корабль подбит
+    //  to do сделать метод который проверяет попал ли противник и если да отмечать у себя на карте что корабль подбит
     //todo вынести ispole отдельно
     public boolean isHit(int x, int y) {
-        if (inPole(x, y)) {
-            for (int i = 0; i < ships.size(); i++) {
+        for (int i = 0; i < ships.size(); i++) {
                 Ships ship = ships.get(i);
                 if (ship.isHit(x, y)) {
                     return true;
                 }
             }
-        }
         return false;
     }
 
@@ -41,9 +39,9 @@ class User {
      * @param y
      * @return если есть то возвращается яцейка в ships, где находится корабль если нет то -1
      */
-    int findShipSell(int x, int y) {
+    int findShipSell(int x, int y, boolean hit) {
         for (Ships ship : ships) {
-            int cell = ship.isThisRightShip(x, y);
+            int cell = ship.isThisRightShip(x, y, hit);
             if (cell >= 0) {
                 return cell;
             }
@@ -51,23 +49,25 @@ class User {
         return -1;
     }
 
-
-    //todo если мой корабль убит выстрелом противника, то отправить ему тип корабля
+    /**
+     * @param x
+     * @param y
+     * @return по координатам корабля возвращается убит ли корабль
+     */
+    //to do если мой корабль убит выстрелом противника, то отправить ему тип корабля
     public boolean isDead(int x, int y) {
-        int sell = findShipSell(x,y);
-        if (ships.get(sell).isDead())
-
-
-
-
-        return false;
-
-
+        int sell = findShipSell(x, y, true);
+        return ships.get(sell).isDead();
     }
 
-    //todo если кораблей не осталось у меня то противник выиграл
+    //to do если кораблей не осталось у меня то противник выиграл
     public boolean isEnemyWin() {
-        return false;
+        for (int i = 0; i < ships.size(); i++) {
+            if (!ships.get(i).isDead()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     //todo возможность удалить корабли
@@ -75,25 +75,64 @@ class User {
 
     }
 
-
     public boolean addShip(int type, int x1, int y1, int x2, int y2) {
-        if (shipTrue.get(type) > 0) {
-            if (isCorrectCoords(type, x1, y1, x2, y2) && (inPole(x2, y2) && (inPole(x1, y1)))) {
+        int typeOfSHip = type - 1;
+        if ((typeOfSHip >= 0) && (typeOfSHip <= 3) && (shipTrue.get(typeOfSHip) > 0)) {
+            if (isCorrectCoords(typeOfSHip, x1, y1, x2, y2) && (inPole(x2, y2) && (inPole(x1, y1)))) {
                 ArrayList<Coordinates> coordinates = makeCoordinates(x1, y1, x2, y2);
-                if (notOnShips(myPole, coordinates) && noShipsNearby(myPole, coordinates)) {
+                if (noShipsNearby(coordinates)) {
                     ships.add(new Ships(coordinates));
-                    shipTrue.set(type, (shipTrue.get(type) - 1));
                     return true;
+                }
+                return false;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    // to do Додлеать метод который проверяет рядом стоят корабли или нет
+    // todo убрать повтряющиеся значения
+    private boolean noShipsNearby(ArrayList<Coordinates> coordinates) {
+        ArrayList<Coordinates> badCoordinates = new ArrayList<>();
+        for (int i = 0; i < coordinates.size(); i++) {
+            badCoordinates.addAll(CubeFromCoordinates(coordinates.get(i)));
+        }
+        for (int i = 0; i < badCoordinates.size(); i++) {
+            if (findShipSell(badCoordinates.get(i).getX(), badCoordinates.get(i).getY(), false) != (-1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private ArrayList<Coordinates> CubeFromCoordinates(Coordinates coordinates) {
+        ArrayList<Coordinates> tempCoord = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int x = DigitalAround(coordinates.getX(), j);
+                int y = DigitalAround(coordinates.getY(), i);
+                if (inPole(x, y)) {
+                    tempCoord.add(new Coordinates(x, y));
                 }
             }
         }
-        return false;
+        return tempCoord;
     }
 
-    // todo Додлеать метод который проверяет рядом стоят корабли или нет
-    private boolean noShipsNearby(Pole pole, ArrayList<Coordinates> coordinates) {
-        return true;
+    private int DigitalAround(int d, int i) {
+        switch (i) {
+            case 1:
+                return d;
+            case 2:
+                return d + 1;
+            default:
+                return d - 1;
+        }
     }
+
 
     /**
      * @param type размерность корабля
@@ -105,33 +144,18 @@ class User {
      * в противном случае отрицательнок
      */
     private boolean isCorrectCoords(int type, int x1, int y1, int x2, int y2) {
-        return ((x1 == x2) && Math.abs(y1 - y2) == type) || ((y2 == y1) && Math.abs(x1 - x2) == type);
+        boolean b;
+        int absy = Math.abs(y1 - y2);
+        int absx = Math.abs(x1 - x2);
+        b = ((x1 == x2) && absy == type) || ((y2 == y1) && absx == type);
+        return b;
     }
-
-    private boolean notOnShips(Pole pole, ArrayList<Coordinates> coordinates) {
-        for (Coordinates coordinate : coordinates) {
-            if (pole.getStateByXY(coordinate.getX(), coordinate.getY()) == State.SHIP) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean notOnShips1(ArrayList<Coordinates> coordinates) {
-        for (Coordinates coordinate : coordinates) {
-            if (findShipSell(coordinate.getX(), coordinate.getY()) > -1) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * @param x1
      * @param y1
      * @return true если заданная точка находится в поле, в противном случае false
      */
-    private boolean inPole(int x1, int y1) {
+    public boolean inPole(int x1, int y1) {
         return ((x1 >= 0) && (x1 < 10) && (y1 >= 0) && (y1 < 10));
     }
 
@@ -147,6 +171,16 @@ class User {
      */
     private ArrayList<Coordinates> makeCoordinates(int x1, int y1, int x2, int y2) {
         ArrayList<Coordinates> coordinates = new ArrayList<>();
+        if (x1 > x2) {
+            int t = x1;
+            x1 = x2;
+            x2 = t;
+        }
+        if (y1 > y2) {
+            int t = y1;
+            y1 = y2;
+            y2 = t;
+        }
         int type;
         if (x1 == x2) {
             type = y2 - y1 + 1;
@@ -167,9 +201,11 @@ class User {
      *
      * @param type размерность корабля
      */
-    //todo метод который убирает один корабль из списака кораблей, которые наобходимо поставить на доску
+    //to do метод который убирает один корабль из списака кораблей, которые наобходимо поставить на доску
     public void ShipSet(int type) {
-        shipTrue.set(type, (shipTrue.get(type)) - 1);
+        int typeOfSHip = type - 1;
+        shipTrue.set((typeOfSHip), (shipTrue.get(typeOfSHip)) - 1);
+        System.out.println("");
     }
 
     /**
@@ -180,7 +216,7 @@ class User {
      * @return массив координат
      */
     public ArrayList<Coordinates> getShipCoordinates(int x, int y) {
-        return ships.get(findShipSell(x, y)).getShipCoordinates();
+        return ships.get(findShipSell(x, y, true)).getShipCoordinates();
     }
 
     public void addEnemyPartShipToPole(int x, int y) {
@@ -188,7 +224,10 @@ class User {
     }
 
     public void addEnemyShipToPole(ArrayList<Coordinates> ship) {
-        enemyPole.addShip(ship);
+        //  enemyPole.addShip(ship);
+        for (int i = 0; i < ship.size(); i++) {
+            enemyPole.addShipPart(ship.get(i).getX(), ship.get(i).getY());
+        }
     }
 
     public void printEnemyPole() {
@@ -199,5 +238,31 @@ class User {
         enemyPole.addHitPass(x, y);
     }
 
+
+    /*
+
+
+
+
+    OLD
+     */
+    private boolean notOnShips(Pole pole, ArrayList<Coordinates> coordinates) {
+        for (Coordinates coordinate : coordinates) {
+            if (pole.getStateByXY(coordinate.getX(), coordinate.getY()) == State.SHIP) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean notOnShips1(ArrayList<Coordinates> coordinates) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            Coordinates coordinate = coordinates.get(i);
+            if (findShipSell(coordinate.getX(), coordinate.getY(), false) > -1) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

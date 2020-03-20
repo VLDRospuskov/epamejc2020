@@ -22,12 +22,12 @@ class Ships {
      * @return
      */
     boolean isHit(int x, int y) {
-        int shipSell = isThisRightShip(x, y);
+        int shipSell = isThisRightShip(x, y,false);
         if (shipSell >= 0) {
             ship.set(shipSell, new ShipPart(new Coordinates(x, y), true));
             return true;
         }
-        return true;
+        return false;
     }
 
 
@@ -37,9 +37,9 @@ class Ships {
      * @param y
      * @return номер ячейки массива или -1
      */
-    int isThisRightShip(int x, int y) {
+    int isThisRightShip(int x, int y,boolean hit) {
         for (int i = 0; i < ship.size(); i++) {
-            if ((ship.get(i).equals(new ShipPart(new Coordinates(x, y), false)))) {
+            if ((ship.get(i).equals(new ShipPart(new Coordinates(x, y), hit)))) {
                 return i;
             }
         }
@@ -55,12 +55,18 @@ class Ships {
         return shipCoordinates;
     }
 
+    /**
+     * @return убит ли корабль
+     */
     public boolean isDead() {
         for(int i=0;i<ship.size();i++)
         {
-         //   if(ship.get(i).g)
+            if(!ship.get(i).getHit())
+            {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 }
 
