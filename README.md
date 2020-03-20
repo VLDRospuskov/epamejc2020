@@ -5,7 +5,10 @@
 
 ***
 [SeaBattle](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/seabattle/java/)  
-Морской бой  
+Морской бой. Реализована возможность игры как с другим игроком(человеком), так и с компьютером.  
+Реализована возможность ручной и авто расстановки кораблей. Все проверяется, если вы пытаетесь установить корабль не туда, программа не даст этого сделать.  
+Реализован алгоритм "добивания" раненого корабля.  
+ 
 ***
 HW 1 [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw1)  
 Создать "светофор", который выводит сигнал-цвет. Вы вводите время от 0-3 минуты - зеленый,

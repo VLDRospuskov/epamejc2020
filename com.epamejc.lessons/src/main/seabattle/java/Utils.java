@@ -44,22 +44,6 @@ public class Utils {
         clearScreen();
     }
 
-    public static void printHiddenField(Field field) {
-        System.out.println("");
-        System.out.println("    A  B  C  D  E  F  G  H  I  J");
-        int index = 1;
-        for (ArrayList row : field.getField()) {
-            System.out.printf("%2d  ", index);
-            ArrayList<Cell> col = row;
-            for (Cell cell : col) {
-                System.out.print(cell.printHidden() + "  ");
-            }
-            index++;
-            System.out.println("");
-        }
-        clearScreen();
-    }
-
     public static void printTwoFields(Field field1, Field field2) {
         final String LEFT = "\n         PLAYER ";
         final String RIGHT = " FIELD                                ENEMY FIELD       ";
@@ -103,7 +87,7 @@ public class Utils {
 
     public static int scanOption() {
         int option = 0;
-        boolean isBadEnter = false;
+        boolean isBadEnter;
             do {
                 isBadEnter = false;
                 System.out.print("\nEnter number(1 or 2): ");
@@ -131,7 +115,7 @@ public class Utils {
                 String[] input = scanInput().split(" ");
                 coordYX[0] = (Integer.parseInt(input[0])) - 1;
                 coordYX[1] = dictionary.get(input[1].toUpperCase());
-                isBadEnter = checkCoordinates(coordYX);
+                isBadEnter = checkBadCoordinates(coordYX);
                 if (isBadEnter) {
                     throw new NumberFormatException();
                 }
@@ -142,7 +126,7 @@ public class Utils {
         return coordYX;
     }
 
-    public static boolean checkCoordinates(Integer[] coordYX) {
+    public static boolean checkBadCoordinates(Integer[] coordYX) {
         return coordYX[0] == null || coordYX[1] == null || coordYX[0] > 9 || coordYX[1] > 9;
     }
 
@@ -155,7 +139,7 @@ public class Utils {
                 System.out.print("Please enter ship type(1-4): ");
                 String input = scanInput();
                 shipType = Integer.parseInt(input);
-                isBadEnter = checkShipType(shipType);
+                isBadEnter = checkBadShipType(shipType);
                 if (isBadEnter) {
                     throw new NumberFormatException();
                 }
@@ -166,11 +150,8 @@ public class Utils {
         return shipType;
     }
 
-    public static boolean checkShipType(Integer shipType) {
-        if (shipType < 1 || shipType > 4) {
-            return true;
-        }
-        return false;
+    public static boolean checkBadShipType(Integer shipType) {
+        return shipType < 1 || shipType > 4;
     }
 
     /**

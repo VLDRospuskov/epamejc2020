@@ -7,5 +7,4 @@ public class Main {
         game.run();
     }
 
-
 }
