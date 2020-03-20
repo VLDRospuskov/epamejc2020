@@ -25,7 +25,6 @@ public class Bank {
         Runnable createAtmsRunnable = createAtms();
         Runnable createUsersRunnable = createUsers();
 
-
         Thread createAtmsThread = new Thread(createAtmsRunnable);
         Thread createUsersThread = new Thread(createUsersRunnable);
 
@@ -45,31 +44,23 @@ public class Bank {
     }
 
     private Runnable createAtms() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                atmList = new ArrayList<>();
-                for (int i = 0; i < atmsCount; i++) {
-                    int balance = new Random().nextInt(atmDefaultBalanceLimit);
-                    atmList.add(new ATM(i, balance));
-                }
+        return () -> {
+            atmList = new ArrayList<>();
+            for (int i = 0; i < atmsCount; i++) {
+                int balance = new Random().nextInt(atmDefaultBalanceLimit);
+                atmList.add(new ATM(i, balance));
             }
         };
-        return runnable;
     }
 
     private Runnable createUsers() {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                userList = new ArrayList<>();
-                for (int i = 0; i < usersCount; i++) {
-                    int balance = new Random().nextInt(userDefaultBalanceLimit);
-                    userList.add(new User(i, balance));
-                }
+        return () -> {
+            userList = new ArrayList<>();
+            for (int i = 0; i < usersCount; i++) {
+                int balance = new Random().nextInt(userDefaultBalanceLimit);
+                userList.add(new User(i, balance));
             }
         };
-        return runnable;
     }
 
     public void makeOperations(int count) {
