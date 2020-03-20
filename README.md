@@ -14,7 +14,7 @@ In StudentCreatorClass some operations were made on student's field.
 
 #### HW3 - Arrays
 
-Arrays tasks:
+##### Arrays tasks:
 
 1. Create double array, dimension defines by console input. Array contains a random chars.
 
@@ -94,7 +94,7 @@ Input: Hello World
 output: olleH dlroW
 
 #### HW5 - Recursion
-Recursion
+##### Recursion tasks
 
 1. Finding the Fibonacci number. The row starts from 0.
 
