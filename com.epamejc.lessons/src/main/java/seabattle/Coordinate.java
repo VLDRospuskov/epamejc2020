@@ -42,6 +42,10 @@ public class Coordinate {
                (Math.abs(first.getX() - second.getX()) <= 3 && Math.abs(first.getY() - second.getY()) <= 3);
     }
     
+    public static boolean checkCoordinates(Coordinate coordinate) {
+        return (coordinate.getX() >= 0 && coordinate.getX() < 10 && coordinate.getY() >= 0 && coordinate.getY() < 10);
+    }
+    
     public int getX() {
         return x;
     }

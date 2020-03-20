@@ -1,5 +1,5 @@
 package seabattle;
 
-public class Bot {
+public class Bot extends Player {
     
 }

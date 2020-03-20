@@ -6,6 +6,7 @@ public class View {
     
     private String[][] textView = new String[10][10];
     private String[] names = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j"};
+    //private String[][] opponentsTextView = new String[10][10];
     
     public View() {
         for (String[] strings : textView) {
@@ -14,6 +15,8 @@ public class View {
     }
     
     public void printField(Field field) {
+        eraseData();
+        updateFieldView(field);
         System.out.print("\t");
         for (int i = 0; i < names.length; i++) {
             System.out.print(names[i] + "\t");
@@ -28,15 +31,53 @@ public class View {
         }
         System.out.println("\n\n");
     }
+
+//    public void printOpponentsField(Field field){
+//        System.out.print("\t");
+//        for (int i = 0; i < names.length; i++) {
+//            System.out.print(names[i] + "\t");
+//        }
+//        System.out.println();
+//        for (int i = 0; i < opponentsTextView.length; i++) {
+//            System.out.print((i + 1) + "\t");
+//            for (int j = 0; j < opponentsTextView[i].length; j++) {
+//                System.out.print(opponentsTextView[i][j] + "\t");
+//            }
+//            System.out.println();
+//        }
+//        System.out.println("\n\n");
+//    }
     
     public void updateFieldView(Field field) {
         updateShipView(field);
         updateAssistantView(field);
         updateShotsView(field);
+        updateMissesView(field);
+        //update();
         //printField(field);
     }
     
-    public void updateShipView(Field field) {
+    public void eraseData() {
+        for (String[] strings : textView) {
+            Arrays.fill(strings, GameObjectView.EMPTY.getState());
+        }
+    }
+    
+    private void updateMissesView(Field field) {
+        for (Miss miss : field.getMisses()) {
+            textView[miss.getCoordinate()
+                         .getY()][miss.getCoordinate()
+                                      .getX()] = GameObjectView.MISS.getState();
+            
+        }
+    }
+
+//    public void updateOpponentsFieldView(Field field){
+//        updateAssistantView(field);
+//        updateShotsView(field);
+//    }
+    
+    private void updateShipView(Field field) {
         for (Ship ship :
                 field.getShips()) {
             for (Coordinate coordinate :
@@ -46,7 +87,7 @@ public class View {
         }
     }
     
-    public void updateAssistantView(Field field) {
+    private void updateAssistantView(Field field) {
         for (Assist assist : field.getAssistSet()) {
             textView[assist.getAssistPoint()
                            .getY()][assist.getAssistPoint()
@@ -55,8 +96,11 @@ public class View {
         }
     }
     
-    public void updateShotsView(Field field) {
-        // TODO: 16-Mar-20 Отображение выстрелов на поле
+    private void updateShotsView(Field field) {
+        for (Shot shot :
+                field.getShots()) {
+            textView[shot.coordinate.getY()][shot.coordinate.getX()] = GameObjectView.BROKEN.getState();
+        }
     }
     
 }

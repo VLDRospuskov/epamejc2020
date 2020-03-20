@@ -1,12 +1,10 @@
 package seabattle;
 
-import java.util.Objects;
-
-public class Shots {
+public class Shot {
     
     Coordinate coordinate;
     
-    public Shots(Coordinate coordinate) {
+    public Shot(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
     
@@ -19,7 +17,11 @@ public class Shots {
     }
     
     @Override public int hashCode() {
-        return Objects.hash(getCoordinate());
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + coordinate.getX();
+        result = prime * result + coordinate.getY();
+        return result;
     }
     
     @Override public boolean equals(Object o) {
@@ -29,8 +31,8 @@ public class Shots {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Shots shots = (Shots) o;
-        return getCoordinate().equals(shots.getCoordinate());
+        Shot shot = (Shot) o;
+        return getCoordinate().equals(shot.getCoordinate());
     }
     
 }

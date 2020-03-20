@@ -1,7 +1,5 @@
 package seabattle;
 
-import homeworks.InputReader;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,15 +8,24 @@ public class Field {
     
     List<Ship> ships = new ArrayList<>(10);
     Set<Assist> assistSet = new HashSet<>();
-    List<Shots> shots = new ArrayList<>();
+    Set<Shot> shots = new HashSet<>();
+    Set<Miss> misses = new HashSet<>();
     
-    public Field(List<Ship> ships, Set<Assist> assistSet, List<Shots> shots) {
+    public Field(List<Ship> ships, Set<Assist> assistSet, Set<Shot> shot) {
         this.ships = ships;
         this.assistSet = assistSet;
-        this.shots = shots;
+        this.shots = shot;
     }
     
     public Field() {
+    }
+    
+    public Set<Miss> getMisses() {
+        return misses;
+    }
+    
+    public void setMisses(Set<Miss> misses) {
+        this.misses = misses;
     }
     
     public List<Ship> getShips() {
@@ -37,11 +44,11 @@ public class Field {
         this.assistSet = assistSet;
     }
     
-    public List<Shots> getShots() {
+    public Set<Shot> getShots() {
         return shots;
     }
     
-    public void setShots(List<Shots> shots) {
+    public void setShots(Set<Shot> shots) {
         this.shots = shots;
     }
     
@@ -83,44 +90,73 @@ public class Field {
         }
     }
     
-    public void selectFillStrategy() {
-        System.out.println("Input \'1\' for manual ship placement");
-        if ("1".equals(InputReader.nextString()
-                                  .toLowerCase())) {
-            fillListOfShipsManually();
-        } else {
-            fillListOfShipsRandomly();
-        }
+    public void addPointsAroundShot(Coordinate shotCoordinate) {
+        addAssistPoint(shotCoordinate.getX() - 1, shotCoordinate.getY() - 1);
+        addAssistPoint(shotCoordinate.getX() + 1, shotCoordinate.getY() - 1);
+        addAssistPoint(shotCoordinate.getX() - 1, shotCoordinate.getY() + 1);
+        addAssistPoint(shotCoordinate.getX() + 1, shotCoordinate.getY() + 1);
     }
     
-    public void fillListOfShipsManually() {
-        
-        Coordinate first;
-        Coordinate second;
-        View view = new View();
-        view.printField(this);
-        while (ships.size() != 10) {
-            printState();
-            first = new Coordinate().input();
-            second = new Coordinate().input();
-            if (Coordinate.checkCoordinates(first, second)) {
-                Ship ship = new Ship(first, second);
-                if (checkNoShipCollision(ship) && checkCorrectAmountOfShips(ship)) {
-                    //System.out.println("No collision!");
-                    ships.add(ship);
-                    addPointsAroundShip(ship);
-                    view.updateFieldView(this);
-                    view.printField(this);
-                } else {
-                    System.out.println("You need to place 4 ships of length 1, 3 ships of length 2, 2 ships of length" +
-                                       " 3, 1 ship of length 4 in empty squares");
+    public void addPointsAroundKill(Coordinate shotCoordinate, Ship ship) {
+        addPointsAroundShot(shotCoordinate);
+        Coordinate firstCoordinate = ship.getFirstCoordinate();
+        Coordinate secondCoordinate = ship.getSecondCoordinate();
+        switch (ship.getDirection()) {
+            case 0:
+                if (firstCoordinate.getX() > 0) {
+                    assistSet.add(new Assist(new Coordinate(firstCoordinate
+                                                                    .getX() - 1, firstCoordinate.getY())));
                 }
-            } else {
-                System.out.println(ships);
-                System.out.println("Wrong coordinates");
-            }
+                if (secondCoordinate.getX() < 9) {
+                    assistSet.add(new Assist(new Coordinate(secondCoordinate
+                                                                    .getX() + 1, secondCoordinate.getY())));
+                }
+                
+                if (firstCoordinate.getY() > 0) {
+                    assistSet.add(new Assist(new Coordinate(firstCoordinate
+                                                                    .getX(), firstCoordinate.getY() - 1)));
+                }
+                if (secondCoordinate.getY() < 9) {
+                    assistSet.add(new Assist(new Coordinate(secondCoordinate
+                                                                    .getX(), secondCoordinate.getY() + 1)));
+                }
+                
+                break;
+            case 1:
+                if (firstCoordinate.getX() > 0) {
+                    assistSet.add(new Assist(new Coordinate(firstCoordinate
+                                                                    .getX() - 1, firstCoordinate.getY())));
+                }
+                if (secondCoordinate.getX() < 9) {
+                    assistSet.add(new Assist(new Coordinate(secondCoordinate
+                                                                    .getX() + 1, secondCoordinate.getY())));
+                }
+                break;
+            case 2:
+                if (firstCoordinate.getY() > 0) {
+                    assistSet.add(new Assist(new Coordinate(firstCoordinate
+                                                                    .getX(), firstCoordinate.getY() - 1)));
+                }
+                if (secondCoordinate.getY() < 9) {
+                    assistSet.add(new Assist(new Coordinate(secondCoordinate
+                                                                    .getX(), secondCoordinate.getY() + 1)));
+                }
+                break;
         }
         
+    }
+    
+    public boolean checkShotsCollision(Coordinate shotCoordinate) {
+        Stream<Coordinate> shotsCoordinates = shots.stream()
+                                                   .map(Shot::getCoordinate);
+        Stream<Coordinate> assistCoordinates = assistSet.stream()
+                                                        .map(Assist::getAssistPoint);
+        Stream<Coordinate> missesCoordinates = misses.stream()
+                                                     .map(Miss::getCoordinate);
+        Stream<Coordinate> concat = Stream.concat(shotsCoordinates, assistCoordinates);
+        Stream<Coordinate> concat2 = Stream.concat(concat, missesCoordinates);
+        List<Coordinate> coordinateList = concat2.collect(Collectors.toList());
+        return coordinateList.contains(shotCoordinate);
     }
     
     public boolean checkNoShipCollision(Ship ship) {
@@ -160,23 +196,7 @@ public class Field {
         
     }
     
-    public void fillListOfShipsRandomly() {
-        int state = 0;
-        while (ships.size() != 10) {
-            fillListOfShipsDependingOnLength(4, 1);
-            if (getCountByLength(4) == 1) {
-                fillListOfShipsDependingOnLength(3, 2);
-            }
-            if (getCountByLength(4) == 1 && getCountByLength(3) == 2) {
-                fillListOfShipsDependingOnLength(2, 3);
-            }
-            if (getCountByLength(4) == 1 && getCountByLength(3) == 2 && getCountByLength(2) == 3) {
-                fillListOfShipsDependingOnLength(1, 4);
-            }
-        }
-    }
-    
-    private void fillListOfShipsDependingOnLength(int length, int requiredAmountOfLength) {
+    public void fillListOfShipsDependingOnLength(int length, int requiredAmountOfLength) {
         int state;
         int firstX = new Random().nextInt(10);
         int firstY = new Random().nextInt(10);
@@ -188,15 +208,26 @@ public class Field {
             addPossibleVariantsToList(firstX, firstY, firstCoordinate, possibleVariants, state, 0);
             addPossibleVariantsToList(firstX, firstY, firstCoordinate, possibleVariants, 0, state);
             addPossibleVariantsToList(firstX, firstY, firstCoordinate, possibleVariants, -state, 0);
-            View view = new View();
             if (possibleVariants.size() > 0) {
                 Ship ship = selectRandomShip(firstCoordinate, possibleVariants);
                 ships.add(ship);
                 addPointsAroundShip(ship);
-                view.updateFieldView(this);
-                printState();
-                view.printField(this);
             }
+        }
+    }
+    
+    public long getCountByLength(int length) {
+        return ships.stream()
+                    .map(Ship::getLength)
+                    .filter(integer -> integer == length)
+                    .count();
+    }
+    
+    private void addAssistPoint(int i, int i2) {
+        Coordinate coordinate1 = new Coordinate(i, i2);
+        if (Coordinate.checkCoordinates(coordinate1)) {
+            Assist assist1 = new Assist(coordinate1);
+            assistSet.add(assist1);
         }
     }
     
@@ -215,15 +246,9 @@ public class Field {
             Ship ship = new Ship(firstCoordinate, secondCoordinate);
             if (checkNoShipCollision(ship) && checkCorrectAmountOfShips(ship)) {
                 possibleVariants.add(secondCoordinate);
+    
             }
         }
-    }
-    
-    private long getCountByLength(int length) {
-        return ships.stream()
-                    .map(Ship::getLength)
-                    .filter(integer -> integer == length)
-                    .count();
     }
     
 }

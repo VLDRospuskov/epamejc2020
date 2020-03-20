@@ -32,11 +32,7 @@ public class Assist {
             return false;
         }
         Assist assist = (Assist) o;
-        return this.getAssistPoint()
-                   .getX() == assist.getAssistPoint()
-                                    .getX() && this.getAssistPoint()
-                                                   .getY() == assist.getAssistPoint()
-                                                                    .getY();
+        return getAssistPoint().equals(assist.getAssistPoint());
     }
     
 }
