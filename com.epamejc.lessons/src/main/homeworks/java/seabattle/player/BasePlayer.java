@@ -12,6 +12,9 @@ import homeworks.java.seabattle.input.Orientation;
 
 import java.util.*;
 
+import static homeworks.java.seabattle.field.Field.HEIGHT;
+import static homeworks.java.seabattle.field.Field.WIDTH;
+
 public class BasePlayer {
 
     public List<Ship> ships;
@@ -94,9 +97,9 @@ public class BasePlayer {
             fillAutomatically();
             field.draw(false);
         } else {
-            if (isAlreadyAttackedPoint) {
+            if (isAlreadyAttackedPoint && game.getState() == GameState.BATTLE) {
                 doBotAttack(wasLucky);
-            } else {
+            } else if (game.getState() == GameState.BATTLE) {
                 field.drawBotField();
                 doBotAttack(wasLucky);
             }
@@ -147,6 +150,11 @@ public class BasePlayer {
         addNeighbours();
 
         setNewPointToAttack(listOfNeighbours.get(random.nextInt(listOfNeighbours.size())));
+
+        while (listOfAttackedPointsForBot.contains(newPointToAttack)) {
+            setNewPointToAttack(listOfNeighbours.get(random.nextInt(listOfNeighbours.size())));
+        }
+
         if (!listOfAttackedPointsForBot.contains(getNewPointToAttack()) &&
                 field.isValidCoordinate(getNewPointToAttack())) {
             for (Ship ship : game.getPlayer().ships) {
