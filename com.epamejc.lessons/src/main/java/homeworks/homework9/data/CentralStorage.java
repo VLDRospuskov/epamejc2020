@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class CentralStorage {
 
-    public volatile static BigDecimal reserve = BigDecimal.valueOf(5_000_000_000.00);
+    public volatile static BigDecimal reserve = BigDecimal.valueOf(10_000_000.00);
 
 }

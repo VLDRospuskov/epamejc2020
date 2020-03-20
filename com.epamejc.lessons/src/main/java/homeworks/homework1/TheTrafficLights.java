@@ -31,12 +31,12 @@ public class TheTrafficLights {
         }
     }
 
-    private String checkTheLight(int number) {
+    public String checkTheLight(int number) {
         if (number > 10) {
             number = number % 10;
         }
 
-        String s = "";
+        String s;
 
         if (number >= 0 && number <= 3) {
             s = Colors.GREEN.toString();
