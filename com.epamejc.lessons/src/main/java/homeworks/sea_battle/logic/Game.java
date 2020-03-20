@@ -32,7 +32,10 @@ public class Game {
         playerOneShipSetter.setShips(playerOne);
         playerTwoShipSetter.setShips(playerTwo);
         clearConsole();
+        game();
+    }
 
+    private void game() {
         while (true) {
             if (!(turnOrder.getShootingCommands().shot(turnOrder, opponent))) {
                 Player temp = turnOrder;

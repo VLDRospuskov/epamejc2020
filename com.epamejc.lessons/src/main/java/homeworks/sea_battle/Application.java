@@ -1,6 +1,7 @@
-package homeworks.sea_battle.logic;
+package homeworks.sea_battle;
 
 import homeworks.sea_battle.data.GameSettings;
+import homeworks.sea_battle.logic.IOOperations;
 
 public class Application {
 

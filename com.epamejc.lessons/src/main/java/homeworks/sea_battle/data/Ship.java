@@ -18,6 +18,10 @@ public class Ship {
         this.decksAlive = this.coords.size();
     }
 
+    public ShipTypes getShipType() {
+        return shipType;
+    }
+
     public ArrayList<Coordinates> getCoords() {
         return coords;
     }

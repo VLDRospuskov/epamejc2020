@@ -28,6 +28,18 @@ public class BotPlayerShootingCommands implements PlayerShootingCommands {
 
         System.out.print(player.getName() + " turn: ");
 
+        Coordinates coords = getCoordinates(player);
+
+        if (isHit = makeShot(player, opponent, coords.getX(), coords.getY())) {
+            lastHit = coords;
+        } else {
+            lastHit = null;
+        }
+
+        return isHit;
+    }
+
+    private Coordinates getCoordinates(Player player) {
         Coordinates coords;
 
         if (isHit) {
@@ -42,7 +54,7 @@ public class BotPlayerShootingCommands implements PlayerShootingCommands {
                 fixedCoord = null;
                 lastHit = null;
                 initShootingDirections();
-                coords = getCoords(player.getMadeShots());
+                coords = getRandomCoordinates(player.getMadeShots());
             }
         } else {
             if (selectedDirection != null & lastHit == null) {
@@ -50,17 +62,10 @@ public class BotPlayerShootingCommands implements PlayerShootingCommands {
                 chooseDirection();
                 coords = getCoordinatesInTheDirection(player.getMadeShots());
             } else {
-                coords = getCoords(player.getMadeShots());
+                coords = getRandomCoordinates(player.getMadeShots());
             }
         }
-
-        if (isHit = makeShot(player, opponent, coords.getX(), coords.getY())) {
-            lastHit = coords;
-        } else {
-            lastHit = null;
-        }
-
-        return isHit;
+        return coords;
     }
 
     private Coordinates getCoordinatesInTheDirection(Set<Coordinates> madeShots) {
@@ -123,7 +128,7 @@ public class BotPlayerShootingCommands implements PlayerShootingCommands {
         shootingDirections.remove(selectedDirection);
     }
 
-    private Coordinates getCoords(Set<Coordinates> madeShots) {
+    private Coordinates getRandomCoordinates(Set<Coordinates> madeShots) {
         Coordinates coords;
 
         while (true) {

@@ -42,7 +42,7 @@ public class IOOperations {
     }
 
     public Coordinates parseCoordinates() {
-        Coordinates coordinates;
+        Coordinates coordinates = null;
 
         while (true) {
             try {
@@ -51,6 +51,7 @@ public class IOOperations {
                 if (input.toLowerCase().equals("exit")) {
                     scanner.close();
                     System.exit(0);
+                    break;
                 }
 
                 if (checkUserInputForMatches(input)) {
@@ -103,9 +104,11 @@ public class IOOperations {
     }
 
     public ShipsSetterCommands chooseShipSetter(Player player) {
-        ShipsSetterCommands shipsSetterCommands;
+        ShipsSetterCommands shipsSetterCommands = new AutomaticShipSetter();
 
-        while (true) {
+        boolean isBot = player.getName().equals("Bot Player");
+
+        while (!isBot) {
             System.out.print(player.getName() + " ");
             System.out.print(SystemMessages.CHOOSE_SHIP_SETTER.message);
             try {

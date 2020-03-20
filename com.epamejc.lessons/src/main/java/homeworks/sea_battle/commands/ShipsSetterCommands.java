@@ -20,6 +20,18 @@ public interface ShipsSetterCommands {
 
     ArrayList<Ship> createShips(Field field, ShipTypes shipType, int shipQty);
 
+    default boolean createShip(Field field, ShipTypes shipType, ArrayList<Ship> ships, ArrayList<Coordinates> decks) {
+        if (checkRange(field.getField(), decks)) {
+            Ship ship = new Ship(shipType, decks);
+            ships.add(ship);
+            setShipOnField(field.getField(), ship);
+            return true;
+        } else {
+            decks.clear();
+        }
+        return false;
+    }
+
     default void setShipOnField(int[][] field, Ship ship) {
         ArrayList<Coordinates> coords = ship.getCoords();
 

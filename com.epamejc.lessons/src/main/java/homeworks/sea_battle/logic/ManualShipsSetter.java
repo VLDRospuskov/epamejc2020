@@ -21,30 +21,35 @@ public class ManualShipsSetter implements ShipsSetterCommands {
 
         for (int i = 0; i < shipQty; i++) {
             while (true) {
-                PrintFieldCommand.printField(field.getField());
-                System.out.println("Set " + shipType.toString());
-                System.out.print(SystemMessages.SET_COORDS.message);
+                printMessage(field, shipType);
 
                 Coordinates coordinates = ioOperations.parseCoordinates();
-                boolean direction;
-                if (shipType.getValue() == 1) {
-                    direction = true;
-                } else {
-                    direction = ioOperations.parseDirection(coordinates, shipType.getValue());
-                }
+                boolean direction = checkDirection(shipType, coordinates);
 
                 ArrayList<Coordinates> decks = createDecks(shipType.getValue(), direction, coordinates.getX(), coordinates.getY());
 
-                if (checkRange(field.getField(), decks)) {
-                    Ship ship = new Ship(shipType, decks);
-                    ships.add(ship);
-                    setShipOnField(field.getField(), ship);
+                if (createShip(field, shipType, ships, decks)) {
                     break;
                 }
             }
         }
-
         return ships;
+    }
+
+    private boolean checkDirection(ShipTypes shipType, Coordinates coordinates) {
+        boolean direction;
+        if (shipType.getValue() == 1) {
+            direction = true;
+        } else {
+            direction = ioOperations.parseDirection(coordinates, shipType.getValue());
+        }
+        return direction;
+    }
+
+    private void printMessage(Field field, ShipTypes shipType) {
+        PrintFieldCommand.printField(field.getField());
+        System.out.println("Set " + shipType.toString());
+        System.out.print(SystemMessages.SET_COORDS.message);
     }
 
 }

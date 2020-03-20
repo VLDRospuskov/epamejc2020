@@ -18,7 +18,7 @@ public class GameSettings {
         game.run();
     }
 
-    public Game setGameSettings() {
+    private Game setGameSettings() {
         int input = ioOperations.parseGameSettingsInput();
 
         if (input == 3) {
@@ -26,25 +26,34 @@ public class GameSettings {
             System.exit(0);
         }
 
-        System.out.print("Player One ");
-        Player playerOne = new Player(ioOperations.enterPlayerName(), new HumanPlayerShootingCommands());
+        Player playerOne = playerInit(input, true);
         ShipsSetterCommands playerOneShipSetter = ioOperations.chooseShipSetter(playerOne);
-
-        Player playerTwo = null;
-        ShipsSetterCommands playerTwoShipSetter = null;
-
-        if (input == 1) {
-            playerTwo = new Player("Bot Player", new BotPlayerShootingCommands());
-            playerTwoShipSetter = new AutomaticShipSetter();
-
-        } else if (input == 2) {
-            System.out.print("Player Two ");
-            playerTwo = new Player(ioOperations.enterPlayerName(), new HumanPlayerShootingCommands());
-            playerTwoShipSetter = ioOperations.chooseShipSetter(playerTwo);
-
-        }
+        Player playerTwo = playerInit(input, false);
+        ShipsSetterCommands playerTwoShipSetter = ioOperations.chooseShipSetter(playerTwo);;
 
         return new Game(playerOne, playerTwo, playerOneShipSetter, playerTwoShipSetter);
+    }
+
+    private Player playerInit(int input, boolean side) {
+        Player player = null;
+        if (side) {
+            System.out.print("Player One ");
+            player = new Player(ioOperations.enterPlayerName(), new HumanPlayerShootingCommands());
+        } else {
+            switch (input) {
+                case 1 : {
+                   player = new Player("Bot Player", new BotPlayerShootingCommands());
+                   break;
+                }
+                case 2 : {
+                    System.out.print("Player Two ");
+                    player = new Player(ioOperations.enterPlayerName(), new HumanPlayerShootingCommands());
+                    break;
+                }
+            }
+        }
+
+        return player;
     }
 
 }
