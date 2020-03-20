@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import static homeworks.java.hw3.enums.Messages.*;
 
-public class ArraysCreator {
+public class InputReaderAndExecutor {
 
     public void readInputAndGenerateRandomCharsArray(BufferedReader buffer) {
         System.out.println(FIRST_TASK_ENTER_MESSAGE);

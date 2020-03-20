@@ -10,7 +10,7 @@ import java.io.PrintStream;
 
 import static homeworks.java.hw3.enums.Messages.WARNING_FOR_PARSING_TO_INT;
 
-public class ArraysCreatorTest {
+public class ArraysTest {
     private final ByteArrayOutputStream OUT_CONTENT = new ByteArrayOutputStream();
     private final PrintStream OUT_ORIGINAL = System.out;
 

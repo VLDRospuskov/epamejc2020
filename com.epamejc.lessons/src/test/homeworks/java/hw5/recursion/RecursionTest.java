@@ -1,7 +1,7 @@
 package homeworks.java.hw5.recursion;
 
 import homeworks.java.hw5.recursion.countnumbers.Counter;
-import homeworks.java.hw5.recursion.fibbonachi.Fibbonachi;
+import homeworks.java.hw5.recursion.fibbonacci.Fibbonachi;
 import homeworks.java.hw5.recursion.power.Power;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,14 +21,14 @@ public class RecursionTest {
     }
 
     @Test
-    public void testFindInFibbonachiRowWithValidInputs() {
+    public void testFindInFibonacciRowWithValidInputs() {
         Assert.assertEquals(987, Fibbonachi.findInFibbonachiRow(16));
-        Assert.assertEquals(0, 0);
-        Assert.assertEquals(1, 1);
+        Assert.assertEquals(0, Fibbonachi.findInFibbonachiRow(0));
+        Assert.assertEquals(1, Fibbonachi.findInFibbonachiRow(1));
     }
 
     @Test(expected = ArithmeticException.class)
-    public void testFindInFibbonachiRowWithInvalidInput() {
+    public void testFindInFibonacciRowWithInvalidInput() {
         Fibbonachi.findInFibbonachiRow(-6);
     }
 
