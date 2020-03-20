@@ -174,7 +174,7 @@ the values of name and age when object initializing to the annotation name and a
 
 ### HW7 - Java IO
 
-Create a files, put the text into (big amount), then reade it and rewrite to another file.
+Create a files, put the text into (big amount), then read it and rewrite to another file.
 
 Make the second method, which does the same, but with using buffer.
 
@@ -215,6 +215,7 @@ While battle if attack was lucky and ship has been hit or sank - keep attacking.
 + You can see the log of the whole game.
 + Player can fill the field by himself or to choose automatic filling.
 + Bot field  is filled automatically.
++ There is a free space between ships, they doesn't touch each other.
 + When player or Bot hits an enemy ship next attacks the one who hit.
 + If Bot hits the players ship in next step he hits the neighbour point.
 + Bot doesn't attacks the points around sank ship.

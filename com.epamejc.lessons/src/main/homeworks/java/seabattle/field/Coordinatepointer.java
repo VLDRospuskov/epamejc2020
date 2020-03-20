@@ -30,4 +30,5 @@ public class Coordinatepointer {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
 }

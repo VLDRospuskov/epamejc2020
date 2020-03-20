@@ -8,12 +8,10 @@ import homeworks.java.seabattle.field.ship.Deck;
 import homeworks.java.seabattle.field.ship.DeckNumberCount;
 import homeworks.java.seabattle.field.ship.Ship;
 import homeworks.java.seabattle.input.GameState;
+import homeworks.java.seabattle.input.InputListener;
 import homeworks.java.seabattle.input.Orientation;
 
 import java.util.*;
-
-import static homeworks.java.seabattle.field.Field.HEIGHT;
-import static homeworks.java.seabattle.field.Field.WIDTH;
 
 public class BasePlayer {
 
@@ -22,19 +20,18 @@ public class BasePlayer {
 
     protected Game game;
     protected Map<DeckNumberCount, Integer> shipCounter;
-
     protected int maxShips;
     protected int aliveShips;
     protected ShipFiller filler;
+
     private Coordinatepointer[] neighboursToAttack;
     private Coordinatepointer pointToAttack;
     private Coordinatepointer newPointToAttack;
-
-
     private Random random = new Random();
     private static List<Coordinatepointer> listOfAttackedPointsForBot = new ArrayList<>(100);
     private static List<Coordinatepointer> listOfNeighbours = new ArrayList<>();
     private boolean isLucky;
+    private InputListener inListener;
 
     public BasePlayer(Game game) {
         this.game = game;
@@ -128,10 +125,9 @@ public class BasePlayer {
             } else if (isThatTheLastShip()) {
                 game.getPlayer().field.draw(true);
                 System.out.println("Bot won!");
-                game.setGameOverTrue();
+                inListener.exitGame();
                 return;
             } else {
-                System.out.println("We are in 'else'. " + "is Missed =" + isMissed + ", wasLucky = " + wasLucky);
                 game.getPlayer().field.draw(true);
                 process(1, isLucky(), isAttackedPoint);
             }
@@ -140,7 +136,6 @@ public class BasePlayer {
                 doBotAttack(wasLucky);
             } else {
                 isAttackedPoint = true;
-//                System.out.println("Bot accidentally attacked the same point he already had attacked, he will try again.");
                 process(1, isLucky(), isAttackedPoint);
             }
         }
@@ -179,7 +174,6 @@ public class BasePlayer {
 
     private void outputWhenMissed(boolean wasLucky) {
         if (wasLucky) {
-//                    isLucky = true;
             listOfAttackedPointsForBot.add(getNewPointToAttack());
             System.out.format("Bot attacked point (%s, %d). Bot missed.\n",
                     field.getHead()[getNewPointToAttack().x], getNewPointToAttack().y + 1);
@@ -287,10 +281,6 @@ public class BasePlayer {
 
     public boolean isFieldFilled() {
         return maxShips == ships.size();
-    }
-
-    public int getAliveShips() {
-        return aliveShips;
     }
 
     public void fillAutomatically() {

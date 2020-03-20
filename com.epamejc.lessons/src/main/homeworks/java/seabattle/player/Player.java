@@ -29,6 +29,7 @@ public class Player extends BasePlayer implements InputListener {
     @Override
     public void exitGame() {
         game.setGameOverTrue();
+        input.closeBuffer(input.getBuffer());
     }
 
     @Override

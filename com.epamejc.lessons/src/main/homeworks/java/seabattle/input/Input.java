@@ -11,21 +11,25 @@ import static homeworks.java.seabattle.input.Orientation.*;
 
 public class Input {
 
+    private final String baseFillingMessage = "Input %d-deck ship in format %s\nOr input \"auto fill\" " +
+            "to fill your field automatically";
+
     private BufferedReader buffer;
     private InputListener inListener;
     private int currentShipDeckNumber;
-    private final String baseFillingMessage = "Input %d-deck ship in format %s\nOr input \"auto fill\" " +
-            "to fill your field automatically";
     private String currentMessage;
     private String line;
 
     public Input(InputListener listener) {
-
         buffer = new BufferedReader(new InputStreamReader(System.in));
         inListener = listener;
         currentShipDeckNumber = 1;
 
         showNewMessage();
+    }
+
+    public BufferedReader getBuffer() {
+        return buffer;
     }
 
     private void showNewMessage() {
@@ -60,7 +64,7 @@ public class Input {
             }
 
             if (state == GameState.SETUP) {
-                fillField(line);
+                placeShipOnField(line);
             } else if (state == GameState.BATTLE) {
                 doBattle(line);
             }
@@ -79,21 +83,17 @@ public class Input {
         return new Coordinatepointer(x, y);
     }
 
-    private void fillField(String line) {
-
+    private void placeShipOnField(String line) {
+        Orientation orient;
         String[] shipInfo = line.split(";");
-
-        Orientation orient = NONE; //ориентация корабля
+        DeckNumberCount dc = DeckNumberCount.valueOf(currentShipDeckNumber);
 
         if (shipInfo.length == 1 && line.equalsIgnoreCase("auto fill")) {
             inListener.fillAutomatically();
         }
 
-        DeckNumberCount dc = DeckNumberCount.valueOf(currentShipDeckNumber);
-
         if (shipInfo.length >= 1) {
             Coordinatepointer coordinate = parseCoordinates(shipInfo[0]);
-
             if (currentShipDeckNumber == 1) {
                 orient = HORIZONTAL;
             } else if (shipInfo[1] != null && shipInfo[1].equalsIgnoreCase("h")) {
@@ -116,7 +116,6 @@ public class Input {
 
     private void doBattle(String line) {
         Coordinatepointer coordinate = parseCoordinates(line);
-
         if (coordinate.x >= 0 && coordinate.y >= 0 && coordinate.x <= 10 && coordinate.y <= 10) {
             inListener.attack(coordinate.x, coordinate.y);
         } else {
@@ -124,7 +123,7 @@ public class Input {
         }
     }
 
-    public void closeBuffer() {
+    public void closeBuffer(BufferedReader buffer) {
         try {
             buffer.close();
         } catch (IOException e) {

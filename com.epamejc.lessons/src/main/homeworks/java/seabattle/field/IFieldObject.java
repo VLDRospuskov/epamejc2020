@@ -7,4 +7,5 @@ public interface IFieldObject {
     Coordinatepointer getPosition();
 
     char getView();
+
 }

@@ -11,13 +11,6 @@ public class Ship {
     private Orientation orientation;
     private Coordinatepointer[] coordinates;
 
-    public Ship() {
-        decks = null;
-        deckCount = DeckNumberCount.INVALID;
-        orientation = Orientation.NONE;
-        coordinates = null;
-    }
-
     public Ship(Field field, DeckNumberCount deckCount, Orientation orientation, Coordinatepointer[] coords) {
         this.deckCount = deckCount;
         this.orientation = orientation;
@@ -37,16 +30,6 @@ public class Ship {
 
     public Deck[] getDecks() {
         return decks;
-    }
-
-    public DeckNumberCount getDeckCount() {
-        return deckCount;
-    }
-
-    public boolean isValid() {
-        return deckCount != DeckNumberCount.INVALID &&
-                orientation != Orientation.NONE &&
-                coordinates != null;
     }
 
     public boolean isShipAlive() {

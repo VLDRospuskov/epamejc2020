@@ -9,16 +9,14 @@ import java.util.logging.Logger;
 
 public class Field {
 
-    public static Logger log = Logger.getLogger(Field.class.getName());
-
     public static final int WIDTH = 10;
     public static final int HEIGHT = 10;
+    public static Logger log = Logger.getLogger(Field.class.getName());
 
     private char[] head;
     private char[][] cells;
-
     private IFieldObject[][] objects;
-    Coordinatepointer[] neighbours;
+    private Coordinatepointer[] neighbours;
 
     public Field() {
         head = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
@@ -91,6 +89,40 @@ public class Field {
         return result;
     }
 
+    public void draw(boolean isUpdate) {
+        System.out.println("---- Your field ----");
+
+        if (isUpdate) update();
+        int coordX = 0;
+        int coordY = 1;
+
+        System.out.print(' ');
+        for (int x = 0; x < WIDTH; x++) {
+
+            System.out.print(' ');
+            System.out.print(head[coordX]);
+
+            coordX += 1;
+        }
+
+        System.out.println();
+
+        for (int y = 0; y < HEIGHT; y++) {
+
+            System.out.print(coordY++);
+
+            for (int x = 0; x < WIDTH; x++) {
+
+                if (!(x == 0 && coordY == 11)) {
+                    System.out.print(' ');
+                }
+                System.out.print(cells[x][y]);
+            }
+            System.out.println('|');
+        }
+        System.out.println();
+    }
+
     public void clean() {
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
@@ -123,10 +155,10 @@ public class Field {
         }
     }
 
-    public void draw(boolean isUpdate) {
-        System.out.println("---- Your field ----");
+    public void drawBotField() {
+        System.out.println("---- Bot Field ----");
 
-        if (isUpdate) update();
+        updateBattleFieldForBot();
         int coordX = 0;
         int coordY = 1;
 
@@ -170,39 +202,5 @@ public class Field {
                 cells[point.x][point.y] = ' ';
             }
         }
-    }
-
-    public void drawBotField() {
-        System.out.println("---- Bot Field ----");
-
-        updateBattleFieldForBot();
-        int coordX = 0;
-        int coordY = 1;
-
-        System.out.print(' ');
-        for (int x = 0; x < WIDTH; x++) {
-
-            System.out.print(' ');
-            System.out.print(head[coordX]);
-
-            coordX += 1;
-        }
-
-        System.out.println();
-
-        for (int y = 0; y < HEIGHT; y++) {
-
-            System.out.print(coordY++);
-
-            for (int x = 0; x < WIDTH; x++) {
-
-                if (!(x == 0 && coordY == 11)) {
-                    System.out.print(' ');
-                }
-                System.out.print(cells[x][y]);
-            }
-            System.out.println('|');
-        }
-        System.out.println();
     }
 }
