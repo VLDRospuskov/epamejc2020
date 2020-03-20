@@ -12,34 +12,35 @@ public class BotController extends Controller implements Area<Integer> {
 
     public void makeMove() {
 
-        int shotPosition = 0;
-        int beforeHitSize = 0;
-        int afterHitSize = 0;
-        int beforeDeadSize = 0;
-        int afterDeadSize = 0;
+        System.out.println("Please wait...");
 
         while (true) {
 
-            decideHitOrKill(shotPosition, beforeHitSize, afterHitSize, beforeDeadSize, afterDeadSize);
+            int shotPosition = getRandomPosition();
 
-            shotPosition = getRandomPosition();
+            int beforeHitSize = Positions.playerHitPositions.size();
+            int beforeDeadSize = Positions.opponentDeadShipPositions.size();
 
-            beforeHitSize = Positions.playerHitPositions.size();
-            beforeDeadSize = Positions.opponentDeadShipPositions.size();
-
-            if (!Positions.playerHitPositions.contains(shotPosition)
-                    && !Positions.playerMissPositions.contains(shotPosition)
-                    && isNoOverlapping(shotPosition)) {
-
-                if (decideHitOrMiss(shotPosition)) {
-                    break;
-                }
+            if (getShotStatus(shotPosition)) {
+                break;
             }
 
-            afterHitSize = Positions.playerHitPositions.size();
-            afterDeadSize = Positions.opponentDeadShipPositions.size();
+            int afterHitSize = Positions.playerHitPositions.size();
+            int afterDeadSize = Positions.opponentDeadShipPositions.size();
+
+            decideHitOrKill(shotPosition, beforeHitSize, afterHitSize, beforeDeadSize, afterDeadSize);
         }
         fieldPrinter.print();
+    }
+
+    private boolean getShotStatus(int shotPosition) {
+        if (!Positions.playerHitPositions.contains(shotPosition)
+                && !Positions.playerMissPositions.contains(shotPosition)
+                && isNoOverlapping(shotPosition)) {
+
+            return decideHitOrMiss(shotPosition);
+        }
+        return false;
     }
 
     private void decideHitOrKill(int shotPosition, int beforeHitSize, int afterHitSize,
@@ -127,23 +128,23 @@ public class BotController extends Controller implements Area<Integer> {
                 .orElse(-1));
     }
 
-    private int verticalUp(int i, int i2) {
-        return hitCells.get(i) + 10 < 100 ? hitCells.get(i) + 10 : hitCells.get(i2) - 10;
+    private int verticalUp(int maxIndex, int minIndex) {
+        return hitCells.get(maxIndex) + 10 < 100 ? hitCells.get(maxIndex) + 10 : hitCells.get(minIndex) - 10;
     }
 
-    private int verticalDown(int i, int i2) {
-        return hitCells.get(i) - 10 >= 0
-                ? hitCells.get(i) - 10 : hitCells.get(i2) + 10;
+    private int verticalDown(int minIndex, int maxIndex) {
+        return hitCells.get(minIndex) - 10 >= 0
+                ? hitCells.get(minIndex) - 10 : hitCells.get(maxIndex) + 10;
     }
 
-    private int horizontalLeft(int i, int i2) {
-        return hitCells.get(i) - 1 >= 0
-                && hitCells.get(i) % 10 != 0 ? hitCells.get(i) - 1 : hitCells.get(i2) + 1;
+    private int horizontalLeft(int minIndex, int maxIndex) {
+        return hitCells.get(minIndex) - 1 >= 0
+                && hitCells.get(minIndex) % 10 != 0 ? hitCells.get(minIndex) - 1 : hitCells.get(maxIndex) + 1;
     }
 
-    private int horizontalRight(int i, int i2) {
-        return hitCells.get(i) + 1 < 100
-                && hitCells.get(i) % 10 != 9 ? hitCells.get(i) + 1 : hitCells.get(i2) - 1;
+    private int horizontalRight(int maxIndex, int minIndex) {
+        return hitCells.get(maxIndex) + 1 < 100
+                && hitCells.get(maxIndex) % 10 != 9 ? hitCells.get(maxIndex) + 1 : hitCells.get(minIndex) - 1;
     }
 
     @Override

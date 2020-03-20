@@ -25,21 +25,27 @@ public class PlayerController extends Controller {
 
             int shotPosition = Positions.allCells.indexOf(shot.toUpperCase());
 
-            if (shotPosition != -1) {
-
-                if (!Positions.playerHitPositions.contains(shotPosition)
-                        && !Positions.playerMissPositions.contains(shotPosition)) {
-
-                    if (decideHitOrMiss(shotPosition)) {
-                        break;
-                    }
-
-                } else {
-                    System.out.println("Cell is already shot!");
-                }
-            } else {
-                System.out.println("Invalid input");
+            if (getShotStatus(shotPosition)) {
+                break;
             }
         }
+    }
+
+    private boolean getShotStatus(int shotPosition) {
+
+        if (shotPosition != -1) {
+
+            if (!Positions.playerHitPositions.contains(shotPosition)
+                    && !Positions.playerMissPositions.contains(shotPosition)) {
+
+                return decideHitOrMiss(shotPosition);
+
+            } else {
+                System.out.println("Cell is already shot!");
+            }
+        } else {
+            System.out.println("Invalid input");
+        }
+        return false;
     }
 }

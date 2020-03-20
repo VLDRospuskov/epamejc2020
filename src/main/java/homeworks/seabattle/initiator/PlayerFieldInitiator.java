@@ -15,7 +15,7 @@ public class PlayerFieldInitiator extends FieldInitiator {
     @SneakyThrows
     public void init() {
 
-        Positions.swapAndSet();
+        Positions.swapPositions();
 
         FieldPrinter fieldPrinter = new FieldPrinter();
 

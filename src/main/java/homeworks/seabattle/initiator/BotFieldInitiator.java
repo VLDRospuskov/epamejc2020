@@ -20,7 +20,7 @@ public class BotFieldInitiator extends FieldInitiator {
 
         System.out.println("Please wait...");
 
-        Positions.swapAndSet();
+        Positions.swapPositions();
 
         length = 4;
         beforeSize = 0;

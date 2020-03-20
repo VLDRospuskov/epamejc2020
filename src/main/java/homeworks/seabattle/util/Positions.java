@@ -34,7 +34,7 @@ public class Positions {
             "A10", "B10", "C10", "D10", "E10", "F10", "G10", "H10", "Y10", "J10");
 
 
-    public static void swapAndSet() {
+    public static void swapPositions() {
 
         List<Integer> x;
 
