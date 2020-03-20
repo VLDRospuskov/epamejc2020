@@ -1,7 +1,7 @@
 package test;
 
 import seabattle.Coordinates;
-import seabattle.ShipPart;
+
 
 import java.util.ArrayList;
 import java.util.Collections;

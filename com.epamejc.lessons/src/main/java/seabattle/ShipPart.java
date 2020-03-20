@@ -8,8 +8,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @AllArgsConstructor
-//todo везде убрать паблик классы
-public class ShipPart {
+
+class ShipPart {
 
     private Coordinates coordinates;
     private Boolean hit;

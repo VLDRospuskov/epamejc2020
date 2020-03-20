@@ -2,14 +2,14 @@ package seabattle;
 
 import java.util.Scanner;
 
-class readCom {
-    // todo сделать проверку введены целые цифры в диапозоне действия инта
-    int readCom() {
+class ReadCommands {
+    int readCom(String text) {
 
-        boolean t = false;
+        boolean t;
         int command = 0;
         do {
             try {
+                System.out.print(text);
                 Scanner in = new Scanner(System.in);
                 command = in.nextInt();
                 t=false;
@@ -17,7 +17,7 @@ class readCom {
             catch (Exception e)
             {
               t=true;
-                System.out.println("ERR");
+                System.out.println("Input Error.");
             }
 
         } while (t);

@@ -8,23 +8,18 @@ public class SeaBattle {
     public void run() {
         Users.add(new User());
         Users.add(new User());
-        //add ships
         addShips();
-        //game start
         startGame();
     }
 
     private void startGame() {
-
         boolean allShipsDead = false;
         int queue = 0;
         while (!allShipsDead) {
             int enemy = Math.abs(queue - 1);
             System.out.println("Player move number: " + (queue + 1));
-            System.out.println("Enter x:");
-            int x = new readCom().readCom();
-            System.out.println("Enter y:");
-            int y = new readCom().readCom();
+            int x = new ReadCommands().readCom("Enter x:");
+            int y = new ReadCommands().readCom("Enter y:");
 
             if ((Users.get(queue).inPole(x, y)) && (Users.get(enemy).isHit(x, y))) {
                 System.out.println("Hit!");
@@ -52,16 +47,11 @@ public class SeaBattle {
         boolean allShipsDelivered = false;
         int queue = 0;
         while (!allShipsDelivered) {
-            System.out.println("Enter type:");
-            int type = new readCom().readCom();
-            System.out.println("Enter x1:");
-            int x1 = new readCom().readCom();
-            System.out.println("Enter y1:");
-            int y1 = new readCom().readCom();
-            System.out.println("Enter x2:");
-            int x2 = new readCom().readCom();
-            System.out.println("Enter y2:");
-            int y2 = new readCom().readCom();
+            int type = new ReadCommands().readCom("Enter type:");
+            int x1 = new ReadCommands().readCom("Enter x1:");
+            int y1 = new ReadCommands().readCom("Enter y1:");
+            int x2 = new ReadCommands().readCom("Enter x2:");
+            int y2 = new ReadCommands().readCom("Enter y2:");
 
             if (Users.get(queue).addShip(type, x1, y1, x2, y2)) {
                 Users.get(queue).ShipSet(type);

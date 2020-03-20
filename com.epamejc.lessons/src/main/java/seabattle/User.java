@@ -2,77 +2,77 @@ package seabattle;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.IntStream;
 
 class User {
-    private ArrayList<Ships> ships = new ArrayList<>();//to do Сделать такую структуру, что бы можно было хранить количество и тип кораблей для поатвновки на доску
+    private ArrayList<Ships> ships = new ArrayList<>();
     private Pole enemyPole = new Pole();
-    private ArrayList<Integer> RemainingShips = new ArrayList<>(); //to do переименовать переменную
-//todo узнать про глобальные переменые
+    private ArrayList<Integer> RemainingShips = new ArrayList<>();
+
+    /**
+     * Создает массив с кораблями, которые осталось поставить
+     */
     User() {
+        this.RemainingShips.add(Settings.SHIP_TYPE_1_COUNT);
+        this.RemainingShips.add(Settings.SHIP_TYPE_2_COUNT);
+        this.RemainingShips.add(Settings.SHIP_TYPE_3_COUNT);
         this.RemainingShips.add(Settings.SHIP_TYPE_4_COUNT);
-        this.RemainingShips.add(0);
-        this.RemainingShips.add(0);
-        this.RemainingShips.add(0);
     }
 
+    /**
+     * @return все ли корабли осталось поставить на игровое поле
+     */
     boolean isAllShipOnDesk() {
         return (Collections.max(RemainingShips) == 0);
     }
 
-    //  to do сделать метод который проверяет попал ли противник и если да отмечать у себя на карте что корабль подбит
-    //to do вынести ispole отдельно
+
+    /**
+     * @param x коодината х
+     * @param y коордианат у
+     * @return было ли попадание в корабль по координатам
+     */
      boolean isHit(int x, int y) {
-        for (int i = 0; i < ships.size(); i++) {
-                Ships ship = ships.get(i);
-                if (ship.isHit(x, y)) {
-                    return true;
-                }
-            }
-        return false;
+         return ships.stream().anyMatch(ship -> ship.isHit(x, y));
     }
 
     /**
      * данный метод вызвращает находится ли на данной клетке часть корабля
-     *
      * @param x координата х
      * @param y координата у
      * @return если есть то возвращается яцейка в ships, где находится корабль если нет то -1
      */
     private int findShipSell(int x, int y, boolean hit) {
-        for (Ships ship : ships) {
-            int cell = ship.isThisRightShip(x, y, hit);
-            if (cell >= 0) {
-                return cell;
-            }
-        }
-        return -1;
+        return ships.stream().mapToInt(ship -> ship.isThisRightShip(x, y, hit))
+                .filter(cell -> cell >= 0).findFirst().orElse(-1);
     }
+
     /**
      * @param x координата х
      * @param y координата у
      * @return по координатам корабля возвращается убит ли корабль
      */
-    //to do если мой корабль убит выстрелом противника, то отправить ему тип корабля
     boolean isDead(int x, int y) {
-        int sell = findShipSell(x, y, true);
-        return ships.get(sell).isDead();
+        return ships.get(findShipSell(x, y, true)).isDead();
     }
 
-    //to do если кораблей не осталось у меня то противник выиграл
+    /**
+     * @return не осталось ли кораблей на поле игрока и не выиграл ли противник
+     */
     boolean isEnemyWin() {
-        for (int i = 0; i < ships.size(); i++) {
-            if (!ships.get(i).isDead()) {
-                return false;
-            }
-        }
-        return true;
+        return IntStream.range(0, ships.size()).allMatch(i -> ships.get(i).isDead());
     }
 
-    //todo возможность удалить корабли
-    void deleteShip() {
-
-    }
-
+    /**
+     * Метод добавляющий корабль на поле игрока
+     *
+     * @param type тип корабля
+     * @param x1   начальная коодината х
+     * @param y1   начальная коодината у
+     * @param x2   конечная координата х
+     * @param y2   конечная координата у
+     * @return добавлен кораль или нет
+     */
     boolean addShip(int type, int x1, int y1, int x2, int y2) {
         int typeOfSHip = type - 1;
         if ((typeOfSHip >= 0) && (typeOfSHip <= 3) && (RemainingShips.get(typeOfSHip) > 0)) {
@@ -91,24 +91,27 @@ class User {
         }
     }
 
-    // to do Додлеать метод который проверяет рядом стоят корабли или нет
-    // todo убрать повтряющиеся значения
+
+    /**
+     * @param coordinates координаты корабля
+     * @return нет ли рядом в радиусе 1 клетки союзного корабля
+     */
     private boolean noShipsNearby(ArrayList<Coordinates> coordinates) {
         ArrayList<Coordinates> badCoordinates = new ArrayList<>();
-        for (int i = 0; i < coordinates.size(); i++) {
-            badCoordinates.addAll(CubeFromCoordinates(coordinates.get(i)));
-        }
-        for (int i = 0; i < badCoordinates.size(); i++) {
-            if (findShipSell(badCoordinates.get(i).getX(), badCoordinates.get(i).getY(), false) != (-1)) {
-                return false;
-            }
-        }
-        return true;
+        coordinates.stream().map(this::CubeFromCoordinates).forEach(badCoordinates::addAll);
+        return badCoordinates.stream()
+                .noneMatch(badCoordinate
+                        -> findShipSell(badCoordinate.getX(), badCoordinate.getY(), false) != (-1));
     }
 
+    /**
+     * @param coordinates Координаты корабля
+     * @return координаты корабля и одна клетка от него
+     */
+    //todo убрать повторы
     private ArrayList<Coordinates> CubeFromCoordinates(Coordinates coordinates) {
         ArrayList<Coordinates> tempCoords = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 int x = DigitalAround(coordinates.getX(), j);
                 int y = DigitalAround(coordinates.getY(), i);
@@ -116,10 +119,14 @@ class User {
                     tempCoords.add(new Coordinates(x, y));
                 }
             }
-        }
         return tempCoords;
     }
 
+    /**
+     * @param d число
+     * @param i позиция
+     * @return измененное число в зависимости от его позиции
+     */
     private int DigitalAround(int d, int i) {
         switch (i) {
             case 1:
@@ -142,7 +149,6 @@ class User {
      * в противном случае отрицательнок
      */
     private boolean isCorrectCoords(int type, int x1, int y1, int x2, int y2) {
-
         return ((x1 == x2) && Math.abs(y1 - y2) == type) || ((y2 == y1) && Math.abs(x1 - x2) == type);
 
     }
@@ -185,20 +191,15 @@ class User {
             }
         } else {
             type = x2 - x1 + 1;
-            for (int i = 0; i < type; i++) {
-                coordinates.add(new Coordinates(x1 + i, y1));
-            }
+            for (int i = 0; i < type; i++) coordinates.add(new Coordinates(x1 + i, y1));
         }
         return coordinates;
     }
-
-
     /**
      * Метод уменьшает количество кораблей введеного типа, которые надо поставить
-     *
      * @param type размерность корабля
      */
-    //to do метод который убирает один корабль из списака кораблей, которые наобходимо поставить на доску
+
     void ShipSet(int type) {
         int typeOfSHip = type - 1;
         RemainingShips.set((typeOfSHip), (RemainingShips.get(typeOfSHip)) - 1);
@@ -206,7 +207,6 @@ class User {
 
     /**
      * Метод возвращает массив координат корабля, частью которого являются введенные координаты
-     *
      * @param x координата х
      * @param y координата у
      * @return массив координат
@@ -215,48 +215,37 @@ class User {
         return ships.get(findShipSell(x, y, true)).getShipCoordinates();
     }
 
+    /**
+     * добавляет подбитую часть вражеского корабля на поле игрока
+     * @param x координата х
+     * @param y координата у
+     */
     void addEnemyPartShipToPole(int x, int y) {
         enemyPole.addShipPart(x, y);
     }
 
+
+    /**
+     * добавляет убитый корабль противника на поле игрока
+     * @param ship координаты корабля
+     */
     void addEnemyShipToPole(ArrayList<Coordinates> ship) {
-        //  enemyPole.addShip(ship);
         ship.forEach(coordinates -> enemyPole.addShipPart(coordinates.getX(), coordinates.getY()));
     }
 
+    /**
+     * выводит после противника
+     */
     void printEnemyPole() {
         enemyPole.printPole();
     }
 
+    /**
+     * добавляет промах на карту игрока
+     * @param x координата х
+     * @param y координата у
+     */
     void hitPass(int x, int y) {
         enemyPole.addHitPass(x, y);
     }
-
-
-    /*
-
-
-
-
-    OLD
-     */
-//    private boolean notOnShips(Pole pole, ArrayList<Coordinates> coordinates) {
-//        for (Coordinates coordinate : coordinates) {
-//            if (pole.getStateByXY(coordinate.getX(), coordinate.getY()) == State.SHIP) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
-//    private boolean notOnShips1(ArrayList<Coordinates> coordinates) {
-//        for (int i = 0; i < coordinates.size(); i++) {
-//            Coordinates coordinate = coordinates.get(i);
-//            if (findShipSell(coordinate.getX(), coordinate.getY(), false) > -1) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
 }

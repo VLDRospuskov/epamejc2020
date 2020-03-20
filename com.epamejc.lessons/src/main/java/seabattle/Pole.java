@@ -4,20 +4,27 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 
+
+import static java.util.stream.IntStream.*;
+
+
 @Getter
 class Pole {
     private ArrayList<State> States = new ArrayList<>();
 
+    /**
+     * Заполняет поле чистыми значениями
+     */
     Pole() {
-        // todo попробовать по другому забить массив деволтным значением
-        for (int i = 0; i < 100; i++) {
-            this.States.add(State.CLEAR);
-        }
+        range(0, 100).forEach(i -> this.States.add(State.CLEAR));
     }
 
 
-
-    // to do метод который добавляет часть вражеского корабля на карту
+    /**
+     * Добавляет подбитую часть корабля на поле
+     * @param x координата х
+     * @param y координата у
+     */
     void  addShipPart(int x, int y)
     {
         States.set(getCellId(x, y), State.DEAD);
@@ -36,13 +43,11 @@ class Pole {
 
 
     /**
-     * выыодит на экран поле
+     * выыодит на поле на экран
      */
-    //todo мб убрать ship
     void printPole() {
-        for (int i = 0; i < States.size(); i++) {
+        range(0, States.size()).forEach(i -> {
             switch (States.get(i)) {
-
                 case HIT:
                     System.out.print("H");
                     break;
@@ -56,9 +61,15 @@ class Pole {
             if (i % 10 == 9) {
                 System.out.println();
             }
-        }
+        });
     }
 
+
+    /**
+     * Добавляет промых на поле по координатам
+     * @param x координата х
+     * @param y кордината у
+     */
     void addHitPass(int x, int y) {
         States.set(getCellId(x, y), State.HIT);
     }
