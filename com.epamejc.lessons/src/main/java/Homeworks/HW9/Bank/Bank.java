@@ -10,7 +10,7 @@ public class Bank {
     private final int atmsCount;
     private final int usersCount;
 
-    private int atmDefaultBalanceLimit = 1000;
+    private int atmDefaultBalance = 1000;
     private int userDefaultBalanceLimit = 100;
 
     private List<ATM> atmList;
@@ -21,6 +21,10 @@ public class Bank {
         this.atmsCount = atmsCount;
         this.usersCount = usersCount;
 
+        setupAtmsAndUsers();
+    }
+
+    private void setupAtmsAndUsers() {
         Runnable createAtmsRunnable = createAtms();
         Runnable createUsersRunnable = createUsers();
 
@@ -38,36 +42,13 @@ public class Bank {
             e.printStackTrace();
         }
         System.out.println("ATMs and Users created.");
-
-        /*
-        int atm = 1;
-        int user = 1;
-        int amount = 1000;
-
-        System.out.println("ATM id: " + atmList.get(atm).id + ", balance: " + atmList.get(atm).balance);
-        System.out.println("User id: " + userList.get(user).id + ", balance: " + userList.get(user).balance + " is trying to withdraw " + amount);
-
-        try {
-            if (atmList.get(atm).withdraw(amount) == userList.get(user).withdraw(amount)) {
-                System.out.print("");
-                System.out.println("All good!");
-                System.out.println("ATM id: " + atmList.get(atm).id + ", balance: " + atmList.get(atm).balance);
-                System.out.println("User id: " + userList.get(user).id + ", balance: " + userList.get(user).balance);
-            }
-        } catch (ATMException e) {
-            System.out.println("Error! " + e.getMessage());
-        }
-         */
-
-        System.out.println("Money supply: " + moneySupply);
     }
 
     private Runnable createAtms() {
         return () -> {
             atmList = new ArrayList<>();
             for (int i = 0; i < atmsCount; i++) {
-                int balance = new Random().nextInt(atmDefaultBalanceLimit);
-                atmList.add(new ATM(i, balance));
+                atmList.add(new ATM(i, atmDefaultBalance));
             }
         };
     }
@@ -82,19 +63,25 @@ public class Bank {
         };
     }
 
+    public void makeOperations(int count) {
+        for (int i = 0; i < count; i++) {
+            makeRandomOperation();
+        }
+    }
+
     private void makeRandomOperation() {
         int randomAtmId = new Random().nextInt(atmsCount);
         int randomUserId = new Random().nextInt(usersCount);
         ATM randomAtm = atmList.get(randomAtmId);
         User randomUser = userList.get(randomUserId);
 
-        int randomAmount = new Random().nextInt(atmDefaultBalanceLimit);
+        int randomAmount = new Random().nextInt(atmDefaultBalance);
 
-        System.out.println(randomUser.toString() + " is trying to withdraw " + randomAmount + " from " + randomAtm.toString());
+        System.out.println(randomUser.id + " is trying to withdraw " + randomAmount + " from " + randomAtm.id + " with balance " + randomAtm.balance);
 
         try {
             if (randomUser.withdraw(randomAmount) == randomAtm.withdraw(randomAmount)) {
-                System.out.println("All good!"); // asdasd
+                System.out.println("All good!");
             }
         } catch (ATMException e) {
             System.out.println("Error! " + e.getMessage());

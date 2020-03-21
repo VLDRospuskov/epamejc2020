@@ -38,6 +38,16 @@ public class ATM {
         }
     }
 
+    @SneakyThrows
+    private void service(int amount) {
+        synchronized (atmLock) {
+            System.out.println("ATM " + id + " is temporary out of service!");
+            Thread.sleep(atmOperationTime);
+            balance = balance + amount;
+            System.out.println("ATM " + id + " is back to work.");
+        }
+    }
+
 }
 
 class ATMException extends Exception {
