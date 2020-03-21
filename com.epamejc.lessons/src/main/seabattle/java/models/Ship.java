@@ -193,27 +193,25 @@ public class Ship {
         }
     }
 
-    private int setBarrierLeftTopCorner(Field field) {
+    private void setBarrierLeftTopCorner(Field field) {
         for (int i = startYX[1]; i <= endYX[1]; i++) {
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
         for (int i = startYX[0]; i <= endYX[0] + 1; i++) {
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierLeftBottomCorner(Field field) {
+    private void setBarrierLeftBottomCorner(Field field) {
         for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
         }
         for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierLeftSide(Field field) {
+    private void setBarrierLeftSide(Field field) {
         for (int i = startYX[1]; i <= endYX[1] + 1; i++) {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
@@ -221,30 +219,27 @@ public class Ship {
         for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierRightTopCorner(Field field) {
+    private void setBarrierRightTopCorner(Field field) {
         for (int i = startYX[0]; i <= endYX[0]; i++) {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
         }
         for (int i = startYX[1] - 1; i <= endYX[1]; i++) {
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierRightBottomCorner(Field field) {
+    private void setBarrierRightBottomCorner(Field field) {
         for (int i = startYX[1]; i <= endYX[1]; i++) {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
         }
         for (int i = startYX[0] - 1; i <= endYX[0]; i++) {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierRightSide(Field field) {
+    private void setBarrierRightSide(Field field) {
         for (int i = startYX[0] - 1; i <= endYX[0] + 1; i++) {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
         }
@@ -252,10 +247,9 @@ public class Ship {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierTopSide(Field field) {
+    private void setBarrierTopSide(Field field) {
         for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
         }
@@ -263,10 +257,9 @@ public class Ship {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierBottomSide(Field field) {
+    private void setBarrierBottomSide(Field field) {
         for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
         }
@@ -274,10 +267,9 @@ public class Ship {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        return 0;
     }
 
-    private int setBarrierNoneSide(Field field) {
+    private void setBarrierNoneSide(Field field) {
         for (int i = startYX[1] - 1; i <= endYX[1] + 1; i++) {
             field.getField().get(startYX[0] - 1).get(i).setStatus(-1);
             field.getField().get(endYX[0] + 1).get(i).setStatus(-1);
@@ -286,7 +278,6 @@ public class Ship {
             field.getField().get(i).get(startYX[1] - 1).setStatus(-1);
             field.getField().get(i).get(endYX[1] + 1).setStatus(-1);
         }
-        return 0;
     }
 
 }

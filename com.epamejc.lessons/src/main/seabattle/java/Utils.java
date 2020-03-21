@@ -229,9 +229,8 @@ public class Utils {
         return field.getField().get(coordYX[0]).get(coordYX[1]).isHit();
     }
 
-    public static Field shoot(Field field, Integer[] coordYX) {
+    public static void shoot(Field field, Integer[] coordYX) {
         field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
-        return field;
     }
 
 }

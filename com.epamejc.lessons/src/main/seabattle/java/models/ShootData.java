@@ -35,7 +35,7 @@ public class ShootData {
         shootDown = 0;
     }
 
-    public void initFlags() {
+    private void initFlags() {
         if (START_YX[0] == 0) {
             doNotShootUp = true;
         }

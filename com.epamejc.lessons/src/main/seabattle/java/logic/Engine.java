@@ -84,9 +84,9 @@ public class Engine {
     public boolean checkAllShipsLimit(Field field) {
         final int SHIP_LIMIT = 20;
         int shipsChecksum = field.getShips().stream()
-                .map(ship -> ship.getShipType())
-                .reduce(0, (left, right) -> left + right);
-        if (shipsChecksum == SHIP_LIMIT) {
+                .map(Ship::getShipType)
+                .reduce(0, Integer::sum);
+        if (shipsChecksum >= SHIP_LIMIT) {
             return true;
         }
         return false;
@@ -97,10 +97,10 @@ public class Engine {
         int shipsCount = (int) field.getShips().stream()
                 .filter(ship -> ship.getShipType() == shipType)
                 .count();
-        return shipsCount == SHIP_LIMIT;
+        return shipsCount >= SHIP_LIMIT;
     }
 
-    public Field placeShip(Field field, ArrayList params, boolean isSilient) {
+    public void placeShip(Field field, ArrayList params, boolean isSilient) {
         Integer shipType = (Integer) params.get(0);
         Integer[] startYX = (Integer[]) params.get(1);
         Integer[] endYX = (Integer[]) params.get(2);
@@ -113,7 +113,6 @@ public class Engine {
             }
             field.getShips().remove(lastElement);
         }
-        return field;
     }
 
     private void battlePlayerVsComputer() {
@@ -166,28 +165,29 @@ public class Engine {
     }
 
     private void playerMove(Field field1, Field field2) {
-        manualShoot(field1, field2);
-        if (!checkEndGame()) {
+        boolean alreadyHit = manualShoot(field1, field2);
+        if (!checkEndGame() && !alreadyHit) {
             System.out.println("\nMissed! The move goes to another player...\n");
         }
     }
 
-    private void manualShoot(Field field1, Field field2) {
+    private boolean manualShoot(Field field1, Field field2) {
         boolean isContinueMove = true;
         while (isContinueMove && !checkEndGame()) {
+            isContinueMove = false;
             Integer[] coordYX = scanCoordinates();
             if (field1.getField().get(coordYX[0]).get(coordYX[1]).isHit()) {
                 System.out.println("\nYou already shoot there! The move goes to another player.");
-                break;
+                return true;
             }
             shoot(field1, coordYX);
             printTwoFields(field2, field1);
-            isContinueMove = false;
             if (field1.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == 1 && !checkEndGame()) {
                 isContinueMove = true;
                 System.out.println("\nGot it! Shoot again!");
             }
         }
+        return false;
     }
 
     private void computerMove(Field field1, Field field2) {
@@ -248,7 +248,7 @@ public class Engine {
         field.getShips().stream()
                 .forEach(ship -> ship.checkSunk(field));
         int sunkShipsCount = (int) field.getShips().stream()
-                .filter(ship -> ship.isSunk())
+                .filter(Ship::isSunk)
                 .count();
         return sunkShipsCount;
     }
