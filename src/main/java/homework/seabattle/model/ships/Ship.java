@@ -1,12 +1,14 @@
 package homework.seabattle.model.ships;
 
 import homework.seabattle.model.Coordinate;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@EqualsAndHashCode
 public abstract class Ship {
 
     protected final int length;

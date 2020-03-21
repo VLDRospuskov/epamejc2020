@@ -1,12 +1,14 @@
 package homework.seabattle.model.ships;
 
 import homework.seabattle.model.Coordinate;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static homework.seabattle.config.Config.MAX_LETTER;
 
+@EqualsAndHashCode(callSuper = true)
 public class HorizontalShip extends Ship {
 
     public HorizontalShip(Coordinate startCoordinate, int length) {
