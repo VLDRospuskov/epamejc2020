@@ -6,29 +6,29 @@ import java.util.stream.Stream;
 
 public class Field {
     
-    private List<Ship> ships = new ArrayList<>(10);
-    private Set<Assist> assistSet = new HashSet<>();
-    private List<Shot> shots = new ArrayList<>();
-    private Set<Miss> misses = new HashSet<>();
+    List<Ship> ships = new ArrayList<>(10);
+    Set<Assist> assistSet = new HashSet<>();
+    List<Shot> shots = new ArrayList<>();
+    Set<Miss> misses = new HashSet<>();
     
     public Field() {
     }
-    
-    public Set<Miss> getMisses() {
-        return misses;
-    }
-    
-    public List<Ship> getShips() {
-        return ships;
-    }
-    
-    public Set<Assist> getAssistSet() {
-        return assistSet;
-    }
-    
-    public List<Shot> getShots() {
-        return shots;
-    }
+
+//    public Set<Miss> getMisses() {
+//        return misses;
+//    }
+//
+//    public List<Ship> getShips() {
+//        return ships;
+//    }
+//
+//    public Set<Assist> getAssistSet() {
+//        return assistSet;
+//    }
+//
+//    public List<Shot> getShots() {
+//        return shots;
+//    }
     
     public void addAssistPointsAroundShip(Ship ship) {
         for (Coordinate coordinate :

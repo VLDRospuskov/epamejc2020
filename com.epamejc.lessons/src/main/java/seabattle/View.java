@@ -47,7 +47,7 @@ public class View {
     }
     
     private void updateMissesView(Field field) {
-        for (Miss miss : field.getMisses()) {
+        for (Miss miss : field.misses) {
             textView[miss.getCoordinate()
                          .getY()][miss.getCoordinate()
                                       .getX()] = GameObjectView.MISS.getState();
@@ -57,7 +57,7 @@ public class View {
     
     private void updateShipView(Field field) {
         for (Ship ship :
-                field.getShips()) {
+                field.ships) {
             for (Coordinate coordinate :
                     ship.getShipParts()) {
                 textView[coordinate.getY()][coordinate.getX()] = GameObjectView.UNBROKEN.getState();
@@ -66,7 +66,7 @@ public class View {
     }
     
     private void updateAssistantView(Field field) {
-        for (Assist assist : field.getAssistSet()) {
+        for (Assist assist : field.assistSet) {
             textView[assist.getAssistPoint()
                            .getY()][assist.getAssistPoint()
                                           .getX()] = GameObjectView.IMPOSSIBLE.getState();
@@ -76,7 +76,7 @@ public class View {
     
     private void updateShotsView(Field field) {
         for (Shot shot :
-                field.getShots()) {
+                field.shots) {
             textView[shot.getCoordinate()
                          .getY()][shot.getCoordinate()
                                       .getX()] = GameObjectView.BROKEN.getState();

@@ -70,7 +70,7 @@ public class Player {
     }
     
     public void fillListOfShipsRandomly() {
-        while (myField.getShips()
+        while (myField.ships
                       .size() != 10) {
             myField.fillListOfShipsDependingOnLength(4, 1);
             if (myField.getCountByLength(4) == 1) {
@@ -90,16 +90,18 @@ public class Player {
     }
     
     public int takeAShot(Field field, Coordinate shotCoordinate) {
-        Iterator shipIterator = field.getShips().iterator();
+        Iterator shipIterator = field.ships.iterator();
         int result = 0;
         while (shipIterator.hasNext()) {
             Ship ship = (Ship) shipIterator.next();
             Iterator shipPartsIterator = ship.getShipParts().iterator();
             result = iterateShipParts(shotCoordinate, shipIterator, ship, shipPartsIterator);
         }
-        getOpponentsField().getMisses().add(new Miss(shotCoordinate));
-        getOpponentsFieldData().getMisses().add(new Miss(shotCoordinate));
-        System.out.println("Miss");
+        if (result == 0) {
+            getOpponentsField().misses.add(new Miss(shotCoordinate));
+            getOpponentsFieldData().misses.add(new Miss(shotCoordinate));
+            System.out.println("Miss");
+        }
         return result;
     }
     
@@ -128,11 +130,11 @@ public class Player {
     
     private void shotWhileHit(int fireResult) {
         Coordinate shotCoordinate;
-        while (fireResult != 0 && opponentsFieldData.getShips()
-                                                    .size() > 0 && myField.getShips()
+        while (fireResult != 0 && opponentsFieldData.ships
+                                          .size() > 0 && myField.ships
                                                                           .size() > 0) {
             shotCoordinate = inputWhileNotCorrectCoordinate();
-            opponentsField.getShots()
+            opponentsField.shots
                           .add(new Shot(shotCoordinate));
             fireResult = takeAShot(opponentsFieldData, shotCoordinate);
             System.out.println("My Field");
@@ -159,7 +161,7 @@ public class Player {
         shipPartsIterator.remove();
         opponentsField.addAssistPointsAroundKill(shotCoordinate, ship);
         shipIterator.remove();
-        opponentsFieldData.getShots()
+        opponentsFieldData.shots
                           .add(new Shot(shipCoordinate));
     }
     
@@ -167,8 +169,7 @@ public class Player {
         shipPartsIterator.remove();
         System.out.println("hit");
         opponentsField.addAssistPointsAroundShot(shotCoordinate);
-        opponentsFieldData.getShots()
-                          .add(new Shot(shotCoordinate));
+        opponentsFieldData.shots.add(new Shot(shotCoordinate));
     }
     
     private void setOpponentsField(Field opponentsField) {
@@ -193,7 +194,7 @@ public class Player {
     private void inputShip() {
         Coordinate first;
         Coordinate second;
-        while (myField.getShips()
+        while (myField.shots
                       .size() != 10) {
             myField.printState();
             first = new Coordinate().input();
@@ -202,7 +203,7 @@ public class Player {
                 Ship ship = new Ship(first, second);
                 addCorrectShip(ship);
             } else {
-                System.out.println(myField.getShips());
+                System.out.println(myField.ships);
                 System.out.println("Wrong coordinates");
             }
         }
@@ -210,7 +211,7 @@ public class Player {
     
     private void addCorrectShip(Ship ship) {
         if (myField.checkNoShipCollision(ship) && myField.checkCorrectAmountOfShips(ship)) {
-            myField.getShips()
+            myField.ships
                    .add(ship);
             myField.addAssistPointsAroundShip(ship);
             System.out.println("My Field");

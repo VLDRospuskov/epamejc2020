@@ -1,9 +1,11 @@
 package seabattle;
 
+import static seabattle.ObjectColors.*;
+
 public enum GameObjectView {
-    UNBROKEN("■"),
-    BROKEN("⃝"),
-    MISS("x"),
+    UNBROKEN(ANSI_YELLOW_UNBROKEN.getState() + UNBROKEN_SYMBOL.getState() + ANSI_RESET.getState()),
+    BROKEN(ANSI_RED_BROKEN.getState() + BROKEN_SYMBOL.getState() + ANSI_RESET.getState()),
+    MISS(ANSI_PURPLE_MISS.getState() + MISS_SYMBOL.getState() + ANSI_RESET.getState()),
     IMPOSSIBLE("▪"),
     EMPTY("☐");
     
