@@ -1,4 +1,4 @@
-package Homeworks.HW6.SeaBattle.Ships;
+package Homeworks.SeaBattle.Ships;
 
 /*
 1x 4c

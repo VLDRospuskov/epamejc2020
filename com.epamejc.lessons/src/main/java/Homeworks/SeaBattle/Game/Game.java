@@ -1,8 +1,8 @@
-package Homeworks.HW6.SeaBattle.Game;
+package Homeworks.SeaBattle.Game;
 
 
-import Homeworks.HW6.SeaBattle.Input.Input;
-import Homeworks.HW6.SeaBattle.Player.Player;
+import Homeworks.SeaBattle.Input.Input;
+import Homeworks.SeaBattle.Player.Player;
 
 public class Game {
     boolean gameModeSelected;

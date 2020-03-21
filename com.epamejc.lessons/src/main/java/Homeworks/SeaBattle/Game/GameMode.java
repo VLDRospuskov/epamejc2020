@@ -1,4 +1,4 @@
-package Homeworks.HW6.SeaBattle.Game;
+package Homeworks.SeaBattle.Game;
 
 public enum GameMode {
     PVE("Single player mode"),

@@ -1,4 +1,4 @@
-package Homeworks.HW6.SeaBattle.Player;
+package Homeworks.SeaBattle.Player;
 
 abstract class AbstractPlayer {
 

@@ -1,4 +1,4 @@
-package Homeworks.HW6.SeaBattle.Input;
+package Homeworks.SeaBattle.Input;
 
 import java.util.Scanner;
 

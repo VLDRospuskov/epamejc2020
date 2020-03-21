@@ -1,4 +1,4 @@
-package Homeworks.HW6.SeaBattle.Player;
+package Homeworks.SeaBattle.Player;
 
 public enum PlayerType {
     Person, Bot

@@ -1,7 +1,7 @@
-package Homeworks.HW6.SeaBattle.Player;
+package Homeworks.SeaBattle.Player;
 
-import Homeworks.HW6.SeaBattle.Grid.Grid;
-import Homeworks.HW6.SeaBattle.Input.Input;
+import Homeworks.SeaBattle.Grid.Grid;
+import Homeworks.SeaBattle.Input.Input;
 
 public class Player {
 

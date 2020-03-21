@@ -1,4 +1,4 @@
-package Homeworks.HW6.SeaBattle.Grid;
+package Homeworks.SeaBattle.Grid;
 
 public class Grid {
     // 10x10 + letters and row nums
