@@ -25,8 +25,8 @@ public class Bank {
     }
 
     private void setupAtmsAndUsers() {
-        Runnable createAtmsRunnable = createAtms();
-        Runnable createUsersRunnable = createUsers();
+        Runnable createAtmsRunnable = createAtmsRunnable();
+        Runnable createUsersRunnable = createUsersRunnable();
 
         Thread createAtmsThread = new Thread(createAtmsRunnable);
         Thread createUsersThread = new Thread(createUsersRunnable);
@@ -44,7 +44,7 @@ public class Bank {
         System.out.println("ATMs and Users created.");
     }
 
-    private Runnable createAtms() {
+    private Runnable createAtmsRunnable() {
         return () -> {
             atmList = new ArrayList<>();
             for (int i = 0; i < atmsCount; i++) {
@@ -53,7 +53,7 @@ public class Bank {
         };
     }
 
-    private Runnable createUsers() {
+    private Runnable createUsersRunnable() {
         return () -> {
             userList = new ArrayList<>();
             for (int i = 0; i < usersCount; i++) {
