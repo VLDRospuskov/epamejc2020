@@ -2,7 +2,7 @@ package seabattle;
 
 public enum GameObjectView {
     UNBROKEN("■"),
-    BROKEN("♯"),
+    BROKEN("⃝"),
     MISS("x"),
     IMPOSSIBLE("▪"),
     EMPTY("☐");
@@ -17,7 +17,4 @@ public enum GameObjectView {
         return state;
     }
     
-    public void setState(String state) {
-        this.state = state;
-    }
 }

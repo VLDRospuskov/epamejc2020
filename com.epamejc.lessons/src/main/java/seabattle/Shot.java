@@ -2,7 +2,7 @@ package seabattle;
 
 public class Shot {
     
-    Coordinate coordinate;
+    private Coordinate coordinate;
     
     public Shot(Coordinate coordinate) {
         this.coordinate = coordinate;
@@ -10,10 +10,6 @@ public class Shot {
     
     public Coordinate getCoordinate() {
         return coordinate;
-    }
-    
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
     }
     
     @Override public int hashCode() {

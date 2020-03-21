@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Coordinate {
     
-    public final static Map<String, Integer> lettersToNumbers = createMap();
+    private final static Map<String, Integer> lettersToNumbers = createMap();
     private int x;
     private int y;
     

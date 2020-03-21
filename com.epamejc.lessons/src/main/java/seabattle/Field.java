@@ -6,16 +6,10 @@ import java.util.stream.Stream;
 
 public class Field {
     
-    List<Ship> ships = new ArrayList<>(10);
-    Set<Assist> assistSet = new HashSet<>();
-    List<Shot> shots = new ArrayList<>();
-    Set<Miss> misses = new HashSet<>();
-    
-    public Field(List<Ship> ships, Set<Assist> assistSet, List<Shot> shot) {
-        this.ships = ships;
-        this.assistSet = assistSet;
-        this.shots = shot;
-    }
+    private List<Ship> ships = new ArrayList<>(10);
+    private Set<Assist> assistSet = new HashSet<>();
+    private List<Shot> shots = new ArrayList<>();
+    private Set<Miss> misses = new HashSet<>();
     
     public Field() {
     }
@@ -24,32 +18,16 @@ public class Field {
         return misses;
     }
     
-    public void setMisses(Set<Miss> misses) {
-        this.misses = misses;
-    }
-    
     public List<Ship> getShips() {
         return ships;
-    }
-    
-    public void setShips(List<Ship> ships) {
-        this.ships = ships;
     }
     
     public Set<Assist> getAssistSet() {
         return assistSet;
     }
     
-    public void setAssistSet(Set<Assist> assistSet) {
-        this.assistSet = assistSet;
-    }
-    
     public List<Shot> getShots() {
         return shots;
-    }
-    
-    public void setShots(List<Shot> shots) {
-        this.shots = shots;
     }
     
     public void addAssistPointsAroundShip(Ship ship) {
@@ -90,7 +68,7 @@ public class Field {
         }
     }
     
-    public void addAssisstPointsAroundShot(Coordinate shotCoordinate) {
+    public void addAssistPointsAroundShot(Coordinate shotCoordinate) {
         addAssistPoint(shotCoordinate.getX() - 1, shotCoordinate.getY() - 1);
         addAssistPoint(shotCoordinate.getX() + 1, shotCoordinate.getY() - 1);
         addAssistPoint(shotCoordinate.getX() - 1, shotCoordinate.getY() + 1);
@@ -98,49 +76,19 @@ public class Field {
     }
     
     public void addAssistPointsAroundKill(Coordinate shotCoordinate, Ship ship) {
-        addAssisstPointsAroundShot(shotCoordinate);
+        addAssistPointsAroundShot(shotCoordinate);
         Coordinate firstCoordinate = ship.getFirstCoordinate();
         Coordinate secondCoordinate = ship.getSecondCoordinate();
         switch (ship.getDirection()) {
             case 0:
-                if (firstCoordinate.getX() > 0) {
-                    assistSet.add(new Assist(new Coordinate(firstCoordinate
-                                                                    .getX() - 1, firstCoordinate.getY())));
-                }
-                if (secondCoordinate.getX() < 9) {
-                    assistSet.add(new Assist(new Coordinate(secondCoordinate
-                                                                    .getX() + 1, secondCoordinate.getY())));
-                }
-                
-                if (firstCoordinate.getY() > 0) {
-                    assistSet.add(new Assist(new Coordinate(firstCoordinate
-                                                                    .getX(), firstCoordinate.getY() - 1)));
-                }
-                if (secondCoordinate.getY() < 9) {
-                    assistSet.add(new Assist(new Coordinate(secondCoordinate
-                                                                    .getX(), secondCoordinate.getY() + 1)));
-                }
-                
+                addAssistPointOnXAxis(firstCoordinate, secondCoordinate);
+                addAssistPointOnYAxis(firstCoordinate, secondCoordinate);
                 break;
             case 1:
-                if (firstCoordinate.getX() > 0) {
-                    assistSet.add(new Assist(new Coordinate(firstCoordinate
-                                                                    .getX() - 1, firstCoordinate.getY())));
-                }
-                if (secondCoordinate.getX() < 9) {
-                    assistSet.add(new Assist(new Coordinate(secondCoordinate
-                                                                    .getX() + 1, secondCoordinate.getY())));
-                }
+                addAssistPointOnXAxis(firstCoordinate, secondCoordinate);
                 break;
             case 2:
-                if (firstCoordinate.getY() > 0) {
-                    assistSet.add(new Assist(new Coordinate(firstCoordinate
-                                                                    .getX(), firstCoordinate.getY() - 1)));
-                }
-                if (secondCoordinate.getY() < 9) {
-                    assistSet.add(new Assist(new Coordinate(secondCoordinate
-                                                                    .getX(), secondCoordinate.getY() + 1)));
-                }
+                addAssistPointOnYAxis(firstCoordinate, secondCoordinate);
                 break;
         }
         
@@ -151,8 +99,9 @@ public class Field {
                                                    .map(Shot::getCoordinate);
         Stream<Coordinate> assistCoordinates = assistSet.stream()
                                                         .map(Assist::getAssistPoint);
-        Stream<Coordinate> missesCoordinates = misses.stream()
-                                                     .map(Miss::getCoordinate);
+        Stream<Coordinate> missesCoordinates;
+        missesCoordinates = misses.stream()
+                                  .map(Miss::getCoordinate);
         Stream<Coordinate> concat = Stream.concat(shotsCoordinates, assistCoordinates);
         Stream<Coordinate> concat2 = Stream.concat(concat, missesCoordinates);
         List<Coordinate> coordinateList = concat2.collect(Collectors.toList());
@@ -221,6 +170,28 @@ public class Field {
                     .map(Ship::getLength)
                     .filter(integer -> integer == length)
                     .count();
+    }
+    
+    private void addAssistPointOnYAxis(Coordinate firstCoordinate, Coordinate secondCoordinate) {
+        if (firstCoordinate.getY() > 0) {
+            assistSet.add(new Assist(new Coordinate(firstCoordinate
+                                                            .getX(), firstCoordinate.getY() - 1)));
+        }
+        if (secondCoordinate.getY() < 9) {
+            assistSet.add(new Assist(new Coordinate(secondCoordinate
+                                                            .getX(), secondCoordinate.getY() + 1)));
+        }
+    }
+    
+    private void addAssistPointOnXAxis(Coordinate firstCoordinate, Coordinate secondCoordinate) {
+        if (firstCoordinate.getX() > 0) {
+            assistSet.add(new Assist(new Coordinate(firstCoordinate
+                                                            .getX() - 1, firstCoordinate.getY())));
+        }
+        if (secondCoordinate.getX() < 9) {
+            assistSet.add(new Assist(new Coordinate(secondCoordinate
+                                                            .getX() + 1, secondCoordinate.getY())));
+        }
     }
     
     private void addAssistPoint(int i, int i2) {

@@ -15,7 +15,6 @@ public class Ship {
         if (firstCoordinate.getX() > secondCoordinate.getX() || firstCoordinate.getY() > secondCoordinate.getY()) {
             this.firstCoordinate = secondCoordinate;
             this.secondCoordinate = firstCoordinate;
-            //ship = new Ship(second, first);
         } else {
             this.firstCoordinate = firstCoordinate;
             this.secondCoordinate = secondCoordinate;
@@ -29,24 +28,12 @@ public class Ship {
         return firstCoordinate;
     }
     
-    public void setFirstCoordinate(Coordinate firstCoordinate) {
-        this.firstCoordinate = firstCoordinate;
-    }
-    
     public Coordinate getSecondCoordinate() {
         return secondCoordinate;
     }
     
-    public void setSecondCoordinate(Coordinate secondCoordinate) {
-        this.secondCoordinate = secondCoordinate;
-    }
-    
     public List<Coordinate> getShipParts() {
         return shipParts;
-    }
-    
-    public void setShipParts(List<Coordinate> shipParts) {
-        this.shipParts = shipParts;
     }
     
     public int getLength() {
@@ -61,17 +48,13 @@ public class Ship {
         return this.direction;
     }
     
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
-    
-    public int calculateLength() {
+    private int calculateLength() {
         return (firstCoordinate.getX() == secondCoordinate.getX() ?
                 Math.abs(firstCoordinate.getY() - secondCoordinate.getY()) :
                 Math.abs(firstCoordinate.getX() - secondCoordinate.getX())) + 1;
     }
     
-    public int calculateDirection() {
+    private int calculateDirection() {
         if (firstCoordinate.getY() - secondCoordinate.getY() < 0) {
             return 2;
         }

@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Bot extends Player {
     
-    List<Coordinate> possibleVariants = new ArrayList<>();
-    Shot previousHit;
+    private List<Coordinate> possibleVariants = new ArrayList<>();
+    private Shot previousHit;
     
     public Bot() {
     }
@@ -19,119 +19,137 @@ public class Bot extends Player {
     
     public void turn(String s) {
         skip40rows();
-//        System.out.println(s + " Input any symbol to continue");
-//        InputReader.nextString();
         shotMethod();
     }
     
     @Override public void shotMethod() {
         int fireResult = -1;
-        Coordinate shotCoordinate;
         System.out.println("My field");
-        view.printField(myField);
+        getView().printField(getMyField());
         System.out.println("Opponents field");
-        view.printField(opponentsField);
-        while (fireResult != 0 && opponentsFieldData.getShips()
-                                                    .size() > 0 && myField.getShips()
-                                                                          .size() > 0) {
-//            do {
-            if (possibleVariants.size() == 0) {
-                do {
-                    //shotCoordinate = new Coordinate(4,4);
-                    shotCoordinate = Coordinate.generateRandomCoordinate();
-                } while (!Coordinate.isCoordinatesCorrect(shotCoordinate) || opponentsField.checkShotsCollision(
-                        shotCoordinate));
-            } else {
-                shotCoordinate = possibleVariants.get(new Random().nextInt(possibleVariants.size()));
-            }
-            //System.out.println("Input correct shot coordinate and don't shoot twice at same point");
-
-//            } while (!Coordinate.isCoordinatesCorrect(shotCoordinate) || opponentsField.checkShotsCollision(
-//                    shotCoordinate));
-            
+        getView().printField(getOpponentsField());
+        shotWhileHit(fireResult);
+    }
+    
+    @Override public int takeAShot(Field field, Coordinate shotCoordinate) {
+        Iterator shipIterator = field.getShips().iterator();
+        int result = 0;
+        result = iterateShips(shotCoordinate, shipIterator, result);
+        getOpponentsField().getMisses().add(new Miss(shotCoordinate));
+        getOpponentsFieldData().getMisses().add(new Miss(shotCoordinate));
+        System.out.println("Miss");
+        return result;
+    }
+    
+    private void shotWhileHit(int fireResult) {
+        Coordinate shotCoordinate;
+        while (fireResult != 0 && getOpponentsFieldData().getShips().size() > 0 && getMyField().getShips().size() > 0) {
+            shotCoordinate = getShotCoordinate();
             Shot shot = new Shot(shotCoordinate);
-            opponentsField.getShots()
-                          .add(shot);
+            getOpponentsField().getShots().add(shot);
             possibleVariants.remove(shotCoordinate);
-            fireResult = takeAShot(opponentsFieldData, shotCoordinate);
+            fireResult = takeAShot(getOpponentsFieldData(), shotCoordinate);
             if (fireResult > 0) {
                 addPossibleVariantsOfShots(shotCoordinate);
                 previousHit = shot;
             }
             System.out.println("My Field");
-            view.printField(myField);
+            getView().printField(getMyField());
             System.out.println("My view of opponents field");
-            view.printField(opponentsField);
-            //System.out.println("Opponents field");
-            //view.printField(opponentsFieldData);
+            getView().printField(getOpponentsField());
         }
     }
     
-    @Override public int takeAShot(Field field, Coordinate shotCoordinate) {
-        Iterator shipIterator = field.getShips()
-                                     .iterator();
+    private Coordinate getShotCoordinate() {
+        Coordinate shotCoordinate;
+        if (possibleVariants.size() == 0) {
+            do {
+                shotCoordinate = Coordinate.generateRandomCoordinate();
+            } while (!Coordinate.isCoordinatesCorrect(shotCoordinate) || getOpponentsField().checkShotsCollision(
+                    shotCoordinate));
+        } else {
+            shotCoordinate = possibleVariants.get(new Random().nextInt(possibleVariants.size()));
+        }
+        return shotCoordinate;
+    }
+    
+    private int iterateShips(Coordinate shotCoordinate, Iterator shipIterator, int result) {
         while (shipIterator.hasNext()) {
             Ship ship = (Ship) shipIterator.next();
-            Iterator shipPartsIterator = ship.getShipParts()
-                                             .iterator();
-            while (shipPartsIterator.hasNext()) {
-                Coordinate shipCoordinate = (Coordinate) shipPartsIterator.next();
-                if (shotCoordinate.equals(shipCoordinate)) {
-                    if (ship.getShipParts()
-                            .size() > 1) {
-                        shipPartsIterator.remove();
-                        System.out.println("hit");
-                        opponentsField.addAssisstPointsAroundShot(shotCoordinate);
-                        Shot shot = new Shot(shotCoordinate);
-                        opponentsFieldData.shots.add(shot);
-                        if (possibleVariants.size() > 1 && isNearPrevious(shot)) {
-                            Ship hypotheticalShip = new Ship(shotCoordinate, previousHit.coordinate);
-                            
-                            switch (hypotheticalShip.getDirection()) {
-                                case 1:
-                                    removePossibleVerticalPoints();
-                                    break;
-                                case 2:
-                                    removePossibleHorizontalPoints();
-                                    break;
-                            }
-                        }
-                        return 1;
-                    } else {
-                        System.out.println("kill");
-                        shipPartsIterator.remove();
-                        opponentsField.addAssistPointsAroundKill(shotCoordinate, ship);
-                        shipIterator.remove();
-                        opponentsFieldData.getShots()
-                                          .add(new Shot(shipCoordinate));
-                        possibleVariants = new ArrayList<>();
-                        return 2;
-                    }
-                }
+            Iterator shipPartsIterator = ship.getShipParts().iterator();
+            result = iterateShipParts(shotCoordinate, shipIterator, ship, shipPartsIterator);
+        }
+        return result;
+    }
+    
+    private int iterateShipParts(
+            Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator) {
+        while (shipPartsIterator.hasNext()) {
+            Coordinate shipCoordinate = (Coordinate) shipPartsIterator.next();
+            if (shotCoordinate.equals(shipCoordinate)) {
+                return hitOrKill(shotCoordinate, shipIterator, ship, shipPartsIterator, shipCoordinate);
             }
         }
-        opponentsField.getMisses()
-                      .add(new Miss(shotCoordinate));
-        opponentsFieldData.getMisses()
-                          .add(new Miss(shotCoordinate));
-        System.out.println("Miss");
         return 0;
     }
     
-    public List<Coordinate> getPossibleVariants() {
-        return possibleVariants;
+    private int hitOrKill(
+            Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator,
+            Coordinate shipCoordinate) {
+        if (ship.getShipParts().size() > 1) {
+            hit(shotCoordinate, shipPartsIterator);
+            return 1;
+        } else {
+            kill(shotCoordinate, shipIterator, ship, shipPartsIterator, shipCoordinate);
+            return 2;
+        }
     }
     
-    public void setPossibleVariants(List<Coordinate> possibleVariants) {
-        this.possibleVariants = possibleVariants;
+    private void kill(
+            Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator,
+            Coordinate shipCoordinate) {
+        System.out.println("kill");
+        shipPartsIterator.remove();
+        getOpponentsField().addAssistPointsAroundKill(shotCoordinate, ship);
+        shipIterator.remove();
+        getOpponentsFieldData().getShots()
+                               .add(new Shot(shipCoordinate));
+        possibleVariants = new ArrayList<>();
+    }
+    
+    private void hit(Coordinate shotCoordinate, Iterator shipPartsIterator) {
+        shipPartsIterator.remove();
+        System.out.println("hit");
+        getOpponentsField().addAssistPointsAroundShot(shotCoordinate);
+        Shot shot = new Shot(shotCoordinate);
+        getOpponentsFieldData().getShots().add(shot);
+        removeRedundantPossibleVariants(shotCoordinate, shot);
+    }
+    
+    private void removeRedundantPossibleVariants(Coordinate shotCoordinate, Shot shot) {
+        if (possibleVariants.size() > 1 && isNearPrevious(shot)) {
+            Ship hypotheticalShip = new Ship(shotCoordinate, previousHit.getCoordinate());
+            switch (hypotheticalShip.getDirection()) {
+                case 1:
+                    removePossibleVerticalPoints();
+                    break;
+                case 2:
+                    removePossibleHorizontalPoints();
+                    break;
+            }
+        }
+    }
+    
+    private List<Coordinate> getPossibleVariants() {
+        return possibleVariants;
     }
     
     private void removePossibleVerticalPoints() {
         Iterator possibleVariantsIterator = getPossibleVariants().iterator();
         while (possibleVariantsIterator.hasNext()) {
             Coordinate coordinate = (Coordinate) possibleVariantsIterator.next();
-            if (coordinate.getY() > previousHit.coordinate.getY() ||
-                coordinate.getY() < previousHit.coordinate.getY()) {
+            if (coordinate.getY() > previousHit.getCoordinate().getY() ||
+                coordinate.getY() < previousHit.getCoordinate().getY()) {
                 possibleVariantsIterator.remove();
             }
         }
@@ -141,37 +159,29 @@ public class Bot extends Player {
         Iterator possibleVariantsIterator = getPossibleVariants().iterator();
         while (possibleVariantsIterator.hasNext()) {
             Coordinate coordinate = (Coordinate) possibleVariantsIterator.next();
-            if (coordinate.getX() > previousHit.coordinate.getX() ||
-                coordinate.getX() < previousHit.coordinate.getX()) {
+            if (coordinate.getX() > previousHit.getCoordinate().getX() ||
+                coordinate.getX() < previousHit.getCoordinate().getX()) {
                 possibleVariantsIterator.remove();
             }
         }
     }
     
     private boolean isNearPrevious(Shot shot) {
-        return (Math.abs(previousHit.coordinate.getX() - shot.coordinate.getX()) < 2 && Math.abs(
-                previousHit.coordinate.getY() - shot.coordinate.getY()) < 2);
+        return (Math.abs(previousHit.getCoordinate().getX() - shot.getCoordinate().getX()) < 2 && Math.abs(
+                previousHit.getCoordinate().getY() - shot.getCoordinate().getY()) < 2);
     }
     
     private void addPossibleVariantsOfShots(Coordinate shotCoordinate) {
+        addPossibleVariants(shotCoordinate, 0, -1);
+        addPossibleVariants(shotCoordinate, 1, 0);
+        addPossibleVariants(shotCoordinate, 0, 1);
+        addPossibleVariants(shotCoordinate, -1, 0);
+    }
+    
+    private void addPossibleVariants(Coordinate shotCoordinate, int addToX, int addToY) {
         Coordinate possibleCoordinate;
-        possibleCoordinate = new Coordinate(shotCoordinate.getX(), shotCoordinate.getY() - 1);
-        if (Coordinate.isCoordinatesCorrect(possibleCoordinate) && !opponentsField.checkShotsCollision(
-                possibleCoordinate)) {
-            possibleVariants.add(possibleCoordinate);
-        }
-        possibleCoordinate = new Coordinate(shotCoordinate.getX() + 1, shotCoordinate.getY());
-        if (Coordinate.isCoordinatesCorrect(possibleCoordinate) && !opponentsField.checkShotsCollision(
-                possibleCoordinate)) {
-            possibleVariants.add(possibleCoordinate);
-        }
-        possibleCoordinate = new Coordinate(shotCoordinate.getX(), shotCoordinate.getY() + 1);
-        if (Coordinate.isCoordinatesCorrect(possibleCoordinate) && !opponentsField.checkShotsCollision(
-                possibleCoordinate)) {
-            possibleVariants.add(possibleCoordinate);
-        }
-        possibleCoordinate = new Coordinate(shotCoordinate.getX() - 1, shotCoordinate.getY());
-        if (Coordinate.isCoordinatesCorrect(possibleCoordinate) && !opponentsField.checkShotsCollision(
+        possibleCoordinate = new Coordinate(shotCoordinate.getX() + addToX, shotCoordinate.getY() + addToY);
+        if (Coordinate.isCoordinatesCorrect(possibleCoordinate) && !getOpponentsField().checkShotsCollision(
                 possibleCoordinate)) {
             possibleVariants.add(possibleCoordinate);
         }

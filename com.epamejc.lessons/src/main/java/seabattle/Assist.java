@@ -2,7 +2,7 @@ package seabattle;
 
 public class Assist {
     
-    Coordinate assistPoint;
+    private Coordinate assistPoint;
     
     public Assist(Coordinate assistPoint) {
         this.assistPoint = assistPoint;
@@ -10,10 +10,6 @@ public class Assist {
     
     public Coordinate getAssistPoint() {
         return assistPoint;
-    }
-    
-    public void setAssistPoint(Coordinate assistPoint) {
-        this.assistPoint = assistPoint;
     }
     
     @Override public int hashCode() {
