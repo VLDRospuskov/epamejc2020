@@ -48,7 +48,7 @@ public class ThreadATMOperations extends Thread {
     }
 
     private void performAtmService(ATM atm) {
-        double amount = 500.00;
+        double amount = 1000.00;
         double maxBalance = 2500.00;
         double minBalance = 750.00;
         if (atm.getBalance() > maxBalance) {

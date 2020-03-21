@@ -18,7 +18,6 @@ public class ATM {
     private final String bottom2 = " balance: ";
     private final String bottom3 = " =========";
 
-
     public void withdraw(User user, ATM atm, double amount) {
         synchronized (bank) {
             if (amount < user.getBalance() && amount < atm.getBalance()) {
