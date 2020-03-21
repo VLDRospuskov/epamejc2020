@@ -4,6 +4,7 @@ import homeworks.InputReader;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Coordinate {
     
@@ -35,14 +36,20 @@ public class Coordinate {
         return map;
     }
     
-    public static boolean checkCoordinates(Coordinate first, Coordinate second) {
+    public static boolean isCoordinatesCorrect(Coordinate first, Coordinate second) {
         return first.getX() >= 0 && first.getX() < 10 && first.getY() >= 0 && first.getY() < 10 &&
                second.getX() >= 0 && second.getX() < 10 && second.getY() >= 0 && second.getY() < 10 &&
                (first.getX() == second.getX() || first.getY() == second.getY()) &&
                (Math.abs(first.getX() - second.getX()) <= 3 && Math.abs(first.getY() - second.getY()) <= 3);
     }
     
-    public static boolean checkCoordinates(Coordinate coordinate) {
+    public static Coordinate generateRandomCoordinate() {
+        int firstX = new Random().nextInt(10);
+        int firstY = new Random().nextInt(10);
+        return new Coordinate(firstX, firstY);
+    }
+    
+    public static boolean isCoordinatesCorrect(Coordinate coordinate) {
         return (coordinate.getX() >= 0 && coordinate.getX() < 10 && coordinate.getY() >= 0 && coordinate.getY() < 10);
     }
     

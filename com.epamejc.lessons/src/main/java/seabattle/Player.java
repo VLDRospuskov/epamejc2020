@@ -10,13 +10,13 @@ public class Player {
     Field opponentsFieldData;
     Field opponentsField;
     View view;
-    boolean fireState;
+    //boolean fireState;
     
     public Player() {
         this.myField = new Field();
         this.view = new View();
         this.opponentsField = new Field();
-        fireState = false;
+        //fireState = false;
         //this.shots = new ArrayList();
     }
     
@@ -32,7 +32,13 @@ public class Player {
         this.opponentsFieldData = field;
     }
     
-    public void selectFieldFillStrategy() {
+    static void skip40rows() {
+        for (int i = 0; i < 40; i++) {
+            System.out.println('.');
+        }
+    }
+    
+    public void fieldFillStrategy() {
         System.out.println("Input \'1\' for manual ship placement or Any other key for random generation");
         if ("1".equals(InputReader.nextString()
                                   .toLowerCase())) {
@@ -40,6 +46,36 @@ public class Player {
         } else {
             fillListOfShipsRandomly();
         }
+    }
+    
+    public void fillCertainField() {
+        //1
+        createShipFromTemplate(1, 1, 1, 4);
+        //2
+        createShipFromTemplate(3, 1, 5, 1);
+        //3
+        createShipFromTemplate(8, 1, 8, 1);
+        //4
+        createShipFromTemplate(9, 3, 9, 3);
+        //5
+        createShipFromTemplate(4, 4, 4, 4);
+        //6
+        createShipFromTemplate(9, 7, 9, 9);
+        //7
+        createShipFromTemplate(1, 6, 1, 6);
+        //8
+        createShipFromTemplate(0, 8, 1, 8);
+        //9
+        createShipFromTemplate(3, 7, 3, 8);
+        //10
+        createShipFromTemplate(7, 8, 7, 9);
+    }
+    
+    public void turn(String s) {
+        skip40rows();
+        System.out.println(s + " Input any symbol to continue");
+        InputReader.nextString();
+        shotMethod();
     }
     
     public void fillListOfShipsManually() {
@@ -52,11 +88,11 @@ public class Player {
             myField.printState();
             first = new Coordinate().input();
             second = new Coordinate().input();
-            if (Coordinate.checkCoordinates(first, second)) {
+            if (Coordinate.isCoordinatesCorrect(first, second)) {
                 Ship ship = new Ship(first, second);
                 if (myField.checkNoShipCollision(ship) && myField.checkCorrectAmountOfShips(ship)) {
                     myField.ships.add(ship);
-                    myField.addPointsAroundShip(ship);
+                    myField.addAssistPointsAroundShip(ship);
                     //view.updateFieldView(myField);
                     System.out.println("My Field");
                     view.printField(myField);
@@ -74,8 +110,34 @@ public class Player {
         view.printField(myField);
     }
     
+    public void shotMethod() {
+        int fireResult = -1;
+        Coordinate shotCoordinate;
+        System.out.println("My field");
+        view.printField(myField);
+        System.out.println("Opponents field");
+        view.printField(opponentsField);
+        while (fireResult != 0 && opponentsFieldData.getShips()
+                                                    .size() > 0 && myField.getShips()
+                                                                          .size() > 0) {
+            do {
+                System.out.println("Input correct shot coordinate and don't shoot twice at same point");
+                shotCoordinate = new Coordinate().input();
+            } while (!Coordinate.isCoordinatesCorrect(shotCoordinate) || opponentsField.checkShotsCollision(
+                    shotCoordinate));
+            opponentsField.getShots()
+                          .add(new Shot(shotCoordinate));
+            fireResult = takeAShot(opponentsFieldData, shotCoordinate);
+            System.out.println("My Field");
+            view.printField(myField);
+            System.out.println("My view of opponents field");
+            view.printField(opponentsField);
+            //System.out.println("Opponents field");
+            //view.printField(opponentsFieldData);
+        }
+    }
+    
     public void fillListOfShipsRandomly() {
-        int state = 0;
         while (myField.getShips()
                       .size() != 10) {
             myField.fillListOfShipsDependingOnLength(4, 1);
@@ -95,33 +157,6 @@ public class Player {
         view.printField(myField);
     }
     
-    public void shotMethod() {
-        int fireResult = -1;
-        Coordinate shotCoordinate;
-        System.out.println("My field");
-        view.printField(myField);
-        System.out.println("Opponents field");
-        view.printField(opponentsField);
-        while (fireResult != 0 && opponentsFieldData.getShips()
-                                                    .size() > 0 && myField.getShips()
-                                                                          .size() > 0) {
-            do {
-                System.out.println("Input correct shot coordinate and don't shoot twice at same point");
-                shotCoordinate = new Coordinate().input();
-            } while (!Coordinate.checkCoordinates(shotCoordinate) || opponentsField.checkShotsCollision(
-                    shotCoordinate));
-            opponentsField.getShots()
-                          .add(new Shot(shotCoordinate));
-            fireResult = takeAShot(opponentsFieldData, shotCoordinate);
-            System.out.println("My Field");
-            view.printField(myField);
-            System.out.println("My view of opponents field");
-            view.printField(opponentsField);
-            //System.out.println("Opponents field");
-            //view.printField(opponentsFieldData);
-        }
-    }
-    
     public int takeAShot(Field field, Coordinate shotCoordinate) {
         Iterator shipIterator = field.getShips()
                                      .iterator();
@@ -136,13 +171,13 @@ public class Player {
                             .size() > 1) {
                         shipPartsIterator.remove();
                         System.out.println("hit");
-                        opponentsField.addPointsAroundShot(shotCoordinate);
+                        opponentsField.addAssisstPointsAroundShot(shotCoordinate);
                         opponentsFieldData.shots.add(new Shot(shotCoordinate));
                         return 1;
                     } else {
                         System.out.println("kill");
                         shipPartsIterator.remove();
-                        opponentsField.addPointsAroundKill(shotCoordinate, ship);
+                        opponentsField.addAssistPointsAroundKill(shotCoordinate, ship);
                         shipIterator.remove();
                         opponentsFieldData.getShots()
                                           .add(new Shot(shipCoordinate));
@@ -157,6 +192,12 @@ public class Player {
                           .add(new Miss(shotCoordinate));
         System.out.println("Miss");
         return 0;
+    }
+    
+    private void createShipFromTemplate(int x1, int y1, int x2, int y2) {
+        Ship ship = new Ship(new Coordinate(x1, y1), new Coordinate(x2, y2));
+        myField.ships.add(ship);
+        myField.addAssistPointsAroundShip(ship);
     }
     
 }

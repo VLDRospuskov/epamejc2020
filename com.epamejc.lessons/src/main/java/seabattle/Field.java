@@ -8,10 +8,10 @@ public class Field {
     
     List<Ship> ships = new ArrayList<>(10);
     Set<Assist> assistSet = new HashSet<>();
-    Set<Shot> shots = new HashSet<>();
+    List<Shot> shots = new ArrayList<>();
     Set<Miss> misses = new HashSet<>();
     
-    public Field(List<Ship> ships, Set<Assist> assistSet, Set<Shot> shot) {
+    public Field(List<Ship> ships, Set<Assist> assistSet, List<Shot> shot) {
         this.ships = ships;
         this.assistSet = assistSet;
         this.shots = shot;
@@ -44,15 +44,15 @@ public class Field {
         this.assistSet = assistSet;
     }
     
-    public Set<Shot> getShots() {
+    public List<Shot> getShots() {
         return shots;
     }
     
-    public void setShots(Set<Shot> shots) {
+    public void setShots(List<Shot> shots) {
         this.shots = shots;
     }
     
-    public void addPointsAroundShip(Ship ship) {
+    public void addAssistPointsAroundShip(Ship ship) {
         for (Coordinate coordinate :
                 ship.getShipParts()) {
             if (coordinate.getX() > 0 && coordinate.getY() > 0) {
@@ -90,15 +90,15 @@ public class Field {
         }
     }
     
-    public void addPointsAroundShot(Coordinate shotCoordinate) {
+    public void addAssisstPointsAroundShot(Coordinate shotCoordinate) {
         addAssistPoint(shotCoordinate.getX() - 1, shotCoordinate.getY() - 1);
         addAssistPoint(shotCoordinate.getX() + 1, shotCoordinate.getY() - 1);
         addAssistPoint(shotCoordinate.getX() - 1, shotCoordinate.getY() + 1);
         addAssistPoint(shotCoordinate.getX() + 1, shotCoordinate.getY() + 1);
     }
     
-    public void addPointsAroundKill(Coordinate shotCoordinate, Ship ship) {
-        addPointsAroundShot(shotCoordinate);
+    public void addAssistPointsAroundKill(Coordinate shotCoordinate, Ship ship) {
+        addAssisstPointsAroundShot(shotCoordinate);
         Coordinate firstCoordinate = ship.getFirstCoordinate();
         Coordinate secondCoordinate = ship.getSecondCoordinate();
         switch (ship.getDirection()) {
@@ -200,9 +200,9 @@ public class Field {
         int state;
         int firstX = new Random().nextInt(10);
         int firstY = new Random().nextInt(10);
+        Coordinate firstCoordinate = new Coordinate(firstX, firstY);
         if (getCountByLength(length) < requiredAmountOfLength) {
             state = length - 1;
-            Coordinate firstCoordinate = new Coordinate(firstX, firstY);
             List<Coordinate> possibleVariants = new ArrayList<>();
             addPossibleVariantsToList(firstX, firstY, firstCoordinate, possibleVariants, 0, -state);
             addPossibleVariantsToList(firstX, firstY, firstCoordinate, possibleVariants, state, 0);
@@ -211,7 +211,7 @@ public class Field {
             if (possibleVariants.size() > 0) {
                 Ship ship = selectRandomShip(firstCoordinate, possibleVariants);
                 ships.add(ship);
-                addPointsAroundShip(ship);
+                addAssistPointsAroundShip(ship);
             }
         }
     }
@@ -225,7 +225,7 @@ public class Field {
     
     private void addAssistPoint(int i, int i2) {
         Coordinate coordinate1 = new Coordinate(i, i2);
-        if (Coordinate.checkCoordinates(coordinate1)) {
+        if (Coordinate.isCoordinatesCorrect(coordinate1)) {
             Assist assist1 = new Assist(coordinate1);
             assistSet.add(assist1);
         }
@@ -242,7 +242,7 @@ public class Field {
             int addToYState) {
         Coordinate secondCoordinate;
         secondCoordinate = new Coordinate(firstX + addToXState, firstY + addToYState);
-        if (Coordinate.checkCoordinates(firstCoordinate, secondCoordinate)) {
+        if (Coordinate.isCoordinatesCorrect(firstCoordinate, secondCoordinate)) {
             Ship ship = new Ship(firstCoordinate, secondCoordinate);
             if (checkNoShipCollision(ship) && checkCorrectAmountOfShips(ship)) {
                 possibleVariants.add(secondCoordinate);
