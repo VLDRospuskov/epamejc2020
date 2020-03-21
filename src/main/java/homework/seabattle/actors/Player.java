@@ -41,6 +41,10 @@ abstract public class Player {
         return shipsField;
     }
 
+    public TacticalSituation getTacticalSituation() {
+        return situation;
+    }
+
     public abstract void createName();
 
     abstract protected void addShip(int length);
