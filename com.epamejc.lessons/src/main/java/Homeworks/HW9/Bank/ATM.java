@@ -1,7 +1,9 @@
 package Homeworks.HW9.Bank;
 
 import lombok.SneakyThrows;
+import lombok.ToString;
 
+@ToString
 public class ATM {
 
     private final Object atmLock = new Object();
@@ -12,13 +14,10 @@ public class ATM {
 
     @SneakyThrows
     public ATM(int id, int balance) {
-        synchronized (atmLock) {
-            //System.out.print("Creating new ATM... ");
-            Thread.sleep(atmOperationTime);
-            this.id = id;
-            this.balance = balance;
-            System.out.println("Created new ATM with id " + id + " and balance " + balance);
-        }
+        Thread.sleep(atmOperationTime);
+        this.id = id;
+        this.balance = balance;
+        System.out.println("Created new ATM with id " + id + " and balance " + balance);
     }
 
     public int deposit(int amount) {

@@ -1,7 +1,6 @@
 package Homeworks.HW9.Bank;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -40,6 +39,7 @@ public class Bank {
         }
         System.out.println("ATMs and Users created.");
 
+        /*
         int atm = 1;
         int user = 1;
         int amount = 1000;
@@ -49,14 +49,15 @@ public class Bank {
 
         try {
             if (atmList.get(atm).withdraw(amount) == userList.get(user).withdraw(amount)) {
-                System.out.print(""); // aa
-                System.out.println("All good!"); // asdasd
+                System.out.print("");
+                System.out.println("All good!");
                 System.out.println("ATM id: " + atmList.get(atm).id + ", balance: " + atmList.get(atm).balance);
                 System.out.println("User id: " + userList.get(user).id + ", balance: " + userList.get(user).balance);
             }
         } catch (ATMException e) {
             System.out.println("Error! " + e.getMessage());
         }
+         */
 
         System.out.println("Money supply: " + moneySupply);
     }
@@ -81,14 +82,23 @@ public class Bank {
         };
     }
 
-    public void makeOperations(int count) {
-        for (int i = 0; i < count; i++) {
-            makeRandomOperation();
-        }
-    }
-
     private void makeRandomOperation() {
+        int randomAtmId = new Random().nextInt(atmsCount);
+        int randomUserId = new Random().nextInt(usersCount);
+        ATM randomAtm = atmList.get(randomAtmId);
+        User randomUser = userList.get(randomUserId);
 
+        int randomAmount = new Random().nextInt(atmDefaultBalanceLimit);
+
+        System.out.println(randomUser.toString() + " is trying to withdraw " + randomAmount + " from " + randomAtm.toString());
+
+        try {
+            if (randomUser.withdraw(randomAmount) == randomAtm.withdraw(randomAmount)) {
+                System.out.println("All good!"); // asdasd
+            }
+        } catch (ATMException e) {
+            System.out.println("Error! " + e.getMessage());
+        }
     }
 
 }
