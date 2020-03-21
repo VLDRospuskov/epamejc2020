@@ -1,25 +1,25 @@
 # epamejc2020 - Vitaly Bogdanov   
-**Внимание!!! Структура отличается от головного проекта!**   
-У меня удален проект в котором лежал модуль com.epamejc.lessons.  
-(Корнем проекта должен быть модуль com.epamejc.lessons)
+**Attention!!! The structure is different from the parent project!**
+The root of the project should be the module com.epamejc.lessons
+(I have deleted the project in which the com.epamejc.lessons module was lying.)
 
 ***
 [SeaBattle](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/seabattle/java/)  
-Морской бой. Реализована возможность игры как с другим игроком(человеком), так и с компьютером.  
-Реализована возможность ручной и авто расстановки кораблей. При ручной расстановке вводится только координата начальной и конечной клетки корабля. Корабль сам рассчитывает свои клетки. Все проверяется, если вы пытаетесь установить корабль не туда, логика корабля не даст этого сделать.  
-Реализован алгоритм "добивания" раненого корабля.  
+Sea battle. Implemented the ability to play both with another player (person) and with a computer.
+Implemented the possibility of manual and auto placement of ships. With manual placement, only the coordinate of the start and end cells of the ship is entered. The ship itself calculates its cells. Everything is checked, if you try to set the ship in the wrong place, the logic of the ship will not allow this to be done.
+Implemented an algorithm for "finishing off" a wounded ship.  
  
 ***
 HW 1 [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw1)  
-Создать "светофор", который выводит сигнал-цвет. Вы вводите время от 0-3 минуты - зеленый,
-4-5 минуты - желтый, 6-10 красный. Вводим цифру 0 до n, получаем результат. Работу программы
-сделать непрерывной, выход можно обработать.
+Create a “traffic light” that outputs a signal-color. You enter a time from 0-3 minutes - green,
+4-5 minutes - yellow, 6-10 red. Enter the number 0 to n, we get the result. Program work
+make continuous, the output can be processed.
 ***
 HW 2 [ImmutableInt](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw2/)  
-Создать immutable class, создать пару объектов, посмотреть как работает, поэксперементировать с данными. ЗАПОМНИТЬ!
+Create an immutable class, create a couple of objects, see how it works, experiment with the data. REMEMBER!  
 ***  
 HW 3-1 [ArrayOfArraysGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw3/arrays_1)  
-Создать массив массивов, задается размерность на основании которое генерируются случайные символы типа char.  
+Create an array of arrays, sets the dimension based on which random characters of type char are generated.  
 Input: 4 2  
 output:  
 k c   
@@ -28,7 +28,7 @@ b h
 h g  
 
 HW 3-2 [StringGeneratorFromArrayByStrategy](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw3/arrays_2)  
-Сгенерировать массив массивов указав размерность, заполнить его случайными символами. Написать 2 стратегии, которые будут формировать строку на основе данного массива. Стратегия А - работает по принципу *_*_*, а стратегия B - работает по принципу _*_*_ .   Пример:
+Generate an array of arrays specifying the dimension, fill it with random characters. Write 2 strategies that will form a string based on this array. Strategy A - works on the principle of ABABA, and strategy B - works on the principle of BABAB. Example:  
 input: 5 5  
 output:  
 d a l p j   
@@ -40,7 +40,7 @@ input strategy: A
 output: dljalfklb  
   
 HW 3-3 [PyramidGenerator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw3/arrays_3)  
-Написать программу которая будет генерировать пирамидку. Пример:  
+Write a program that will generate a pyramid. Example:  
 input: 10  
 output:  
 XXXXXXXXXX  
@@ -56,56 +56,56 @@ X
 
 ***  
 HW 4-1 [PrintOddOrEvenCharsFromString](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw4/strings_1)  
-Написать программу которая генерирует новую строку на основании входных данных, строка + четные/нечетные, пример:  
+Write a program that generates a new line based on the input data, line + even / odd, example:  
 Input: String        Input: even        output: tig
 
 HW 4-2 [GenerateStringFromInputStringByIndex](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw4/strings_2)  
-Написать программу которая будет генерировать строку по индексам. Пример:  
+Write a program that will generate a string by index. Example:  
 Input: Hello World,      
 input: 0  output: H,  
 input: 4  output: Ho,  
 input: 6 output: HoW  
 
 HW 4-3 [Change chars in line by indexes](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw4/strings_3)  
-Поменять местами символы в строке, на вход приходит строка и 2 индекса между, которыми нужно сделать обмен. Пример:  
+To interchange the characters in the string, the string and 2 indices between which you want to exchange come to the input. Example:  
 Input: Hello World  
 Input: 0, 4  
 output oelloH World  
   
 HW 4-4 [Reverse words](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw4/strings_4)  
-Написать программу которая переворачивает слова, но при этом оставляет их на прежних местах. Пример  
+Write a program that flips words, but leaves them in their original places. Example:   
 Input: Hello World  
 output: olleH dlroW  
 
 ***  
 HW 5-1 [Fibonacci generator](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw5/recursion_1)  
-Поиск числа Фиббоначи
+Fibonacci number search
   
 HW 5-2 [Exponentiation](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw5/recursion_2)  
-Написать программу которая умеет вовзодить в степени:  
+Write a program that can integrate to the degree of:
 input number: 4  
 input pow: 3  
 output: 64  
   
 HW 5-3 [Digits counter](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw5/recursion_3)  
-Посчитать количество чисел:  
+Count numbers of digits:  
 input: 567  
 output: 3  
   
 ***
 HW 6 [PersonFields (Annotation)](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw6)  
-Создать свою кастомную аннотацию где будет "имя - string" и "возраст - int", то есть в аннотации передаем (name = "sdgf", age = "12"). Повесить аннотацию на конструктор. Цель сделать так чтобы когда у нас будет создаваться объект по типу Person person = new Person() - конструктор пустой, через рефлексию мы должны достать данные из аннотации и подсунуть при инициализации объекта name и age из аннотации. Используйте ломбок.  
+Create your custom annotation, where there will be an annotation before the name (name = "sdgf", age = "12"). Hang the annotation on the constructor. Face = new person () - the constructor is empty, through reflection we should get the annotation data and slip the name and age from the annotation when initializing the object. Use lombok.  
 ***
 HW 7 [File copy](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw7)  
-Создайте файл, заполните его текстом(много текста), потом считайте его и запишите в другой файл. Сделайте 2ой метод такой же  только с buffered. Замерьте время выполнения без buffered и c buffered.
+Create a file, fill it with text (a lot of text), then read it and write it to another file. Make the second method the same only with buffered. Measure runtime without buffered and with buffered.  
 ***
 HW 8-1 [Functional interfaces](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw8/functional_interfaces)  
-Написать свои функциональные интерфейсы по типу BiFunction и Supplier(Producer). Создать любой класс с несколькими полями. Создать метод, который будет принимать функциональные интерфейсы, созданные ранее. Достать 2 поля и обработать полученные значения и вернуть.
+Write your own functional interfaces like BiFunction and Supplier (Producer). Create any class with multiple fields. Create a method that will accept functional interfaces created earlier. Get 2 fields and process the received values and return.  
 ***
 HW 8-2 [Streams](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw8/streams)  
-В classe StreamOperations реализовать стримы  
+In classe StreamOperations implement streams  
 ***
 HW 9 [ATM (Threads)](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw9)  
-У нас есть 1 общий счет(balance), существует несколько банкоматов(ATM) которые работают с этим счетом - типа они в разных частях города, а счет виртуальный общий. Также существует несколько пользователей. которые будут ходить в эти банкоматы, пополнять/снимать/возможно еще что-нибудь, например проверять баланс. Соответственно зацикливаем данный процесс. Добавить фичи, обязательно: в минус не выдавать денег, целочисленный тип тут не подойдет для работы с деньгами, подумайте какой тип следует использовать, еще у каждого пользователя есть свой баланс(количество денег, которое у них на руках).
+We have 1 general account (balance), there are several ATMs (ATMs) that work with this account - they are like in different parts of the city, and the virtual account is common. There are also several users. who will go to these ATMs, deposit / withdraw / maybe something else, for example, check the balance. Accordingly, we loop this process. To add features, it is mandatory: do not give out money in minus, the integer type here is not suitable for working with money, think about which type should be used, each user also has his own balance.
 
-Можно добавить еще одну фичу, но это опционально. Допустим у каждого банкомата есть свой отдельный баланс и если на нем заканчиваются деньги, то из общего ресурса мы туда добавляем, а если в банкомате слишком много денег, то обратно отдаем в ресурс. Другими словами добавляем процесс инкассации.
+You can add another feature, but this is optional. Suppose each ATM has its own separate balance and if money runs out on it, then we add it to the common resource, and if there is too much money in the ATM, then we return it to the resource. In other words, we add the collection process.
