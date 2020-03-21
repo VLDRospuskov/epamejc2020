@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Bot extends Player {
     
+    private Shot previousHit;
     private List<Coordinate> possibleVariants = new ArrayList<>();
-    Shot previousHit;
     
     public Bot() {
     }
@@ -21,65 +21,18 @@ public class Bot extends Player {
         skip40rows();
         shotMethod();
     }
-
-//    @Override public void shotMethod() {
-//        System.out.println("My field");
-//        getView().printField(getMyField());
-//        System.out.println("Opponents field");
-//        getView().printField(getOpponentsField());
-//        shotWhileHit();
-//    }
     
     @Override public void shotMethod() {
-        int fireResult = -1;
-        Coordinate shotCoordinate;
         System.out.println("My field");
         view.printField(myField);
         System.out.println("Opponents field");
         view.printField(opponentsField);
-        while (fireResult != 0 && opponentsFieldData.getShips()
-                                                    .size() > 0 && myField.getShips()
-                                                                          .size() > 0) {
-            if (possibleVariants.size() == 0) {
-                do {
-                    shotCoordinate = Coordinate.generateRandomCoordinate();
-                } while (!Coordinate.isCoordinatesCorrect(shotCoordinate) || opponentsField.checkShotsCollision(
-                        shotCoordinate));
-            } else {
-                shotCoordinate = possibleVariants.get(new Random().nextInt(possibleVariants.size()));
-            }
-            Shot shot = new Shot(shotCoordinate);
-            opponentsField.getShots()
-                          .add(shot);
-            possibleVariants.remove(shotCoordinate);
-            fireResult = takeAShot(opponentsFieldData, shotCoordinate);
-            if (fireResult > 0) {
-                addPossibleVariantsOfShots(shotCoordinate);
-                previousHit = shot;
-            }
-            System.out.println("My Field");
-            view.printField(myField);
-            System.out.println("My view of opponents field");
-            view.printField(opponentsField);
-        }
+        shotWhileHit();
     }
-
-//    @Override public int takeAShot(Field field, Coordinate shotCoordinate) {
-//        Iterator shipIterator = field.ships.iterator();
-//        int result = 0;
-//        result = iterateShips(shotCoordinate, shipIterator, result);
-//        if (result == 0) {
-//            getOpponentsField().misses.add(new Miss(shotCoordinate));
-//            getOpponentsFieldData().misses.add(new Miss(shotCoordinate));
-//            System.out.println("Miss");
-//        }
-//        return result;
-//    }
-    
     
     @Override public int takeAShot(Field field, Coordinate shotCoordinate) {
-        Iterator shipIterator = field.getShips()
-                                     .iterator();
+        Iterator shipIterator = field.ships
+                                        .iterator();
         int result;
         while (shipIterator.hasNext()) {
             Ship ship = (Ship) shipIterator.next();
@@ -90,11 +43,12 @@ public class Bot extends Player {
                 return result;
             }
         }
-        opponentsField.getMisses()
-                      .add(new Miss(shotCoordinate));
-        opponentsFieldData.getMisses()
-                          .add(new Miss(shotCoordinate));
+        opponentsField.misses
+                .add(new Miss(shotCoordinate));
+        opponentsFieldData.misses
+                .add(new Miss(shotCoordinate));
         System.out.println("Miss");
+        view.printField(opponentsField);
         return 0;
     }
     
@@ -110,7 +64,6 @@ public class Bot extends Player {
             if (fireResult > 0) {
                 addPossibleVariantsOfShots(shotCoordinate);
                 previousHit = shot;
-            } else {
                 System.out.println("My Field");
                 getView().printField(getMyField());
                 System.out.println("My view of opponents field");

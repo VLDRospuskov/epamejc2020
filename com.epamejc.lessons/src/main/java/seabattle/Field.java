@@ -22,10 +22,6 @@ public class Field {
         return ships;
     }
     
-    public Set<Assist> getAssistSet() {
-        return assistSet;
-    }
-    
     public List<Shot> getShots() {
         return shots;
     }

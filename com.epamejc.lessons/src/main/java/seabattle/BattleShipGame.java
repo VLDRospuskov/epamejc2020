@@ -6,11 +6,11 @@ public class BattleShipGame {
     
     private static void checkWinner(Player player1, Player player2) {
         if (player1.getMyField().ships
-                   .size() == 0) {
+                    .size() == 0) {
             System.out.println("Player 2 win!");
         }
         if (player2.getMyField().ships
-                   .size() == 0) {
+                    .size() == 0) {
             System.out.println("Player 1 win!");
         }
     }
@@ -55,7 +55,7 @@ public class BattleShipGame {
     private boolean isOneOfFieldsIsEmpty(Player player1, Player player2) {
         return player1.getMyField().ships
                        .size() > 0 && player2.getMyField().ships
-                                            .size() > 0;
+                                              .size() > 0;
     }
     
 }

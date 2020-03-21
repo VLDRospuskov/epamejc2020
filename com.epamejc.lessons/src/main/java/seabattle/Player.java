@@ -70,7 +70,7 @@ public class Player {
     
     public void fillListOfShipsRandomly() {
         while (myField.ships
-                      .size() != 10) {
+                       .size() != 10) {
             myField.fillListOfShipsDependingOnLength(4, 1);
             if (myField.getCountByLength(4) == 1) {
                 myField.fillListOfShipsDependingOnLength(3, 2);
@@ -136,7 +136,7 @@ public class Player {
         Coordinate shotCoordinate;
         while (fireResult != 0 && opponentsFieldData.ships
                                           .size() > 0 && myField.ships
-                                                                          .size() > 0) {
+                                                                 .size() > 0) {
             shotCoordinate = inputWhileNotCorrectCoordinate();
             opponentsField.shots.add(new Shot(shotCoordinate));
             fireResult = takeAShot(opponentsFieldData, shotCoordinate);
@@ -165,7 +165,7 @@ public class Player {
         opponentsField.addAssistPointsAroundKill(shotCoordinate, ship);
         shipIterator.remove();
         opponentsFieldData.shots
-                          .add(new Shot(shipCoordinate));
+                .add(new Shot(shipCoordinate));
     }
     
     private void hit(Coordinate shotCoordinate, Iterator shipPartsIterator) {
@@ -198,7 +198,7 @@ public class Player {
         Coordinate first;
         Coordinate second;
         while (myField.shots
-                      .size() != 10) {
+                       .size() != 10) {
             myField.printState();
             first = new Coordinate().input();
             second = new Coordinate().input();
@@ -215,7 +215,7 @@ public class Player {
     private void addCorrectShip(Ship ship) {
         if (myField.checkNoShipCollision(ship) && myField.checkCorrectAmountOfShips(ship)) {
             myField.ships
-                   .add(ship);
+                    .add(ship);
             myField.addAssistPointsAroundShip(ship);
             System.out.println("My Field");
             view.printField(myField);
