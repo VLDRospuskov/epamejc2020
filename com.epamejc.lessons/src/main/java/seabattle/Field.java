@@ -13,22 +13,22 @@ public class Field {
     
     public Field() {
     }
-
-//    public Set<Miss> getMisses() {
-//        return misses;
-//    }
-//
-//    public List<Ship> getShips() {
-//        return ships;
-//    }
-//
-//    public Set<Assist> getAssistSet() {
-//        return assistSet;
-//    }
-//
-//    public List<Shot> getShots() {
-//        return shots;
-//    }
+    
+    public Set<Miss> getMisses() {
+        return misses;
+    }
+    
+    public List<Ship> getShips() {
+        return ships;
+    }
+    
+    public Set<Assist> getAssistSet() {
+        return assistSet;
+    }
+    
+    public List<Shot> getShots() {
+        return shots;
+    }
     
     public void addAssistPointsAroundShip(Ship ship) {
         for (Coordinate coordinate :

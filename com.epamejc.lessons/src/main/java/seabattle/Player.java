@@ -6,10 +6,10 @@ import java.util.Iterator;
 
 public class Player {
     
-    private Field myField;
-    private Field opponentsField;
-    private View view;
-    private Field opponentsFieldData;
+    Field myField;
+    Field opponentsField;
+    View view;
+    Field opponentsFieldData;
     
     public Player() {
         this.setMyField(new Field());
@@ -61,12 +61,11 @@ public class Player {
     }
     
     public void shotMethod() {
-        int fireResult = -1;
         System.out.println("My field");
         view.printField(myField);
         System.out.println("Opponents field");
         view.printField(opponentsField);
-        shotWhileHit(fireResult);
+        shotWhileHit();
     }
     
     public void fillListOfShipsRandomly() {
@@ -90,19 +89,23 @@ public class Player {
     }
     
     public int takeAShot(Field field, Coordinate shotCoordinate) {
-        Iterator shipIterator = field.ships.iterator();
-        int result = 0;
+        Iterator shipIterator = field.getShips().iterator();
+        int result;
         while (shipIterator.hasNext()) {
             Ship ship = (Ship) shipIterator.next();
-            Iterator shipPartsIterator = ship.getShipParts().iterator();
+            Iterator shipPartsIterator = ship.getShipParts()
+                                             .iterator();
             result = iterateShipParts(shotCoordinate, shipIterator, ship, shipPartsIterator);
+            if (result > 0) {
+                return result;
+            }
         }
-        if (result == 0) {
-            getOpponentsField().misses.add(new Miss(shotCoordinate));
-            getOpponentsFieldData().misses.add(new Miss(shotCoordinate));
-            System.out.println("Miss");
-        }
-        return result;
+        opponentsField.getMisses()
+                      .add(new Miss(shotCoordinate));
+        opponentsFieldData.getMisses()
+                          .add(new Miss(shotCoordinate));
+        System.out.println("Miss");
+        return 0;
     }
     
     private int iterateShipParts(
@@ -128,14 +131,14 @@ public class Player {
         }
     }
     
-    private void shotWhileHit(int fireResult) {
+    private void shotWhileHit() {
+        int fireResult = -1;
         Coordinate shotCoordinate;
         while (fireResult != 0 && opponentsFieldData.ships
                                           .size() > 0 && myField.ships
                                                                           .size() > 0) {
             shotCoordinate = inputWhileNotCorrectCoordinate();
-            opponentsField.shots
-                          .add(new Shot(shotCoordinate));
+            opponentsField.shots.add(new Shot(shotCoordinate));
             fireResult = takeAShot(opponentsFieldData, shotCoordinate);
             System.out.println("My Field");
             view.printField(myField);
