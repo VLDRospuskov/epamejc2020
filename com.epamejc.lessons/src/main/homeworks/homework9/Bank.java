@@ -9,7 +9,7 @@ public class Bank {
             System.out.println("Bank issued: " + amount);
             return amount;
         } else {
-            System.out.println("Bank does not have enough funds.");
+            System.out.println("Bank does not have enough money.");
             System.out.println("Bank balance: " + bankBalance);
             return 0;
         }
