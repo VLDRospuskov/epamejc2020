@@ -1,7 +1,7 @@
 # epamejc2020 - Vitaly Bogdanov   
-**Attention!!! The structure is different from the parent project!**
-The root of the project should be the module com.epamejc.lessons
-(I have deleted the project in which the com.epamejc.lessons module was lying.)
+**Attention!!! The structure is different from the parent project!**  
+The root of the project should be the module com.epamejc.lessons  
+(I have deleted the project in which the com.epamejc.lessons module was lying)    
 
 ***
 [SeaBattle](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/seabattle/java/)  
