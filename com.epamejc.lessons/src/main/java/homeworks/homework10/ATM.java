@@ -1,4 +1,4 @@
-package homeworks.homework9;
+package homeworks.homework10;
 
 import java.math.BigDecimal;
 
@@ -29,7 +29,7 @@ public class ATM {
         this.ATMBalance = ATMBalance;
     }
     
-    public int getID() {
+    private int getID() {
         return ID;
     }
     

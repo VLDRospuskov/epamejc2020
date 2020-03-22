@@ -1,4 +1,4 @@
-package homeworks.homework8.functional;
+package homeworks.homework9;
 
 @FunctionalInterface
 public interface MySupplier <T> {

@@ -1,4 +1,4 @@
-package homeworks.homework8.functional;
+package homeworks.homework9;
 
 public interface MyBiFunction <F, S, R> {
     

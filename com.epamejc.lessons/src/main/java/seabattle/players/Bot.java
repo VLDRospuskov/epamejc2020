@@ -91,15 +91,6 @@ public class Bot extends Player {
         return shotCoordinate;
     }
     
-    private int iterateShips(Coordinate shotCoordinate, Iterator shipIterator, int result) {
-        while (shipIterator.hasNext()) {
-            Ship ship = (Ship) shipIterator.next();
-            Iterator shipPartsIterator = ship.getShipParts().iterator();
-            result = iterateShipParts(shotCoordinate, shipIterator, ship, shipPartsIterator);
-        }
-        return result;
-    }
-    
     private int iterateShipParts(
             Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator) {
         while (shipPartsIterator.hasNext()) {

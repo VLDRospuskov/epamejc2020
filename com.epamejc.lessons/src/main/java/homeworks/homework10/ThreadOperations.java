@@ -1,4 +1,4 @@
-package homeworks.homework9;
+package homeworks.homework10;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -36,7 +36,7 @@ public class ThreadOperations extends Thread {
         return client;
     }
     
-    public void executeRandomOperation() {
+    private void executeRandomOperation() {
         final int chooseOperation = new Random().nextInt(3);
         BigDecimal someMoneyToPerform = getSomeMoneyToPerform();
         switch (chooseOperation) {
@@ -59,7 +59,7 @@ public class ThreadOperations extends Thread {
         }
     }
     
-    public void withdraw(BigDecimal generatedRandomAmount) {
+    private void withdraw(BigDecimal generatedRandomAmount) {
         if (generatedRandomAmount.compareTo(client.getAccountMoney()) > 0) {
             return;
         }
