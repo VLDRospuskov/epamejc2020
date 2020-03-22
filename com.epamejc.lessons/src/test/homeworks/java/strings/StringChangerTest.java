@@ -1,7 +1,5 @@
 package homeworks.java.strings;
 
-import homeworks.java.arrays.RandomCharArray;
-import homeworks.java.arrays.Strategy;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

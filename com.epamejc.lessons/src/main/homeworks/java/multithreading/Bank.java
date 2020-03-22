@@ -26,6 +26,12 @@ public final class Bank {
         }
     }
 
+    public void deleteAllUsers() {
+
+        userAccounts.clear();
+
+    }
+
     public static Bank getInstance() {
 
         if (instance == null)
@@ -35,6 +41,12 @@ public final class Bank {
                 }
             }
         return instance;
+
+    }
+
+    public Map<User, BigDecimal> getUserAccounts() {
+
+        return userAccounts;
 
     }
 

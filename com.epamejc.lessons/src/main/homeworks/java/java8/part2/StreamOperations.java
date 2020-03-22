@@ -10,7 +10,7 @@ import static homeworks.java.java8.part2.GenerateData.getEmployees;
 
 public class StreamOperations {
 
-    List<Person> findPersonsEverWorkedInEpam() {
+    public List<Person> findPersonsEverWorkedInEpam() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
@@ -22,7 +22,7 @@ public class StreamOperations {
 
     }
 
-    List<Person> findPersonsBeganCareerInEpam() {
+    public List<Person> findPersonsBeganCareerInEpam() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
@@ -32,7 +32,7 @@ public class StreamOperations {
 
     }
 
-    Set<String> findAllCompanies() {
+    public Set<String> findAllCompanies() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
@@ -43,7 +43,7 @@ public class StreamOperations {
 
     }
 
-    Integer findMinimalAgeOfEmployees() {
+    public Integer findMinimalAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
@@ -54,7 +54,7 @@ public class StreamOperations {
 
     }
 
-    Double calcAverageAgeOfEmployees() {
+    public Double calcAverageAgeOfEmployees() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
@@ -65,7 +65,7 @@ public class StreamOperations {
 
     }
 
-    Person findPersonWithLongestFullName() {
+    public Person findPersonWithLongestFullName() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
@@ -77,7 +77,7 @@ public class StreamOperations {
 
     }
 
-    Employee findEmployeeWithMaximumDurationAtOnePosition() {
+    public Employee findEmployeeWithMaximumDurationAtOnePosition() {
         List<Employee> employees = getEmployees();
 
         return employees.stream()
