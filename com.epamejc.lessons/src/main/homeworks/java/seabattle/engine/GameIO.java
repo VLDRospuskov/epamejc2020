@@ -6,6 +6,9 @@ import homeworks.java.utils.UserInputReader;
 
 import java.util.List;
 
+/**
+ * This class handles all game IO problems, including player inputs, the input parsing, all game outputs.
+ */
 public class GameIO {
 
     private int DECK_SIZE = new Settings().getDeckSize();

@@ -23,7 +23,7 @@ public class TimeComparator {
     /**
      * @param outputFilePath the path to a new file to be created
      * @param fileManager    {@link homeworks.java.files.FileManager} or
-     * {@link homeworks.java.files.BufferedFileManager} instance.
+     *                       {@link homeworks.java.files.BufferedFileManager} instance.
      * @return long run time in milliseconds
      */
     private long measureRunTime(String outputFilePath, FileManager fileManager) {

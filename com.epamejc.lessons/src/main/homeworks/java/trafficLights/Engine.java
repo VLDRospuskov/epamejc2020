@@ -4,8 +4,8 @@ import homeworks.java.utils.UserInputReader;
 
 public class Engine {
 
-    private final String greetingsMessage = "\"Type time in following format: \\\"m.s or m\\\", \\nthere m - minutes from 0 to n, \" +\n" +
-            "                    \"and s - seconds from 0 to 59 \\nor word \\\"exit\\\" to quit the program\"";
+    private final String greetingsMessage = "Type time in following format: \"m.s or m\", \nthere m - minutes from 0 to n,\n" +
+            " and s - seconds from 0 to 59 \nor word \"exit\" to quit the program";
 
     public void run() {
 

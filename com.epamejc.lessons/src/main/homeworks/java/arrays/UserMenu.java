@@ -11,7 +11,9 @@ import homeworks.java.utils.UserInputReader;
  */
 public class UserMenu {
 
-    /** Any positive integer number */
+    /**
+     * Any positive integer number
+     */
     private String REGEX = "^\\d+$";
     private String menu = "\n" +
             "_________________________________________________\n" +

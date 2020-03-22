@@ -89,7 +89,7 @@ public class ATM {
     private boolean isServiceNeeded() {
 
         boolean isServiceNeeded = false;
-        if (account.doubleValue() >= 1_500_000 || account.doubleValue() <= 10_000) {
+        if (account.doubleValue() >= 1_000_000 || account.doubleValue() <= 100_000) {
             isServiceNeeded = true;
             System.out.println("\nATM " + serialNumber + " is closed for service\n");
         }

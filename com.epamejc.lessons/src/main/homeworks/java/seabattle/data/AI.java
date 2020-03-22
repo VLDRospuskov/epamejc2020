@@ -6,12 +6,28 @@ import homeworks.java.seabattle.engine.Settings;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a bot behavior in the game.
+ * It can solve the problems of seeking and destroying
+ * enemy ships. The search implemented using diagonal
+ * algorithm: first the diagonals at a distance of 3 cells
+ * are affected, then 2 cells, then the rest.
+ * In case of hit, AI tries to finish off the found ship.
+ */
 public class AI {
 
     private int DECK_SIZE;
-    private List<Cell> area;
+    private List<Cell> shootingArea;
     private List<Cell> finishOffArea;
+
+    /**
+     * The {@code List} of already affected cells, including the area around destroyed ships
+     */
     private List<Cell> excludedList;
+
+    /**
+     * The distance between diagonals to compute shooting area
+     */
     private int offset;
     private Cell foundShip;
     private Cell lastShot;
@@ -26,7 +42,7 @@ public class AI {
         DECK_SIZE = settings.getDeckSize();
         excludedList = new ArrayList<>();
         finishOffArea = new ArrayList<>();
-        area = generateShootingArea(offset);
+        shootingArea = generateShootingArea(offset);
         finishOffMode = false;
 
     }
@@ -58,11 +74,11 @@ public class AI {
 
     private Cell seek() {
 
-        if (area.isEmpty()) {
+        if (shootingArea.isEmpty()) {
             offset -= 1;
-            area = generateShootingArea(offset);
+            shootingArea = generateShootingArea(offset);
         }
-        foundShip = area.remove(new Random().nextInt(area.size()));
+        foundShip = shootingArea.remove(new Random().nextInt(shootingArea.size()));
         excludedList.add(foundShip);
         return foundShip;
 
@@ -120,7 +136,7 @@ public class AI {
         excludedList = enemyField.stream()
                 .filter(cell -> !cell.isShootable())
                 .collect(Collectors.toList());
-        area.removeAll(excludedList);
+        shootingArea.removeAll(excludedList);
 
     }
 

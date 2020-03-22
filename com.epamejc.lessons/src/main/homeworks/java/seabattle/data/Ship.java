@@ -2,20 +2,22 @@ package homeworks.java.seabattle.data;
 
 import homeworks.java.seabattle.data.enums.GameState;
 import homeworks.java.seabattle.data.enums.Ships;
+import lombok.Getter;
 
+@Getter
 public class Ship {
 
     private Ships type;
-    private int length;
+    private int size;
     private int hitPoints;
     private Cell startPoint;
     private Cell alignment;
 
-    public Ship(Ships type, int length) {
+    public Ship(Ships type, int size) {
 
         this.type = type;
-        this.length = length;
-        hitPoints = length;
+        this.size = size;
+        hitPoints = size;
 
     }
 
@@ -28,30 +30,6 @@ public class Ship {
     public void setAlignment(Cell alignment) {
 
         this.alignment = alignment;
-
-    }
-
-    public int getSize() {
-
-        return length;
-
-    }
-
-    public Ships getType() {
-
-        return type;
-
-    }
-
-    public Cell getStartPoint() {
-
-        return startPoint;
-
-    }
-
-    public Cell getAlignment() {
-
-        return alignment;
 
     }
 

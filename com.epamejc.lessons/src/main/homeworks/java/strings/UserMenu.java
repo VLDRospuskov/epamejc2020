@@ -11,7 +11,9 @@ import homeworks.java.utils.UserInputReader;
  */
 public class UserMenu {
 
-    /** Any positive integer number */
+    /**
+     * Any positive integer number
+     */
     private String REGEX = "^\\d+$";
     private String menu = "\n" +
             "_______________________________________________________\n" +
@@ -87,7 +89,7 @@ public class UserMenu {
      * To return back to menu type in <t>"return"</t>
      *
      * @param stringChanger {@link homeworks.java.strings.StringChanger} that provides necessary methods to be run.
-      */
+     */
     private void runByIndexSubProgram(StringChanger stringChanger) {
         System.out.println("Enter a number from 0 to " +
                 (stringChanger.getStoredString().length() - 1) +
@@ -97,8 +99,8 @@ public class UserMenu {
             input = UserInputReader.readInput();
             int number = parseInput(input);
             boolean done = stringChanger.byIndex(number);
-            System.out.println(input.equalsIgnoreCase("return")?
-                    "" : done? stringChanger.getStringCache() : "Wrong input!");
+            System.out.println(input.equalsIgnoreCase("return") ?
+                    "" : done ? stringChanger.getStringCache() : "Wrong input!");
         } while (!input.equalsIgnoreCase("return"));
         stringChanger.setStringCache("");
     }

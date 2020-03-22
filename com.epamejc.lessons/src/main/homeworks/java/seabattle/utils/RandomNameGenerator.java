@@ -7,6 +7,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * This is the random name generator. It uses two files in resources: firstNames.sb and lastNames.sb, each
+ * contains thousands of lines with different names/last names. The final random name is a combination of
+ * one random line from both of them plus the word "admiral".
+ */
 public class RandomNameGenerator {
 
     public static String generateName() {
@@ -33,4 +38,3 @@ public class RandomNameGenerator {
     }
 
 }
-

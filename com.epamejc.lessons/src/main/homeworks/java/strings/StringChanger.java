@@ -19,8 +19,7 @@ public class StringChanger {
     public String evenOdd(Parity parity) {
 
         StringBuilder newString = new StringBuilder();
-        for (int i = parity.ordinal(); i < storedString.length(); i += 2)
-        {
+        for (int i = parity.ordinal(); i < storedString.length(); i += 2) {
             newString.append(storedString.charAt(i));
         }
         return newString.toString();
@@ -50,7 +49,7 @@ public class StringChanger {
      * the result as a new {@code String}
      *
      * @param start index of the first character
-     * @param end index of the second character
+     * @param end   index of the second character
      * @return changed String
      */
     public String swapChars(int start, int end) {

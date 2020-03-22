@@ -54,7 +54,7 @@ public class Field {
         }
 
     }
-    
+
     public GameState hit(Cell hit) {
 
         return deck.stream()
@@ -74,9 +74,9 @@ public class Field {
         deck = new ArrayList<>();
         fillDeck();
         ships = settings.getShipsList();
-        
+
     }
-    
+
     private void fillDeck() {
 
         for (int i = 1; i <= DECK_SIZE; i++) {
@@ -84,9 +84,14 @@ public class Field {
                 deck.add(new Cell(i, j));
             }
         }
-        
+
     }
 
+    /**
+     * Marks the area around destroyed ship as already hit.
+     *
+     * @param ship destroyed ship.
+     */
     private void markArea(Ship ship) {
 
         List<Cell> area = getArea(ship.getSize(), ship.getStartPoint(), ship.getAlignment());
@@ -101,9 +106,9 @@ public class Field {
 
     private boolean arrangeShip(Ship ship, Cell startPoint, Cell alignment) {
 
-       if (isOutOfBorders(ship, startPoint, alignment)) {
-           return false;
-       }
+        if (isOutOfBorders(ship, startPoint, alignment)) {
+            return false;
+        }
         boolean done = false;
         List<Cell> area = getArea(ship.getSize(), startPoint, alignment);
         if (checkShipArrangementPossibility(area)) {
@@ -127,6 +132,15 @@ public class Field {
 
     }
 
+    /**
+     * Calculates the coordinates of the cells around the ship.
+     *
+     * @param length     of the ship
+     * @param startPoint the first deck of the ship
+     * @param alignment  the {@link Cell} with [0, 1] or [1, 0] as coordinates used to
+     *                   represent ships alignment in the calculations.
+     * @return {@code List} of cells around the ship.
+     */
     private List<Cell> getArea(int length, Cell startPoint, Cell alignment) {
 
         List<Cell> area = new ArrayList<>();
@@ -165,6 +179,12 @@ public class Field {
 
     }
 
+    /**
+     * Checks if the ship is destroyed or game is over.
+     * If ship is destroyed calls {@link #markArea(Ship)} method.
+     *
+     * @return {@link GameState}
+     */
     private GameState getState(Ship ship) {
 
         GameState state = ship.hit();

@@ -21,7 +21,7 @@ public class ATMSimulation {
 
     }
 
-    private List<ATM> generateATMs () {
+    private List<ATM> generateATMs() {
 
         List<ATM> atms = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
@@ -31,7 +31,7 @@ public class ATMSimulation {
 
     }
 
-    private List<User> generateUsers () {
+    private List<User> generateUsers() {
 
         List<User> users = new ArrayList<>();
         users.add(new User("Vladimir", 1_000, 55_000));

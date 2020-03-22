@@ -63,10 +63,21 @@ public class SeaBattle {
 
     }
 
-    private boolean setUpPlayers(String input) {
+    /**
+     * The game initialisation method. The instances of {@link HumanPlayer} and
+     * {@link BotPlayer} are created here. The initialisation of of common fields for
+     * both happens in the abstract super class {@link Player#Player()} constructor.
+     * The game can be played between two human players, between human player and the
+     * bot player, also between two bot players.
+     *
+     * @param choice is a {@code String} input for game mode selection
+     * @return boolean {@code true} if input was correct and game setup succeeded,
+     * and {@code false} otherwise.
+     */
+    private boolean setUpPlayers(String choice) {
 
         boolean done = true;
-        switch (input) {
+        switch (choice) {
             case "1":
                 players = Arrays.asList(new HumanPlayer(io), new BotPlayer());
                 break;
