@@ -1,4 +1,4 @@
-package seabattle.Menus;
+package seabattle.menus;
 
 import lombok.SneakyThrows;
 
@@ -17,11 +17,7 @@ public class MenuMain extends Menu {
 
     @Override
     public void printMenu() {
-        //System.out.println("CURRENT SETTINGS: Player vs AI, easy");
         System.out.println("1. Start game");
-        System.out.println("2. Settings");
-        System.out.println("3. Save game");
-        System.out.println("4. Load game");
         System.out.println("0. Exit");
     }
 

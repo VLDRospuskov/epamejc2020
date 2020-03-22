@@ -1,8 +1,9 @@
-package seabattle;
+package seabattle.shipPlacement;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import seabattle.Enums.Direction;
+import seabattle.enums.Direction;
+import seabattle.enums.DirectionMethods;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class ShipPlacingParams {
         String[] coordinatesAndDirection = rawStringOfParams.split(" ");
         row = Integer.parseInt(coordinatesAndDirection[0].substring(1)) - 1;
         column = coordinatesAndDirection[0].charAt(0) - 97;
-        direction = coordinatesAndDirection.length > 1 ? Direction.parseDirectionFromString(coordinatesAndDirection[1]) : Direction.RIGHT;
+        direction = coordinatesAndDirection.length > 1 ? DirectionMethods.parseDirectionFromString(coordinatesAndDirection[1]) : Direction.RIGHT;
         numberOfDecks = decks;
     }
 

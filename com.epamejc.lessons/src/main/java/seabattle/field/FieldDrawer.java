@@ -1,4 +1,4 @@
-package seabattle;
+package seabattle.field;
 
 public abstract class FieldDrawer {
 

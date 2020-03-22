@@ -1,7 +1,7 @@
-package seabattle.Menus;
+package seabattle.menus;
 
-import seabattle.FieldDrawer;
-import seabattle.Players.Player;
+import seabattle.field.FieldDrawer;
+import seabattle.players.Player;
 
 public class BattleMenu extends Menu {
 
@@ -15,6 +15,10 @@ public class BattleMenu extends Menu {
         int column = command.charAt(0) - 97;
         int row = Integer.parseInt(command.substring(1)) - 1;
         Player currentPlayer = game.currentPlayerTurn;
+        executeStrike(column, row, currentPlayer);
+    }
+
+    private void executeStrike(int column, int row, Player currentPlayer) {
         if (currentPlayer.isStrikeSuccessful(row, column)) {
             currentPlayer.shoot(row, column);
             if (currentPlayer.isStrikeLethal(row, column)) {

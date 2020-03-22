@@ -1,13 +1,13 @@
-package seabattle.Players;
+package seabattle.players;
 
 import lombok.Data;
 import lombok.SneakyThrows;
-import seabattle.Enums.FieldCellState;
-import seabattle.Field;
-import seabattle.Menus.Menu;
-import seabattle.Menus.MenuShipPlacer;
-import seabattle.Settings;
-import seabattle.ShipsCounter;
+import seabattle.shipsCounter.ShipsCounter;
+import seabattle.enums.FieldCellState;
+import seabattle.field.Field;
+import seabattle.menus.Menu;
+import seabattle.menus.MenuShipPlacer;
+import seabattle.settings.Settings;
 
 @Data
 public class Player {
@@ -40,8 +40,6 @@ public class Player {
     }
 
     private void takeHit(int row, int column) {
-        //shipsCounter.decreaseShipsLeftCounter();
-        //mainField.surroundShipWithMisses(row, column);
         mainField.applyHit(row, column);
     }
 

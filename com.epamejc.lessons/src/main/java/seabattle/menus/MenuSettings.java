@@ -1,7 +1,7 @@
-package seabattle.Menus;
+package seabattle.menus;
 
-import seabattle.Players.Player;
-import seabattle.Players.PlayerAI;
+import seabattle.players.Player;
+import seabattle.players.PlayerAI;
 
 public class MenuSettings extends Menu {
 
@@ -9,7 +9,6 @@ public class MenuSettings extends Menu {
     public void printMenu() {
         System.out.println(
                 "Current settings: Mode - " + getGameMode(game.player1, game.player2) +
-                        //". Field - " + Settings.fieldRows + "x" + Settings.fieldColumns +
                         "\n1. Change player - " + game.player1.getName() +
                         "\n2. Change player - " + game.player2.getName() +
                         "\n0. Exit");

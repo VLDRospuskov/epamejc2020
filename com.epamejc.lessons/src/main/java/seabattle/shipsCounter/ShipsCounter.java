@@ -1,4 +1,4 @@
-package seabattle;
+package seabattle.shipsCounter;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class ShipsCounter {
     public Map<Integer, Integer> shipMap = new LinkedHashMap<>();
-    //    @Getter
-//    private int aliveShipCellsCounter = 0;
+
     @Getter
     private int aliveShips = 0;
 
@@ -19,7 +18,6 @@ public class ShipsCounter {
         for (int numberOfDecks = maximumNumberOfShipDecks; numberOfDecks >= 1; numberOfDecks--) {
             shipMap.put(numberOfDecks, numberOfShips);
             aliveShips += numberOfShips;
-            //aliveShipCellsCounter += numberOfDecks * numberOfShips;
             numberOfShips++;
         }
     }

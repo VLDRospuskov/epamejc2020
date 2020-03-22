@@ -1,8 +1,8 @@
-package seabattle.Menus;
+package seabattle.menus;
 
 import lombok.SneakyThrows;
-import seabattle.Main.Game;
-import seabattle.Settings;
+import seabattle.main.Game;
+import seabattle.settings.Settings;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

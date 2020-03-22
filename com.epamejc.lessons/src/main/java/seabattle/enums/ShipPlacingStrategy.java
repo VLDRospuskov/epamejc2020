@@ -1,4 +1,4 @@
-package seabattle.Enums;
+package seabattle.enums;
 
 public enum ShipPlacingStrategy {
     RANDOM

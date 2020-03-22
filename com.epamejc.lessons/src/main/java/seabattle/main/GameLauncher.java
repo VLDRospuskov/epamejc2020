@@ -1,6 +1,6 @@
-package seabattle.Main;
+package seabattle.main;
 
-import seabattle.Menus.MenuMain;
+import seabattle.menus.MenuMain;
 
 public class GameLauncher {
 

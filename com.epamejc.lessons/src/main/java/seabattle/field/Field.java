@@ -1,8 +1,9 @@
-package seabattle;
+package seabattle.field;
 
 import lombok.Getter;
-import seabattle.Enums.Direction;
-import seabattle.Enums.FieldCellState;
+import seabattle.enums.Direction;
+import seabattle.enums.FieldCellState;
+import seabattle.shipPlacement.ShipPlacingParams;
 
 @Getter
 public class Field {

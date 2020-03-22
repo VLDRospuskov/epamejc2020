@@ -1,4 +1,4 @@
-package seabattle.Main;
+package seabattle.main;
 
 public class Main {
 

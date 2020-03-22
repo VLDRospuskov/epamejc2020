@@ -1,8 +1,8 @@
-package seabattle;
+package seabattle.field;
 
 import lombok.Data;
-import seabattle.Enums.Direction;
-import seabattle.Enums.FieldCellState;
+import seabattle.enums.Direction;
+import seabattle.enums.FieldCellState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,8 @@ public class Cell {
     Cell downCell;
 
 
-    private char cellSymbol = '-';//183;//'_';
+    private char cellSymbol = '-';
     private FieldCellState fieldCellState = FieldCellState.EMPTY_CELL;
-    //private boolean availableForShipDeck = true;
-
-    //private ShipCellState shipCellState;
 
     public boolean isLegalToStartShipHere(Direction direction, int lenght) {
         if (!isShipInSurroundings()) {
@@ -41,9 +38,6 @@ public class Cell {
             if (cell.isCellOfState(FieldCellState.EMPTY_CELL)) {
                 cell.applyMiss();
             }
-//            if (cell.isCellOfState(FieldCellState.SHIP_CELL_DEAD)){
-//                cell.getNextCellByDirection(direction).surroundWithMissesTillEndOfShip(direction);
-//            }
         }
         Cell nextCell = getNextCellByDirection(direction);
         if (nextCell != null && nextCell.isCellOfState(FieldCellState.SHIP_CELL_DEAD)) {
@@ -110,20 +104,6 @@ public class Cell {
         return surroundingCells;
     }
 
-    public boolean isAvailableForShipDeck() {
-        return true; //availableForShipDeck;
-    }
-
-//    public boolean isShipInSurroundings() {
-//        boolean isShipFound = false;
-//        if (leftCell!=null) {
-//            isShipFound = leftCell.isCellOfState(FieldCellState.SHIP_CELL_ALIVE);
-//            if (leftCell.leftCell!=null) {
-//                isShipFound = leftCell.leftCell.isCellOfState(FieldCellState.SHIP_CELL_ALIVE); // TODO сделать это методами Field, чтобы найти корабль в окрестностях по массиву, а не ссылкам
-//            }
-//        }
-//    }
-
     public boolean isCellOfState(FieldCellState fieldCellState) {
         return this.fieldCellState == fieldCellState;
     }
@@ -146,24 +126,6 @@ public class Cell {
     public void applyHit() {
         setCellSymbol('X');
         setFieldCellState(FieldCellState.SHIP_CELL_DEAD);
-//        //boolean isHitSuccessful = true;
-//        switch (fieldCellState) {
-//            case EMPTY_CELL:
-//                //System.out.println("You missed.");
-//                setCellSymbol('+');//(char) 215);
-//                //isHitSuccessful = false;
-//                setFieldCellState(FieldCellState.EMPTY_CELL_STRICKEN);
-//                break;
-//            case SHIP_CELL_ALIVE:
-//                //System.out.println("Nice strike! Shoot again.");
-//                setCellSymbol('X');//(char) 9746);
-//                setFieldCellState(FieldCellState.SHIP_CELL_DEAD);
-//                break;
-//            default:
-//                //System.out.println("This cell is already stricken! Shoot again!");
-//                break;
-//        }
-//        //return isHitSuccessful;
     }
 
     public void applyMiss() {
@@ -172,8 +134,7 @@ public class Cell {
     }
 
     public void placeShip() {
-        setCellSymbol('O');//(char) 9744);
-        //isShipCell = true;
+        setCellSymbol('O');
         setFieldCellState(FieldCellState.SHIP_CELL_ALIVE);
     }
 

@@ -1,8 +1,8 @@
-package seabattle.Players;
+package seabattle.players;
 
 import lombok.Data;
-import seabattle.Enums.DifficultyAI;
-import seabattle.ShipPlacer;
+import seabattle.enums.DifficultyAI;
+import seabattle.shipPlacement.ShipPlacer;
 
 import java.util.Random;
 

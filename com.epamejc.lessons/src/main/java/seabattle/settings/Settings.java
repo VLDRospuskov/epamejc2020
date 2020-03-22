@@ -1,4 +1,4 @@
-package seabattle;
+package seabattle.settings;
 
 import lombok.Getter;
 

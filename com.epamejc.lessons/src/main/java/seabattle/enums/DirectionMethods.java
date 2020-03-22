@@ -1,25 +1,13 @@
-package seabattle.Enums;
+package seabattle.enums;
 
 import java.util.Random;
 
-public enum Direction {
-    UP, DOWN, LEFT, RIGHT;
+import static seabattle.enums.Direction.*;
+
+public class DirectionMethods {
 
     public static Direction parseDirectionFromString(String value) {
         return Direction.valueOf(value.toUpperCase());
-//        if (value.equals("up")) {
-//            return UP;
-//        }
-//        if (value.equals("down")) {
-//            return DOWN;
-//        }
-//        if (value.equals("left")) {
-//            return LEFT;
-//        }
-//        if (value.equals("right")) {
-//            return RIGHT;
-//        }
-//        return null;
     }
 
     public static Direction getRandomDirection() {
@@ -37,6 +25,5 @@ public enum Direction {
                 return null;
         }
     }
-
 
 }

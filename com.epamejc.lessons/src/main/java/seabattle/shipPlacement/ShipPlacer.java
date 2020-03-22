@@ -1,7 +1,10 @@
-package seabattle;
+package seabattle.shipPlacement;
 
-import seabattle.Enums.Direction;
-import seabattle.Enums.ShipPlacingStrategy;
+import seabattle.enums.Direction;
+import seabattle.enums.DirectionMethods;
+import seabattle.enums.ShipPlacingStrategy;
+import seabattle.field.Field;
+import seabattle.settings.Settings;
 
 import java.util.Random;
 
@@ -28,7 +31,7 @@ public class ShipPlacer {
                 do {
                     int row = new Random().nextInt(Settings.fieldRows);
                     int column = new Random().nextInt(Settings.fieldColumns);
-                    Direction randomDirection = Direction.getRandomDirection();
+                    Direction randomDirection = DirectionMethods.getRandomDirection();
                     shipPlacingParams = new ShipPlacingParams(row, column, decks, randomDirection);
                     shipPlacingParams.setNumberOfDecks(decks);
                 } while (!field.isShipPlacementLegal(shipPlacingParams));

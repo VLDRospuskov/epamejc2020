@@ -1,9 +1,9 @@
-package seabattle.Menus;
+package seabattle.menus;
 
 import lombok.SneakyThrows;
-import seabattle.FieldDrawer;
-import seabattle.Players.Player;
-import seabattle.ShipPlacingParams;
+import seabattle.field.FieldDrawer;
+import seabattle.players.Player;
+import seabattle.shipPlacement.ShipPlacingParams;
 
 public class MenuShipPlacer extends Menu {
 

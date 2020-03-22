@@ -1,4 +1,4 @@
-package seabattle.Enums;
+package seabattle.enums;
 
 public enum FieldCellState {
     EMPTY_CELL, EMPTY_CELL_STRICKEN, SHIP_CELL_ALIVE, SHIP_CELL_DEAD
