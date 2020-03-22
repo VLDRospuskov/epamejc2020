@@ -1,4 +1,11 @@
-package seabattle;
+package seabattle.view;
+
+import seabattle.Coordinate;
+import seabattle.Field;
+import seabattle.Ship;
+import seabattle.states.Assist;
+import seabattle.states.Miss;
+import seabattle.states.Shot;
 
 import java.util.Arrays;
 

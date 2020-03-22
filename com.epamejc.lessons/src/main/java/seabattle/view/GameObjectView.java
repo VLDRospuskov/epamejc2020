@@ -1,6 +1,6 @@
-package seabattle;
+package seabattle.view;
 
-import static seabattle.ObjectColors.*;
+import static seabattle.view.ObjectColors.*;
 
 public enum GameObjectView {
     UNBROKEN(ANSI_YELLOW_UNBROKEN.getState() + UNBROKEN_SYMBOL.getState() + ANSI_RESET.getState()),

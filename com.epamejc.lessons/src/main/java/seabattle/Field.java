@@ -1,15 +1,19 @@
 package seabattle;
 
+import seabattle.states.Assist;
+import seabattle.states.Miss;
+import seabattle.states.Shot;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Field {
     
-    List<Ship> ships = new ArrayList<>(10);
-    Set<Assist> assistSet = new HashSet<>();
-    List<Shot> shots = new ArrayList<>();
-    Set<Miss> misses = new HashSet<>();
+    public List<Ship> ships = new ArrayList<>(10);
+    public Set<Assist> assistSet = new HashSet<>();
+    public List<Shot> shots = new ArrayList<>();
+    public Set<Miss> misses = new HashSet<>();
     
     public Field() {
     }

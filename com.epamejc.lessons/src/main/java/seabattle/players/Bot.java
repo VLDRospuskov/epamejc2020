@@ -1,4 +1,10 @@
-package seabattle;
+package seabattle.players;
+
+import seabattle.Coordinate;
+import seabattle.Field;
+import seabattle.Ship;
+import seabattle.states.Miss;
+import seabattle.states.Shot;
 
 import java.util.ArrayList;
 import java.util.Iterator;

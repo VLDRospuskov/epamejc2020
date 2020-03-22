@@ -1,6 +1,8 @@
 package seabattle;
 
 import homeworks.InputReader;
+import seabattle.players.Bot;
+import seabattle.players.Player;
 
 public class BattleShipGame {
     

@@ -1,4 +1,4 @@
-package seabattle;
+package seabattle.view;
 
 public enum ObjectColors {
     UNBROKEN_SYMBOL("■"),

@@ -1,4 +1,6 @@
-package seabattle;
+package seabattle.states;
+
+import seabattle.Coordinate;
 
 public class Miss {
     
