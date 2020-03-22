@@ -107,6 +107,8 @@ homework9.task1 -  Write an emulator program for several ATMs and users. There i
                    city, and the balance is common. There are also several users who will go to these ATMs, 
                    replenish / withdraw / check the balance.
                    
+seabattle       -  Write your own sea battle.        
+                   
                    
 
 
