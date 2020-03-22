@@ -23,7 +23,7 @@ public class ATM {
 
     /**
      * Used to update ATM balance during collection and
-     * print the current operation to console.
+     * prints the current operation to console.
      * The balance after collection will always be 500_000.
      *
      * @param cash can be positive or negative depending on the current

@@ -9,7 +9,7 @@ public class Main {
     /**
      * This is the java8 educational program.
      * Program uses an own functional interfaces {@link MyFunction}, {@link MyBiFunction} and {@link MySupplier}.
-     * There is a usage of them in main class.
+     * Here is a usage of them in main class.
      *
      * @author Vladimir Ivanov
      */

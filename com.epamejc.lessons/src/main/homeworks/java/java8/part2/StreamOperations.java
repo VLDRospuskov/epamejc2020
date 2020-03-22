@@ -73,7 +73,7 @@ public class StreamOperations {
                 .reduce((person1, person2) ->
                         person1.getFirstName().length() + person1.getLastName().length() >
                                 person2.getFirstName().length() + person2.getLastName().length() ? person1 : person2)
-                .orElseThrow(() -> new RuntimeException("There are no employees in the list"));
+                .orElseThrow(() -> new RuntimeException("Sorry, there are no employees in the list"));
 
     }
 
@@ -82,7 +82,7 @@ public class StreamOperations {
 
         return employees.stream()
                 .max(Comparator.comparingInt(this::getMaxDuration))
-                .orElseThrow(() -> new RuntimeException("There are no employees in the list"));
+                .orElseThrow(() -> new RuntimeException("Sorry, there are no employees in the list"));
 
     }
 
