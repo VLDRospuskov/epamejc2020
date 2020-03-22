@@ -1,7 +1,7 @@
 ### epamejc2020 homeworks
-#####Author: Shandakova Galina :squirrel:
+Author: Shandakova Galina :squirrel:
 
-#####1 [Traffic light](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework1/trafficlight) 
+1 [Traffic light](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework1/trafficlight) 
 
 - Task
 
@@ -23,13 +23,13 @@ Out: Traffic Light : RED
 In: exit
 Out: Bye-bye!
 ```
-#####2 [Immutable class](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework2/immutable/task1) 
+2 [Immutable class](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework2/immutable/task1) 
 
 - Task
 
 Create your own immutable class
 
-#####3.1  [Arrays: random array of arrays](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework3/arrays/task3_1)
+3.1  [Arrays: random array of arrays](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework3/arrays/task3_1)
 
 - Task
 
@@ -47,7 +47,7 @@ q k h y q
 i l y m q 
 i g w y q 
 ```
-#####3.2 [Arrays: random array of arrays with print strategy](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework3/arrays/task3_2)
+3.2 [Arrays: random array of arrays with print strategy](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework3/arrays/task3_2)
 
 - Task
 
@@ -73,7 +73,7 @@ g j t
 i t g 
 ```
 
-#####3.3 [Arrays: pyramid ](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework3/arrays/task3_3)
+3.3 [Arrays: pyramid ](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework3/arrays/task3_3)
 
 - Task
 
@@ -96,7 +96,7 @@ Out: Your triangle :
     $$$
     $$$$
 ```
-#####4.1 [Strings: new line of odd/even characters ](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_1)
+4.1 [Strings: new line of odd/even characters ](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_1)
 
 - Task
 
@@ -112,7 +112,7 @@ Out:
 Output:
 135
 ```
-#####4.2 [Strings: new line of characters with indices](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_2)
+4.2 [Strings: new line of characters with indices](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_2)
 
 - Task
 
@@ -134,7 +134,7 @@ In: exit
 Out: Bye-bye
 ```
 
-#####4.3 [Strings: character swap](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_3)
+4.3 [Strings: character swap](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_3)
 
 - Task
 
@@ -154,7 +154,7 @@ In: exit
 Out: Bye-bye!
 ```
 
-#####4.4 [Strings: flips words](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_4)
+4.4 [Strings: flips words](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework4/strings/task4_4)
 
 - Task
 
@@ -167,7 +167,7 @@ In: hello world
 Out: Output: olleh dlrow
 ```
 
-#####5.1 [Recursion: Fibonacci](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework5/recursion/task5_1)
+5.1 [Recursion: Fibonacci](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework5/recursion/task5_1)
 
 - Task
 
@@ -179,7 +179,7 @@ Out:How much Fibonacci numbers should be printed?
 In: 5
 Out: 0 1 1 2 3 Done.
 ```
-#####5.2 [Recursion: calculate the power of a number](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework5/recursion/task5_2)
+5.2 [Recursion: calculate the power of a number](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework5/recursion/task5_2)
 
 - Task
 
@@ -193,7 +193,7 @@ Out: Print power (only integer value):
 In: 3
 Out: 5^(3) =125.0
 ```
-#####5.3 [Recursion: calculate the amount of digits](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework5/recursion/task5_3)
+5.3 [Recursion: calculate the amount of digits](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework5/recursion/task5_3)
 
 - Task
 
@@ -205,13 +205,13 @@ Out: Print number (only integer value) :
 In: 125
 Out: Number of digits: 3
 ```
-#####6 [Annotation](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework6/annotation)
+6 [Annotation](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework6/annotation)
 
 - Task
 
 Create annotation for the constructor with the fields "name" and "age". Through reflection, get the values of the annotation fields and initialize the object.
 
-#####7 [Files](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework7/io)
+7 [Files](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework7/io)
 
 - Task
 
@@ -223,21 +223,21 @@ Out:
 BufferedReader time : 309
 InputStreamReader time : 967
 ```
-#####8.1 [Java 8: Functional interfaces](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework8/java8/functional_interfaces)
+8.1 [Java 8: Functional interfaces](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework8/java8/functional_interfaces)
 
 - Task
 
 Create your own functional interfaces as BiFucntion and Supplier. Create class with method which take interfaces and handle them.
 
 
-#####8.2 [Java 8: Streams](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework8/java8/streams)
+8.2 [Java 8: Streams](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework8/java8/streams)
 
 - Task
 
 Implement the proposed functions using streams.
 
 
-#####9 [Threads](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework9/threads)
+9 [Threads](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/homework9/threads)
 
 - Task
 
@@ -245,7 +245,7 @@ Create a program simulating banking processes. We have ATMs (each with its own a
 
 Each person can withdraw and put money in an ATM, each ATM can request money or send money from/to a general bank account.
 
-#####10 [Sea battle](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/seabattle)
+10 [Sea battle](https://github.com/VLDRospuskov/epamejc2020/tree/Galina_Shandakova/src/main/java/com.epamejc.lessons/src/homework/seabattle)
 
 - Task
 
