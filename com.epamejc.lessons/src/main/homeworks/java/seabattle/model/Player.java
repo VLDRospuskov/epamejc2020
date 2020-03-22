@@ -1,4 +1,6 @@
-package main.homeworks.java.seabattle;
+package main.homeworks.java.seabattle.model;
+
+import main.homeworks.java.seabattle.enums.State;
 
 import java.util.ArrayList;
 import java.util.List;

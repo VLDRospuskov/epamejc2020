@@ -1,5 +1,7 @@
 package main.homeworks.java.seabattle;
 
+import main.homeworks.java.seabattle.controller.Game;
+
 import java.util.Scanner;
 
 

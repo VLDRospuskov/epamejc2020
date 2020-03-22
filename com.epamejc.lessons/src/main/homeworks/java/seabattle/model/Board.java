@@ -1,8 +1,11 @@
-package main.homeworks.java.seabattle;
+package main.homeworks.java.seabattle.model;
+
+import main.homeworks.java.seabattle.enums.GameMode;
+import main.homeworks.java.seabattle.enums.State;
 
 import java.util.*;
 
-import static main.homeworks.java.seabattle.GameMode.MULTIPLAYER;
+import static main.homeworks.java.seabattle.enums.GameMode.MULTIPLAYER;
 
 public class Board {
 

@@ -1,4 +1,7 @@
-package main.homeworks.java.seabattle;
+package main.homeworks.java.seabattle.controller;
+
+import main.homeworks.java.seabattle.model.AIPlayer;
+import main.homeworks.java.seabattle.model.Player;
 
 import java.util.Scanner;
 

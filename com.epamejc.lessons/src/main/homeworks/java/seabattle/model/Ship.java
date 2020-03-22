@@ -1,4 +1,6 @@
-package main.homeworks.java.seabattle;
+package main.homeworks.java.seabattle.model;
+
+import main.homeworks.java.seabattle.enums.State;
 
 import java.util.*;
 
@@ -118,33 +120,69 @@ public class Ship {
 
     private void squaresAroundShip() {
         for (Square s : ship) {
-            if (s.getX() < 9) {
-                aroundShip.add(new Square(s.getX() + 1, s.getY()));
-            }
-            if (s.getX() > 0) {
-                aroundShip.add(new Square(s.getX() - 1, s.getY()));
-            }
-            if (s.getY() < 9) {
-                aroundShip.add(new Square(s.getX(), s.getY() + 1));
-            }
-            if (s.getY() > 0) {
-                aroundShip.add(new Square(s.getX(), s.getY() - 1));
-            }
-            if (s.getX() < 9 && s.getY() < 9) {
-                aroundShip.add(new Square(s.getX() + 1, s.getY() + 1));
-            }
-            if (s.getX() < 9 && s.getY() > 0) {
-                aroundShip.add(new Square(s.getX() + 1, s.getY() - 1));
-            }
-            if (s.getX() > 0 && s.getY() < 9) {
-                aroundShip.add(new Square(s.getX() - 1, s.getY() + 1));
-            }
-            if (s.getX() > 0 && s.getY() > 0) {
-                aroundShip.add(new Square(s.getX() - 1, s.getY() - 1));
-            }
+            getAvailableSquares(s);
         }
         for (Square s : ship) {
             aroundShip.remove(s);
+        }
+    }
+
+    private void getAvailableSquares(Square s) {
+        getRightSquare(s);
+        getLeftSquare(s);
+        getTopSquare(s);
+        getBottomSquare(s);
+        getTopRightSquare(s);
+        getBottomRightSquare(s);
+        getTopLeftSquare(s);
+        getBottomLeftSquare(s);
+    }
+
+    private void getBottomLeftSquare(Square s) {
+        if (s.getX() > 0 && s.getY() > 0) {
+            aroundShip.add(new Square(s.getX() - 1, s.getY() - 1));
+        }
+    }
+
+    private void getTopLeftSquare(Square s) {
+        if (s.getX() > 0 && s.getY() < 9) {
+            aroundShip.add(new Square(s.getX() - 1, s.getY() + 1));
+        }
+    }
+
+    private void getBottomRightSquare(Square s) {
+        if (s.getX() < 9 && s.getY() > 0) {
+            aroundShip.add(new Square(s.getX() + 1, s.getY() - 1));
+        }
+    }
+
+    private void getTopRightSquare(Square s) {
+        if (s.getX() < 9 && s.getY() < 9) {
+            aroundShip.add(new Square(s.getX() + 1, s.getY() + 1));
+        }
+    }
+
+    private void getBottomSquare(Square s) {
+        if (s.getY() > 0) {
+            aroundShip.add(new Square(s.getX(), s.getY() - 1));
+        }
+    }
+
+    private void getTopSquare(Square s) {
+        if (s.getY() < 9) {
+            aroundShip.add(new Square(s.getX(), s.getY() + 1));
+        }
+    }
+
+    private void getLeftSquare(Square s) {
+        if (s.getX() > 0) {
+            aroundShip.add(new Square(s.getX() - 1, s.getY()));
+        }
+    }
+
+    private void getRightSquare(Square s) {
+        if (s.getX() < 9) {
+            aroundShip.add(new Square(s.getX() + 1, s.getY()));
         }
     }
 

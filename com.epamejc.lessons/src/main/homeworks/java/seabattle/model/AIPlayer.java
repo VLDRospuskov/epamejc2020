@@ -1,8 +1,10 @@
-package main.homeworks.java.seabattle;
+package main.homeworks.java.seabattle.model;
+
+import main.homeworks.java.seabattle.enums.State;
 
 import java.util.*;
 
-import static main.homeworks.java.seabattle.GameMode.SINGLEPLAYER;
+import static main.homeworks.java.seabattle.enums.GameMode.SINGLEPLAYER;
 
 public class AIPlayer extends Player {
 
@@ -94,16 +96,20 @@ public class AIPlayer extends Player {
 
     private void prepareCoords() {
         if (wounded) {
-            if (vertical) {
-                x = verticalShots.get(0).getX();
-                y = verticalShots.get(0).getY();
-            } else {
-                x = horizontalShots.get(0).getX();
-                y = horizontalShots.get(0).getY();
-            }
+            findDirection();
         } else {
             x = rand.nextInt(10);
             y = rand.nextInt(10);
+        }
+    }
+
+    private void findDirection() {
+        if (vertical) {
+            x = verticalShots.get(0).getX();
+            y = verticalShots.get(0).getY();
+        } else {
+            x = horizontalShots.get(0).getX();
+            y = horizontalShots.get(0).getY();
         }
     }
 
@@ -131,17 +137,21 @@ public class AIPlayer extends Player {
         for (Square square : changed) {
             if (square.getStatus().equals(State.HIT)) {
                 hit(square);
-                destroyed(changed);
+                checkIfDestroyed(changed);
                 checkVertical(square);
                 checkHorizontal(square);
                 return true;
             }
-            if (wounded) {
-                if (verticalShots.contains(square)) verticalShots.remove(square);
-                else horizontalShots.remove(square);
-            }
+            removeSuccessfulShot(square);
         }
         return false;
+    }
+
+    private void removeSuccessfulShot(Square square) {
+        if (wounded) {
+            if (verticalShots.contains(square)) verticalShots.remove(square);
+            else horizontalShots.remove(square);
+        }
     }
 
     private void hit(Square square) {
@@ -180,7 +190,7 @@ public class AIPlayer extends Player {
         }
     }
 
-    private void destroyed(Set<Square> changed) {
+    private void checkIfDestroyed(Set<Square> changed) {
         if (changed.size() > 1) {
             hit = false;
             wounded = false;
