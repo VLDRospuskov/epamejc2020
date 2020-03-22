@@ -14,7 +14,7 @@
 | HW7       | Annotations. Create your own annotation with String name and String age. Attach it to the clas then using reflection set fields of Person object with data from the annotation. Use Lombok. | [Annotations][HwAn] |
 | HW8       | Files. The goal is to measure and compare runtime using buffered and standard file reader/writer | [Files][HwFi] |
 | HW9       | Java 8 part 1. Create your own functional interfaces like BiFunction and Supplier (Producer). Create any class with several fields. Create a method which uses functional interfaces as a parameters. Using this method get fields, do some operations and return the result.  | [Java 8.1][HwJo] |
-| HW10      | Java 8 part 2. Get package from <https://github.com/VLDRospuskov/epamejc2020/tree/develop/com.epamejc.lessons/src/main/homework/homework8>. Implement streams in StreamOperations class. | [Java 8.2][HwJt] |
+| HW10      | Java 8 part 2. Get package from [link][HwRr] and implement streams in StreamOperations class. | [Java 8.2][HwJt] |
 | HW11      | Multi threading. We have 1 bank, several ATMs and users. Create an ATMs simulation what simulates their behavior in multi threading style.  | [Multi threading][HwMt] |
 | HW12      | Sea battle. Develop your own sea battle game with standard rules. | [Sea battle][HwAn] |
 
@@ -30,5 +30,5 @@
 [HwJt]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/java8/part2>
 [HwMt]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/multithreading>
 [HwSb]: <https://github.com/VLDRospuskov/epamejc2020/tree/Vladimir_Ivanov/com.epamejc.lessons/src/main/homeworks/java/seabattle>
-
+[HwRr]: <https://github.com/VLDRospuskov/epamejc2020/tree/develop/com.epamejc.lessons/src/main/homework/homework8>
 
