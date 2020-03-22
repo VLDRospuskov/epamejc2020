@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 class ReadCommands {
     int readCom(String text) {
-
         boolean t;
         int command = 0;
         do {
@@ -19,10 +18,7 @@ class ReadCommands {
               t=true;
                 System.out.println("Input Error.");
             }
-
         } while (t);
-
         return command;
     }
-
 }

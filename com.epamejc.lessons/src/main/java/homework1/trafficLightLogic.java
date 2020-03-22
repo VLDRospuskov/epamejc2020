@@ -18,8 +18,8 @@ public class trafficLightLogic {
             System.out.print(trafficLight.selectColor(sec));
         }
     }
+
     private void getSec() {
         sec = new Scanner(System.in).nextLine();
     }
-
 }

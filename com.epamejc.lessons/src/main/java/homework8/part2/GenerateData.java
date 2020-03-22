@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GenerateData {
+class GenerateData {
 
-    public static List<Employee> getEmployees() {
+    static List<Employee> getEmployees() {
         return Arrays.asList(
                 new Employee(
                         new Person("Иван", "Мельников", 30),

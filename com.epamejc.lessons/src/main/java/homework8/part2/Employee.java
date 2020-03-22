@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class Employee {
+class Employee {
 
     private final Person person;
     private final List<JobHistoryEntry> jobHistory;

@@ -13,16 +13,6 @@ class User implements Runnable {
         this.bank = bank;
     }
 
-    private synchronized void putMoney() {
-        int sum = new Random().nextInt(100);
-        bank.putMoney(id, sum);
-    }
-
-    private synchronized void getMoney() {
-        int sum = new Random().nextInt(100);
-        bank.getMoney(id, sum);
-    }
-
     @SneakyThrows
     @Override
     public void run() {
@@ -39,4 +29,16 @@ class User implements Runnable {
             Thread.sleep(wait);
         }
     }
+
+    private synchronized void putMoney() {
+        int sum = new Random().nextInt(100);
+        bank.putMoney(id, sum);
+    }
+
+    private synchronized void getMoney() {
+        int sum = new Random().nextInt(100);
+        bank.getMoney(id, sum);
+    }
+
+
 }

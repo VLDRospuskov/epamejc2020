@@ -2,8 +2,8 @@ package homework3.ArrayRandomCharRactangle;
 
 import java.util.Random;
 
-public class randomCharRectangleLogic {
-    public String buildRectangle(int height,int width) {
+class randomCharRectangleLogic {
+    String buildRectangle(int height, int width) {
         Random r = new Random();
         StringBuilder out = new StringBuilder();
         char[][] arr = new char[height][width];
@@ -12,7 +12,7 @@ public class randomCharRectangleLogic {
                 arr[i][j] = (char) (r.nextInt(94) + 33);
                 out.append(arr[i][j]).append(" ");
             }
-            out = out.append("\r\n");
+            out.append("\r\n");
         }
         System.out.println(out.length());
         return out.toString();

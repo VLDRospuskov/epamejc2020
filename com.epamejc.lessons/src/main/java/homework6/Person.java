@@ -4,13 +4,13 @@ import lombok.Getter;
 import java.lang.reflect.Constructor;
 
 @Getter
-public class Person {
+class Person {
 
     private String name;
     private Integer age;
 
     @Annotation
-    public Person() {
+    Person() {
         Class<Person> personClass = Person.class;
         Constructor[] constructors = personClass.getConstructors();
         Annotation annotation = (Annotation) constructors[0].getAnnotation(Annotation.class);

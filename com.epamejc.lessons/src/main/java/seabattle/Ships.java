@@ -36,6 +36,13 @@ class Ships {
     }
 
     /**
+     * @return убит ли корабль
+     */
+    boolean isDead() {
+        return ship.stream().allMatch(ShipPart::getHit);
+    }
+
+    /**
      * данный метод вызвращает находится ли на данной клетке часть корабля, походясь по отдельному кораблю
      * @param x координата х
      * @param y координата у
@@ -47,20 +54,14 @@ class Ships {
                 .findFirst().orElse(-1);
     }
 
-
     /**
      * @return массив коодинат корабля
      */
-    ArrayList<Coordinates> getShipCoordinates() {
+      ArrayList<Coordinates> getShipCoordinates() {
         return ship.stream().map(ShipPart::getCoordinates).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    /**
-     * @return убит ли корабль
-     */
-    boolean isDead() {
-        return ship.stream().allMatch(ShipPart::getHit);
-    }
+
 }
 
 

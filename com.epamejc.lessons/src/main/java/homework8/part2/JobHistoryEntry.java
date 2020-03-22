@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class JobHistoryEntry {
+class JobHistoryEntry {
 
     private final int duration;
     private final String position;

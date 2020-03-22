@@ -26,25 +26,13 @@ class User {
         return (Collections.max(RemainingShips) == 0);
     }
 
-
     /**
      * @param x коодината х
      * @param y коордианат у
      * @return было ли попадание в корабль по координатам
      */
-     boolean isHit(int x, int y) {
+    boolean isHit(int x, int y) {
          return ships.stream().anyMatch(ship -> ship.isHit(x, y));
-    }
-
-    /**
-     * данный метод вызвращает находится ли на данной клетке часть корабля
-     * @param x координата х
-     * @param y координата у
-     * @return если есть то возвращается яцейка в ships, где находится корабль если нет то -1
-     */
-    private int findShipSell(int x, int y, boolean hit) {
-        return ships.stream().mapToInt(ship -> ship.isThisRightShip(x, y, hit))
-                .filter(cell -> cell >= 0).findFirst().orElse(-1);
     }
 
     /**
@@ -91,6 +79,83 @@ class User {
         }
     }
 
+    /**
+     * выводит после противника
+     */
+    void printEnemyPole() {
+        System.out.println(enemyPole.printPole());
+    }
+
+    /**
+     * @param x координата х
+     * @param y координата y
+     * @return true если заданная точка находится в поле, в противном случае false
+     */
+    boolean inPole(int x, int y) {
+        return (x >= 0 && (x < 10) && (y >= 0) && (y < 10));
+    }
+
+    /**
+     * Метод уменьшает количество кораблей введеного типа, которые надо поставить
+     *
+     * @param type размерность корабля
+     */
+
+    void ShipSet(int type) {
+        int typeOfSHip = type - 1;
+        RemainingShips.set((typeOfSHip), (RemainingShips.get(typeOfSHip)) - 1);
+    }
+
+    /**
+     * Метод возвращает массив координат корабля, частью которого являются введенные координаты
+     *
+     * @param x координата х
+     * @param y координата у
+     * @return массив координат
+     */
+    ArrayList<Coordinates> getShipCoordinates(int x, int y) {
+        return ships.get(findShipSell(x, y, true)).getShipCoordinates();
+    }
+
+    /**
+     * добавляет подбитую часть вражеского корабля на поле игрока
+     *
+     * @param x координата х
+     * @param y координата у
+     */
+    void addEnemyPartShipToPole(int x, int y) {
+        enemyPole.addShipPart(x, y);
+    }
+
+    /**
+     * добавляет убитый корабль противника на поле игрока
+     *
+     * @param ship координаты корабля
+     */
+    void addEnemyShipToPole(ArrayList<Coordinates> ship) {
+        ship.forEach(coordinates -> enemyPole.addShipPart(coordinates.getX(), coordinates.getY()));
+    }
+
+    /**
+     * добавляет промах на карту игрока
+     *
+     * @param x координата х
+     * @param y координата у
+     */
+    void hitPass(int x, int y) {
+        enemyPole.addHitPass(x, y);
+    }
+
+    /**
+     * данный метод вызвращает находится ли на данной клетке часть корабля
+     * @param x координата х
+     * @param y координата у
+     * @return если есть то возвращается яцейка в ships, где находится корабль если нет то -1
+     */
+    private int findShipSell(int x, int y, boolean hit) {
+        return ships.stream().mapToInt(ship -> ship.isThisRightShip(x, y, hit))
+                .filter(cell -> cell >= 0).findFirst().orElse(-1);
+    }
 
     /**
      * @param coordinates координаты корабля
@@ -108,17 +173,13 @@ class User {
      * @param coordinates Координаты корабля
      * @return координаты корабля и одна клетка от него
      */
-    //todo убрать повторы
     private ArrayList<Coordinates> CubeFromCoordinates(Coordinates coordinates) {
         ArrayList<Coordinates> tempCoords = new ArrayList<>();
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 int x = DigitalAround(coordinates.getX(), j);
                 int y = DigitalAround(coordinates.getY(), i);
-//                boolean contains = tempCoords.contains(new Coordinates(x, y));
-//                if(tempCoords.contains(new Coordinates(x, y)))
-//                if()
-                if (inPole(x, y)) {
+                if ((inPole(x, y))&&!(tempCoords.contains(new Coordinates(x, y)))) {
                     tempCoords.add(new Coordinates(x, y));
                 }
             }
@@ -141,7 +202,6 @@ class User {
         }
     }
 
-
     /**
      * @param type размерность корабля
      * @param x1   координата Х начала корабля
@@ -154,14 +214,6 @@ class User {
     private boolean isCorrectCoords(int type, int x1, int y1, int x2, int y2) {
         return ((x1 == x2) && Math.abs(y1 - y2) == type) || ((y2 == y1) && Math.abs(x1 - x2) == type);
 
-    }
-    /**
-     * @param x координата х
-     * @param y координата y
-     * @return true если заданная точка находится в поле, в противном случае false
-     */
-    boolean inPole(int x, int y) {
-        return (x >= 0 && (x < 10) && (y >= 0) && (y < 10));
     }
 
     /**
@@ -198,57 +250,5 @@ class User {
         }
         return coordinates;
     }
-    /**
-     * Метод уменьшает количество кораблей введеного типа, которые надо поставить
-     * @param type размерность корабля
-     */
 
-    void ShipSet(int type) {
-        int typeOfSHip = type - 1;
-        RemainingShips.set((typeOfSHip), (RemainingShips.get(typeOfSHip)) - 1);
-    }
-
-    /**
-     * Метод возвращает массив координат корабля, частью которого являются введенные координаты
-     * @param x координата х
-     * @param y координата у
-     * @return массив координат
-     */
-    ArrayList<Coordinates> getShipCoordinates(int x, int y) {
-        return ships.get(findShipSell(x, y, true)).getShipCoordinates();
-    }
-
-    /**
-     * добавляет подбитую часть вражеского корабля на поле игрока
-     * @param x координата х
-     * @param y координата у
-     */
-    void addEnemyPartShipToPole(int x, int y) {
-        enemyPole.addShipPart(x, y);
-    }
-
-
-    /**
-     * добавляет убитый корабль противника на поле игрока
-     * @param ship координаты корабля
-     */
-    void addEnemyShipToPole(ArrayList<Coordinates> ship) {
-        ship.forEach(coordinates -> enemyPole.addShipPart(coordinates.getX(), coordinates.getY()));
-    }
-
-    /**
-     * выводит после противника
-     */
-    void printEnemyPole() {
-        enemyPole.printPole();
-    }
-
-    /**
-     * добавляет промах на карту игрока
-     * @param x координата х
-     * @param y координата у
-     */
-    void hitPass(int x, int y) {
-        enemyPole.addHitPass(x, y);
-    }
 }

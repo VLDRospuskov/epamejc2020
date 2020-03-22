@@ -16,30 +16,30 @@ class StringIndexChange {
     private void GetStr() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter string: ");
-        str = in.nextLine().toString();
+        str = in.nextLine();
     }
 
     private void GetFirstWord() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter first word (0 to " + (str.length() - 1) + "): ");
-        fw = in.nextLine().toString();
+        fw = in.nextLine();
     }
 
     private void GetSecondWord() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter second word (" + (Integer.parseInt(fw) + 1) + " to " + (str.length() - 1) + "): ");
-        sw = in.nextLine().toString();
+        sw = in.nextLine();
     }
 
     private void ChangeChar() {
         GetFirstWord();
         if (!((Integer.parseInt(fw) > -1) && (Integer.parseInt(fw) < str.length()))) {
-            System.out.println("Err!");
+            System.out.println("Err");
             return;
         }
         GetSecondWord();
         if (!((Integer.parseInt(sw) >= ((Integer.parseInt(fw) + 1)) && (Integer.parseInt(sw) < str.length())))) {
-            System.out.println("Err!!");
+            System.out.println("Err");
             return;
         }
         System.out.println(str.substring(0, Integer.parseInt(fw))

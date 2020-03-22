@@ -19,9 +19,7 @@ class StringGenStrByIndexLogic {
     }
 
     private void getMin() {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter sec(1 to " + str.length() + "; -1 to exit): ");
-        min = Integer.parseInt(in.nextLine());
+        min = readCom("Enter sec(1 to " + str.length() + "; -1 to exit): ");
     }
 
     private void GenStr() {
@@ -38,5 +36,22 @@ class StringGenStrByIndexLogic {
                 System.out.println("Err");
             }
         }
+    }
+
+    private int readCom(String text) {
+        boolean t;
+        int command = 0;
+        do {
+            try {
+                System.out.print(text);
+                Scanner in = new Scanner(System.in);
+                command = in.nextInt();
+                t = false;
+            } catch (Exception e) {
+                t = true;
+                System.out.println("Input Error.");
+            }
+        } while (t);
+        return command;
     }
 }

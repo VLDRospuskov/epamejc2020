@@ -15,7 +15,7 @@ class stringReversStrLogic {
     private void getStr() {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter string: ");
-        str = new String(in.nextLine().toString());
+        str = in.nextLine();
     }
 
 

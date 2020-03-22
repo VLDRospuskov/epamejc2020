@@ -1,8 +1,8 @@
 package homework5.RecursionFibonacci;
 
-public class recursionFibonacci {
+class recursionFibonacci {
 
-    public int feb(int col) {
+    int feb(int col) {
         if (col == 0){
             return 0;
         }

@@ -2,7 +2,7 @@ package homework7;
 
 import java.io.*;
 
-public class BFileManager {
+public class BFileManager extends  FileManager {
     public String readFile(String filePatch) {
         char[] text = null;
         try (FileInputStream fin = new FileInputStream(filePatch)) {

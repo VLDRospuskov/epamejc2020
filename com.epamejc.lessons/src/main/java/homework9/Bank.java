@@ -6,7 +6,7 @@ import java.util.Map;
 class Bank {
     private Map<Integer, Integer> UsersAccount = new HashMap<>();
 
-    synchronized void putMoney(Integer id, int count) {
+    void putMoney(Integer id, int count) {
         int balance;
         try {
             balance = UsersAccount.get(id) + count;
@@ -19,7 +19,7 @@ class Bank {
         System.out.println(id + " Balance - " + balance);
     }
 
-    synchronized void getMoney(Integer id, int count) {
+    void getMoney(Integer id, int count) {
         int balance;
         try {
             if (UsersAccount.get(id) < count) {

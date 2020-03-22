@@ -17,7 +17,6 @@ public class FileManager {
 
     public void writeFile(String filePatch, String text) {
         try (FileOutputStream fou = new FileOutputStream(filePatch)) {
-            // перевод строки в байты
             byte[] buffer = text.getBytes();
             fou.write(buffer, 0, buffer.length);
         } catch (IOException ex) {

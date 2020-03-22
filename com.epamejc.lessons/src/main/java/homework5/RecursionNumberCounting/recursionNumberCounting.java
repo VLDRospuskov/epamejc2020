@@ -1,8 +1,8 @@
 package homework5.RecursionNumberCounting;
 
-public class recursionNumberCounting {
+class recursionNumberCounting {
 
-    public int numCounter(int num) {
+    int numCounter(int num) {
         int col = 1;
         if (num / 10 == 0) {
             return 1;

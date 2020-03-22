@@ -1,8 +1,8 @@
 package homework4.StringRandomNewStr;
 
-public class stringRandomNewStr {
+class stringRandomNewStr {
 
-    public String applyStrategy(String str, String typeOfStrategy) {
+    String applyStrategy(String str, String typeOfStrategy) {
         int i = 0;
         StringBuilder out = new StringBuilder();
         if ((typeOfStrategy.equals("B")) || (typeOfStrategy.equals("b"))) {

@@ -1,8 +1,8 @@
 package homework5.RecursionExponentiate;
 
-public class recursionExponential {
+class recursionExponential {
 
-    public int step(int num, int pow) {
+    int step(int num, int pow) {
         if (pow == 0) {
             return 1;
         }

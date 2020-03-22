@@ -1,18 +1,19 @@
 package homework4.StringReversStr;
 
-public class stringReversStr {
+class stringReversStr {
 
-    public String reversStr(String str) {
+    String reversStr(String str) {
         int firstWord = 0;
         int Space = 0;
         StringBuilder out = new StringBuilder();
         String strToReverse;
-        while (true) {
+        boolean exit = false;
+        while (!exit) {
             Space = str.indexOf(" ", Space);// find index of space
             if (Space == -1) {
-                strToReverse = str.substring(firstWord, str.length());
+                strToReverse = str.substring(firstWord);
                 out.append(new StringBuffer(strToReverse).reverse());
-                break;
+                exit=true;
             } else {
                 strToReverse = str.substring(firstWord, Space);
                 out.append(new StringBuffer(strToReverse).reverse());

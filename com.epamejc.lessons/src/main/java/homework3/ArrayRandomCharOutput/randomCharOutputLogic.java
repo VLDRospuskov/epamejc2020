@@ -2,14 +2,9 @@ package homework3.ArrayRandomCharOutput;
 
 import java.util.Random;
 
-public class randomCharOutputLogic {
+class randomCharOutputLogic {
 
-
-    private boolean IsEven(int num) {
-        return num % 2 == 0;
-    }
-
-    public String[][] enterRandArr(int height, int width) {
+    String[][] enterRandArr(int height, int width) {
         String[][] arr = new String[height][width];
         Random r = new Random();
         for (int i = 0; i < height; i++) {
@@ -20,23 +15,25 @@ public class randomCharOutputLogic {
         return arr;
     }
 
-    public String applyStrategy(String[][] arr, String typeOfStrategy) {
-        int strategyNum = 0;
+    String applyStrategy(String[][] arr, int typeOfStrategy) {
+
         int height = arr.length;
         int width = arr[0].length;
         StringBuilder out = new StringBuilder();
-        if ((typeOfStrategy.equals("B")) || (typeOfStrategy.equals("b"))) {
-            strategyNum = 1;
-        }
+
         for (int i = 0; i < height; i++) {
-            if (IsEven(i + strategyNum)) {
+            if (IsEven(i + typeOfStrategy)) {
                 for (int j = 0; j < width; j++) {
-                    if (IsEven(j + strategyNum)) {
+                    if (IsEven(j + typeOfStrategy)) {
                         out.append((arr[i][j]));
                     }
                 }
             }
         }
         return out.toString();
+    }
+
+    private boolean IsEven(int num) {
+        return num % 2 == 0;
     }
 }
