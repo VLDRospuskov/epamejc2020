@@ -1,5 +1,6 @@
 package homeworks.hw3;
 
+import main.homeworks.hw3.RandomCharArray;
 import org.junit.*;
 
 import static org.junit.Assert.*;

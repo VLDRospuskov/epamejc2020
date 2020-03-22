@@ -1,7 +1,6 @@
 package test.homeworks.hw5;
 
-import homeworks.hw5.Fibonacci;
-import homeworks.hw5.Power;
+import main.homeworks.hw5.Power;
 import org.junit.*;
 
 import static org.junit.Assert.*;

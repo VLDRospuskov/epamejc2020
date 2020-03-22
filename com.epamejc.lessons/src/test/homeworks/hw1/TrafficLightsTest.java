@@ -1,5 +1,6 @@
 package homeworks.hw1;
 
+import main.homeworks.hw1.TrafficLights;
 import org.junit.*;
 
 import static org.junit.Assert.*;

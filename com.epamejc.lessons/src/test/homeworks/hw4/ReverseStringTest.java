@@ -1,5 +1,6 @@
 package homeworks.hw4;
 
+import main.homeworks.hw4.ReverseString;
 import org.junit.*;
 
 import static org.junit.Assert.*;

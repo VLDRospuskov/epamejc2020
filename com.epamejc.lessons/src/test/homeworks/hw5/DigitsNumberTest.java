@@ -1,5 +1,6 @@
 package homeworks.hw5;
 
+import main.homeworks.hw5.DigitsNumber;
 import org.junit.*;
 
 import static org.junit.Assert.*;

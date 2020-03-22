@@ -1,6 +1,6 @@
 package test.homeworks.hw5;
 
-import homeworks.hw5.Fibonacci;
+import main.homeworks.hw5.Fibonacci;
 import org.junit.*;
 
 import static org.junit.Assert.*;
