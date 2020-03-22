@@ -1,9 +1,11 @@
 package homework.homework9.atm;
 
 import homework.homework9.util.Log;
+import lombok.Getter;
 import org.apache.commons.math3.util.Precision;
 
 public class Account {
+    @Getter
     volatile private double balance;
 
     public Account(double balance) {
