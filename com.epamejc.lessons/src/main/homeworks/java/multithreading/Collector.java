@@ -12,7 +12,6 @@ public class Collector {
 
     public Collector(List<ATM> atms) {
 
-        super();
         this.atms = atms;
 
     }

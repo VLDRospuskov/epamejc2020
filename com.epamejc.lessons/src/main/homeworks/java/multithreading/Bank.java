@@ -2,33 +2,18 @@ package homeworks.java.multithreading;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public final class Bank {
 
-    private static volatile Bank instance;
-    private volatile Map<User, BigDecimal> userAccounts;
+    private static Bank instance;
+    private Map<User, BigDecimal> userAccounts;
     private volatile BigDecimal moneyStash;
 
     private Bank() {
 
         userAccounts = new HashMap<>();
-        moneyStash = BigDecimal.valueOf(1_000_000_000);
-
-    }
-
-    public void registerUsers(List<User> users) {
-
-        for (User user : users) {
-            userAccounts.put(user, BigDecimal.ZERO);
-
-        }
-    }
-
-    public void deleteAllUsers() {
-
-        userAccounts.clear();
+        moneyStash = BigDecimal.valueOf(1_000_000.);
 
     }
 
@@ -44,9 +29,33 @@ public final class Bank {
 
     }
 
+    public BigDecimal getMoneyStash() {
+
+        return this.moneyStash;
+
+    }
+
+    public void setMoneyStash(BigDecimal value) {
+
+        moneyStash = value;
+
+    }
+
     public Map<User, BigDecimal> getUserAccounts() {
 
         return userAccounts;
+
+    }
+
+    public void registerUser(User user) {
+
+        userAccounts.put(user, BigDecimal.ZERO);
+
+    }
+
+    public void deleteAllUsers() {
+
+        userAccounts.clear();
 
     }
 
@@ -79,6 +88,7 @@ public final class Bank {
                 return true;
             }
         }
+
     }
 
     public void transferSalary(User user) {
@@ -87,16 +97,11 @@ public final class Bank {
             userAccounts.entrySet()
                     .stream()
                     .filter(u -> u.getKey().equals(user))
-                    .forEach(u -> u.setValue(u.getValue().add(u.getKey().getSalary())));
+                    .findFirst()
+                    .ifPresent(u -> u.setValue(u.getValue().add(u.getKey().getSalary())));
         }
         System.out.println("\nUser " + user.getName() + " got a salary. Account details: "
                 + getUserAccountDetails(user).setScale(2, BigDecimal.ROUND_DOWN) + "\n");
-
-    }
-
-    public BigDecimal getMoneyStash() {
-
-        return this.moneyStash;
 
     }
 
@@ -109,7 +114,7 @@ public final class Bank {
     public void serviceOperation(BigDecimal amount) throws RuntimeException {
 
         synchronized (Bank.class) {
-            if (moneyStash.compareTo(amount) < 0) {
+            if (moneyStash.add(amount).compareTo(BigDecimal.ZERO) < 0) {
                 throw new RuntimeException("\nThe bank went bankrupt\n");
             }
             moneyStash = moneyStash.add(amount);

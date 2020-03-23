@@ -18,9 +18,7 @@ public class ATMTest {
 
         atm = new ATM(15);
         user = new User("Pupkin", 600, 600);
-        List<User> users = new ArrayList<>();
-        users.add(user);
-        Bank.getInstance().registerUsers(users);
+        Bank.getInstance().registerUser(user);
 
     }
 
@@ -36,6 +34,7 @@ public class ATMTest {
         Assert.assertEquals(expected, actual);
 
     }
+
     @Test
     public void testServiceAccountNegative() {
 

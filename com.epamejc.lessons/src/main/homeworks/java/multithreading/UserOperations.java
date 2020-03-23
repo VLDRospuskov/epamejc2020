@@ -24,10 +24,14 @@ public class UserOperations implements Runnable {
 
         while (true) {
             Thread.sleep(2000L);
-            if (Bank.getInstance().getUserAccountDetails(user).doubleValue() < 30_000.0) {
-                doJob();
-            } else {
-                useATM();
+            try {
+                if (Bank.getInstance().getUserAccountDetails(user).doubleValue() < 30_000.0) {
+                    doJob();
+                } else {
+                    useATM();
+                }
+            } catch (RuntimeException e) {
+                System.err.println(e.getMessage());
             }
         }
 

@@ -10,8 +10,12 @@ public class ATMSimulation {
 
         List<ATM> atms = generateATMs();
         List<User> users = generateUsers();
+        Bank bank = Bank.getInstance();
 
-        Bank.getInstance().registerUsers(users);
+        for (User user : users) {
+            bank.registerUser(user);
+        }
+
         CollectorOperations collectorThread = new CollectorOperations(new Collector(atms));
         collectorThread.start();
 

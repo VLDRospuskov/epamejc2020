@@ -74,7 +74,8 @@ public class ATM {
                         user.addCash(amount);
                         printCurrentState("Withdraw", user, amount);
                     } else {
-                        System.out.println("\nFailed to withdraw " + amount.setScale(2, BigDecimal.ROUND_DOWN) +
+                        System.out.println("\nFailed to withdraw " +
+                                amount.setScale(2, BigDecimal.ROUND_DOWN) +
                                 ", not enough funds on user " + user.getName() + " account\n" +
                                 "There is " + Bank.getInstance().getUserAccountDetails(user)
                                 .setScale(2, BigDecimal.ROUND_DOWN) + " on account\n");
