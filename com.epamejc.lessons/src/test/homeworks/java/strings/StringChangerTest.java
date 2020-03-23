@@ -17,7 +17,7 @@ public class StringChangerTest {
     @Test
     public void testByIndexTrue() {
 
-       boolean expected = true;
+        boolean expected = true;
 
         for (int i = 0; i < stringChanger.getStoredString().length(); i++) {
             boolean actual = stringChanger.byIndex(i);

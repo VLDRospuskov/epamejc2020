@@ -13,6 +13,7 @@ import homeworks.java.utils.UserInputReader;
  * opposing player's fleet.
  * Each ship is separated from another one with at least one cell in each direction.
  * <p>
+ * If player shoots at the already hit cell, the game decides this is a miss.
  * The game ends when one of the players loses all his ships.
  * <p>
  * {@author Vladimir Ivanov}
