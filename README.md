@@ -2,7 +2,7 @@
 ![Fun](https://dataenginer.ru/wp-content/uploads/2019/03/Kak-ustanovit-Java-JRE-i-JDK-iz-fajla-RPM-na-Linux.jpg)
 
 ## CodingBat problems - done 100%.
-## Рomework solutions:
+## Homework solutions:
 
 | No | Task | Solution |
 | ------ | ------ | ------ |
