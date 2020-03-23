@@ -1,7 +1,8 @@
 # epamejc2020 Vladimir Ivanov branch (: 
-![Fun](https://img.icons8.com/doodle/192/000000/futurama-bender.png)
+![Fun](https://dataenginer.ru/wp-content/uploads/2019/03/Kak-ustanovit-Java-JRE-i-JDK-iz-fajla-RPM-na-Linux.jpg)
 
-## Links to solutions:
+##CodingBat problems - done 100%.
+## Рomework solutions:
 
 | No | Task | Solution |
 | ------ | ------ | ------ |

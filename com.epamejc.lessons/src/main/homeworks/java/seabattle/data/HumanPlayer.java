@@ -40,7 +40,7 @@ public class HumanPlayer extends Player {
     private Cell makeCell(String input) {
 
         String[] split = input.split(REGEX);
-        return new Cell(split[0].charAt(0) - 96, Integer.valueOf(split[1]));
+        return new Cell(split[0].toLowerCase().charAt(0) - 96, Integer.valueOf(split[1]));
 
     }
 

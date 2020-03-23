@@ -1,6 +1,7 @@
 package homeworks.java.seabattle.data;
 
 import homeworks.java.seabattle.data.enums.GameState;
+import homeworks.java.seabattle.engine.GameIO;
 import homeworks.java.seabattle.engine.Settings;
 import lombok.Getter;
 
@@ -22,6 +23,7 @@ public class Field {
         DECK_SIZE = settings.getDeckSize();
         deck = new ArrayList<>();
         ships = new ArrayList<>();
+        setupNewField();
 
     }
 

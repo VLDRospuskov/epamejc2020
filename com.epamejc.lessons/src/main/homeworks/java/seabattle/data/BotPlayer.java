@@ -10,10 +10,10 @@ public class BotPlayer extends Player {
 
     private AI ai;
 
-    public BotPlayer() {
+    public BotPlayer(AI ai) {
 
         super();
-        ai = new AI();
+        this. ai = ai;
         this.setName(RandomNameGenerator.generateName());
 
     }

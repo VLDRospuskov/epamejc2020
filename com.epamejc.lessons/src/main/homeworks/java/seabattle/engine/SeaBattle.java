@@ -79,7 +79,7 @@ public class SeaBattle {
         boolean done = true;
         switch (choice) {
             case "1":
-                players = Arrays.asList(new HumanPlayer(io), new BotPlayer());
+                players = Arrays.asList(new HumanPlayer(io), new BotPlayer(new AI()));
                 break;
             case "2":
                 players = Arrays.asList(new HumanPlayer(io),
@@ -87,7 +87,7 @@ public class SeaBattle {
                 setAllVisibility(false);
                 break;
             case "3":
-                players = Arrays.asList(new BotPlayer(), new BotPlayer());
+                players = Arrays.asList(new BotPlayer(new AI()), new BotPlayer(new AI()));
                 break;
             default:
                 io.print("Wrong input! ");
