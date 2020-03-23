@@ -2,6 +2,7 @@ package homeworks.java.seabattle.engine;
 
 import homeworks.java.seabattle.data.*;
 import homeworks.java.seabattle.data.enums.GameState;
+import lombok.SneakyThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ public class SeaBattle {
     private Player currentPlayer;
     private GameIO io = new GameIO();
 
+    @SneakyThrows
     public void run() {
 
         GameState gameState;
@@ -26,11 +28,7 @@ public class SeaBattle {
             io.print("It's " + currentPlayer.getName() + " turn");
             gameState = currentPlayer.shoot(getEnemy());
             if (currentPlayer instanceof BotPlayer) {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(400);
-                } catch (InterruptedException e) {
-                    System.err.println(e.getMessage());
-                }
+                TimeUnit.MILLISECONDS.sleep(400);
             }
             if (gameState.equals(GameState.MISS)) {
                 currentPlayer = getEnemy();
