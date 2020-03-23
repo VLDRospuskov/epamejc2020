@@ -5,6 +5,7 @@ import homeworks.java.seabattle.data.enums.GameState;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SeaBattle {
 
@@ -24,6 +25,13 @@ public class SeaBattle {
             io.printGame(players);
             io.print("It's " + currentPlayer.getName() + " turn");
             gameState = currentPlayer.shoot(getEnemy());
+            if (currentPlayer instanceof BotPlayer) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(400);
+                } catch (InterruptedException e) {
+                    System.err.println(e.getMessage());
+                }
+            }
             if (gameState.equals(GameState.MISS)) {
                 currentPlayer = getEnemy();
             }
