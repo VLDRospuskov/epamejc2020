@@ -1,9 +1,9 @@
 package homeworks.homework5;
 
 import homeworks.InputReader;
-import homeworks.homework5.task4_1.Fibonacci;
-import homeworks.homework5.task4_2.Power;
-import homeworks.homework5.task4_3.Digits;
+import homeworks.homework5.task5_1.Fibonacci;
+import homeworks.homework5.task5_2.Power;
+import homeworks.homework5.task5_3.Digits;
 
 public class RunRecursionTasks {
     

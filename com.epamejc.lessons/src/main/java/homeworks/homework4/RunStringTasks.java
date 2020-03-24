@@ -1,10 +1,10 @@
 package homeworks.homework4;
 
 import homeworks.InputReader;
-import homeworks.homework4.task3_1.OddEvenSubstring;
-import homeworks.homework4.task3_2.StringGenerator;
-import homeworks.homework4.task3_3.SwapSymbols;
-import homeworks.homework4.task3_4.ReverseWords;
+import homeworks.homework4.task4_1.OddEvenSubstring;
+import homeworks.homework4.task4_2.StringGenerator;
+import homeworks.homework4.task4_3.SwapSymbols;
+import homeworks.homework4.task4_4.ReverseWords;
 
 public class RunStringTasks {
     

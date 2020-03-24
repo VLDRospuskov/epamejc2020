@@ -1,9 +1,9 @@
 package homeworks.homework3;
 
 import homeworks.InputReader;
-import homeworks.homework3.task2_1.CharArrayOperation;
-import homeworks.homework3.task2_2.ABStrategy;
-import homeworks.homework3.task2_3.PyramidArray;
+import homeworks.homework3.task3_1.CharArrayOperation;
+import homeworks.homework3.task3_2.ABStrategy;
+import homeworks.homework3.task3_3.PyramidArray;
 
 public class RunArrayTasks {
     
