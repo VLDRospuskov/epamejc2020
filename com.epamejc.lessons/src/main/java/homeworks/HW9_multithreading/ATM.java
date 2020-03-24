@@ -72,13 +72,6 @@ public class ATM {
      * @throws InterruptedException exception, if there're troubles with thread
      */
     public void checkBalance(User user) throws InterruptedException {
-//        synchronized (bankAccount.getBankLock()) {
-//            synchronized (user.getUserLock()) {
-//                System.out.println(user.getName() + " checked his/her balance: "
-//                        + user.getUserBalance().longValue() + "\n");
-//                Thread.sleep(1000);
-//            }
-//        }
         synchronized (bankAccount.getBankLock()) {
             System.out.println(user.getName() + " checked his/her balance: "
                     + user.getUserBalance().longValue() + "\n");

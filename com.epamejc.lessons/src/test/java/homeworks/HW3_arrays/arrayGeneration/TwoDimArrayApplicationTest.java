@@ -5,19 +5,18 @@ import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import java.io.InputStream;
 import java.util.Scanner;
-
 import static java.lang.System.in;
 import static java.lang.System.setIn;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emptyStandardInputStream;
 
 public class TwoDimArrayApplicationTest {
 
-    public static homeworks.HW3_arrays.arrayGeneration.TwoDimArrayApplication arrayApp;
+    public static TwoDimArrayApplication arrayApp;
     private static InputStream originalIn;
 
     @BeforeClass
     public static void initClass() {
-        arrayApp = new homeworks.HW3_arrays.arrayGeneration.TwoDimArrayApplication();
+        arrayApp = new TwoDimArrayApplication();
         originalIn = in;
     }
 

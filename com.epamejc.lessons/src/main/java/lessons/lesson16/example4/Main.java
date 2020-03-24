@@ -1,4 +1,4 @@
-package lessons.java.lesson16.example4;
+package lessons.lesson16.example4;
 
 
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class Main {
                 .parallel()
                 .filter(user -> user.getId() == id)
                 .findAny()
-                .orElseThrow(() -> new UserNotFoundException("User not found by Id"));
+                .orElseThrow(() -> new lessons.java.lesson16.example4.UserNotFoundException("User not found by Id"));
     }
 
     // DB

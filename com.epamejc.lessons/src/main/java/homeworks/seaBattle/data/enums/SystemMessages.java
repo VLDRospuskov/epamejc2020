@@ -3,7 +3,7 @@ package homeworks.seaBattle.data.enums;
 public enum SystemMessages {
     startGame("Welcome to seabattle game"),
     choosePlacementType("Do you want to place your ships manually? (Y/N): "),
-    enterShotCoordinates("Enter the coordinates of the cell you want to shoot: "),
+    enterShotCoordinates("Enter the coordinates of the cell you want to shoot (or type \"exit\"): "),
     enterPlacementCoordinates("Enter the coordinates of the cell you want to place your "),
     enterPlacementDirection("Enter the direction you want to place your "),
     playerMiss(ConsoleColors.YELLOW.color() + "You missed" + ConsoleColors.RESET.color()),

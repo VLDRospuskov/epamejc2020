@@ -1,4 +1,4 @@
-package lessons.java.lesson15.example1;
+package lessons.lesson15.example1;
 
 import java.util.function.*;
 
@@ -40,6 +40,7 @@ public class Main {
         System.out.println(supplier2.get());
 
         System.out.println("=============================");
+
         Function<Integer, String> function = new Function<Integer, String>() {
             @Override
             public String apply(Integer integer) {

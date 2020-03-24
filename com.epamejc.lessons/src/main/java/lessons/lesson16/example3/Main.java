@@ -1,4 +1,4 @@
-package lessons.java.lesson16.example3;
+package lessons.lesson16.example3;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 public class Main {
 

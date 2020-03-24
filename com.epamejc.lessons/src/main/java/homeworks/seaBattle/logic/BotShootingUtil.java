@@ -37,7 +37,8 @@ public class BotShootingUtil extends PlayerShootingUtil {
     @Override
     public boolean shot(int[] shotCoordinates) {
         if (isPointFixed) {
-            Cell fireCell = getEnemyPlayer().fieldOperations().getCellByDirection(shotDirection, shotCoordX, shotCoordY, offset + 1);
+            Cell fireCell = getEnemyPlayer().fieldOperations()
+                    .getCellByDirection(shotDirection, shotCoordX, shotCoordY, offset + 1);
             Ship enemyShip = fireCell.getCellShip();
             if (enemyShip != null) {
                 enemyShip.hitShip();

@@ -38,7 +38,8 @@ public class AutomaticShipPlacer {
                 boolean isInsideBorders = fieldOperations.checkFieldBorder(randomDirection, randomCoordX,
                         randomCoordY, ship.getShipDecks());
                 if (isInsideBorders) {
-                    boolean isRadiusFree = checkRadius(randomDirection, randomCoordX, randomCoordY, ship.getShipDecks());
+                    boolean isRadiusFree = checkRadius(randomDirection, randomCoordX, randomCoordY,
+                            ship.getShipDecks());
                     if (isRadiusFree) {
                         isShipPlaced = true;
                         initializeShip(ship, randomDirection, randomCoordX, randomCoordY);
