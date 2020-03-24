@@ -114,7 +114,7 @@ public class Player {
         return 0;
     }
     
-    private int iterateShipParts(
+    protected int iterateShipParts(
             Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator) {
         while (shipPartsIterator.hasNext()) {
             Coordinate shipCoordinate = (Coordinate) shipPartsIterator.next();
@@ -125,7 +125,7 @@ public class Player {
         return 0;
     }
     
-    private int hitOrKill(
+    protected int hitOrKill(
             Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator,
             Coordinate shipCoordinate) {
         if (ship.getShipParts().size() > 1) {
@@ -137,7 +137,7 @@ public class Player {
         }
     }
     
-    private void shotWhileHit() {
+    protected void shotWhileHit() {
         int fireResult = -1;
         Coordinate shotCoordinate;
         while (fireResult != 0 && opponentsFieldData.ships
@@ -163,7 +163,7 @@ public class Player {
         return shotCoordinate;
     }
     
-    private void kill(
+    protected void kill(
             Coordinate shotCoordinate, Iterator shipIterator, Ship ship, Iterator shipPartsIterator,
             Coordinate shipCoordinate) {
         System.out.println("kill");
@@ -174,7 +174,7 @@ public class Player {
                 .add(new Shot(shipCoordinate));
     }
     
-    private void hit(Coordinate shotCoordinate, Iterator shipPartsIterator) {
+    protected void hit(Coordinate shotCoordinate, Iterator shipPartsIterator) {
         shipPartsIterator.remove();
         System.out.println("hit");
         opponentsField.addAssistPointsAroundShot(shotCoordinate);
