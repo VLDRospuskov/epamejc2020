@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.lang.reflect.Constructor;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -26,8 +27,8 @@ public class Person {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
-        assert personConstructor != null;
-        return personConstructor.getAnnotation(CustomAnnotation.class);
+        return Objects.requireNonNull(personConstructor).getAnnotation(CustomAnnotation.class);
+        
     }
     
     public String getStr() {

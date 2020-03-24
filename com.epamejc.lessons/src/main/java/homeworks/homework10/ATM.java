@@ -29,10 +29,6 @@ public class ATM {
         this.ATMBalance = ATMBalance;
     }
     
-    private int getID() {
-        return ID;
-    }
-    
     public synchronized void checkClientAndATMBalance() {
         System.out.println("Balance " + Thread.currentThread()
                                               .getName() + ": " + ((ThreadOperations) Thread.currentThread())
@@ -59,6 +55,10 @@ public class ATM {
             checkClientAndATMBalance();
             return true;
         }
+    }
+    
+    private int getID() {
+        return ID;
     }
     
 }

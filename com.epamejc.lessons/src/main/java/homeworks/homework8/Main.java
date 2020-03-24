@@ -5,7 +5,13 @@ public class Main {
     
     public static void main(String[] args) {
         StreamOperations streamOperations = new StreamOperations();
-        streamOperations.findAllCompanies();
+        System.out.println(streamOperations.findPersonWithLongestFullName());
+        System.out.println(streamOperations.findPersonsBeganCareerInEpam());
+        System.out.println(streamOperations.findAllCompanies());
+        System.out.println(streamOperations.findMinimalAgeOfEmployees());
+        System.out.println(streamOperations.calcAverageAgeOfEmployees());
+        System.out.println(streamOperations.findEmployeeWithMaximumDurationAtOnePosition());
+        System.out.println(streamOperations.findPersonsEverWorkedInEpam());
     }
     
 }

@@ -20,7 +20,6 @@ public class ThreadOperations extends Thread {
         return random.nextInt(max - min + 1) + 3;
     }
     
-    //2_147_483_648
     private static BigDecimal getSomeMoneyToPerform() {
         return new BigDecimal(generateIntInRange(10_000, 100_000));
     }

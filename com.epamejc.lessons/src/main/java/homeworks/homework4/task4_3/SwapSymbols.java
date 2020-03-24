@@ -7,10 +7,10 @@ public class SwapSymbols {
         if (string == null) {
             return swapNums;
         }
-        String[] splited = string.split(", ");
-        for (int i = 0; i < splited.length && i < swapNums.length; i++) {
-            if (isNumeric(splited[i])) {
-                swapNums[i] = Integer.parseInt(splited[i]);
+        String[] splitted = string.split(", ");
+        for (int i = 0; i < splitted.length && i < swapNums.length; i++) {
+            if (isNumeric(splitted[i])) {
+                swapNums[i] = Integer.parseInt(splitted[i]);
             }
         }
         return swapNums;
