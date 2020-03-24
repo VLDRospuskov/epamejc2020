@@ -15,7 +15,6 @@ public class ReaderComparison {
         writeWithFileReader();
         long endTime = System.currentTimeMillis();
         System.out.println("FileReader time: " + (endTime - startTime) + "ms");
-        
         long startTimeBuff = System.currentTimeMillis();
         writeWithBufferedReader();
         long endTimeBuff = System.currentTimeMillis();
@@ -28,7 +27,6 @@ public class ReaderComparison {
             for (int i = 0; i < SIZE; i++) {
                 fileWriter.write("Hello Mr.Anderson.");
             }
-            fileWriter.flush();
         } catch (FileNotFoundException e) {
             System.err.println("There is no such file exists " + fileName);
         } catch (IOException e) {
@@ -45,7 +43,6 @@ public class ReaderComparison {
                 fileWriter.write(chars, 0, chars.length);
                 read = fileReader.read(chars, 0, chars.length);
             }
-            fileWriter.flush();
         } catch (FileNotFoundException e) {
             System.err.println("There is no such file exists " + sourceFile);
         } catch (IOException e) {
@@ -61,7 +58,6 @@ public class ReaderComparison {
                 fileWriter.write(chars, 0, chars.length);
                 read = fileReader.read(chars, 0, chars.length);
             }
-            fileWriter.flush();
         } catch (FileNotFoundException e) {
             System.err.println("There is no such file exists " + sourceFile);
         } catch (IOException e) {

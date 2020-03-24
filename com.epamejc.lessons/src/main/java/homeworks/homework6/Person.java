@@ -14,6 +14,12 @@ public class Person {
     
     @CustomAnnotation(name = "Barsik", age = 6)
     public Person() {
+        CustomAnnotation customAnnotation = getCustomAnnotation();
+        this.name = customAnnotation.name();
+        this.age = customAnnotation.age();
+    }
+    
+    private CustomAnnotation getCustomAnnotation() {
         Constructor<Person> personConstructor = null;
         try {
             personConstructor = Person.class.getDeclaredConstructor();
@@ -21,9 +27,7 @@ public class Person {
             e.printStackTrace();
         }
         assert personConstructor != null;
-        CustomAnnotation customAnnotation = personConstructor.getAnnotation(CustomAnnotation.class);
-        this.name = customAnnotation.name();
-        this.age = customAnnotation.age();
+        return personConstructor.getAnnotation(CustomAnnotation.class);
     }
     
     public String getStr() {
