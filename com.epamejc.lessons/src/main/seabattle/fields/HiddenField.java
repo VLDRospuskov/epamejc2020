@@ -42,7 +42,18 @@ public class HiddenField extends Field {
         createNotAvailableZone(row, column, length, vertical);
     }
 
-    public List<Integer> createVerticalOptions(List<Integer> list, int length) {
+    public boolean attack(int i, int j) {
+        boolean hit = false;
+        if (arr[i][j] == boat) {
+            hit = true;
+            arr[i][j] = got;
+        } else {
+            arr[i][j] = away;
+        }
+        return hit;
+    }
+
+    protected List<Integer> createVerticalOptions(List<Integer> list, int length) {
         for (int i = 1; i <= (n - length); i++) {
             for (int j = 1; j <= 10; j++) {
                 switch (length) {
@@ -74,7 +85,7 @@ public class HiddenField extends Field {
         return list;
     }
 
-    public List<Integer> createHorizontalOptions(List<Integer> list, int length) {
+    protected List<Integer> createHorizontalOptions(List<Integer> list, int length) {
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= (n - length); j++) {
                 switch (length) {
@@ -105,7 +116,7 @@ public class HiddenField extends Field {
         return list;
     }
 
-    public void putShip(int row, int column, int length, int vertical) {
+    protected void putShip(int row, int column, int length, int vertical) {
         for (int i = 0; i < length; i++) {
             if (vertical == 1) {
                 arr[row + i][column] = boat;
@@ -115,7 +126,7 @@ public class HiddenField extends Field {
         }
     }
 
-    public void createNotAvailableZone(int row, int column, int length, int vertical) {
+    protected void createNotAvailableZone(int row, int column, int length, int vertical) {
         int lengthZone = length + 2;
         int a = 3;
         int b = 3;
@@ -129,17 +140,6 @@ public class HiddenField extends Field {
                 helpArr[row + i][column + j] = boat;
             }
         }
-    }
-
-    public boolean attack(int i, int j) {
-        boolean hit = false;
-        if (arr[i][j] == boat) {
-            hit = true;
-            arr[i][j] = got;
-        } else {
-            arr[i][j] = away;
-        }
-        return hit;
     }
 
 }

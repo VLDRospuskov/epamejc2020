@@ -73,7 +73,7 @@ public class StreamOperations {
         Person expected = null;
         expected = employees.stream()
                 .map(Employee::getPerson)
-                .reduce((a,b) -> a.getLastName().length() >= b.getLastName().length() ? a : b)
+                .reduce((a, b) -> a.getLastName().length() >= b.getLastName().length() ? a : b)
                 .get();
         System.out.println(expected);
     }
@@ -82,11 +82,11 @@ public class StreamOperations {
         List<Employee> employees = getEmployees();
         Employee expected = null;
         expected = employees.stream()
-                .reduce((a,b) ->
+                .reduce((a, b) ->
                         a.getJobHistory().stream()
                                 .map(JobHistoryEntry::getDuration).max(Integer::compare).get() >=
-                        b.getJobHistory().stream()
-                                .map(JobHistoryEntry::getDuration).max(Integer::compare).get() ? a : b)
+                                b.getJobHistory().stream()
+                                        .map(JobHistoryEntry::getDuration).max(Integer::compare).get() ? a : b)
                 .get();
         System.out.println(expected);
     }

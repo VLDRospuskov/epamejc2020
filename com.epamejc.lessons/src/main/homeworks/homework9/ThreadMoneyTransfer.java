@@ -26,4 +26,5 @@ public class ThreadMoneyTransfer extends Thread {
             System.out.println("-----------");
         }
     }
+
 }

@@ -14,7 +14,7 @@ public class Laptop<T> {
 
     <U> U priseWithDiscount(MySupplier<? extends Number> supplierPrise,
                             MySupplier<? extends Number> supplierDiscount,
-                            MyBiFunction <? super Number, ? super Number, ? extends U> biFunction) {
+                            MyBiFunction<? super Number, ? super Number, ? extends U> biFunction) {
         Number prise = supplierPrise.get();
         Number discount = supplierDiscount.get();
         return biFunction.apply(prise, discount);

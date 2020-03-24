@@ -4,8 +4,11 @@ import main.seabattle.fields.CustomField;
 import main.seabattle.fields.HiddenField;
 import main.seabattle.fields.VisibleField;
 
+import java.io.IOException;
 import java.util.Scanner;
 
+import static main.seabattle.decor.Colours.GREEN;
+import static main.seabattle.decor.Colours.RESET;
 import static main.seabattle.decor.Inscriptions.*;
 
 
@@ -61,15 +64,25 @@ public class Battle {
         } while (computerMoves);
     }
 
-    public boolean myMove() {
-        boolean hit;
+    private boolean myMove() {
+        boolean hit = true;
         do {
             printEnterCoordinates();
-            int i = scanner.nextInt();
-            if (i == -1) {
-                return false;
+            int i;
+            int j;
+            try {
+                i = inputInt();
+                if (i == -1) {
+                    return false;
+                }
+                j = inputInt();
+                if (i > 9 || j > 9 || i < 0 || j < 0) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(GREEN + "You entered invalid value. " + RESET);
+                continue;
             }
-            int j = scanner.nextInt();
             hit = hiddenComputerField.attack(i, j);
             if (hit) {
                 countHitsMe++;
@@ -84,7 +97,7 @@ public class Battle {
         return true;
     }
 
-    public boolean computerMove() {
+    private boolean computerMove() {
         boolean hit;
         do {
             int attack = gan.takeAttack();
@@ -105,6 +118,21 @@ public class Battle {
             }
         } while (hit);
         return true;
+    }
+
+    private int inputInt() {
+        int number;
+        try {
+            if (scanner.hasNextInt()) {
+                number = scanner.nextInt();
+            } else {
+                scanner.next();
+                throw new IOException();
+            }
+        } catch (IOException e) {
+            return -2;
+        }
+        return number;
     }
 
 }

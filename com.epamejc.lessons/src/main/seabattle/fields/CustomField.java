@@ -38,7 +38,7 @@ public class CustomField extends HiddenField {
         } while (index >= 0);
     }
 
-    public boolean legalIndexes(int row, int column, int length, int vertical) {
+    protected boolean legalIndexes(int row, int column, int length, int vertical) {
         try {
             if (vertical == 1) {
                 if (row + length > 10) {

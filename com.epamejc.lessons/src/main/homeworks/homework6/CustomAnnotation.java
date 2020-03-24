@@ -8,6 +8,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.CONSTRUCTOR)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CustomAnnotation {
+
     String name();
     int age();
+
 }

@@ -22,6 +22,12 @@
 |        | [The power of a number][Hw5.2] | 2. Create the program to calculate the power of a number. |
 |        | [Number of digits][Hw5.3] | 3. Create the program to count number of digits. |
 | ![N6]  | [Annotations][Hw6] | Create your own annotation, where "name" will be "String" and "age" will be "int". Use this annotation with constructor. When we create empty constructor, we must take data from the annotation through reflexion, and use it when we will be initialized an object. Use Lombok. |
+| ![N7]  | [Work with files][Hw7] | Create a file, fill it with text (a lot of text), then read it and write it to another file. Make the second method the same only with buffered. Measure the execution time without buffered and with buffered. |
+| ![N8]  | [Java 8][Hw8]  |           |
+|        | [My functional interfaces][Hw8.1] | 1. Write your own functional interfaces according to the type of BiFunction and Supplier(Producer). Create a class with multiple fields. Create a method that accepts functional interfaces that were created earlier. Get two fields and process the received values and return them. |
+|        | [Implement streams][Hw8.2] | 2. Implement streams in class StreamOperations. |
+| ![N9]  | [ATMs][Hw9]  | We have one shared account, there are several ATMs that work with this account - they are located in different parts of the city , but the virtual account is shared. There are also several users who can Deposit / withdraw money . It is mandatory not to give out money in the negative. Each user has their own balance. If the ATM runs out of money, we add it from the shared resource , and if there is too much money in the ATM, we give it back to the resource. |
+| ![N10]  | [Sea battle][Hw10]  | Write the sea battle of the standard, field 10 to 10. |
 
 [Hw1]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework1
 
@@ -45,13 +51,27 @@
 
 [Hw6]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework6
 
+[Hw7]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework7
+
+[Hw8]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework8
+[Hw8.1]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework8/part1
+[Hw8.2]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework8/part2
+
+[Hw9]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/homeworks/homework9
+
+[Hw10]:https://github.com/VLDRospuskov/epamejc2020/tree/Arina_Slizh/com.epamejc.lessons/src/main/seabattle
+
 [TLimg]:https://img.icons8.com/flat_round/40/000000/traffic-light--v1.png
 [ICimg]:https://img.icons8.com/officel/40/000000/no-edit.png
 
-[N1]:https://img.icons8.com/color/40/000000/1-circle-c--v1.png
-[N2]:https://img.icons8.com/color/40/000000/2-circle-c--v1.png
-[N3]:https://img.icons8.com/color/40/000000/3-circle-c--v1.png
-[N4]:https://img.icons8.com/color/40/000000/4-circle-c--v1.png
-[N5]:https://img.icons8.com/color/40/000000/5-circle-c--v1.png
-[N6]:https://img.icons8.com/color/40/000000/6-circle-c--v1.png
+[N1]:https://img.icons8.com/color/48/000000/1-circle-c--v1.png
+[N2]:https://img.icons8.com/color/48/000000/2-circle-c--v1.png
+[N3]:https://img.icons8.com/color/49/000000/3-circle-c--v1.png
+[N4]:https://img.icons8.com/color/48/000000/4-circle-c--v1.png
+[N5]:https://img.icons8.com/color/48/000000/5-circle-c--v1.png
+[N6]:https://img.icons8.com/color/48/000000/6-circle-c--v1.png
+[N7]:https://img.icons8.com/color/48/000000/7-circle-c--v1.png
+[N8]:https://img.icons8.com/color/48/000000/8-circle-c--v1.png
+[N9]:https://img.icons8.com/color/48/000000/9-circle-c--v1.png
+[N10]:https://icon-icons.com/icons2/865/PNG/48/Citycons_ship_icon-icons.com_67927.png
 

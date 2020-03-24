@@ -13,12 +13,18 @@ public class Person {
     String name;
     int age;
 
-    @SneakyThrows
     @CustomAnnotation(name = "Nik", age = 24)
     public Person() {
-        Constructor constructor = Person.class.getConstructor();
-        CustomAnnotation customAnnotation = constructor.getDeclaredAnnotation(CustomAnnotation.class);
+        CustomAnnotation customAnnotation = getCustomAnnotation();
         this.name = customAnnotation.name();
         this.age = customAnnotation.age();
     }
+
+    @SneakyThrows
+    private CustomAnnotation getCustomAnnotation() {
+        Constructor constructor = Person.class.getConstructor();
+        CustomAnnotation customAnnotation = constructor.getDeclaredAnnotation(CustomAnnotation.class);
+        return customAnnotation;
+    }
+
 }
