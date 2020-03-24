@@ -25,9 +25,7 @@ public class Pyramid23 {
             for (int i = 0; i < nRows; i++) {
                 for (int j = 0; j < nColumns-i; j++) {
                     twoDimPyramid[i][j] = 'x';
-                    //System.out.print('X');
                 }
-                //System.out.println();
             }
 
             CharOutOfArray21.print2dArray(twoDimPyramid);

@@ -24,12 +24,6 @@ public class CharOutOfArray21 {
             }
             System.out.println();
         }
-//        for (int i = 0; i < a.length; i++) {
-//            for (int j = 0; j < a[i].length; j++) {
-//                System.out.printf("%c ", a[i][j]);
-//            }
-//            System.out.println();
-//        }
     }
 
     static char[][] charOutOfArrayCore(int nRows, int nColumns) {
