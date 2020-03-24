@@ -229,6 +229,13 @@ public class Utils {
         return field.getField().get(coordYX[0]).get(coordYX[1]).isHit();
     }
 
+    public static boolean checkIsCellABarrier(Field field, Integer[] coordYX) {
+        if(coordYX == null) {
+            return false;
+        }
+        return field.getField().get(coordYX[0]).get(coordYX[1]).getStatus() == -2;
+    }
+
     public static void shoot(Field field, Integer[] coordYX) {
         field.getField().get(coordYX[0]).get(coordYX[1]).setHit(true);
     }

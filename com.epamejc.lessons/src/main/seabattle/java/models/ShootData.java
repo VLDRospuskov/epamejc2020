@@ -1,6 +1,7 @@
 package seabattle.java.models;
 
 import lombok.Data;
+
 import static seabattle.java.Utils.*;
 
 @Data
@@ -74,9 +75,11 @@ public class ShootData {
     private void checkDone() {
         if (doNotShootLeft && doNotShootUp && doNotShootRight && doNotShootDown) {
             isDone = true;
+            field.getShips().forEach(ship -> ship.setDeadBarrier(field));
         }
         if (shootLeft > 3 || shootUp > 3 || shootRight > 3 || shootDown > 3) {
             isDone = true;
+            field.getShips().forEach(ship -> ship.setDeadBarrier(field));
         }
     }
 
@@ -91,7 +94,7 @@ public class ShootData {
         int y = START_YX[0];
         int x = START_YX[1] - (shootLeft + 1);
         Integer[] coordYX = {y, x};
-        if (x >= 0 && checkIsCellHit(field, coordYX)) {
+        if (x >= 0 && (checkIsCellHit(field, coordYX) || checkIsCellABarrier(field, coordYX))) {
             doNotShootLeft = true;
         }
     }
@@ -100,7 +103,7 @@ public class ShootData {
         int y = START_YX[0] - (shootUp + 1);
         int x = START_YX[1];
         Integer[] coordYX = {y, x};
-        if (y >= 0 && checkIsCellHit(field, coordYX)) {
+        if (y >= 0 && (checkIsCellHit(field, coordYX) || checkIsCellABarrier(field, coordYX))) {
             doNotShootUp = true;
         }
     }
@@ -109,7 +112,7 @@ public class ShootData {
         int y = START_YX[0];
         int x = START_YX[1] + (shootRight + 1);
         Integer[] coordYX = {y, x};
-        if (x <= 9 && checkIsCellHit(field, coordYX)) {
+        if (x <= 9 && (checkIsCellHit(field, coordYX) || checkIsCellABarrier(field, coordYX))) {
             doNotShootRight = true;
         }
     }
@@ -118,7 +121,7 @@ public class ShootData {
         int y = START_YX[0] + (shootDown + 1);
         int x = START_YX[1];
         Integer[] coordYX = {y, x};
-        if (y <= 9 && checkIsCellHit(field, coordYX)) {
+        if (y <= 9 && (checkIsCellHit(field, coordYX) || checkIsCellABarrier(field, coordYX))) {
             doNotShootDown = true;
         }
     }

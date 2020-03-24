@@ -60,6 +60,7 @@ public class Engine {
     public void manualShipPlacement(Field field) {
         ArrayList params;
         boolean isShipLimit = false;
+        printField(field);
         while (!isShipLimit) {
             params = scanShipParams(field);
             placeShip(field, params, false);
@@ -245,12 +246,15 @@ public class Engine {
     }
 
     private int countSunkShips(Field field) {
-        field.getShips().stream()
-                .forEach(ship -> ship.checkSunk(field));
+        field.getShips().stream().forEach(ship -> ship.checkSunk(field));
         int sunkShipsCount = (int) field.getShips().stream()
                 .filter(Ship::isSunk)
                 .count();
         return sunkShipsCount;
+    }
+
+    private void setDeadBarriers(Field field) {
+        field.getShips().forEach(ship -> ship.setDeadBarrier(field));
     }
 
     private String getWinnerPvP() {

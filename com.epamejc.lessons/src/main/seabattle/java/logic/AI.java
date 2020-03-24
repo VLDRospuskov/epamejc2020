@@ -57,17 +57,17 @@ public class AI {
     }
 
     protected Integer[] generateRandomCoordinate(Field field) {
-        boolean isAlreadyHit;
+        boolean badCoordinates;
         Integer[] coordYX;
         do {
-            isAlreadyHit = false;
+            badCoordinates = false;
             coordYX = new Integer[2];
             coordYX[0] = new Random().nextInt(10);
             coordYX[1] = new Random().nextInt(10);
-            if (checkIsCellHit(field, coordYX)) {
-                isAlreadyHit = true;
+            if (checkIsCellHit(field, coordYX) || checkIsCellABarrier(field, coordYX)) {
+                badCoordinates = true;
             }
-        } while (isAlreadyHit);
+        } while (badCoordinates);
         return coordYX;
     }
 

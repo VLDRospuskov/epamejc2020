@@ -1,12 +1,7 @@
 # EPAM Java Core 2020 - Vitaly Bogdanov   
 **Attention!!! The structure is different from the parent project!**  
 The root of the project should be the module com.epamejc.lessons  
-(I have deleted the project in which the com.epamejc.lessons module was lying)    
-***
-[SeaBattle](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/seabattle/java/)  
-Sea battle. Implemented the ability to play both with another player (person) and with a computer.
-Implemented the possibility of manual and auto placement of ships. With manual placement, only the coordinate of the start and end cells of the ship is entered. The ship itself calculates its cells. Everything is checked, if you try to set the ship in the wrong place, the logic of the ship will not allow this to be done.
-Implemented an algorithm for "finishing off" a wounded ship.  
+(I have deleted the project in which the com.epamejc.lessons module was lying)
 ***
 HW 1 [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw1)  
 Create a “traffic light” that outputs a signal-color. You enter a time from 0-3 minutes - green,
@@ -102,4 +97,10 @@ In classe StreamOperations implement streams
 ***
 HW 9 [ATM (Threads)](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/homeworks/java/hw9)  
 We have 1 general account (balance), there are several ATMs (ATMs) that work with this account - they are like in different parts of the city, and the virtual account is common. There are also several users. who will go to these ATMs, deposit / withdraw / maybe something else, for example, check the balance. Accordingly, we loop this process. To add features, it is mandatory: do not give out money in minus, the integer type here is not suitable for working with money, think about which type should be used, each user also has his own balance.  
-You can add another feature, but this is optional. Suppose each ATM has its own separate balance and if money runs out on it, then we add it to the common resource, and if there is too much money in the ATM, then we return it to the resource. In other words, we add the collection process.
+You can add another feature, but this is optional. Suppose each ATM has its own separate balance and if money runs out on it, then we add it to the common resource, and if there is too much money in the ATM, then we return it to the resource. In other words, we add the collection process.  
+***
+[SeaBattle](https://github.com/VLDRospuskov/epamejc2020/tree/Vitaly_Bogdanov/com.epamejc.lessons/src/main/seabattle/java/)  
+Implemented the ability to play both with another player (human) and with a computer.
+Implemented the possibility of manual and auto placement of ships. With manual placement, only the coordinate of the start and end cells of the ship is entered. The ship itself calculates its cells. Everything is checked, if you try to set the ship in the wrong place, the logic of the ship will not allow this to be done.
+Implemented an algorithm for "finishing off" a wounded ship.  
+Сomputer does not shoot at the cells around the sunken ship.  
