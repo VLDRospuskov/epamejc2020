@@ -6,7 +6,7 @@
         Input: 1
         Output: GREEN
 ## [My Immutable class.]
-   -Create an immutable class.
+   -Create an immutable class. And test it.
 ## [Multiple Array builder.]
    -Create a multiple array and fill it with random characters. Size of array depends of passed parameters.
     For example:
