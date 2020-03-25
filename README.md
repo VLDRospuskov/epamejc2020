@@ -1,32 +1,59 @@
-# epamejc2020 Nikolaev Artem
+# EPAM Java Core 2020
+# _Nikolaev Artem_
 
-## Links to solutions:
-| Task | Solution |
-| ------ | ------ |
-| Utility | [Helper][Helper]  |
-| Tests | [Tests][Tests]  |
-| Homework 1 | [Traffic lights][Traffic lights] |
-| Homework 2 | [Immutable class][Immutable class] |
-| Homework 3 | [Arrays][Arrays] |
-| Homework 4 | [Strings][Strings]  |
-| Homework 5 | [Recursion][Recursion]  |
-| Homework 6 | [Custom annotation][Custom annotation]  |
-| Homework 7 | [BufferedReader][BufferedReader]  |
+| Number | Solution | Short description |
+| ------ | ------ | ------ |
+| Homework 1 | [Traffic light][Traffic light] | The first working program, traffic light, that outputs different colors based on user input |
+| Homework 2 | [Immutable class][Immutable class] | The task is to get acquainted with immutable classes, make one  |
+| Homework 3 | [Arrays][Arrays] |  |
+|  | [Pyramid][Arrays1] | Outputs a pyramid. Size is based on user input. |
+|  | [RandomChars][Arrays2] | Creates a custom two-dimensional array, fills it with random chars, and based on A or B strategy outputs only even or odd chars |
+| Homework 4 | [Strings][Strings]  | 
+|  | [EvenOdd][Strings1] | Returns only even or odd characters from a given string |
+|  | [ReplaceChars][Strings2] | Swaps characters by indexes in a given string |
+|  | [ReverseString][Strings3] | Reverses given strings, but saves their positions |
+|  | [StringByIndexes][Strings4] | Makes a new string by given indexes from a given string |
+| Homework 5 | [Recursion][Recursion] 
+|  | [AmountOfNumbers][Recursion1] | Counts digits in a given number |
+|  | [Fibonacci][Recursion2] | Returns fibonacci number by a given index |
+|  | [RaiseToThePower][Recursion3] | Raises the given number to the given power |
+| Homework 6 | [Custom annotation][Custom annotation]  | Creates an annotation with preset fields, and gets them in the constructor. |
+| Homework 7 | [BufferedReader][BufferedReader]  | Makes the same tasks with and without BufferedReader, compares the execution time. |
 | Homework 8 | [Java 8][Java 8]  |
-| Homework 9| [MultiThreading][MultiThreading]  |
-| Homework 10| [SeaBattle][SeaBattle]  |
-
-
+|  | [Functional Interfaces][Java 8_1] | Creates custom BiFunction and Supplier functional interfaces. Uses custom methods with them in the program. |
+|  | [Stream Operations][Java 8_2] | Gets needed information from preset ArrayList with objects by using Stream API |
+| Homework 9| [MultiThreading][MultiThreading]  | Simulates ATMs system, using multi threading |
+| Homework 10| [SeaBattle][SeaBattle]  | Sea battle game with default rules. Automatic/manual ship placement, computer/another player as an enemy. |
+| Tests | [Tests directory][Tests]  |  |
+| Utility | [IOHelper][Helper] | Custom static methods for IO |	
+	
 [Helper]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/utility/helper>
 [Tests]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/test/homeworks>
-[Traffic lights]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_1_trafficLight>
+[Traffic light]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_1_trafficLight>
 [Immutable class]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_2_immutableClass>
+
 [Arrays]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_3_arrays>
+[Arrays1]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_3_arrays/pyramidX>
+[Arrays2]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_3_arrays/randomChars>
+
 [Strings]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_4_strings>
+[Strings1]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_4_strings/evenOdd>
+[Strings2]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_4_strings/replaceChars>
+[Strings3]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_4_strings/reverseStringsOnPlaces>
+[Strings4]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_4_strings/stringByIndexes>
+
 [Recursion]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_5_recursion>
+[Recursion1]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_5_recursion/amountOfNumbers>
+[Recursion2]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_5_recursion/fibonacci>
+[Recursion3]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_5_recursion/raiseToThePower>
+
 [Custom annotation]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_6_customAnnotation>
 [BufferedReader]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_7_bufferedReader>
+
 [Java 8]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_8_Java8>
+[Java 8_1]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_8_Java8/functionalInterfaces>
+[Java 8_2]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_8_Java8/streamOperations>
+
 [MultiThreading]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/HW_9_multithreading>
 [SeaBattle]: <https://github.com/VLDRospuskov/epamejc2020/tree/Artem_Nikolaev/com.epamejc.lessons/src/main/homeworks/SeaBattle>
 
