@@ -78,7 +78,7 @@
 ## [Work with files.]
 
 <dl>
- <dt>-Create two methods wich copies a file. Frist, just FileReader. Second, with BufferedReader. Measure the execution time of both methods.</dt>
+ <dt>-Create two methods wich copie a file to another file. Frist, just FileReader. Second, with BufferedReader. Compare the execution time of both methods.</dt>
 </dl>
 
 ## [Java 8]
