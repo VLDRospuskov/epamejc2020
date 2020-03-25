@@ -6,8 +6,12 @@
 результат. Работу программы сделать непрерывной, выход
 можно обработать.
 
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework1
+
 2. Создать immutable class, создать пару объектов, посмотреть как работает,
 поэксперементировать с данными. ЗАПОМНИТЬ!
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework2
 
 3. Arrays 
 3.1. Создать массив массивов, задается размерность на основании которое
@@ -18,6 +22,9 @@ k c
 b p 
 b h 
 h g 
+
+https://github.com/VLDRospuskov/epamejc2020/blob/YanaOvsyannikova/src/main/java/homework/homework3/arrays/RandomCharTable.java
+
 3.2. Сгенерировать массив массивов указав размерность, заполнить его случайными
 символами. Написать 2 стратегии, которые будут формировать строку на основе
 данного массива. Стратегия А - работает по принципу *_*_*, а стратегия B 
@@ -31,6 +38,9 @@ f d m x h
 k d l h b 
 input strategy: A
 output: dljalfklb
+
+https://github.com/VLDRospuskov/epamejc2020/blob/YanaOvsyannikova/src/main/java/homework/homework3/arrays/CharMatrix.java
+
 3.3. Написать программу которая будет генерировать пирамидку. Пример:
 input: 10
 output: 
@@ -45,7 +55,12 @@ XXX
 XX
 X
 
+https://github.com/VLDRospuskov/epamejc2020/blob/YanaOvsyannikova/src/main/java/homework/homework3/arrays/RandomPyramidalMatrix.java
+
 4. Strings
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework4
+
 4.1. Написать программу которая генерирует новую строку на основании входных
 данных, строка + четные/нечетные, пример:
 Input: String        Input: even        output: tig
@@ -66,6 +81,9 @@ Input: Hello World
 output: olleH dlroW
 
 5. Recursion
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework5/recursion
+
 5.1. Поиск числа Фиббоначи
 5.2. Написать программу которая умеет вовзодить в степени:
 input number: 4
@@ -76,6 +94,9 @@ input: 567
 output: 3
 
 6. Аннотации
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework6
+
 Создать свою кастомную аннотацию где будет "имя - string" и "возраст - int",
 то есть в аннотации передаем (name = "sdgf", age = "12"). Повесить аннотацию
 на конструктор. Цель сделать так чтобы когда у нас будет создаваться объект
@@ -85,7 +106,12 @@ output: 3
 
 Покрыть свой код junit 4.12 тестами
 
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/test/java/homework
+
 7. Работа с файлами
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework7
+
 ДЗ по работе с файлами. Создайте файл, заполните его текстом(много текста), потом считайте его и запишите 
 в другой файл. Сделайте 2ой метод такой же  только с buffered. Замерьте время выполнения без buffered и c buffered.
 
@@ -93,9 +119,17 @@ output: 3
 8.1. Написать свои функциональные интерфейсы по типу BiFunction и Supplier(Producer).
 Создать любой класс с несколькими полями. Создать метод, который будет принимать
 функциональные интерфейсы, созданные ранее. Достать 2 поля и обработать полученные значения и вернуть.
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework8/functionalInterfaces
+
 8.2. В classe StreamOperations реализовать предлагаемые стримы
 
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework8/streamAPI
+
 9.Многопоточность
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/homework9
+
 ДЗ по многопоточности:
 У нас есть 1 общий счет(balance), существует несколько банкоматов(ATM) которые работают с этим счетом - типа они
 в разных частях города, а счет виртуальный общий. Также существует несколько пользователей. которые будут ходить
@@ -108,6 +142,9 @@ output: 3
 обратно отдаем в ресурс. Другими словами добавляем процесс инкассации.
 
 10.Морской бой
+
+https://github.com/VLDRospuskov/epamejc2020/tree/YanaOvsyannikova/src/main/java/homework/seabattle
+
 Написать морской бой, стандартный, поле 10 на 10, количество кораблей и размерность - 
 https://ru.wikipedia.org/wiki/%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B9_%D0%B1%D0%BE%D0%B9_(%D0%B8%D0%B3%D1%80%D0%B0) .
  Должен присутствовать отступ между кораблями, если попал то продолжаете стрелять. Написать 2 варианта с возможность
