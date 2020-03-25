@@ -12,6 +12,7 @@ class A implements Course, BaseCourse {
 
     @Override
     public void print() {
-
+        System.out.println(BaseCourse.x);
+        System.out.println(Course.x);
     }
 }

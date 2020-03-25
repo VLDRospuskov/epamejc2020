@@ -1,7 +1,12 @@
-package lessons.lesson8.example4;
+package experiments.example2.example4;
 
 public class Outer5 {
 
+    Inner inner;
+
+    Outer5() {
+        inner = new Inner();
+    }
     class Inner {
         public final static int pubfsi_pole = 22;
         private final static int prfsi_polr = 33;

@@ -2,8 +2,8 @@ package lessons.lesson5.example4;
 
 public class A {
 
-    private int x;
-    private static int y;
+    private int x = 1;
+    private static int y = 2;
 
     public int getX() {
         return x;
@@ -11,6 +11,14 @@ public class A {
 
     public void setX(int x) {
         this.x = x;
+    }
+
+    public int nonStaticGetY() {
+        return y;
+    }
+
+    public void nonStaticSetY(int y) {
+        A.y = y;
     }
 
     public static int getY() {

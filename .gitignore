@@ -27,7 +27,7 @@ out
 target
 *.iml
 /.idea/
-src/main/java/experiments/
-src/main/java/lessons/
+com.epamejc.lessons/src/main/java/experiments/
+com.epamejc.lessons/src/main/java/lessons/
 
 file.txt

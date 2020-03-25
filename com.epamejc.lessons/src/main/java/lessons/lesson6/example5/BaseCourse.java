@@ -4,7 +4,5 @@ public interface BaseCourse {
 
     int x = 10;
 
-    default void print() {
-        System.out.println("BaseCourse");
-    }
+    void print();
 }

@@ -11,12 +11,8 @@ public class Main {
         list.add(1);
         list.add(345.2345);
         list.add(3);
-        List<? extends Number> list1 = list;
-        Number number = list1.get(0);
-        Number number2 = list1.get(1);
-        Number number3 = list1.get(2);
-        System.out.println(number);
-        System.out.println(number2);
+        List<? extends Number> list1 = new ArrayList<>();
+
 
     }
 

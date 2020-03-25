@@ -1,9 +1,9 @@
-package lessons.lesson8.example4;
+package experiments.example2.example4;
 
 public class Outer6 {
 
     public void method() {
-        int x = 3;
+        final int x = 3;
         class Inner1 {
             void print() {
                 System.out.println("x=" + x);

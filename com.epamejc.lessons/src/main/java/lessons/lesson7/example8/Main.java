@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+
         Day friday = Day.FRIDAY;
         Day monday = Day.MONDAY;
         Day saturday = Day.SATURDAY;

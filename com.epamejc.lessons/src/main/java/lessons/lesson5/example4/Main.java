@@ -6,6 +6,8 @@ public class Main {
         A a = new A();
         System.out.println(a.getX());
         System.out.println(A.getY());
+        System.out.println(a.nonStaticGetY());
+        a.nonStaticSetY(10);
     }
 
 }

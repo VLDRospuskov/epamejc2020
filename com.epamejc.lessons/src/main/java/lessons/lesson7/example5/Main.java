@@ -11,7 +11,7 @@ public class Main {
         List<? super Number> list2 = new ArrayList<Number>();
         List<? super Number> list3 = new ArrayList<Object>();
         List<? super Object> list4 = new ArrayList<Object>();
-//        List<? super Number> list4 = new ArrayList<Integer>();
+//        List<? super Number> list5 = new ArrayList<Integer>();
 
         list1.add(null);
         list1.add(Integer.valueOf(1));
@@ -20,6 +20,9 @@ public class Main {
 //        list1.add(new Object());
         Number number = 10;
         list1.add(number);
+        for (Object n : list1) {
+            System.out.println(n);
+        }
 
         Object object = list1.get(0);
         Integer number1 = (Integer) list1.get(0);
