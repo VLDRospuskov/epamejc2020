@@ -32,7 +32,7 @@
   <dd>even: ot</dd>
   <dd>odd: ajlq</dd>
 
- <dt>-Create a multiple array (size depends passed parameters) and print it to console. Array should locks like a pyramid.</dt>
+ <dt>-Create a multiple array (size depends of passed parameters) and print it to console. Array should locks like a pyramid.</dt>
   <dd>For example:</dd>
   <dd>pyramid(10);</dd>
   <dd>output:  
