@@ -1,10 +1,10 @@
 # epamejc2020
-### HW0 - TrafficLight
+### HW0 - [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework00)
 
-### HW1 - Own immutable class
+### HW1 - [Own immutable class](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework01)
 > Создать immutable class, создать пару объектов, посмотреть как работает, поэксперементировать с данными.
 
-### HM2 - Arrays 
+### HW2 - [Arrays](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework02)
 > 2.1. Создать массив массивов, задается размерность на основании которое генерируются случайные символы типа char. 
 >Пример:
 
@@ -37,7 +37,7 @@
     XX
     X
 
-### HM3 - Strings
+### HW3 - [Strings](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework03)
 > 3.1. Написать программу которая генерирует новую строку на основании входных данных, строка + четные/нечетные, пример:
 
     Input: String        Input: even        output: tig
@@ -58,7 +58,7 @@
     Input: Hello World
     output: olleH dlroW
 
-### HM4 - Recursion
+### HW4 - [Recursion](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework04)
 > 4.1. Поиск числа Фиббоначи
 
 > 4.2. Написать программу которая умеет вовзодить в степени:
@@ -71,27 +71,27 @@
     input: 567
     output: 3
 
-### HM5 - Tests
+### HW5 - [Tests](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/test/java/homeworks)
 > Покрыть код junit 4.12 тестами
 
-### HM6 - Annotation
+### HW6 - [Annotation](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework06)
 > Создать свою кастомную аннотацию где будет "имя - string" и "возраст - int", то есть в аннотации передаем 
 >(name = "sdgf", age = "12"). 
 > Повесить аннотацию на конструктор. 
 > Цель - при создании объекта пустым конструктором инициализировать значения из аннотации.
 
-### HM7 - Reader comparison
+### HW7 - [Reader comparison](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework07)
 > Создайте файл, заполните большим количеством текста, потом считайте его и запишите в другой файл. 
 > Повторите, то используя buffered. Замерьте время выполнения без buffered и c buffered.
 
-### HM8 - Functional Interfaces and streams
+### HW8 - [Functional Interfaces and streams](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework08)
 > Написать свои функциональные интерфейсы по типу BiFunction и Supplier(Producer).
   Создать любой класс с несколькими полями. Создать метод, который будет принимать
   функциональные интерфейсы, созданные ранее. Достать 2 поля и обработать полученные значения и вернуть.
 
 > Реализовать стримы в классе StreamOperations.
 
-### HM9 - Multithreading + ATM simulation
+### HW9 - [Multithreading + ATM simulation](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework09)
 > Есть 1 общий счет(balance), существует несколько банкоматов(ATM) которые работают с этим счетом, 
 > а счет виртуальный общий. Также существует несколько пользователей. которые будут ходить в эти банкоматы, 
 > пополнять/снимать. Зациклить данный процесс. Добавить фичи, обязательно: в минус не выдавать денег, 
@@ -99,4 +99,7 @@
 
 >  ОПЦИОНАЛЬНО: У каждого банкомата есть свой отдельный баланс и если на нем заканчиваются деньги, 
 > то из общего ресурса мы туда добавляем, а если в банкомате слишком много денег, то обратно отдаем в ресурс. 
-> Другими словами добавляем процесс инкассации..
+> Другими словами добавляем процесс инкассации.
+
+### FinalHW - [Seabattle](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/seabattle)
+> Написать морской бой.

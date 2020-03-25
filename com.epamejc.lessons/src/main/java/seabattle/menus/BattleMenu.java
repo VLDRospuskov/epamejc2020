@@ -13,7 +13,12 @@ public class BattleMenu extends Menu {
     @Override
     public void executeCommand(String command) {
         int column = command.charAt(0) - 97;
-        int row = Integer.parseInt(command.substring(1)) - 1;
+        int row = 0;
+        try {
+            row = Integer.parseInt(command.substring(1)) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Wrong input.");
+        }
         Player currentPlayer = game.currentPlayerTurn;
         executeStrike(column, row, currentPlayer);
     }
