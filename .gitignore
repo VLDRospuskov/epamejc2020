@@ -24,9 +24,9 @@ hs_err_pid*
 
 #Ignore files
 out
-target
+target/
 *.iml
 /.idea/
-com.epamejc.lessons/src/main/java/experiments/
-com.epamejc.lessons/src/main/java/lessons/
-target\
+com.epamejc.lessons/src/experiments/
+com.epamejc.lessons/src/lessons/
+
