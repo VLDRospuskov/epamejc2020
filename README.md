@@ -2,11 +2,11 @@
 ### HW0 - [TrafficLight](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework00)
 
 ### HW1 - [Own immutable class](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework01)
-> Создать immutable class, создать пару объектов, посмотреть как работает, поэксперементировать с данными.
+> Создать immutable class, создать пару объектов, поэксперементировать с данными.
 
 ### HW2 - [Arrays](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework02)
-> 2.1. Создать массив массивов, задается размерность на основании которое генерируются случайные символы типа char. 
->Пример:
+> 2.1. Создать массив массивов, задается размерность, на основании которой генерируются случайные символы типа char. 
+> Пример:
 
     Input: 4 2
     output:
@@ -15,7 +15,7 @@
     b h 
     h g 
 
-> 2.2. Сгенерировать массив массивов указав размерность, заполнить его случайными символами. Написать 2 стратегии, 
+> 2.2. Сгенерировать массив массивов, указав размерность, заполнить его случайными символами. Написать 2 стратегии, 
 >которые будут формировать строку на основе данного массива. Стратегия А - работает по принципу \*\_\*\_\*, 
 >а стратегия B - работает по принципу \_\*\_\*\_ . Пример:
 
@@ -28,7 +28,7 @@
     k d l h b 
     input strategy: A
     output: dljalfklb
-> 2.3. Написать программу которая будет генерировать пирамидку. Пример:
+> 2.3. Написать программу, которая будет генерировать пирамидку. Пример:
 
     input: 4
     output: 
@@ -38,22 +38,23 @@
     X
 
 ### HW3 - [Strings](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework03)
-> 3.1. Написать программу которая генерирует новую строку на основании входных данных, строка + четные/нечетные, пример:
+> 3.1. Написать программу, которая генерирует новую строку на основании входных данных, строка + четные/нечетные. 
+>Пример:
 
     Input: String        Input: even        output: tig
-> 3.2. Написать программу которая будет генерировать строку по индексам. Пример:
+> 3.2. Написать программу, которая будет генерировать строку по индексам. Пример:
 
     Input: Hello World,     
     input: 0  output: H, 
     input: 4  output: Ho, 
     input: 6 output: HoW
-> 3.3. Поменять местами символы в строке, на вход приходит строка и 2 индекса между, которыми нужно сделать обмен. 
+> 3.3. Поменять местами символы в строке, на вход приходит строка и 2 индекса, между которыми нужно сделать обмен. 
 > Пример:
 
     Input: Hello World
     Input: 0, 4
     output oelloH World
-> 3.4. Написать программу которая переворачивает слова, но при этом оставляет их на прежних местах. Пример
+> 3.4. Написать программу, которая переворачивает слова, но при этом оставляет их на прежних местах. Пример:
 
     Input: Hello World
     output: olleH dlroW
@@ -61,12 +62,12 @@
 ### HW4 - [Recursion](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework04)
 > 4.1. Поиск числа Фиббоначи
 
-> 4.2. Написать программу которая умеет вовзодить в степени:
+> 4.2. Написать программу, которая возводит число в степень:
 
     input number: 4
     input pow: 3
     output: 64
-> 4.3.  Посчитать количество чисел:
+> 4.3. Посчитать количество цифр в числе:
 
     input: 567
     output: 3
@@ -78,11 +79,11 @@
 > Создать свою кастомную аннотацию где будет "имя - string" и "возраст - int", то есть в аннотации передаем 
 >(name = "sdgf", age = "12"). 
 > Повесить аннотацию на конструктор. 
-> Цель - при создании объекта пустым конструктором инициализировать значения из аннотации.
+> Цель - при создании объекта пустым конструктором инициализировать значениями из аннотации.
 
 ### HW7 - [Reader comparison](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework07)
 > Создайте файл, заполните большим количеством текста, потом считайте его и запишите в другой файл. 
-> Повторите, то используя buffered. Замерьте время выполнения без buffered и c buffered.
+> Повторите, но используя buffered. Замерьте время выполнения без buffered и c buffered.
 
 ### HW8 - [Functional Interfaces and streams](https://github.com/VLDRospuskov/epamejc2020/tree/ErmakovAleksandr/com.epamejc.lessons/src/main/java/homeworks/homework08)
 > Написать свои функциональные интерфейсы по типу BiFunction и Supplier(Producer).
