@@ -35,18 +35,18 @@
  <dt>-Create a multiple array (size depends passed parameters) and print it to console. Array should locks like a pyramid.</dt>
   <dd>For example:</dd>
   <dd>pyramid(10);</dd>
-  <dd>output:</dd>
-  <dd>
-  0000000000
-  000000000
-  00000000
-  0000000
-  000000
-  00000
-  0000
-  000
-  00
-  0
+  <dd>output:  
+  
+  0000000000  
+  000000000  
+  00000000  
+  0000000  
+  000000  
+  00000  
+  0000  
+  000  
+  00  
+  0  
   </dd>
 </dl>
 
