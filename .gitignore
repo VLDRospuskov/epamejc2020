@@ -29,5 +29,4 @@ target
 /.idea/
 com.epamejc.lessons/src/main/java/experiments/
 com.epamejc.lessons/src/main/java/lessons/
-
-file.txt
+target\
