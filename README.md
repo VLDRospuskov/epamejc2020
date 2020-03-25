@@ -116,13 +116,15 @@
 
 ## [Tests]
 <dl>
- <dt>-Some tests of code.</dt>
+ <dt>-Some tests of code.</dt> 
 </dl>
 
+#### [TheTrafficLight tests]  |  [MyImmutableClass test]  |  [MultipleArrayBuilder test]  
 
+#### [StringChanger tests]  |  [Recursions tests]  |  [MyAnnotation tets]  
 
-
-
+#### [Work with files tets]  |  [Thread tests]  |  [Sea Battle tests] 
+ 
 
 [The Traffic Light.]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/main/java/homeworks/homework1
 [My Immutable class.]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/main/java/homeworks/homework2
@@ -137,3 +139,12 @@
 [Threads]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/main/java/homeworks/homework9
 [Sea Battle]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/main/java/homeworks/sea_battle
 [Tests]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks
+[TheTrafficLight tests]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework1
+[MyImmutableClass test]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework2
+[MultipleArrayBuilder test]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework3
+[StringChanger tests]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework4
+[Recursions tests]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework5
+[MyAnnotation tets]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework6
+[Work with files tets]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework7
+[Thread tests]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/homework9/logic
+[Sea Battle tests]:https://github.com/VLDRospuskov/epamejc2020/tree/Sergey_Kirillov_homeworks/com.epamejc.lessons/src/test/java/homeworks/sea_battle/logic
