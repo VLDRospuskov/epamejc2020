@@ -1,10 +1,12 @@
 # epamejc2020 Sergey Kirillov
 
 ## [The Traffic Light.]
-   -Write a programm shows the traffic light color depending from entered number.
-    For example:
-        Input: 1
-        Output: GREEN
+<dl>
+ <dt>-Write a programm shows the traffic light color depending from entered number.<dt/>
+ <dd>For example:</dd>
+ <dd>Input: 1</dd>
+ <dd>Output: GREEN</dd>
+</dl>
 ## [My Immutable class.]
    -Create an immutable class. And test it.
 ## [Multiple Array builder.]
