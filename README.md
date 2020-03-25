@@ -10,29 +10,29 @@
 |from 6 to 10| red    |
 |exit        | *program stops*|
 
-see [Traffic Lights](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw1)
+see [Traffic Lights](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw1)
 
 #### *Homework 2. Immutable class example*
-see [Immutable class](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw2)
+see [Immutable class](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw2)
 
 
 #### *Homework 3. Arrays*
 **Consists of following tasks:**
 1. Create 2 dimensions array which contains random characters. 
     
-    [Array task 1](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3/RandomCharArray.java)
+    [Array task 1](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3/RandomCharArray.java)
 2. Create 2D array which contains random characters. Implement strategies of string creation based on the created array.
     
     Strategy A: char_char_char (where char is character from array and _ is skipped character)
     Strategy B: _char_char_
     
-    [Array task 2](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3/StringFromArray.java)
+    [Array task 2](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3/StringFromArray.java)
 
 3. Create a pyramid out of X-s.
     
-    [Array task 3](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3/Pyramid.java)
+    [Array task 3](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3/Pyramid.java)
     
-see [Arrays homework](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3)
+see [Arrays homework](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw3)
 
 
 #### *Homework 4. Strings*
@@ -40,38 +40,38 @@ see [Arrays homework](../tree/renataGimranova/com.epamejc.lessons/src/main/homew
 1. Make a program that generates a string based on an input where input consists information on whether use even or odd
 characters of input string
 
-    [String task 1](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/EvenOdd.java)
+    [String task 1](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/EvenOdd.java)
     
 2. Make a program that generates string based on indices (which are received as input)
 
-    [String task 2](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/StringByIndices.java)
+    [String task 2](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/StringByIndices.java)
     
 3. Make a program which swaps symbols located in places (which are received as input)
     
-    [String task 3](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/SwitchSymbols.java)
+    [String task 3](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/SwitchSymbols.java)
     
 4. Make a program which reverses every word in the input string while not changing words' order
 
-    [String task 4](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/ReverseString.java)    
+    [String task 4](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4/ReverseString.java)    
 
-see [Strings homework](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4)
+see [Strings homework](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw4)
 
 
 #### *Homework 5. Recursion*
 **Consists of following tasks:**
 1. Find a Fibonacci number located at the place received as an input
     
-    [Recursion task 1](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5/Fibonacci.java)
+    [Recursion task 1](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5/Fibonacci.java)
     
 2. Calculate power of a number
     
-    [Recursion task 2](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5/Power.java)
+    [Recursion task 2](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5/Power.java)
     
 3. Count the number of digits
 
-    [Recursion task 3](../blob/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5/DigitsNumber.java)
+    [Recursion task 3](../renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5/DigitsNumber.java)
 
-see [Recursion](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5)
+see [Recursion](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw5)
 
 
 #### *Homework 6. Custom annotation*
@@ -79,14 +79,14 @@ Create a custom annotation with parameters *name* (String) and *age* (int)
 Create an instance of a class with empty constructor and replace the values of name and age to name and ages received
 from annotation using reflection
 
-see [Custom annotation](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw6)
+see [Custom annotation](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw6)
 
 
 #### *Homework 7. Java IO and files*
 Create a file, generate or put a text in it. Read it and rewrite to another file. 
 Use two methods (reader and buffered reader).
 
-see [Java IO and files](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw7)
+see [Java IO and files](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw7)
 
 
 #### *Homework 8. Functional interfaces & Stream operations*
@@ -94,19 +94,19 @@ see [Java IO and files](../tree/renataGimranova/com.epamejc.lessons/src/main/hom
 
 Create functional interfaces such as BiFunction and Supplier and work with them
 
-see    [Functional interfaces task](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw8/functionalInterfaces)
+see    [Functional interfaces task](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw8/functionalInterfaces)
 
 
 ***Stream operations***
 Implement stream operations in given file
 
-see [Stream operations task](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw8/streamOperations)
+see [Stream operations task](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw8/streamOperations)
 
 
 #### *Homework 9. Multithreading*
 Work with multithreading operations using ATMs with common balance as the base of the example
 
-see [Multithreading](../tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw9)
+see [Multithreading](https://github.com/VLDRospuskov/epamejc2020//tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/hw9)
 
 
 #### *Homework 10. Battleship/Sea battle*
@@ -126,3 +126,5 @@ Ships are not allowed to cross or be placed next to each other without an empty 
 
 **WIP:**
 * Player vs AI game mode
+
+see [Sea Battle](https://github.com/VLDRospuskov/epamejc2020/tree/renataGimranova/com.epamejc.lessons/src/main/homeworks/seabattle)
