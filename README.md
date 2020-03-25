@@ -11,10 +11,11 @@
    -Create a multiple array and fill it with random characters. Size of array depends of passed parameters.
     For example:
         createArray(4, 3);
-        Output: a c j
-                i o t
-                l y q
-                h t e
+        Output:
+        a c j
+        i o t
+        l y q
+        h t e
 
    -Depends of created array use the strategy to print even(every seconds lines and chars in lines) or odd(every first lines and chars in lines) chars from the array.
     For example:
@@ -24,16 +25,17 @@
    -Create a multiple array (size depends passed parameters) and print it to console. Array should locks like a pyramid.
    For example:
         pyramid(10);
-        output: 0000000000
-                000000000
-                00000000
-                0000000
-                000000
-                00000
-                0000
-                000
-                00
-                0
+        output:
+        0000000000
+        000000000
+        00000000
+        0000000
+        000000
+        00000
+        0000
+        000
+        00
+        0
 ## [String Changer.]
    -Read line from console. Save it and then:
         -Display in console even or odd chars from this string based on user input.
