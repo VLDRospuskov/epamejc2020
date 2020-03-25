@@ -27,6 +27,6 @@ out
 target
 *.iml
 /.idea/
-experiments\
-lessons\
+src/main/java/experiments/
+src/main/java/lessons/
 
