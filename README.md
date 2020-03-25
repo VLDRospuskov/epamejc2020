@@ -21,7 +21,7 @@
 | HW7 | [BufferedReader][BufferedReader]  | Makes the same tasks with and without BufferedReader, compares the execution time. |
 | HW8 | [Java 8][Java 8]  |
 |  | [Functional Interfaces][Java 8_1] | Creates custom BiFunction and Supplier functional interfaces. Uses custom methods with them in the program. |
-|  | [Stream Operations][Java 8_2] | Gets needed information from preset ArrayList with objects by using Stream API |
+|  | [Stream Operations][Java 8_2] | Gets needed information from preset List with objects by using Stream API |
 | HW9| [MultiThreading][MultiThreading]  | Simulates ATMs system, using multi threading |
 | HW10| [SeaBattle][SeaBattle]  | Sea battle game with default rules. Automatic/manual ship placement, computer/another player as an enemy. |
 | Utility | [IOHelper][Helper] | Custom static methods for IO |	
