@@ -32,21 +32,21 @@
   <dd>even: ot</dd>
   <dd>odd: ajlq</dd>
 
- <dt>-Create a multiple array (size depends passed parameters) and print it to console. Array should locks like a pyramid.</dt>
+ <dt>-Create a multiple array (size depends of passed parameters) and print it to console. Array should locks like a pyramid.</dt>
   <dd>For example:</dd>
   <dd>pyramid(10);</dd>
-  <dd>output:</dd>
-  <dd>
-  0000000000
-  000000000
-  00000000
-  0000000
-  000000
-  00000
-  0000
-  000
-  00
-  0
+  <dd>output:  
+  
+  0000000000  
+  000000000  
+  00000000  
+  0000000  
+  000000  
+  00000  
+  0000  
+  000  
+  00  
+  0  
   </dd>
 </dl>
 
@@ -72,13 +72,13 @@
 ## [My Annotation.]
 
 <dl>
- <dt>-Create your own annotation with parameters name and age. Attach it to class constructor. Use reflection to initialize class fileds y annotation fields.</dt>
+ <dt>-Create your own annotation with parameters name and age. Attach it to class constructor. Use reflection to initialize class fileds by annotation fields.</dt>
 </dl>
 
 ## [Work with files.]
 
 <dl>
- <dt>-Create two methods wich copies a files. Frist, just FileReader. Second, with BufferedReader. Measure the execution time of both methods.</dt>
+ <dt>-Create two methods wich copie a file to another file. Frist, just FileReader. Second, with BufferedReader. Compare the execution time of both methods.</dt>
 </dl>
 
 ## [Java 8]
@@ -102,9 +102,9 @@
 ## [Threads]
 
 <dl>
- <dt>-Create a simulation of ATMs process. There are several ATMs. Each has own bank account. And there is Central Storage(reserve).
-         When ATM don`t have enough cash in it, it take some cash from reserve. If ATM has a lot of cash, it put cash to resreve.
-         Several users perform operations with this ATMs. (deposit, withdraw, check balace).</dt>
+ <dt>-Create a simulation of ATMs processes. There are several ATMs. Each has own cash amount. And there is Central Storage(reserve).
+         When ATM don`t have enough cash in it, it takes some cash from reserve. If ATM has a lot of cash, it puts cash to resreve.
+         Several users perform operations with this ATMs. (deposit, withdraw, check balance).</dt>
 </dl>
 
 ## [Sea Battle]
