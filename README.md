@@ -72,13 +72,13 @@
 ## [My Annotation.]
 
 <dl>
- <dt>-Create your own annotation with parameters name and age. Attach it to class constructor. Use reflection to initialize class fileds y annotation fields.</dt>
+ <dt>-Create your own annotation with parameters name and age. Attach it to class constructor. Use reflection to initialize class fileds by annotation fields.</dt>
 </dl>
 
 ## [Work with files.]
 
 <dl>
- <dt>-Create two methods wich copies a files. Frist, just FileReader. Second, with BufferedReader. Measure the execution time of both methods.</dt>
+ <dt>-Create two methods wich copies a file. Frist, just FileReader. Second, with BufferedReader. Measure the execution time of both methods.</dt>
 </dl>
 
 ## [Java 8]
@@ -102,7 +102,7 @@
 ## [Threads]
 
 <dl>
- <dt>-Create a simulation of ATMs process. There are several ATMs. Each has own bank account. And there is Central Storage(reserve).
+ <dt>-Create a simulation of ATMs processes. There are several ATMs. Each has own bank account. And there is Central Storage(reserve).
          When ATM don`t have enough cash in it, it take some cash from reserve. If ATM has a lot of cash, it put cash to resreve.
          Several users perform operations with this ATMs. (deposit, withdraw, check balace).</dt>
 </dl>
