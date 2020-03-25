@@ -102,7 +102,7 @@
 ## [Threads]
 
 <dl>
- <dt>-Create a simulation of ATMs processes. There are several ATMs. Each has own bank account. And there is Central Storage(reserve).
+ <dt>-Create a simulation of ATMs processes. There are several ATMs. Each has own cash amount. And there is Central Storage(reserve).
          When ATM don`t have enough cash in it, it takes some cash from reserve. If ATM has a lot of cash, it puts cash to resreve.
          Several users perform operations with this ATMs. (deposit, withdraw, check balace).</dt>
 </dl>
