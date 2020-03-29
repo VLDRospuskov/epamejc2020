@@ -2,7 +2,7 @@
 2 варианта решения задачи -- с помощью BufferedReader и JOptionPane  
 [hw1](https://github.com/VLDRospuskov/epamejc2020/tree/DianaKayumova/com.epamejc.lessons/src/main/java/homework/hw1)
 ## ImmutableClass
-Кастомный immutable class с несколькими методами для практики. 
+Кастомный immutable class с несколькими методами для практики.  
 [hw2](https://github.com/VLDRospuskov/epamejc2020/tree/DianaKayumova/com.epamejc.lessons/src/main/java/homework/hw2)
 ## Arrays
 [hw3](https://github.com/VLDRospuskov/epamejc2020/tree/DianaKayumova/com.epamejc.lessons/src/main/java/homework/hw3)
