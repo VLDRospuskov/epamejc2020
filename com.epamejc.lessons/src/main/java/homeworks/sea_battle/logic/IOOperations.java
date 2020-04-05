@@ -121,10 +121,10 @@ public class IOOperations {
                 String input = scanner.nextLine();
                 if (input.toUpperCase().equals("Y")) {
                     shipsSetterCommands = new ManualShipsSetter(ioOperations);
-                    break;
+                    isBot = false;
                 } else if (input.toUpperCase().equals("N")) {
                     shipsSetterCommands = new AutomaticShipSetter();
-                    break;
+                    isBot = false;
                 } else {
                     throw new Exception();
                 }
