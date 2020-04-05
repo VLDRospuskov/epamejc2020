@@ -80,6 +80,9 @@ public class IOOperations {
 
                 switch (input.toLowerCase()) {
                     case ("up") : {
+                        if (coordinates.getY() - (decksQty - 1) < 0) {
+                            return false;
+                        }
                         coordinates.setY(coordinates.getY() - (decksQty - 1));
                         return false;
                     }
@@ -87,6 +90,9 @@ public class IOOperations {
                         return false;
                     }
                     case ("left") : {
+                        if (coordinates.getX() - (decksQty - 1) < 0) {
+                            return true;
+                        }
                         coordinates.setX(coordinates.getX() - (decksQty - 1));
                         return true;
                     }

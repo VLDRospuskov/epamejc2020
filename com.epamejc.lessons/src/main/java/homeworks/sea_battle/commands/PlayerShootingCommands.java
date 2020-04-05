@@ -56,10 +56,6 @@ public interface PlayerShootingCommands {
         for (Coordinates coord : coords) {
             markCell(player.getMadeShots(), closedField, coord.getX(), coord.getY());
         }
-
-        for (Coordinates coord : coords) {
-            closedField[coord.getY()][coord.getX()] = -1;
-        }
     }
 
     default void markCell(Set<Coordinates> madeShots, int[][] field, int x, int y) {
@@ -73,6 +69,10 @@ public interface PlayerShootingCommands {
                     continue;
                 }
 
+                if (field[i][j] == -1) {
+                    continue;
+                }
+
                 field[i][j] = 2;
                 madeShots.add(new Coordinates(j, i));
             }
@@ -82,11 +82,10 @@ public interface PlayerShootingCommands {
     default Ship findShip(ArrayList<Ship> ships, int x, int y) {
         Ship foundShip = null;
         for (Ship ship : ships) {
-            ArrayList<Coordinates> coords = ship.getCoords();
             if (foundShip != null) {
                 break;
             }
-            for (Coordinates coord : coords) {
+            for (Coordinates coord : ship.getCoords()) {
                 if (coord.getX() == x && coord.getY() == y) {
                     foundShip = ship;
                     break;
