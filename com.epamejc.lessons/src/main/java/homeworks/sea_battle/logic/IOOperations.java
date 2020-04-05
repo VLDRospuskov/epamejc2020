@@ -109,7 +109,7 @@ public class IOOperations {
         }
     }
 
-    public ShipsSetterCommands chooseShipSetter(Player player) {
+    public ShipsSetterCommands chooseShipSetter(Player player, IOOperations ioOperations) {
         ShipsSetterCommands shipsSetterCommands = new AutomaticShipSetter();
 
         boolean isBot = player.getName().equals("Bot Player");
@@ -120,7 +120,7 @@ public class IOOperations {
             try {
                 String input = scanner.nextLine();
                 if (input.toUpperCase().equals("Y")) {
-                    shipsSetterCommands = new ManualShipsSetter(new IOOperations());
+                    shipsSetterCommands = new ManualShipsSetter(ioOperations);
                     break;
                 } else if (input.toUpperCase().equals("N")) {
                     shipsSetterCommands = new AutomaticShipSetter();

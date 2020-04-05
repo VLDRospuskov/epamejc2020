@@ -27,9 +27,9 @@ public class GameSettings {
         }
 
         Player playerOne = playerInit(input, true);
-        ShipsSetterCommands playerOneShipSetter = ioOperations.chooseShipSetter(playerOne);
+        ShipsSetterCommands playerOneShipSetter = ioOperations.chooseShipSetter(playerOne, ioOperations);
         Player playerTwo = playerInit(input, false);
-        ShipsSetterCommands playerTwoShipSetter = ioOperations.chooseShipSetter(playerTwo);;
+        ShipsSetterCommands playerTwoShipSetter = ioOperations.chooseShipSetter(playerTwo, ioOperations);
 
         return new Game(playerOne, playerTwo, playerOneShipSetter, playerTwoShipSetter);
     }
